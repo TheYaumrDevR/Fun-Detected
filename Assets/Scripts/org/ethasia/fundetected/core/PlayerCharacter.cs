@@ -12,6 +12,15 @@ namespace Org.Ethasia.Fundetected.Core
         private int life;
         private int mana;
 
+        private int accuracyRating;  
+
+        public void DeriveStats()
+        {
+            life += strength / 2;
+            mana += intelligence / 2;
+            accuracyRating += dexterity * 2;
+        }       
+
         public class PlayerCharacterBuilder
         {
             private string name;
@@ -22,7 +31,9 @@ namespace Org.Ethasia.Fundetected.Core
             private int strength;
 
             private int life;
-            private int mana;            
+            private int mana;   
+
+            private int accuracyRating;  
 
             public PlayerCharacterBuilder SetName(string value)
             {
@@ -64,7 +75,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 mana = value;
                 return this;
-            }                                                     
+            } 
+
+            public PlayerCharacterBuilder SetAccuracyRating(int value)
+            {
+                accuracyRating = value;
+                return this;
+            }                                                                   
 
             public PlayerCharacter Build()
             {
@@ -77,6 +94,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.strength = strength;
                 result.life = life;
                 result.mana = mana;
+                result.accuracyRating = accuracyRating;
 
                 return result;
             }  

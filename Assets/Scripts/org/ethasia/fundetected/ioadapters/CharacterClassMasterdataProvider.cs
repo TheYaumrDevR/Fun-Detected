@@ -13,8 +13,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Intelligence = 14;
             result.Dexterity = 14;
             result.Strength = 32;
-            result.Life = 66;
-            result.Mana = 47;
+            result.Life = 50;
+            result.Mana = 40;
             
             return result;
         }
@@ -27,8 +27,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Intelligence = 14;
             result.Dexterity = 23;
             result.Strength = 23;
-            result.Life = 62;
-            result.Mana = 47;
+            result.Life = 50;
+            result.Mana = 40;
             
             return result;
         }  
@@ -41,8 +41,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Intelligence = 23;
             result.Dexterity = 14;
             result.Strength = 23;
-            result.Life = 62;
-            result.Mana = 52;
+            result.Life = 50;
+            result.Mana = 40;
             
             return result;
         }   
@@ -55,8 +55,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Intelligence = 14;
             result.Dexterity = 32;
             result.Strength = 14;
-            result.Life = 57;
-            result.Mana = 47;
+            result.Life = 50;
+            result.Mana = 40;
             
             return result;
         }   
@@ -69,8 +69,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Intelligence = 32;
             result.Dexterity = 14;
             result.Strength = 14;
-            result.Life = 57;
-            result.Mana = 56;
+            result.Life = 50;
+            result.Mana = 40;
             
             return result;
         }     
@@ -83,8 +83,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Intelligence = 23;
             result.Dexterity = 23;
             result.Strength = 14;
-            result.Life = 57;
-            result.Mana = 52;
+            result.Life = 50;
+            result.Mana = 40;
             
             return result;
         }                                    

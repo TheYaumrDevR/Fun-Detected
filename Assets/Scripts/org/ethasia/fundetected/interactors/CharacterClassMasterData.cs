@@ -38,6 +38,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             get;
             set;
-        }
+        }    
     }
 }
