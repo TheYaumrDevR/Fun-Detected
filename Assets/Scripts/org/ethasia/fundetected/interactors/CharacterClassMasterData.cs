@@ -16,7 +16,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             set;
         }
 
-        public int Dexterity
+        public int Agility
         {
             get;
             set;
@@ -30,14 +30,18 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public int Life
         {
-            get;
-            set;
+            get 
+            {
+                return 50;
+            }
         }
 
         public int Mana
         {
-            get;
-            set;
-        }    
+            get 
+            {
+                return 40;
+            }
+        }  
     }
 }
