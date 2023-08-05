@@ -42,6 +42,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 return 40;
             }
-        }  
+        }
+
+        public int MinBasePhysicalDamage
+        {
+            get
+            {
+                return 2;
+            }
+        }
+
+        public int MaxBasePhysicalDamage;  
     }
 }

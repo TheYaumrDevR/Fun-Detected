@@ -15,6 +15,8 @@ namespace Org.Ethasia.Fundetected.Core
         private int currentLife;
         private int currentMana;
 
+        private DamageRange basePhysicalDamage;
+
         private int accuracyRating;  
 
         public void DeriveStats()
@@ -37,7 +39,9 @@ namespace Org.Ethasia.Fundetected.Core
             private int maximumMana;   
 
             private int currentLife;
-            private int currentMana;            
+            private int currentMana;       
+
+            private DamageRange basePhysicalDamage;     
 
             private int accuracyRating;  
 
@@ -87,7 +91,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 accuracyRating = value;
                 return this;
-            }                                                                   
+            }     
+
+            public PlayerCharacterBuilder SetBasePhysicalDamage(DamageRange value)
+            {
+                basePhysicalDamage = value;
+                return this;
+            }                                                                            
 
             public PlayerCharacter Build()
             {
@@ -103,6 +113,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.currentLife = currentLife;
                 result.currentMana = currentMana;
                 result.accuracyRating = accuracyRating;
+                result.basePhysicalDamage = basePhysicalDamage;
 
                 return result;
             }  
