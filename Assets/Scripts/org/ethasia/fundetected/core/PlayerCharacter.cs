@@ -115,6 +115,8 @@ namespace Org.Ethasia.Fundetected.Core
                 result.accuracyRating = accuracyRating;
                 result.basePhysicalDamage = basePhysicalDamage;
 
+                result.DeriveStats();
+
                 return result;
             }  
         }
