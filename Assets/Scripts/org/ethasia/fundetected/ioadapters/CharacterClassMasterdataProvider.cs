@@ -3,7 +3,7 @@ using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class CharacterClassMasterdataProvider
+    public class CharacterClassMasterdataProvider : ICharacterClassMasterDataProvider
     {
         public CharacterClassMasterData CreateStrongManMasterData()
         {

@@ -10,9 +10,9 @@ namespace Org.Ethasia.Fundetected
      */
     public class FunDetected : MonoBehaviour
     {
-        void Start()
+        void Awake()
         {
-            
+            Dependencies.Inject();
         }
 
         void Update()

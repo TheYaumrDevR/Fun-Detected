@@ -1,15 +1,14 @@
 using Org.Ethasia.Fundetected.Core;
-using Org.Ethasia.Fundetected.Ioadapters;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public class CreateNewCharacterInteractor
     {
-        private CharacterClassMasterdataProvider characterClassMasterDataProvider;
+        private ICharacterClassMasterDataProvider characterClassMasterDataProvider;
 
         public CreateNewCharacterInteractor()
         {
-            characterClassMasterDataProvider = new CharacterClassMasterdataProvider();
+            characterClassMasterDataProvider = IoAdaptersFactory.GetInstance().GetCharacterClassMasterDataProviderInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
