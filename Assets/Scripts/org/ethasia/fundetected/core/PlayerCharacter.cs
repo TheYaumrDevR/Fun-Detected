@@ -5,45 +5,14 @@ namespace Org.Ethasia.Fundetected.Core
         private CharacterClasses characterClass;
         private string name;
 
-        private int intelligence;
-        private int agility;
-        private int strength;
-
-        private int maximumLife;
-        private int maximumMana;
-
-        private int currentLife;
-        private int currentMana;
-
-        private DamageRange basePhysicalDamage;
-
-        private int accuracyRating;  
-
-        public void DeriveStats()
-        {
-            maximumLife += strength / 2;
-            maximumMana += intelligence / 2;
-            accuracyRating += agility * 2;
-        }       
+        private PlayerCharacterBaseStats playerCharacterBaseStats;     
 
         public class PlayerCharacterBuilder
         {
             private string name;
             private CharacterClasses characterClass;
 
-            private int intelligence;
-            private int agility;
-            private int strength;
-
-            private int maximumLife;
-            private int maximumMana;   
-
-            private int currentLife;
-            private int currentMana;       
-
-            private DamageRange basePhysicalDamage;     
-
-            private int accuracyRating;  
+            private PlayerCharacterBaseStats playerCharacterBaseStats;
 
             public PlayerCharacterBuilder SetName(string value)
             {
@@ -55,49 +24,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 characterClass = value;
                 return this;
-            }     
-
-            public PlayerCharacterBuilder SetIntelligence(int value)
-            {
-                intelligence = value;
-                return this;
             }  
 
-            public PlayerCharacterBuilder SetAgility(int value)
+            public PlayerCharacterBuilder SetPlayerCharacterBaseStats(PlayerCharacterBaseStats value)
             {
-                agility = value;
+                playerCharacterBaseStats = value;
                 return this;
-            }  
-
-            public PlayerCharacterBuilder SetStrength(int value)
-            {
-                strength = value;
-                return this;
-            }    
-
-            public PlayerCharacterBuilder SetMaxLife(int value)
-            {
-                maximumLife = value;
-                return this;
-            }  
-
-            public PlayerCharacterBuilder SetMaxMana(int value)
-            {
-                maximumMana = value;
-                return this;
-            } 
-
-            public PlayerCharacterBuilder SetAccuracyRating(int value)
-            {
-                accuracyRating = value;
-                return this;
-            }     
-
-            public PlayerCharacterBuilder SetBasePhysicalDamage(DamageRange value)
-            {
-                basePhysicalDamage = value;
-                return this;
-            }                                                                            
+            }                                                            
 
             public PlayerCharacter Build()
             {
@@ -105,17 +38,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.name = name;
                 result.characterClass = characterClass;
 
-                result.intelligence = intelligence;
-                result.agility = agility;
-                result.strength = strength;
-                result.maximumLife = maximumLife;
-                result.maximumMana = maximumMana;
-                result.currentLife = currentLife;
-                result.currentMana = currentMana;
-                result.accuracyRating = accuracyRating;
-                result.basePhysicalDamage = basePhysicalDamage;
-
-                result.DeriveStats();
+                result.playerCharacterBaseStats = playerCharacterBaseStats;
 
                 return result;
             }  

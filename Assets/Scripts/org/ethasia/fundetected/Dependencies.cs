@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters;
 
@@ -8,7 +9,8 @@ namespace Org.Ethasia.Fundetected
     {
         public static void Inject()
         {
-            IoAdaptersFactory.SetInstance(new RealIoAdaptersFactory());
+            IoAdaptersFactoryForInteractors.SetInstance(new RealIoAdaptersFactoryForInteractors());
+            RealIoAdaptersFactoryForCore.SetInstance(new RealIoAdaptersFactoryForCore());
         }
     }
 }

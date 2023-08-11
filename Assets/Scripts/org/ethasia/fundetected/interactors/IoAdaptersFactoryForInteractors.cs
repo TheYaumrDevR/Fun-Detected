@@ -1,16 +1,16 @@
 namespace Org.Ethasia.Fundetected.Interactors
 {
 
-    public abstract class IoAdaptersFactory
+    public abstract class IoAdaptersFactoryForInteractors
     {
-        private static IoAdaptersFactory instance;
+        private static IoAdaptersFactoryForInteractors instance;
 
-        public static void SetInstance(IoAdaptersFactory value)
+        public static void SetInstance(IoAdaptersFactoryForInteractors value)
         {
             instance = value;
         }
 
-        public static IoAdaptersFactory GetInstance()
+        public static IoAdaptersFactoryForInteractors GetInstance()
         {
             return instance;
         }        

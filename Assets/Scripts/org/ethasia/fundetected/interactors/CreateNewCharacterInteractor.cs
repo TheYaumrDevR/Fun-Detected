@@ -8,7 +8,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public CreateNewCharacterInteractor()
         {
-            characterClassMasterDataProvider = IoAdaptersFactory.GetInstance().GetCharacterClassMasterDataProviderInstance();
+            characterClassMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetCharacterClassMasterDataProviderInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
@@ -42,8 +42,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             DamageRange basePhysicalDamage = new DamageRange(playerCharacterStartingStats.MinBasePhysicalDamage, playerCharacterStartingStats.MaxBasePhysicalDamage);
 
-            return new PlayerCharacter.PlayerCharacterBuilder()
-                .SetCharacterClass(characterClass)
+            PlayerCharacterBaseStats startingStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
                 .SetIntelligence(playerCharacterStartingStats.Intelligence)
                 .SetAgility(playerCharacterStartingStats.Agility)
                 .SetStrength(playerCharacterStartingStats.Strength)
@@ -51,6 +50,11 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetMaxMana(playerCharacterStartingStats.Mana)
                 .SetAccuracyRating(playerCharacterStartingStats.Mana)
                 .SetBasePhysicalDamage(basePhysicalDamage)
+                .Build();   
+
+            return new PlayerCharacter.PlayerCharacterBuilder()
+                .SetCharacterClass(characterClass)
+                .SetPlayerCharacterBaseStats(startingStats)
                 .Build();            
         }
     }
