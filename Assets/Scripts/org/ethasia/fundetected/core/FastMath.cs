@@ -1,6 +1,5 @@
 namespace Org.Ethasia.Fundetected.Core
 {
-
     public class FastMath
     {
         public static int Floor(double x) 
