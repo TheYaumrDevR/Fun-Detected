@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
@@ -16,6 +18,8 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 currentLife = 0;
             }
+
+            Debug.Log(currentLife);
         }
 
         public bool IsDead()

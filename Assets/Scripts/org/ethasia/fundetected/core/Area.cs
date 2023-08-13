@@ -6,12 +6,25 @@ namespace Org.Ethasia.Fundetected.Core
     {
         public static Area ActiveArea;
 
-        private PlayerCharacter player;
+        public PlayerCharacter Player
+        {
+            get;
+            private set;
+        }
+
         private List<Enemy> enemies;
+
+        public Area()
+        {
+            enemies = new List<Enemy>();
+        }
 
         public void AddPlayer(PlayerCharacter value)
         {
-            player = value;
+            if (null != value && Player == null)
+            {
+                Player = value;
+            }
         }
 
         public void AddEnemy(Enemy enemy)

@@ -65,6 +65,12 @@ namespace Org.Ethasia.Fundetected.Core
             AccuracyRating += Agility * 2;
         }   
 
+        public void FullHeal()
+        {
+            CurrentLife = MaximumLife;
+            CurrentMana = MaximumMana;
+        }
+
         public class PlayerCharacterBaseStatsBuilder
         {
             private int intelligence;
@@ -136,8 +142,6 @@ namespace Org.Ethasia.Fundetected.Core
                 result.CurrentMana = currentMana;
                 result.AccuracyRating = accuracyRating;
                 result.BasePhysicalDamage = basePhysicalDamage;
-
-                result.DeriveStats();
 
                 return result;
             }  

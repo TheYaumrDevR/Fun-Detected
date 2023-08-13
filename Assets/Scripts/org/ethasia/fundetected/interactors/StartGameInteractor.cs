@@ -60,6 +60,9 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetAccuracyRating(playerCharacterStartingStats.Mana)
                 .SetBasePhysicalDamage(basePhysicalDamage)
                 .Build();   
+            
+            startingStats.DeriveStats();
+            startingStats.FullHeal();
 
             return new PlayerCharacter.PlayerCharacterBuilder()
                 .SetCharacterClass(characterClass)
