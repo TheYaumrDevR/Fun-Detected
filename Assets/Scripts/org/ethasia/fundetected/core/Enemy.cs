@@ -2,6 +2,7 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
     {
+        private string name;
         private int maxLife;
         private int currentLife;
         private int armor;
@@ -24,9 +25,16 @@ namespace Org.Ethasia.Fundetected.Core
 
         public class Builder
         {
+            private string name;
             private int maxLife;
             private int currentLife;
             private int armor;
+
+            public Builder SetName(string value)
+            {
+                name = value;
+                return this;
+            }            
 
             public Builder SetArmor(int value)
             {
@@ -44,6 +52,7 @@ namespace Org.Ethasia.Fundetected.Core
             public Enemy Build()
             {
                 Enemy result = new Enemy();
+                result.name = name;
                 result.armor = armor;
                 result.maxLife = maxLife;
                 result.currentLife = currentLife;

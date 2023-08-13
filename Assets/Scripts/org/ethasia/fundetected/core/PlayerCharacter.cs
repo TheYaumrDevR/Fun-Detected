@@ -2,10 +2,29 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class PlayerCharacter
     {
+        private IRandomNumberGenerator randomNumberGenerator;
+
         private CharacterClasses characterClass;
         private string name;
 
-        private PlayerCharacterBaseStats playerCharacterBaseStats;     
+        private PlayerCharacterBaseStats baseStats;     
+
+        private PlayerCharacter()
+        {
+            randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+        }
+
+        public void AutoAttack(Enemy target)
+        {
+            if (baseStats.CurrentLife > 0)
+            {
+                DamageRange damageRange = baseStats.BasePhysicalDamage;
+
+                int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
+
+                target.TakePhysicalHit(damage);
+            }
+        }
 
         public class PlayerCharacterBuilder
         {
@@ -38,7 +57,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.name = name;
                 result.characterClass = characterClass;
 
-                result.playerCharacterBaseStats = playerCharacterBaseStats;
+                result.baseStats = playerCharacterBaseStats;
 
                 return result;
             }  

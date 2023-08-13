@@ -52,6 +52,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }
 
-        public int MaxBasePhysicalDamage;  
+        public int MaxBasePhysicalDamage
+        {
+            get;
+            set;
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class RealIoAdaptersFactoryForInteractors : IoAdaptersFactoryForInteractors
     {
         private CharacterClassMasterdataProvider characterClassMasterdataProvider;
+        private EnemyMasterDataProvider enemyMasterDataProvider;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -15,6 +16,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return characterClassMasterdataProvider;
+        }
+
+        public override IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance()
+        {
+            if (null == enemyMasterDataProvider)
+            {
+                enemyMasterDataProvider = new EnemyMasterDataProvider();
+            }
+
+            return enemyMasterDataProvider;
         }
     }
 }

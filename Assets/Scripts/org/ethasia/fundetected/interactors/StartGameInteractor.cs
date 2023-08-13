@@ -2,19 +2,28 @@ using Org.Ethasia.Fundetected.Core;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {
-    public class CreateNewCharacterInteractor
+    public class StartGameInteractor
     {
         private ICharacterClassMasterDataProvider characterClassMasterDataProvider;
+        private IEnemyMasterDataProvider enemyMasterDataProvider;
 
-        public CreateNewCharacterInteractor()
+        public StartGameInteractor()
         {
             characterClassMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetCharacterClassMasterDataProviderInstance();
+            enemyMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyMasterDataProviderInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
         {
             CharacterClassMasterData playerCharacterStartingStats = CreateCharacterMasterDataBasedOnCharacterClass(characterClass); 
             PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterStartingStats);
+            Enemy enemy = CreateEnemy();
+
+            Area map = new Area();
+            map.AddPlayer(playerCharacter);
+            map.AddEnemy(enemy);
+
+            Area.ActiveArea = map;
         }
 
         private CharacterClassMasterData CreateCharacterMasterDataBasedOnCharacterClass(CharacterClasses characterClass)
@@ -56,6 +65,19 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .Build();            
+        }
+
+        private Enemy CreateEnemy()
+        {
+            EnemyMasterData enemyMasterData = enemyMasterDataProvider.CreateDrownedZombieMasterData();
+
+            Enemy result = new Enemy.Builder()
+                .SetName(enemyMasterData.Name)
+                .SetLife(enemyMasterData.MaxLife)
+                .SetArmor(enemyMasterData.Armor)
+                .Build();
+
+            return result;
         }
     }
 }

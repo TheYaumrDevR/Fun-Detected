@@ -4,25 +4,65 @@ namespace Org.Ethasia.Fundetected.Core
     // Stats derived from level up values and passive skill points
     public class PlayerCharacterBaseStats
     {
-        private int intelligence;
-        private int agility;
-        private int strength;
+        public int Intelligence
+        {
+            get;
+            private set;
+        }
 
-        private int maximumLife;
-        private int maximumMana;
+        public int Agility
+        {
+            get;
+            private set;
+        }
 
-        private int currentLife;
-        private int currentMana;
+        public int Strength
+        {
+            get;
+            private set;
+        }        
 
-        private DamageRange basePhysicalDamage;
+        public int MaximumLife
+        {
+            get;
+            private set;
+        }
 
-        private int accuracyRating;  
+        public int MaximumMana
+        {
+            get;
+            private set;
+        }        
+
+        public int CurrentLife
+        {
+            get;
+            private set;
+        }
+
+        public int CurrentMana
+        {
+            get;
+            private set;
+        }        
+
+        public DamageRange BasePhysicalDamage
+        {
+            get;
+            private set;
+        }        
+
+        public int AccuracyRating
+        {
+            get;
+            private set;
+        }        
 
         public void DeriveStats()
         {
-            maximumLife += strength / 2;
-            maximumMana += intelligence / 2;
-            accuracyRating += agility * 2;
+            MaximumLife += Strength / 2;
+            MaximumMana += Intelligence / 2;
+            AccuracyRating += Agility * 2;
         }   
 
         public class PlayerCharacterBaseStatsBuilder
@@ -87,15 +127,15 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 PlayerCharacterBaseStats result = new PlayerCharacterBaseStats();
 
-                result.intelligence = intelligence;
-                result.agility = agility;
-                result.strength = strength;
-                result.maximumLife = maximumLife;
-                result.maximumMana = maximumMana;
-                result.currentLife = currentLife;
-                result.currentMana = currentMana;
-                result.accuracyRating = accuracyRating;
-                result.basePhysicalDamage = basePhysicalDamage;
+                result.Intelligence = intelligence;
+                result.Agility = agility;
+                result.Strength = strength;
+                result.MaximumLife = maximumLife;
+                result.MaximumMana = maximumMana;
+                result.CurrentLife = currentLife;
+                result.CurrentMana = currentMana;
+                result.AccuracyRating = accuracyRating;
+                result.BasePhysicalDamage = basePhysicalDamage;
 
                 result.DeriveStats();
 
