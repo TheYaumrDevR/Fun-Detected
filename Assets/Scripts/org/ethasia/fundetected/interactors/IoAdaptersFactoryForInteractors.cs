@@ -17,5 +17,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public abstract ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance();
         public abstract IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance();
+        public abstract IBattleLogPrinter GetBattleLogPrinterInstance();
     }
 }

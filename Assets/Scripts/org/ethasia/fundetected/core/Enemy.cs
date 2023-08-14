@@ -1,30 +1,39 @@
-using UnityEngine;
-
 namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
     {
-        private string name;
+        public string Name
+        {
+            get;
+            private set;
+        }
+
         private int maxLife;
-        private int currentLife;
+
+        public int CurrentLife
+        {
+            get;
+            private set;
+        }
+
         private int armor;
 
-        public void TakePhysicalHit(int incomingDamage)
+        public int TakePhysicalHit(int incomingDamage)
         {
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, armor);
-            currentLife -= finalDamage;
+            CurrentLife -= finalDamage;
 
-            if (0 > currentLife)
+            if (0 > CurrentLife)
             {
-                currentLife = 0;
+                CurrentLife = 0;
             }
 
-            Debug.Log(currentLife);
+            return finalDamage;
         }
 
         public bool IsDead()
         {
-            return 0 == currentLife;
+            return 0 == CurrentLife;
         }
 
         public class Builder
@@ -56,10 +65,10 @@ namespace Org.Ethasia.Fundetected.Core
             public Enemy Build()
             {
                 Enemy result = new Enemy();
-                result.name = name;
+                result.Name = name;
                 result.armor = armor;
                 result.maxLife = maxLife;
-                result.currentLife = currentLife;
+                result.CurrentLife = currentLife;
 
                 return result;
             }

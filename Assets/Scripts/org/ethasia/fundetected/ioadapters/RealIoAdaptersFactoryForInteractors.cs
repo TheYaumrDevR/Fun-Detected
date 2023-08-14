@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     {
         private CharacterClassMasterdataProvider characterClassMasterdataProvider;
         private EnemyMasterDataProvider enemyMasterDataProvider;
+        private BattleLogPrinter battleLogPrinter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -26,6 +27,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return enemyMasterDataProvider;
+        }
+
+        public override IBattleLogPrinter GetBattleLogPrinterInstance()
+        {
+            if (null == battleLogPrinter)
+            {
+                battleLogPrinter = new BattleLogPrinter();
+            }
+
+            return battleLogPrinter;
         }
     }
 }

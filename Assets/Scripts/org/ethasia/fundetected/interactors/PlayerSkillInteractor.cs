@@ -11,7 +11,10 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             if (null != enemyHit)
             {
-                activeArea.Player.AutoAttack(enemyHit);
+                IBattleLogPrinter battleLogPrinter = IoAdaptersFactoryForInteractors.GetInstance().GetBattleLogPrinterInstance();  
+
+                PlayerAbilityActionResult battleLogAction = activeArea.Player.AutoAttack(enemyHit);
+                battleLogPrinter.PrintBattleLogEntry(battleLogAction);
             }
         }
     }

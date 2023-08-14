@@ -14,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Core
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
         }
 
-        public void AutoAttack(Enemy target)
+        public PlayerAbilityActionResult AutoAttack(Enemy target)
         {
             if (baseStats.CurrentLife > 0)
             {
@@ -22,8 +22,16 @@ namespace Org.Ethasia.Fundetected.Core
 
                 int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
 
-                target.TakePhysicalHit(damage);
+                int damageTaken = target.TakePhysicalHit(damage);
+
+                return new PlayerAbilityActionResult.Builder()
+                    .SetTargetName(target.Name)
+                    .SetTargetDamageTaken(damageTaken)
+                    .SetTargetRemainingHealth(target.CurrentLife)
+                    .Build();
             }
+
+            return new PlayerAbilityActionResult.Builder().Build();
         }
 
         public class PlayerCharacterBuilder

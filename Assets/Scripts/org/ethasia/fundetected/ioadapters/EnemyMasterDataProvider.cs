@@ -7,7 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public EnemyMasterData CreateDrownedZombieMasterData()
         {
             EnemyMasterData result = new EnemyMasterData();
-            result.Name = "";
+            result.Name = "Drowned Zombie";
             result.MaxLife = 30;
             result.Armor = 1;
 
