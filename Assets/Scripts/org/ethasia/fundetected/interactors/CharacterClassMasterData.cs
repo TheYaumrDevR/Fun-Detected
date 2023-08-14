@@ -57,5 +57,13 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
             set;
         }
+
+        public double AttacksPerSecond
+        {
+            get
+            {
+                return 1.2f;
+            }
+        }        
     }
 }

@@ -56,7 +56,13 @@ namespace Org.Ethasia.Fundetected.Core
         {
             get;
             private set;
-        }        
+        }  
+
+        public double AttacksPerSecond
+        {
+            get;
+            private set;
+        }               
 
         public void DeriveStats()
         {
@@ -85,7 +91,9 @@ namespace Org.Ethasia.Fundetected.Core
 
             private DamageRange basePhysicalDamage;     
 
-            private int accuracyRating;     
+            private int accuracyRating;   
+
+            private double attacksPerSecond; 
 
             public PlayerCharacterBaseStatsBuilder SetIntelligence(int value)
             {
@@ -127,7 +135,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 basePhysicalDamage = value;
                 return this;
-            }                                                                            
+            }   
+
+            public PlayerCharacterBaseStatsBuilder SetAttacksPerSecond(double value)
+            {
+                attacksPerSecond = value;
+                return this;
+            }                                                                                       
 
             public PlayerCharacterBaseStats Build()
             {
@@ -142,6 +156,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.CurrentMana = currentMana;
                 result.AccuracyRating = accuracyRating;
                 result.BasePhysicalDamage = basePhysicalDamage;
+                result.AttacksPerSecond = attacksPerSecond;
 
                 return result;
             }  

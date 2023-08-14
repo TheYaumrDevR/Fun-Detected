@@ -21,7 +21,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return;
             }
 
-            playerSkillInteractor.ExecutePrimaryPlayerAction();
+            playerSkillInteractor.ExecutePrimaryPlayerAction(callBackContext.startTime);
         }
     }
 }

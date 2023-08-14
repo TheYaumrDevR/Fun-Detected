@@ -9,15 +9,19 @@ namespace Org.Ethasia.Fundetected.Core
 
         private PlayerCharacterBaseStats baseStats;     
 
+        private double lastAttackTime;
+
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
         }
 
-        public PlayerAbilityActionResult AutoAttack(Enemy target)
+        public PlayerAbilityActionResult AutoAttack(double actionTime, Enemy target)
         {
-            if (baseStats.CurrentLife > 0)
+            if (baseStats.CurrentLife > 0 && EnoughTimePassedSinceLastAttack(actionTime))
             {
+                lastAttackTime = actionTime;
+
                 DamageRange damageRange = baseStats.BasePhysicalDamage;
 
                 int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
@@ -32,6 +36,12 @@ namespace Org.Ethasia.Fundetected.Core
             }
 
             return new PlayerAbilityActionResult.Builder().Build();
+        }
+
+        private bool EnoughTimePassedSinceLastAttack(double actionTime)
+        {
+            double secondsPerAttack = 1.0 / baseStats.AttacksPerSecond;
+            return 0.0 == lastAttackTime || actionTime - lastAttackTime >= secondsPerAttack;
         }
 
         public class PlayerCharacterBuilder
