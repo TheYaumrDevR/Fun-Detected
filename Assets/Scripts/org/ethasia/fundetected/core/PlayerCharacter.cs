@@ -16,10 +16,15 @@ namespace Org.Ethasia.Fundetected.Core
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
         }
 
-        public PlayerAbilityActionResult AutoAttack(double actionTime, Enemy target)
+        public IBattleLogEntry AutoAttack(double actionTime, Enemy target)
         {
             if (baseStats.CurrentLife > 0 && EnoughTimePassedSinceLastAttack(actionTime))
             {
+                if (target.IsDead())
+                {
+                    return new NothingToAttackBattleLogEntry();
+                }
+
                 lastAttackTime = actionTime;
 
                 DamageRange damageRange = baseStats.BasePhysicalDamage;
@@ -35,7 +40,7 @@ namespace Org.Ethasia.Fundetected.Core
                     .Build();
             }
 
-            return new PlayerAbilityActionResult.Builder().Build();
+            return new EmptyBattleLogEntry();
         }
 
         private bool EnoughTimePassedSinceLastAttack(double actionTime)

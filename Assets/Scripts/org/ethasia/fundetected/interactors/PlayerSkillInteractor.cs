@@ -13,7 +13,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 IBattleLogPrinter battleLogPrinter = IoAdaptersFactoryForInteractors.GetInstance().GetBattleLogPrinterInstance();  
 
-                PlayerAbilityActionResult battleLogAction = activeArea.Player.AutoAttack(actionTime, enemyHit);
+                IBattleLogEntry battleLogAction = activeArea.Player.AutoAttack(actionTime, enemyHit);
                 battleLogPrinter.PrintBattleLogEntry(battleLogAction);
             }
         }

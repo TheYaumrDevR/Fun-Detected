@@ -7,9 +7,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class BattleLogPrinter : IBattleLogPrinter
     {
-        public void PrintBattleLogEntry(PlayerAbilityActionResult logEntry)
+        public void PrintBattleLogEntry(IBattleLogEntry logEntry)
         {
-            Debug.Log("You hit " + logEntry.TargetName + " for " + logEntry.TargetDamageTaken + ". Remaining target HP: " + logEntry.TargetRemainingHealth);
+            Debug.Log(logEntry.ToString());
         }
     }
 }

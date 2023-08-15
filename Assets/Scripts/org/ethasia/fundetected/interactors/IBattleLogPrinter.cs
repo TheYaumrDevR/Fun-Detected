@@ -4,6 +4,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public interface IBattleLogPrinter
     {
-        void PrintBattleLogEntry(PlayerAbilityActionResult logEntry);
+        void PrintBattleLogEntry(IBattleLogEntry logEntry);
     }
 }

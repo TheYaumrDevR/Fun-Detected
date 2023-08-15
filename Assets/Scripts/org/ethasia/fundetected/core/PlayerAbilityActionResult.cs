@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Fundetected.Core
 {
-    public struct PlayerAbilityActionResult
+    public struct PlayerAbilityActionResult : IBattleLogEntry
     {
         public string TargetName
         {
@@ -19,6 +19,11 @@ namespace Org.Ethasia.Fundetected.Core
             get;
             private set;
         } 
+
+        public override string ToString()
+        {
+            return "You hit " + TargetName + " for " + TargetDamageTaken + ". Remaining target HP: " + TargetRemainingHealth;
+        }
 
         public class Builder
         {
