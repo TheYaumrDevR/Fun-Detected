@@ -57,7 +57,6 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetStrength(playerCharacterStartingStats.Strength)
                 .SetMaxLife(playerCharacterStartingStats.Life)
                 .SetMaxMana(playerCharacterStartingStats.Mana)
-                .SetAccuracyRating(playerCharacterStartingStats.Mana)
                 .SetBasePhysicalDamage(basePhysicalDamage)
                 .SetAttacksPerSecond(playerCharacterStartingStats.AttacksPerSecond)
                 .Build();   
@@ -79,6 +78,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetName(enemyMasterData.Name)
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
+                .SetEvasionRating(enemyMasterData.EvasionRating)
                 .Build();
 
             return result;

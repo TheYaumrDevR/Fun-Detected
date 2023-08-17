@@ -27,17 +27,24 @@ namespace Org.Ethasia.Fundetected.Core
 
                 lastAttackTime = actionTime;
 
-                DamageRange damageRange = baseStats.BasePhysicalDamage;
+                float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
+                
+                if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
+                {
+                    DamageRange damageRange = baseStats.BasePhysicalDamage;
 
-                int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
+                    int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
 
-                int damageTaken = target.TakePhysicalHit(damage);
+                    int damageTaken = target.TakePhysicalHit(damage);
 
-                return new PlayerAbilityActionResult.Builder()
-                    .SetTargetName(target.Name)
-                    .SetTargetDamageTaken(damageTaken)
-                    .SetTargetRemainingHealth(target.CurrentLife)
-                    .Build();
+                    return new PlayerAbilityActionResult.Builder()
+                        .SetTargetName(target.Name)
+                        .SetTargetDamageTaken(damageTaken)
+                        .SetTargetRemainingHealth(target.CurrentLife)
+                        .Build();
+                }
+
+                return new AttackMissedBattleLogEntry();
             }
 
             return new EmptyBattleLogEntry();

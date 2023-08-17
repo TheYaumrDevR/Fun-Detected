@@ -40,6 +40,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return FastMath.Floor(randomNumber);
         }
 
+        public bool CheckProbabilityIsHit(float probability)
+        {
+            float randomNumber = UnityEngine.Random.Range(0.0f, 1.0f);
+    	    return randomNumber <= probability;
+        }
+
         private int GenerateRandomSeed()
         {
             long currentDateTimeTicks = DateTime.Now.Ticks;

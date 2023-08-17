@@ -17,6 +17,11 @@ namespace Org.Ethasia.Fundetected.Core
         }
 
         private int armor;
+        public int EvasionRating
+        {
+            get;
+            private set;
+        }
 
         public int TakePhysicalHit(int incomingDamage)
         {
@@ -42,6 +47,7 @@ namespace Org.Ethasia.Fundetected.Core
             private int maxLife;
             private int currentLife;
             private int armor;
+            private int evasionRating;
 
             public Builder SetName(string value)
             {
@@ -54,6 +60,12 @@ namespace Org.Ethasia.Fundetected.Core
                 armor = value;
                 return this;
             }
+
+            public Builder SetEvasionRating(int value)    
+            {
+                evasionRating = value;
+                return this;
+            }        
 
             public Builder SetLife(int value)
             {
@@ -69,6 +81,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.armor = armor;
                 result.maxLife = maxLife;
                 result.CurrentLife = currentLife;
+                result.EvasionRating = evasionRating;
 
                 return result;
             }

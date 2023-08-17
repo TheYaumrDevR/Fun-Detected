@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Name = "Drowned Zombie";
             result.MaxLife = 30;
             result.Armor = 1;
+            result.EvasionRating = 98;
 
             return result;
         }

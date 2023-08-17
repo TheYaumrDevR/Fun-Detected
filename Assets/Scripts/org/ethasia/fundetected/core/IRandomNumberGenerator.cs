@@ -4,5 +4,6 @@ namespace Org.Ethasia.Fundetected.Core
     {
         int GenerateIntegerBetweenAnd(int min, int max);
         int GenerateRandomPositiveInteger(int max);
+        bool CheckProbabilityIsHit(float probability);
     }
 }
