@@ -19,6 +19,11 @@ namespace Org.Ethasia.Fundetected.Core
             enemies = new List<Enemy>();
         }
 
+        public List<Enemy> GetEnemies()
+        {
+            return enemies;
+        }        
+
         public void AddPlayer(PlayerCharacter value)
         {
             if (null != value && Player == null)

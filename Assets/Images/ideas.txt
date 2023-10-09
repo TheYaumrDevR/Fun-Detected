@@ -1,0 +1,16 @@
+- No lvl req on gear only stat req
+- All base types can already drop from the beginning
+- As monster level increases their chance to drop higher lvl base types increases
+- All ilvls can roll all mod tiers
+- Higher ilvl items have a higher chance to roll higher tier mods
+- White items have a fixed drop rate from the lowest monster lvl to the highest
+- Blue items have a fixed drop rate from the lowest monster lvl to the highest
+- Blue items drop more often than white items
+- Yellow items can drop everywhere but the drop chance increases with higher lvl monsters
+- Charms and runewords are in the game
+- Atlas passive tree has a node which converts blue item drops to alteration orbs (can also be acquired from charms)
+- Atlas passive tree has a node which converts yellow item drops to chaos orbs (can also be acquired from charms)
+- Scouring orbs are a rare random drop
+- Chance orbs drop like candy
+- Vaal orbs also drop quite frequently
+- To use harvest add/rem recipe you have to first "lock" at least 3 stats on a yellow item
