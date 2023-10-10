@@ -13,14 +13,19 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [OneTimeSetUp] 
         public void Init()
         {
+            IoAdaptersFactoryForInteractors.SetInstance(new MockedIoAdaptersFactoryForInteractors());
+        }
+
+        [SetUp]
+        public void ResetStates()
+        {
             int[] randomNumbersToGenerate = {5, 7, 9, 5, 2};
-            float[] randomFloatsToGenerate = {};
+            float[] randomFloatsToGenerate = {};       
 
             RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(rngMock);
 
-            IoAdaptersFactoryForInteractors.SetInstance(new MockedIoAdaptersFactoryForInteractors());
             IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
         }
 
@@ -50,7 +55,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Enemy enemy = Area.ActiveArea.GetEnemies()[0];
 
-            Assert.That(enemy.CurrentLife, Is.EqualTo(24));  
+            Assert.That(enemy.CurrentLife, Is.EqualTo(26));  
         }        
     }
 }
