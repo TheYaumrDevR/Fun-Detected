@@ -56,6 +56,44 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Enemy enemy = Area.ActiveArea.GetEnemies()[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(26));  
-        }        
+        }   
+
+        [Test]
+        public void TestExecutePrimaryPlayerActionTimeBetweenTwoAttacksLongEnough()
+        {   
+            StartGameInteractor startGameInteractor = new StartGameInteractor();
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
+
+            PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
+            testCandidate.ExecutePrimaryPlayerAction(1.0);
+            testCandidate.ExecutePrimaryPlayerAction(2.0);
+
+            Enemy enemy = Area.ActiveArea.GetEnemies()[0];
+
+            Assert.That(enemy.CurrentLife, Is.EqualTo(20));  
+        }  
+
+        [Test]
+        public void TestExecutePrimaryPlayerActionAttackMisses()
+        {   
+            int[] randomNumbersToGenerate = {5, 7, 9, 5, 2};
+            float[] randomFloatsToGenerate = {0.95f};       
+
+            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+
+            StartGameInteractor startGameInteractor = new StartGameInteractor();
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.MAGICIAN);
+
+            PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
+            testCandidate.ExecutePrimaryPlayerAction(1.0);
+
+            Enemy enemy = Area.ActiveArea.GetEnemies()[0];
+
+            Assert.That(enemy.CurrentLife, Is.EqualTo(30));  
+        }                    
     }
 }

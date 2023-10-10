@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core
                 return incomingDamage;
             }
 
-            return (5 * incomingDamage * incomingDamage) / (armor + 5 * incomingDamage);
+            return (5 * (incomingDamage * incomingDamage)) / (armor + 5 * incomingDamage);
         }
 
         public static float CalculateChanceToHit(int attackerAccuracy, int defenderEvasion)
