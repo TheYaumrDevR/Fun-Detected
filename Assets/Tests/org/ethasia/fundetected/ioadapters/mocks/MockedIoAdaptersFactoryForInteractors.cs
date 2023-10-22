@@ -18,5 +18,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new BattleLogPrinterMock();
         }
+
+        public override IPlayerMovementController GetPlayerMovementControllerInstance()
+        {
+            return new PlayerMovementControllerMock();
+        }        
     }
 }

@@ -59,6 +59,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetMaxMana(playerCharacterStartingStats.Mana)
                 .SetBasePhysicalDamage(basePhysicalDamage)
                 .SetAttacksPerSecond(playerCharacterStartingStats.AttacksPerSecond)
+                .SetMovementSpeed(playerCharacterStartingStats.MovementSpeed)
                 .Build();   
             
             startingStats.DeriveStats();

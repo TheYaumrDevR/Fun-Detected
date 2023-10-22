@@ -11,6 +11,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         private double lastAttackTime;
 
+        private double timeSinceLastMovement;
+
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
@@ -50,10 +52,34 @@ namespace Org.Ethasia.Fundetected.Core
             return new EmptyBattleLogEntry();
         }
 
+        public int MoveLeft(double actionTime)
+        {
+            timeSinceLastMovement += actionTime;
+            return CalculateMovementDistance();
+        }
+
+        public int MoveRight(double actionTime)
+        {
+            timeSinceLastMovement += actionTime;
+            return CalculateMovementDistance();
+        }
+
         private bool EnoughTimePassedSinceLastAttack(double actionTime)
         {
             double secondsPerAttack = 1.0 / baseStats.AttacksPerSecond;
             return 0.0 == lastAttackTime || actionTime - lastAttackTime >= secondsPerAttack;
+        }
+
+        public int CalculateMovementDistance()
+        {
+            int result = 0;
+            while (timeSinceLastMovement >= baseStats.SecondsToMoveOneUnit) 
+            {
+                timeSinceLastMovement -= baseStats.SecondsToMoveOneUnit;
+                result++;
+            }
+
+            return result;            
         }
 
         public class PlayerCharacterBuilder

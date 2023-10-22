@@ -62,13 +62,27 @@ namespace Org.Ethasia.Fundetected.Core
         {
             get;
             private set;
-        }               
+        }  
+
+        public int MovementSpeed
+        {
+            get;
+            private set;
+        }            
+
+        public double SecondsToMoveOneUnit
+        {
+            get;
+            private set;
+        }
 
         public void DeriveStats()
         {
             MaximumLife += Strength / 2;
             MaximumMana += Intelligence / 2;
             AccuracyRating += Agility * 2;
+
+            SecondsToMoveOneUnit = 1.0 / (MovementSpeed / 10); 
         }   
 
         public void FullHeal()
@@ -94,6 +108,8 @@ namespace Org.Ethasia.Fundetected.Core
             private int accuracyRating;   
 
             private double attacksPerSecond; 
+
+            private int movementSpeed;
 
             public PlayerCharacterBaseStatsBuilder SetIntelligence(int value)
             {
@@ -141,7 +157,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 attacksPerSecond = value;
                 return this;
-            }                                                                                       
+            }      
+
+            public PlayerCharacterBaseStatsBuilder SetMovementSpeed(int value)
+            {
+                movementSpeed = value;
+                return this;
+            }                                                                                                
 
             public PlayerCharacterBaseStats Build()
             {
@@ -157,6 +179,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.AccuracyRating = accuracyRating;
                 result.BasePhysicalDamage = basePhysicalDamage;
                 result.AttacksPerSecond = attacksPerSecond;
+                result.MovementSpeed = movementSpeed;
 
                 return result;
             }  

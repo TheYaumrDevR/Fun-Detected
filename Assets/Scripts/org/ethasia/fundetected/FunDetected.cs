@@ -1,7 +1,6 @@
 using UnityEngine;
 
 using Org.Ethasia.Fundetected.Core;
-using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected
 {
@@ -10,26 +9,9 @@ namespace Org.Ethasia.Fundetected
      */
     public class FunDetected : MonoBehaviour
     {
-        private StartGameInteractor startGameInteractor;
-
-        public FunDetected()
-        {
-        }
-
         void Awake()
         {
             Dependencies.Inject();
-        }
-
-        void Start()
-        {
-            startGameInteractor = new StartGameInteractor();
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
-        }
-
-        void Update()
-        {
-            
         }
     } 
 }

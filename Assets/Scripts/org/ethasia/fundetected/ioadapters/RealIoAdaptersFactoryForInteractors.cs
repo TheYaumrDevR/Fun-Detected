@@ -8,6 +8,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private CharacterClassMasterdataProvider characterClassMasterdataProvider;
         private EnemyMasterDataProvider enemyMasterDataProvider;
         private BattleLogPrinter battleLogPrinter;
+        private IPlayerMovementController playerMovementController;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -37,6 +38,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return battleLogPrinter;
+        }
+
+        public override IPlayerMovementController GetPlayerMovementControllerInstance()
+        {
+            if (null == playerMovementController)
+            {
+                playerMovementController = PlayerMovementControllerImpl.GetInstance();
+            }
+
+            return playerMovementController;
         }
     }
 }

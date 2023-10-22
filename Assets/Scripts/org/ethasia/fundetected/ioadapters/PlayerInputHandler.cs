@@ -8,10 +8,28 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class PlayerInputHandler : MonoBehaviour
     {
         private PlayerSkillInteractor playerSkillInteractor;
+        private PlayerMovementInteractor playerMovementInteractor;
+
+        private bool leftMoveButtonIsHeld;
+        private bool rightMoveButtonIsHeld;
 
         public PlayerInputHandler()
         {
             playerSkillInteractor = new PlayerSkillInteractor();
+            playerMovementInteractor = new PlayerMovementInteractor();
+        }
+
+        public void Update()
+        {
+            if (leftMoveButtonIsHeld)
+            {
+                playerMovementInteractor.MovePlayerLeft(Time.deltaTime);
+            }
+
+            if (rightMoveButtonIsHeld)
+            {
+                playerMovementInteractor.MovePlayerRight(Time.deltaTime);
+            }
         }
 
         public void OnPrimaryAction(InputAction.CallbackContext callBackContext)
@@ -23,5 +41,29 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             playerSkillInteractor.ExecutePrimaryPlayerAction(callBackContext.startTime);
         }
+
+        public void OnMoveLeft(InputAction.CallbackContext callBackContext)
+        {
+            if (callBackContext.performed)
+            {
+                leftMoveButtonIsHeld = true;
+            }
+            else
+            {
+                leftMoveButtonIsHeld = false;
+            }
+        }
+
+        public void OnMoveRight(InputAction.CallbackContext callBackContext)
+        {
+            if (callBackContext.performed)
+            {
+                rightMoveButtonIsHeld = true;
+            }
+            else
+            {
+                rightMoveButtonIsHeld = false;
+            }
+        }        
     }
 }

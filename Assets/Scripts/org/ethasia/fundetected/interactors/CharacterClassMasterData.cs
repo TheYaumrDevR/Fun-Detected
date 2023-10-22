@@ -65,5 +65,13 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return 1.2f;
             }
         }        
+
+        public int MovementSpeed
+        {
+            get
+            {
+                return 150;
+            }
+        }
     }
 }
