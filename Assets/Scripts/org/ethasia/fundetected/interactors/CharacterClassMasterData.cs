@@ -70,7 +70,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             get
             {
-                return 150;
+                return 200;
             }
         }
     }
