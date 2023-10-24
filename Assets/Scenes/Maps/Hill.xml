@@ -1,0 +1,17 @@
+<mapTileProperties>
+    <collisions>
+        <collision startX="-100" startY="-40" width="320" height="20"/>
+        <collision startX="-100" startY="-20" width="40" height="10"/>
+        <collision startX="-10" startY="-20" width="230" height="30"/>
+        <collision startX="160" startY="10" width="60" height="20"/>
+        <collision startX="170" startY="30" width="50" height="10"/>
+        <collision startX="140" startY="10" width="20" height="10"/>
+        <collision startX="-30" startY="-20" width="20" height="10"/>
+        <collision startX="-20" startY="-10" width="10" height="10"/>
+        <!-- border -->
+        <collision startX="-101" startY="-41" width="322" height="1"/>
+        <collision startX="-101" startY="-40" width="1" height="130"/>
+        <collision startX="220" startY="-40" width="1" height="130"/>
+        <collision startX="-101" startY="90" width="322" height="1"/>
+    </collisions>
+</mapTileProperties>
