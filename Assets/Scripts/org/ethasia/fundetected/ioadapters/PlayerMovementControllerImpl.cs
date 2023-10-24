@@ -15,6 +15,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         [SerializeField]
         private Transform cameraTransform;
 
+        [SerializeField]
+        private SpriteRenderer spriteRenderer;        
+
         void Awake()
         {
             instance = this;
@@ -26,6 +29,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 playerTransform.Translate(-0.1f * units, 0, 0);
                 cameraTransform.Translate(-0.1f * units, 0, 0);
+
+                spriteRenderer.flipX = true;
             }
         }
 
@@ -35,6 +40,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 playerTransform.Translate(0.1f * units, 0, 0);
                 cameraTransform.Translate(0.1f * units, 0, 0);
+
+                spriteRenderer.flipX = false;
             }
         }
 

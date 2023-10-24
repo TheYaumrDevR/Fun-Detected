@@ -21,12 +21,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void Update()
         {
-            if (leftMoveButtonIsHeld)
+            if (leftMoveButtonIsHeld && !rightMoveButtonIsHeld)
             {
                 playerMovementInteractor.MovePlayerLeft(Time.deltaTime);
             }
 
-            if (rightMoveButtonIsHeld)
+            if (rightMoveButtonIsHeld && !leftMoveButtonIsHeld)
             {
                 playerMovementInteractor.MovePlayerRight(Time.deltaTime);
             }
