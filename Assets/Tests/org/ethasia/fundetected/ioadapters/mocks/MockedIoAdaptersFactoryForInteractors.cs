@@ -23,5 +23,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new PlayerMovementControllerMock();
         }        
+
+        public override IMapPropertiesGateway GetMapPropertiesGatewayInstance()
+        {
+            return new MapPropertiesGatewayMock();
+        }        
     }
 }

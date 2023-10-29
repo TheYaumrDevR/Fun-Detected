@@ -6,11 +6,13 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         private ICharacterClassMasterDataProvider characterClassMasterDataProvider;
         private IEnemyMasterDataProvider enemyMasterDataProvider;
+        private IMapPropertiesGateway mapPropertiesGateway;
 
         public StartGameInteractor()
         {
             characterClassMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetCharacterClassMasterDataProviderInstance();
             enemyMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyMasterDataProviderInstance();
+            mapPropertiesGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapPropertiesGatewayInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
@@ -18,6 +20,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             CharacterClassMasterData playerCharacterStartingStats = CreateCharacterMasterDataBasedOnCharacterClass(characterClass); 
             PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterStartingStats);
             Enemy enemy = CreateEnemy();
+
+            MapProperties mapProperties = mapPropertiesGateway.LoadMapProperties("Hill");
 
             Area map = new Area();
             map.AddPlayer(playerCharacter);

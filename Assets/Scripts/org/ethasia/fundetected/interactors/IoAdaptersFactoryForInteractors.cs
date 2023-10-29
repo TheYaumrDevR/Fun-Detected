@@ -19,5 +19,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance();
         public abstract IBattleLogPrinter GetBattleLogPrinterInstance();
         public abstract IPlayerMovementController GetPlayerMovementControllerInstance();
+        public abstract IMapPropertiesGateway GetMapPropertiesGatewayInstance();
     }
 }
