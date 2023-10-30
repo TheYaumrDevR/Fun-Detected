@@ -6,6 +6,8 @@ namespace Org.Ethasia.Fundetected.Core
     {
         public static Area ActiveArea;
 
+        private bool[,] isCollisionTile;
+
         public PlayerCharacter Player
         {
             get;
@@ -14,9 +16,15 @@ namespace Org.Ethasia.Fundetected.Core
 
         private List<Enemy> enemies;
 
-        public Area()
+        private Area(bool[,] isCollisionTile)
         {
             enemies = new List<Enemy>();
+            this.isCollisionTile = isCollisionTile; 
+        }
+
+        public bool TileAtIsCollision(int x, int y)
+        {
+            return isCollisionTile[x, y];
         }
 
         public List<Enemy> GetEnemies()
@@ -45,6 +53,29 @@ namespace Org.Ethasia.Fundetected.Core
             }
 
             return null;
+        }
+
+        public class Builder
+        {
+            private bool[,] isCollisionTile;
+
+            public Builder SetWidthAndHeight(int width, int height)
+            {
+                isCollisionTile = new bool[width, height];
+                return this;
+            }
+
+            public Builder SetIsColliding(int x, int y)
+            {
+                isCollisionTile[x, y] = true;
+                return this;
+            }
+                     
+            public Area Build()
+            {
+                Area result = new Area(isCollisionTile);
+                return result;
+            }            
         }
     }
 }
