@@ -6,9 +6,9 @@ namespace Org.Ethasia.Fundetected.Core
     {
         public static Area ActiveArea;
 
-        private static int PLAYER_CHAR_HEIGHT_HALF = 16;
+        private static MovementStrategy MOVE_LEFT_STRATEGY = new MoveLeftStrategy();
 
-        private static int PLAYER_CHAR_WIDTH_HALF = 5;
+        private static MovementStrategy MOVE_RIGHT_STRATEGY = new MoveRightStrategy();
 
         private int width;
 
@@ -82,44 +82,12 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int CalculateUnitsPlayerCanMoveRight(int requestedMovementDistance)
         {
-            if (0 == requestedMovementDistance)
-            {
-                return 0;
-            }
-
-            int tagetPositionX = playerPosition.X + PLAYER_CHAR_WIDTH_HALF + requestedMovementDistance;
-            
-            for (int i = playerPosition.Y - PLAYER_CHAR_HEIGHT_HALF + 1; i <= playerPosition.Y + PLAYER_CHAR_HEIGHT_HALF; i++)
-            {
-                if (TileAtIsCollision(tagetPositionX, i))
-                {
-                    return CalculateUnitsPlayerCanMoveRight(requestedMovementDistance - 1);
-                }
-            }
-
-            playerPosition.X += requestedMovementDistance;
-            return requestedMovementDistance; 
+            return MOVE_RIGHT_STRATEGY.CalculateUnitsPlayerCanMoveInHorizontalDirection(requestedMovementDistance, playerPosition);
         }
 
         public int CalculateUnitsPlayerCanMoveLeft(int requestedMovementDistance)
         {
-            if (0 == requestedMovementDistance)
-            {
-                return 0;
-            }
-
-            int tagetPositionX = playerPosition.X - PLAYER_CHAR_WIDTH_HALF - requestedMovementDistance;
-
-            for (int i = playerPosition.Y - PLAYER_CHAR_HEIGHT_HALF + 1; i <= playerPosition.Y + PLAYER_CHAR_HEIGHT_HALF; i++)
-            {
-                if (TileAtIsCollision(tagetPositionX, i))
-                {
-                    return CalculateUnitsPlayerCanMoveLeft(requestedMovementDistance - 1);
-                }
-            }
-            
-            playerPosition.X -= requestedMovementDistance;
-            return requestedMovementDistance;
+            return MOVE_LEFT_STRATEGY.CalculateUnitsPlayerCanMoveInHorizontalDirection(requestedMovementDistance, playerPosition);
         }        
 
         public class Builder
