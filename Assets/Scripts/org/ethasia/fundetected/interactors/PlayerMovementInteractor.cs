@@ -7,16 +7,20 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public void MovePlayerLeft(double deltaTime)
         {
+            Area activeArea = Area.ActiveArea;
             PlayerCharacter player = GetPlayerCharacter();
-            int unitsMoved = player.MoveLeft(deltaTime);
+            int unitsToMove = player.MoveLeft(deltaTime);
+            int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveLeft(unitsToMove);
 
             GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
         }
 
         public void MovePlayerRight(double deltaTime)
         {
+            Area activeArea = Area.ActiveArea;
             PlayerCharacter player = GetPlayerCharacter();
-            int unitsMoved = player.MoveRight(deltaTime);
+            int unitsToMove = player.MoveRight(deltaTime);
+            int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveRight(unitsToMove);
 
             GetPlayerMovementController().MoveUnitsRight(unitsMoved);
         }

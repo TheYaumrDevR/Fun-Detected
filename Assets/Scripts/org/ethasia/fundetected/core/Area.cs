@@ -6,7 +6,17 @@ namespace Org.Ethasia.Fundetected.Core
     {
         public static Area ActiveArea;
 
+        private static int PLAYER_CHAR_HEIGHT_HALF = 16;
+
+        private static int PLAYER_CHAR_WIDTH_HALF = 5;
+
+        private int width;
+
+        private int height;
+
         private bool[,] isCollisionTile;
+
+        private Position playerPosition;
 
         public PlayerCharacter Player
         {
@@ -18,12 +28,26 @@ namespace Org.Ethasia.Fundetected.Core
 
         private Area(bool[,] isCollisionTile)
         {
+            width = isCollisionTile.GetLength(0);
+            height = isCollisionTile.GetLength(1);
+
             enemies = new List<Enemy>();
             this.isCollisionTile = isCollisionTile; 
+            playerPosition = new Position();
         }
 
         public bool TileAtIsCollision(int x, int y)
-        {
+        {   
+            if (x < 0 || y < 0)
+            {
+                return true;
+            }
+
+            if (x >= width || y >= height)
+            {
+                return true;
+            }
+
             return isCollisionTile[x, y];
         }
 
@@ -31,12 +55,13 @@ namespace Org.Ethasia.Fundetected.Core
         {
             return enemies;
         }        
-
-        public void AddPlayer(PlayerCharacter value)
+        public void AddPlayerAt(PlayerCharacter value, int x, int y)
         {
             if (null != value && Player == null)
             {
                 Player = value;
+                playerPosition.X = x;
+                playerPosition.Y = y;
             }
         }
 
@@ -54,6 +79,48 @@ namespace Org.Ethasia.Fundetected.Core
 
             return null;
         }
+
+        public int CalculateUnitsPlayerCanMoveRight(int requestedMovementDistance)
+        {
+            if (0 == requestedMovementDistance)
+            {
+                return 0;
+            }
+
+            int tagetPositionX = playerPosition.X + PLAYER_CHAR_WIDTH_HALF + requestedMovementDistance;
+            
+            for (int i = playerPosition.Y - PLAYER_CHAR_HEIGHT_HALF + 1; i <= playerPosition.Y + PLAYER_CHAR_HEIGHT_HALF; i++)
+            {
+                if (TileAtIsCollision(tagetPositionX, i))
+                {
+                    return CalculateUnitsPlayerCanMoveRight(requestedMovementDistance - 1);
+                }
+            }
+
+            playerPosition.X += requestedMovementDistance;
+            return requestedMovementDistance; 
+        }
+
+        public int CalculateUnitsPlayerCanMoveLeft(int requestedMovementDistance)
+        {
+            if (0 == requestedMovementDistance)
+            {
+                return 0;
+            }
+
+            int tagetPositionX = playerPosition.X - PLAYER_CHAR_WIDTH_HALF - requestedMovementDistance;
+
+            for (int i = playerPosition.Y - PLAYER_CHAR_HEIGHT_HALF + 1; i <= playerPosition.Y + PLAYER_CHAR_HEIGHT_HALF; i++)
+            {
+                if (TileAtIsCollision(tagetPositionX, i))
+                {
+                    return CalculateUnitsPlayerCanMoveLeft(requestedMovementDistance - 1);
+                }
+            }
+            
+            playerPosition.X -= requestedMovementDistance;
+            return requestedMovementDistance;
+        }        
 
         public class Builder
         {
