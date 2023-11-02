@@ -13,14 +13,18 @@ namespace Org.Ethasia.Fundetected.Core
                 return 0;
             }
 
-            int tagetPositionX = CalculateTargetPositionX(requestedMovementDistance, playerPosition);
-
-            for (int i = playerPosition.Y - PLAYER_CHAR_HEIGHT_HALF + 1; i <= playerPosition.Y + PLAYER_CHAR_HEIGHT_HALF; i++)
+            for (int result = 1; result <= requestedMovementDistance; result++)
             {
-                if (Area.ActiveArea.TileAtIsCollision(tagetPositionX, i))
+                int tagetPositionX = CalculateTargetPositionX(result, playerPosition);
+
+                for (int i = playerPosition.Y - PLAYER_CHAR_HEIGHT_HALF + 1; i <= playerPosition.Y + PLAYER_CHAR_HEIGHT_HALF; i++)
                 {
-                    return CalculateUnitsPlayerCanMoveInHorizontalDirection(requestedMovementDistance - 1, playerPosition);
-                }
+                    if (Area.ActiveArea.TileAtIsCollision(tagetPositionX, i))
+                    {
+                        AdjustPlayerPositionX(result - 1, playerPosition);
+                        return result - 1;
+                    }
+                }                
             }
             
             AdjustPlayerPositionX(requestedMovementDistance, playerPosition);
