@@ -4,5 +4,6 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         void MoveUnitsLeft(int units);
         void MoveUnitsRight(int units);
+        void MoveUnitsDown(int units);
     }
 }

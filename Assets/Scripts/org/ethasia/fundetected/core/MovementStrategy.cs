@@ -2,9 +2,9 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public abstract class MovementStrategy
     {
-        protected static int PLAYER_CHAR_HEIGHT_HALF = 16;
+        public const int PLAYER_CHAR_HEIGHT_HALF = 16;
 
-        protected static int PLAYER_CHAR_WIDTH_HALF = 5; 
+        public const int PLAYER_CHAR_WIDTH_HALF = 5; 
 
         public int CalculateUnitsPlayerCanMoveInHorizontalDirection(int requestedMovementDistance, Position playerPosition)
         {

@@ -11,8 +11,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             PlayerCharacter player = GetPlayerCharacter();
             int unitsToMove = player.MoveLeft(deltaTime);
             int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveLeft(unitsToMove);
+            int unitsDropped = activeArea.CalculateFallDepth();
 
             GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
+            GetPlayerMovementController().MoveUnitsDown(unitsDropped);
         }
 
         public void MovePlayerRight(double deltaTime)
@@ -21,8 +23,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             PlayerCharacter player = GetPlayerCharacter();
             int unitsToMove = player.MoveRight(deltaTime);
             int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveRight(unitsToMove);
+            int unitsDropped = activeArea.CalculateFallDepth();
 
             GetPlayerMovementController().MoveUnitsRight(unitsMoved);
+            GetPlayerMovementController().MoveUnitsDown(unitsDropped);
         }
 
         private PlayerCharacter GetPlayerCharacter()

@@ -88,7 +88,29 @@ namespace Org.Ethasia.Fundetected.Core
         public int CalculateUnitsPlayerCanMoveLeft(int requestedMovementDistance)
         {
             return MOVE_LEFT_STRATEGY.CalculateUnitsPlayerCanMoveInHorizontalDirection(requestedMovementDistance, playerPosition);
-        }        
+        }       
+
+        public int CalculateFallDepth()
+        {
+            int result = 0;
+
+            for (int i = playerPosition.Y - MovementStrategy.PLAYER_CHAR_HEIGHT_HALF; i > 0; i--)
+            {
+                for (int x = playerPosition.X - MovementStrategy.PLAYER_CHAR_WIDTH_HALF + 1; x <= playerPosition.X + MovementStrategy.PLAYER_CHAR_WIDTH_HALF; x++)
+                {
+                    if (Area.ActiveArea.TileAtIsCollision(x, i))
+                    {
+                        playerPosition.Y -= result;
+                        return result;
+                    }
+                }
+
+                result++;
+            }
+
+            playerPosition.Y -= result;
+            return result;
+        } 
 
         public class Builder
         {
