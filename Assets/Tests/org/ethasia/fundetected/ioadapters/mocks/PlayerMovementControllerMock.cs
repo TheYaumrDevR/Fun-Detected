@@ -9,5 +9,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public void MoveUnitsRight(int units) {}
 
         public void MoveUnitsDown(int units) {}
+
+        public void MoveUnitsUp(int units) {}
     }
 }

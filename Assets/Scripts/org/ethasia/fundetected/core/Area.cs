@@ -94,9 +94,9 @@ namespace Org.Ethasia.Fundetected.Core
         {
             int result = 0;
 
-            for (int i = playerPosition.Y - MovementStrategy.PLAYER_CHAR_HEIGHT_HALF; i > 0; i--)
+            for (int i = playerPosition.Y - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER - 1; i > 0; i--)
             {
-                for (int x = playerPosition.X - MovementStrategy.PLAYER_CHAR_WIDTH_HALF + 1; x <= playerPosition.X + MovementStrategy.PLAYER_CHAR_WIDTH_HALF; x++)
+                for (int x = playerPosition.X - MovementStrategy.UNITS_TO_PLAYER_LEFT_BORDER; x <= playerPosition.X + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER; x++)
                 {
                     if (Area.ActiveArea.TileAtIsCollision(x, i))
                     {

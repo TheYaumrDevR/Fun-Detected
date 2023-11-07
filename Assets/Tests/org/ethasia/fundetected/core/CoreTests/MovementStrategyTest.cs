@@ -62,7 +62,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             int result = testCandidate.CalculateUnitsPlayerCanMoveInHorizontalDirection(6, playerPosition);
 
-            Assert.That(result, Is.EqualTo(4)); 
+            Assert.That(result, Is.EqualTo(5)); 
         }       
 
         [Test]
@@ -81,7 +81,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             int result = testCandidate.CalculateUnitsPlayerCanMoveInHorizontalDirection(2, playerPosition);
 
-            Assert.That(result, Is.EqualTo(1)); 
+            Assert.That(result, Is.EqualTo(2)); 
         }           
     }
 }

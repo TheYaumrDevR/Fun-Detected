@@ -54,6 +54,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
         }
 
+        public void MoveUnitsUp(int units)
+        {
+            if (units > 0)
+            {
+                playerTransform.Translate(0, 0.1f * units, 0);
+                cameraTransform.Translate(0, 0.1f * units, 0);
+            }            
+        }
+
         public static IPlayerMovementController GetInstance()
         {
             return instance;

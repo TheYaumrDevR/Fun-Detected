@@ -24,7 +24,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             MapProperties mapProperties = mapPropertiesGateway.LoadMapProperties("Hill");
 
             Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
-            map.AddPlayerAt(playerCharacter, 145, 46);
+            map.AddPlayerAt(playerCharacter, 144, 46);
             map.AddEnemy(enemy);
 
             Area.ActiveArea = map;
