@@ -112,6 +112,82 @@ namespace Org.Ethasia.Fundetected.Core
             return result;
         } 
 
+        public int TryToMovePlayerRightStepUp()
+        {
+            int maximumStepHeight = 10;
+
+            int targetPositionRightBorderX = playerPosition.X + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER + 1;
+            int startingClimbPositionY = playerPosition.Y - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER + 1;
+            int endingClimbPositionY = playerPosition.Y - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER + maximumStepHeight;
+
+            int playerPositionOneRightX = playerPosition.X + 1;
+
+            while (startingClimbPositionY <= endingClimbPositionY)
+            {
+                int currentPlayerPositionY = startingClimbPositionY + MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER;
+
+                if (!RightBorderCollides(playerPositionOneRightX, currentPlayerPositionY))
+                {
+                    if (TopBorderCollides(playerPositionOneRightX, currentPlayerPositionY))
+                    {
+                        return 0;
+                    }
+
+                    int result = maximumStepHeight - (endingClimbPositionY - startingClimbPositionY);
+
+                    if (result > 0)
+                    {
+                        playerPosition.X += 1;
+                        playerPosition.Y += result;
+                    }
+
+                    return result;
+                }
+
+                startingClimbPositionY++;
+            }
+
+            return 0;
+        }
+
+        private bool RightBorderCollides(int playerPositionX, int playerPositionY)
+        {
+            int rightBorderX = playerPositionX + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER;
+            int yStart = playerPositionY - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER;           
+            int yEnd = playerPositionY + MovementStrategy.UNITS_TO_PLAYER_TOP_BORDER;  
+
+            while (yStart <= yEnd)
+            {
+                if (TileAtIsCollision(rightBorderX, yStart))
+                {
+                    return true;
+                }
+
+                yStart++;
+            } 
+
+            return false;
+        }
+
+        private bool TopBorderCollides(int playerPositionX, int playerPositionY)
+        {
+            int topBorderY = playerPositionY + MovementStrategy.UNITS_TO_PLAYER_TOP_BORDER;
+            int xStart = playerPositionX - MovementStrategy.UNITS_TO_PLAYER_LEFT_BORDER;           
+            int xEnd = playerPositionX + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER;  
+
+            while (xStart <= xEnd)
+            {
+                if (TileAtIsCollision(xStart, topBorderY))
+                {
+                    return true;
+                }
+
+                xStart++;
+            } 
+
+            return false;
+        }        
+
         public class Builder
         {
             private bool[,] isCollisionTile;

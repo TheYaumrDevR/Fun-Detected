@@ -7,32 +7,65 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public void MovePlayerLeft(double deltaTime)
         {
-            Area activeArea = Area.ActiveArea;
             PlayerCharacter player = GetPlayerCharacter();
             int unitsToMove = player.MoveLeft(deltaTime);
-            int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveLeft(unitsToMove);
-            int unitsDropped = activeArea.CalculateFallDepth();
 
-            GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
-            GetPlayerMovementController().MoveUnitsDown(unitsDropped);
+            MovePlayerLeft(unitsToMove);
         }
 
         public void MovePlayerRight(double deltaTime)
         {
-            Area activeArea = Area.ActiveArea;
             PlayerCharacter player = GetPlayerCharacter();
             int unitsToMove = player.MoveRight(deltaTime);
-            int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveRight(unitsToMove);
-            int unitsDropped = activeArea.CalculateFallDepth();
 
-            GetPlayerMovementController().MoveUnitsRight(unitsMoved);
-            GetPlayerMovementController().MoveUnitsDown(unitsDropped);
+            MovePlayerRight(unitsToMove);
         }
 
         private PlayerCharacter GetPlayerCharacter()
         {
             Area activeArea = Area.ActiveArea;
             return activeArea.Player;
+        }
+
+        private bool PlayerCollidedWithWallAndIsOnFloor(int deltaUnitsMoved, int unitsDropped)
+        {
+            return deltaUnitsMoved > 0 && unitsDropped == 0;
+        }
+
+        private void MovePlayerRight(int unitsToMove)
+        {
+            Area activeArea = Area.ActiveArea;
+            int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveRight(unitsToMove);
+            int unitsDropped = activeArea.CalculateFallDepth();
+
+            if (PlayerCollidedWithWallAndIsOnFloor(unitsToMove - unitsMoved, unitsDropped))
+            {
+                int stepHeight = activeArea.TryToMovePlayerRightStepUp();
+
+                if (stepHeight > 0)
+                {
+                    GetPlayerMovementController().MoveUnitsRight(1);
+                    GetPlayerMovementController().MoveUnitsUp(stepHeight);
+
+                    if (unitsToMove - unitsMoved - 1 > 0)
+                    {
+                        MovePlayerRight(unitsToMove - unitsMoved - 1);
+                    }                    
+                }
+            }
+
+            GetPlayerMovementController().MoveUnitsRight(unitsMoved);
+            GetPlayerMovementController().MoveUnitsDown(unitsDropped);
+        }
+
+        private void MovePlayerLeft(int unitsToMove)
+        {
+            Area activeArea = Area.ActiveArea;
+            int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveLeft(unitsToMove);
+            int unitsDropped = activeArea.CalculateFallDepth();
+
+            GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
+            GetPlayerMovementController().MoveUnitsDown(unitsDropped);
         }
 
         private IPlayerMovementController GetPlayerMovementController()
