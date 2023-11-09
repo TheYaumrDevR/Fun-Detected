@@ -64,6 +64,22 @@ namespace Org.Ethasia.Fundetected.Interactors
             int unitsMoved = activeArea.CalculateUnitsPlayerCanMoveLeft(unitsToMove);
             int unitsDropped = activeArea.CalculateFallDepth();
 
+            if (PlayerCollidedWithWallAndIsOnFloor(unitsToMove - unitsMoved, unitsDropped))
+            {
+                int stepHeight = activeArea.TryToMovePlayerLeftStepUp();
+
+                if (stepHeight > 0)
+                {
+                    GetPlayerMovementController().MoveUnitsLeft(1);
+                    GetPlayerMovementController().MoveUnitsUp(stepHeight);
+
+                    if (unitsToMove - unitsMoved - 1 > 0)
+                    {
+                        MovePlayerLeft(unitsToMove - unitsMoved - 1);
+                    }                    
+                }
+            }            
+
             GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
             GetPlayerMovementController().MoveUnitsDown(unitsDropped);
         }
