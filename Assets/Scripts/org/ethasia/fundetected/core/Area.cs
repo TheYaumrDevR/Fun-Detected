@@ -126,13 +126,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 int currentPlayerPositionY = startingClimbPositionY + MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER;
 
+                if (TopBorderCollides(playerPositionOneRightX, currentPlayerPositionY))
+                {
+                    return 0;
+                }
+
                 if (!RightBorderCollides(playerPositionOneRightX, currentPlayerPositionY))
                 {
-                    if (TopBorderCollides(playerPositionOneRightX, currentPlayerPositionY))
-                    {
-                        return 0;
-                    }
-
                     int result = maximumStepHeight - (endingClimbPositionY - startingClimbPositionY);
 
                     if (result > 0)
@@ -164,13 +164,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 int currentPlayerPositionY = startingClimbPositionY + MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER;
 
+                if (TopBorderCollides(playerPositionOneLeftX, currentPlayerPositionY))
+                {
+                    return 0;
+                }
+
                 if (!LeftBorderCollides(playerPositionOneLeftX, currentPlayerPositionY))
                 {
-                    if (TopBorderCollides(playerPositionOneLeftX, currentPlayerPositionY))
-                    {
-                        return 0;
-                    }
-
                     int result = maximumStepHeight - (endingClimbPositionY - startingClimbPositionY);
 
                     if (result > 0)
