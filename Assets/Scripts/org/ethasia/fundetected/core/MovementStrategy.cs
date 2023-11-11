@@ -36,7 +36,65 @@ namespace Org.Ethasia.Fundetected.Core
             return requestedMovementDistance;
         }
 
+        public int TryToMovePlayerStepUp(Position playerPosition)
+        {
+            int maximumStepHeight = 10;
+
+            int startingClimbPositionY = playerPosition.Y - UNITS_TO_PLAYER_BOTTOM_BORDER + 1;
+            int endingClimbPositionY = playerPosition.Y - UNITS_TO_PLAYER_BOTTOM_BORDER + maximumStepHeight;
+
+            int playerPositionXOffsetByOne = CalculatePlayerPositionXOffsetByOne(playerPosition);
+
+            while (startingClimbPositionY <= endingClimbPositionY)
+            {
+                int currentPlayerPositionY = startingClimbPositionY + UNITS_TO_PLAYER_BOTTOM_BORDER;
+
+                if (TopBorderCollides(playerPositionXOffsetByOne, currentPlayerPositionY))
+                {
+                    return 0;
+                }
+
+                if (!BorderCollides(playerPositionXOffsetByOne, currentPlayerPositionY))
+                {
+                    int result = maximumStepHeight - (endingClimbPositionY - startingClimbPositionY);
+
+                    if (result > 0)
+                    {
+                        AdjustPlayerPositionX(1, playerPosition);
+                        playerPosition.Y += result;
+                    }
+
+                    return result;
+                }
+
+                startingClimbPositionY++;
+            }
+
+            return 0;
+        }    
+
+        private bool TopBorderCollides(int playerPositionX, int playerPositionY)
+        {
+            int topBorderY = playerPositionY + UNITS_TO_PLAYER_TOP_BORDER;
+            int xStart = playerPositionX - UNITS_TO_PLAYER_LEFT_BORDER;           
+            int xEnd = playerPositionX + UNITS_TO_PLAYER_RIGHT_BORDER;  
+
+            while (xStart <= xEnd)
+            {
+                if (Area.ActiveArea.TileAtIsCollision(xStart, topBorderY))
+                {
+                    return true;
+                }
+
+                xStart++;
+            } 
+
+            return false;
+        }               
+
         protected abstract int CalculateTargetPositionX(int requestedMovementDistance, Position playerPosition);
         protected abstract void AdjustPlayerPositionX(int requestedMovementDistance, Position playerPosition);
+        protected abstract int CalculatePlayerPositionXOffsetByOne(Position playerPosition);
+        protected abstract bool BorderCollides(int playerPositionOffsetX, int currentPlayerPositionY);
     }
 }
