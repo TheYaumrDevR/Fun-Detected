@@ -73,6 +73,25 @@ namespace Org.Ethasia.Fundetected.Core
             return 0;
         }    
 
+        private bool BorderCollides(int playerPositionOffsetX, int currentPlayerPositionY)
+        {
+            int borderX = CalculateBorderX(playerPositionOffsetX);
+            int yStart = currentPlayerPositionY - UNITS_TO_PLAYER_BOTTOM_BORDER;           
+            int yEnd = currentPlayerPositionY + UNITS_TO_PLAYER_TOP_BORDER;  
+
+            while (yStart <= yEnd)
+            {
+                if (Area.ActiveArea.TileAtIsCollision(borderX, yStart))
+                {
+                    return true;
+                }
+
+                yStart++;
+            } 
+
+            return false;            
+        }
+
         private bool TopBorderCollides(int playerPositionX, int playerPositionY)
         {
             int topBorderY = playerPositionY + UNITS_TO_PLAYER_TOP_BORDER;
@@ -95,6 +114,6 @@ namespace Org.Ethasia.Fundetected.Core
         protected abstract int CalculateTargetPositionX(int requestedMovementDistance, Position playerPosition);
         protected abstract void AdjustPlayerPositionX(int requestedMovementDistance, Position playerPosition);
         protected abstract int CalculatePlayerPositionXOffsetByOne(Position playerPosition);
-        protected abstract bool BorderCollides(int playerPositionOffsetX, int currentPlayerPositionY);
+        protected abstract int CalculateBorderX(int playerPositionOffsetX);
     }
 }

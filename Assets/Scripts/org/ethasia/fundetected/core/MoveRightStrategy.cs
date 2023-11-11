@@ -17,23 +17,9 @@ namespace Org.Ethasia.Fundetected.Core
             return playerPosition.X + 1;
         }
 
-        protected override bool BorderCollides(int playerPositionOffsetX, int currentPlayerPositionY)
+        protected override int CalculateBorderX(int playerPositionOffsetX)
         {
-            int rightBorderX = playerPositionOffsetX + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER;
-            int yStart = currentPlayerPositionY - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER;           
-            int yEnd = currentPlayerPositionY + MovementStrategy.UNITS_TO_PLAYER_TOP_BORDER;  
-
-            while (yStart <= yEnd)
-            {
-                if (Area.ActiveArea.TileAtIsCollision(rightBorderX, yStart))
-                {
-                    return true;
-                }
-
-                yStart++;
-            } 
-
-            return false;
+            return playerPositionOffsetX + UNITS_TO_PLAYER_RIGHT_BORDER;
         }
     }
 }
