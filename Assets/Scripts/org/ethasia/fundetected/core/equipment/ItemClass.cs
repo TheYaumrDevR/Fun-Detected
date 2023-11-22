@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         ONE_HANDED_MACE,
         TWO_HANDED_MACE,
         BOW,
-        WAND
+        WAND,
+        NONE
     }
 }
