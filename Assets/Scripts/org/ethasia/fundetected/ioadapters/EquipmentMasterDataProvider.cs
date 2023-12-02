@@ -330,7 +330,71 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
 
             return weaponBuilder.Build();
-        }                      
+        }  
+
+        public Weapon GetCorrodedDaggerMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(6, 10))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Corroded Dagger")
+                .SetAgilityRequirement(9)
+                .SetIntelligenceRequirement(6)
+                .SetItemClass(ItemClass.DAGGER);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetCorrodedArtisansKnifeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(4, 17))
+                .SetSkillsPerSecond(1.45)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Corroded Artisan's Knife")
+                .SetAgilityRequirement(16)
+                .SetIntelligenceRequirement(11)
+                .SetItemClass(ItemClass.DAGGER);
+
+            return weaponBuilder.Build();
+        }
+
+        public Weapon GetBronzeArtisansKnifeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(11, 45))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Bronze Artisan's Knife")
+                .SetAgilityRequirement(64)
+                .SetIntelligenceRequirement(44)
+                .SetItemClass(ItemClass.DAGGER);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetSteelArtisansKnifeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(19, 76))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(650)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Steel Artisan's Knife")
+                .SetAgilityRequirement(113)
+                .SetIntelligenceRequirement(78)
+                .SetItemClass(ItemClass.DAGGER);
+
+            return weaponBuilder.Build();
+        }                                                    
 
         public Weapon GetCrudeBowMasterData()
         {
