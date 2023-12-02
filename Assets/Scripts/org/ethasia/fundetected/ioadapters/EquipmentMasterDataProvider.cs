@@ -444,6 +444,70 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return weaponBuilder.Build();
         }
 
+        public Weapon GetCorrodedHatchetMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(6, 11))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Corroded Hatchet")
+                .SetStrengthRequirement(12)
+                .SetAgilityRequirement(6)
+                .SetItemClass(ItemClass.ONE_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetBronzeHatchetMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(11, 21))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Bronze Hatchet")
+                .SetStrengthRequirement(28)
+                .SetAgilityRequirement(19)
+                .SetItemClass(ItemClass.ONE_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }         
+
+        public Weapon GetSteelHatchetMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(25, 46))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Steel Hatchet")
+                .SetStrengthRequirement(81)
+                .SetAgilityRequirement(56)
+                .SetItemClass(ItemClass.ONE_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetExceptionalSteelHatchetMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(38, 70))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Exceptional Steel Hatchet")
+                .SetStrengthRequirement(119)
+                .SetAgilityRequirement(82)
+                .SetItemClass(ItemClass.ONE_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }                      
+
         public Weapon GetCrudeBowMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
