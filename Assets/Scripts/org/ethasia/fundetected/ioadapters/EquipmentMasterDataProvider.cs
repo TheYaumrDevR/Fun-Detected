@@ -131,7 +131,142 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
             return weaponBuilder.Build();
-        }                                       
+        }         
+
+        public Weapon GetCorrodedRapierMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(5, 11))
+                .SetSkillsPerSecond(1.55)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Corroded Rapier")
+                .SetAgilityRequirement(20)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }     
+
+        public Weapon GetBronzeRapierMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(11, 25))
+                .SetSkillsPerSecond(1.55)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Bronze Rapier")
+                .SetAgilityRequirement(62)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetCorrodedFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(4, 17))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Corroded Foil")
+                .SetAgilityRequirement(32)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }               
+
+        public Weapon GetBronzeFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(12, 29))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Bronze Foil")
+                .SetAgilityRequirement(77)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetExceptionalBronzeFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(18, 33))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Exceptional Bronze Foil")
+                .SetAgilityRequirement(101)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetRustedSteelFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(21, 49))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Rusted Steel Foil")
+                .SetAgilityRequirement(149)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetSteelFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(28, 51))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Steel Foil")
+                .SetAgilityRequirement(167)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetFlexibleSteelFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(27, 64))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Flexible Steel Foil")
+                .SetAgilityRequirement(212)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }
+
+        public Weapon GetExceptionalSteelFoilMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(32, 60))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(18);
+
+            weaponBuilder.SetName("Exceptional Steel Foil")
+                .SetAgilityRequirement(212)
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+
+            return weaponBuilder.Build();
+        }                                                                         
 
         public Weapon GetCorrodedLongSwordMasterData()
         {
