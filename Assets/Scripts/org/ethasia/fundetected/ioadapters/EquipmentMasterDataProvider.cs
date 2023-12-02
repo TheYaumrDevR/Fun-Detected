@@ -394,7 +394,55 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.DAGGER);
 
             return weaponBuilder.Build();
-        }                                                    
+        }    
+
+        public Weapon GetCorrodedAlchemistsKnifeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(3, 26))
+                .SetSkillsPerSecond(1.45)
+                .SetCriticalStrikeChance(630)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Corroded Alchemist's Knife")
+                .SetAgilityRequirement(18)
+                .SetIntelligenceRequirement(26)
+                .SetItemClass(ItemClass.SPELL_DAGGER);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetBronzeAlchemistsKnifeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(7, 62))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(630)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Bronze Alchemist's Knife")
+                .SetAgilityRequirement(55)
+                .SetIntelligenceRequirement(79)
+                .SetItemClass(ItemClass.SPELL_DAGGER);
+
+            return weaponBuilder.Build();
+        }                                                               
+
+        public Weapon GetSteelAlchemistsKnifeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(10, 86))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(630)
+                .SetWeaponRange(10);
+
+            weaponBuilder.SetName("Steel Alchemist's Knife")
+                .SetAgilityRequirement(81)
+                .SetIntelligenceRequirement(117)
+                .SetItemClass(ItemClass.SPELL_DAGGER);
+
+            return weaponBuilder.Build();
+        }
 
         public Weapon GetCrudeBowMasterData()
         {
