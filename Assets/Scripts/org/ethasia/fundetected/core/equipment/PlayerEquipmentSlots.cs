@@ -50,5 +50,25 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             return false;
         }
+
+        public Equipment EquipInMainHand(Equipment toEquip)
+        {
+            if (!CanEquipInMainHand(toEquip))
+            {
+                return toEquip;
+            }
+
+            return mainHandSlot.InsertEquipment(toEquip);
+        }
+
+        public Equipment EquipInOffHand(Equipment toEquip)
+        {
+            if (!CanEquipInOffHand(toEquip))
+            {
+                return toEquip;
+            }
+
+            return offHandSlot.InsertEquipment(toEquip);
+        }        
     }
 }
