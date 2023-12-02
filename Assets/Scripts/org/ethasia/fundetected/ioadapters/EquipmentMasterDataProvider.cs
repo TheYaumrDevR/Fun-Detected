@@ -400,6 +400,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(3, 26))
+                .SetMinToMaxSpellDamage(new DamageRange(3, 26))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(630)
                 .SetWeaponRange(10);
@@ -416,6 +417,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(7, 62))
+                .SetMinToMaxSpellDamage(new DamageRange(7, 62))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(630)
                 .SetWeaponRange(10);
@@ -432,6 +434,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(10, 86))
+                .SetMinToMaxSpellDamage(new DamageRange(10, 86))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(630)
                 .SetWeaponRange(10);
@@ -634,7 +637,75 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.FIST_WEAPON);
 
             return weaponBuilder.Build();
-        }                                                        
+        }    
+
+        public Weapon GetRottenQuarterstaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(9, 19))
+                .SetMinToMaxSpellDamage(new DamageRange(9, 19))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Rotten Quarterstaff")
+                .SetStrengthRequirement(12)
+                .SetIntelligenceRequirement(12)
+                .SetItemClass(ItemClass.WIZARD_STAFF);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetCrackedQuarterstaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(24, 41))
+                .SetMinToMaxSpellDamage(new DamageRange(24, 41))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Cracked Quarterstaff")
+                .SetStrengthRequirement(35)
+                .SetIntelligenceRequirement(35)
+                .SetItemClass(ItemClass.WIZARD_STAFF);
+
+            return weaponBuilder.Build();
+        }     
+
+        public Weapon GetQuarterstaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(51, 86))
+                .SetMinToMaxSpellDamage(new DamageRange(51, 86))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Quarterstaff")
+                .SetStrengthRequirement(78)
+                .SetIntelligenceRequirement(78)
+                .SetItemClass(ItemClass.WIZARD_STAFF);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetReinforcedQuarterstaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(72, 120))
+                .SetMinToMaxSpellDamage(new DamageRange(72, 120))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Reinforced Quarterstaff")
+                .SetStrengthRequirement(113)
+                .SetIntelligenceRequirement(113)
+                .SetItemClass(ItemClass.WIZARD_STAFF);
+
+            return weaponBuilder.Build();
+        }                                                                            
 
         public Weapon GetCrudeBowMasterData()
         {
