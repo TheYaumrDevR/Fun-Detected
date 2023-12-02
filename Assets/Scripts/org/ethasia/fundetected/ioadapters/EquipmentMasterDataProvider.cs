@@ -570,7 +570,71 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.TWO_HANDED_AXE);
 
             return weaponBuilder.Build();
-        }                                           
+        }    
+
+        public Weapon GetCorrodedSlashingClawMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(4, 11))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(620)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Corroded Slashing Claw")
+                .SetAgilityRequirement(11)
+                .SetIntelligenceRequirement(11)
+                .SetItemClass(ItemClass.FIST_WEAPON);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetBronzeSlashingClawMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(12, 22))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Bronze Slashing Claw")
+                .SetAgilityRequirement(39)
+                .SetIntelligenceRequirement(27)
+                .SetItemClass(ItemClass.FIST_WEAPON);
+
+            return weaponBuilder.Build();
+        }      
+
+        public Weapon GetSteelSlashingClawMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(23, 43))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Steel Slashing Claw")
+                .SetAgilityRequirement(88)
+                .SetIntelligenceRequirement(61)
+                .SetItemClass(ItemClass.FIST_WEAPON);
+
+            return weaponBuilder.Build();
+        }        
+
+        public Weapon GetExceptionalSteelSlashingClawMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(29, 55))
+                .SetSkillsPerSecond(1.6)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Exceptional Steel Slashing Claw")
+                .SetAgilityRequirement(131)
+                .SetIntelligenceRequirement(95)
+                .SetItemClass(ItemClass.FIST_WEAPON);
+
+            return weaponBuilder.Build();
+        }                                                        
 
         public Weapon GetCrudeBowMasterData()
         {
