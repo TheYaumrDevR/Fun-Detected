@@ -5,15 +5,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class EquipmentMasterDataProvider
     {
-        public Weapon GetCorrodedSwordMasterData()
+        public Weapon GetCorrodedCutlassMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(4, 9))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(22);
+                .SetWeaponRange(12);
 
-            weaponBuilder.SetName("Corroded Sword")
+            weaponBuilder.SetName("Corroded Cutlass")
                 .SetStrengthRequirement(8)
                 .SetAgilityRequirement(8)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
@@ -21,21 +21,117 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return weaponBuilder.Build();
         }
 
-        public Weapon GetBronzeSwordMasterData()
+        public Weapon GetBronzeCutlassMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(5, 22))
+                .SetSkillsPerSecond(1.55)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Bronze Cutlass")
+                .SetStrengthRequirement(18)
+                .SetAgilityRequirement(26)
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetSteelCutlassMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(13, 53))
+                .SetSkillsPerSecond(1.55)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Steel Cutlass")
+                .SetStrengthRequirement(55)
+                .SetAgilityRequirement(79)
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            return weaponBuilder.Build();
+        }      
+
+        public Weapon GetExceptionalSteelCutlassMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(20, 80))
+                .SetSkillsPerSecond(1.55)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Exceptional Steel Cutlass")
+                .SetStrengthRequirement(81)
+                .SetAgilityRequirement(117)
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            return weaponBuilder.Build();
+        }     
+
+        public Weapon GetCorrodedSwordMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 14))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(22);
+                .SetWeaponRange(12);
 
-            weaponBuilder.SetName("Bronze Sword")
+            weaponBuilder.SetName("Corroded Sword")
                 .SetStrengthRequirement(14)
                 .SetAgilityRequirement(14)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
             return weaponBuilder.Build();
-        }    
+        }  
+
+        public Weapon GetBronzeSwordMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(20, 33))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Bronze Sword")
+                .SetStrengthRequirement(46)
+                .SetAgilityRequirement(55)
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetSteelSwordMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(34, 55))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Steel Sword")
+                .SetStrengthRequirement(78)
+                .SetAgilityRequirement(94)
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetExceptionalSteelSwordMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(41, 68))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Exceptional Steel Sword")
+                .SetStrengthRequirement(104)
+                .SetAgilityRequirement(122)
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            return weaponBuilder.Build();
+        }                                       
 
         public Weapon GetCorrodedLongSwordMasterData()
         {
@@ -43,7 +139,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(8, 16))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(26);
+                .SetWeaponRange(18);
 
             weaponBuilder.SetName("Corroded Long Sword")
                 .SetStrengthRequirement(11)
@@ -59,7 +155,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(11, 26))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(26);
+                .SetWeaponRange(18);
 
             weaponBuilder.SetName("Long Sword")
                 .SetStrengthRequirement(20)
@@ -75,7 +171,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(5, 13))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(240);
+                .SetWeaponRange(0);
 
             weaponBuilder.SetName("Crude Bow")
                 .SetAgilityRequirement(14)
@@ -90,7 +186,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 16))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(240);
+                .SetWeaponRange(0);
 
             weaponBuilder.SetName("Short Bow")
                 .SetAgilityRequirement(26)
@@ -105,7 +201,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxSpellDamage(new DamageRange(5, 9))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(240);
+                .SetWeaponRange(0);
 
             weaponBuilder.SetName("Oldwood Wand")
                 .SetIntelligenceRequirement(14)
@@ -120,7 +216,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxSpellDamage(new DamageRange(9, 16))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(240);
+                .SetWeaponRange(0);
 
             weaponBuilder.SetName("Cut Wand")
                 .SetIntelligenceRequirement(29)
@@ -135,7 +231,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 10))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(20);
+                .SetWeaponRange(0);
 
             weaponBuilder.SetName("Obsidian Dagger")
                 .SetAgilityRequirement(9)
@@ -151,7 +247,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(4, 17))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(20);
+                .SetWeaponRange(0);
 
             weaponBuilder.SetName("Butcher's Knife")
                 .SetAgilityRequirement(16)
