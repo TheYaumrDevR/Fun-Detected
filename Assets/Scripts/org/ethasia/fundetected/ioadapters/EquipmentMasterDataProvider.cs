@@ -14,7 +14,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(22);
 
             weaponBuilder.SetName("Corroded Sword")
-                .SetLevelRequirement(1)
                 .SetStrengthRequirement(8)
                 .SetAgilityRequirement(8)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
@@ -31,7 +30,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(22);
 
             weaponBuilder.SetName("Bronze Sword")
-                .SetLevelRequirement(5)
                 .SetStrengthRequirement(14)
                 .SetAgilityRequirement(14)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
@@ -48,7 +46,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(26);
 
             weaponBuilder.SetName("Corroded Long Sword")
-                .SetLevelRequirement(1)
                 .SetStrengthRequirement(11)
                 .SetAgilityRequirement(11)
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
@@ -65,7 +62,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(26);
 
             weaponBuilder.SetName("Long Sword")
-                .SetLevelRequirement(8)
                 .SetStrengthRequirement(20)
                 .SetAgilityRequirement(17)
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
@@ -82,7 +78,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(240);
 
             weaponBuilder.SetName("Crude Bow")
-                .SetLevelRequirement(1)
                 .SetAgilityRequirement(14)
                 .SetItemClass(ItemClass.BOW);
 
@@ -98,7 +93,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(240);
 
             weaponBuilder.SetName("Short Bow")
-                .SetLevelRequirement(5)
                 .SetAgilityRequirement(26)
                 .SetItemClass(ItemClass.BOW);
 
@@ -114,7 +108,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(240);
 
             weaponBuilder.SetName("Oldwood Wand")
-                .SetLevelRequirement(1)
                 .SetIntelligenceRequirement(14)
                 .SetItemClass(ItemClass.WAND);
 
@@ -130,7 +123,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(240);
 
             weaponBuilder.SetName("Cut Wand")
-                .SetLevelRequirement(6)
                 .SetIntelligenceRequirement(29)
                 .SetItemClass(ItemClass.WAND);
 
@@ -146,7 +138,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(20);
 
             weaponBuilder.SetName("Obsidian Dagger")
-                .SetLevelRequirement(1)
                 .SetAgilityRequirement(9)
                 .SetIntelligenceRequirement(6)
                 .SetItemClass(ItemClass.DAGGER);
@@ -163,7 +154,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetWeaponRange(20);
 
             weaponBuilder.SetName("Butcher's Knife")
-                .SetLevelRequirement(5)
                 .SetAgilityRequirement(16)
                 .SetIntelligenceRequirement(11)
                 .SetItemClass(ItemClass.DAGGER);
