@@ -506,7 +506,71 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.ONE_HANDED_AXE);
 
             return weaponBuilder.Build();
-        }                      
+        }    
+
+        public Weapon GetCorrodedLumberjackAxeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(12, 20))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Corroded Lumberjack Axe")
+                .SetStrengthRequirement(17)
+                .SetAgilityRequirement(8)
+                .SetItemClass(ItemClass.TWO_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetBronzeLumberjackAxeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(19, 39))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Bronze Lumberjack Axe")
+                .SetStrengthRequirement(36)
+                .SetAgilityRequirement(17)
+                .SetItemClass(ItemClass.TWO_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetSteelLumberjackAxeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(48, 99))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Steel Lumberjack Axe")
+                .SetStrengthRequirement(97)
+                .SetAgilityRequirement(45)
+                .SetItemClass(ItemClass.TWO_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetExceptionalSteelLumberjackAxeMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(74, 155))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Exceptional Steel Lumberjack Axe")
+                .SetStrengthRequirement(149)
+                .SetAgilityRequirement(76)
+                .SetItemClass(ItemClass.TWO_HANDED_AXE);
+
+            return weaponBuilder.Build();
+        }                                           
 
         public Weapon GetCrudeBowMasterData()
         {

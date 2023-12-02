@@ -26,7 +26,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }  
 
-        public class Builder : Item.Builder
+        new public class Builder : Item.Builder
         {
             private string name;
             private int strengthRequirement;
