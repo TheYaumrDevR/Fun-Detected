@@ -705,7 +705,160 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.WIZARD_STAFF);
 
             return weaponBuilder.Build();
-        }                                                                            
+        }  
+
+        public Weapon GetErodedStaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(14, 42))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(640)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Eroded Staff")
+                .SetStrengthRequirement(27)
+                .SetIntelligenceRequirement(27)
+                .SetItemClass(ItemClass.MARTIAL_STAFF);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetBronzeStaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(38, 114))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(660)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Bronze Staff")
+                .SetStrengthRequirement(72)
+                .SetIntelligenceRequirement(72)
+                .SetItemClass(ItemClass.MARTIAL_STAFF);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetSteelStaffMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(53, 160))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(730)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Steel Staff")
+                .SetStrengthRequirement(113)
+                .SetIntelligenceRequirement(113)
+                .SetItemClass(ItemClass.MARTIAL_STAFF);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetRottenBarbedClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(6, 8))
+                .SetSkillsPerSecond(1.45)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Rotten Barbed Club")
+                .SetStrengthRequirement(14)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }      
+
+        public Weapon GetBronzeBarbedClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(13, 16))
+                .SetSkillsPerSecond(1.45)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Bronze Barbed Club")
+                .SetStrengthRequirement(41)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetSteelBarbedClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(33, 42))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Steel Barbed Club")
+                .SetStrengthRequirement(125)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }        
+
+        public Weapon GetExceptionalSteelBarbedClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(49, 62))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Exceptional Steel Barbed Club")
+                .SetStrengthRequirement(185)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetRottenWoodenClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(8, 13))
+                .SetSkillsPerSecond(1.4)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Rotten Wooden Club")
+                .SetStrengthRequirement(26)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetRawWoodenClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(31, 51))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Raw Wooden Club")
+                .SetStrengthRequirement(116)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetWoodenClubMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(48, 80))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Wooden Club")
+                .SetStrengthRequirement(179)
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }                                                                                                                                    
 
         public Weapon GetCrudeBowMasterData()
         {
