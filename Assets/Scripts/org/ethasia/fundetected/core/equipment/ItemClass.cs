@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         MARTIAL_STAFF,
         ONE_HANDED_MACE,
         TWO_HANDED_MACE,
+        MAGIC_MACE,
         BOW,
         WAND,
         NONE

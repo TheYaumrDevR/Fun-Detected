@@ -11,6 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 || itemClass == ItemClass.ONE_HANDED_AXE
                 || itemClass == ItemClass.FIST_WEAPON
                 || itemClass == ItemClass.ONE_HANDED_MACE
+                || itemClass == ItemClass.MAGIC_MACE
                 || itemClass == ItemClass.WAND;
         }
 

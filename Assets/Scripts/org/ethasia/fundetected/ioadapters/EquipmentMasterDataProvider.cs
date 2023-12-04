@@ -858,7 +858,127 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
             return weaponBuilder.Build();
-        }                                                                                                                                    
+        }            
+
+        public Weapon GetRottenWoodenMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(10, 16))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Rotten Wooden Maul")
+                .SetStrengthRequirement(20)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }  
+
+        public Weapon GetRottenWoodenMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(16, 33))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Raw Wooden Maul")
+                .SetStrengthRequirement(47)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }     
+
+        public Weapon GetRottenWoodenMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(16, 33))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Raw Wooden Maul")
+                .SetStrengthRequirement(47)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetRottenWoodenMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(43, 88))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Wooden Maul")
+                .SetStrengthRequirement(131)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetReinforcedWoodenMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(65, 135))
+                .SetSkillsPerSecond(1.3)
+                .SetCriticalStrikeChance(550)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Reinforced Wooden Maul")
+                .SetStrengthRequirement(188)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetRottenCarvedMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(17, 25))
+                .SetSkillsPerSecond(1.25)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Rotten Carved Maul")
+                .SetStrengthRequirement(35)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetCarvedMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(57, 85))
+                .SetSkillsPerSecond(1.1)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Carved Maul")
+                .SetStrengthRequirement(119)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetReinforcedCarvedMaulMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(112, 168))
+                .SetSkillsPerSecond(1.0)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(16);
+
+            weaponBuilder.SetName("Reinforced Carved Maul")
+                .SetStrengthRequirement(182)
+                .SetItemClass(ItemClass.TWO_HANDED_MACE);
+
+            return weaponBuilder.Build();
+        }                                                                                                                                                                                 
 
         public Weapon GetCrudeBowMasterData()
         {
