@@ -875,7 +875,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return weaponBuilder.Build();
         }  
 
-        public Weapon GetRottenWoodenMaulMasterData()
+        public Weapon GetRawWoodenMaulMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(16, 33))
@@ -890,22 +890,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return weaponBuilder.Build();
         }     
 
-        public Weapon GetRottenWoodenMaulMasterData()
-        {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
-                .SetMinToMaxPhysicalDamage(new DamageRange(16, 33))
-                .SetSkillsPerSecond(1.3)
-                .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Raw Wooden Maul")
-                .SetStrengthRequirement(47)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
-        } 
-
-        public Weapon GetRottenWoodenMaulMasterData()
+        public Weapon GetWoodenMaulMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(43, 88))
