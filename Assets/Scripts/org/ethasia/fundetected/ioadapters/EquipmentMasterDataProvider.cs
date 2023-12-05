@@ -963,7 +963,126 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
             return weaponBuilder.Build();
-        }                                                                                                                                                                                 
+        } 
+
+        public Weapon GetCorrodedRoyalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(8, 11))
+                .SetMinToMaxSpellDamage(new DamageRange(8, 11))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Corroded Royal Sceptre")
+                .SetStrengthRequirement(8)
+                .SetIntelligenceRequirement(8)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetBronzeRoyalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(21, 50))
+                .SetMinToMaxSpellDamage(new DamageRange(21, 50))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Bronze Royal Sceptre")
+                .SetStrengthRequirement(51)
+                .SetIntelligenceRequirement(51)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        }    
+
+        public Weapon GetSilverRoyalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(34, 80))
+                .SetMinToMaxSpellDamage(new DamageRange(34, 80))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Silver Royal Sceptre")
+                .SetStrengthRequirement(86)
+                .SetIntelligenceRequirement(86)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetGoldenRoyalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(41, 95))
+                .SetMinToMaxSpellDamage(new DamageRange(41, 95))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Golden Royal Sceptre")
+                .SetStrengthRequirement(113)
+                .SetIntelligenceRequirement(113)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetRottenTribalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(11, 17))
+                .SetMinToMaxSpellDamage(new DamageRange(11, 17))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Rotten Tribal Sceptre")
+                .SetStrengthRequirement(14)
+                .SetIntelligenceRequirement(14)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        }      
+
+        public Weapon GetTribalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(24, 36))
+                .SetMinToMaxSpellDamage(new DamageRange(24, 36))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Tribal Sceptre")
+                .SetStrengthRequirement(62)
+                .SetIntelligenceRequirement(62)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetReinforcedTribalSceptreMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(37, 55))
+                .SetMinToMaxSpellDamage(new DamageRange(37, 55))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(600)
+                .SetWeaponRange(12);
+
+            weaponBuilder.SetName("Reinforced Tribal Sceptre")
+                .SetStrengthRequirement(96)
+                .SetIntelligenceRequirement(96)
+                .SetItemClass(ItemClass.MAGIC_MACE);
+
+            return weaponBuilder.Build();
+        }                                                                                                                                                                                                                                          
 
         public Weapon GetCrudeBowMasterData()
         {
