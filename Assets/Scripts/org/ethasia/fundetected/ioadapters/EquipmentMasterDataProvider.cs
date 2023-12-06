@@ -1082,22 +1082,22 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
             return weaponBuilder.Build();
-        }                                                                                                                                                                                                                                          
+        } 
 
-        public Weapon GetCrudeBowMasterData()
+        public Weapon GetPrimitiveBowMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(5, 13))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(0);
+                .SetWeaponRange(80);
 
-            weaponBuilder.SetName("Crude Bow")
+            weaponBuilder.SetName("Primitive Bow")
                 .SetAgilityRequirement(14)
                 .SetItemClass(ItemClass.BOW);
 
             return weaponBuilder.Build();
-        }     
+        }  
 
         public Weapon GetShortBowMasterData()
         {
@@ -1105,43 +1105,104 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 16))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(0);
+                .SetWeaponRange(80);
 
             weaponBuilder.SetName("Short Bow")
                 .SetAgilityRequirement(26)
                 .SetItemClass(ItemClass.BOW);
 
             return weaponBuilder.Build();
-        }      
+        }    
 
-        public Weapon GetOldWoodWandMasterData()
+        public Weapon GetCompositeShortBowMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(20, 61))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(80);
+
+            weaponBuilder.SetName("Composite Short Bow")
+                .SetAgilityRequirement(116)
+                .SetItemClass(ItemClass.BOW);
+
+            return weaponBuilder.Build();
+        }     
+
+
+        public Weapon GetExceptionalCompositeShortBowMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(32, 96))
+                .SetSkillsPerSecond(1.5)
+                .SetCriticalStrikeChance(500)
+                .SetWeaponRange(80);
+
+            weaponBuilder.SetName("Exceptional Composite Short Bow")
+                .SetAgilityRequirement(179)
+                .SetItemClass(ItemClass.BOW);
+
+            return weaponBuilder.Build();
+        } 
+
+        public Weapon GetRottenWandMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxSpellDamage(new DamageRange(5, 9))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(0);
+                .SetWeaponRange(60);
 
-            weaponBuilder.SetName("Oldwood Wand")
+            weaponBuilder.SetName("Rotten Wand")
                 .SetIntelligenceRequirement(14)
                 .SetItemClass(ItemClass.WAND);
 
             return weaponBuilder.Build();
-        }  
+        }     
 
-        public Weapon GetCutWandMasterData()
+        public Weapon GetRottenPyromancersWandMasterData()
         {
             Weapon.Builder weaponBuilder = new Weapon.Builder()
                 .SetMinToMaxSpellDamage(new DamageRange(9, 16))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(0);
+                .SetWeaponRange(60);
 
-            weaponBuilder.SetName("Cut Wand")
+            weaponBuilder.SetName("Rotten Pyromancer's Wand")
                 .SetIntelligenceRequirement(29)
                 .SetItemClass(ItemClass.WAND);
 
             return weaponBuilder.Build();
-        }                                                       
+        }  
+
+        public Weapon GetPyromancersWandMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxSpellDamage(new DamageRange(26, 48))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(700)
+                .SetWeaponRange(60);
+
+            weaponBuilder.SetName("Pyromancer's Wand")
+                .SetIntelligenceRequirement(116)
+                .SetItemClass(ItemClass.WAND);
+
+            return weaponBuilder.Build();
+        }   
+
+        public Weapon GetExceptionalPyromancersWandMasterData()
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxSpellDamage(new DamageRange(38, 71))
+                .SetSkillsPerSecond(1.2)
+                .SetCriticalStrikeChance(700)
+                .SetWeaponRange(60);
+
+            weaponBuilder.SetName("Exceptional Pyromancer's Wand")
+                .SetIntelligenceRequirement(179)
+                .SetItemClass(ItemClass.WAND);
+
+            return weaponBuilder.Build();
+        }                                                                                                                                                                                                                                                                                                                                                       
     }
 }
