@@ -5,1204 +5,1052 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class EquipmentMasterDataProvider
     {
-        public Weapon GetCorrodedCutlassMasterData()
+        public WeaponMasterData GetCorrodedCutlassMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(4, 9))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Corroded Cutlass")
+                .SetWeaponRange(12)
+                .SetName("Corroded Cutlass")
                 .SetStrengthRequirement(8)
                 .SetAgilityRequirement(8)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }
 
-        public Weapon GetBronzeCutlassMasterData()
+        public WeaponMasterData GetBronzeCutlassMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(5, 22))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Bronze Cutlass")
+                .SetWeaponRange(12)
+                .SetName("Bronze Cutlass")
                 .SetStrengthRequirement(18)
                 .SetAgilityRequirement(26)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }    
 
-        public Weapon GetSteelCutlassMasterData()
+        public WeaponMasterData GetSteelCutlassMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(13, 53))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Steel Cutlass")
+                .SetWeaponRange(12)
+                .SetName("Steel Cutlass")
                 .SetStrengthRequirement(55)
                 .SetAgilityRequirement(79)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }      
 
-        public Weapon GetExceptionalSteelCutlassMasterData()
+        public WeaponMasterData GetExceptionalSteelCutlassMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(20, 80))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Exceptional Steel Cutlass")
+                .SetWeaponRange(12)
+                .SetName("Exceptional Steel Cutlass")
                 .SetStrengthRequirement(81)
                 .SetAgilityRequirement(117)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }     
 
-        public Weapon GetCorrodedSwordMasterData()
+        public WeaponMasterData WeaponMasterDataGetCorrodedSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 14))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Corroded Sword")
+                .SetWeaponRange(12)
+                .SetName("Corroded Sword")
                 .SetStrengthRequirement(14)
                 .SetAgilityRequirement(14)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }  
 
-        public Weapon GetBronzeSwordMasterData()
+        public WeaponMasterData GetBronzeSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(20, 33))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Bronze Sword")
+                .SetWeaponRange(12)
+                .SetName("Bronze Sword")
                 .SetStrengthRequirement(46)
                 .SetAgilityRequirement(55)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }  
 
-        public Weapon GetSteelSwordMasterData()
+        public WeaponMasterData GetSteelSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(34, 55))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Steel Sword")
+                .SetWeaponRange(12)
+                .SetName("Steel Sword")
                 .SetStrengthRequirement(78)
                 .SetAgilityRequirement(94)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }  
 
-        public Weapon GetExceptionalSteelSwordMasterData()
+        public WeaponMasterData GetExceptionalSteelSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(41, 68))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Exceptional Steel Sword")
+                .SetWeaponRange(12)
+                .SetName("Exceptional Steel Sword")
                 .SetStrengthRequirement(104)
                 .SetAgilityRequirement(122)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .Build();
         }         
 
-        public Weapon GetCorrodedRapierMasterData()
+        public WeaponMasterData GetCorrodedRapierMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(5, 11))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Corroded Rapier")
+                .SetWeaponRange(18)
+                .SetName("Corroded Rapier")
                 .SetAgilityRequirement(20)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }     
 
-        public Weapon GetBronzeRapierMasterData()
+        public WeaponMasterData GetBronzeRapierMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(11, 25))
                 .SetSkillsPerSecond(1.55)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Bronze Rapier")
+                .SetWeaponRange(18)
+                .SetName("Bronze Rapier")
                 .SetAgilityRequirement(62)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }   
 
-        public Weapon GetCorrodedFoilMasterData()
+        public WeaponMasterData GetCorrodedFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(4, 17))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Corroded Foil")
+                .SetWeaponRange(18)
+                .SetName("Corroded Foil")
                 .SetAgilityRequirement(32)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }               
 
-        public Weapon GetBronzeFoilMasterData()
+        public WeaponMasterData GetBronzeFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(12, 29))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Bronze Foil")
+                .SetWeaponRange(18)
+                .SetName("Bronze Foil")
                 .SetAgilityRequirement(77)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }   
 
-        public Weapon GetExceptionalBronzeFoilMasterData()
+        public WeaponMasterData GetExceptionalBronzeFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(18, 33))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Exceptional Bronze Foil")
+                .SetWeaponRange(18)
+                .SetName("Exceptional Bronze Foil")
                 .SetAgilityRequirement(101)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }  
 
-        public Weapon GetRustedSteelFoilMasterData()
+        public WeaponMasterData GetRustedSteelFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(21, 49))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Rusted Steel Foil")
+                .SetWeaponRange(18)
+                .SetName("Rusted Steel Foil")
                 .SetAgilityRequirement(149)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }    
 
-        public Weapon GetSteelFoilMasterData()
+        public WeaponMasterData GetSteelFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(28, 51))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Steel Foil")
+                .SetWeaponRange(18)
+                .SetName("Steel Foil")
                 .SetAgilityRequirement(167)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }    
 
-        public Weapon GetFlexibleSteelFoilMasterData()
+        public WeaponMasterData GetFlexibleSteelFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(27, 64))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Flexible Steel Foil")
+                .SetWeaponRange(18)
+                .SetName("Flexible Steel Foil")
                 .SetAgilityRequirement(212)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }
 
-        public Weapon GetExceptionalSteelFoilMasterData()
+        public WeaponMasterData GetExceptionalSteelFoilMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(32, 60))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(18);
-
-            weaponBuilder.SetName("Exceptional Steel Foil")
+                .SetWeaponRange(18)
+                .SetName("Exceptional Steel Foil")
                 .SetAgilityRequirement(212)
-                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD)
+                .Build();
         }                                                                         
 
-        public Weapon GetCorrodedBastardSwordMasterData()
+        public WeaponMasterData GetCorrodedBastardSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(8, 16))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Corroded Bastard Sword")
+                .SetWeaponRange(16)
+                .SetName("Corroded Bastard Sword")
                 .SetStrengthRequirement(11)
                 .SetAgilityRequirement(11)
-                .SetItemClass(ItemClass.TWO_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_SWORD)
+                .Build();
         }      
 
-        public Weapon GetBronzeBastardSwordMasterData()
+        public WeaponMasterData GetBronzeBastardSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(17, 29))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Bronze Bastard Sword")
+                .SetWeaponRange(16)
+                .SetName("Bronze Bastard Sword")
                 .SetStrengthRequirement(21)
                 .SetAgilityRequirement(30)
-                .SetItemClass(ItemClass.TWO_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_SWORD)
+                .Build();
         } 
 
-        public Weapon GetSteelBastardSwordMasterData()
+        public WeaponMasterData GetSteelBastardSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(39, 65))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Steel Bastard Sword")
+                .SetWeaponRange(16)
+                .SetName("Steel Bastard Sword")
                 .SetStrengthRequirement(57)
                 .SetAgilityRequirement(83)
-                .SetItemClass(ItemClass.TWO_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_SWORD)
+                .Build();
         }    
 
-        public Weapon GetExceptionalSteelBastardSwordMasterData()
+        public WeaponMasterData GetExceptionalSteelBastardSwordMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(69, 115))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Exceptional Steel Bastard Sword")
+                .SetWeaponRange(16)
+                .SetName("Exceptional Steel Bastard Sword")
                 .SetStrengthRequirement(104)
                 .SetAgilityRequirement(122)
-                .SetItemClass(ItemClass.TWO_HANDED_SWORD);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_SWORD)
+                .Build();
         }  
 
-        public Weapon GetCorrodedDaggerMasterData()
+        public WeaponMasterData GetCorrodedDaggerMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 10))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Corroded Dagger")
+                .SetWeaponRange(10)
+                .SetName("Corroded Dagger")
                 .SetAgilityRequirement(9)
                 .SetIntelligenceRequirement(6)
-                .SetItemClass(ItemClass.DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.DAGGER)
+                .Build();
         }  
 
-        public Weapon GetCorrodedArtisansKnifeMasterData()
+        public WeaponMasterData GetCorrodedArtisansKnifeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(4, 17))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Corroded Artisan's Knife")
+                .SetWeaponRange(10)
+                .SetName("Corroded Artisan's Knife")
                 .SetAgilityRequirement(16)
                 .SetIntelligenceRequirement(11)
-                .SetItemClass(ItemClass.DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.DAGGER)
+                .Build();
         }
 
-        public Weapon GetBronzeArtisansKnifeMasterData()
+        public WeaponMasterData GetBronzeArtisansKnifeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(11, 45))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Bronze Artisan's Knife")
+                .SetWeaponRange(10)
+                .SetName("Bronze Artisan's Knife")
                 .SetAgilityRequirement(64)
                 .SetIntelligenceRequirement(44)
-                .SetItemClass(ItemClass.DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.DAGGER)
+                .Build();
         }  
 
-        public Weapon GetSteelArtisansKnifeMasterData()
+        public WeaponMasterData GetSteelArtisansKnifeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(19, 76))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(650)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Steel Artisan's Knife")
+                .SetWeaponRange(10)
+                .SetName("Steel Artisan's Knife")
                 .SetAgilityRequirement(113)
                 .SetIntelligenceRequirement(78)
-                .SetItemClass(ItemClass.DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.DAGGER)
+                .Build();
         }    
 
-        public Weapon GetCorrodedAlchemistsKnifeMasterData()
+        public WeaponMasterData GetCorrodedAlchemistsKnifeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(3, 26))
                 .SetMinToMaxSpellDamage(new DamageRange(3, 26))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(630)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Corroded Alchemist's Knife")
+                .SetWeaponRange(10)
+                .SetName("Corroded Alchemist's Knife")
                 .SetAgilityRequirement(18)
                 .SetIntelligenceRequirement(26)
-                .SetItemClass(ItemClass.SPELL_DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.SPELL_DAGGER)
+                .Build();
         }   
 
-        public Weapon GetBronzeAlchemistsKnifeMasterData()
+        public WeaponMasterData GetBronzeAlchemistsKnifeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(7, 62))
                 .SetMinToMaxSpellDamage(new DamageRange(7, 62))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(630)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Bronze Alchemist's Knife")
+                .SetWeaponRange(10)
+                .SetName("Bronze Alchemist's Knife")
                 .SetAgilityRequirement(55)
                 .SetIntelligenceRequirement(79)
-                .SetItemClass(ItemClass.SPELL_DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.SPELL_DAGGER)
+                .Build();
         }                                                               
 
-        public Weapon GetSteelAlchemistsKnifeMasterData()
+        public WeaponMasterData GetSteelAlchemistsKnifeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(10, 86))
                 .SetMinToMaxSpellDamage(new DamageRange(10, 86))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(630)
-                .SetWeaponRange(10);
-
-            weaponBuilder.SetName("Steel Alchemist's Knife")
+                .SetWeaponRange(10)
+                .SetName("Steel Alchemist's Knife")
                 .SetAgilityRequirement(81)
                 .SetIntelligenceRequirement(117)
-                .SetItemClass(ItemClass.SPELL_DAGGER);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.SPELL_DAGGER)
+                .Build();
         }
 
-        public Weapon GetCorrodedHatchetMasterData()
+        public WeaponMasterData GetCorrodedHatchetMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 11))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Corroded Hatchet")
+                .SetWeaponRange(12)
+                .SetName("Corroded Hatchet")
                 .SetStrengthRequirement(12)
                 .SetAgilityRequirement(6)
-                .SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_AXE)
+                .Build();
         }   
 
-        public Weapon GetBronzeHatchetMasterData()
+        public WeaponMasterData GetBronzeHatchetMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(11, 21))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Bronze Hatchet")
+                .SetWeaponRange(12)
+                .SetName("Bronze Hatchet")
                 .SetStrengthRequirement(28)
                 .SetAgilityRequirement(19)
-                .SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_AXE)
+                .Build();
         }         
 
-        public Weapon GetSteelHatchetMasterData()
+        public WeaponMasterData GetSteelHatchetMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(25, 46))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Steel Hatchet")
+                .SetWeaponRange(12)
+                .SetName("Steel Hatchet")
                 .SetStrengthRequirement(81)
                 .SetAgilityRequirement(56)
-                .SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_AXE)
+                .Build();
         } 
 
-        public Weapon GetExceptionalSteelHatchetMasterData()
+        public WeaponMasterData GetExceptionalSteelHatchetMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(38, 70))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Exceptional Steel Hatchet")
+                .SetWeaponRange(12)
+                .SetName("Exceptional Steel Hatchet")
                 .SetStrengthRequirement(119)
                 .SetAgilityRequirement(82)
-                .SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_AXE)
+                .Build();
         }    
 
-        public Weapon GetCorrodedLumberjackAxeMasterData()
+        public WeaponMasterData GetCorrodedLumberjackAxeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(12, 20))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Corroded Lumberjack Axe")
+                .SetWeaponRange(16)
+                .SetName("Corroded Lumberjack Axe")
                 .SetStrengthRequirement(17)
                 .SetAgilityRequirement(8)
-                .SetItemClass(ItemClass.TWO_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_AXE)
+                .Build();
         }  
 
-        public Weapon GetBronzeLumberjackAxeMasterData()
+        public WeaponMasterData GetBronzeLumberjackAxeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(19, 39))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Bronze Lumberjack Axe")
+                .SetWeaponRange(16)
+                .SetName("Bronze Lumberjack Axe")
                 .SetStrengthRequirement(36)
                 .SetAgilityRequirement(17)
-                .SetItemClass(ItemClass.TWO_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_AXE)
+                .Build();
         }    
 
-        public Weapon GetSteelLumberjackAxeMasterData()
+        public WeaponMasterData GetSteelLumberjackAxeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(48, 99))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Steel Lumberjack Axe")
+                .SetWeaponRange(16)
+                .SetName("Steel Lumberjack Axe")
                 .SetStrengthRequirement(97)
                 .SetAgilityRequirement(45)
-                .SetItemClass(ItemClass.TWO_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_AXE)
+                .Build();
         }    
 
-        public Weapon GetExceptionalSteelLumberjackAxeMasterData()
+        public WeaponMasterData GetExceptionalSteelLumberjackAxeMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(74, 155))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Exceptional Steel Lumberjack Axe")
+                .SetWeaponRange(16)
+                .SetName("Exceptional Steel Lumberjack Axe")
                 .SetStrengthRequirement(149)
                 .SetAgilityRequirement(76)
-                .SetItemClass(ItemClass.TWO_HANDED_AXE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_AXE)
+                .Build();
         }    
 
-        public Weapon GetCorrodedSlashingClawMasterData()
+        public WeaponMasterData GetCorrodedSlashingClawMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(4, 11))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(620)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Corroded Slashing Claw")
+                .SetWeaponRange(12)
+                .SetName("Corroded Slashing Claw")
                 .SetAgilityRequirement(11)
                 .SetIntelligenceRequirement(11)
-                .SetItemClass(ItemClass.FIST_WEAPON);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.FIST_WEAPON)
+                .Build();
         }    
 
-        public Weapon GetBronzeSlashingClawMasterData()
+        public WeaponMasterData GetBronzeSlashingClawMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(12, 22))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Bronze Slashing Claw")
+                .SetWeaponRange(12)
+                .SetName("Bronze Slashing Claw")
                 .SetAgilityRequirement(39)
                 .SetIntelligenceRequirement(27)
-                .SetItemClass(ItemClass.FIST_WEAPON);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.FIST_WEAPON)
+                .Build();
         }      
 
-        public Weapon GetSteelSlashingClawMasterData()
+        public WeaponMasterData GetSteelSlashingClawMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(23, 43))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Steel Slashing Claw")
+                .SetWeaponRange(12)
+                .SetName("Steel Slashing Claw")
                 .SetAgilityRequirement(88)
                 .SetIntelligenceRequirement(61)
-                .SetItemClass(ItemClass.FIST_WEAPON);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.FIST_WEAPON)
+                .Build();
         }        
 
-        public Weapon GetExceptionalSteelSlashingClawMasterData()
+        public WeaponMasterData GetExceptionalSteelSlashingClawMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(29, 55))
                 .SetSkillsPerSecond(1.6)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Exceptional Steel Slashing Claw")
+                .SetWeaponRange(12)
+                .SetName("Exceptional Steel Slashing Claw")
                 .SetAgilityRequirement(131)
                 .SetIntelligenceRequirement(95)
-                .SetItemClass(ItemClass.FIST_WEAPON);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.FIST_WEAPON)
+                .Build();
         }    
 
-        public Weapon GetRottenQuarterstaffMasterData()
+        public WeaponMasterData GetRottenQuarterstaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(9, 19))
                 .SetMinToMaxSpellDamage(new DamageRange(9, 19))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Rotten Quarterstaff")
+                .SetWeaponRange(16)
+                .SetName("Rotten Quarterstaff")
                 .SetStrengthRequirement(12)
                 .SetIntelligenceRequirement(12)
-                .SetItemClass(ItemClass.WIZARD_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WIZARD_STAFF)
+                .Build();
         }  
 
-        public Weapon GetCrackedQuarterstaffMasterData()
+        public WeaponMasterData GetCrackedQuarterstaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(24, 41))
                 .SetMinToMaxSpellDamage(new DamageRange(24, 41))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Cracked Quarterstaff")
+                .SetWeaponRange(16)
+                .SetName("Cracked Quarterstaff")
                 .SetStrengthRequirement(35)
                 .SetIntelligenceRequirement(35)
-                .SetItemClass(ItemClass.WIZARD_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WIZARD_STAFF)
+                .Build();
         }     
 
-        public Weapon GetQuarterstaffMasterData()
+        public WeaponMasterData GetQuarterstaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(51, 86))
                 .SetMinToMaxSpellDamage(new DamageRange(51, 86))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Quarterstaff")
+                .SetWeaponRange(16)
+                .SetName("Quarterstaff")
                 .SetStrengthRequirement(78)
                 .SetIntelligenceRequirement(78)
-                .SetItemClass(ItemClass.WIZARD_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WIZARD_STAFF)
+                .Build();
         }    
 
-        public Weapon GetReinforcedQuarterstaffMasterData()
+        public WeaponMasterData GetReinforcedQuarterstaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(72, 120))
                 .SetMinToMaxSpellDamage(new DamageRange(72, 120))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Reinforced Quarterstaff")
+                .SetWeaponRange(16)
+                .SetName("Reinforced Quarterstaff")
                 .SetStrengthRequirement(113)
                 .SetIntelligenceRequirement(113)
-                .SetItemClass(ItemClass.WIZARD_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WIZARD_STAFF)
+                .Build();
         }  
 
-        public Weapon GetErodedStaffMasterData()
+        public WeaponMasterData GetErodedStaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(14, 42))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(640)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Eroded Staff")
+                .SetWeaponRange(16)
+                .SetName("Eroded Staff")
                 .SetStrengthRequirement(27)
                 .SetIntelligenceRequirement(27)
-                .SetItemClass(ItemClass.MARTIAL_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MARTIAL_STAFF)
+                .Build();
         }   
 
-        public Weapon GetBronzeStaffMasterData()
+        public WeaponMasterData GetBronzeStaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(38, 114))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(660)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Bronze Staff")
+                .SetWeaponRange(16)
+                .SetName("Bronze Staff")
                 .SetStrengthRequirement(72)
                 .SetIntelligenceRequirement(72)
-                .SetItemClass(ItemClass.MARTIAL_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MARTIAL_STAFF)
+                .Build();
         }  
 
-        public Weapon GetSteelStaffMasterData()
+        public WeaponMasterData GetSteelStaffMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(53, 160))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(730)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Steel Staff")
+                .SetWeaponRange(16)
+                .SetName("Steel Staff")
                 .SetStrengthRequirement(113)
                 .SetIntelligenceRequirement(113)
-                .SetItemClass(ItemClass.MARTIAL_STAFF);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MARTIAL_STAFF)
+                .Build();
         } 
 
-        public Weapon GetRottenBarbedClubMasterData()
+        public WeaponMasterData GetRottenBarbedClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 8))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Rotten Barbed Club")
+                .SetWeaponRange(12)
+                .SetName("Rotten Barbed Club")
                 .SetStrengthRequirement(14)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         }      
 
-        public Weapon GetBronzeBarbedClubMasterData()
+        public WeaponMasterData GetBronzeBarbedClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(13, 16))
                 .SetSkillsPerSecond(1.45)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Bronze Barbed Club")
+                .SetWeaponRange(12)
+                .SetName("Bronze Barbed Club")
                 .SetStrengthRequirement(41)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         } 
 
-        public Weapon GetSteelBarbedClubMasterData()
+        public WeaponMasterData GetSteelBarbedClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(33, 42))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Steel Barbed Club")
+                .SetWeaponRange(12)
+                .SetName("Steel Barbed Club")
                 .SetStrengthRequirement(125)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         }        
 
-        public Weapon GetExceptionalSteelBarbedClubMasterData()
+        public WeaponMasterData GetExceptionalSteelBarbedClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(49, 62))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Exceptional Steel Barbed Club")
+                .SetWeaponRange(12)
+                .SetName("Exceptional Steel Barbed Club")
                 .SetStrengthRequirement(185)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         }    
 
-        public Weapon GetRottenWoodenClubMasterData()
+        public WeaponMasterData GetRottenWoodenClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(8, 13))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Rotten Wooden Club")
+                .SetWeaponRange(12)
+                .SetName("Rotten Wooden Club")
                 .SetStrengthRequirement(26)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         }  
 
-        public Weapon GetRawWoodenClubMasterData()
+        public WeaponMasterData GetRawWoodenClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(31, 51))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Raw Wooden Club")
+                .SetWeaponRange(12)
+                .SetName("Raw Wooden Club")
                 .SetStrengthRequirement(116)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         }  
 
-        public Weapon GetWoodenClubMasterData()
+        public WeaponMasterData GetWoodenClubMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(48, 80))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Wooden Club")
+                .SetWeaponRange(12)
+                .SetName("Wooden Club")
                 .SetStrengthRequirement(179)
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.ONE_HANDED_MACE)
+                .Build();
         }            
 
-        public Weapon GetRottenWoodenMaulMasterData()
+        public WeaponMasterData GetRottenWoodenMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(10, 16))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Rotten Wooden Maul")
+                .SetWeaponRange(16)
+                .SetName("Rotten Wooden Maul")
                 .SetStrengthRequirement(20)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         }  
 
-        public Weapon GetRawWoodenMaulMasterData()
+        public WeaponMasterData GetRawWoodenMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(16, 33))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Raw Wooden Maul")
+                .SetWeaponRange(16)
+                .SetName("Raw Wooden Maul")
                 .SetStrengthRequirement(47)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         }     
 
-        public Weapon GetWoodenMaulMasterData()
+        public WeaponMasterData GetWoodenMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(43, 88))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Wooden Maul")
+                .SetWeaponRange(16)
+                .SetName("Wooden Maul")
                 .SetStrengthRequirement(131)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         }    
 
-        public Weapon GetReinforcedWoodenMaulMasterData()
+        public WeaponMasterData GetReinforcedWoodenMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(65, 135))
                 .SetSkillsPerSecond(1.3)
                 .SetCriticalStrikeChance(550)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Reinforced Wooden Maul")
+                .SetWeaponRange(16)
+                .SetName("Reinforced Wooden Maul")
                 .SetStrengthRequirement(188)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         }   
 
-        public Weapon GetRottenCarvedMaulMasterData()
+        public WeaponMasterData GetRottenCarvedMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(17, 25))
                 .SetSkillsPerSecond(1.25)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Rotten Carved Maul")
+                .SetWeaponRange(16)
+                .SetName("Rotten Carved Maul")
                 .SetStrengthRequirement(35)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         }   
 
-        public Weapon GetCarvedMaulMasterData()
+        public WeaponMasterData GetCarvedMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(57, 85))
                 .SetSkillsPerSecond(1.1)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Carved Maul")
+                .SetWeaponRange(16)
+                .SetName("Carved Maul")
                 .SetStrengthRequirement(119)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         } 
 
-        public Weapon GetReinforcedCarvedMaulMasterData()
+        public WeaponMasterData GetReinforcedCarvedMaulMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(112, 168))
                 .SetSkillsPerSecond(1.0)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(16);
-
-            weaponBuilder.SetName("Reinforced Carved Maul")
+                .SetWeaponRange(16)
+                .SetName("Reinforced Carved Maul")
                 .SetStrengthRequirement(182)
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.TWO_HANDED_MACE)
+                .Build();
         } 
 
-        public Weapon GetCorrodedRoyalSceptreMasterData()
+        public WeaponMasterData GetCorrodedRoyalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(8, 11))
                 .SetMinToMaxSpellDamage(new DamageRange(8, 11))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Corroded Royal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Corroded Royal Sceptre")
                 .SetStrengthRequirement(8)
                 .SetIntelligenceRequirement(8)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         } 
 
-        public Weapon GetBronzeRoyalSceptreMasterData()
+        public WeaponMasterData GetBronzeRoyalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(21, 50))
                 .SetMinToMaxSpellDamage(new DamageRange(21, 50))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Bronze Royal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Bronze Royal Sceptre")
                 .SetStrengthRequirement(51)
                 .SetIntelligenceRequirement(51)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         }    
 
-        public Weapon GetSilverRoyalSceptreMasterData()
+        public WeaponMasterData GetSilverRoyalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(34, 80))
                 .SetMinToMaxSpellDamage(new DamageRange(34, 80))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Silver Royal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Silver Royal Sceptre")
                 .SetStrengthRequirement(86)
                 .SetIntelligenceRequirement(86)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         } 
 
-        public Weapon GetGoldenRoyalSceptreMasterData()
+        public WeaponMasterData GetGoldenRoyalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(41, 95))
                 .SetMinToMaxSpellDamage(new DamageRange(41, 95))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Golden Royal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Golden Royal Sceptre")
                 .SetStrengthRequirement(113)
                 .SetIntelligenceRequirement(113)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         } 
 
-        public Weapon GetRottenTribalSceptreMasterData()
+        public WeaponMasterData GetRottenTribalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(11, 17))
                 .SetMinToMaxSpellDamage(new DamageRange(11, 17))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Rotten Tribal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Rotten Tribal Sceptre")
                 .SetStrengthRequirement(14)
                 .SetIntelligenceRequirement(14)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         }      
 
-        public Weapon GetTribalSceptreMasterData()
+        public WeaponMasterData GetTribalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(24, 36))
                 .SetMinToMaxSpellDamage(new DamageRange(24, 36))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Tribal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Tribal Sceptre")
                 .SetStrengthRequirement(62)
                 .SetIntelligenceRequirement(62)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         } 
 
-        public Weapon GetReinforcedTribalSceptreMasterData()
+        public WeaponMasterData GetReinforcedTribalSceptreMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(37, 55))
                 .SetMinToMaxSpellDamage(new DamageRange(37, 55))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(600)
-                .SetWeaponRange(12);
-
-            weaponBuilder.SetName("Reinforced Tribal Sceptre")
+                .SetWeaponRange(12)
+                .SetName("Reinforced Tribal Sceptre")
                 .SetStrengthRequirement(96)
                 .SetIntelligenceRequirement(96)
-                .SetItemClass(ItemClass.MAGIC_MACE);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.MAGIC_MACE)
+                .Build();
         } 
 
-        public Weapon GetPrimitiveBowMasterData()
+        public WeaponMasterData GetPrimitiveBowMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(5, 13))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(80);
-
-            weaponBuilder.SetName("Primitive Bow")
+                .SetWeaponRange(80)
+                .SetName("Primitive Bow")
                 .SetAgilityRequirement(14)
-                .SetItemClass(ItemClass.BOW);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.BOW)
+                .Build();
         }  
 
-        public Weapon GetShortBowMasterData()
+        public WeaponMasterData GetShortBowMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(6, 16))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(80);
-
-            weaponBuilder.SetName("Short Bow")
+                .SetWeaponRange(80)
+                .SetName("Short Bow")
                 .SetAgilityRequirement(26)
-                .SetItemClass(ItemClass.BOW);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.BOW)
+                .Build();
         }    
 
-        public Weapon GetCompositeShortBowMasterData()
+        public WeaponMasterData GetCompositeShortBowMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(20, 61))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(80);
-
-            weaponBuilder.SetName("Composite Short Bow")
+                .SetWeaponRange(80)
+                .SetName("Composite Short Bow")
                 .SetAgilityRequirement(116)
-                .SetItemClass(ItemClass.BOW);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.BOW)
+                .Build();
         }     
 
 
-        public Weapon GetExceptionalCompositeShortBowMasterData()
+        public WeaponMasterData GetExceptionalCompositeShortBowMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxPhysicalDamage(new DamageRange(32, 96))
                 .SetSkillsPerSecond(1.5)
                 .SetCriticalStrikeChance(500)
-                .SetWeaponRange(80);
-
-            weaponBuilder.SetName("Exceptional Composite Short Bow")
+                .SetWeaponRange(80)
+                .SetName("Exceptional Composite Short Bow")
                 .SetAgilityRequirement(179)
-                .SetItemClass(ItemClass.BOW);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.BOW)
+                .Build();
         } 
 
-        public Weapon GetRottenWandMasterData()
+        public WeaponMasterData GetRottenWandMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxSpellDamage(new DamageRange(5, 9))
                 .SetSkillsPerSecond(1.4)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(60);
-
-            weaponBuilder.SetName("Rotten Wand")
+                .SetWeaponRange(60)
+                .SetName("Rotten Wand")
                 .SetIntelligenceRequirement(14)
-                .SetItemClass(ItemClass.WAND);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WAND)
+                .Build();
         }     
 
-        public Weapon GetRottenPyromancersWandMasterData()
+        public WeaponMasterData GetRottenPyromancersWandMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxSpellDamage(new DamageRange(9, 16))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(60);
-
-            weaponBuilder.SetName("Rotten Pyromancer's Wand")
+                .SetWeaponRange(60)
+                .SetName("Rotten Pyromancer's Wand")
                 .SetIntelligenceRequirement(29)
-                .SetItemClass(ItemClass.WAND);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WAND)
+                .Build();
         }  
 
-        public Weapon GetPyromancersWandMasterData()
+        public WeaponMasterData GetPyromancersWandMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxSpellDamage(new DamageRange(26, 48))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(60);
-
-            weaponBuilder.SetName("Pyromancer's Wand")
+                .SetWeaponRange(60)
+                .SetName("Pyromancer's Wand")
                 .SetIntelligenceRequirement(116)
-                .SetItemClass(ItemClass.WAND);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WAND)
+                .Build();
         }   
 
-        public Weapon GetExceptionalPyromancersWandMasterData()
+        public WeaponMasterData GetExceptionalPyromancersWandMasterData()
         {
-            Weapon.Builder weaponBuilder = new Weapon.Builder()
+            return new WeaponMasterData.Builder()
                 .SetMinToMaxSpellDamage(new DamageRange(38, 71))
                 .SetSkillsPerSecond(1.2)
                 .SetCriticalStrikeChance(700)
-                .SetWeaponRange(60);
-
-            weaponBuilder.SetName("Exceptional Pyromancer's Wand")
+                .SetWeaponRange(60)
+                .SetName("Exceptional Pyromancer's Wand")
                 .SetIntelligenceRequirement(179)
-                .SetItemClass(ItemClass.WAND);
-
-            return weaponBuilder.Build();
+                .SetItemClass(ItemClass.WAND)
+                .Build();
         }                                                                                                                                                                                                                                                                                                                                                       
     }
 }
