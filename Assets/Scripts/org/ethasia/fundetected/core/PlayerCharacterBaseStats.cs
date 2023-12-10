@@ -66,6 +66,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }  
 
+        public int EvasionRating
+        {
+            get;
+            private set;
+        }        
+
         public double AttacksPerSecond
         {
             get;
@@ -127,6 +133,7 @@ namespace Org.Ethasia.Fundetected.Core
             private DamageRange basePhysicalDamage;     
 
             private int accuracyRating;   
+            private int evasionRating;   
 
             private double attacksPerSecond; 
 
@@ -172,7 +179,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 accuracyRating = value;
                 return this;
-            }     
+            }    
+
+            public PlayerCharacterBaseStatsBuilder SetEvasionRating(int value)
+            {
+                evasionRating = value;
+                return this;
+            }              
 
             public PlayerCharacterBaseStatsBuilder SetBasePhysicalDamage(DamageRange value)
             {
@@ -205,6 +218,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.CurrentLife = currentLife;
                 result.CurrentMana = currentMana;
                 result.AccuracyRating = accuracyRating;
+                result.EvasionRating = evasionRating;
                 result.BasePhysicalDamage = basePhysicalDamage;
                 result.AttacksPerSecond = attacksPerSecond;
                 result.MovementSpeed = movementSpeed;

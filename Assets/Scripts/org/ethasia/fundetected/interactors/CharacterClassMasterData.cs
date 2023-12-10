@@ -44,6 +44,14 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }
 
+        public int EvasionRating
+        {
+            get 
+            {
+                return 15;
+            }
+        }        
+
         public int MinBasePhysicalDamage
         {
             get

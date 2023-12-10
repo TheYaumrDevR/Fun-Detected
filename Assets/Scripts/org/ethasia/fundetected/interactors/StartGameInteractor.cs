@@ -62,6 +62,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetStrength(playerCharacterStartingStats.Strength)
                 .SetMaxLife(playerCharacterStartingStats.Life)
                 .SetMaxMana(playerCharacterStartingStats.Mana)
+                .SetEvasionRating(playerCharacterStartingStats.EvasionRating)
                 .SetBasePhysicalDamage(basePhysicalDamage)
                 .SetAttacksPerSecond(playerCharacterStartingStats.AttacksPerSecond)
                 .SetMovementSpeed(playerCharacterStartingStats.MovementSpeed)
