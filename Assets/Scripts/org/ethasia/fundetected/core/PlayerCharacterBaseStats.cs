@@ -4,6 +4,14 @@ namespace Org.Ethasia.Fundetected.Core
     // Stats derived from level up values and passive skill points
     public class PlayerCharacterBaseStats
     {
+        private const int MAXIMUM_LEVEL = 5;
+
+        public int Level
+        {
+            get;
+            private set;
+        }
+
         public int Intelligence
         {
             get;
@@ -76,6 +84,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public void LevelUp()
+        {
+            if (Level < MAXIMUM_LEVEL)
+            {
+                Level = Level + 1;
+
+                MaximumLife += 12;
+                MaximumMana += 6;
+                AccuracyRating += 2;
+            }
+        }
+
         public void DeriveStats()
         {
             MaximumLife += Strength / 2;
@@ -93,6 +113,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public class PlayerCharacterBaseStatsBuilder
         {
+            private int level;
             private int intelligence;
             private int agility;
             private int strength;
@@ -110,6 +131,12 @@ namespace Org.Ethasia.Fundetected.Core
             private double attacksPerSecond; 
 
             private int movementSpeed;
+
+            public PlayerCharacterBaseStatsBuilder SetLevel(int value)
+            {
+                level = value;
+                return this;
+            }
 
             public PlayerCharacterBaseStatsBuilder SetIntelligence(int value)
             {
@@ -169,6 +196,7 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 PlayerCharacterBaseStats result = new PlayerCharacterBaseStats();
 
+                result.Level = level;
                 result.Intelligence = intelligence;
                 result.Agility = agility;
                 result.Strength = strength;

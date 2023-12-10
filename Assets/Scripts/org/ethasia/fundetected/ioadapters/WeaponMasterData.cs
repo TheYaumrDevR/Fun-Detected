@@ -11,12 +11,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             private set;
         }
 
-        public int ItemLevel
-        {
-            get;
-            private set;            
-        }
-
         public string Name
         {
             get;
@@ -74,7 +68,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public class Builder
         {
             private ItemClass itemClass;
-            private int itemLevel;
             private string name;
             private int strengthRequirement;
             private int agilityRequirement;
@@ -90,12 +83,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 itemClass = value;
                 return this;
             }
-
-            public Builder SetItemLevel(int value)
-            {
-                itemLevel = value;
-                return this;
-            }  
 
             public Builder SetName(string value)
             {
@@ -156,7 +143,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 WeaponMasterData result = new WeaponMasterData();
 
                 result.ItemClass = itemClass;
-                result.ItemLevel = itemLevel;
                 result.Name = name;
                 result.StrengthRequirement = strengthRequirement;
                 result.AgilityRequirement = agilityRequirement;

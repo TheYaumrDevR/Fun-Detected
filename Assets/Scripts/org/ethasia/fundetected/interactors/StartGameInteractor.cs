@@ -56,6 +56,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             DamageRange basePhysicalDamage = new DamageRange(playerCharacterStartingStats.MinBasePhysicalDamage, playerCharacterStartingStats.MaxBasePhysicalDamage);
 
             PlayerCharacterBaseStats startingStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetLevel(1)
                 .SetIntelligence(playerCharacterStartingStats.Intelligence)
                 .SetAgility(playerCharacterStartingStats.Agility)
                 .SetStrength(playerCharacterStartingStats.Strength)
