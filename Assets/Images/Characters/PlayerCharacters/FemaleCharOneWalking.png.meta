@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 117
+  spritePixelsToUnits: 180
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -124,8 +124,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 117
-        height: 197
+        width: 180
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,10 +143,10 @@ TextureImporter:
       name: FemaleCharOneWalking_1
       rect:
         serializedVersion: 2
-        x: 117
+        x: 180
         y: 0
-        width: 117
-        height: 197
+        width: 180
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: FemaleCharOneWalking_2
       rect:
         serializedVersion: 2
-        x: 234
+        x: 360
         y: 0
-        width: 117
-        height: 197
+        width: 180
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,10 +185,10 @@ TextureImporter:
       name: FemaleCharOneWalking_3
       rect:
         serializedVersion: 2
-        x: 351
+        x: 540
         y: 0
-        width: 117
-        height: 197
+        width: 180
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,27 +198,6 @@ TextureImporter:
       bones: []
       spriteID: 6a5a81c9fb3864542a9181980f9943a7
       internalID: -1525536317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FemaleCharOneWalking_4
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 0
-        width: 117
-        height: 197
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3d08fa4cfc4cb1043963f18e65988e60
-      internalID: 896460633
       vertices: []
       indices: 
       edges: []
@@ -238,7 +217,6 @@ TextureImporter:
       FemaleCharOneWalking_3: -1525536317
       FemaleCharOneWalking_2: 453220208
       FemaleCharOneWalking_0: -1567085017
-      FemaleCharOneWalking_4: 896460633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
