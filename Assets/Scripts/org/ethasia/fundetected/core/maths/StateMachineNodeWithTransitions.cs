@@ -4,6 +4,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 {
     public class StateMachineNodeWithTransitions
     {
+        private StateMachineCommand stateEntryCommand;
         private Dictionary<string, StateMachineNodeWithTransitions> transitionFunctions;
 
         public StateMachineNodeWithTransitions GetNextStateForAction(string actionName)
@@ -11,8 +12,17 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             return transitionFunctions[actionName];
         }
 
+        public void OnEnterState()
+        {
+            if (null != stateEntryCommand)
+            {
+                stateEntryCommand.Execute();
+            }
+        }
+
         public class Builder
         {
+            private StateMachineCommand stateEntryCommand;
             private Dictionary<string, StateMachineNodeWithTransitions> transitionFunctions;
 
             public Builder()
@@ -26,10 +36,17 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 return this;
             }
 
+            public Builder SetStateEntryCommand(StateMachineCommand value)
+            {
+                stateEntryCommand = value;
+                return this;
+            }
+
             public StateMachineNodeWithTransitions Build()
             {
                 StateMachineNodeWithTransitions result = new StateMachineNodeWithTransitions();
                 result.transitionFunctions = transitionFunctions;
+                result.stateEntryCommand = stateEntryCommand;
 
                 return result;
             }
