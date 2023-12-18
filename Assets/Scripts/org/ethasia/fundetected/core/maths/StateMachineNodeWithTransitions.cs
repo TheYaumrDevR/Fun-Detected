@@ -7,6 +7,11 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         private StateMachineCommand stateEntryCommand;
         private Dictionary<string, StateMachineNodeWithTransitions> transitionFunctions;
 
+        public void AddTransitionFunction(string actionName, StateMachineNodeWithTransitions nextState)
+        {
+            transitionFunctions[actionName] = nextState;
+        }
+
         public StateMachineNodeWithTransitions GetNextStateForAction(string actionName)
         {
             return transitionFunctions[actionName];
