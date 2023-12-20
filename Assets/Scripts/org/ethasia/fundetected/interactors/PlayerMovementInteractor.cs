@@ -56,6 +56,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             GetPlayerMovementController().MoveUnitsRight(unitsMoved);
             GetPlayerMovementController().MoveUnitsDown(unitsDropped);
+
+            GetPlayerAnimationPresenter().StartWalkAnimation();
         }
 
         private void MovePlayerLeft(int unitsToMove)
@@ -82,11 +84,18 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
             GetPlayerMovementController().MoveUnitsDown(unitsDropped);
+
+            GetPlayerAnimationPresenter().StartWalkAnimation();
         }
 
         private IPlayerMovementController GetPlayerMovementController()
         {
             return IoAdaptersFactoryForInteractors.GetInstance().GetPlayerMovementControllerInstance();
         }
+
+        private PlayerAnimationPresenter GetPlayerAnimationPresenter()
+        {
+            return IoAdaptersFactoryForInteractors.GetInstance().GetPlayerAnimationPresenterInstance();
+        }        
     }
 }

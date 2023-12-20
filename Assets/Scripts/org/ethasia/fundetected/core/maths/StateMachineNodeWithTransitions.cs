@@ -14,7 +14,12 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 
         public StateMachineNodeWithTransitions GetNextStateForAction(string actionName)
         {
-            return transitionFunctions[actionName];
+            if (transitionFunctions.ContainsKey(actionName)) 
+            { 
+                return transitionFunctions[actionName];
+            }
+            
+            return null;
         }
 
         public void OnEnterState()

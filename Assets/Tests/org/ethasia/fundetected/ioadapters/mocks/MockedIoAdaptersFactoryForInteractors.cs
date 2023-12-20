@@ -22,7 +22,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public override IPlayerMovementController GetPlayerMovementControllerInstance()
         {
             return new PlayerMovementControllerMock();
-        }        
+        }    
+
+        public override PlayerAnimationPresenter GetPlayerAnimationPresenterInstance()
+        {
+            return new PlayerAnimationPresenterMock();
+        }             
 
         public override IMapPropertiesGateway GetMapPropertiesGatewayInstance()
         {

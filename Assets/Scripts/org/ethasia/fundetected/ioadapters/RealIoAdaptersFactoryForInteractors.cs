@@ -51,6 +51,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return playerMovementController;
         }
 
+        public override PlayerAnimationPresenter GetPlayerAnimationPresenterInstance()
+        {
+            return PlayerAnimationPresenterImpl.GetInstance();
+        }   
+
         public override IMapPropertiesGateway GetMapPropertiesGatewayInstance()
         {
             if (null == mapPropertiesGateway)

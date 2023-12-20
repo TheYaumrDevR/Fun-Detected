@@ -30,6 +30,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 playerMovementInteractor.MovePlayerRight(Time.deltaTime);
             }
+
+            if (PlayerIsStill())
+            {
+                GetPlayerAnimationPresenter().StartIdleAnimation();
+            }
         }
 
         public void OnPrimaryAction(InputAction.CallbackContext callBackContext)
@@ -65,5 +70,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 rightMoveButtonIsHeld = false;
             }
         }        
+
+        private bool PlayerIsStill()
+        {
+            return leftMoveButtonIsHeld && rightMoveButtonIsHeld || !leftMoveButtonIsHeld && !rightMoveButtonIsHeld;
+        }
+
+        private PlayerAnimationPresenter GetPlayerAnimationPresenter()
+        {
+            return IoAdaptersFactoryForInteractors.GetInstance().GetPlayerAnimationPresenterInstance();
+        }          
     }
 }
