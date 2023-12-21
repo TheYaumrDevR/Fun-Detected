@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="AnimatedThornBushIdle3.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.7313903"
+     inkscape:cx="-620.73561"
+     inkscape:cy="819.6718"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#9c575a;fill-opacity:1;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -186.73303,298.26126 20.71969,-8.05766 13.30153,-6.01127 7.29026,-7.80185 4.86018,-8.95296 -13.30153,14.32473 -8.82506,3.70908 -28.64945,12.78993 4.86017,-3.32539 11.38305,-6.13916 5.24387,-10.74354 4.60438,-5.11598 7.41816,-9.97615 4.73228,-8.31346 5.37176,-6.26706 3.83699,-11.12724 9.46454,-17.52222 -8.18555,9.72036 -7.16237,16.37111 -6.90656,8.56925 -6.01127,10.61565 -7.41816,7.67396 -8.69715,14.83633 -16.37112,10.48774 15.22002,-16.88272 3.96488,-12.40623 1.27899,-7.92976 14.06893,-10.61564 8.82505,-17.52221 4.47648,-5.88337 3.06959,-7.03447 5.37177,-20.20809 -4.60438,-19.4407 -15.60372,-15.34793 12.02254,18.16171 4.09277,16.11532 -6.13916,23.02188 -6.26707,8.82506 -9.59245,18.28961 -12.02253,9.20875 -4.34858,19.1849 -18.67331,20.20809 15.60372,-29.92844 6.65077,-13.04574 16.75481,-27.49835 -1.79059,-37.60241 -12.02254,-19.4407 6.39497,19.4407 1.79059,36.83501 -21.87079,40.79989 -14.78209,30.05213 3.8188,-36.21928 13.8639,-19.02312 -3.61754,-6.87332 3.61754,-3.61754 10.85262,-12.29964 -3.55548,-22.88892 -13.02314,-27.13154 2.53227,10.49086 7.23508,25.32278 0.66145,16.01559 -14.1084,11.93788 3.97929,9.04385 -13.50215,19.74662 -3.45705,34.77228 -2.14857,-16.09649 -3.69403,-19.13973 -2.89403,-12.29963 6.5078,-19.06388 3.39122,-7.52348 0.94295,-12.10214 -2.40814,-4.86706 7.11094,-9.96485 4.7028,-14.83191 -9.4056,13.02314 -7.95859,12.29964 4.34105,8.32034 -6.18682,15.33598 -7.18743,21.9065 6.14982,22.79049 3.31033,15.70151 -17.93033,-27.05884 -7.2056,-24.52214 13.66264,-36.40925 3.61754,-17.00243 -9.04385,-17.72595 2.17052,11.57613 v 12.66139 l -5.06455,15.91717 -12.21563,29.89768 6.84385,27.05443 24.08015,29.59109 1.44701,2.53228 -19.95951,-12.95751 -15.60372,-17.65011 5.88337,13.30154 8.18556,8.44135 17.9059,10.48775 z"
+       id="path1"
+       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
+  </g>
+</svg>
