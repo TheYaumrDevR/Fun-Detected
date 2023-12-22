@@ -7,12 +7,12 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
     {
         private SpriteRenderer spriteRenderer;
         private List<Sprite2dAnimationFrame> sprites;
-        private bool isLooping;
+        protected bool isLooping;
 
         private float accumulatedDeltaTime;
         private int currentFrameIndex;
 
-        private Sprite2dAnimation(List<Sprite2dAnimationFrame> sprites)
+        protected Sprite2dAnimation(List<Sprite2dAnimationFrame> sprites)
         {
             this.sprites = sprites;
 
@@ -52,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             }           
         }
 
-        private void UpdateSpriteFrame(int currentFrameIndex)
+        protected virtual void UpdateSpriteFrame(int currentFrameIndex)
         {
             Sprite2dAnimationFrame newFrame = sprites[currentFrameIndex];
 
@@ -64,8 +64,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
         public class Builder
         {
-            private List<Sprite2dAnimationFrame> sprites;
-            private bool isLooping;
+            protected List<Sprite2dAnimationFrame> sprites;
+            protected bool isLooping;
 
             public Builder()
             {
