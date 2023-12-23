@@ -9,7 +9,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
     {
 
         [Test]
-        public void TestAnimationSwitchesFramesEverySecond()
+        public void TestAnimationSwitchesFramesEverySecondAndLoopsBackToFirstFrame()
         {
             TestableSprite2dAnimation.Builder builder = new TestableSprite2dAnimation.Builder();
 
@@ -35,5 +35,40 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             Assert.That(result[2], Is.EqualTo(3));
             Assert.That(result[3], Is.EqualTo(0));         
         }
+
+        [Test]
+        public void TestAnimationSwitchesFramesEverySecondAndStopsAtLastFrameForNonLooping()
+        {
+            TestableSprite2dAnimation.Builder builder = new TestableSprite2dAnimation.Builder();
+
+            builder.AddEmptyAnimationFrame()
+                .AddEmptyAnimationFrame()
+                .AddEmptyAnimationFrame()
+                .AddEmptyAnimationFrame()
+                .SetIsLooping(false);
+
+            TestableSprite2dAnimation testCandidate = builder.Build();
+
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            testCandidate.Update(0.3f);
+            List<int> result = testCandidate.SpriteFramesSet;
+
+            Assert.That(result.Count, Is.EqualTo(3));    
+            Assert.That(result[0], Is.EqualTo(1));
+            Assert.That(result[1], Is.EqualTo(2));
+            Assert.That(result[2], Is.EqualTo(3));        
+        }        
     }
 }
