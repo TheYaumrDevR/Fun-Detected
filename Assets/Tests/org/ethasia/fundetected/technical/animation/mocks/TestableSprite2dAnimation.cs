@@ -22,9 +22,9 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Mocks
             SpriteFramesSet.Add(currentFrameIndex);
         }       
 
-        public class Builder : Sprite2dAnimation.Builder
+        public new class Builder : Sprite2dAnimation.Builder
         {
-            public TestableSprite2dAnimation Build()
+            public new TestableSprite2dAnimation Build()
             {
                 TestableSprite2dAnimation result = new TestableSprite2dAnimation(sprites);
                 result.isLooping = isLooping;
