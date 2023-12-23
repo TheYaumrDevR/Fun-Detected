@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
         public void Execute()
         {
+            animation.Reset();
             animator.Animation = animation;
             animator.SpeedMultiplier = animationSpeedMultiplier;
         }

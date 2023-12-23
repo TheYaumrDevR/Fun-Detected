@@ -17,7 +17,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Mocks
             SpriteFramesSet = new List<int>();
         }
 
-        protected override void UpdateSpriteFrame(int currentFrameIndex)
+        protected override void UpdateSpriteFrame()
         {
             SpriteFramesSet.Add(currentFrameIndex);
         }       

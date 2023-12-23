@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
         protected bool isLooping;
 
         private float accumulatedDeltaTime;
-        private int currentFrameIndex;
+        protected int currentFrameIndex;
 
         protected Sprite2dAnimation(List<Sprite2dAnimationFrame> sprites)
         {
@@ -20,6 +20,14 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             {
                 spriteRenderer.sprite = sprites[0].Sprite;
             }
+        }
+
+        public void Reset()
+        {
+            accumulatedDeltaTime = 0.0f;
+            currentFrameIndex = 0;
+
+            UpdateSpriteFrame();
         }
 
         public void Update(float deltaTime)
@@ -40,11 +48,11 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             if (currentFrameIndex == sprites.Count && isLooping)
             {
                 currentFrameIndex = 0;
-                UpdateSpriteFrame(currentFrameIndex);
+                UpdateSpriteFrame();
             }
             else if (currentFrameIndex < sprites.Count)
             {
-                UpdateSpriteFrame(currentFrameIndex);
+                UpdateSpriteFrame();
             }
             else
             {
@@ -52,7 +60,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             }           
         }
 
-        protected virtual void UpdateSpriteFrame(int currentFrameIndex)
+        protected virtual void UpdateSpriteFrame()
         {
             Sprite2dAnimationFrame newFrame = sprites[currentFrameIndex];
 
