@@ -94,6 +94,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     }                    
                 }                
             }
-        }      
+        } 
+
     }
 }

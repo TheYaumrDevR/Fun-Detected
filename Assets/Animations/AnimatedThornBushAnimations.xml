@@ -1,5 +1,5 @@
 <animations>
-	<entryAnimation speedMultiplier="1.0">
+	<entryAnimation id="idle" speedMultiplier="1.0">
 		<animationFrames spriteImageName="AnimatedThornBushIdle" isLooping="true">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>
