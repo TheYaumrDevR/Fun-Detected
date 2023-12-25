@@ -27,6 +27,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 if (null != animationPropertiesRoot)
                 {
                     Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById = CreateAnimationGraphNodes(animationPropertiesRoot);
+                    CreateAnimationNodeTransitions(animationGraphNodesById, animationPropertiesRoot);
                 }
                 else
                 {
@@ -41,7 +42,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return result;
         }
 
-        public Dictionary<string, Animation2dGraphNodeProperties> CreateAnimationGraphNodes(XmlElement animationPropertiesRoot)
+        private Dictionary<string, Animation2dGraphNodeProperties> CreateAnimationGraphNodes(XmlElement animationPropertiesRoot)
         {
             Dictionary<string, Animation2dGraphNodeProperties> result = new Dictionary<string, Animation2dGraphNodeProperties>();
 
@@ -63,6 +64,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }            
 
             return result;
+        }
+
+        private void CreateAnimationNodeTransitions(Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById, XmlElement animationPropertiesRoot)
+        {
+            XmlElement entryNodeXml = animationPropertiesRoot["entryAnimation"];
+            CreateAnimationNodeTransition(animationGraphNodesById, entryNodeXml);   
+
+            XmlNodeList otherAnimations = animationPropertiesRoot.GetElementsByTagName("animation");
+            foreach (XmlElement otherAnimationXml in otherAnimations)
+            {
+                CreateAnimationNodeTransition(animationGraphNodesById, otherAnimationXml);               
+            }              
         }
 
         private void CreateAnimationGraphNode(Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById, XmlElement animationXml)
@@ -87,6 +100,30 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             else
             {
                 throw new AssetLoadFailureException();
+            }              
+        }
+
+        private void CreateAnimationNodeTransition(Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById, XmlElement animationNodeXml)
+        {
+            XmlElement transitionsXml = animationNodeXml["transitions"];
+            string currentAnimationId = animationNodeXml.GetAttribute("id");
+
+            if (null != transitionsXml)
+            {
+                XmlNodeList transitionsListXml = transitionsXml.GetElementsByTagName("transition");
+
+                if (null != transitionsListXml)
+                {
+                    foreach (XmlElement transitionXml in transitionsListXml)
+                    {
+                        string transitionTargetId = transitionXml.GetAttribute("target");
+
+                        if (null != transitionTargetId)
+                        {
+                            animationGraphNodesById[currentAnimationId].Transitions[transitionTargetId] = animationGraphNodesById[transitionTargetId];
+                        }
+                    }
+                }
             }              
         }
 
