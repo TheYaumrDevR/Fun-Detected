@@ -1,4 +1,4 @@
-<mapTileProperties width="320" height="120">
+<mapTileProperties width="320" height="120" maximumMonsters="10">
     <collisions>
         <collision startX="0" startY="26" width="40" height="1"/>
         <collision startX="40" startY="16" width="30" height="1"/>
@@ -17,4 +17,47 @@
         <collision startX="260" startY="57" width="1" height="9"/>
         <collision startX="270" startY="67" width="1" height="9"/>
     </collisions>
+    <spawners>
+        <spawner x="5" y="27"/>
+        <spawner x="15" y="27"/>
+        <spawner x="25" y="27"/>
+        <spawner x="35" y="27"/>
+
+        <spawner x="45" y="17"/>
+        <spawner x="55" y="17"/>
+        <spawner x="65" y="17"/>
+
+        <spawner x="75" y="27"/>
+        <spawner x="85" y="37"/>
+
+        <spawner x="95" y="47"/>
+        <spawner x="105" y="47"/>
+        <spawner x="115" y="47"/>
+        <spawner x="125" y="47"/>
+        <spawner x="135" y="47"/>
+        <spawner x="145" y="47"/>
+        <spawner x="155" y="47"/>
+        <spawner x="165" y="47"/>
+        <spawner x="175" y="47"/>
+        <spawner x="185" y="47"/>
+        <spawner x="195" y="47"/>
+        <spawner x="205" y="47"/>
+        <spawner x="215" y="47"/>
+        <spawner x="225" y="47"/>
+        <spawner x="235" y="47"/>
+
+        <spawner x="245" y="57"/>
+        <spawner x="255" y="57"/>
+
+        <spawner x="265" y="67"/>
+
+        <spawner x="275" y="77"/>
+        <spawner x="285" y="77"/>
+        <spawner x="295" y="77"/>
+        <spawner x="305" y="77"/>
+        <spawner x="315" y="77"/>
+    </spawners>
+    <spawnedMonsters>
+        <monster name="Animated Thornbush" spawnChance="1"/>
+    </spawnedMonsters>
 </mapTileProperties>

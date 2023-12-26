@@ -14,5 +14,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return result;
         }
+
+        public EnemyMasterData CreateAnimatedThornBushMasterData()
+        {
+            EnemyMasterData result = new EnemyMasterData();
+            result.Name = "Animated Thornbush";
+            result.MaxLife = 21;
+            result.Armor = 4;
+            result.EvasionRating = 98;
+
+            return result;
+        }        
     }
 }
