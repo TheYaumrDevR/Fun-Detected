@@ -5,39 +5,36 @@ using UnityEngine;
 using UnityEngine.Windows;
 
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class Animation2dGraphPropertiesGateway
     {
+        private XmlFiles xmlFiles;
+
+        public Animation2dGraphPropertiesGateway()
+        {
+            xmlFiles = TechnicalFactory.GetInstance().CreateXmlFiles();
+        }
+
         public Animation2dGraphNodeProperties LoadAnimation2dGraph(string animationGraphName)
         {
             // TODO: Build a proxy for this which caches loaded anims
-            // TODO: Move the XML root node loading code into a new class
             // TODO: Give AssetLoadFailureException() a message of what failed to load
             Animation2dGraphNodeProperties result = new Animation2dGraphNodeProperties();
 
-            if (File.Exists(Application.dataPath + "/Animations/" + animationGraphName + ".xml"))
+            XmlElement animationPropertiesRoot = xmlFiles.TryToLoadXmlRoot("/Animations/" + animationGraphName + ".xml");
+
+            if (null != animationPropertiesRoot)
             {
-                XmlDocument animationPropertiesXml = new XmlDocument();
-                animationPropertiesXml.Load(Application.dataPath + "/Animations/" + animationGraphName + ".xml");
-
-                XmlElement animationPropertiesRoot = animationPropertiesXml.DocumentElement;
-
-                if (null != animationPropertiesRoot)
-                {
-                    Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById = CreateAnimationGraphNodes(animationPropertiesRoot);
-                    CreateAnimationNodeTransitions(animationGraphNodesById, animationPropertiesRoot);
-                }
-                else
-                {
-                    throw new AssetLoadFailureException();
-                }                
+                Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById = CreateAnimationGraphNodes(animationPropertiesRoot);
+                CreateAnimationNodeTransitions(animationGraphNodesById, animationPropertiesRoot);
             }
             else
             {
                 throw new AssetLoadFailureException();
-            }
+            }                
 
             return result;
         }

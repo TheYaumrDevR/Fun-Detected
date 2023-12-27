@@ -3,31 +3,29 @@ using UnityEngine;
 using UnityEngine.Windows;
 
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class XmlFileBasedMapPropertiesGateWay : IMapPropertiesGateway
     {
+        private XmlFiles xmlFiles;
+
+        public XmlFileBasedMapPropertiesGateWay()
+        {
+            xmlFiles = TechnicalFactory.GetInstance().CreateXmlFiles();
+        }
+
         public MapProperties LoadMapProperties(string mapName)
         {
             MapProperties result = new MapProperties(0, 0);
 
-            if (File.Exists(Application.dataPath + "/Scenes/Maps/" + mapName + ".xml"))
+            XmlElement mapTileProperties = xmlFiles.TryToLoadXmlRoot("/Scenes/Maps/" + mapName + ".xml");
+
+            if (null != mapTileProperties)
             {
-                XmlDocument mapPropertiesXml = new XmlDocument();
-                mapPropertiesXml.Load(Application.dataPath + "/Scenes/Maps/" + mapName + ".xml");
-
-                XmlElement mapTileProperties = mapPropertiesXml.DocumentElement;
-
-                if (null != mapTileProperties)
-                {
-                    result = ConvertXmlToMapProperties(mapTileProperties);
-                    FillCollisionPropertiesFromXml(mapTileProperties, result);
-                }
-                else
-                {
-                    throw new AssetLoadFailureException();
-                }
+                result = ConvertXmlToMapProperties(mapTileProperties);
+                FillCollisionPropertiesFromXml(mapTileProperties, result);
             }
             else
             {
