@@ -20,8 +20,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public Animation2dGraphNodeProperties LoadAnimation2dGraph(string animationGraphName)
         {
-            // TODO: Build a proxy for this which caches loaded anims
-            // TODO: Give AssetLoadFailureException() a message of what failed to load
             Animation2dGraphNodeProperties result = new Animation2dGraphNodeProperties();
 
             XmlElement animationPropertiesRoot = xmlFiles.TryToLoadXmlRoot("/Animations/" + animationGraphName + ".xml");
@@ -33,7 +31,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
             else
             {
-                throw new AssetLoadFailureException();
+                throw new AssetLoadFailureException("XML root node for animation definition " + animationPropertiesRoot + " does not exist");
             }                
 
             return result;
@@ -51,7 +49,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
             else
             {
-                throw new AssetLoadFailureException();
+                throw new AssetLoadFailureException("Entry animation in animation graph is not defined");
             }
 
             XmlNodeList otherAnimations = animationPropertiesRoot.GetElementsByTagName("animation");
@@ -96,7 +94,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
             else
             {
-                throw new AssetLoadFailureException();
+                throw new AssetLoadFailureException("At least one animation graph node in the animation XML has no ID");
             }              
         }
 
@@ -148,7 +146,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
             else
             {
-                throw new AssetLoadFailureException();
+                throw new AssetLoadFailureException("At least one animation in the animation graph XML has no sprite image name or animation frames defined");
             }
 
             return result;

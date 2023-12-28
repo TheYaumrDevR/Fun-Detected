@@ -29,7 +29,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
             else
             {
-                throw new AssetLoadFailureException();
+                throw new AssetLoadFailureException("XML root node for map properties " + mapName + " does not exist");
             }
 
             return result;
@@ -51,7 +51,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 }
             }
 
-            throw new AssetLoadFailureException();
+            throw new AssetLoadFailureException("Map width or height are undefined or incorrectly defined");
         }  
 
         private void FillCollisionPropertiesFromXml(XmlElement mapTileProperties, MapProperties parent)

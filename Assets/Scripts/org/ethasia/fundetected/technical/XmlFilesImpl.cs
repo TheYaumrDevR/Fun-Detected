@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Technical
             }
             else
             {
-                throw new AssetLoadFailureException();
+                throw new AssetLoadFailureException("XML file " + fileNameWithDirectory + " could not be loaded.");
             }
         }
     }
