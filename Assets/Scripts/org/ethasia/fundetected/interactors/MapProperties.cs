@@ -13,17 +13,32 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             get;
         }
+
+        public int MaximumMonsters;
         
         public List<Collision> Collisions
         {
             get;
         }
 
+        public List<Spawner> Spawners
+        {
+            get;
+        }
+
+        public List<SpawnableMonster> SpawnableMonsters
+        {
+            get;
+        }        
+
         public MapProperties(int width, int height)
         {
             Width = width;
             Height = height;
+            MaximumMonsters = 0;
             Collisions = new List<Collision>();
+            Spawners = new List<Spawner>();
+            SpawnableMonsters = new List<SpawnableMonster>();
         }
 
         public void AddCollision(Collision value)

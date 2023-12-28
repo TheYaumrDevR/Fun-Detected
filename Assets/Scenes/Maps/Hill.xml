@@ -58,6 +58,6 @@
         <spawner x="315" y="77"/>
     </spawners>
     <spawnedMonsters>
-        <monster name="Animated Thornbush" spawnChance="1"/>
+        <monster name="Animated Thornbush" spawnChance="1000"/>
     </spawnedMonsters>
 </mapTileProperties>

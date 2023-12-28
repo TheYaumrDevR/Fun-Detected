@@ -26,6 +26,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 result = ConvertXmlToMapProperties(mapTileProperties);
                 FillCollisionPropertiesFromXml(mapTileProperties, result);
+                FillSpawnerPropertiesFromXml(mapTileProperties, result);
+                FillSpawnableMonstersPropertiesFromXml(mapTileProperties, result);
             }
             else
             {
@@ -39,6 +41,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             string widthText = mapTileProperties.GetAttribute("width");
             string heightText = mapTileProperties.GetAttribute("height");
+            string maximumMonstersText = mapTileProperties.GetAttribute("maximumMonsters");
 
             if (int.TryParse(widthText, out int width))
             {
@@ -46,7 +49,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 {
                     if (width > 0 && height > 0)
                     {
-                        return new MapProperties(width, height);
+                        MapProperties result = new MapProperties(width, height);
+                        
+                        if (int.TryParse(maximumMonstersText, out int maximumMonsters))
+                        {
+                            result.MaximumMonsters = maximumMonsters;
+                        }
+
+                        return result;
                     }
                 }
             }
@@ -94,5 +104,51 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
         } 
 
+        private void FillSpawnerPropertiesFromXml(XmlElement xmlRoot, MapProperties parent)
+        {
+            XmlElement spawnersParent = xmlRoot["spawners"];
+
+            if (spawnersParent != null)
+            {
+                XmlNodeList spawnerElements = spawnersParent.GetElementsByTagName("spawner");
+
+                foreach (XmlElement spawnerElement in spawnerElements)
+                {
+                    string xText = spawnerElement.GetAttribute("x");
+                    string yText = spawnerElement.GetAttribute("y");
+
+                    if (int.TryParse(xText, out int x))
+                    {
+                        if (int.TryParse(yText, out int y))
+                        {
+                            Spawner spawner = new Spawner(x, y);
+                            parent.Spawners.Add(spawner);
+                        }
+                    }                    
+                }
+            }            
+        }
+
+        private void FillSpawnableMonstersPropertiesFromXml(XmlElement xmlRoot, MapProperties parent)
+        {
+            XmlElement spawnableMonstersParent = xmlRoot["spawnedMonsters"];
+
+            if (spawnableMonstersParent != null)
+            {
+                XmlNodeList spawnableMonsterElements = spawnableMonstersParent.GetElementsByTagName("monster");
+
+                foreach (XmlElement spawnableMonsterElement in spawnableMonsterElements)
+                {
+                    string name = spawnableMonsterElement.GetAttribute("name");
+                    string spawnChanceText = spawnableMonsterElement.GetAttribute("spawnChance");
+
+                    if (int.TryParse(spawnChanceText, out int spawnChance))
+                    {
+                        SpawnableMonster spawnableMonster = new SpawnableMonster(name, spawnChance);
+                        parent.SpawnableMonsters.Add(spawnableMonster);
+                    }                    
+                }
+            }             
+        }
     }
 }
