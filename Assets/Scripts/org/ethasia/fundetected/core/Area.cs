@@ -33,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Core
 
             enemies = new List<Enemy>();
             this.isCollisionTile = isCollisionTile; 
-            playerPosition = new Position();
+            playerPosition = new Position(0, 0);
         }
 
         public bool TileAtIsCollision(int x, int y)

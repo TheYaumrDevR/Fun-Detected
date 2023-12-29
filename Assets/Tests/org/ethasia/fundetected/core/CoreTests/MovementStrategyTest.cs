@@ -17,9 +17,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
-            Position playerPosition = new Position();
-            playerPosition.X = 11;
-            playerPosition.Y = 20;
+            Position playerPosition = new Position(11, 20);
 
             int result = testCandidate.CalculateUnitsPlayerCanMoveInHorizontalDirection(7, playerPosition);
 
@@ -36,9 +34,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
-            Position playerPosition = new Position();
-            playerPosition.X = 42;
-            playerPosition.Y = 17;
+            Position playerPosition = new Position(42, 17);
 
             int result = testCandidate.CalculateUnitsPlayerCanMoveInHorizontalDirection(4, playerPosition);
 
@@ -56,9 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
-            Position playerPosition = new Position();
-            playerPosition.X = 19;
-            playerPosition.Y = 25;
+            Position playerPosition = new Position(19, 25);
 
             int result = testCandidate.CalculateUnitsPlayerCanMoveInHorizontalDirection(6, playerPosition);
 
@@ -75,9 +69,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
-            Position playerPosition = new Position();
-            playerPosition.X = 6;
-            playerPosition.Y = 25;
+            Position playerPosition = new Position(6, 25);
 
             int result = testCandidate.CalculateUnitsPlayerCanMoveInHorizontalDirection(2, playerPosition);
 
