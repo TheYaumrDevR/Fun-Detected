@@ -12,11 +12,34 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetWidthAndHeight(mapProperties.Width, mapProperties.Height);
 
             ConvertCollisions(mapProperties, areaBuilder);
+            ConvertAndSetEnemySpawner(mapProperties, areaBuilder);
 
             return areaBuilder.Build();
+        } 
+
+        private static void ConvertCollisions(MapProperties mapProperties, Area.Builder areaBuilder)
+        {
+            foreach (Collision collision in mapProperties.Collisions)
+            {
+                for (int i = 0; i < collision.Width; i++)
+                {
+                    for (int j = 0; j < collision.Height; j++)
+                    {
+                        int x = collision.StartX + i - mapProperties.CalculateLowestX();
+                        int y = collision.StartY + j - mapProperties.CalculateLowestY();
+                        areaBuilder.SetIsColliding(x, y);
+                    }
+                }
+            }
         }
 
-        public static EnemySpawner ConvertMapPropertiesToEnemySpawner(MapProperties mapProperties)
+        private static void ConvertAndSetEnemySpawner(MapProperties mapProperties, Area.Builder areaBuilder)
+        {
+            EnemySpawner spawner = ConvertMapPropertiesToEnemySpawner(mapProperties);
+            areaBuilder.SetEnemySpawner(spawner);
+        }
+
+        private static EnemySpawner ConvertMapPropertiesToEnemySpawner(MapProperties mapProperties)
         {
             List<EnemySpawnLocation> enemySpawnLocations = ConvertEnemySpawnLocations(mapProperties);
             List<EnemySpawnChance> enemySpawnChances = ConvertEnemySpawnChances(mapProperties);
@@ -54,22 +77,6 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return result;
-        } 
-
-        private static void ConvertCollisions(MapProperties mapProperties, Area.Builder areaBuilder)
-        {
-            foreach (Collision collision in mapProperties.Collisions)
-            {
-                for (int i = 0; i < collision.Width; i++)
-                {
-                    for (int j = 0; j < collision.Height; j++)
-                    {
-                        int x = collision.StartX + i - mapProperties.CalculateLowestX();
-                        int y = collision.StartY + j - mapProperties.CalculateLowestY();
-                        areaBuilder.SetIsColliding(x, y);
-                    }
-                }
-            }
-        }
+        }        
     }
 }

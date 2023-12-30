@@ -16,6 +16,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         private bool[,] isCollisionTile;
 
+        private EnemySpawner enemySpawner;
+
         private Position playerPosition;
 
         public PlayerCharacter Player
@@ -55,6 +57,7 @@ namespace Org.Ethasia.Fundetected.Core
         {
             return enemies;
         }        
+
         public void AddPlayerAt(PlayerCharacter value, int x, int y)
         {
             if (null != value && Player == null)
@@ -68,7 +71,15 @@ namespace Org.Ethasia.Fundetected.Core
         public void AddEnemy(Enemy enemy)
         {
             enemies.Add(enemy);
-        }        
+        }    
+
+        public void SpawnEnemies()
+        {
+            if (null != enemySpawner)
+            {
+                enemySpawner.SpawnEnemies();
+            }
+        }    
 
         public Enemy GetEnemyHit()
         {
@@ -125,6 +136,7 @@ namespace Org.Ethasia.Fundetected.Core
         public class Builder
         {
             private bool[,] isCollisionTile;
+            private EnemySpawner enemySpawner;
 
             public Builder SetWidthAndHeight(int width, int height)
             {
@@ -137,10 +149,17 @@ namespace Org.Ethasia.Fundetected.Core
                 isCollisionTile[x, y] = true;
                 return this;
             }
+
+            public Builder SetEnemySpawner(EnemySpawner value)
+            {
+                enemySpawner = value;
+                return this;
+            }
                      
             public Area Build()
             {
                 Area result = new Area(isCollisionTile);
+                result.enemySpawner = enemySpawner;
                 return result;
             }            
         }
