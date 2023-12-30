@@ -14,8 +14,28 @@ namespace Org.Ethasia.Fundetected.Core
             SpawnEnemiesFromUnspawnedSpawners(amountOfEnemiesSpawned);
         }
 
+        public List<EnemySpawnLocation> GetSpawnedEnemies()
+        {
+            List<EnemySpawnLocation> result = new List<EnemySpawnLocation>();
+
+            foreach (EnemySpawnLocation enemySpawnLocation in enemySpawnLocations)
+            {
+                if (enemySpawnLocation.HasSpawned)
+                {
+                    result.Add(enemySpawnLocation);
+                }
+            }
+
+            return result;
+        }
+
         private void SpawnEnemiesFromUnspawnedSpawners(int amountOfEnemiesSpawned)
         {
+            if (0 == enemySpawnLocations.Count)
+            {
+                return;
+            }
+
             foreach (EnemySpawnLocation enemySpawnLocation in enemySpawnLocations)
             {
                 if (amountOfEnemiesSpawned == maximumMonsterAmount || amountOfEnemiesSpawned == enemySpawnLocations.Count)

@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 {
     public class EnemyMasterDataProviderMock : IEnemyMasterDataProvider
     {
-        public EnemyMasterData CreateDrownedZombieMasterData()
+        public EnemyMasterData CreateEnemyMasterDataById(string id)
         {
             EnemyMasterData result = new EnemyMasterData();
             result.Name = "Drowned Zombie";

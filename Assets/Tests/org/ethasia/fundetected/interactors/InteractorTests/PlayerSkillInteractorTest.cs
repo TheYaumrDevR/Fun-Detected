@@ -35,6 +35,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
 
+            Area.ActiveArea.AddEnemy(CreateTestEnemy());
+
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction(1000);
 
@@ -48,6 +50,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {   
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
+
+            Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction(1.0);
@@ -63,6 +67,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {   
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
+
+            Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction(1.0);
@@ -88,12 +94,24 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.MAGICIAN);
 
+            Area.ActiveArea.AddEnemy(CreateTestEnemy());
+
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction(1.0);
 
             Enemy enemy = Area.ActiveArea.GetEnemies()[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(30));  
-        }                    
+        }   
+
+        private Enemy CreateTestEnemy()
+        {
+            return new Enemy.Builder()
+                .SetName("Drowned Zombie")
+                .SetLife(30)
+                .SetArmor(1)
+                .SetEvasionRating(98)
+                .Build();         
+        }                 
     }
 }

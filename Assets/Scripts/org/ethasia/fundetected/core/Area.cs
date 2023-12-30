@@ -73,12 +73,15 @@ namespace Org.Ethasia.Fundetected.Core
             enemies.Add(enemy);
         }    
 
-        public void SpawnEnemies()
+        public List<EnemySpawnLocation> SpawnEnemies()
         {
             if (null != enemySpawner)
             {
                 enemySpawner.SpawnEnemies();
+                return enemySpawner.GetSpawnedEnemies();
             }
+
+            return new List<EnemySpawnLocation>();
         }    
 
         public Enemy GetEnemyHit()

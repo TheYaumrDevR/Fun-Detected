@@ -4,6 +4,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public interface IEnemyMasterDataProvider
     {
-        EnemyMasterData CreateDrownedZombieMasterData();
+        EnemyMasterData CreateEnemyMasterDataById(string id);
     }
 }

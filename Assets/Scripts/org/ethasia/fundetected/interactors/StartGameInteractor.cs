@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core;
 
 namespace Org.Ethasia.Fundetected.Interactors
@@ -19,13 +21,14 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             CharacterClassMasterData playerCharacterStartingStats = CreateCharacterMasterDataBasedOnCharacterClass(characterClass); 
             PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterStartingStats);
-            Enemy enemy = CreateEnemy();
 
             MapProperties mapProperties = mapPropertiesGateway.LoadMapProperties("Hill");
 
             Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
             map.AddPlayerAt(playerCharacter, 144, 46);
-            map.AddEnemy(enemy);
+
+            List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
+            PopulateEnemiesFromSpawners(spawnedEnemies, map);
 
             Area.ActiveArea = map;
         }
@@ -77,18 +80,22 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .Build();            
         }
 
-        private Enemy CreateEnemy()
+        private void PopulateEnemiesFromSpawners(List<EnemySpawnLocation> spawnedEnemies, Area map)
         {
-            EnemyMasterData enemyMasterData = enemyMasterDataProvider.CreateDrownedZombieMasterData();
+            foreach (EnemySpawnLocation spawnedEnemy in spawnedEnemies)
+            {
+                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId)));
+            }
+        }
 
-            Enemy result = new Enemy.Builder()
+        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData)
+        {
+            return new Enemy.Builder()
                 .SetName(enemyMasterData.Name)
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
                 .SetEvasionRating(enemyMasterData.EvasionRating)
                 .Build();
-
-            return result;
         }
     }
 }
