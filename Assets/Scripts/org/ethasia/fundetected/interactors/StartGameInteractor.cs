@@ -84,17 +84,18 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             foreach (EnemySpawnLocation spawnedEnemy in spawnedEnemies)
             {
-                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId)));
+                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId), spawnedEnemy));
             }
         }
 
-        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData)
+        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData)
         {
             return new Enemy.Builder()
                 .SetName(enemyMasterData.Name)
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
                 .SetEvasionRating(enemyMasterData.EvasionRating)
+                .SetPosition(spawnLocationData.MapLocation)
                 .Build();
         }
     }
