@@ -17,38 +17,38 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void OnBattleMageSelected()
         {
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.BATTLE_MAGE);
             SceneManager.LoadScene("Hill");
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.BATTLE_MAGE);
         }
 
         public void OnStrongmanSelected()
         {
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
             SceneManager.LoadScene("Hill");
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
         }
 
         public void OnDuelistSelected()
         {
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
             SceneManager.LoadScene("Hill");
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
         }
 
         public void OnZoomerSelected()
         {
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.ZOOMER);
             SceneManager.LoadScene("Hill");
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.ZOOMER);
         }
 
         public void OnCuckSelected()
         {
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
             SceneManager.LoadScene("Hill");
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
         }
 
         public void OnMagicianSelected()
         {
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.MAGICIAN);
             SceneManager.LoadScene("Hill");
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.MAGICIAN);
         }
     }
 }

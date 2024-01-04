@@ -7,14 +7,10 @@ namespace Org.Ethasia.Fundetected.Interactors
     public class StartGameInteractor
     {
         private ICharacterClassMasterDataProvider characterClassMasterDataProvider;
-        private IEnemyMasterDataProvider enemyMasterDataProvider;
-        private IMapPropertiesGateway mapPropertiesGateway;
 
         public StartGameInteractor()
         {
             characterClassMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetCharacterClassMasterDataProviderInstance();
-            enemyMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyMasterDataProviderInstance();
-            mapPropertiesGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapPropertiesGatewayInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
@@ -22,15 +18,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             CharacterClassMasterData playerCharacterStartingStats = CreateCharacterMasterDataBasedOnCharacterClass(characterClass); 
             PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterStartingStats);
 
-            MapProperties mapProperties = mapPropertiesGateway.LoadMapProperties("Hill");
-
-            Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
-            map.AddPlayerAt(playerCharacter, 144, 46);
-
-            List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
-            PopulateEnemiesFromSpawners(spawnedEnemies, map);
-
-            Area.ActiveArea = map;
+            AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
+            areaSwitchingInteractor.SwitchActiveMap("Hill", playerCharacter);
         }
 
         private CharacterClassMasterData CreateCharacterMasterDataBasedOnCharacterClass(CharacterClasses characterClass)
@@ -78,25 +67,6 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .Build();            
-        }
-
-        private void PopulateEnemiesFromSpawners(List<EnemySpawnLocation> spawnedEnemies, Area map)
-        {
-            foreach (EnemySpawnLocation spawnedEnemy in spawnedEnemies)
-            {
-                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId), spawnedEnemy));
-            }
-        }
-
-        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData)
-        {
-            return new Enemy.Builder()
-                .SetName(enemyMasterData.Name)
-                .SetLife(enemyMasterData.MaxLife)
-                .SetArmor(enemyMasterData.Armor)
-                .SetEvasionRating(enemyMasterData.EvasionRating)
-                .SetPosition(spawnLocationData.MapLocation)
-                .Build();
         }
     }
 }
