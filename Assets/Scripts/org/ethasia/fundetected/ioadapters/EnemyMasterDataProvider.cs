@@ -7,11 +7,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class EnemyMasterDataProvider : IEnemyMasterDataProvider
     {
-        private static readonly Dictionary<string, Func<EnemyMasterData>> enemyIdByProductionFunction;
+        private static readonly Dictionary<string, Func<string, EnemyMasterData>> enemyIdByProductionFunction;
 
         static EnemyMasterDataProvider()
         {
-            enemyIdByProductionFunction = new Dictionary<string, Func<EnemyMasterData>>();
+            enemyIdByProductionFunction = new Dictionary<string, Func<string, EnemyMasterData>>();
 
             enemyIdByProductionFunction["Drowned Zombie"] = CreateDrownedZombieMasterData;
             enemyIdByProductionFunction["Animated Thornbush"] = CreateAnimatedThornBushMasterData;
@@ -21,15 +21,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             if (null != enemyIdByProductionFunction[id])
             {
-                return enemyIdByProductionFunction[id]();
+                return enemyIdByProductionFunction[id](id);
             }
 
             throw new AssetLoadFailureException("Could not load enemy data for enemy id: " + id);
         }
 
-        private static EnemyMasterData CreateDrownedZombieMasterData()
+        private static EnemyMasterData CreateDrownedZombieMasterData(string id)
         {
             EnemyMasterData result = new EnemyMasterData();
+            result.Id = id;
             result.Name = "Drowned Zombie";
             result.MaxLife = 30;
             result.Armor = 1;
@@ -38,13 +39,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return result;
         }
 
-        private static EnemyMasterData CreateAnimatedThornBushMasterData()
+        private static EnemyMasterData CreateAnimatedThornBushMasterData(string id)
         {
             EnemyMasterData result = new EnemyMasterData();
+            result.Id = id;
             result.Name = "Animated Thornbush";
             result.MaxLife = 21;
             result.Armor = 3;
             result.EvasionRating = 98;
+            result.DistanceToLeftEdge = 7;
+            result.DistanceToRightEdge = 7;
+            result.DistanceToBottomEdge = 7;
+            result.DistanceToTopEdge = 7;
 
             return result;
         }        

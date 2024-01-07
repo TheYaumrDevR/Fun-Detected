@@ -2,6 +2,14 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
     {
+        private string id;
+
+        public BoundingBox BoundingBox
+        {
+            get;
+            private set;
+        }
+
         public Position Position
         {
             get;
@@ -49,11 +57,13 @@ namespace Org.Ethasia.Fundetected.Core
 
         public class Builder
         {
+            private string id;
             private string name;
             private int maxLife;
             private int currentLife;
             private int armor;
             private int evasionRating;
+            private BoundingBox boundingBox;
             private Position position;
 
             public Builder SetName(string value)
@@ -79,22 +89,36 @@ namespace Org.Ethasia.Fundetected.Core
                 maxLife = value;
                 currentLife = value;
                 return this;
-            }      
+            }  
+
+            public Builder SetBoundingBox(BoundingBox value)
+            {
+                boundingBox = value;
+                return this;
+            }    
 
             public Builder SetPosition(Position value)
             {
                 position = value;
                 return this;
-            }                              
+            }   
+
+            public Builder SetId(string value)
+            {
+                id = value;
+                return this;
+            }                           
 
             public Enemy Build()
             {
                 Enemy result = new Enemy();
+                result.id = id;
                 result.Name = name;
                 result.armor = armor;
                 result.maxLife = maxLife;
                 result.CurrentLife = currentLife;
                 result.EvasionRating = evasionRating;
+                result.BoundingBox = boundingBox;
                 result.Position = position;
 
                 return result;

@@ -27,9 +27,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             Area.ActiveArea = map;
 
-            // TODO: Add width and height to enemy master data
-            // Add enemy ID to Enemy
-            // Transform enemy master data width and height to Enemy width and height
             // Load animation graph for each enemy using their ID
             // Create EnemyPresenterData with x, y, scaleX, scaleY, enemyName, animationGraph
         }
@@ -44,11 +41,20 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData)
         {
+            BoundingBox enemyBoundingBox = new BoundingBox.Builder()
+                .SetDistanceToRightEdge(enemyMasterData.DistanceToRightEdge)
+                .SetDistanceToLeftEdge(enemyMasterData.DistanceToLeftEdge)
+                .SetDistanceToBottomEdge(enemyMasterData.DistanceToBottomEdge)
+                .SetDistanceToTopEdge(enemyMasterData.DistanceToTopEdge)
+                .Build();
+
             return new Enemy.Builder()
+                .SetId(enemyMasterData.Id)
                 .SetName(enemyMasterData.Name)
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
                 .SetEvasionRating(enemyMasterData.EvasionRating)
+                .SetBoundingBox(enemyBoundingBox)
                 .SetPosition(spawnLocationData.MapLocation)
                 .Build();
         }        
