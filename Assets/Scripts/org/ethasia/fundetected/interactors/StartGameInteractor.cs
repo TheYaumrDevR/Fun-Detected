@@ -64,6 +64,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             startingStats.FullHeal();
 
             return new PlayerCharacter.PlayerCharacterBuilder()
+                .SetFacingDirection(FacingDirection.RIGHT)
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .Build();            

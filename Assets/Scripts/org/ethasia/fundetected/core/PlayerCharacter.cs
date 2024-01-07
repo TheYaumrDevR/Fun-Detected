@@ -5,6 +5,9 @@ namespace Org.Ethasia.Fundetected.Core
         private IRandomNumberGenerator randomNumberGenerator;
 
         private CharacterClasses characterClass;
+
+        private FacingDirection facingDirection;
+
         private string name;
 
         private PlayerCharacterBaseStats baseStats;     
@@ -54,12 +57,14 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int MoveLeft(double actionTime)
         {
+            facingDirection = FacingDirection.LEFT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
         }
 
         public int MoveRight(double actionTime)
         {
+            facingDirection = FacingDirection.RIGHT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
         }
@@ -84,10 +89,17 @@ namespace Org.Ethasia.Fundetected.Core
 
         public class PlayerCharacterBuilder
         {
+            private FacingDirection facingDirection;
             private string name;
             private CharacterClasses characterClass;
 
             private PlayerCharacterBaseStats playerCharacterBaseStats;
+
+            public PlayerCharacterBuilder SetFacingDirection(FacingDirection value)
+            {
+                facingDirection = value;
+                return this;
+            }   
 
             public PlayerCharacterBuilder SetName(string value)
             {
@@ -110,6 +122,9 @@ namespace Org.Ethasia.Fundetected.Core
             public PlayerCharacter Build()
             {
                 PlayerCharacter result = new PlayerCharacter();
+
+                result.facingDirection = facingDirection;
+
                 result.name = name;
                 result.characterClass = characterClass;
 
