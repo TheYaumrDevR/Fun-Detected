@@ -7,14 +7,32 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int Width
         {
             get;
+            private set;
         }
 
         public int Height
         {
             get;
+            private set;
         }
 
-        public int MaximumMonsters;
+        public float LowestScreenX
+        {
+            get;
+            private set;
+        }
+
+        public float LowestScreenY
+        {
+            get;
+            private set;
+        }
+
+        public int MaximumMonsters
+        {
+            get;
+            private set;
+        }
         
         public List<Collision> Collisions
         {
@@ -31,11 +49,13 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }        
 
-        public MapProperties(int width, int height)
+        private MapProperties(int width, int height)
         {
             Width = width;
             Height = height;
             MaximumMonsters = 0;
+            LowestScreenX = 0;
+            LowestScreenY = 0;
             Collisions = new List<Collision>();
             Spawners = new List<Spawner>();
             SpawnableMonsters = new List<SpawnableMonster>();
@@ -84,6 +104,56 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return result;
-        }        
+        }     
+
+        public class Builder
+        {
+            private int width;
+            private int height;
+            private float lowestScreenX;
+            private float lowestScreenY;
+            private int maximumMonsters;
+
+            public Builder SetWidth(int value)
+            {
+                width = value;
+                return this;
+            }
+
+            public Builder SetHeight(int value)
+            {
+                height = value;
+                return this;
+            }
+
+            public Builder SetLowestScreenX(float value)
+            {
+                lowestScreenX = value;
+                return this;
+            }
+
+            public Builder SetLowestScreenY(float value)
+            {
+                lowestScreenY = value;
+                return this;
+            }   
+
+            public Builder SetMaximumMonsters(int value)
+            {
+                maximumMonsters = value;
+                return this;
+            }            
+
+            public MapProperties Build()
+            {
+                MapProperties result = new MapProperties(width, height);
+
+                result.LowestScreenX = lowestScreenX;
+                result.LowestScreenY = lowestScreenY;
+                result.MaximumMonsters = maximumMonsters;
+
+                return result;
+            }                                  
+        }   
     }
 }

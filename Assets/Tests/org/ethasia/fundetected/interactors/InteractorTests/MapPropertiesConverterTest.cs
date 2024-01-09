@@ -11,7 +11,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapPropertiesToAreaConvertsCollisions()
         {
-            MapProperties mapProperties = new MapProperties(320, 61);
+            MapProperties mapProperties = new MapProperties.Builder()
+                .SetWidth(320)
+                .SetHeight(61)
+                .Build();
 
             Collision collision1 = new Collision.Builder()
                 .SetStartX(-100)

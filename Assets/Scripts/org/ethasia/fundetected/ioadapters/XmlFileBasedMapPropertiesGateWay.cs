@@ -1,3 +1,4 @@
+using System;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -18,7 +19,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public MapProperties LoadMapProperties(string mapName)
         {
-            MapProperties result = new MapProperties(0, 0);
+            MapProperties result = new MapProperties.Builder().Build();
 
             XmlElement mapTileProperties = xmlFiles.TryToLoadXmlRoot("/Scenes/Maps/" + mapName + ".xml");
 
@@ -41,6 +42,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             string widthText = mapTileProperties.GetAttribute("width");
             string heightText = mapTileProperties.GetAttribute("height");
+            string lowestScreenXText = mapTileProperties.GetAttribute("lowestScreenX");
+            string lowestScreenYText = mapTileProperties.GetAttribute("lowestScreenY");
             string maximumMonstersText = mapTileProperties.GetAttribute("maximumMonsters");
 
             if (int.TryParse(widthText, out int width))
@@ -49,14 +52,26 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 {
                     if (width > 0 && height > 0)
                     {
-                        MapProperties result = new MapProperties(width, height);
+                        MapProperties.Builder propertiesBuilder = new MapProperties.Builder()
+                            .SetWidth(width)
+                            .SetHeight(height);
                         
                         if (int.TryParse(maximumMonstersText, out int maximumMonsters))
                         {
-                            result.MaximumMonsters = maximumMonsters;
+                            propertiesBuilder.SetMaximumMonsters(maximumMonsters);
                         }
 
-                        return result;
+                        if (Single.TryParse(lowestScreenXText, out float lowestScreenX))
+                        {
+                            propertiesBuilder.SetLowestScreenX(lowestScreenX);
+                        }
+
+                        if (Single.TryParse(lowestScreenYText, out float lowestScreenY))
+                        {
+                            propertiesBuilder.SetLowestScreenY(lowestScreenY);
+                        }                                                  
+
+                        return propertiesBuilder.Build();
                     }
                 }
             }

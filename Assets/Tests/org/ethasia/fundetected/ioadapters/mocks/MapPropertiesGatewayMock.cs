@@ -6,7 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
     {
         public MapProperties LoadMapProperties(string mapName)
         {
-            return new MapProperties(0, 0);
+            return new MapProperties.Builder().Build();
         }
     }
 }

@@ -10,9 +10,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         private static MovementStrategy MOVE_RIGHT_STRATEGY = new MoveRightStrategy();
 
-        private int width;
-
-        private int height;
+        private AreaDimensions areaDimensions;
 
         private bool[,] isCollisionTile;
 
@@ -28,10 +26,9 @@ namespace Org.Ethasia.Fundetected.Core
 
         private List<Enemy> enemies;
 
-        private Area(bool[,] isCollisionTile)
+        private Area(bool[,] isCollisionTile, AreaDimensions areaDimensions)
         {
-            width = isCollisionTile.GetLength(0);
-            height = isCollisionTile.GetLength(1);
+            this.areaDimensions = areaDimensions;
 
             enemies = new List<Enemy>();
             this.isCollisionTile = isCollisionTile; 
@@ -45,7 +42,7 @@ namespace Org.Ethasia.Fundetected.Core
                 return true;
             }
 
-            if (x >= width || y >= height)
+            if (x >= areaDimensions.Width || y >= areaDimensions.Height)
             {
                 return true;
             }
@@ -138,14 +135,32 @@ namespace Org.Ethasia.Fundetected.Core
 
         public class Builder
         {
+            private int width;
+            private int height;
+            private float lowestScreenX;
+            private float lowestScreenY;
             private bool[,] isCollisionTile;
             private EnemySpawner enemySpawner;
 
             public Builder SetWidthAndHeight(int width, int height)
             {
                 isCollisionTile = new bool[width, height];
+                this.width = width;
+                this.height = height;
                 return this;
             }
+
+            public Builder SetLowestScreenX(float value)
+            {
+                lowestScreenX = value;
+                return this;
+            }
+
+            public Builder SetLowestScreenY(float value)
+            {
+                lowestScreenY = value;
+                return this;
+            }            
 
             public Builder SetIsColliding(int x, int y)
             {
@@ -161,7 +176,14 @@ namespace Org.Ethasia.Fundetected.Core
                      
             public Area Build()
             {
-                Area result = new Area(isCollisionTile);
+                AreaDimensions areaDimensions = new AreaDimensions.Builder()
+                    .SetWidth(width)
+                    .SetHeight(height)
+                    .SetLowestScreenX(lowestScreenX)
+                    .SetLowestScreenY(lowestScreenY)
+                    .Build();
+
+                Area result = new Area(isCollisionTile, areaDimensions);
                 result.enemySpawner = enemySpawner;
                 return result;
             }            
