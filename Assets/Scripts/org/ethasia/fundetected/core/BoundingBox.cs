@@ -26,6 +26,22 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int Width
+        {
+            get
+            {
+                return DistanceToLeftEdge + 1 + DistanceToRightEdge;
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return DistanceToBottomEdge + 1 + DistanceToTopEdge;
+            }
+        }       
+
         public class Builder
         {
             private int distanceToRightEdge;

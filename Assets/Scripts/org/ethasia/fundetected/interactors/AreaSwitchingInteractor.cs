@@ -27,8 +27,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             Area.ActiveArea = map;
 
-            // Load animation graph for each enemy using their ID
-            // Create EnemyPresenterData with x, y, scaleX, scaleY, enemyName, animationGraph
+            ShowEnemies(map);
         }
 
         private void PopulateEnemiesFromSpawners(List<EnemySpawnLocation> spawnedEnemies, Area map)
@@ -57,6 +56,27 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetBoundingBox(enemyBoundingBox)
                 .SetPosition(spawnLocationData.MapLocation)
                 .Build();
-        }        
+        }      
+
+        private void ShowEnemies(Area map)
+        {
+            List<EnemyRenderData> enemiesToShow = new List<EnemyRenderData>();
+
+            foreach (Enemy spawnedEnemy in map.Enemies)
+            {
+                EnemyRenderData enemyRenderData = new EnemyRenderData();
+                enemyRenderData.EnemyId = spawnedEnemy.Id;
+
+                enemyRenderData.PositionX = spawnedEnemy.Position.X + map.LowestScreenX;
+                enemyRenderData.PositionY = spawnedEnemy.Position.Y + map.LowestScreenY;
+
+                enemyRenderData.WidthX = spawnedEnemy.BoundingBox.Width;
+                enemyRenderData.WidthY = spawnedEnemy.BoundingBox.Height;
+
+                enemiesToShow.Add(enemyRenderData);
+            }
+
+            // Call EnemyPresenter to present enemies
+        }  
     }
 }

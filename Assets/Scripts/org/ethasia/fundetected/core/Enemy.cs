@@ -2,7 +2,11 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
     {
-        private string id;
+        public string Id
+        {
+            get;
+            private set;
+        }
 
         public BoundingBox BoundingBox
         {
@@ -112,7 +116,7 @@ namespace Org.Ethasia.Fundetected.Core
             public Enemy Build()
             {
                 Enemy result = new Enemy();
-                result.id = id;
+                result.Id = id;
                 result.Name = name;
                 result.armor = armor;
                 result.maxLife = maxLife;

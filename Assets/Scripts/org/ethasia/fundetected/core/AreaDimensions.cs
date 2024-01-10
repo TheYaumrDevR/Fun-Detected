@@ -14,13 +14,13 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        public float LowestScreenX
+        public int LowestScreenX
         {
             get;
             private set;
         }
 
-        public float LowestScreenY
+        public int LowestScreenY
         {
             get;
             private set;
@@ -30,8 +30,8 @@ namespace Org.Ethasia.Fundetected.Core
         {
             private int width;
             private int height;
-            private float lowestScreenX;
-            private float lowestScreenY;
+            private int lowestScreenX;
+            private int lowestScreenY;
 
             public Builder SetWidth(int value)
             {
@@ -45,13 +45,13 @@ namespace Org.Ethasia.Fundetected.Core
                 return this;
             }
 
-            public Builder SetLowestScreenX(float value)
+            public Builder SetLowestScreenX(int value)
             {
                 lowestScreenX = value;
                 return this;
             }
 
-            public Builder SetLowestScreenY(float value)
+            public Builder SetLowestScreenY(int value)
             {
                 lowestScreenY = value;
                 return this;

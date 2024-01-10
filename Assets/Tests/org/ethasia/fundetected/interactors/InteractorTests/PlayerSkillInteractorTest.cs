@@ -40,7 +40,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction(1000);
 
-            Enemy enemy = Area.ActiveArea.GetEnemies()[0];
+            Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(26));  
         }
@@ -57,7 +57,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             testCandidate.ExecutePrimaryPlayerAction(1.0);
             testCandidate.ExecutePrimaryPlayerAction(1.4);
 
-            Enemy enemy = Area.ActiveArea.GetEnemies()[0];
+            Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(26));  
         }   
@@ -74,7 +74,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             testCandidate.ExecutePrimaryPlayerAction(1.0);
             testCandidate.ExecutePrimaryPlayerAction(2.0);
 
-            Enemy enemy = Area.ActiveArea.GetEnemies()[0];
+            Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(20));  
         }  
@@ -99,7 +99,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction(1.0);
 
-            Enemy enemy = Area.ActiveArea.GetEnemies()[0];
+            Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(30));  
         }   

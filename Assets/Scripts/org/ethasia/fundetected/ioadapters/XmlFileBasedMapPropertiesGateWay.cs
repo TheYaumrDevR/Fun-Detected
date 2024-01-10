@@ -1,4 +1,3 @@
-using System;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -61,12 +60,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                             propertiesBuilder.SetMaximumMonsters(maximumMonsters);
                         }
 
-                        if (Single.TryParse(lowestScreenXText, out float lowestScreenX))
+                        if (int.TryParse(lowestScreenXText, out int lowestScreenX))
                         {
                             propertiesBuilder.SetLowestScreenX(lowestScreenX);
                         }
 
-                        if (Single.TryParse(lowestScreenYText, out float lowestScreenY))
+                        if (int.TryParse(lowestScreenYText, out int lowestScreenY))
                         {
                             propertiesBuilder.SetLowestScreenY(lowestScreenY);
                         }                                                  

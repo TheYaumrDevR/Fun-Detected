@@ -24,13 +24,33 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        private List<Enemy> enemies;
+        public List<Enemy> Enemies
+        {
+            get;
+            private set;
+        }
+
+        public int LowestScreenX
+        { 
+            get
+            {
+                return areaDimensions.LowestScreenX;
+            }
+        }
+
+        public int LowestScreenY
+        { 
+            get
+            {
+                return areaDimensions.LowestScreenY;
+            }
+        }        
 
         private Area(bool[,] isCollisionTile, AreaDimensions areaDimensions)
         {
             this.areaDimensions = areaDimensions;
 
-            enemies = new List<Enemy>();
+            Enemies = new List<Enemy>();
             this.isCollisionTile = isCollisionTile; 
             playerPosition = new Position(0, 0);
         }
@@ -48,12 +68,7 @@ namespace Org.Ethasia.Fundetected.Core
             }
 
             return isCollisionTile[x, y];
-        }
-
-        public List<Enemy> GetEnemies()
-        {
-            return enemies;
-        }        
+        }     
 
         public void AddPlayerAt(PlayerCharacter value, int x, int y)
         {
@@ -67,7 +82,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public void AddEnemy(Enemy enemy)
         {
-            enemies.Add(enemy);
+            Enemies.Add(enemy);
         }    
 
         public List<EnemySpawnLocation> SpawnEnemies()
@@ -83,9 +98,9 @@ namespace Org.Ethasia.Fundetected.Core
 
         public Enemy GetEnemyHit()
         {
-            if (enemies.Count > 0)
+            if (Enemies.Count > 0)
             {
-                return enemies[0];
+                return Enemies[0];
             }
 
             return null;
@@ -137,8 +152,8 @@ namespace Org.Ethasia.Fundetected.Core
         {
             private int width;
             private int height;
-            private float lowestScreenX;
-            private float lowestScreenY;
+            private int lowestScreenX;
+            private int lowestScreenY;
             private bool[,] isCollisionTile;
             private EnemySpawner enemySpawner;
 
@@ -150,13 +165,13 @@ namespace Org.Ethasia.Fundetected.Core
                 return this;
             }
 
-            public Builder SetLowestScreenX(float value)
+            public Builder SetLowestScreenX(int value)
             {
                 lowestScreenX = value;
                 return this;
             }
 
-            public Builder SetLowestScreenY(float value)
+            public Builder SetLowestScreenY(int value)
             {
                 lowestScreenY = value;
                 return this;

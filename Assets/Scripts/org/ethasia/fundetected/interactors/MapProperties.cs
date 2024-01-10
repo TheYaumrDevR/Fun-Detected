@@ -16,13 +16,13 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
-        public float LowestScreenX
+        public int LowestScreenX
         {
             get;
             private set;
         }
 
-        public float LowestScreenY
+        public int LowestScreenY
         {
             get;
             private set;
@@ -110,8 +110,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             private int width;
             private int height;
-            private float lowestScreenX;
-            private float lowestScreenY;
+            private int lowestScreenX;
+            private int lowestScreenY;
             private int maximumMonsters;
 
             public Builder SetWidth(int value)
@@ -126,13 +126,13 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
-            public Builder SetLowestScreenX(float value)
+            public Builder SetLowestScreenX(int value)
             {
                 lowestScreenX = value;
                 return this;
             }
 
-            public Builder SetLowestScreenY(float value)
+            public Builder SetLowestScreenY(int value)
             {
                 lowestScreenY = value;
                 return this;

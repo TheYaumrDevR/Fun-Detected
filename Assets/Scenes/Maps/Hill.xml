@@ -1,4 +1,4 @@
-<mapTileProperties width="320" height="120" lowestScreenX="-9.0" lowestScreenY="-5.0" maximumMonsters="10">
+<mapTileProperties width="320" height="120" lowestScreenX="-90" lowestScreenY="-50" maximumMonsters="10">
     <collisions>
         <collision startX="0" startY="26" width="40" height="1"/>
         <collision startX="40" startY="16" width="30" height="1"/>
