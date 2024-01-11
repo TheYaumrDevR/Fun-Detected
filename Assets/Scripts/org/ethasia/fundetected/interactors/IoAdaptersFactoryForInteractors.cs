@@ -1,6 +1,5 @@
 namespace Org.Ethasia.Fundetected.Interactors
 {
-
     public abstract class IoAdaptersFactoryForInteractors
     {
         private static IoAdaptersFactoryForInteractors instance;
@@ -21,5 +20,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IPlayerMovementController GetPlayerMovementControllerInstance();
         public abstract IMapPropertiesGateway GetMapPropertiesGatewayInstance();
         public abstract PlayerAnimationPresenter GetPlayerAnimationPresenterInstance();
+        public abstract IEnemyPresenter GetEnemyPresenterInstance();
     }
 }

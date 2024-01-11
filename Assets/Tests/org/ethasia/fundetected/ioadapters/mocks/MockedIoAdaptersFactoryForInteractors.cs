@@ -32,6 +32,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public override IMapPropertiesGateway GetMapPropertiesGatewayInstance()
         {
             return new MapPropertiesGatewayMock();
-        }        
+        }    
+
+        public override IEnemyPresenter GetEnemyPresenterInstance()
+        {
+            return null;
+        }    
     }
 }

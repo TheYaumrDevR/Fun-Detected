@@ -8,11 +8,13 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         private IEnemyMasterDataProvider enemyMasterDataProvider;
         private IMapPropertiesGateway mapPropertiesGateway;
+        private IEnemyPresenter enemyPresenter;
 
         public AreaSwitchingInteractor()
         {
             enemyMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyMasterDataProviderInstance();
             mapPropertiesGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapPropertiesGatewayInstance();
+            enemyPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyPresenterInstance();
         }        
 
         public void SwitchActiveMap(string mapId, PlayerCharacter playerCharacter)
@@ -76,7 +78,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 enemiesToShow.Add(enemyRenderData);
             }
 
-            // Call EnemyPresenter to present enemies
+            enemyPresenter.PresentEnemies(enemiesToShow);
         }  
     }
 }

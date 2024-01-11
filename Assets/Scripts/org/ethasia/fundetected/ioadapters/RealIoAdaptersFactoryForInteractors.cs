@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private BattleLogPrinter battleLogPrinter;
         private IPlayerMovementController playerMovementController;
         private IMapPropertiesGateway mapPropertiesGateway;
+        private IEnemyPresenter enemyPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -64,6 +65,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return mapPropertiesGateway;
+        }
+
+        public override IEnemyPresenter GetEnemyPresenterInstance()
+        {
+            if (null == enemyPresenter)
+            {
+                enemyPresenter = new RealEnemiesPresenter();
+            }
+
+            return enemyPresenter;
         }
     }
 }
