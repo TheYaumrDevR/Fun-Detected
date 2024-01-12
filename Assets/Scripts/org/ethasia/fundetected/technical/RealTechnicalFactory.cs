@@ -8,5 +8,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             return new XmlFilesImpl();
         }
+
+        public override IEnemiesRenderer GetEnemiesRendererInstance()
+        {
+            return EnemiesRendererImpl.GetInstance();
+        }
     }
 }
