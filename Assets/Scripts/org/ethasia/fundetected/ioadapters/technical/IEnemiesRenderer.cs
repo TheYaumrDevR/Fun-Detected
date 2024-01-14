@@ -4,6 +4,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
 {
     public interface IEnemiesRenderer
     {
-        void RenderEnemy(GameObject enemy);
+        void RenderEnemy(GameObjectProxy enemy);
     }
 }

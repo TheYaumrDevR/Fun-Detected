@@ -10,20 +10,21 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     {
         private IEnemiesRenderer enemiesRenderer;
 
-        public RealEnemiesPresenter()
-        {
-            enemiesRenderer = TechnicalFactory.GetInstance().GetEnemiesRendererInstance();
-        }
-
         public void PresentEnemies(List<EnemyRenderData> renderData)
         {
+            enemiesRenderer = TechnicalFactory.GetInstance().GetEnemiesRendererInstance();
+
             foreach (EnemyRenderData enemyRenderData in renderData)
             {
-                GameObject enemy = new GameObject("Enemy" + enemyRenderData.EnemyId);
-                enemy.transform.position = new Vector3(enemyRenderData.PositionX / 10.0f, enemyRenderData.PositionY / 10.0f, 0f);
-                enemy.transform.localScale = new Vector3(enemyRenderData.WidthX / 10.0f, enemyRenderData.WidthY  / 10.0f, 0f);
+                GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
+                    .SetName("Enemy" + enemyRenderData.EnemyId)
+                    .SetPosX(enemyRenderData.PositionX / 10.0f)
+                    .SetPosY(enemyRenderData.PositionY / 10.0f)
+                    .SetScaleX(enemyRenderData.WidthX / 10.0f)
+                    .SetScaleY(enemyRenderData.WidthY  / 10.0f)
+                    .Build();
 
-                enemiesRenderer.RenderEnemy(enemy);
+                enemiesRenderer.RenderEnemy(gameObjectProxy);
             }
         }
     }

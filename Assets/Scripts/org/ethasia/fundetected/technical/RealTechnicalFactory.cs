@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public override IEnemiesRenderer GetEnemiesRendererInstance()
         {
-            return EnemiesRendererImpl.GetInstance();
+            return new EnemiesRendererDelayedInitializationProxy(EnemiesRendererImpl.GetInstance());
         }
     }
 }
