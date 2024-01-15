@@ -27,7 +27,7 @@
         <spawner x="55" y="28"/>
         <spawner x="65" y="28"/>
 
-        <spawner x="75" y="28"/>
+        <spawner x="75" y="38"/>
         <spawner x="85" y="48"/>
 
         <spawner x="95" y="58"/>
@@ -49,7 +49,7 @@
         <spawner x="245" y="68"/>
         <spawner x="255" y="68"/>
 
-        <spawner x="265" y="68"/>
+        <spawner x="265" y="78"/>
 
         <spawner x="275" y="88"/>
         <spawner x="285" y="88"/>
