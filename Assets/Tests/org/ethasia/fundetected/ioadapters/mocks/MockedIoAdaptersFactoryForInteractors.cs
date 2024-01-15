@@ -36,7 +36,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         public override IEnemyPresenter GetEnemyPresenterInstance()
         {
-            return null;
+            return new EnemiesPresenterMock();
         }    
     }
 }
