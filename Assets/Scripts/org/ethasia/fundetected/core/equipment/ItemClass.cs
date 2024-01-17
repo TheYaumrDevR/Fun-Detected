@@ -18,6 +18,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         MAGIC_MACE,
         BOW,
         WAND,
+        BODY_ARMOR,
         NONE
     }
 }
