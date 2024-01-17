@@ -9,7 +9,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         // There can also be a double mix of each
         // All armor has str requirement. However the lighter armor types have a lot less.
 
-        public int Armor
+        public int ArmorValue
         {
             get;
             private set;
