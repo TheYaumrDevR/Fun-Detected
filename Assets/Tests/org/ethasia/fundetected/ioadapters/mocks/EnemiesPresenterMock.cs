@@ -6,6 +6,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 {
     public class EnemiesPresenterMock : IEnemyPresenter
     {
-        public void PresentEnemies(List<EnemyRenderData> renderData) {}
+        private static List<EnemyRenderData> presentedEnemiesRenderData;
+
+        public static List<EnemyRenderData> GetPresentedEnemiesRenderData()
+        {
+            return presentedEnemiesRenderData;
+        }
+
+        public void PresentEnemies(List<EnemyRenderData> renderData) 
+        {
+            presentedEnemiesRenderData = renderData;
+        }
     }
 }

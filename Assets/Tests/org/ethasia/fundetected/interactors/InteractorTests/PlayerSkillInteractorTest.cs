@@ -9,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
     public class PlayerSkillInteractorTest
     {
+        private RandomNumberGeneratorMock rngMock;
 
         [OneTimeSetUp] 
         public void Init()
@@ -22,7 +23,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             int[] randomNumbersToGenerate = {5, 7, 9, 5, 2};
             float[] randomFloatsToGenerate = {};       
 
-            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(rngMock);
 
@@ -35,6 +36,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
 
+            rngMock.Reset();
+
+            Area.ActiveArea.Enemies.Clear();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -51,6 +55,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
 
+            rngMock.Reset();
+
+            Area.ActiveArea.Enemies.Clear();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -68,6 +75,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
 
+            rngMock.Reset();
+
+            Area.ActiveArea.Enemies.Clear();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -85,15 +95,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             int[] randomNumbersToGenerate = {5, 7, 9, 5, 2};
             float[] randomFloatsToGenerate = {0.95f};       
 
-            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            RandomNumberGeneratorMock localRngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+            ioAdaptersFactoryForCore.SetRngInstance(localRngMock);
 
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);            
 
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.MAGICIAN);
 
+            localRngMock.Reset();
+
+            Area.ActiveArea.Enemies.Clear();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();

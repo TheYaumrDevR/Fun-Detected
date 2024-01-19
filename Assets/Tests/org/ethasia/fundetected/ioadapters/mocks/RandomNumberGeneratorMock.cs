@@ -33,6 +33,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
     	    return randomNumber <= probability;
         }
 
+        public void Reset()
+        {
+            randomNumberIndex = 0;
+            nextFloatNumberIndex = 0;
+        }
+
         private int GetNextGeneratedRandomNumber()
         {
             if (randomNumberIndex < toBeGeneratedRandomNumbers.Length)
