@@ -47,8 +47,32 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result[8].PositionX, Is.EqualTo(160));
             Assert.That(result[9].PositionX, Is.EqualTo(180));
             Assert.That(result[10].PositionX, Is.EqualTo(200));
-            
         }
+
+        [Test]
+        public void TestSwitchActiveMapSpawnsDifferentEnemyTypes()
+        {
+            int[] randomNumbersToGenerate = {180, 479, 789, 33};
+            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};       
+
+            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+
+            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+
+            testCandidate.SwitchActiveMap("hill", testPlayer);
+
+            List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();     
+
+            Assert.That(result[1].EnemyId, Is.EqualTo("Fire Mage"));  
+            Assert.That(result[2].EnemyId, Is.EqualTo("Wolf"));
+            Assert.That(result[3].EnemyId, Is.EqualTo("Wolf"));  
+            Assert.That(result[4].EnemyId, Is.EqualTo("Fire Mage"));                 
+        }        
 
         private PlayerCharacter CreateTestPlayerCharacter()
         {

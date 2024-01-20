@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public EnemyMasterData CreateEnemyMasterDataById(string id)
         {
             EnemyMasterData result = new EnemyMasterData();
+            result.Id = id;
             result.Name = "Drowned Zombie";
             result.MaxLife = 30;
             result.Armor = 1;
