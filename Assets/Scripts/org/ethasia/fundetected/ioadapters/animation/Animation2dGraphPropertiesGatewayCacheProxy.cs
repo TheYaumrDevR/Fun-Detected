@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 {
     public class Animation2dGraphPropertiesGatewayCacheProxy : Animation2dGraphPropertiesGateway
     {

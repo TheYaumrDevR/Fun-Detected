@@ -7,7 +7,7 @@ using UnityEngine.Windows;
 using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 {
     public class Animation2dGraphPropertiesGatewayImpl : Animation2dGraphPropertiesGateway
     {

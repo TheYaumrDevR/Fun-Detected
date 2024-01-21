@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 {
     public struct Animation2dProperties
     {

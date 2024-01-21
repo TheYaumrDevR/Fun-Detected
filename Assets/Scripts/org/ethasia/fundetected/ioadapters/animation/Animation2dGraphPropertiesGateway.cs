@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 {
     public interface Animation2dGraphPropertiesGateway
     {
