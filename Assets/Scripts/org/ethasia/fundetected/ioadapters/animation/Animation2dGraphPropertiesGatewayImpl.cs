@@ -20,9 +20,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 
         public Animation2dGraphNodeProperties LoadAnimation2dGraph(string animationGraphName)
         {
+            string fileName = animationGraphName.Replace(" ", "") + "Animations";
             Animation2dGraphNodeProperties result = new Animation2dGraphNodeProperties();
 
-            XmlElement animationPropertiesRoot = xmlFiles.TryToLoadXmlRoot("/Animations/" + animationGraphName + ".xml");
+            XmlElement animationPropertiesRoot = xmlFiles.TryToLoadXmlRoot("/Animations/" + fileName + ".xml");
 
             if (null != animationPropertiesRoot)
             {

@@ -46,6 +46,9 @@ namespace Org.Ethasia.Fundetected.Technical
             enemy.transform.position = new Vector3(enemyProxy.PosX, enemyProxy.PosY, 0f);
             enemy.transform.localScale = new Vector3(enemyProxy.ScaleX, enemyProxy.ScaleY, 0f);
 
+            SpriteRenderer spriteRenderer = enemy.AddComponent<SpriteRenderer>();
+            spriteRenderer.sortingLayerName = "Sprites";
+
             enemy.transform.SetParent(this.transform);
         }    
     }

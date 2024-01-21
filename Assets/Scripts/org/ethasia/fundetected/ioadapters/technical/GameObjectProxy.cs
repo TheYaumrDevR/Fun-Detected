@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Ioadapters.Animation;
+
 namespace Org.Ethasia.Fundetected.Ioadapters.Technical
 {
     public struct GameObjectProxy
@@ -32,13 +34,20 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }  
 
+        public Animation2dGraphNodeProperties animation2DGraphNodeProperties
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private string name;
             private float posX;
             private float posY; 
             private float scaleX; 
-            private float scaleY;      
+            private float scaleY;  
+            private Animation2dGraphNodeProperties animationProperties;    
 
             public Builder SetName(string value)
             {
@@ -70,6 +79,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 return this;
             }  
 
+            public Builder SetAnimationProperties(Animation2dGraphNodeProperties value)
+            {
+                animationProperties = value;
+                return this;
+            }
+
             public GameObjectProxy Build()
             {
                 GameObjectProxy result = new GameObjectProxy();
@@ -79,6 +94,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 result.PosY = posY;
                 result.ScaleX = scaleX;
                 result.ScaleY = scaleY;
+                result.animation2DGraphNodeProperties = animationProperties;
 
                 return result;
             }                                                   

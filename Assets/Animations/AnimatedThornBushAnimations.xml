@@ -15,8 +15,8 @@
 			<animationFrame index="1"/>
 		</animationFrames>
 		<transitions>
-			<transition target="entry" />
+			<transition target="idle" />
 			<transition target="attack" />
 		</transitions>
-	</entryAnimation>
+	</animation>
 </animations>
