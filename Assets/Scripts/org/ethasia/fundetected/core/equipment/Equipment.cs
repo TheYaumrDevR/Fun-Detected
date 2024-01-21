@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public abstract class Equipment : Item
@@ -26,12 +28,19 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }  
 
+        public EquipmentAffix FirstImplicit
+        {
+            get;
+            private set;
+        }
+
         new public class Builder : Item.Builder
         {
             private string name;
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
+            private EquipmentAffix firstImplicit;
 
             public Builder SetName(string value)
             {
@@ -55,7 +64,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 this.intelligenceRequirement = value;
                 return this;
-            }                 
+            }    
+
+            public Builder SetFirstImplicit(EquipmentAffix value)
+            {
+                this.firstImplicit = value;
+                return this;
+            }                          
 
             protected void FillEquipmentFields(Equipment statlessEquipment)
             {
@@ -63,6 +78,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 statlessEquipment.StrengthRequirement = strengthRequirement;
                 statlessEquipment.AgilityRequirement = agilityRequirement;
                 statlessEquipment.IntelligenceRequirement = intelligenceRequirement;
+                statlessEquipment.FirstImplicit = firstImplicit;
 
                 FillItemFields(statlessEquipment);
             }                         
