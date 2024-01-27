@@ -74,6 +74,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
         {
             protected List<Sprite2dAnimationFrame> sprites;
             protected bool isLooping;
+            private SpriteRenderer spriteRenderer;
 
             public Builder()
             {
@@ -102,10 +103,17 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 return this;
             }   
 
+            public Builder SetSpriteRenderer(SpriteRenderer value)
+            {
+                spriteRenderer = value;
+                return this;
+            }
+
             public Sprite2dAnimation Build()
             {
                 Sprite2dAnimation result = new Sprite2dAnimation(sprites);
                 result.isLooping = isLooping;
+                result.spriteRenderer = spriteRenderer;
 
                 return result;
             }         

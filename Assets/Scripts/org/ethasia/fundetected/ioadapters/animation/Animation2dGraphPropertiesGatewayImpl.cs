@@ -80,14 +80,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             string nodeId = animationXml.GetAttribute("id");
 
             Animation2dGraphNodeProperties animationNode = new Animation2dGraphNodeProperties(false);
+            animationNode.Name = nodeId;
 
             if (Single.TryParse(speedMultiplierText, out float speedMultiplier))
             {
                 animationNode.AnimationSpeedMultiplier = speedMultiplier;
             }                
 
-            Animation2dProperties animationFrames = CreateAnimation2dProperties(animationXml);
-            animationNode.AnimationFrames = animationFrames;
+            Animation2dProperties animation = CreateAnimation2dProperties(animationXml);
+            animationNode.Animation = animation;
 
             if (null != nodeId)
             {

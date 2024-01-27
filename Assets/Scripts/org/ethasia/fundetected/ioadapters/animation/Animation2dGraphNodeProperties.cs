@@ -4,8 +4,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 {
     public struct Animation2dGraphNodeProperties
     {
+        public string Name;
         public float AnimationSpeedMultiplier;
-        public Animation2dProperties AnimationFrames;
+        public Animation2dProperties Animation;
 
         public bool IsRootNode
         {
@@ -21,9 +22,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 
         public Animation2dGraphNodeProperties(bool isRootNode)
         {
+            Name = "";
             IsRootNode = isRootNode;
             AnimationSpeedMultiplier = 1.0f;
-            AnimationFrames = new Animation2dProperties("", false);
+            Animation = new Animation2dProperties("", false);
             Transitions = new Dictionary<string, Animation2dGraphNodeProperties>();
         }
     }
