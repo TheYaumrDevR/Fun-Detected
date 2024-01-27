@@ -45,7 +45,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             foreach (KeyValuePair<string, Animation2dGraphNodeProperties> transition in transitions)
             {
                 recursiveContext.ToConvert = transition.Value;
-                ConvertAnimation2dGraphNodePropertiesToSprite2dAnimatorStateChangeCommand(recursiveContext);
+                ConvertAnimation2dGraphNodePropertiesToStateMachineNode(recursiveContext);
             }
         }
 
