@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
     {
 
         [Test]
-        public void TestConvertAnimation2dGraphToStateMachineCreatesAllNodes()
+        public void TestConvertAnimation2dGraphToStateMachineNodesCreatesAllNodes()
         {
             // Arrange
             var idleNode = new Animation2dGraphNodeProperties(true);
@@ -38,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             var spriteRenderer = new SpriteRenderer();
 
             // Act
-            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphToStateMachine(idleNode, spriteRenderer);
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphToStateMachineNodes(idleNode, spriteRenderer);
 
             // Assert
             Assert.That(result, Is.Not.Null);

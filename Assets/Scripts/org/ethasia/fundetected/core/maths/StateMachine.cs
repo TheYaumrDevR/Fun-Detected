@@ -16,8 +16,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             if (null != newState)
             {
                 currentState = newState;
-                currentState.OnEnterState();
+                EnterCurrentState();
             }
+        }
+
+        public void EnterCurrentState()
+        {
+            currentState.OnEnterState();
         }
     }
 }

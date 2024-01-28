@@ -7,8 +7,52 @@ using Org.Ethasia.Fundetected.Ioadapters.Animation;
 namespace Org.Ethasia.Fundetected.Technical.Animation
 {
     public class Animation2dPropertiesToSprite2dAnimationConverter
-    {
-        public static Dictionary<string, StateMachineNodeWithTransitions> ConvertAnimation2dGraphToStateMachine(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
+    {   
+        public static StateMachine ConvertAnimation2dGraphNodePropertiesToStateMachine(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
+        {
+            Dictionary<string, StateMachineNodeWithTransitions> stateMachineNodesById = ConvertAnimation2dGraphToStateMachineNodes(toConvert, spriteRenderer);
+            ConnectStateMachineNodes(stateMachineNodesById, toConvert);
+
+            return new StateMachine(stateMachineNodesById[toConvert.Name]);
+        }
+
+        private static void ConnectStateMachineNodes(Dictionary<string, StateMachineNodeWithTransitions> stateMachineNodesById, Animation2dGraphNodeProperties sourceGraph)
+        {
+            HashSet<Animation2dGraphNodeProperties> alreadyConnectedAnimation2dGraphNodes = new HashSet<Animation2dGraphNodeProperties>();
+
+            Animation2dGraphConnectionMethodContext recursiveMethodContext = new Animation2dGraphConnectionMethodContext();
+            recursiveMethodContext.StateMachineNodesById = stateMachineNodesById;
+            recursiveMethodContext.SourceGraph = sourceGraph;
+            recursiveMethodContext.AlreadyConnectedAnimation2dGraphNodes = alreadyConnectedAnimation2dGraphNodes;
+
+            ConnectStateMachineNodesRecursive(recursiveMethodContext);
+        }
+
+        private static void ConnectStateMachineNodesRecursive(Animation2dGraphConnectionMethodContext parameters)
+        {
+            Dictionary<string, StateMachineNodeWithTransitions> stateMachineNodesById = parameters.StateMachineNodesById;
+            Animation2dGraphNodeProperties sourceGraph = parameters.SourceGraph;
+            HashSet<Animation2dGraphNodeProperties> alreadyConnectedAnimation2dGraphNodes = parameters.AlreadyConnectedAnimation2dGraphNodes;
+
+            if (!alreadyConnectedAnimation2dGraphNodes.Contains(sourceGraph))
+            {
+                alreadyConnectedAnimation2dGraphNodes.Add(sourceGraph);
+
+                foreach (KeyValuePair<string, Animation2dGraphNodeProperties> transition in sourceGraph.Transitions)
+                {
+                    StateMachineNodeWithTransitions sourceNode = stateMachineNodesById[sourceGraph.Name];
+                    StateMachineNodeWithTransitions targetNode = stateMachineNodesById[transition.Key];
+
+                    sourceNode.AddTransitionFunction(transition.Value.Name, targetNode);
+
+                    parameters.SourceGraph = transition.Value;
+
+                    ConnectStateMachineNodesRecursive(parameters);
+                }
+            }
+        }
+
+        public static Dictionary<string, StateMachineNodeWithTransitions> ConvertAnimation2dGraphToStateMachineNodes(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
         {
             HashSet<Animation2dGraphNodeProperties> alreadyConvertedAnimation2dGraphNodes = new HashSet<Animation2dGraphNodeProperties>();            
             Dictionary<string, StateMachineNodeWithTransitions> result = new Dictionary<string, StateMachineNodeWithTransitions>();
@@ -107,7 +151,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             }
         }
 
-        public struct Animation2dGraphNodeConversionContext
+        private struct Animation2dGraphNodeConversionContext
         {
             public Animation2dGraphNodeProperties ToConvert { get; set; }
             public HashSet<Animation2dGraphNodeProperties> AlreadyConvertedAnimation2dGraphNodes { get; set; }
@@ -115,5 +159,12 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             public SpriteRenderer SpriteRenderer { get; set; }
             public Dictionary<string, StateMachineNodeWithTransitions> AlreadyExistingStatesByName { get; set; }
         }
+
+        private struct Animation2dGraphConnectionMethodContext
+        {
+            public Dictionary<string, StateMachineNodeWithTransitions> StateMachineNodesById;
+            public Animation2dGraphNodeProperties SourceGraph;
+            public HashSet<Animation2dGraphNodeProperties> AlreadyConnectedAnimation2dGraphNodes;
+        }        
     }
 }
