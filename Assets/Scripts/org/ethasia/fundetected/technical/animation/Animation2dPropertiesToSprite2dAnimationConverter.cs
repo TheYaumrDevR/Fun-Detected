@@ -17,22 +17,16 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             Sprite2dAnimation initialAnimation = ConvertAnimation2dPropertiesToSprite2dAnimation(toConvert.Animation, spriteRenderer);
             Sprite2dAnimator sprite2dAnimator = new Sprite2dAnimator(initialAnimation, toConvert.AnimationSpeedMultiplier);
 
-            Sprite2dAnimatorStateChangeCommand initialStateEnterCommand = new Sprite2dAnimatorStateChangeCommand.Builder()
-                .SetAnimator(sprite2dAnimator)
-                .SetAnimation(initialAnimation)
-                .SetAnimationSpeedMultiplier(toConvert.AnimationSpeedMultiplier)
-                .Build();            
-
-            StateMachineNodeWithTransitions stateMachineNode = new StateMachineNodeWithTransitions.Builder()
-                .SetStateEntryCommand(initialStateEnterCommand)
-                .Build();
-
-            result.Add(toConvert.Name, stateMachineNode);
-
             Animation2dGraphNodeConversionContext conversionContext = new Animation2dGraphNodeConversionContext();
             conversionContext.AlreadyConvertedAnimation2dGraphNodes = alreadyConvertedAnimation2dGraphNodes;
             conversionContext.Sprite2dAnimator = sprite2dAnimator;
             conversionContext.SpriteRenderer = spriteRenderer;
+            conversionContext.ToConvert = toConvert;           
+
+            StateMachineNodeWithTransitions stateMachineNode = CreateStateMachineNode(conversionContext);
+
+            result.Add(toConvert.Name, stateMachineNode);
+
             conversionContext.AlreadyExistingStatesByName = result;
 
             ProcessAnimationTransitions(toConvert.Transitions, conversionContext);
@@ -53,22 +47,11 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
         {
             var toConvert = context.ToConvert;
             var alreadyConvertedAnimation2dGraphNodes = context.AlreadyConvertedAnimation2dGraphNodes;
-            var sprite2dAnimator = context.Sprite2dAnimator;
             var alreadyExistingStatesByName = context.AlreadyExistingStatesByName;
 
             if (!alreadyConvertedAnimation2dGraphNodes.Contains(toConvert))
             {
-                Sprite2dAnimation convertedAnimation = ConvertAnimation2dPropertiesToSprite2dAnimation(toConvert.Animation, context.SpriteRenderer);
-
-                Sprite2dAnimatorStateChangeCommand stateChangeCommand = new Sprite2dAnimatorStateChangeCommand.Builder()
-                    .SetAnimator(sprite2dAnimator)
-                    .SetAnimation(convertedAnimation)
-                    .SetAnimationSpeedMultiplier(toConvert.AnimationSpeedMultiplier)
-                    .Build();
-
-                StateMachineNodeWithTransitions stateMachineNode = new StateMachineNodeWithTransitions.Builder()
-                    .SetStateEntryCommand(stateChangeCommand)
-                    .Build();                    
+                StateMachineNodeWithTransitions stateMachineNode = CreateStateMachineNode(context);                  
 
                 alreadyConvertedAnimation2dGraphNodes.Add(toConvert);
                 alreadyExistingStatesByName.Add(toConvert.Name, stateMachineNode);
@@ -76,6 +59,26 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 ProcessAnimationTransitions(toConvert.Transitions, context);
             }
         }       
+
+        private static StateMachineNodeWithTransitions CreateStateMachineNode(Animation2dGraphNodeConversionContext conversionContext)
+        {
+            Animation2dGraphNodeProperties toConvert = conversionContext.ToConvert;
+            Sprite2dAnimator sprite2dAnimator = conversionContext.Sprite2dAnimator;
+
+            Sprite2dAnimation animation = ConvertAnimation2dPropertiesToSprite2dAnimation(toConvert.Animation, conversionContext.SpriteRenderer);
+
+            Sprite2dAnimatorStateChangeCommand stateEntryCommand = new Sprite2dAnimatorStateChangeCommand.Builder()
+                .SetAnimator(sprite2dAnimator)
+                .SetAnimation(animation)
+                .SetAnimationSpeedMultiplier(toConvert.AnimationSpeedMultiplier)
+                .Build();            
+
+            StateMachineNodeWithTransitions stateMachineNode = new StateMachineNodeWithTransitions.Builder()
+                .SetStateEntryCommand(stateEntryCommand)
+                .Build();
+
+            return stateMachineNode;
+        }
 
         private static Sprite2dAnimation ConvertAnimation2dPropertiesToSprite2dAnimation(Animation2dProperties toConvert, SpriteRenderer spriteRenderer)
         {
