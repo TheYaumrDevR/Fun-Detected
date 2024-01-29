@@ -17,16 +17,25 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             idleNode.Name = "idle";
             idleNode.Animation = new Animation2dProperties("EnemyIdle", true);
             idleNode.AnimationSpeedMultiplier = 1.0f;
+            idleNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(0, false));
+            idleNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(1, false));
+            idleNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(2, false));
 
             var walkNode = new Animation2dGraphNodeProperties(false);
             walkNode.Name = "walk";
             walkNode.Animation = new Animation2dProperties("EnemyWalk", true);
             walkNode.AnimationSpeedMultiplier = 1.0f;  
+            walkNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(0, false));
+            walkNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(1, false));
+            walkNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(2, false));
 
             var jumpNode = new Animation2dGraphNodeProperties(false);
             jumpNode.Name = "jump";
             jumpNode.Animation = new Animation2dProperties("EnemyJump", false);
             jumpNode.AnimationSpeedMultiplier = 1.0f;  
+            jumpNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(0, false));
+            jumpNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(1, false));
+            jumpNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(2, false));
 
             idleNode.Transitions.Add("walk", walkNode);
             idleNode.Transitions.Add("jump", jumpNode);      
@@ -38,14 +47,23 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             var spriteRenderer = new SpriteRenderer();
 
             // Act
-            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphToStateMachineNodes(idleNode, spriteRenderer);
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(idleNode, spriteRenderer);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Count, Is.EqualTo(3));
-            Assert.That(result["idle"], Is.Not.Null);
-            Assert.That(result["walk"], Is.Not.Null);
-            Assert.That(result["jump"], Is.Not.Null);
+            Assert.That(result.CanExecuteAction("walk"), Is.True);
+            Assert.That(result.CanExecuteAction("jump"), Is.True);
+
+            result.ExecuteAction("walk");
+
+            Assert.That(result.CanExecuteAction("idle"), Is.True);
+            Assert.That(result.CanExecuteAction("jump"), Is.True);
+
+            result.ExecuteAction("jump");
+
+            Assert.That(result.CanExecuteAction("idle"), Is.True);
+            Assert.That(result.CanExecuteAction("walk"), Is.True);
+
+            result.ExecuteAction("idle");
         }
     }
 }

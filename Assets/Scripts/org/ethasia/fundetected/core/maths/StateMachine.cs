@@ -20,6 +20,12 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             }
         }
 
+        public bool CanExecuteAction(string actionName)
+        {
+            StateMachineNodeWithTransitions nextState = currentState.GetNextStateForAction(actionName);
+            return null != nextState;
+        }
+
         public void EnterCurrentState()
         {
             currentState.OnEnterState();

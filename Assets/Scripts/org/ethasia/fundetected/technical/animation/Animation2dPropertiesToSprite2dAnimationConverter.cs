@@ -52,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             }
         }
 
-        public static Dictionary<string, StateMachineNodeWithTransitions> ConvertAnimation2dGraphToStateMachineNodes(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
+        private static Dictionary<string, StateMachineNodeWithTransitions> ConvertAnimation2dGraphToStateMachineNodes(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
         {
             HashSet<Animation2dGraphNodeProperties> alreadyConvertedAnimation2dGraphNodes = new HashSet<Animation2dGraphNodeProperties>();            
             Dictionary<string, StateMachineNodeWithTransitions> result = new Dictionary<string, StateMachineNodeWithTransitions>();
