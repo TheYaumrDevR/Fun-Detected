@@ -9,9 +9,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             this.value = value;
         }
 
-        public void ApplyEffects()
+        public void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            // Add value to player maximum fire resistance
+            statsFromEquipment.IncreasePlusMaximumFireResistanceBy(value);
         }
+
+        public void UnApplyEffects(StatsFromEquipment statsFromEquipment)
+        {
+            statsFromEquipment.DecreasePlusMaximumFireResistanceBy(value);
+        }        
     }
 }

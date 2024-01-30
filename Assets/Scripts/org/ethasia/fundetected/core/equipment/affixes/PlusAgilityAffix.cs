@@ -1,22 +1,22 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class FireResistanceAdditiveAffix : EquipmentAffix
+    public class PlusAgilityAffix : EquipmentAffix
     {
         private int value;
 
-        public FireResistanceAdditiveAffix(int value)
+        public PlusAgilityAffix(int value)
         {
             this.value = value;
         }
 
         public void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusFireResistanceBy(value);
+            statsFromEquipment.IncreasePlusAgilityBy(value);
         }
 
         public void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusFireResistanceBy(value);
+            statsFromEquipment.DecreasePlusAgilityBy(value);
         }
     }
 }
