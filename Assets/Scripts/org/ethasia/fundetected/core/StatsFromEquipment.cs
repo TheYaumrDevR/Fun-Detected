@@ -20,7 +20,37 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }     
 
+        public int PlusMaximumLife
+        {
+            get;
+            private set;
+        }
+
+        public int PlusMaximumMana
+        {
+            get;
+            private set;
+        }
+
+        public int IncreasedMaximumLifeInPercent
+        {
+            get;
+            private set;
+        }
+
         public int PlusFireResistance
+        {
+            get;
+            private set;
+        }
+
+        public int PlusLightningResistance
+        {
+            get;
+            private set;
+        }
+
+        public int PlusColdResistance
         {
             get;
             private set;
@@ -31,6 +61,18 @@ namespace Org.Ethasia.Fundetected.Core
             get;
             private set;
         }   
+
+        public int PlusMaximumLightningResistance
+        {
+            get;
+            private set;
+        }
+
+        public int PlusMaximumColdResistance
+        {
+            get;
+            private set;
+        }
 
         public void IncreasePlusIntelligenceBy(int value)
         {
@@ -47,15 +89,50 @@ namespace Org.Ethasia.Fundetected.Core
             PlusStrength += value;
         }
 
+        public void IncreasePlusMaximumLifeBy(int value)
+        {
+            PlusMaximumLife += value;
+        }
+
+        public void IncreasePlusMaximumManaBy(int value)
+        {
+            PlusMaximumMana += value;
+        }
+
+        public void IncreaseIncreasedMaximumLifeInPercentBy(int value)
+        {
+            IncreasedMaximumLifeInPercent += value;
+        }
+
         public void IncreasePlusFireResistanceBy(int value)
         {
             PlusFireResistance += value;
         }
 
+        public void IncreasePlusLightningResistanceBy(int value)
+        {
+            PlusLightningResistance += value;
+        }
+
+        public void IncreasePlusColdResistanceBy(int value)
+        {
+            PlusColdResistance += value;
+        }        
+
         public void IncreasePlusMaximumFireResistanceBy(int value)
         {
             PlusMaximumFireResistance += value;
-        }        
+        }  
+
+        public void IncreasePlusMaximumLightningResistanceBy(int value)
+        {
+            PlusMaximumLightningResistance += value;
+        }      
+
+        public void IncreasePlusMaximumColdResistanceBy(int value)
+        {
+            PlusMaximumColdResistance += value;
+        }
 
         public void DecreasePlusIntelligenceBy(int value)
         {
@@ -72,14 +149,49 @@ namespace Org.Ethasia.Fundetected.Core
             PlusStrength -= value;
         }
 
+        public void DecreaseIncreasedMaximumLifeInPercentBy(int value)
+        {
+            IncreasedMaximumLifeInPercent -= value;
+        }
+
+        public void DecreasePlusMaximumManaBy(int value)
+        {
+            PlusMaximumMana -= value;
+        }
+
+        public void DecreasePlusMaximumLifeBy(int value)
+        {
+            PlusMaximumLife -= value;
+        }
+
         public void DecreasePlusFireResistanceBy(int value)
         {
             PlusFireResistance -= value;
         }
 
+        public void DecreasePlusLightningResistanceBy(int value)
+        {
+            PlusLightningResistance -= value;
+        }
+
+        public void DecreasePlusColdResistanceBy(int value)
+        {
+            PlusColdResistance -= value;
+        }
+
         public void DecreasePlusMaximumFireResistanceBy(int value)
         {
             PlusMaximumFireResistance -= value;
-        }        
+        }
+
+        public void DecreasePlusMaximumLightningResistanceBy(int value)
+        {
+            PlusMaximumLightningResistance -= value;
+        }           
+
+        public void DecreasePlusMaximumColdResistanceBy(int value)
+        {
+            PlusMaximumColdResistance -= value;
+        }     
     }
 }
