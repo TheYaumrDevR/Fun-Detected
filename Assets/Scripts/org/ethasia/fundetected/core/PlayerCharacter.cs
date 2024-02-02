@@ -12,6 +12,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         private PlayerCharacterBaseStats baseStats;     
 
+        private StatsFromEquipment equipmentStats;
+
         private double lastAttackTime;
 
         private double timeSinceLastMovement;
@@ -19,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Core
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+            equipmentStats = new StatsFromEquipment();
         }
 
         public IBattleLogEntry AutoAttack(double actionTime, Enemy target)

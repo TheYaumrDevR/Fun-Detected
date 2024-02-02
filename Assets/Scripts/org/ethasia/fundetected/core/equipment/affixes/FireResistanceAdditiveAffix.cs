@@ -4,17 +4,17 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
     {
         private int value;
 
-        public FireResistanceAdditiveAffix(int value)
+        public FireResistanceAdditiveAffix(int value) : base(false)
         {
             this.value = value;
         }
 
-        public void ApplyEffects(StatsFromEquipment statsFromEquipment)
+        public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
             statsFromEquipment.IncreasePlusFireResistanceBy(value);
         }
 
-        public void UnApplyEffects(StatsFromEquipment statsFromEquipment)
+        public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
             statsFromEquipment.DecreasePlusFireResistanceBy(value);
         }
