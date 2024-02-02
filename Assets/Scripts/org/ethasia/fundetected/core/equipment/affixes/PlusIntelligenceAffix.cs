@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
     {
         private int value;
 
-        public PlusIntelligenceAffix(int value) : base(false)
+        public PlusIntelligenceAffix(int value) : base(AffixTypes.SUFFIX)
         {
             this.value = value;
         }

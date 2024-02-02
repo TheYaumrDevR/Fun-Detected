@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
     {
         private int value;
 
-        public MaximumFireResistanceAdditiveAffix(int value) : base(false)
+        public MaximumFireResistanceAdditiveAffix(int value) : base(AffixTypes.IMPLICIT_ONLY)
         {
             this.value = value;
         }

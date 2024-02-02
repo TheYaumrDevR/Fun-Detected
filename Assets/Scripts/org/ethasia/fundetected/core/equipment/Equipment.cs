@@ -39,6 +39,36 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
+        public void OnEquip(StatsFromEquipment statsFromEquipment)
+        {
+            foreach (EquipmentAffix prefix in prefixes)
+            {
+                prefix.ApplyEffects(statsFromEquipment);
+            }
+
+            foreach (EquipmentAffix suffix in suffixes)
+            {
+                suffix.ApplyEffects(statsFromEquipment);
+            }
+
+            FirstImplicit.ApplyEffects(statsFromEquipment);
+        }     
+
+        public void OnUnequip(StatsFromEquipment statsFromEquipment)
+        {
+            foreach (EquipmentAffix prefix in prefixes)
+            {
+                prefix.UnApplyEffects(statsFromEquipment);
+            }
+
+            foreach (EquipmentAffix suffix in suffixes)
+            {
+                suffix.UnApplyEffects(statsFromEquipment);
+            }
+
+            FirstImplicit.UnApplyEffects(statsFromEquipment);
+        }   
+
         new public class Builder : Item.Builder
         {
             private string name;
@@ -81,14 +111,16 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             public Builder AddAffix(EquipmentAffix value)
             {
-                if (value.IsPrefix)
+                if (value.AffixType == AffixTypes.PREFIX)
                 {
                     return AddPrefix(value);
                 }
-                else
+                else if (value.AffixType == AffixTypes.SUFFIX)
                 {
                     return AddSuffix(value);
                 }
+
+                return this;
             }
 
             protected void FillEquipmentFields(Equipment statlessEquipment)

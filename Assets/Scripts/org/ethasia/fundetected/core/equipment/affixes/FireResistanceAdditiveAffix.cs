@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
     {
         private int value;
 
-        public FireResistanceAdditiveAffix(int value) : base(false)
+        public FireResistanceAdditiveAffix(int value) : base(AffixTypes.SUFFIX)
         {
             this.value = value;
         }

@@ -2,16 +2,15 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
     public abstract class EquipmentAffix
     {
-        // TODO: It can be prefix, suffix, implicit only, unique
-        public bool IsPrefix
+        public AffixTypes AffixType
         {
             get;
             private set;
         }
 
-        public EquipmentAffix(bool isPrefix)
+        public EquipmentAffix(AffixTypes affixType)
         {
-            IsPrefix = isPrefix;
+            AffixType = affixType;
         }
 
         public abstract void ApplyEffects(StatsFromEquipment statsFromEquipment);
