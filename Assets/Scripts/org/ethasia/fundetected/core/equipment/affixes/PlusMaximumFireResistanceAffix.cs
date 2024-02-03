@@ -1,10 +1,10 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class MaximumFireResistanceAdditiveAffix : EquipmentAffix
+    public class PlusMaximumFireResistanceAffix : EquipmentAffix
     {
         private int value;
 
-        public MaximumFireResistanceAdditiveAffix(int value) : base(AffixTypes.IMPLICIT_ONLY)
+        public PlusMaximumFireResistanceAffix(int value) : base(AffixTypes.IMPLICIT_ONLY)
         {
             this.value = value;
         }

@@ -56,6 +56,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int PlusMagicResistance
+        {
+            get;
+            private set;
+        }
+
         public int PlusMaximumFireResistance
         {
             get;
@@ -69,6 +75,18 @@ namespace Org.Ethasia.Fundetected.Core
         }
 
         public int PlusMaximumColdResistance
+        {
+            get;
+            private set;
+        }
+
+        public int PlusMaximumMagicResistance
+        {
+            get;
+            private set;
+        }
+
+        public int IncreasedArmorInPercent
         {
             get;
             private set;
@@ -117,7 +135,12 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreasePlusColdResistanceBy(int value)
         {
             PlusColdResistance += value;
-        }        
+        }    
+
+        public void IncreasePlusMagicResistanceBy(int value)
+        {
+            PlusMagicResistance += value;
+        }    
 
         public void IncreasePlusMaximumFireResistanceBy(int value)
         {
@@ -132,6 +155,16 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreasePlusMaximumColdResistanceBy(int value)
         {
             PlusMaximumColdResistance += value;
+        }
+
+        public void IncreasePlusMaximumMagicResistanceBy(int value)
+        {
+            PlusMaximumMagicResistance += value;
+        }
+
+        public void IncreaseIncreasedArmorInPercentBy(int value)
+        {
+            IncreasedArmorInPercent += value;
         }
 
         public void DecreasePlusIntelligenceBy(int value)
@@ -179,6 +212,11 @@ namespace Org.Ethasia.Fundetected.Core
             PlusColdResistance -= value;
         }
 
+        public void DecreasePlusMagicResistanceBy(int value)
+        {
+            PlusMagicResistance -= value;
+        }
+
         public void DecreasePlusMaximumFireResistanceBy(int value)
         {
             PlusMaximumFireResistance -= value;
@@ -193,5 +231,15 @@ namespace Org.Ethasia.Fundetected.Core
         {
             PlusMaximumColdResistance -= value;
         }     
+
+        public void DecreasePlusMaximumMagicResistanceBy(int value)
+        {
+            PlusMaximumMagicResistance -= value;
+        }
+
+        public void DecreaseIncreasedArmorInPercentBy(int value)
+        {
+            IncreasedArmorInPercent -= value;
+        }
     }
 }
