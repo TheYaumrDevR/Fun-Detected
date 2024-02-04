@@ -38,6 +38,30 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int PlusMaximumPhysicalDamage
+        {
+            get;
+            private set;
+        }
+
+        public int PlusMinimumPhysicalDamage
+        {
+            get;
+            private set;
+        }
+
+        public int IncreasedPhysicalDamageInPercent
+        {
+            get;
+            private set;
+        }
+
+        public int PlusAccuracy
+        {
+            get;
+            private set;
+        }
+
         public int PlusFireResistance
         {
             get;
@@ -122,6 +146,26 @@ namespace Org.Ethasia.Fundetected.Core
             IncreasedMaximumLifeInPercent += value;
         }
 
+        public void IncreasePlusMaximumPhysicalDamageBy(int value)
+        {
+            PlusMaximumPhysicalDamage += value;
+        }
+
+        public void IncreasePlusMinimumPhysicalDamageBy(int value)
+        {
+            PlusMinimumPhysicalDamage += value;
+        }
+
+        public void IncreaseIncreasedPhysicalDamageInPercentBy(int value)
+        {
+            IncreasedPhysicalDamageInPercent += value;
+        }
+
+        public void IncreasePlusAccuracyBy(int value)
+        {
+            PlusAccuracy += value;
+        }
+
         public void IncreasePlusFireResistanceBy(int value)
         {
             PlusFireResistance += value;
@@ -195,6 +239,26 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusMaximumLifeBy(int value)
         {
             PlusMaximumLife -= value;
+        }
+
+        public void DecreasePlusAccuracyBy(int value)
+        {
+            PlusAccuracy -= value;
+        }
+
+        public void DecreaseIncreasedPhysicalDamageInPercentBy(int value)
+        {
+            IncreasedPhysicalDamageInPercent -= value;
+        }
+
+        public void DecreasePlusMinimumPhysicalDamageBy(int value)
+        {
+            PlusMinimumPhysicalDamage -= value;
+        }
+
+        public void DecreasePlusMaximumPhysicalDamageBy(int value)
+        {
+            PlusMaximumPhysicalDamage -= value;
         }
 
         public void DecreasePlusFireResistanceBy(int value)
