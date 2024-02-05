@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
 
@@ -32,6 +34,25 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             get;
             private set;
         }
+
+        public LocalWeaponModifiers LocalModifiers
+        {
+            get;
+            private set;
+        }
+
+        protected override void ApplyLocalAffixes()
+        {
+            foreach (EquipmentAffix prefix in prefixes)
+            {
+                prefix.ApplyLocalWeaponEffects(LocalModifiers);
+            }
+
+            foreach (EquipmentAffix suffix in suffixes)
+            {
+                suffix.ApplyLocalWeaponEffects(LocalModifiers);
+            }
+        }        
 
         new public class Builder : Equipment.Builder
         {
@@ -80,6 +101,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 result.CriticalStrikeChance = criticalStrikeChance;
                 result.SkillsPerSecond = skillsPerSecond;
                 result.WeaponRange = weaponRange;
+                result.LocalModifiers = new LocalWeaponModifiers();
 
                 FillEquipmentFields(result);
 

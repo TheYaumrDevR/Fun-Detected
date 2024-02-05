@@ -13,14 +13,32 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusMinimumPhysicalDamageBy(plusMinPhysicalDamageValue);
-            statsFromEquipment.IncreasePlusMaximumPhysicalDamageBy(plusMaxPhysicalDamageValue);
+
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusMinimumPhysicalDamageBy(plusMinPhysicalDamageValue);
-            statsFromEquipment.DecreasePlusMaximumPhysicalDamageBy(plusMaxPhysicalDamageValue);
+
         }
+
+        public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+            localWeaponModifiers.IncreasePlusMinToMaxPhysicalDamageBy(plusMinPhysicalDamageValue, plusMaxPhysicalDamageValue);
+        }        
+
+        public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+            localWeaponModifiers.DecreasePlusMinToMaxPhysicalDamageBy(plusMinPhysicalDamageValue, plusMaxPhysicalDamageValue);
+        }
+
+        public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+
+        }
+
+        public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+
+        }           
     }
 }

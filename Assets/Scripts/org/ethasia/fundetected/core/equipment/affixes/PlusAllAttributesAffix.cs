@@ -22,5 +22,25 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             statsFromEquipment.DecreasePlusAgilityBy(value);
             statsFromEquipment.DecreasePlusIntelligenceBy(value);
         }
+
+        public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+
+        }
+
+        public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+
+        }
+
+        public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+
+        }
+
+        public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+
+        }         
     }
 }

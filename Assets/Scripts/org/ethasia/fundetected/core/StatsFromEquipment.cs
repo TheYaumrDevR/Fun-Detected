@@ -38,24 +38,6 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        public int PlusMaximumPhysicalDamage
-        {
-            get;
-            private set;
-        }
-
-        public int PlusMinimumPhysicalDamage
-        {
-            get;
-            private set;
-        }
-
-        public int IncreasedPhysicalDamageInPercent
-        {
-            get;
-            private set;
-        }
-
         public int PlusAccuracy
         {
             get;
@@ -110,12 +92,6 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        public int IncreasedArmorInPercent
-        {
-            get;
-            private set;
-        }
-
         public void IncreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence += value;
@@ -144,21 +120,6 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreaseIncreasedMaximumLifeInPercentBy(int value)
         {
             IncreasedMaximumLifeInPercent += value;
-        }
-
-        public void IncreasePlusMaximumPhysicalDamageBy(int value)
-        {
-            PlusMaximumPhysicalDamage += value;
-        }
-
-        public void IncreasePlusMinimumPhysicalDamageBy(int value)
-        {
-            PlusMinimumPhysicalDamage += value;
-        }
-
-        public void IncreaseIncreasedPhysicalDamageInPercentBy(int value)
-        {
-            IncreasedPhysicalDamageInPercent += value;
         }
 
         public void IncreasePlusAccuracyBy(int value)
@@ -206,11 +167,6 @@ namespace Org.Ethasia.Fundetected.Core
             PlusMaximumMagicResistance += value;
         }
 
-        public void IncreaseIncreasedArmorInPercentBy(int value)
-        {
-            IncreasedArmorInPercent += value;
-        }
-
         public void DecreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence -= value;
@@ -244,21 +200,6 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusAccuracyBy(int value)
         {
             PlusAccuracy -= value;
-        }
-
-        public void DecreaseIncreasedPhysicalDamageInPercentBy(int value)
-        {
-            IncreasedPhysicalDamageInPercent -= value;
-        }
-
-        public void DecreasePlusMinimumPhysicalDamageBy(int value)
-        {
-            PlusMinimumPhysicalDamage -= value;
-        }
-
-        public void DecreasePlusMaximumPhysicalDamageBy(int value)
-        {
-            PlusMaximumPhysicalDamage -= value;
         }
 
         public void DecreasePlusFireResistanceBy(int value)
@@ -299,11 +240,6 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusMaximumMagicResistanceBy(int value)
         {
             PlusMaximumMagicResistance -= value;
-        }
-
-        public void DecreaseIncreasedArmorInPercentBy(int value)
-        {
-            IncreasedArmorInPercent -= value;
         }
     }
 }

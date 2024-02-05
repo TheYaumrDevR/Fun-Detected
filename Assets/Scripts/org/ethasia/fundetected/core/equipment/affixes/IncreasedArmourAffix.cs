@@ -11,12 +11,32 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreaseIncreasedArmorInPercentBy(value);
+
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreaseIncreasedArmorInPercentBy(value);
+
+        }
+
+        public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+
+        }
+
+        public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+
+        }
+
+        public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+            localArmorModifiers.IncreaseIncreasedArmorInPercentBy(value);
+        }
+
+        public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+            localArmorModifiers.DecreaseIncreasedArmorInPercentBy(value);
         }
     }
 }

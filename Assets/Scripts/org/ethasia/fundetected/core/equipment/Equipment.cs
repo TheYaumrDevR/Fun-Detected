@@ -6,8 +6,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public abstract class Equipment : Item
     {
-        private List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
-        private List<EquipmentAffix> suffixes = new List<EquipmentAffix>();
+        protected List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
+        protected List<EquipmentAffix> suffixes = new List<EquipmentAffix>();
 
         public string Name
         {
@@ -69,6 +69,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             FirstImplicit.UnApplyEffects(statsFromEquipment);
         }   
 
+        protected abstract void ApplyLocalAffixes();        
+
         new public class Builder : Item.Builder
         {
             private string name;
@@ -123,19 +125,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return this;
             }
 
-            protected void FillEquipmentFields(Equipment statlessEquipment)
-            {
-                statlessEquipment.Name = name;
-                statlessEquipment.StrengthRequirement = strengthRequirement;
-                statlessEquipment.AgilityRequirement = agilityRequirement;
-                statlessEquipment.IntelligenceRequirement = intelligenceRequirement;
-                statlessEquipment.FirstImplicit = firstImplicit;
-                statlessEquipment.prefixes.AddRange(prefixes);
-                statlessEquipment.suffixes.AddRange(suffixes);
-
-                FillItemFields(statlessEquipment);
-            }           
-
             private Builder AddPrefix(EquipmentAffix value)
             {
                 if (null == prefixes)
@@ -164,7 +153,21 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 }
 
                 return this;
-            }              
+            }            
+
+            protected void FillEquipmentFields(Equipment statlessEquipment)
+            {
+                statlessEquipment.Name = name;
+                statlessEquipment.StrengthRequirement = strengthRequirement;
+                statlessEquipment.AgilityRequirement = agilityRequirement;
+                statlessEquipment.IntelligenceRequirement = intelligenceRequirement;
+                statlessEquipment.FirstImplicit = firstImplicit;
+                statlessEquipment.prefixes.AddRange(prefixes);
+                statlessEquipment.suffixes.AddRange(suffixes);
+                statlessEquipment.ApplyLocalAffixes();
+
+                FillItemFields(statlessEquipment);
+            }                         
         }             
     }
 }

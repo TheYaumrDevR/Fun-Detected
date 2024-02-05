@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public class Armor : Equipment
@@ -19,6 +21,55 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         {
             get;
             private set;
+        }
+
+        public LocalArmorModifiers LocalModifiers
+        {
+            get;
+            private set;
+        }
+
+        protected override void ApplyLocalAffixes()
+        {
+            foreach (EquipmentAffix prefix in prefixes)
+            {
+                prefix.ApplyLocalArmorEffects(LocalModifiers);
+            }
+
+            foreach (EquipmentAffix suffix in suffixes)
+            {
+                suffix.ApplyLocalArmorEffects(LocalModifiers);
+            }
+        }
+
+        new public class Builder : Equipment.Builder
+        {
+            private int armorValue;
+            private int movementSpeedAddend;
+
+            public Builder SetArmorValue(int value)
+            {
+                armorValue = value;
+                return this;
+            }
+
+            public Builder SetMovementSpeedAddend(int value)
+            {
+                movementSpeedAddend = value;
+                return this;
+            }
+
+            public Armor Build()
+            {
+                Armor result = new Armor();
+                result.ArmorValue = armorValue;
+                result.MovementSpeedAddend = movementSpeedAddend;
+                result.LocalModifiers = new LocalArmorModifiers();
+
+                FillEquipmentFields(result);
+
+                return result;
+            }
         }
     }
 }
