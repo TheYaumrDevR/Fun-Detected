@@ -44,6 +44,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public float PhysicalDamagePercentStolenAsLife
+        {
+            get;
+            private set;
+        }
+
+        public float PhysicalDamagePercentStolenAsMana
+        {
+            get;
+            private set;
+        }
+
         public int PlusFireResistance
         {
             get;
@@ -127,6 +139,16 @@ namespace Org.Ethasia.Fundetected.Core
             PlusAccuracy += value;
         }
 
+        public void IncreasePhysicalDamagePercentStolenAsLife(float value)
+        {
+            PhysicalDamagePercentStolenAsLife += value;
+        }
+
+        public void IncreasePhysicalDamagePercentStolenAsMana(float value)
+        {
+            PhysicalDamagePercentStolenAsMana += value;
+        }
+
         public void IncreasePlusFireResistanceBy(int value)
         {
             PlusFireResistance += value;
@@ -200,6 +222,16 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusAccuracyBy(int value)
         {
             PlusAccuracy -= value;
+        }
+
+        public void DecreasePhysicalDamagePercentStolenAsLife(float value)
+        {
+            PhysicalDamagePercentStolenAsLife -= value;
+        }
+
+        public void DecreasePhysicalDamagePercentStolenAsMana(float value)
+        {
+            PhysicalDamagePercentStolenAsMana -= value;
         }
 
         public void DecreasePlusFireResistanceBy(int value)
