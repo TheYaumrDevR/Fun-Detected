@@ -32,6 +32,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
+        public int IncreasedAttackSpeedInPercent
+        {
+            get;
+            private set;
+        }
+
         public LocalWeaponModifiers()
         {
             PlusMinToMaxPhysicalDamage = new DamageRange(0, 0);
@@ -93,6 +99,16 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         public void DecreaseIncreasedPhysicalDamageInPercentBy(int value)
         {
             IncreasedPhysicalDamageInPercent -= value;
+        }
+
+        public void IncreaseIncreasedAttackSpeedInPercentBy(int value)
+        {
+            IncreasedAttackSpeedInPercent += value;
+        }
+
+        public void DecreaseIncreasedAttackSpeedInPercentBy(int value)
+        {
+            IncreasedAttackSpeedInPercent -= value;
         }
     }
 }

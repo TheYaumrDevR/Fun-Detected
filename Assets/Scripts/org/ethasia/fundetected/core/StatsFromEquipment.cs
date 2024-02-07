@@ -104,6 +104,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int PlusAllSocketedSpellsLevel
+        {
+            get;
+            private set;
+        }
+
+        public int IncreasedStunAndBlockRecoveryInPercent
+        {
+            get;
+            private set;
+        }
+
         public void IncreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence += value;
@@ -189,6 +201,16 @@ namespace Org.Ethasia.Fundetected.Core
             PlusMaximumMagicResistance += value;
         }
 
+        public void IncreasePlusAllSocketedSpellsLevelBy(int value)
+        {
+            PlusAllSocketedSpellsLevel += value;
+        }
+
+        public void IncreaseIncreasedStunAndBlockRecoveryInPercentBy(int value)
+        {
+            IncreasedStunAndBlockRecoveryInPercent += value;
+        }
+
         public void DecreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence -= value;
@@ -272,6 +294,16 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusMaximumMagicResistanceBy(int value)
         {
             PlusMaximumMagicResistance -= value;
+        }
+
+        public void DecreasePlusAllSocketedSpellsLevelBy(int value)
+        {
+            PlusAllSocketedSpellsLevel -= value;
+        }
+
+        public void DecreaseIncreasedStunAndBlockRecoveryInPercentBy(int value)
+        {
+            IncreasedStunAndBlockRecoveryInPercent -= value;
         }
     }
 }
