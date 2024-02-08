@@ -116,6 +116,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int PlusPhysicalDamagePercentReflected
+        {
+            get;
+            private set;
+        }
+
         public void IncreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence += value;
@@ -209,6 +215,11 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreaseIncreasedStunAndBlockRecoveryInPercentBy(int value)
         {
             IncreasedStunAndBlockRecoveryInPercent += value;
+        }
+
+        public void IncreasePlusPhysicalDamagePercentReflectedBy(int value)
+        {
+            PlusPhysicalDamagePercentReflected += value;
         }
 
         public void DecreasePlusIntelligenceBy(int value)
@@ -305,5 +316,10 @@ namespace Org.Ethasia.Fundetected.Core
         {
             IncreasedStunAndBlockRecoveryInPercent -= value;
         }
+
+        public void DecreasePlusPhysicalDamagePercentReflectedBy(int value)
+        {
+            PlusPhysicalDamagePercentReflected -= value;
+        }        
     }
 }

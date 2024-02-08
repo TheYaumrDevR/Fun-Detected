@@ -2,13 +2,48 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public class PlayerEquipmentSlots
     {
+        public StatsFromEquipment EquipmentStats
+        {
+            get;
+            private set;
+        }
+
         private EquipmentSlot mainHandSlot;
         private EquipmentSlot offHandSlot;
 
         public PlayerEquipmentSlots()
         {
+            EquipmentStats = new StatsFromEquipment();
             mainHandSlot = new EquipmentSlot(EquipmentSlotTypes.MAIN_HAND);
             offHandSlot = new EquipmentSlot(EquipmentSlotTypes.OFF_HAND);
+        }
+
+        public Equipment EquipInMainHand(Equipment toEquip)
+        {
+            if (!CanEquipInMainHand(toEquip))
+            {
+                return toEquip;
+            }
+
+            toEquip.OnEquip(EquipmentStats);
+
+            Equipment oldEquipment = mainHandSlot.InsertEquipment(toEquip);
+            oldEquipment.OnUnequip(EquipmentStats);
+            return oldEquipment;
+        }
+
+        public Equipment EquipInOffHand(Equipment toEquip)
+        {
+            if (!CanEquipInOffHand(toEquip))
+            {
+                return toEquip;
+            }
+
+            toEquip.OnEquip(EquipmentStats);
+
+            Equipment oldEquipment = offHandSlot.InsertEquipment(toEquip);
+            oldEquipment.OnUnequip(EquipmentStats);
+            return oldEquipment;            
         }
 
         public bool CanEquipInMainHand(Equipment equipment)
@@ -49,26 +84,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
 
             return false;
-        }
-
-        public Equipment EquipInMainHand(Equipment toEquip)
-        {
-            if (!CanEquipInMainHand(toEquip))
-            {
-                return toEquip;
-            }
-
-            return mainHandSlot.InsertEquipment(toEquip);
-        }
-
-        public Equipment EquipInOffHand(Equipment toEquip)
-        {
-            if (!CanEquipInOffHand(toEquip))
-            {
-                return toEquip;
-            }
-
-            return offHandSlot.InsertEquipment(toEquip);
-        }        
+        }                
     }
 }

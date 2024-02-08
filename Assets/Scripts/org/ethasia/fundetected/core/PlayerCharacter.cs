@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Equipment;
+
 namespace Org.Ethasia.Fundetected.Core
 {
     public class PlayerCharacter
@@ -12,16 +14,16 @@ namespace Org.Ethasia.Fundetected.Core
 
         private PlayerCharacterBaseStats baseStats;     
 
-        private StatsFromEquipment equipmentStats;
-
         private double lastAttackTime;
 
         private double timeSinceLastMovement;
 
+        private PlayerEquipmentSlots allEquipment;
+
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
-            equipmentStats = new StatsFromEquipment();
+            allEquipment = new PlayerEquipmentSlots();
         }
 
         public IBattleLogEntry AutoAttack(double actionTime, Enemy target)
