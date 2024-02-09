@@ -28,7 +28,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             toEquip.OnEquip(EquipmentStats);
 
             Equipment oldEquipment = mainHandSlot.InsertEquipment(toEquip);
-            oldEquipment.OnUnequip(EquipmentStats);
+
+            if (null != oldEquipment)
+            {
+                oldEquipment.OnUnequip(EquipmentStats);
+            }
+
             return oldEquipment;
         }
 
@@ -42,7 +47,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             toEquip.OnEquip(EquipmentStats);
 
             Equipment oldEquipment = offHandSlot.InsertEquipment(toEquip);
-            oldEquipment.OnUnequip(EquipmentStats);
+
+            if (null != oldEquipment)
+            {
+                oldEquipment.OnUnequip(EquipmentStats);
+            }
+
             return oldEquipment;            
         }
 

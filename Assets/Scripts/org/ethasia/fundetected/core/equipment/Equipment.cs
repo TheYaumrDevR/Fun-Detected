@@ -51,7 +51,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 suffix.ApplyEffects(statsFromEquipment);
             }
 
-            FirstImplicit.ApplyEffects(statsFromEquipment);
+            if (null != FirstImplicit)
+            {
+                FirstImplicit.ApplyEffects(statsFromEquipment);
+            }
         }     
 
         public void OnUnequip(StatsFromEquipment statsFromEquipment)
@@ -66,7 +69,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 suffix.UnApplyEffects(statsFromEquipment);
             }
 
-            FirstImplicit.UnApplyEffects(statsFromEquipment);
+            if (null != FirstImplicit)
+            {
+                FirstImplicit.UnApplyEffects(statsFromEquipment);
+            }
         }   
 
         protected abstract void ApplyLocalAffixes();        
@@ -78,8 +84,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private int agilityRequirement;
             private int intelligenceRequirement;
             private EquipmentAffix firstImplicit;
-            private List<EquipmentAffix> prefixes;
-            private List<EquipmentAffix> suffixes;            
+            private List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
+            private List<EquipmentAffix> suffixes = new List<EquipmentAffix>();            
 
             public Builder SetName(string value)
             {
@@ -127,11 +133,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             private Builder AddPrefix(EquipmentAffix value)
             {
-                if (null == prefixes)
-                {
-                    prefixes = new List<EquipmentAffix>();
-                }
-
                 if (prefixes.Count < 3)
                 {
                     prefixes.Add(value);
@@ -142,11 +143,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             private Builder AddSuffix(EquipmentAffix value)
             {
-                if (null == suffixes)
-                {
-                    suffixes = new List<EquipmentAffix>();
-                }
-
                 if (suffixes.Count < 3)
                 {
                     suffixes.Add(value);
