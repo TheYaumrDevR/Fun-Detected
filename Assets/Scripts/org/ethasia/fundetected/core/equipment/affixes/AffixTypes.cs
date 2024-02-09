@@ -1,7 +1,10 @@
-public enum AffixTypes
+namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    PREFIX,
-    SUFFIX,
-    IMPLICIT_ONLY,
-    UNIQUE
+    public enum AffixTypes
+    {
+        PREFIX,
+        SUFFIX,
+        IMPLICIT_ONLY,
+        UNIQUE
+    }
 }
