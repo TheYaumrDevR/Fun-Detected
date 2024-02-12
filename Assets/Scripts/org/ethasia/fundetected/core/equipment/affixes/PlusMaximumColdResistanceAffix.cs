@@ -1,10 +1,10 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusMaximumColdResistance : EquipmentAffix
+    public class PlusMaximumColdResistanceAffix : EquipmentAffix
     {
         private int value;
 
-        public PlusMaximumColdResistance(int value) : base(AffixTypes.IMPLICIT_ONLY)
+        public PlusMaximumColdResistanceAffix(int value) : base(AffixTypes.IMPLICIT_ONLY)
         {
             this.value = value;
         }
