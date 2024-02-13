@@ -153,25 +153,42 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
         [Test]
         public void TestThatLocalWeaponAffixesAreAddedToWeapon()
         {
+            PlayerEquipmentSlots equipmentSlots = new PlayerEquipmentSlots();
+            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
+            PlusMinMaxPhysicalDamageAffix plusMinMaxPhysicalDamageAffix = new PlusMinMaxPhysicalDamageAffix(12, 24);
+            PlusMinMaxFireDamageAffix plusMinMaxFireDamageAffix = new PlusMinMaxFireDamageAffix(41, 66);
+            PlusMinMaxColdDamageAffix plusMinMaxColdDamageAffix = new PlusMinMaxColdDamageAffix(2, 6);
+
+            weaponBuilder.AddAffix(plusMinMaxPhysicalDamageAffix);
+            weaponBuilder.AddAffix(plusMinMaxFireDamageAffix);
+            weaponBuilder.AddAffix(plusMinMaxColdDamageAffix);
+            weaponBuilder.SetItemClass(ItemClass.BOW);
+
+            Weapon bow = weaponBuilder.Build();
+
+            Assert.That(bow.LocalModifiers.PlusMinToMaxPhysicalDamage.minDamage, Is.EqualTo(12));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxPhysicalDamage.maxDamage, Is.EqualTo(24));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxFireDamage.minDamage, Is.EqualTo(41));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxFireDamage.maxDamage, Is.EqualTo(66));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxColdDamage.minDamage, Is.EqualTo(2));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxColdDamage.maxDamage, Is.EqualTo(6));
         }
 
         [Test]
         public void TestThatLocalArmorAffixesAreAddedToArmor()
         {
+            PlayerEquipmentSlots equipmentSlots = new PlayerEquipmentSlots();
+            Armor.Builder armorBuilder = new Armor.Builder();
 
-        }
+            IncreasedArmourAffix increasedArmorInPercentAffix = new IncreasedArmourAffix(60);
 
-        [Test]
-        public void TestThatLocalWeaponAffixesAreNotAddedToGlobalEquipmentStats()
-        {
+            armorBuilder.AddAffix(increasedArmorInPercentAffix);
+            armorBuilder.SetItemClass(ItemClass.BODY_ARMOR);
 
-        }   
+            Armor armor = armorBuilder.Build();
 
-        [Test]
-        public void TestThatLocalArmorAffixesAreNotAddedToGlobalEquipmentStats()
-        {
-
+            Assert.That(armor.LocalModifiers.IncreasedArmorInPercent, Is.EqualTo(60));
         }
     }
 }

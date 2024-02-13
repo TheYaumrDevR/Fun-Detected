@@ -41,6 +41,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         public LocalWeaponModifiers()
         {
             PlusMinToMaxPhysicalDamage = new DamageRange(0, 0);
+            PlusMinToMaxFireDamage = new DamageRange(0, 0);
+            PlusMinToMaxColdDamage = new DamageRange(0, 0);
+            PlusMinToMaxLightningDamage = new DamageRange(0, 0);
         }
 
         public void IncreasePlusMinToMaxPhysicalDamageBy(int min, int max)
