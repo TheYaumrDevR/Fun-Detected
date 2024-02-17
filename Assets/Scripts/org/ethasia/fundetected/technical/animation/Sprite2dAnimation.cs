@@ -15,11 +15,6 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
         protected Sprite2dAnimation(List<Sprite2dAnimationFrame> sprites)
         {
             this.sprites = sprites;
-
-            if (sprites.Count > 0 && sprites[0].HasSprite)
-            {
-                spriteRenderer.sprite = sprites[0].Sprite;
-            }
         }
 
         public void Reset()
@@ -114,6 +109,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 Sprite2dAnimation result = new Sprite2dAnimation(sprites);
                 result.isLooping = isLooping;
                 result.spriteRenderer = spriteRenderer;
+
+                result.UpdateSpriteFrame();
 
                 return result;
             }         

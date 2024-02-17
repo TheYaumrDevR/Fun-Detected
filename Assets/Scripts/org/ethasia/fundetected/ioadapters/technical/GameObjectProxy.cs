@@ -34,7 +34,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }  
 
-        public Animation2dGraphNodeProperties animation2DGraphNodeProperties
+        public Animation2dGraphNodeProperties Animation2DGraphNodeProperties
         {
             get;
             private set;
@@ -94,7 +94,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 result.PosY = posY;
                 result.ScaleX = scaleX;
                 result.ScaleY = scaleY;
-                result.animation2DGraphNodeProperties = animationProperties;
+                result.Animation2DGraphNodeProperties = animationProperties;
 
                 return result;
             }                                                   

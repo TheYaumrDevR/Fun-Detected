@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Org.Ethasia.Fundetected.Core.Maths;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
+using Org.Ethasia.Fundetected.Technical.Animation;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
@@ -48,6 +50,10 @@ namespace Org.Ethasia.Fundetected.Technical
 
             SpriteRenderer spriteRenderer = enemy.AddComponent<SpriteRenderer>();
             spriteRenderer.sortingLayerName = "Sprites";
+
+            Sprite2dAnimatorBehavior animatorBehavior = enemy.AddComponent<Sprite2dAnimatorBehavior>();
+
+            StateMachine animationStateMachine = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(enemyProxy.Animation2DGraphNodeProperties, spriteRenderer, animatorBehavior);
 
             enemy.transform.SetParent(this.transform);
         }    

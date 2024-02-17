@@ -47,7 +47,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             var spriteRenderer = new SpriteRenderer();
 
             // Act
-            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(idleNode, spriteRenderer);
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(idleNode, spriteRenderer, new Sprite2dAnimatorBehavior());
 
             // Assert
             Assert.That(result.CanExecuteAction("walk"), Is.True);

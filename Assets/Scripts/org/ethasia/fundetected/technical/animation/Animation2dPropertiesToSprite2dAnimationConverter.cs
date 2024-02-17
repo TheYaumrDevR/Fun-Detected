@@ -8,9 +8,9 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 {
     public class Animation2dPropertiesToSprite2dAnimationConverter
     {   
-        public static StateMachine ConvertAnimation2dGraphNodePropertiesToStateMachine(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
+        public static StateMachine ConvertAnimation2dGraphNodePropertiesToStateMachine(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer, Sprite2dAnimatorBehavior sprite2dAnimatorContainer)
         {
-            Dictionary<string, StateMachineNodeWithTransitions> stateMachineNodesById = ConvertAnimation2dGraphToStateMachineNodes(toConvert, spriteRenderer);
+            Dictionary<string, StateMachineNodeWithTransitions> stateMachineNodesById = ConvertAnimation2dGraphToStateMachineNodes(toConvert, spriteRenderer, sprite2dAnimatorContainer);
             ConnectStateMachineNodes(stateMachineNodesById, toConvert);
 
             return new StateMachine(stateMachineNodesById[toConvert.Name]);
@@ -52,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             }
         }
 
-        private static Dictionary<string, StateMachineNodeWithTransitions> ConvertAnimation2dGraphToStateMachineNodes(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer)
+        private static Dictionary<string, StateMachineNodeWithTransitions> ConvertAnimation2dGraphToStateMachineNodes(Animation2dGraphNodeProperties toConvert, SpriteRenderer spriteRenderer, Sprite2dAnimatorBehavior sprite2dAnimatorContainer)
         {
             HashSet<Animation2dGraphNodeProperties> alreadyConvertedAnimation2dGraphNodes = new HashSet<Animation2dGraphNodeProperties>();            
             Dictionary<string, StateMachineNodeWithTransitions> result = new Dictionary<string, StateMachineNodeWithTransitions>();
@@ -60,6 +60,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
             Sprite2dAnimation initialAnimation = ConvertAnimation2dPropertiesToSprite2dAnimation(toConvert.Animation, spriteRenderer);
             Sprite2dAnimator sprite2dAnimator = new Sprite2dAnimator(initialAnimation, toConvert.AnimationSpeedMultiplier);
+            sprite2dAnimatorContainer.Animator = sprite2dAnimator;
 
             Animation2dGraphNodeConversionContext conversionContext = new Animation2dGraphNodeConversionContext();
             conversionContext.AlreadyConvertedAnimation2dGraphNodes = alreadyConvertedAnimation2dGraphNodes;

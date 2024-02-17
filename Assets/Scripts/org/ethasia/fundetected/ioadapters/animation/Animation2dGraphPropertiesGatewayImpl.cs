@@ -29,6 +29,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             {
                 Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById = CreateAnimationGraphNodes(animationPropertiesRoot);
                 CreateAnimationNodeTransitions(animationGraphNodesById, animationPropertiesRoot);
+
+                result = animationGraphNodesById["entryAnimation"];
             }
             else
             {
@@ -47,6 +49,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             if (null != entryNodeXml)
             {
                 CreateAnimationGraphNode(result, entryNodeXml);
+                result["entryAnimation"] = result[entryNodeXml.GetAttribute("id")];
             }
             else
             {
@@ -129,8 +132,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             Animation2dProperties result = new Animation2dProperties("", false);
 
             XmlElement animationFramesXml = animationGraphNodeXml["animationFrames"];
-            string spriteImageName = animationGraphNodeXml.GetAttribute("spriteImageName");
-            string isLoopingText = animationGraphNodeXml.GetAttribute("isLooping");
+            string spriteImageName = animationFramesXml.GetAttribute("spriteImageName");
+            string isLoopingText = animationFramesXml.GetAttribute("isLooping");
 
             if (null != animationFramesXml && null != spriteImageName)
             {

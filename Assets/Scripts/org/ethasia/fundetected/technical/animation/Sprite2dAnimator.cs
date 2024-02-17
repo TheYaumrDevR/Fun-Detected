@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace Org.Ethasia.Fundetected.Technical.Animation
 {
-    public class Sprite2dAnimator : MonoBehaviour
+    public class Sprite2dAnimator
     {
         public Sprite2dAnimation Animation
         {
@@ -22,11 +20,11 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             SpeedMultiplier = initialAnimationSpeed;
         }
 
-        void Update()
+        public void Update(float deltaTime)
         {
             if (null != Animation)
             {
-                Animation.Update(Time.deltaTime * SpeedMultiplier);
+                Animation.Update(deltaTime * SpeedMultiplier);
             }
         }
     }
