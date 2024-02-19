@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         public StateMachine(StateMachineNodeWithTransitions startState)
         {
             currentState = startState;
+            EnterCurrentState();
         }
 
         public void ExecuteAction(string actionName)
@@ -26,7 +27,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             return null != nextState;
         }
 
-        public void EnterCurrentState()
+        private void EnterCurrentState()
         {
             currentState.OnEnterState();
         }

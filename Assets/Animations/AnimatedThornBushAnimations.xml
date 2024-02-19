@@ -1,5 +1,5 @@
 <animations>
-	<entryAnimation id="idle" speedMultiplier="1.0">
+	<entryAnimation id="idle" speedMultiplier="1">
 		<animationFrames spriteImageName="AnimatedThornBushIdle" isLooping="true">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>
@@ -9,7 +9,7 @@
 			<transition target="attack" />
 		</transitions>
 	</entryAnimation>
-	<animation id="attack" speedMultiplier="1.0">
+	<animation id="attack" speedMultiplier="1">
 		<animationFrames spriteImageName="AnimatedThornBushAttack" isLooping="false">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>

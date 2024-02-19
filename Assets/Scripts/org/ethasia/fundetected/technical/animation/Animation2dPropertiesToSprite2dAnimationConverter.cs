@@ -146,8 +146,12 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 }
                 else
                 {
-                    Sprite frameSprite = Resources.Load<Sprite>(toConvert.SpriteImageName + "_" + animationFrameProperties.FrameIndex);
-                    resultBuilder.AddAnimationFrame(frameSprite);
+                    Sprite[] frameSprites = Resources.LoadAll<Sprite>(toConvert.SpriteImageName);
+
+                    if (frameSprites.Length > animationFrameProperties.FrameIndex)
+                    {
+                        resultBuilder.AddAnimationFrame(frameSprites[animationFrameProperties.FrameIndex]);
+                    }
                 }
             }
         }

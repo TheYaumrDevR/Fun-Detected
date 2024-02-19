@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AnimatedThornBrushIdle_0
+      name: AnimatedThornBushIdle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 515476acc4a8b6a4a809c26a097e4d07
-      internalID: 1906771847
+      spriteID: bccec47acefdc6546b650079b12a402c
+      internalID: -1209496410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimatedThornBrushIdle_1
+      name: AnimatedThornBushIdle_1
       rect:
         serializedVersion: 2
         x: 62
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed98dfb6eafe5e442baae844c491c86e
-      internalID: -1712630402
+      spriteID: 78557014e0ffff544b57ccd2ac5b392f
+      internalID: -1625824149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimatedThornBrushIdle_2
+      name: AnimatedThornBushIdle_2
       rect:
         serializedVersion: 2
         x: 124
@@ -175,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7fe1f6fa0fffcd4fa2ed74ec8293583
-      internalID: 358379451
+      spriteID: 7cc95956f767ed24faf261a90d830e8f
+      internalID: 620073903
       vertices: []
       indices: 
       edges: []
@@ -192,9 +192,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AnimatedThornBrushIdle_0: 1906771847
-      AnimatedThornBrushIdle_2: 358379451
-      AnimatedThornBrushIdle_1: -1712630402
+      AnimatedThornBushIdle_0: -1209496410
+      AnimatedThornBushIdle_1: -1625824149
+      AnimatedThornBushIdle_2: 620073903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

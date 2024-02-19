@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -85,7 +86,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             Animation2dGraphNodeProperties animationNode = new Animation2dGraphNodeProperties(false);
             animationNode.Name = nodeId;
 
-            if (Single.TryParse(speedMultiplierText, out float speedMultiplier))
+            if (Single.TryParse(speedMultiplierText, NumberStyles.Float, CultureInfo.InvariantCulture, out float speedMultiplier))
             {
                 animationNode.AnimationSpeedMultiplier = speedMultiplier;
             }                

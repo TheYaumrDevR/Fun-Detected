@@ -57,11 +57,14 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
         protected virtual void UpdateSpriteFrame()
         {
-            Sprite2dAnimationFrame newFrame = sprites[currentFrameIndex];
+            if (sprites.Count > currentFrameIndex)
+            {
+                Sprite2dAnimationFrame newFrame = sprites[currentFrameIndex];
 
-            if (newFrame.HasSprite && null != newFrame.Sprite)
-            {   
-                spriteRenderer.sprite = newFrame.Sprite;
+                if (newFrame.HasSprite && null != newFrame.Sprite)
+                {   
+                    spriteRenderer.sprite = newFrame.Sprite;
+                }                
             }
         }
 
