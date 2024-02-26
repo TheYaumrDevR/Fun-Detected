@@ -34,12 +34,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 62
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,18 +103,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -124,8 +112,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 75
+        width: 50
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,8 +121,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bccec47acefdc6546b650079b12a402c
-      internalID: -1209496410
+      spriteID: f92c215daccf3fb4598f97437976e9ee
+      internalID: -1768922425
       vertices: []
       indices: 
       edges: []
@@ -143,10 +131,10 @@ TextureImporter:
       name: AnimatedThornBushIdle_1
       rect:
         serializedVersion: 2
-        x: 62
+        x: 50
         y: 0
-        width: 62
-        height: 75
+        width: 50
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78557014e0ffff544b57ccd2ac5b392f
-      internalID: -1625824149
+      spriteID: 22a559cee473a7c4a97c6e91de666acb
+      internalID: 58384139
       vertices: []
       indices: 
       edges: []
@@ -164,10 +152,10 @@ TextureImporter:
       name: AnimatedThornBushIdle_2
       rect:
         serializedVersion: 2
-        x: 124
+        x: 100
         y: 0
-        width: 62
-        height: 75
+        width: 50
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cc95956f767ed24faf261a90d830e8f
-      internalID: 620073903
+      spriteID: 6f0e081381a21fa47970063e49700d43
+      internalID: 1908863857
       vertices: []
       indices: 
       edges: []
@@ -184,7 +172,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f081f6665a4939749bc93d8d424f2559
+    spriteID: b7ef0d08c5723954f825aacb192326c0
     internalID: 0
     vertices: []
     indices: 
@@ -192,9 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AnimatedThornBushIdle_0: -1209496410
-      AnimatedThornBushIdle_1: -1625824149
-      AnimatedThornBushIdle_2: 620073903
+      AnimatedThornBushIdle_0: -1768922425
+      AnimatedThornBushIdle_1: 58384139
+      AnimatedThornBushIdle_2: 1908863857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

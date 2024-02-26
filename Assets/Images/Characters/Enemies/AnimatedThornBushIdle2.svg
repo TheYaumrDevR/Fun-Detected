@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      inkscape:zoom="0.7071068"
      inkscape:cx="701.44991"
-     inkscape:cy="1034.4972"
+     inkscape:cy="808.22303"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="2552"
@@ -59,7 +59,7 @@
     <g
        id="g28"
        inkscape:label="Arm3"
-       style="display:none"
+       style="display:inline"
        transform="rotate(-1.3549077,584.99181,-847.53053)">
       <path
          style="fill:#71291c;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
@@ -307,7 +307,7 @@
     <g
        id="g10"
        inkscape:label="Arm1"
-       style="display:none"
+       style="display:inline"
        transform="rotate(-1.3549077,584.99181,-847.53053)">
       <path
          style="display:inline;fill:#8f4333;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
@@ -587,7 +587,7 @@
     <g
        id="g17"
        inkscape:label="Arm2"
-       style="display:none"
+       style="display:inline"
        transform="rotate(-1.3549077,584.99181,-847.53053)">
       <path
          style="fill:#8f4333;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
