@@ -112,7 +112,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
+        width: 70
         height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,9 +131,9 @@ TextureImporter:
       name: AnimatedThornBushIdle_1
       rect:
         serializedVersion: 2
-        x: 50
+        x: 70
         y: 0
-        width: 50
+        width: 70
         height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -152,9 +152,9 @@ TextureImporter:
       name: AnimatedThornBushIdle_2
       rect:
         serializedVersion: 2
-        x: 100
+        x: 140
         y: 0
-        width: 50
+        width: 70
         height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
