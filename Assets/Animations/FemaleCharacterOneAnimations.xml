@@ -1,0 +1,52 @@
+<animations>
+	<entryAnimation id="idle" speedMultiplier="1">
+		<animationFrames spriteImageName="FemaleCharOneStanding" isLooping="true">
+			<animationFrame index="0"/>
+			<animationFrame index="1"/>
+			<animationFrame index="0"/>
+			<animationFrame index="2"/>
+		</animationFrames>
+		<transitions>
+			<transition target="walking" />
+			<transition target="rightArmSwing" />
+			<transition target="leftArmSwing" />
+		</transitions>
+	</entryAnimation>
+	<animation id="walking" speedMultiplier="1">
+		<animationFrames spriteImageName="FemaleCharOneWalking" isLooping="true">
+			<animationFrame index="0"/>
+			<animationFrame index="1"/>
+			<animationFrame index="2"/>
+			<animationFrame index="3"/>
+		</animationFrames>
+		<transitions>
+			<transition target="idle" />
+			<transition target="rightArmSwing" />
+			<transition target="leftArmSwing" />			
+		</transitions>
+	</animation>
+	<animation id="rightArmSwing" speedMultiplier="1">
+		<animationFrames spriteImageName="FemaleCharOneRightArmSwing" isLooping="false">
+			<animationFrame index="0"/>
+			<animationFrame index="1"/>
+		</animationFrames>
+		<transitions>
+			<transition target="idle" />
+			<transition target="walking" />
+			<transition target="rightArmSwing" />
+			<transition target="leftArmSwing" />		
+		</transitions>
+	</animation>	
+	<animation id="leftArmSwing" speedMultiplier="1">
+		<animationFrames spriteImageName="FemaleCharOneLeftArmSwing" isLooping="false">
+			<animationFrame index="0"/>
+			<animationFrame index="1"/>
+		</animationFrames>
+		<transitions>
+			<transition target="idle" />
+			<transition target="walking" />
+			<transition target="rightArmSwing" />
+			<transition target="leftArmSwing" />
+		</transitions>
+	</animation>	
+</animations>
