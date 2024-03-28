@@ -30,8 +30,9 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             testCandidate.ExecuteAction("walk");
             testCandidate.ExecuteAction("idle");
 
-            Assert.That(transitionTracker[0], Is.EqualTo("walk"));  
-            Assert.That(transitionTracker[1], Is.EqualTo("idle")); 
+            Assert.That(transitionTracker[0], Is.EqualTo("idle"));  
+            Assert.That(transitionTracker[1], Is.EqualTo("walk"));
+            Assert.That(transitionTracker[2], Is.EqualTo("idle"));  
         }
 
         public class StateMachineTestCommand : StateMachineCommand
