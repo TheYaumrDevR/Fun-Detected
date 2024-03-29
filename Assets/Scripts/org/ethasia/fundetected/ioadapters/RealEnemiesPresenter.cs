@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph(enemyRenderData.EnemyId);
 
                 GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
-                    .SetName("Enemy" + enemyRenderData.EnemyId)
+                    .SetName("Enemy " + enemyRenderData.EnemyId)
                     .SetPosX(enemyRenderData.PositionX / 10.0f)
                     .SetPosY(enemyRenderData.PositionY / 10.0f)
                     .SetScaleX(enemyRenderData.WidthX / 10.0f)

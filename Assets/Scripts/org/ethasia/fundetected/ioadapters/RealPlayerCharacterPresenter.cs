@@ -8,13 +8,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     {
         private IAnimatedCharactersRenderer animatedCharactersRenderer;
 
-        public void PresentPlayer()
+        public void PresentPlayer(string playerName)
         {
             animatedCharactersRenderer = TechnicalFactory.GetInstance().GetAnimatedCharactersRendererInstance();
 
             Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph("FemaleCharacterOne");
 
             GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
+                .SetName("PlayerCharacter " + playerName)
                 .SetPosX(5.5f)
                 .SetPosY(1.63f)
                 .SetScaleX(2.936439f)

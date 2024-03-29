@@ -2,6 +2,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public interface IPlayerCharacterPresenter
     {
-        void PresentPlayer();
+        void PresentPlayer(string playerName);
     }
 }

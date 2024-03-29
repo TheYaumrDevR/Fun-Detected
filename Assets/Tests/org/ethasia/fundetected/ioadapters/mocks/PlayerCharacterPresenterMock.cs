@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return playerWasPresented;
         }
 
-        public void PresentPlayer()
+        public void PresentPlayer(string playerName)
         {
             playerWasPresented = true;
         }
