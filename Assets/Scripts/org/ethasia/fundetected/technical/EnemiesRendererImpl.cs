@@ -7,12 +7,12 @@ using Org.Ethasia.Fundetected.Technical.Animation;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class EnemiesRendererImpl : MonoBehaviour, IEnemiesRenderer
+    public class AnimatedCharactersRendererImpl : MonoBehaviour, IAnimatedCharactersRenderer
     {
-        private static EnemiesRendererImpl instance;
+        private static AnimatedCharactersRendererImpl instance;
         private static List<GameObjectProxy> startupRenderQueue;
 
-        public static EnemiesRendererImpl GetInstance()
+        public static AnimatedCharactersRendererImpl GetInstance()
         {
             return instance;
         }          
@@ -34,28 +34,28 @@ namespace Org.Ethasia.Fundetected.Technical
 
         void Start()
         {
-            foreach (GameObjectProxy enemyObject in startupRenderQueue)
+            foreach (GameObjectProxy animatedCharacter in startupRenderQueue)
             {
-                RenderEnemy(enemyObject);
+                RenderAnimatedCharacter(animatedCharacter);
             }      
 
             startupRenderQueue.Clear();      
         }  
 
-        public void RenderEnemy(GameObjectProxy enemyProxy)
+        public void RenderAnimatedCharacter(GameObjectProxy animatedCharacterProxy)
         {
-            GameObject enemy = new GameObject(enemyProxy.Name);
-            enemy.transform.position = new Vector3(enemyProxy.PosX, enemyProxy.PosY, 0f);
-            enemy.transform.localScale = new Vector3(enemyProxy.ScaleX, enemyProxy.ScaleY, 0f);
+            GameObject animatedCharacter = new GameObject(animatedCharacterProxy.Name);
+            animatedCharacter.transform.position = new Vector3(animatedCharacterProxy.PosX, animatedCharacterProxy.PosY, 0f);
+            animatedCharacter.transform.localScale = new Vector3(animatedCharacterProxy.ScaleX, animatedCharacterProxy.ScaleY, 0f);
 
-            SpriteRenderer spriteRenderer = enemy.AddComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = animatedCharacter.AddComponent<SpriteRenderer>();
             spriteRenderer.sortingLayerName = "Sprites";
 
-            Sprite2dAnimatorBehavior animatorBehavior = enemy.AddComponent<Sprite2dAnimatorBehavior>();
+            Sprite2dAnimatorBehavior animatorBehavior = animatedCharacter.AddComponent<Sprite2dAnimatorBehavior>();
 
-            StateMachine animationStateMachine = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(enemyProxy.Animation2DGraphNodeProperties, spriteRenderer, animatorBehavior);
+            StateMachine animationStateMachine = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(animatedCharacterProxy.Animation2DGraphNodeProperties, spriteRenderer, animatorBehavior);
 
-            enemy.transform.SetParent(this.transform);
+            animatedCharacter.transform.SetParent(this.transform);
         }    
     }
 }

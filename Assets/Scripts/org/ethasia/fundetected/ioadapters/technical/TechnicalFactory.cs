@@ -15,6 +15,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         } 
 
         public abstract XmlFiles CreateXmlFiles();
-        public abstract IEnemiesRenderer GetEnemiesRendererInstance();       
+        public abstract IAnimatedCharactersRenderer GetAnimatedCharactersRendererInstance();       
     }
 }

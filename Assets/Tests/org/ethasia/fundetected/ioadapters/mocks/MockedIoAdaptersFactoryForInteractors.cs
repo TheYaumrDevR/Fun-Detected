@@ -38,5 +38,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new EnemiesPresenterMock();
         }    
+
+        public override IPlayerCharacterPresenter GetPlayerCharacterPresenterInstance()
+        {
+            return new PlayerCharacterPresenterMock();
+        }
     }
 }

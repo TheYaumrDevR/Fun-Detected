@@ -11,6 +11,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IPlayerMovementController playerMovementController;
         private IMapPropertiesGateway mapPropertiesGateway;
         private IEnemyPresenter enemyPresenter;
+        private IPlayerCharacterPresenter playerCharacterPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -75,6 +76,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return enemyPresenter;
+        }
+
+        public override IPlayerCharacterPresenter GetPlayerCharacterPresenterInstance()
+        {
+            if (null == playerCharacterPresenter)
+            {
+                playerCharacterPresenter = new RealPlayerCharacterPresenter();
+            }
+
+            return playerCharacterPresenter;
         }
     }
 }
