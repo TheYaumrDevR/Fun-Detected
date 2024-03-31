@@ -5,22 +5,30 @@ using Org.Ethasia.Fundetected.Interactors;
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
 
-    public class PlayerMovementControllerImpl : MonoBehaviour, IPlayerMovementController
+    public class PlayerMovementControllerImpl : MonoBehaviour, IPlayerMovementController, ICharacterTranslator
     {
-        private static IPlayerMovementController instance;
+        private static PlayerMovementControllerImpl instance;
 
-        [SerializeField]
         private Transform playerTransform;
 
         [SerializeField]
         private Transform cameraTransform;
 
-        [SerializeField]
         private SpriteRenderer spriteRenderer;        
 
         void Awake()
         {
             instance = this;
+        }
+
+        public void SetCharacterTransform(Transform transform)
+        {
+            playerTransform = transform;
+        }
+
+        public void SetSpriteRenderer(SpriteRenderer spriteRenderer)
+        {
+            this.spriteRenderer = spriteRenderer;
         }
 
         public void MoveUnitsLeft(int units)
@@ -63,7 +71,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }            
         }
 
-        public static IPlayerMovementController GetInstance()
+        public static PlayerMovementControllerImpl GetInstance()
         {
             return instance;
         }

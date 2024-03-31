@@ -33,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             if (PlayerIsStill())
             {
-                GetPlayerAnimationPresenter().StartIdleAnimation();
+                PlayerAnimationPresenter.StartIdleAnimation();
             }
         }
 
@@ -74,11 +74,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private bool PlayerIsStill()
         {
             return leftMoveButtonIsHeld && rightMoveButtonIsHeld || !leftMoveButtonIsHeld && !rightMoveButtonIsHeld;
-        }
-
-        private PlayerAnimationPresenter GetPlayerAnimationPresenter()
-        {
-            return IoAdaptersFactoryForInteractors.GetInstance().GetPlayerAnimationPresenterInstance();
-        }          
+        }        
     }
 }

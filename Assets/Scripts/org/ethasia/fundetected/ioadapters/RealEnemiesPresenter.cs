@@ -9,11 +9,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class RealEnemiesPresenter : AbstractAnimationPresenter, IEnemyPresenter
     {
-        private IAnimatedCharactersRenderer animatedCharactersRenderer;
+        private IAnimatedCharactersRenderer enemyRenderer;
 
         public void PresentEnemies(List<EnemyRenderData> renderData)
         {
-            animatedCharactersRenderer = TechnicalFactory.GetInstance().GetAnimatedCharactersRendererInstance();
+            enemyRenderer = TechnicalFactory.GetInstance().GetEnemyRendererInstance();
 
             foreach (EnemyRenderData enemyRenderData in renderData)
             {
@@ -28,7 +28,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     .SetAnimationProperties(animation2dData)
                     .Build();
 
-                animatedCharactersRenderer.RenderAnimatedCharacter(gameObjectProxy);
+                enemyRenderer.RenderAnimatedCharacter(gameObjectProxy);
             }
         }
     }

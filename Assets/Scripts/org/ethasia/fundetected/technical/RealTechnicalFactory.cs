@@ -9,9 +9,14 @@ namespace Org.Ethasia.Fundetected.Technical
             return new XmlFilesImpl();
         }
 
-        public override IAnimatedCharactersRenderer GetAnimatedCharactersRendererInstance()
+        public override IAnimatedCharactersRenderer GetEnemyRendererInstance()
         {
-            return new AnimatedCharactersRendererDelayedInitializationProxy(AnimatedCharactersRendererImpl.GetInstance());
+            return new EnemyRendererDelayedInitializationProxy(EnemyRendererImpl.GetInstance());
         }
+
+        public override IAnimatedCharactersRenderer GetPlayerCharacterRendererInstance()
+        {
+            return new PlayerCharacterRendererDelayedInitializationProxy(PlayerCharacterRendererImpl.GetInstance());
+        }        
     }
 }

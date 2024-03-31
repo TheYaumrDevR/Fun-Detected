@@ -7,12 +7,12 @@
 			<animationFrame index="2"/>
 		</animationFrames>
 		<transitions>
-			<transition target="walking" />
+			<transition target="walk" />
 			<transition target="rightArmSwing" />
 			<transition target="leftArmSwing" />
 		</transitions>
 	</entryAnimation>
-	<animation id="walking" speedMultiplier="1">
+	<animation id="walk" speedMultiplier="3">
 		<animationFrames spriteImageName="FemaleCharOneWalking" isLooping="true">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>
@@ -32,7 +32,7 @@
 		</animationFrames>
 		<transitions>
 			<transition target="idle" />
-			<transition target="walking" />
+			<transition target="walk" />
 			<transition target="rightArmSwing" />
 			<transition target="leftArmSwing" />		
 		</transitions>
@@ -44,7 +44,7 @@
 		</animationFrames>
 		<transitions>
 			<transition target="idle" />
-			<transition target="walking" />
+			<transition target="walk" />
 			<transition target="rightArmSwing" />
 			<transition target="leftArmSwing" />
 		</transitions>

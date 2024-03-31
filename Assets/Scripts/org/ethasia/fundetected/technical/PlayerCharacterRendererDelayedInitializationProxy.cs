@@ -1,14 +1,12 @@
-using UnityEngine;
-
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class AnimatedCharactersRendererDelayedInitializationProxy : IAnimatedCharactersRenderer
+    public class PlayerCharacterRendererDelayedInitializationProxy : IAnimatedCharactersRenderer
     {
-        private AnimatedCharactersRendererImpl proxiedRenderer;
+        private PlayerCharacterRendererImpl proxiedRenderer;
 
-        public AnimatedCharactersRendererDelayedInitializationProxy(AnimatedCharactersRendererImpl proxiedRenderer)
+        public PlayerCharacterRendererDelayedInitializationProxy(PlayerCharacterRendererImpl proxiedRenderer)
         {
             this.proxiedRenderer = proxiedRenderer;
         }
@@ -21,7 +19,7 @@ namespace Org.Ethasia.Fundetected.Technical
             }
             else
             {
-                AnimatedCharactersRendererImpl.AddGameObjectToStartupRenderQueue(animatedCharacter);
+                PlayerCharacterRendererImpl.AddGameObjectToStartupRenderQueue(animatedCharacter);
             }
         }
     }
