@@ -38,6 +38,11 @@ namespace Org.Ethasia.Fundetected.Technical
             return startupRenderQueue;
         }
 
+        protected override int GetSortingOrderOfRendererInLayer()
+        {
+            return 1;
+        }        
+
         protected override void AssignAnimationStateMachine(StateMachine animationStateMachine)
         {
             PlayerAnimationPresenter.SetStateMachine(animationStateMachine);

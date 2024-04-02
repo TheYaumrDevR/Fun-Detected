@@ -35,6 +35,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
             SpriteRenderer spriteRenderer = animatedCharacter.AddComponent<SpriteRenderer>();
             spriteRenderer.sortingLayerName = "Sprites";
+            spriteRenderer.sortingOrder = GetSortingOrderOfRendererInLayer();
 
             Sprite2dAnimatorBehavior animatorBehavior = animatedCharacter.AddComponent<Sprite2dAnimatorBehavior>();
 
@@ -49,6 +50,8 @@ namespace Org.Ethasia.Fundetected.Technical
         protected abstract void AssignInstance();
 
         protected abstract List<GameObjectProxy> GetStartupRenderQueue();
+
+        protected abstract int GetSortingOrderOfRendererInLayer();
 
         protected abstract void AssignAnimationStateMachine(StateMachine animationStateMachine);
 
