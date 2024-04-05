@@ -1,15 +1,15 @@
 namespace Org.Ethasia.Fundetected.Core
 {
-    public class NothingToAttackBattleLogEntry : IBattleActionResult
+    public class NoAttackExecutedBattleLogEntry : IBattleActionResult
     {
         public bool AttackWasExecuted()
         {
-            return true;
+            return false;
         }
 
         public override string ToString()
         {
-            return "No enemy in range";
+            return "";
         }
     }
 }

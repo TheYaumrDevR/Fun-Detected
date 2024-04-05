@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public class PlayerSkillInteractor
     {
-        public void ExecutePrimaryPlayerAction(double actionTime)
+        public void ExecutePrimaryPlayerAction()
         {
             Area activeArea = Area.ActiveArea;
             Enemy enemyHit = activeArea.GetEnemyHit();
@@ -13,9 +13,20 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 IBattleLogPrinter battleLogPrinter = IoAdaptersFactoryForInteractors.GetInstance().GetBattleLogPrinterInstance();  
 
-                IBattleLogEntry battleLogAction = activeArea.Player.AutoAttack(actionTime, enemyHit);
+                IBattleActionResult battleLogAction = activeArea.Player.AutoAttack(enemyHit);
                 battleLogPrinter.PrintBattleLogEntry(battleLogAction);
+
+                if (battleLogAction.AttackWasExecuted())
+                {
+                    PlayerAnimationPresenter.StartRightArmSwingAnimation();
+                }
             }
+        }
+
+        public bool PlayerCharacterIsExecutingAction()
+        {
+            Area activeArea = Area.ActiveArea;
+            return activeArea.Player.IsAttacking();
         }
     }
 }

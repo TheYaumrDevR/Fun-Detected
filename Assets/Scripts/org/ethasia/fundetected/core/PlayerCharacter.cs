@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core
 {
@@ -14,28 +15,34 @@ namespace Org.Ethasia.Fundetected.Core
 
         private PlayerCharacterBaseStats baseStats;     
 
-        private double lastAttackTime;
-
         private double timeSinceLastMovement;
 
         private PlayerEquipmentSlots allEquipment;
+
+        private StopWatch lastStartOfAttackStopWatch;
 
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             allEquipment = new PlayerEquipmentSlots();
+            lastStartOfAttackStopWatch = new StopWatch();
         }
 
-        public IBattleLogEntry AutoAttack(double actionTime, Enemy target)
+        public void Tick(double actionTime)
         {
-            if (baseStats.CurrentLife > 0 && EnoughTimePassedSinceLastAttack(actionTime))
+            lastStartOfAttackStopWatch.Tick(actionTime);
+        }
+
+        public IBattleActionResult AutoAttack(Enemy target)
+        {
+            if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
+                lastStartOfAttackStopWatch.Reset();
+
                 if (target.IsDead())
                 {
                     return new NothingToAttackBattleLogEntry();
                 }
-
-                lastAttackTime = actionTime;
 
                 float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
                 
@@ -57,7 +64,13 @@ namespace Org.Ethasia.Fundetected.Core
                 return new AttackMissedBattleLogEntry();
             }
 
-            return new EmptyBattleLogEntry();
+            return new NoAttackExecutedBattleLogEntry();
+        }
+
+        public bool IsAttacking()
+        {
+            // TODO Redo this part so that the update call from the engine always updates the stop watch and than all attack time calculations are just done using the stopwatch
+            return !EnoughTimePassedForTheNextAttackToBeExecuted();
         }
 
         public int MoveLeft(double actionTime)
@@ -74,10 +87,10 @@ namespace Org.Ethasia.Fundetected.Core
             return CalculateMovementDistance();
         }
 
-        private bool EnoughTimePassedSinceLastAttack(double actionTime)
+        private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
             double secondsPerAttack = 1.0 / baseStats.AttacksPerSecond;
-            return 0.0 == lastAttackTime || actionTime - lastAttackTime >= secondsPerAttack;
+            return lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack;            
         }
 
         public int CalculateMovementDistance()

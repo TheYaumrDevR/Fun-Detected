@@ -6,6 +6,8 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         private const string IDLE_ANIMATION_NAME = "idle";
         private const string WALK_ANIMATION_NAME = "walk";
+        private const string RIGHT_ARM_SWING_ANIMATION_NAME = "rightArmSwing";
+        private const string LEFT_ARM_SWING_ANIMATION_NAME = "leftArmSwing";
 
         private static StateMachine playerAnimationStateMachine;
 
@@ -23,5 +25,10 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             playerAnimationStateMachine.ExecuteAction(IDLE_ANIMATION_NAME);
         }        
+
+        public static void StartRightArmSwingAnimation()
+        {
+            playerAnimationStateMachine.ExecuteAction(RIGHT_ARM_SWING_ANIMATION_NAME);
+        }
     }
 }

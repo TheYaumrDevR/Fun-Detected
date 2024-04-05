@@ -7,9 +7,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class BattleLogPrinter : IBattleLogPrinter
     {
-        public void PrintBattleLogEntry(IBattleLogEntry logEntry)
+        public void PrintBattleLogEntry(IBattleActionResult logEntry)
         {
-            Debug.Log(logEntry.ToString());
+            // TODO print into log file
+            Debug.Log("Battle log entry printed.");
         }
     }
 }

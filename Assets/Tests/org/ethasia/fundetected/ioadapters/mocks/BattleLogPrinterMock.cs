@@ -6,6 +6,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
     public class BattleLogPrinterMock : IBattleLogPrinter
     {
-        public void PrintBattleLogEntry(IBattleLogEntry logEntry) {}
+        public void PrintBattleLogEntry(IBattleActionResult logEntry) {}
     }
 }

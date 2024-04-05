@@ -42,7 +42,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
-            testCandidate.ExecutePrimaryPlayerAction(1000);
+            testCandidate.ExecutePrimaryPlayerAction();
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
@@ -61,8 +61,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
-            testCandidate.ExecutePrimaryPlayerAction(1.0);
-            testCandidate.ExecutePrimaryPlayerAction(1.4);
+            testCandidate.ExecutePrimaryPlayerAction();
+            testCandidate.ExecutePrimaryPlayerAction();
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
@@ -81,8 +81,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
-            testCandidate.ExecutePrimaryPlayerAction(1.0);
-            testCandidate.ExecutePrimaryPlayerAction(2.0);
+            testCandidate.ExecutePrimaryPlayerAction();
+            testCandidate.ExecutePrimaryPlayerAction();
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
@@ -110,7 +110,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
-            testCandidate.ExecutePrimaryPlayerAction(1.0);
+            testCandidate.ExecutePrimaryPlayerAction();
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
 

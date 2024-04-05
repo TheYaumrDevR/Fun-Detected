@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Fundetected.Core
 {
-    public struct PlayerAbilityActionResult : IBattleLogEntry
+    public struct PlayerAbilityActionResult : IBattleActionResult
     {
         public string TargetName
         {
@@ -19,6 +19,11 @@ namespace Org.Ethasia.Fundetected.Core
             get;
             private set;
         } 
+
+        public bool AttackWasExecuted()
+        {
+            return true;
+        }        
 
         public override string ToString()
         {

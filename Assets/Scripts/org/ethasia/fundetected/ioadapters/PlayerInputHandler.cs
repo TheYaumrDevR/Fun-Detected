@@ -31,7 +31,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 playerMovementInteractor.MovePlayerRight(Time.deltaTime);
             }
 
-            if (PlayerIsStill())
+            if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction())
             {
                 PlayerAnimationPresenter.StartIdleAnimation();
             }
@@ -44,7 +44,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return;
             }
 
-            playerSkillInteractor.ExecutePrimaryPlayerAction(callBackContext.startTime);
+            playerSkillInteractor.ExecutePrimaryPlayerAction();
         }
 
         public void OnMoveLeft(InputAction.CallbackContext callBackContext)
