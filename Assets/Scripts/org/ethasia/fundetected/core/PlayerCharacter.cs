@@ -9,7 +9,11 @@ namespace Org.Ethasia.Fundetected.Core
 
         private CharacterClasses characterClass;
 
-        private FacingDirection facingDirection;
+        public FacingDirection FacingDirection
+        {
+            get;
+            private set;
+        }
 
         private string name;
 
@@ -69,20 +73,19 @@ namespace Org.Ethasia.Fundetected.Core
 
         public bool IsAttacking()
         {
-            // TODO Redo this part so that the update call from the engine always updates the stop watch and than all attack time calculations are just done using the stopwatch
             return !EnoughTimePassedForTheNextAttackToBeExecuted();
         }
 
         public int MoveLeft(double actionTime)
         {
-            facingDirection = FacingDirection.LEFT;
+            FacingDirection = FacingDirection.LEFT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
         }
 
         public int MoveRight(double actionTime)
         {
-            facingDirection = FacingDirection.RIGHT;
+            FacingDirection = FacingDirection.RIGHT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
         }
@@ -141,7 +144,7 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 PlayerCharacter result = new PlayerCharacter();
 
-                result.facingDirection = facingDirection;
+                result.FacingDirection = facingDirection;
 
                 result.name = name;
                 result.characterClass = characterClass;

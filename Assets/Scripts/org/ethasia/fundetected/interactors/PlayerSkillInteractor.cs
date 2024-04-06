@@ -13,12 +13,19 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 IBattleLogPrinter battleLogPrinter = IoAdaptersFactoryForInteractors.GetInstance().GetBattleLogPrinterInstance();  
 
-                IBattleActionResult battleLogAction = activeArea.Player.AutoAttack(enemyHit);
+                PlayerCharacter playerCharacter = activeArea.Player;
+
+                IBattleActionResult battleLogAction = playerCharacter.AutoAttack(enemyHit);
                 battleLogPrinter.PrintBattleLogEntry(battleLogAction);
 
                 if (battleLogAction.AttackWasExecuted())
                 {
-                    PlayerAnimationPresenter.StartRightArmSwingAnimation();
+                    if (playerCharacter.FacingDirection == FacingDirection.RIGHT)
+                    {
+                        PlayerAnimationPresenter.StartRightArmSwingAnimation();
+                    } else {
+                        PlayerAnimationPresenter.StartLeftArmSwingAnimation();
+                    }
                 }
             }
         }

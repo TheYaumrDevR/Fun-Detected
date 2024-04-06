@@ -30,5 +30,10 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             playerAnimationStateMachine.ExecuteAction(RIGHT_ARM_SWING_ANIMATION_NAME);
         }
+
+        public static void StartLeftArmSwingAnimation()
+        {
+            playerAnimationStateMachine.ExecuteAction(LEFT_ARM_SWING_ANIMATION_NAME);
+        }        
     }
 }
