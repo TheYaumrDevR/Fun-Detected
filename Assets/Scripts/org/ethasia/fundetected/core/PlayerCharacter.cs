@@ -25,6 +25,12 @@ namespace Org.Ethasia.Fundetected.Core
 
         private StopWatch lastStartOfAttackStopWatch;
 
+        public bool AttackWasCancelled
+        {
+            get;
+            private set;
+        }
+
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
@@ -42,6 +48,7 @@ namespace Org.Ethasia.Fundetected.Core
             if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
                 lastStartOfAttackStopWatch.Reset();
+                AttackWasCancelled = false;
 
                 if (target.IsDead())
                 {
@@ -78,6 +85,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int MoveLeft(double actionTime)
         {
+            AttackWasCancelled = true;
             FacingDirection = FacingDirection.LEFT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
@@ -85,6 +93,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int MoveRight(double actionTime)
         {
+            AttackWasCancelled = true;
             FacingDirection = FacingDirection.RIGHT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
@@ -93,7 +102,7 @@ namespace Org.Ethasia.Fundetected.Core
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
             double secondsPerAttack = 1.0 / baseStats.AttacksPerSecond;
-            return lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack;            
+            return lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
         }
 
         public int CalculateMovementDistance()
