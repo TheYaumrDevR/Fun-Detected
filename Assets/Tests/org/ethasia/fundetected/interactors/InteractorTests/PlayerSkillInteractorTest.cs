@@ -55,6 +55,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
 
+            PlayerRepeatedUpdateInteractor repeatedUpdateInteractor = new PlayerRepeatedUpdateInteractor();
+
             rngMock.Reset();
 
             Area.ActiveArea.Enemies.Clear();
@@ -62,6 +64,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction();
+
+            repeatedUpdateInteractor.Update(0.63);
+
             testCandidate.ExecutePrimaryPlayerAction();
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
@@ -75,6 +80,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
 
+            PlayerRepeatedUpdateInteractor repeatedUpdateInteractor = new PlayerRepeatedUpdateInteractor();
+
             rngMock.Reset();
 
             Area.ActiveArea.Enemies.Clear();
@@ -82,6 +89,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction();
+
+            repeatedUpdateInteractor.Update(0.9);
+
             testCandidate.ExecutePrimaryPlayerAction();
 
             Enemy enemy = Area.ActiveArea.Enemies[0];

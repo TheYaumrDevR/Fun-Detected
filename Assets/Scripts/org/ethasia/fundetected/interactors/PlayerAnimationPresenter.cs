@@ -18,22 +18,31 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public static void StartWalkAnimation()
         {
-            playerAnimationStateMachine.ExecuteAction(WALK_ANIMATION_NAME);
+
+            StartAnimation(WALK_ANIMATION_NAME);
         }
 
         public static void StartIdleAnimation()
         {
-            playerAnimationStateMachine.ExecuteAction(IDLE_ANIMATION_NAME);
+            StartAnimation(IDLE_ANIMATION_NAME);
         }        
 
         public static void StartRightArmSwingAnimation()
         {
-            playerAnimationStateMachine.ExecuteAction(RIGHT_ARM_SWING_ANIMATION_NAME);
+            StartAnimation(RIGHT_ARM_SWING_ANIMATION_NAME);
         }
 
         public static void StartLeftArmSwingAnimation()
         {
-            playerAnimationStateMachine.ExecuteAction(LEFT_ARM_SWING_ANIMATION_NAME);
-        }        
+            StartAnimation(LEFT_ARM_SWING_ANIMATION_NAME);
+        }    
+
+        private static void StartAnimation(string animationName)
+        {
+            if (null != playerAnimationStateMachine)
+            {
+                playerAnimationStateMachine.ExecuteAction(animationName);
+            }
+        }    
     }
 }

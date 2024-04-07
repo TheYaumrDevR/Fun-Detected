@@ -2,6 +2,12 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 {
     public class StopWatch
     {
+        public bool WasReset
+        {
+            get;
+            private set;
+        }
+
         public double TimePassedSinceStart
         {
             get;
@@ -16,6 +22,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         public void Reset()
         {
             TimePassedSinceStart = 0.0;
+            WasReset = true;
         }
     }
 }

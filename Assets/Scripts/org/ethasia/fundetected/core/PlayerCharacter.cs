@@ -102,7 +102,7 @@ namespace Org.Ethasia.Fundetected.Core
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
             double secondsPerAttack = 1.0 / baseStats.AttacksPerSecond;
-            return lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
+            return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
         }
 
         public int CalculateMovementDistance()
