@@ -19,6 +19,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         BOW,
         WAND,
         BODY_ARMOR,
+        HEAD_GEAR,
+        SHOES,
+        GLOVES,
+        RINGS,
+        AMULETS,
+        BELTS,
         NONE
     }
 }

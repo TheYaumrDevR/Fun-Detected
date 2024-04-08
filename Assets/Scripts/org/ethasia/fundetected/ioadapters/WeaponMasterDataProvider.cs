@@ -3,7 +3,7 @@ using Org.Ethasia.Fundetected.Core.Equipment;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class EquipmentMasterDataProvider
+    public class WeaponMasterDataProvider
     {
         public WeaponMasterData GetCorrodedCutlassMasterData()
         {
