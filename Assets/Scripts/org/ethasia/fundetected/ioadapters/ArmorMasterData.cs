@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
@@ -46,6 +47,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             private set;
         }      
 
+        public EquipmentAffix FirstImplicit
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private ItemClass itemClass;
@@ -55,6 +62,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             private int intelligenceRequirement;
             private int armorValue;
             private int movementSpeedAddend;
+            private EquipmentAffix firstImplicit;
 
             public Builder SetItemClass(ItemClass value)
             {
@@ -98,6 +106,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return this;
             }
 
+            public Builder SetFirstImplicit(EquipmentAffix value)
+            {
+                firstImplicit = value;
+                return this;
+            }
+
             public ArmorMasterData Build()
             {
                 ArmorMasterData result = new ArmorMasterData();
@@ -109,6 +123,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 result.IntelligenceRequirement = intelligenceRequirement;
                 result.ArmorValue = armorValue;
                 result.MovementSpeedAddend = movementSpeedAddend;
+                result.FirstImplicit = firstImplicit;
 
                 return result;
             }

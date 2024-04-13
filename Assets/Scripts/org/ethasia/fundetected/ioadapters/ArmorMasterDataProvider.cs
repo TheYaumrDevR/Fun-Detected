@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
@@ -25,14 +26,69 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }  
 
-        public ArmorMasterData GetTatteredClothCapMasterData()
+        public ArmorMasterData GetTatteredClothHoodMasterData()
         {
             return new ArmorMasterData.Builder()
-                .SetName("Tattered Cloth Cap")
+                .SetName("Tattered Cloth Hood")
                 .SetItemClass(ItemClass.HEAD_GEAR)
                 .SetStrengthRequirement(3)
                 .SetArmorValue(4)
+                .SetFirstImplicit(new PlusAllElementalResistancesAffix(1))
                 .Build();
-        }               
+        }   
+
+        public ArmorMasterData GetCorrodedLombardHelmet()
+        {
+            return new ArmorMasterData.Builder()
+                .SetName("Corroded Lombard Helmet")
+                .SetItemClass(ItemClass.HEAD_GEAR)
+                .SetStrengthRequirement(7)
+                .SetArmorValue(9)
+                .SetMovementSpeedAddend(1)
+                .Build();
+        } 
+
+        public ArmorMasterData GetCorrodedPlateArmorMasterData()
+        {
+            return new ArmorMasterData.Builder()
+                .SetName("Corroded Plate Armor")
+                .SetItemClass(ItemClass.BODY_ARMOR)
+                .SetStrengthRequirement(12)
+                .SetArmorValue(23)
+                .Build();
+        } 
+
+        public ArmorMasterData GetTatteredLeatherArmorMasterData()
+        {
+            return new ArmorMasterData.Builder()
+                .SetName("Tattered Leather Armor")
+                .SetItemClass(ItemClass.BODY_ARMOR)
+                .SetStrengthRequirement(8)
+                .SetArmorValue(15)
+                .SetMovementSpeedAddend(6)
+                .Build();
+        }    
+
+        public ArmorMasterData GetTatteredWizardRobeMasterData()
+        {
+            return new ArmorMasterData.Builder()
+                .SetName("Tattered Wizard Robe")
+                .SetItemClass(ItemClass.BODY_ARMOR)
+                .SetStrengthRequirement(4)
+                .SetArmorValue(8)
+                .SetFirstImplicit(new PlusAllElementalResistancesAffix(2))
+                .Build();
+        }  
+
+        public ArmorMasterData GetCorrodedLamellarArmorMasterData()
+        {
+            return new ArmorMasterData.Builder()
+                .SetName("Corroded Lamellar Armor")
+                .SetItemClass(ItemClass.BODY_ARMOR)
+                .SetStrengthRequirement(10)
+                .SetArmorValue(19)
+                .SetMovementSpeedAddend(3)
+                .Build();
+        }                                       
     }
 }
