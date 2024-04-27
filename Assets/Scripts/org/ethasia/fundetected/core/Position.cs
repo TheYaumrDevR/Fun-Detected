@@ -9,6 +9,6 @@ namespace Org.Ethasia.Fundetected.Core
         {
             X = x;
             Y = y;
-        }
+        }       
     }
 }
