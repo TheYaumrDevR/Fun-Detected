@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Org.Ethasia.Fundetected.Core.Maths
@@ -18,10 +19,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             HitboxTilePositions = new List<HitboxTilePosition>();
         }
 
-        public void CreateFilledCircleArc(HitboxTilePosition startPoint, HitboxTilePosition endPoint, int radius)
+        public void CreateFilledCircleArc(double startAngleInRadians, double stopAngleInRadians, int radius)
         {
             this.radius = radius;
             SetCirclePoints();
+
+            HitboxTilePosition startPoint = DetermineCirclePointFromAngle(startAngleInRadians);
+            HitboxTilePosition endPoint = DetermineCirclePointFromAngle(stopAngleInRadians);  
+
             MoveClockwiseFromStartToEndAndCopyPositionsToList(startPoint, endPoint);
         }
 
@@ -57,6 +62,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 
                 SetPixelsOnMirroredSections(centerXy, centerXy, x, y);
             }
+        }
+
+        private HitboxTilePosition DetermineCirclePointFromAngle(double angleInRadians)
+        {
+            int pointX = Convert.ToInt32(Math.Round(radius + radius * Math.Cos(angleInRadians)));
+            int pointY = Convert.ToInt32(Math.Round(radius + radius * Math.Sin(angleInRadians)));
+
+            return new HitboxTilePosition(pointX, pointY);
         }
 
         private void SetPixelsOnMirroredSections(int xcenter, int ycenter, int x, int y)

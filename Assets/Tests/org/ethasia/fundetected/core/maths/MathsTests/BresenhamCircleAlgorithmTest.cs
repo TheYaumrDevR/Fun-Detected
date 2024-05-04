@@ -10,10 +10,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         {
             BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
 
-            HitboxTilePosition startPoint = new HitboxTilePosition(2, 0);
-            HitboxTilePosition endPoint = new HitboxTilePosition(4, 3);
-
-            testCandidate.CreateFilledCircleArc(startPoint, endPoint, 2);
+            testCandidate.CreateFilledCircleArc(-1.5708, 0.383972, 2);
 
             List<HitboxTilePosition> result = testCandidate.HitboxTilePositions;
             
@@ -40,10 +37,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         {
             BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
 
-            HitboxTilePosition startPoint = new HitboxTilePosition(2, 0);
-            HitboxTilePosition endPoint = new HitboxTilePosition(0, 3);
-
-            testCandidate.CreateFilledCircleArc(startPoint, endPoint, 2);
+            testCandidate.CreateFilledCircleArc(-1.5708, 2.74017, 2);
 
             List<HitboxTilePosition> result = testCandidate.HitboxTilePositions;
             
@@ -82,10 +76,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         {
             BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
 
-            HitboxTilePosition startPoint = new HitboxTilePosition(2, 0);
-            HitboxTilePosition endPoint = new HitboxTilePosition(0, 1);
-
-            testCandidate.CreateFilledCircleArc(startPoint, endPoint, 2);
+            testCandidate.CreateFilledCircleArc(-1.5708, -2.74017, 2);
 
             List<HitboxTilePosition> result = testCandidate.HitboxTilePositions;
             
@@ -130,10 +121,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         {
             BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
 
-            HitboxTilePosition startPoint = new HitboxTilePosition(5, 5);
-            HitboxTilePosition endPoint = new HitboxTilePosition(0, 4);
-
-            testCandidate.CreateFilledCircleArc(startPoint, endPoint, 3);
+            testCandidate.CreateFilledCircleArc(0.785398, 2.74017, 3);
 
             List<HitboxTilePosition> result = testCandidate.HitboxTilePositions;
             
@@ -156,6 +144,6 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 
             Assert.That(result[6].X, Is.EqualTo(0)); 
             Assert.That(result[6].Y, Is.EqualTo(4));                                                                                                              
-        }                        
+        }                     
     }
 }
