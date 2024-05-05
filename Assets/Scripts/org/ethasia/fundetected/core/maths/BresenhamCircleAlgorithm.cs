@@ -155,6 +155,100 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             }
 
             return currentPoint;
-        }            
+        }     
+
+        private void DrawLine(HitboxTilePosition startPoint, HitboxTilePosition endPoint)
+        {
+            int dx = endPoint.X - startPoint.X;
+            int dy = endPoint.Y - startPoint.Y;
+
+            if (dx < 0)
+            {
+                dx = -dx;
+            }
+
+            if (dy < 0)
+            {
+                dy = -dy;
+            }
+
+            int incrementX = 1;
+
+            if (endPoint.X < startPoint.X)
+            {
+                incrementX = -1;
+            }
+
+            int incrementY = 1;
+
+            if (endPoint.Y < startPoint.Y)
+            {
+                incrementY = -1;
+            }
+
+            int x = startPoint.X;
+            int y = startPoint.Y;
+
+            int decisionParameter = 0;
+
+            int decisionParameterIncrement1 = 0;
+            int decisionParameterIncrement2 = 0;
+
+            if (dx > dy)
+            {
+                decisionParameter = 2 * dy - dx;
+                decisionParameterIncrement1 = 2 * (dy - dx);
+                decisionParameterIncrement2 = 2 * dy;
+
+                for (int i = 0; i < dx; i++)
+                {
+                    if (decisionParameter >= 0)
+                    {
+                        y += incrementY;
+                        decisionParameter += decisionParameterIncrement1;
+                    }
+                    else
+                    {
+                        decisionParameter += decisionParameterIncrement2;
+                    }
+
+                    x += incrementX;
+                    SetCollisionTile(x, y);
+                }
+            }
+            else
+            {
+                decisionParameter = 2 * dx - dy;
+                decisionParameterIncrement1 = 2 * (dx - dy);
+                decisionParameterIncrement2 = 2 * dx;
+
+                for (int i = 0; i < dy; i++)
+                {
+                    if (decisionParameter >= 0)
+                    {
+                        x += incrementX;
+                        decisionParameter += decisionParameterIncrement1;
+                    }
+                    else
+                    {
+                        decisionParameter += decisionParameterIncrement2;
+                    }
+
+                    y += incrementY;
+                    SetCollisionTile(x, y);
+                }
+            }
+        }    
+
+        private void SetCollisionTile(int x, int y)
+        {
+            if (!setPixels[x, y])
+            {
+                HitboxTilePosition collisionTile = new HitboxTilePosition(x, y);
+
+                setPixels[x, y] = true;
+                HitboxTilePositions.Add(collisionTile);
+            }
+        }   
     }
 }
