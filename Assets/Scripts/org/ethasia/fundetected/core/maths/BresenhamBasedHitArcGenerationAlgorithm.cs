@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Org.Ethasia.Fundetected.Core.Maths
 {
-    public class BresenhamCircleAlgorithm
+    public class BresenhamBasedHitArcGenerationAlgorithm
     {
         private bool[,] setPixels;
         private int radius;
@@ -14,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             private set;
         }
 
-        public BresenhamCircleAlgorithm()
+        public BresenhamBasedHitArcGenerationAlgorithm()
         {
             HitboxTilePositions = new List<HitboxTilePosition>();
         }
@@ -28,6 +28,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             HitboxTilePosition endPoint = DetermineCirclePointFromAngle(stopAngleInRadians);  
 
             MoveClockwiseFromStartToEndAndCopyPositionsToList(startPoint, endPoint);
+            FillArc();
         }
 
         private void SetCirclePoints()
@@ -157,8 +158,27 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             return currentPoint;
         }     
 
-        private void DrawLine(HitboxTilePosition startPoint, HitboxTilePosition endPoint)
+        private void FillArc()
         {
+            List<HitboxTilePosition> newTilesFromLines = new List<HitboxTilePosition>();
+
+            for (int i = 1; i < HitboxTilePositions.Count; i++)
+            {
+                HitboxTilePosition originPoint = HitboxTilePositions[0];
+                HitboxTilePosition arcPoint = HitboxTilePositions[i];
+
+                List<HitboxTilePosition> newTilesFromLine = DrawLine(originPoint, arcPoint);
+
+                newTilesFromLines.AddRange(newTilesFromLine);
+            }
+
+            HitboxTilePositions.AddRange(newTilesFromLines);
+        }
+
+        private List<HitboxTilePosition> DrawLine(HitboxTilePosition startPoint, HitboxTilePosition endPoint)
+        {
+            List<HitboxTilePosition> newTilesFromLine = new List<HitboxTilePosition>();
+
             int dx = endPoint.X - startPoint.X;
             int dy = endPoint.Y - startPoint.Y;
 
@@ -213,7 +233,12 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                     }
 
                     x += incrementX;
-                    SetCollisionTile(x, y);
+                    HitboxTilePosition hitTile = CreateCollisionTile(x, y);
+
+                    if (!hitTile.IsInvalid)
+                    {
+                        newTilesFromLine.Add(hitTile);
+                    }
                 }
             }
             else
@@ -235,20 +260,27 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                     }
 
                     y += incrementY;
-                    SetCollisionTile(x, y);
+                    HitboxTilePosition hitTile = CreateCollisionTile(x, y);
+
+                    if (!hitTile.IsInvalid)
+                    {
+                        newTilesFromLine.Add(hitTile);
+                    }
                 }
             }
+
+            return newTilesFromLine;
         }    
 
-        private void SetCollisionTile(int x, int y)
+        private HitboxTilePosition CreateCollisionTile(int x, int y)
         {
             if (!setPixels[x, y])
             {
-                HitboxTilePosition collisionTile = new HitboxTilePosition(x, y);
-
                 setPixels[x, y] = true;
-                HitboxTilePositions.Add(collisionTile);
+                return new HitboxTilePosition(x, y);
             }
+
+            return new HitboxTilePosition(true);
         }   
     }
 }

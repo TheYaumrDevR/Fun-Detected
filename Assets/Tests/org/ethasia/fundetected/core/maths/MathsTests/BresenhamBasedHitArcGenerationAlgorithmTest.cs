@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 {
-    public class BresenhamCircleAlgorithmTest
+    public class BresenhamBasedHitArcGenerationAlgorithmTest
     {
         [Test]
         public void TestCircleArcWithRadiusTwoIsDrawnFromTopRightToBottomRight()
         {
-            BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
+            BresenhamBasedHitArcGenerationAlgorithm testCandidate = new BresenhamBasedHitArcGenerationAlgorithm();
 
             testCandidate.CreateFilledCircleArc(-1.5708, 0.383972, 2);
 
@@ -35,7 +35,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         [Test]
         public void TestCircleArcWithRadiusTwoIsDrawnFromTopRightToBottomLeft()
         {
-            BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
+            BresenhamBasedHitArcGenerationAlgorithm testCandidate = new BresenhamBasedHitArcGenerationAlgorithm();
 
             testCandidate.CreateFilledCircleArc(-1.5708, 2.74017, 2);
 
@@ -74,7 +74,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         [Test]
         public void TestCircleArcWithRadiusTwoIsDrawnFromTopRightToTopLeft()
         {
-            BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
+            BresenhamBasedHitArcGenerationAlgorithm testCandidate = new BresenhamBasedHitArcGenerationAlgorithm();
 
             testCandidate.CreateFilledCircleArc(-1.5708, -2.74017, 2);
 
@@ -119,7 +119,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         [Test]
         public void TestCircleArcWithRadiusThreeIsDrawnFromBottomRightToBottomLeft()
         {
-            BresenhamCircleAlgorithm testCandidate = new BresenhamCircleAlgorithm();
+            BresenhamBasedHitArcGenerationAlgorithm testCandidate = new BresenhamBasedHitArcGenerationAlgorithm();
 
             testCandidate.CreateFilledCircleArc(0.785398, 2.74017, 3);
 
