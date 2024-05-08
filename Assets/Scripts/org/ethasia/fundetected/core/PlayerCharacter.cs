@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Maths;
 
@@ -31,11 +33,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        private List<HitboxTilePosition> meleeHitArc;
+
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             allEquipment = new PlayerEquipmentSlots();
             lastStartOfAttackStopWatch = new StopWatch();
+
+            BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
+            hitArcGenerator.CreateFilledCircleArc(-0.3829252379, 0.9971066017, 22);
+
+            meleeHitArc = hitArcGenerator.HitboxTilePositions;
         }
 
         public void Tick(double actionTime)
