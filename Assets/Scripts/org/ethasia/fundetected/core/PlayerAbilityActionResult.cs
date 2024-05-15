@@ -18,11 +18,6 @@ namespace Org.Ethasia.Fundetected.Core
         {
             get;
             private set;
-        } 
-
-        public bool AttackWasExecuted()
-        {
-            return true;
         }        
 
         public override string ToString()

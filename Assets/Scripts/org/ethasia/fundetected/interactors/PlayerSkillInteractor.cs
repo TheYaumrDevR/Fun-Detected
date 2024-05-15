@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core;
 
 namespace Org.Ethasia.Fundetected.Interactors
@@ -7,27 +9,27 @@ namespace Org.Ethasia.Fundetected.Interactors
         public void ExecutePrimaryPlayerAction()
         {
             Area activeArea = Area.ActiveArea;
-            Enemy enemyHit = activeArea.GetEnemyHit();
+            IBattleLogPrinter battleLogPrinter = IoAdaptersFactoryForInteractors.GetInstance().GetBattleLogPrinterInstance();  
+            PlayerCharacter playerCharacter = activeArea.Player;
 
-            if (null != enemyHit)
+            if (playerCharacter.CanAutoAttack())
             {
-                IBattleLogPrinter battleLogPrinter = IoAdaptersFactoryForInteractors.GetInstance().GetBattleLogPrinterInstance();  
-
-                PlayerCharacter playerCharacter = activeArea.Player;
-
-                IBattleActionResult battleLogAction = playerCharacter.AutoAttack(enemyHit);
-                battleLogPrinter.PrintBattleLogEntry(battleLogAction);
-
-                if (battleLogAction.AttackWasExecuted())
+                if (playerCharacter.FacingDirection == FacingDirection.RIGHT)
                 {
-                    if (playerCharacter.FacingDirection == FacingDirection.RIGHT)
-                    {
-                        PlayerAnimationPresenter.StartRightArmSwingAnimation();
-                    } else {
-                        PlayerAnimationPresenter.StartLeftArmSwingAnimation();
-                    }
+                    PlayerAnimationPresenter.StartRightArmSwingAnimation();
+                } else {
+                    PlayerAnimationPresenter.StartLeftArmSwingAnimation();
                 }
             }
+
+            AsyncResponse<List<IBattleActionResult>> battleLogActions = playerCharacter.AutoAttack();
+            battleLogActions.OnResponseReceived((battleLogActions) => 
+            {
+                foreach (IBattleActionResult battleLogAction in battleLogActions)
+                {
+                    battleLogPrinter.PrintBattleLogEntry(battleLogAction);                  
+                }
+            });
         }
 
         public bool PlayerCharacterIsExecutingAction()

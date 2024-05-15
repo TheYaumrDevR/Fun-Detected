@@ -33,58 +33,85 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        private List<HitboxTilePosition> meleeHitArc;
+        private MeleeAttack meleeAttack;
 
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             allEquipment = new PlayerEquipmentSlots();
             lastStartOfAttackStopWatch = new StopWatch();
+        }
 
+        private void CreateMeleeAttack()
+        {
             BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
             hitArcGenerator.CreateFilledCircleArc(-0.3829252379, 0.9971066017, 22);
 
-            meleeHitArc = hitArcGenerator.HitboxTilePositions;
+            List<HitboxTilePosition> meleeHitArc = hitArcGenerator.HitboxTilePositions;
+
+            meleeAttack = new MeleeAttack(meleeHitArc, (1.0 / baseStats.AttacksPerSecond) / 2.0);
         }
 
         public void Tick(double actionTime)
         {
             lastStartOfAttackStopWatch.Tick(actionTime);
+            meleeAttack.Tick(actionTime);
         }
 
-        public IBattleActionResult AutoAttack(Enemy target)
+        public bool CanAutoAttack()
         {
+            return baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted();
+        }
+
+        public AsyncResponse<List<IBattleActionResult>> AutoAttack()
+        {
+            AsyncResponse<List<IBattleActionResult>> result = new AsyncResponse<List<IBattleActionResult>>();
+            List<IBattleActionResult> battleActionResults = new List<IBattleActionResult>();
+
             if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
                 lastStartOfAttackStopWatch.Reset();
                 AttackWasCancelled = false;
 
-                if (target.IsDead())
-                {
-                    return new NothingToAttackBattleLogEntry();
-                }
+                AsyncResponse<List<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
+                enemiesHit.OnResponseReceived((enemies) => {
+                    foreach (Enemy target in enemies)
+                    {
+                        if (!target.IsDead())
+                        {
+                            float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
+                            
+                            if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
+                            {
+                                DamageRange damageRange = baseStats.BasePhysicalDamage;
 
-                float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
-                
-                if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
-                {
-                    DamageRange damageRange = baseStats.BasePhysicalDamage;
+                                int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
 
-                    int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
+                                int damageTaken = target.TakePhysicalHit(damage);
 
-                    int damageTaken = target.TakePhysicalHit(damage);
+                                battleActionResults.Add(new PlayerAbilityActionResult.Builder()
+                                    .SetTargetName(target.Name)
+                                    .SetTargetDamageTaken(damageTaken)
+                                    .SetTargetRemainingHealth(target.CurrentLife)
+                                    .Build());
+                            }
+                            else 
+                            {
+                                battleActionResults.Add(new AttackMissedBattleLogEntry());
+                            }
+                        }
+                    }
 
-                    return new PlayerAbilityActionResult.Builder()
-                        .SetTargetName(target.Name)
-                        .SetTargetDamageTaken(damageTaken)
-                        .SetTargetRemainingHealth(target.CurrentLife)
-                        .Build();
-                }
-
-                return new AttackMissedBattleLogEntry();
+                    result.SetResponseObject(battleActionResults);
+                });
+            }
+            else
+            {
+                battleActionResults.Add(new NoAttackExecutedBattleLogEntry());
+                result.SetResponseObject(battleActionResults);
             }
 
-            return new NoAttackExecutedBattleLogEntry();
+            return result;
         }
 
         public bool IsAttacking()
@@ -95,6 +122,7 @@ namespace Org.Ethasia.Fundetected.Core
         public int MoveLeft(double actionTime)
         {
             AttackWasCancelled = true;
+            meleeAttack.Cancel();
             FacingDirection = FacingDirection.LEFT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
@@ -103,6 +131,7 @@ namespace Org.Ethasia.Fundetected.Core
         public int MoveRight(double actionTime)
         {
             AttackWasCancelled = true;
+            meleeAttack.Cancel();
             FacingDirection = FacingDirection.RIGHT;
             timeSinceLastMovement += actionTime;
             return CalculateMovementDistance();
@@ -168,6 +197,8 @@ namespace Org.Ethasia.Fundetected.Core
                 result.characterClass = characterClass;
 
                 result.baseStats = playerCharacterBaseStats;
+
+                result.CreateMeleeAttack();
 
                 return result;
             }  

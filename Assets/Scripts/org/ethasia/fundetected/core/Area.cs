@@ -14,6 +14,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         private bool[,] isCollisionTile;
 
+        private Dictionary<HitboxTilePosition, List<Enemy>> enemyHitTiles;
+
         private EnemySpawner enemySpawner;
 
         private Position playerPosition;
@@ -53,6 +55,7 @@ namespace Org.Ethasia.Fundetected.Core
             Enemies = new List<Enemy>();
             this.isCollisionTile = isCollisionTile; 
             playerPosition = new Position(0, 0);
+            enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
         }
 
         public bool TileAtIsCollision(int x, int y)
@@ -83,6 +86,7 @@ namespace Org.Ethasia.Fundetected.Core
         public void AddEnemy(Enemy enemy)
         {
             Enemies.Add(enemy);
+            SetEnemyHitBox(enemy);
         }    
 
         public List<EnemySpawnLocation> SpawnEnemies()
@@ -96,14 +100,19 @@ namespace Org.Ethasia.Fundetected.Core
             return new List<EnemySpawnLocation>();
         }    
 
-        public Enemy GetEnemyHit()
+        public List<Enemy> GetEnemiesHit(List<HitboxTilePosition> hitArc)
         {
-            if (Enemies.Count > 0)
+            List<Enemy> result = new List<Enemy>();
+
+            foreach (HitboxTilePosition hitArcTile in hitArc)
             {
-                return Enemies[0];
+                if (enemyHitTiles.ContainsKey(hitArcTile))
+                {
+                    result.AddRange(enemyHitTiles[hitArcTile]);
+                }
             }
 
-            return null;
+            return result;
         }
 
         public int CalculateUnitsPlayerCanMoveRight(int requestedMovementDistance)
@@ -146,7 +155,38 @@ namespace Org.Ethasia.Fundetected.Core
         public int TryToMovePlayerLeftStepUp()
         {
             return MOVE_LEFT_STRATEGY.TryToMovePlayerStepUp(playerPosition);
-        }            
+        } 
+
+        private void SetEnemyHitBox(Enemy enemy)
+        {
+            BoundingBox enemyBoundingBox = enemy.BoundingBox;
+            Position enemyPosition = enemy.Position;
+
+            int topLeftPosX = enemyPosition.X - enemyBoundingBox.DistanceToLeftEdge;
+            int topLeftPosY = enemyPosition.Y + enemyBoundingBox.DistanceToTopEdge;
+
+            int bottomRightPosX = enemyPosition.X + enemyBoundingBox.DistanceToRightEdge;
+            int bottomRightPosY = enemyPosition.Y - enemyBoundingBox.DistanceToBottomEdge;
+
+            for (int i = topLeftPosX; i <= bottomRightPosX; i++)
+            {
+                for (int j = bottomRightPosY; j <= topLeftPosY; j++)
+                {
+                    HitboxTilePosition hitboxTilePosition = new HitboxTilePosition(i, j);
+
+                    if (enemyHitTiles.ContainsKey(hitboxTilePosition))
+                    {
+                        enemyHitTiles[hitboxTilePosition].Add(enemy);
+                    } 
+                    else 
+                    {
+                        List<Enemy> enemies = new List<Enemy>();
+                        enemies.Add(enemy);
+                        enemyHitTiles.Add(hitboxTilePosition, enemies);
+                    }
+                }
+            }
+        }           
 
         public class Builder
         {
