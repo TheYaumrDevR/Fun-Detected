@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Maths;
 
+using UnityEngine;
+
 namespace Org.Ethasia.Fundetected.Core
 {
     public class PlayerCharacter
@@ -60,7 +62,7 @@ namespace Org.Ethasia.Fundetected.Core
 
             if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
-                AsyncResponse<List<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
+                AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
                 enemiesHit.OnResponseReceived((enemies) => {
                     foreach (Enemy target in enemies)
                     {
@@ -81,6 +83,8 @@ namespace Org.Ethasia.Fundetected.Core
                                     .SetTargetDamageTaken(damageTaken)
                                     .SetTargetRemainingHealth(target.CurrentLife)
                                     .Build());
+
+                                Debug.Log("X: " + target.Position.X + " Y: " + target.Position.Y);
                             }
                             else 
                             {

@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         private bool attackWasQueued; 
 
-        private AsyncResponse<List<Enemy>> enemiesHitResponse;
+        private AsyncResponse<HashSet<Enemy>> enemiesHitResponse;
 
         public MeleeAttack(List<HitboxTilePosition> hitArc, double timeToHitFromStartOfAttack)
         {
@@ -40,15 +40,15 @@ namespace Org.Ethasia.Fundetected.Core
                 {
                     attackWasQueued = false;
 
-                    List<Enemy> enemiesHit = Area.ActiveArea.GetEnemiesHit(hitArc);
+                    HashSet<Enemy> enemiesHit = Area.ActiveArea.GetEnemiesHit(hitArc);
                     enemiesHitResponse.SetResponseObject(enemiesHit);
                 }
             }
         }
 
-        public AsyncResponse<List<Enemy>> Start(double attacksPerSecond)
+        public AsyncResponse<HashSet<Enemy>> Start(double attacksPerSecond)
         {
-            AsyncResponse<List<Enemy>> result = new AsyncResponse<List<Enemy>>();
+            AsyncResponse<HashSet<Enemy>> result = new AsyncResponse<HashSet<Enemy>>();
             enemiesHitResponse = result;
 
             if (EnoughTimePassedForTheNextAttackToBeExecuted(attacksPerSecond))

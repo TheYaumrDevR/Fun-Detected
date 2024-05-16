@@ -100,15 +100,15 @@ namespace Org.Ethasia.Fundetected.Core
             return new List<EnemySpawnLocation>();
         }    
 
-        public List<Enemy> GetEnemiesHit(List<HitboxTilePosition> hitArc)
+        public HashSet<Enemy> GetEnemiesHit(List<HitboxTilePosition> hitArc)
         {
-            List<Enemy> result = new List<Enemy>();
+            HashSet<Enemy> result = new HashSet<Enemy>();
 
             foreach (HitboxTilePosition hitArcTile in hitArc)
             {
                 if (enemyHitTiles.ContainsKey(hitArcTile))
                 {
-                    result.AddRange(enemyHitTiles[hitArcTile]);
+                    result.UnionWith(enemyHitTiles[hitArcTile]);
                 }
             }
 
