@@ -25,21 +25,12 @@ namespace Org.Ethasia.Fundetected.Core
 
         private PlayerEquipmentSlots allEquipment;
 
-        private StopWatch lastStartOfAttackStopWatch;
-
-        public bool AttackWasCancelled
-        {
-            get;
-            private set;
-        }
-
         private MeleeAttack meleeAttack;
 
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             allEquipment = new PlayerEquipmentSlots();
-            lastStartOfAttackStopWatch = new StopWatch();
         }
 
         private void CreateMeleeAttack()
@@ -54,7 +45,6 @@ namespace Org.Ethasia.Fundetected.Core
 
         public void Tick(double actionTime)
         {
-            lastStartOfAttackStopWatch.Tick(actionTime);
             meleeAttack.Tick(actionTime);
         }
 
@@ -70,9 +60,6 @@ namespace Org.Ethasia.Fundetected.Core
 
             if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
-                lastStartOfAttackStopWatch.Reset();
-                AttackWasCancelled = false;
-
                 AsyncResponse<List<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
                 enemiesHit.OnResponseReceived((enemies) => {
                     foreach (Enemy target in enemies)
@@ -121,7 +108,6 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int MoveLeft(double actionTime)
         {
-            AttackWasCancelled = true;
             meleeAttack.Cancel();
             FacingDirection = FacingDirection.LEFT;
             timeSinceLastMovement += actionTime;
@@ -130,7 +116,6 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int MoveRight(double actionTime)
         {
-            AttackWasCancelled = true;
             meleeAttack.Cancel();
             FacingDirection = FacingDirection.RIGHT;
             timeSinceLastMovement += actionTime;
@@ -139,8 +124,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
-            double secondsPerAttack = 1.0 / baseStats.AttacksPerSecond;
-            return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
+            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(baseStats.AttacksPerSecond);
         }
 
         public int CalculateMovementDistance()

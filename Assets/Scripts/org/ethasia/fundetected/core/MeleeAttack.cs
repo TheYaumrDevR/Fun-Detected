@@ -68,7 +68,7 @@ namespace Org.Ethasia.Fundetected.Core
             attackWasQueued = false;
         }
 
-        private bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
+        public bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
         {
             double secondsPerAttack = 1.0 / attacksPerSecond;
             return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
