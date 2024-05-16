@@ -29,18 +29,29 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 
             MoveClockwiseFromStartToEndAndCopyPositionsToList(startPoint, endPoint);
             FillArc();
+            FlipYCoordinates();
+        }
+
+        private void FlipYCoordinates()
+        {
+            for (int i = 0; i < HitboxTilePositions.Count; i++)
+            {
+                HitboxTilePosition currentPoint = HitboxTilePositions[i];
+                HitboxTilePositions[i] = new HitboxTilePosition(currentPoint.X, radius * 2 - currentPoint.Y);
+            }
         }
 
         private void SetCirclePoints()
         {       
-            setPixels = new bool[radius * 2 + 1, radius * 2 + 1];
+            int doubleRadius = radius * 2;
+            setPixels = new bool[doubleRadius + 1, doubleRadius + 1];
 
             int centerXy = radius;
 
             int x = 0;
             int y = radius;
 
-            int decisionParameter = 3 - 2 * radius;
+            int decisionParameter = 3 - doubleRadius;
 
             HitboxTilePosition centerPoint = new HitboxTilePosition(centerXy, centerXy);
             HitboxTilePositions.Add(centerPoint);
