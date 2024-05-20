@@ -8,15 +8,22 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         private bool[,] setPixels;
         private int radius;
 
-        public List<HitboxTilePosition> HitboxTilePositions
+        public List<HitboxTilePosition> HitboxTilePositionsRight
         {
             get;
             private set;
         }
 
+        public List<HitboxTilePosition> HitboxTilePositionsLeft
+        {
+            get;
+            private set;
+        }        
+
         public BresenhamBasedHitArcGenerationAlgorithm()
         {
-            HitboxTilePositions = new List<HitboxTilePosition>();
+            HitboxTilePositionsRight = new List<HitboxTilePosition>();
+            HitboxTilePositionsLeft = new List<HitboxTilePosition>();
         }
 
         public void CreateFilledCircleArc(double startAngleInRadians, double stopAngleInRadians, int radius)
@@ -30,14 +37,34 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             MoveClockwiseFromStartToEndAndCopyPositionsToList(startPoint, endPoint);
             FillArc();
             FlipYCoordinates();
+            ShiftXAndYCoordinatesToLeftByRadius();
+            CreateHitBoxTilePositionsMirroredOnLeftSide();
         }
 
         private void FlipYCoordinates()
         {
-            for (int i = 0; i < HitboxTilePositions.Count; i++)
+            for (int i = 0; i < HitboxTilePositionsRight.Count; i++)
             {
-                HitboxTilePosition currentPoint = HitboxTilePositions[i];
-                HitboxTilePositions[i] = new HitboxTilePosition(currentPoint.X, radius * 2 - currentPoint.Y);
+                HitboxTilePosition currentPoint = HitboxTilePositionsRight[i];
+                HitboxTilePositionsRight[i] = new HitboxTilePosition(currentPoint.X, radius * 2 - currentPoint.Y);
+            }
+        }
+
+        private void ShiftXAndYCoordinatesToLeftByRadius()
+        {
+            for (int i = 0; i < HitboxTilePositionsRight.Count; i++)
+            {
+                HitboxTilePosition currentPoint = HitboxTilePositionsRight[i];
+                HitboxTilePositionsRight[i] = new HitboxTilePosition(currentPoint.X - radius, currentPoint.Y - radius);
+            }
+        }
+
+        private void CreateHitBoxTilePositionsMirroredOnLeftSide()
+        {
+            for (int i = 0; i < HitboxTilePositionsRight.Count; i++)
+            {
+                HitboxTilePosition currentPoint = HitboxTilePositionsRight[i];
+                HitboxTilePositionsLeft.Add(new HitboxTilePosition(-currentPoint.X, currentPoint.Y));
             }
         }
 
@@ -54,7 +81,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             int decisionParameter = 3 - doubleRadius;
 
             HitboxTilePosition centerPoint = new HitboxTilePosition(centerXy, centerXy);
-            HitboxTilePositions.Add(centerPoint);
+            HitboxTilePositionsRight.Add(centerPoint);
 
             setPixels[centerXy, centerXy] = true;
             SetPixelsOnMirroredSections(centerXy, centerXy, x, y);
@@ -101,7 +128,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             if (!startPoint.Equals(endPoint))
             {
                 HitboxTilePosition currentPoint = startPoint;
-                HitboxTilePositions.Add(startPoint);
+                HitboxTilePositionsRight.Add(startPoint);
                 
                 while (!currentPoint.Equals(endPoint))
                 {
@@ -122,12 +149,12 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                         currentPoint = DetermineNextArcPointForTopLeftQuadrant(currentPoint);
                     }
 
-                    HitboxTilePositions.Add(currentPoint);
+                    HitboxTilePositionsRight.Add(currentPoint);
                 }
             }
             else
             {
-                HitboxTilePositions.Add(startPoint);
+                HitboxTilePositionsRight.Add(startPoint);
             }
         }
 
@@ -173,17 +200,17 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         {
             List<HitboxTilePosition> newTilesFromLines = new List<HitboxTilePosition>();
 
-            for (int i = 1; i < HitboxTilePositions.Count; i++)
+            for (int i = 1; i < HitboxTilePositionsRight.Count; i++)
             {
-                HitboxTilePosition originPoint = HitboxTilePositions[0];
-                HitboxTilePosition arcPoint = HitboxTilePositions[i];
+                HitboxTilePosition originPoint = HitboxTilePositionsRight[0];
+                HitboxTilePosition arcPoint = HitboxTilePositionsRight[i];
 
                 List<HitboxTilePosition> newTilesFromLine = DrawLine(originPoint, arcPoint);
 
                 newTilesFromLines.AddRange(newTilesFromLine);
             }
 
-            HitboxTilePositions.AddRange(newTilesFromLines);
+            HitboxTilePositionsRight.AddRange(newTilesFromLines);
         }
 
         private List<HitboxTilePosition> DrawLine(HitboxTilePosition startPoint, HitboxTilePosition endPoint)

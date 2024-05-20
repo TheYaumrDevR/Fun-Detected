@@ -6,6 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class RealIoAdaptersFactoryForInteractors : IoAdaptersFactoryForInteractors
     {
         private CharacterClassMasterdataProvider characterClassMasterdataProvider;
+        private MeleeHitArcMasterDataProvider meleeHitArcMasterDataProvider;
         private EnemyMasterDataProvider enemyMasterDataProvider;
         private BattleLogPrinter battleLogPrinter;
         private PlayerMovementControllerImpl playerMovementController;
@@ -21,6 +22,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return characterClassMasterdataProvider;
+        }
+
+        public override IMeleeHitArcMasterDataProvider GetMeleeHitArcMasterDataProviderInstance()
+        {
+            if (null == meleeHitArcMasterDataProvider)
+            {
+                meleeHitArcMasterDataProvider = new MeleeHitArcMasterDataProvider();
+            }
+
+            return meleeHitArcMasterDataProvider;
         }
 
         public override IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance()

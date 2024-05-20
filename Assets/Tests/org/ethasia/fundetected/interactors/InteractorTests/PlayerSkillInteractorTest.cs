@@ -44,6 +44,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction();
 
+            Area.ActiveArea.Player.Tick(1.5);
+
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(26));  
@@ -129,11 +131,22 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
         private Enemy CreateTestEnemy()
         {
+            Position enemyPosition = new Position(5, 5);
+
+            BoundingBox enemyBoundingBox = new BoundingBox.Builder()
+                .SetDistanceToLeftEdge(5)
+                .SetDistanceToRightEdge(5)
+                .SetDistanceToTopEdge(5)
+                .SetDistanceToBottomEdge(5)
+                .Build();
+
             return new Enemy.Builder()
                 .SetName("Drowned Zombie")
                 .SetLife(30)
                 .SetArmor(1)
                 .SetEvasionRating(98)
+                .SetPosition(enemyPosition)
+                .SetBoundingBox(enemyBoundingBox)
                 .Build();         
         }                 
     }

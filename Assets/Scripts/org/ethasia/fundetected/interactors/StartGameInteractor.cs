@@ -7,10 +7,12 @@ namespace Org.Ethasia.Fundetected.Interactors
     public class StartGameInteractor
     {
         private ICharacterClassMasterDataProvider characterClassMasterDataProvider;
+        private IMeleeHitArcMasterDataProvider meleeHitArcMasterDataProvider;
 
         public StartGameInteractor()
         {
             characterClassMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetCharacterClassMasterDataProviderInstance();
+            meleeHitArcMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetMeleeHitArcMasterDataProviderInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
@@ -23,6 +25,18 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer("FunEnjoyer");
         }
+
+        private CharacterCreationMasterData CreateCharacterCreationMasterDataFromSelectedCharacterTraits(CharacterClasses characterClass)
+        {
+            CharacterClassMasterData characterClassMasterData = CreateCharacterMasterDataBasedOnCharacterClass(characterClass);
+            MeleeHitArcMasterData meleeHitArcMasterData = CreateMeleeHitArcMasterDataBasedOnCharacterBodyType();
+
+            return new CharacterCreationMasterData
+            {
+                CharacterClassMasterData = characterClassMasterData,
+                MeleeHitArcMasterData = meleeHitArcMasterData
+            };
+        }          
 
         private CharacterClassMasterData CreateCharacterMasterDataBasedOnCharacterClass(CharacterClasses characterClass)
         {
@@ -43,6 +57,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return new CharacterClassMasterData();
+        } 
+
+        private MeleeHitArcMasterData CreateMeleeHitArcMasterDataBasedOnCharacterBodyType()
+        {
+            return meleeHitArcMasterDataProvider.CreateFemaleCharacterOneMeleeHitArcMasterData();
         }
 
         private PlayerCharacter CreatePlayerCharacterFromStartingStats(CharacterClasses characterClass, CharacterClassMasterData playerCharacterStartingStats)

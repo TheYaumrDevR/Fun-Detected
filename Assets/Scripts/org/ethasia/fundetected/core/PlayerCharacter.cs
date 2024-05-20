@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Maths;
 
-using UnityEngine;
-
 namespace Org.Ethasia.Fundetected.Core
 {
     public class PlayerCharacter
@@ -40,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Core
             BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
             hitArcGenerator.CreateFilledCircleArc(-0.3829252379, 0.9971066017, 22);
 
-            List<HitboxTilePosition> meleeHitArc = hitArcGenerator.HitboxTilePositions;
+            List<HitboxTilePosition> meleeHitArc = hitArcGenerator.HitboxTilePositionsRight;
 
             meleeAttack = new MeleeAttack(meleeHitArc, (1.0 / baseStats.AttacksPerSecond) / 2.0);
         }
@@ -63,6 +61,7 @@ namespace Org.Ethasia.Fundetected.Core
             if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
                 AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
+
                 enemiesHit.OnResponseReceived((enemies) => {
                     foreach (Enemy target in enemies)
                     {
@@ -83,8 +82,6 @@ namespace Org.Ethasia.Fundetected.Core
                                     .SetTargetDamageTaken(damageTaken)
                                     .SetTargetRemainingHealth(target.CurrentLife)
                                     .Build());
-
-                                Debug.Log("X: " + target.Position.X + " Y: " + target.Position.Y);
                             }
                             else 
                             {

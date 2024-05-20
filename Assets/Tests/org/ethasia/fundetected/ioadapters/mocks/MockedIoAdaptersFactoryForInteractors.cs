@@ -9,6 +9,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return new CharacterClassMasterDataProviderMock();       
         }
 
+        public override IMeleeHitArcMasterDataProvider GetMeleeHitArcMasterDataProviderInstance()
+        {
+            return new MeleeHitArcMasterDataProviderMock();
+        }
+
         public override IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance()
         {
             return new EnemyMasterDataProviderMock();

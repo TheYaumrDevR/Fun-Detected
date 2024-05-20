@@ -23,7 +23,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 11, 30);
@@ -42,7 +47,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 8, 30);
@@ -61,7 +71,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 41, 40);
@@ -89,7 +104,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -117,7 +137,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -151,7 +176,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -185,7 +215,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -214,7 +249,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -243,7 +283,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -272,7 +317,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -301,7 +351,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;
 
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
