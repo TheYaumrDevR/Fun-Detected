@@ -33,10 +33,10 @@ namespace Org.Ethasia.Fundetected.Core
             allEquipment = new PlayerEquipmentSlots();
         }
 
-        private void CreateMeleeAttack()
+        private void CreateMeleeAttack(MeleeHitArcProperties meleeHitArcProperties)
         {
             BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
-            hitArcGenerator.CreateFilledCircleArc(-0.3829252379, 0.9971066017, 22);
+            hitArcGenerator.CreateFilledCircleArc(meleeHitArcProperties.HitArcStartAngle, meleeHitArcProperties.HitArcEndAngle, meleeHitArcProperties.HitArcRadius);
 
             List<HitboxTilePosition> meleeHitArc = hitArcGenerator.HitboxTilePositionsRight;
 
@@ -147,6 +147,7 @@ namespace Org.Ethasia.Fundetected.Core
             private CharacterClasses characterClass;
 
             private PlayerCharacterBaseStats playerCharacterBaseStats;
+            private MeleeHitArcProperties meleeHitArcProperties;
 
             public PlayerCharacterBuilder SetFacingDirection(FacingDirection value)
             {
@@ -170,7 +171,13 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 playerCharacterBaseStats = value;
                 return this;
-            }                                                            
+            }       
+
+            public PlayerCharacterBuilder SetMeleeHitArcProperties(MeleeHitArcProperties value)
+            {
+                meleeHitArcProperties = value;
+                return this;
+            }                                                     
 
             public PlayerCharacter Build()
             {
@@ -183,7 +190,7 @@ namespace Org.Ethasia.Fundetected.Core
 
                 result.baseStats = playerCharacterBaseStats;
 
-                result.CreateMeleeAttack();
+                result.CreateMeleeAttack(meleeHitArcProperties);
 
                 return result;
             }  

@@ -17,8 +17,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
         {
-            CharacterClassMasterData playerCharacterStartingStats = CreateCharacterMasterDataBasedOnCharacterClass(characterClass); 
-            PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterStartingStats);
+            CharacterCreationMasterData playerCharacterBaseStats = CreateCharacterCreationMasterDataFromSelectedCharacterTraits(characterClass); 
+            PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterBaseStats);
 
             AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
             areaSwitchingInteractor.SwitchActiveMap("Hill", playerCharacter);
@@ -64,8 +64,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             return meleeHitArcMasterDataProvider.CreateFemaleCharacterOneMeleeHitArcMasterData();
         }
 
-        private PlayerCharacter CreatePlayerCharacterFromStartingStats(CharacterClasses characterClass, CharacterClassMasterData playerCharacterStartingStats)
+        private PlayerCharacter CreatePlayerCharacterFromStartingStats(CharacterClasses characterClass, CharacterCreationMasterData playerCharacterBaseStats)
         {
+            CharacterClassMasterData playerCharacterStartingStats = playerCharacterBaseStats.CharacterClassMasterData;
+            MeleeHitArcMasterData meleeHitArcMasterData = playerCharacterBaseStats.MeleeHitArcMasterData;
+
             DamageRange basePhysicalDamage = new DamageRange(playerCharacterStartingStats.MinBasePhysicalDamage, playerCharacterStartingStats.MaxBasePhysicalDamage);
 
             PlayerCharacterBaseStats startingStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
@@ -80,6 +83,14 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetAttacksPerSecond(playerCharacterStartingStats.AttacksPerSecond)
                 .SetMovementSpeed(playerCharacterStartingStats.MovementSpeed)
                 .Build();   
+
+            MeleeHitArcProperties meleeHitArcProperties = new MeleeHitArcProperties();
+
+            meleeHitArcProperties.HitArcStartAngle = meleeHitArcMasterData.HitArcStartAngle;
+            meleeHitArcProperties.HitArcEndAngle = meleeHitArcMasterData.HitArcEndAngle;
+            meleeHitArcProperties.HitArcRadius = meleeHitArcMasterData.HitArcRadius;
+            meleeHitArcProperties.HitArcCenterXOffset = meleeHitArcMasterData.HitArcCenterXOffset;
+            meleeHitArcProperties.HitArcCenterYOffset = meleeHitArcMasterData.HitArcCenterYOffset;
             
             startingStats.DeriveStats();
             startingStats.FullHeal();
@@ -88,6 +99,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetFacingDirection(FacingDirection.RIGHT)
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
+                .SetMeleeHitArcProperties(meleeHitArcProperties)
                 .Build();            
         }
     }
