@@ -29,6 +29,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 11, 30);
@@ -53,6 +54,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 8, 30);
@@ -77,6 +79,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 41, 40);
@@ -110,6 +113,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -143,6 +147,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -182,6 +187,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -221,6 +227,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -255,6 +262,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -289,6 +297,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -323,6 +332,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
@@ -357,12 +367,26 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.AddPlayerAt(playerCharacter, 17, 26);
 
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(0)); 
-        }                        
+        } 
+
+        private MeleeHitArcProperties CreateMeleeHitArcProperties()
+        {
+            MeleeHitArcProperties result = new MeleeHitArcProperties();
+
+            result.HitArcStartAngle = -0.3829252379;
+            result.HitArcEndAngle = 0.9971066017;
+            result.HitArcRadius = 22;
+            result.HitArcCenterXOffset = -3;
+            result.HitArcCenterYOffset = 4;
+
+            return result;
+        }                       
     }
 }

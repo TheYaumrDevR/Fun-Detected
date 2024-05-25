@@ -98,7 +98,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetFacingDirection(FacingDirection.RIGHT)
                 .SetCharacterClass(CharacterClasses.STRONGMAN)
                 .SetPlayerCharacterBaseStats(startingStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build(); 
         }
+
+        private MeleeHitArcProperties CreateMeleeHitArcProperties()
+        {
+            MeleeHitArcProperties result = new MeleeHitArcProperties();
+
+            result.HitArcStartAngle = -0.3829252379;
+            result.HitArcEndAngle = 0.9971066017;
+            result.HitArcRadius = 22;
+            result.HitArcCenterXOffset = -3;
+            result.HitArcCenterYOffset = 4;
+
+            return result;
+        } 
     }
 }

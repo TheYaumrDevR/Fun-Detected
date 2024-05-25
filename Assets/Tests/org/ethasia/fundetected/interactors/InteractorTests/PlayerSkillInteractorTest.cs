@@ -96,6 +96,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             testCandidate.ExecutePrimaryPlayerAction();
 
+            repeatedUpdateInteractor.Update(0.5);
+
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(20));  
@@ -131,7 +133,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
         private Enemy CreateTestEnemy()
         {
-            Position enemyPosition = new Position(5, 5);
+            Position enemyPosition = new Position(148, 44);
 
             BoundingBox enemyBoundingBox = new BoundingBox.Builder()
                 .SetDistanceToLeftEdge(5)

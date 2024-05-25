@@ -24,6 +24,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         {
             testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();    
 
             int unitsMoved = testCandidate.MoveLeft(0.2);
@@ -35,6 +36,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         {
             testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             int unitsMoved = testCandidate.MoveLeft(0.065);
@@ -46,6 +48,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         {
             testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             int unitsMoved = testCandidate.MoveRight(0.54);
@@ -57,10 +60,24 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         {
             testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             int unitsMoved = testCandidate.MoveRight(0.065);
             Assert.That(unitsMoved, Is.EqualTo(0)); 
-        }         
+        } 
+
+        private MeleeHitArcProperties CreateMeleeHitArcProperties()
+        {
+            MeleeHitArcProperties result = new MeleeHitArcProperties();
+
+            result.HitArcStartAngle = -0.3829252379;
+            result.HitArcEndAngle = 0.9971066017;
+            result.HitArcRadius = 22;
+            result.HitArcCenterXOffset = -3;
+            result.HitArcCenterYOffset = 4;
+
+            return result;
+        }                  
     }
 }
