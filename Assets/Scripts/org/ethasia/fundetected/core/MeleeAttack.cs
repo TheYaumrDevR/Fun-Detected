@@ -6,7 +6,9 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class MeleeAttack
     {
-        private List<HitboxTilePosition> hitArc;
+        private List<HitboxTilePosition> hitArcRightSwing;
+
+        private Position positionOffsetRightSwingToPlayerCharacterCenter;
 
         private StopWatch lastStartOfAttackStopWatch;
 
@@ -22,12 +24,9 @@ namespace Org.Ethasia.Fundetected.Core
 
         private AsyncResponse<HashSet<Enemy>> enemiesHitResponse;
 
-        public MeleeAttack(List<HitboxTilePosition> hitArc, double timeToHitFromStartOfAttack)
+        private MeleeAttack()
         {
             lastStartOfAttackStopWatch = new StopWatch();
-
-            this.hitArc = hitArc;
-            this.timeToHitFromStartOfAttack = timeToHitFromStartOfAttack;
         }
 
         public void Tick(double actionTime)
@@ -40,7 +39,7 @@ namespace Org.Ethasia.Fundetected.Core
                 {
                     attackWasQueued = false;
 
-                    HashSet<Enemy> enemiesHit = Area.ActiveArea.GetEnemiesHit(hitArc);
+                    HashSet<Enemy> enemiesHit = Area.ActiveArea.GetEnemiesHit(hitArcRightSwing, positionOffsetRightSwingToPlayerCharacterCenter);
                     enemiesHitResponse.SetResponseObject(enemiesHit);
                 }
             }
@@ -72,6 +71,42 @@ namespace Org.Ethasia.Fundetected.Core
         {
             double secondsPerAttack = 1.0 / attacksPerSecond;
             return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
-        }        
+        }      
+
+        public class MeleeAttackBuilder
+        {
+            private List<HitboxTilePosition> hitArcRightSwing;
+            private double timeToHitFromStartOfAttack;
+            private Position positionOffsetRightSwingToPlayerCharacterCenter;
+
+            public MeleeAttackBuilder SetHitArcRightSwing(List<HitboxTilePosition> value)
+            {
+                hitArcRightSwing = value;
+                return this;
+            }
+
+            public MeleeAttackBuilder SetTimeToHitFromStartOfAttack(double value)
+            {
+                timeToHitFromStartOfAttack = value;
+                return this;
+            }
+
+            public MeleeAttackBuilder SetPositionOffsetRightSwingToPlayerCharacterCenter(Position value)
+            {
+                positionOffsetRightSwingToPlayerCharacterCenter = value;
+                return this;
+            }
+
+            public MeleeAttack Build()
+            {
+                MeleeAttack result = new MeleeAttack();
+
+                result.hitArcRightSwing = hitArcRightSwing;
+                result.timeToHitFromStartOfAttack = timeToHitFromStartOfAttack;
+                result.positionOffsetRightSwingToPlayerCharacterCenter = positionOffsetRightSwingToPlayerCharacterCenter;
+
+                return result;
+            }
+        } 
     }
 }

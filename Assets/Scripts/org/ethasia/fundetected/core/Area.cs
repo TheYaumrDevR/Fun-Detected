@@ -100,15 +100,22 @@ namespace Org.Ethasia.Fundetected.Core
             return new List<EnemySpawnLocation>();
         }    
 
-        public HashSet<Enemy> GetEnemiesHit(List<HitboxTilePosition> hitArc)
+        public HashSet<Enemy> GetEnemiesHit(List<HitboxTilePosition> hitArc, Position positionOffsetRightSwingToPlayerCharacterCenter)
         {
             HashSet<Enemy> result = new HashSet<Enemy>();
 
+            int reflectionFactor = Player.FacingDirection == FacingDirection.LEFT ? -1 : 1;
+
+            int hitArcCenterOffsetX = playerPosition.X + positionOffsetRightSwingToPlayerCharacterCenter.X * reflectionFactor;
+            int hitArcCenterOffsetY = playerPosition.Y + positionOffsetRightSwingToPlayerCharacterCenter.Y;
+
             foreach (HitboxTilePosition hitArcTile in hitArc)
             {
-                if (enemyHitTiles.ContainsKey(hitArcTile))
+                HitboxTilePosition offSetHitArcTile = new HitboxTilePosition(hitArcTile.X * reflectionFactor + hitArcCenterOffsetX, hitArcTile.Y + hitArcCenterOffsetY);
+
+                if (enemyHitTiles.ContainsKey(offSetHitArcTile))
                 {
-                    result.UnionWith(enemyHitTiles[hitArcTile]);
+                    result.UnionWith(enemyHitTiles[offSetHitArcTile]);
                 }
             }
 

@@ -40,7 +40,11 @@ namespace Org.Ethasia.Fundetected.Core
 
             List<HitboxTilePosition> meleeHitArc = hitArcGenerator.HitboxTilePositionsRight;
 
-            meleeAttack = new MeleeAttack(meleeHitArc, (1.0 / baseStats.AttacksPerSecond) / 2.0);
+            meleeAttack = new MeleeAttack.MeleeAttackBuilder()
+                .SetHitArcRightSwing(meleeHitArc)
+                .SetTimeToHitFromStartOfAttack((1.0 / baseStats.AttacksPerSecond) / 2.0)
+                .SetPositionOffsetRightSwingToPlayerCharacterCenter(new Position(meleeHitArcProperties.HitArcCenterXOffset, meleeHitArcProperties.HitArcCenterYOffset))
+                .Build();
         }
 
         public void Tick(double actionTime)
