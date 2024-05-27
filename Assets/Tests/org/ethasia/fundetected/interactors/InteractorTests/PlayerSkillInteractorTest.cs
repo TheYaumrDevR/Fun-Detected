@@ -129,7 +129,63 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
             Assert.That(enemy.CurrentLife, Is.EqualTo(30));  
-        }   
+        }  
+
+        [Test]
+        public void TestExecutePrimaryPlayerActionPlayerFacesLeftAttackHits()
+        {  
+            StartGameInteractor startGameInteractor = new StartGameInteractor();
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
+
+            rngMock.Reset();
+
+            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.AddEnemy(CreateTestEnemy());
+
+            PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
+
+            PlayerCharacter player = Area.ActiveArea.Player;
+            player.MoveLeft(0.1);
+
+            testCandidate.ExecutePrimaryPlayerAction();
+
+            Area.ActiveArea.Player.Tick(1.5);
+
+            Enemy enemy = Area.ActiveArea.Enemies[0];
+
+            Assert.That(enemy.CurrentLife, Is.EqualTo(26));              
+        } 
+
+        [Test]
+        public void TestExecutePrimaryPlayerActionPlayerFacesLeftAndTimeBetweenTwoAttacksLongEnough()
+        {   
+            StartGameInteractor startGameInteractor = new StartGameInteractor();
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.DUELIST);
+
+            PlayerRepeatedUpdateInteractor repeatedUpdateInteractor = new PlayerRepeatedUpdateInteractor();
+
+            rngMock.Reset();
+
+            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.AddEnemy(CreateTestEnemy());
+
+            PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
+
+            PlayerCharacter player = Area.ActiveArea.Player;
+            player.MoveLeft(0.1);
+
+            testCandidate.ExecutePrimaryPlayerAction();
+
+            repeatedUpdateInteractor.Update(0.9);
+
+            testCandidate.ExecutePrimaryPlayerAction();
+
+            repeatedUpdateInteractor.Update(0.5);
+
+            Enemy enemy = Area.ActiveArea.Enemies[0];
+
+            Assert.That(enemy.CurrentLife, Is.EqualTo(20));  
+        }                
 
         private Enemy CreateTestEnemy()
         {
