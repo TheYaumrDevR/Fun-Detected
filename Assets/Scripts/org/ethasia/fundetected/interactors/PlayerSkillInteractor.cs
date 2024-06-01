@@ -27,7 +27,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 foreach (IBattleActionResult battleLogAction in battleLogActions)
                 {
-                    battleLogPrinter.PrintBattleLogEntry(battleLogAction);                  
+                    battleLogPrinter.PrintBattleLogEntry(battleLogAction);  
+                    battleLogAction.PresentToPlayer();             
                 }
             });
         }

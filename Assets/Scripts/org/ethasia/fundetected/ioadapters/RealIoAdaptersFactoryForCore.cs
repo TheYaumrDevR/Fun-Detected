@@ -5,6 +5,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class RealIoAdaptersFactoryForCore : IoAdaptersFactoryForCore
     {
         private RandomNumberGenerator randomNumberGenerator;
+        private DamageTextPresenter damageTextPresenter;
 
         public override IRandomNumberGenerator GetRandomNumberGeneratorInstance()
         {
@@ -14,6 +15,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return randomNumberGenerator;
-        }        
+        }      
+
+        public override IDamageTextPresenter GetDamageTextPresenterInstance()
+        {
+            if (null == damageTextPresenter)
+            {
+                damageTextPresenter = new DamageTextPresenter();
+            }
+
+            return damageTextPresenter;
+        }  
     }
 }

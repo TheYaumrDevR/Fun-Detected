@@ -24,5 +24,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
             return rngInstance;
         }
+
+        public override IDamageTextPresenter GetDamageTextPresenterInstance()
+        {
+            return new DamagePresenterMock();
+        }
     }
 }

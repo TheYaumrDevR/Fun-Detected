@@ -17,6 +17,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public override IAnimatedCharactersRenderer GetPlayerCharacterRendererInstance()
         {
             return new PlayerCharacterRendererDelayedInitializationProxy(PlayerCharacterRendererImpl.GetInstance());
-        }        
+        }      
+
+        public override IFloatingDamageTextRenderer GetFloatingDamageTextRendererInstance()
+        {
+            return FloatingDamageTextRendererImpl.GetInstance();
+        }  
     }
 }

@@ -66,36 +66,7 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
 
-                enemiesHit.OnResponseReceived((enemies) => {
-                    foreach (Enemy target in enemies)
-                    {
-                        if (!target.IsDead())
-                        {
-                            float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
-                            
-                            if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
-                            {
-                                DamageRange damageRange = baseStats.BasePhysicalDamage;
-
-                                int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
-
-                                int damageTaken = target.TakePhysicalHit(damage);
-
-                                battleActionResults.Add(new PlayerAbilityActionResult.Builder()
-                                    .SetTargetName(target.Name)
-                                    .SetTargetDamageTaken(damageTaken)
-                                    .SetTargetRemainingHealth(target.CurrentLife)
-                                    .Build());
-                            }
-                            else 
-                            {
-                                battleActionResults.Add(new AttackMissedBattleLogEntry());
-                            }
-                        }
-                    }
-
-                    result.SetResponseObject(battleActionResults);
-                });
+                enemiesHit.OnResponseReceived((enemies) => DealDamageToHitEnemies(enemies, result));
             }
             else
             {
@@ -127,11 +98,6 @@ namespace Org.Ethasia.Fundetected.Core
             return CalculateMovementDistance();
         }
 
-        private bool EnoughTimePassedForTheNextAttackToBeExecuted()
-        {
-            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(baseStats.AttacksPerSecond);
-        }
-
         public int CalculateMovementDistance()
         {
             int result = 0;
@@ -142,6 +108,44 @@ namespace Org.Ethasia.Fundetected.Core
             }
 
             return result;            
+        }     
+
+        private void DealDamageToHitEnemies(HashSet<Enemy> enemies, AsyncResponse<List<IBattleActionResult>> battleActionResponse)
+        {
+            List<IBattleActionResult> battleActionResults = new List<IBattleActionResult>();
+
+            foreach (Enemy target in enemies)
+            {
+                if (!target.IsDead())
+                {
+                    float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
+                            
+                    if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
+                    {
+                        DamageRange damageRange = baseStats.BasePhysicalDamage;
+
+                        int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
+
+                        int damageTaken = target.TakePhysicalHit(damage);
+
+                        battleActionResults.Add(new PlayerAbilityActionResult.Builder()
+                            .SetTarget(target)
+                            .SetTargetDamageTaken(damageTaken)
+                            .Build());
+                    }
+                    else 
+                    {
+                        battleActionResults.Add(new AttackMissedBattleLogEntry());
+                    }
+                }
+            }
+
+            battleActionResponse.SetResponseObject(battleActionResults);
+        }
+
+        private bool EnoughTimePassedForTheNextAttackToBeExecuted()
+        {
+            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(baseStats.AttacksPerSecond);
         }
 
         public class PlayerCharacterBuilder

@@ -16,5 +16,6 @@ namespace Org.Ethasia.Fundetected.Core
         } 
 
         public abstract IRandomNumberGenerator GetRandomNumberGeneratorInstance();
+        public abstract IDamageTextPresenter GetDamageTextPresenterInstance();
     }
 }
