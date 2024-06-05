@@ -2490,5 +2490,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0522c0a2ba58925499a1d9ca7a522b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatingDamageTextPrefab: {fileID: 6907301418362063432, guid: 93f99a0aceb091e42a2f90d3649b043f, type: 3}
-  floatingDamageText: {fileID: 0}
+  floatingDamageTextPrefab: {fileID: 5050270301205572866, guid: 93f99a0aceb091e42a2f90d3649b043f, type: 3}

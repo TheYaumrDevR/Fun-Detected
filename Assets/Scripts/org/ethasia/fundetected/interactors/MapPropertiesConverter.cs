@@ -10,8 +10,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             Area.Builder areaBuilder = new Area.Builder()
                 .SetWidthAndHeight(mapProperties.Width, mapProperties.Height)
-                .SetLowestScreenX(mapProperties.LowestScreenX)
-                .SetLowestScreenY(mapProperties.LowestScreenY);
+                .SetLowestScreenX(mapProperties.LowestScreenX + mapProperties.CalculateLowestX())
+                .SetLowestScreenY(mapProperties.LowestScreenY + mapProperties.CalculateLowestY());
 
             ConvertCollisions(mapProperties, areaBuilder);
             ConvertAndSetEnemySpawner(mapProperties, areaBuilder);
@@ -58,9 +58,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             List<EnemySpawnLocation> result = new List<EnemySpawnLocation>();
             float spawnerActivationChance = 1 / (float) mapProperties.Spawners.Count;
 
+            int lowestXCollisionTile = mapProperties.CalculateLowestX();
+            int lowestYCollisionTile = mapProperties.CalculateLowestY();
+
             foreach (Spawner spawner in mapProperties.Spawners)
             {
-                Position spawnerPosition = new Position(spawner.X, spawner.Y);
+                Position spawnerPosition = new Position(spawner.X - lowestXCollisionTile, spawner.Y - lowestYCollisionTile);
                 EnemySpawnLocation enemySpawnLocation = new EnemySpawnLocation(spawnerPosition, spawnerActivationChance);
                 result.Add(enemySpawnLocation);
             }
