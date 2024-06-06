@@ -23,5 +23,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             return FloatingDamageTextRendererImpl.GetInstance();
         }  
+
+        public override IHitboxDebugShapeRenderer GetHitboxDebugShapeRendererInstance()
+        {
+            return HitboxDebugShapeRendererImpl.GetInstance();
+        }
     }
 }

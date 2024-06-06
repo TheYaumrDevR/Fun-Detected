@@ -113,6 +113,9 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 HitboxTilePosition offSetHitArcTile = new HitboxTilePosition(hitArcTile.X * reflectionFactor + hitArcCenterOffsetX, hitArcTile.Y + hitArcCenterOffsetY);
 
+                IHitboxPresenter hitboxPresenter = IoAdaptersFactoryForCore.GetInstance().GetHitboxPresenterInstance();
+                hitboxPresenter.PresentHitbox(offSetHitArcTile.X + LowestScreenX, offSetHitArcTile.Y + LowestScreenY);
+
                 if (enemyHitTiles.ContainsKey(offSetHitArcTile))
                 {
                     result.UnionWith(enemyHitTiles[offSetHitArcTile]);

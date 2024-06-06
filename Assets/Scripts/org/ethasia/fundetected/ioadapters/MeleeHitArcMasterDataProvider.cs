@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             result.HitArcStartAngle = -0.3829252379;
             result.HitArcEndAngle = 0.9971066017;
-            result.HitArcRadius = 22;
+            result.HitArcRadius = 10;
             result.HitArcCenterXOffset = -3;
             result.HitArcCenterYOffset = 4;
 
