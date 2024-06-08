@@ -105,8 +105,40 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 
         private HitboxTilePosition DetermineCirclePointFromAngle(double angleInRadians)
         {
-            int pointX = Convert.ToInt32(Math.Round(radius + radius * Math.Cos(angleInRadians)));
-            int pointY = Convert.ToInt32(Math.Round(radius + radius * Math.Sin(angleInRadians)));
+            double xUnrounded = radius + radius * Math.Cos(angleInRadians);
+            double yUnrounded = radius + radius * Math.Sin(angleInRadians);
+
+            int pointX = Convert.ToInt32(Math.Round(xUnrounded));
+            int pointY = Convert.ToInt32(Math.Round(yUnrounded));
+
+            if (!setPixels[pointX, pointY])
+            {
+                int floorPointX = FastMath.Floor(xUnrounded);
+                int floorPointY = FastMath.Floor(yUnrounded);
+
+                int ceilPointX = FastMath.Ceil(xUnrounded);
+                int ceilPointY = FastMath.Ceil(yUnrounded);
+
+                if (setPixels[floorPointX, floorPointY])
+                {
+                    return new HitboxTilePosition(floorPointX, floorPointY);
+                }
+
+                if (setPixels[floorPointX, ceilPointY])
+                {
+                    return new HitboxTilePosition(floorPointX, ceilPointY);
+                }
+
+                if (setPixels[ceilPointX, floorPointY])
+                {
+                    return new HitboxTilePosition(ceilPointX, floorPointY);
+                }
+
+                if (setPixels[ceilPointX, ceilPointY])
+                {
+                    return new HitboxTilePosition(ceilPointX, ceilPointY);
+                }                                                
+            }
 
             return new HitboxTilePosition(pointX, pointY);
         }
