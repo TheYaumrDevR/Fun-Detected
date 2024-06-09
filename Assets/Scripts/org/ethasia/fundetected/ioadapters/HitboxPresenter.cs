@@ -9,6 +9,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void PresentHitbox(int logicalPositionX, int logicalPositionY)
         {
+            
+        }
+
+        public void PresentHitboxReal(int logicalPositionX, int logicalPositionY)
+        {
             hitboxRenderer = TechnicalFactory.GetInstance().GetHitboxDebugShapeRendererInstance();
 
             float posX = logicalPositionX / 10.0f;
