@@ -21,15 +21,15 @@ namespace Org.Ethasia.Fundetected.Technical
             instance = this;
         }
 
-        public void RenderFloatingDamageText(int damageAmount, float posX, float posY)
+        public void RenderFloatingDamageText(string combatText, float posX, float posY)
         {
             Vector3 position = new Vector3(posX, posY, 0.0f);
             GameObject floatingDamageText = GameObject.Instantiate(floatingDamageTextPrefab, position, Quaternion.identity);
 
             TMP_Text textComponent = floatingDamageText.GetComponentInChildren<TMP_Text>();
-            textComponent.text = damageAmount.ToString();
+            textComponent.text = combatText;
 
             floatingDamageText.GetComponentInChildren<MeshRenderer>().sortingLayerName = "CombatText";
-        }
+        }       
     }
 }

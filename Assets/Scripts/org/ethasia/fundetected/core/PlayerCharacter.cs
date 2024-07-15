@@ -135,7 +135,11 @@ namespace Org.Ethasia.Fundetected.Core
                     }
                     else 
                     {
-                        battleActionResults.Add(new AttackMissedBattleLogEntry());
+                        AttackMissedBattleLogEntry attackMissResult = new AttackMissedBattleLogEntry.Builder()
+                            .SetTarget(target)
+                            .Build();
+
+                        battleActionResults.Add(attackMissResult);
                     }
                 }
             }

@@ -8,5 +8,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
 
         }
+
+        public void PresentMissText(Position renderPosition)
+        {
+
+        }   
     }
 }

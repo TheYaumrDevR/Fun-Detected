@@ -15,7 +15,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             float posX = displayInformation.PositionX / 10.0f;
             float posY = displayInformation.PositionY / 10.0f;
 
-            damageTextRenderer.RenderFloatingDamageText(damageAmount, posX, posY);
+            damageTextRenderer.RenderFloatingDamageText(damageAmount.ToString(), posX, posY);
+        }
+
+        public void PresentMissText(Position renderPosition)
+        {
+            damageTextRenderer = TechnicalFactory.GetInstance().GetFloatingDamageTextRendererInstance();
+
+            float posX = renderPosition.X / 10.0f;
+            float posY = renderPosition.Y / 10.0f;
+
+            damageTextRenderer.RenderFloatingDamageText("MISS", posX, posY);
         }
     }
 }
