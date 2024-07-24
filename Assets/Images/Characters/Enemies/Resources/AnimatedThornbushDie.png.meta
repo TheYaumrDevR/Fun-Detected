@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e3351414f3e68f4ab8612bb676651e4
+guid: 289868454824a5342801d123bc7a1a55
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AnimatedThornBushIdle_0
+      name: AnimatedThornbushDie_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f92c215daccf3fb4598f97437976e9ee
-      internalID: -1768922425
+      spriteID: 7cc1319e8b566fa4fa0cbed73cdd2445
+      internalID: 1582051083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimatedThornBushIdle_1
+      name: AnimatedThornbushDie_1
       rect:
         serializedVersion: 2
         x: 84
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22a559cee473a7c4a97c6e91de666acb
-      internalID: 58384139
+      spriteID: e6d13f0974590c34a8d7158ce369ec14
+      internalID: -1775023339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimatedThornBushIdle_2
+      name: AnimatedThornbushDie_2
       rect:
         serializedVersion: 2
         x: 168
@@ -163,8 +163,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f0e081381a21fa47970063e49700d43
-      internalID: 1908863857
+      spriteID: c6c8036b010d0cc46becf62e7addf62f
+      internalID: -1587538715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnimatedThornbushDie_3
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 84
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1eb532596e75a94c896841d6c1fed94
+      internalID: 1518325797
       vertices: []
       indices: 
       edges: []
@@ -172,7 +193,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b7ef0d08c5723954f825aacb192326c0
+    spriteID: 201a960062e8bee4cb51efd9fb3c8384
     internalID: 0
     vertices: []
     indices: 
@@ -180,9 +201,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AnimatedThornBushIdle_0: -1768922425
-      AnimatedThornBushIdle_1: 58384139
-      AnimatedThornBushIdle_2: 1908863857
+      AnimatedThornbushDie_2: -1587538715
+      AnimatedThornbushDie_1: -1775023339
+      AnimatedThornbushDie_3: 1518325797
+      AnimatedThornbushDie_0: 1582051083
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
