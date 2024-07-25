@@ -66,14 +66,16 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             foreach (Enemy spawnedEnemy in map.Enemies)
             {
+                EnemyMasterDataForRendering renderingMasterData = enemyMasterDataProvider.CreateEnemyMasterDataForRenderingById(spawnedEnemy.Id);
+
                 EnemyRenderData enemyRenderData = new EnemyRenderData();
                 enemyRenderData.EnemyId = spawnedEnemy.Id;
 
                 enemyRenderData.PositionX = spawnedEnemy.Position.X + map.LowestScreenX;
                 enemyRenderData.PositionY = spawnedEnemy.Position.Y + map.LowestScreenY;
 
-                enemyRenderData.WidthX = spawnedEnemy.BoundingBox.Width;
-                enemyRenderData.WidthY = spawnedEnemy.BoundingBox.Height;
+                enemyRenderData.WidthX = renderingMasterData.DistanceToLeftRenderEdge + renderingMasterData.DistanceToRightRenderEdge + 1;
+                enemyRenderData.WidthY = renderingMasterData.DistanceToBottomRenderEdge + renderingMasterData.DistanceToTopRenderEdge + 1;
 
                 enemiesToShow.Add(enemyRenderData);
             }

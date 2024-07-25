@@ -8,13 +8,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class EnemyMasterDataProvider : IEnemyMasterDataProvider
     {
         private static readonly Dictionary<string, Func<string, EnemyMasterData>> enemyIdByProductionFunction;
+        private static readonly Dictionary<string, Func<string, EnemyMasterDataForRendering>> enemyIdByRenderMasterDataProductionFunction;
 
         static EnemyMasterDataProvider()
         {
             enemyIdByProductionFunction = new Dictionary<string, Func<string, EnemyMasterData>>();
+            enemyIdByRenderMasterDataProductionFunction = new Dictionary<string, Func<string, EnemyMasterDataForRendering>>();
 
             enemyIdByProductionFunction["Drowned Zombie"] = CreateDrownedZombieMasterData;
             enemyIdByProductionFunction["Animated Thornbush"] = CreateAnimatedThornBushMasterData;
+
+            enemyIdByRenderMasterDataProductionFunction["Drowned Zombie"] = CreateDrownedZombieMasterDataForRendering;
+            enemyIdByRenderMasterDataProductionFunction["Animated Thornbush"] = CreateAnimatedThornBushMasterDataForRendering;
         }
 
         public EnemyMasterData CreateEnemyMasterDataById(string id)
@@ -25,6 +30,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             throw new AssetLoadFailureException("Could not load enemy data for enemy id: " + id);
+        }
+
+        public EnemyMasterDataForRendering CreateEnemyMasterDataForRenderingById(string id)
+        {
+            if (null != enemyIdByRenderMasterDataProductionFunction[id])
+            {
+                return enemyIdByRenderMasterDataProductionFunction[id](id);
+            }
+
+            throw new AssetLoadFailureException("Could not load enemy rendering data for enemy id: " + id);
         }
 
         private static EnemyMasterData CreateDrownedZombieMasterData(string id)
@@ -53,6 +68,24 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.DistanceToTopEdge = 7;
 
             return result;
-        }        
+        }    
+
+        private static EnemyMasterDataForRendering CreateDrownedZombieMasterDataForRendering(string id)
+        {
+            EnemyMasterDataForRendering result = new EnemyMasterDataForRendering();
+
+            return result;
+        }
+
+        private static EnemyMasterDataForRendering CreateAnimatedThornBushMasterDataForRendering(string id)
+        {
+            EnemyMasterDataForRendering result = new EnemyMasterDataForRendering();
+            result.DistanceToLeftRenderEdge = 12;
+            result.DistanceToRightRenderEdge = 12;
+            result.DistanceToBottomRenderEdge = 12;
+            result.DistanceToTopRenderEdge = 12;
+
+            return result;
+        }            
     }
 }

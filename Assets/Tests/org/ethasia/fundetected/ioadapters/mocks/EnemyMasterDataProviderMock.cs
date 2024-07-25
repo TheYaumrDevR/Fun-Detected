@@ -15,5 +15,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
             return result;
         }
+
+        public EnemyMasterDataForRendering CreateEnemyMasterDataForRenderingById(string id)
+        {
+            EnemyMasterDataForRendering result = new EnemyMasterDataForRendering();
+            result.DistanceToLeftRenderEdge = 7;
+            result.DistanceToRightRenderEdge = 7;
+            result.DistanceToBottomRenderEdge = 7;
+            result.DistanceToTopRenderEdge = 7;
+
+            return result;
+        }        
     }
 }
