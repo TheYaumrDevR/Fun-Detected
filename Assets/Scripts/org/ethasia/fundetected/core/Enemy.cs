@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Maths;
+
 namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
@@ -19,6 +21,12 @@ namespace Org.Ethasia.Fundetected.Core
             get;
             private set;
         }
+
+        public StateMachine ActionStateMachine
+        {
+            private get;
+            set;
+        }        
 
         public string Name
         {

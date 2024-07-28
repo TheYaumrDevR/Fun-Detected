@@ -68,6 +68,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 EnemyMasterDataForRendering renderingMasterData = enemyMasterDataProvider.CreateEnemyMasterDataForRenderingById(spawnedEnemy.Id);
 
+                AnimationStateMachineAssignmentFunction animationStateMachineAssignmentFunction = new AnimationStateMachineAssignmentFunction();
+                animationStateMachineAssignmentFunction.Enemy = spawnedEnemy;
+
                 EnemyRenderData enemyRenderData = new EnemyRenderData();
                 enemyRenderData.EnemyId = spawnedEnemy.Id;
 
@@ -76,6 +79,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 
                 enemyRenderData.WidthX = renderingMasterData.DistanceToLeftRenderEdge + renderingMasterData.DistanceToRightRenderEdge + 1;
                 enemyRenderData.WidthY = renderingMasterData.DistanceToBottomRenderEdge + renderingMasterData.DistanceToTopRenderEdge + 1;
+
+                enemyRenderData.AnimationStateMachineAssignmentFunction = animationStateMachineAssignmentFunction;
 
                 enemiesToShow.Add(enemyRenderData);
             }

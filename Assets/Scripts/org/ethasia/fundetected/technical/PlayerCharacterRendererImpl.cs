@@ -43,7 +43,7 @@ namespace Org.Ethasia.Fundetected.Technical
             return 1;
         }        
 
-        protected override void AssignAnimationStateMachine(StateMachine animationStateMachine)
+        protected override void AssignAnimationStateMachine(StateMachine animationStateMachine, GameObjectProxy animatedCharacterProxy)
         {
             PlayerAnimationPresenter.SetStateMachine(animationStateMachine);
         }

@@ -43,7 +43,7 @@ namespace Org.Ethasia.Fundetected.Technical
             
             animatedCharacter.transform.SetParent(this.transform);
             
-            AssignAnimationStateMachine(animationStateMachine);
+            AssignAnimationStateMachine(animationStateMachine, animatedCharacterProxy);
             AssignCharacterSpriteRendererAndTransform(spriteRenderer, animatedCharacter.transform);
         }  
 
@@ -53,7 +53,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         protected abstract int GetSortingOrderOfRendererInLayer();
 
-        protected abstract void AssignAnimationStateMachine(StateMachine animationStateMachine);
+        protected abstract void AssignAnimationStateMachine(StateMachine animationStateMachine, GameObjectProxy animatedCharacterProxy);
 
         protected abstract void AssignCharacterSpriteRendererAndTransform(SpriteRenderer spriteRenderer, Transform transform);       
     }

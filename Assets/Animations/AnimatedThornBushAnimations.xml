@@ -8,6 +8,7 @@
 		</animationFrames>
 		<transitions>
 			<transition target="attack" />
+			<transition target="die" />
 		</transitions>
 	</entryAnimation>
 	<animation id="attack" speedMultiplier="1">
@@ -18,6 +19,17 @@
 		<transitions>
 			<transition target="idle" />
 			<transition target="attack" />
+			<transition target="die" />
 		</transitions>
 	</animation>
+	<animation id="die" speedMultiplier="1">
+		<animationFrames spriteImageName="AnimatedThornbushDie" isLooping="false">
+			<animationFrame index="0"/>
+			<animationFrame index="1"/>
+			<animationFrame index="2"/>
+			<animationFrame index="3"/>
+		</animationFrames>
+		<transitions>
+		</transitions>
+	</animation>	
 </animations>

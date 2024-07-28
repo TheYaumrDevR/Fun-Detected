@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Animation;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Technical
@@ -40,6 +41,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }
 
+        public IAnimationStateMachineAssignmentFunction AnimationStateMachineAssignmentFunction
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private string name;
@@ -48,6 +55,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private float scaleX; 
             private float scaleY;  
             private Animation2dGraphNodeProperties animationProperties;    
+            private IAnimationStateMachineAssignmentFunction animationStateMachineAssignmentFunction;
 
             public Builder SetName(string value)
             {
@@ -85,6 +93,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 return this;
             }
 
+            public Builder SetAnimationStateMachineAssignmentFunction(IAnimationStateMachineAssignmentFunction value)
+            {
+                animationStateMachineAssignmentFunction = value;
+                return this;
+            }
+
             public GameObjectProxy Build()
             {
                 GameObjectProxy result = new GameObjectProxy();
@@ -95,6 +109,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 result.ScaleX = scaleX;
                 result.ScaleY = scaleY;
                 result.Animation2DGraphNodeProperties = animationProperties;
+                result.AnimationStateMachineAssignmentFunction = animationStateMachineAssignmentFunction;
 
                 return result;
             }                                                   
