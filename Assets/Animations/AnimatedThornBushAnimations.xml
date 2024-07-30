@@ -22,7 +22,7 @@
 			<transition target="die" />
 		</transitions>
 	</animation>
-	<animation id="die" speedMultiplier="1">
+	<animation id="die" speedMultiplier="4">
 		<animationFrames spriteImageName="AnimatedThornbushDie" isLooping="false">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>

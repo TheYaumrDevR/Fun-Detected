@@ -59,12 +59,23 @@ namespace Org.Ethasia.Fundetected.Core
                 CurrentLife = 0;
             }
 
+            if (IsDead())
+            {
+                PlayDeathAnimation();
+            }
+
             return finalDamage;
         }
 
         public bool IsDead()
         {
             return 0 == CurrentLife;
+        }
+
+        private void PlayDeathAnimation()
+        {
+            IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            animationPresenter.PlayDeathAnimation(ActionStateMachine);
         }
 
         public class Builder

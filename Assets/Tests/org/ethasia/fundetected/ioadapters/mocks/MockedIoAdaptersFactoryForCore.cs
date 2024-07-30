@@ -34,5 +34,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new HitboxPresenterMock();
         }
+
+        public override IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance()
+        {
+            return new EnemyAnimationPresenterMock();
+        }
     }
 }

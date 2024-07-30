@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private RandomNumberGenerator randomNumberGenerator;
         private DamageTextPresenter damageTextPresenter;
         private HitboxPresenter hitboxPresenter;
+        private EnemyAnimationPresenter enemyAnimationPresenter;
 
         public override IRandomNumberGenerator GetRandomNumberGeneratorInstance()
         {
@@ -36,6 +37,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return hitboxPresenter;
+        }
+
+        public override IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance()
+        {
+            if (null == enemyAnimationPresenter)
+            {
+                enemyAnimationPresenter = new EnemyAnimationPresenter();
+            }
+
+            return enemyAnimationPresenter;
         }
     }
 }
