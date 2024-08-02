@@ -7,18 +7,38 @@
 			<animationFrame index="2"/>
 		</animationFrames>
 		<transitions>
-			<transition target="attack" />
+			<transition target="strikeLeft" />
+			<transition target="strikeRight" />
 			<transition target="die" />
 		</transitions>
 	</entryAnimation>
-	<animation id="attack" speedMultiplier="1">
-		<animationFrames spriteImageName="AnimatedThornBushAttack" isLooping="false">
+	<animation id="strikeLeft" speedMultiplier="1">
+		<animationFrames spriteImageName="AnimatedThornBushLeftStrike" isLooping="false">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>
+			<animationFrame index="2"/>
+			<animationFrame index="3"/>
+			<animationFrame index="4"/>
 		</animationFrames>
 		<transitions>
 			<transition target="idle" />
-			<transition target="attack" />
+			<transition target="strikeLeft" />
+			<transition target="strikeRight" />
+			<transition target="die" />
+		</transitions>
+	</animation>
+	<animation id="strikeRight" speedMultiplier="1">
+		<animationFrames spriteImageName="AnimatedThornBushRightStrike" isLooping="false">
+			<animationFrame index="0"/>
+			<animationFrame index="1"/>
+			<animationFrame index="2"/>
+			<animationFrame index="3"/>
+			<animationFrame index="4"/>
+		</animationFrames>
+		<transitions>
+			<transition target="idle" />
+			<transition target="strikeLeft" />
+			<transition target="strikeRight" />
 			<transition target="die" />
 		</transitions>
 	</animation>

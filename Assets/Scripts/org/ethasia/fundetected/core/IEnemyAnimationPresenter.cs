@@ -5,7 +5,8 @@ namespace Org.Ethasia.Fundetected.Core
     public interface IEnemyAnimationPresenter
     {
         void PlayIdleAnimation(StateMachine animationStateMachine);
-        void PlayAttackAnimation(StateMachine animationStateMachine);
+        void PlayLeftStrikeAnimation(StateMachine animationStateMachine);
+        void PlayRightStrikeAnimation(StateMachine animationStateMachine);
         void PlayDeathAnimation(StateMachine animationStateMachine);
     }
 }

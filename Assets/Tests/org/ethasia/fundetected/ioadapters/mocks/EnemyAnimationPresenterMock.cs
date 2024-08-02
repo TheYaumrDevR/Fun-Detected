@@ -10,10 +10,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         }
 
-        public void PlayAttackAnimation(StateMachine animationStateMachine)
+        public void PlayLeftStrikeAnimation(StateMachine animationStateMachine)
         {
 
         }
+
+        public void PlayRightStrikeAnimation(StateMachine animationStateMachine)
+        {
+
+        }    
 
         public void PlayDeathAnimation(StateMachine animationStateMachine)
         {
