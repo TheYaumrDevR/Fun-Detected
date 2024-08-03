@@ -6,8 +6,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class EnemyAnimationPresenter : IEnemyAnimationPresenter
     {
         private const string IDLE_ANIMATION_NAME = "idle";
-        private const string LEFT_STRIKE_ANIMATION_NAME = "leftStrike";
-        private const string RIGHT_STRIKE_ANIMATION_NAME = "rightStrike";
+        private const string LEFT_STRIKE_ANIMATION_NAME = "strikeLeft";
+        private const string RIGHT_STRIKE_ANIMATION_NAME = "strikeRight";
         private const string DIE_ANIMATION_NAME = "die";
 
         public void PlayIdleAnimation(StateMachine animationStateMachine)
