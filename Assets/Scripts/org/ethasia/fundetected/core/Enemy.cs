@@ -26,7 +26,9 @@ namespace Org.Ethasia.Fundetected.Core
         {
             private get;
             set;
-        }        
+        }       
+
+        private bool isAggressive; 
 
         public string Name
         {
@@ -34,10 +36,24 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        private bool isAggressiveOnSight;
+
         public bool IsAggressiveOnSight
         {
-            get;
-            private set;
+            get
+            {
+                return isAggressiveOnSight;
+            }
+
+            private set
+            {
+                isAggressiveOnSight = value;
+
+                if (isAggressiveOnSight)
+                {
+                    isAggressive = true;
+                }
+            }
         }
 
         private int maxLife;
@@ -63,6 +79,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int TakePhysicalHit(int incomingDamage)
         {
+            isAggressive = true;
+
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, armor);
             CurrentLife -= finalDamage;
 
