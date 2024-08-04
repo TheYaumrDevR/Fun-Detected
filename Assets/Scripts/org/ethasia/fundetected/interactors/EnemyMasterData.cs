@@ -4,6 +4,7 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public string Id;
         public string Name;
+        public bool IsAggressiveOnSight;
         public int MaxLife;
         public int Armor;
         public float AttacksPerSecond;

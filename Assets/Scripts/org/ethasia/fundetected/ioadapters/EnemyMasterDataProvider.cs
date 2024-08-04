@@ -59,6 +59,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             EnemyMasterData result = new EnemyMasterData();
             result.Id = id;
             result.Name = "Animated Thornbush";
+            result.IsAggressiveOnSight = false;
             result.MaxLife = 21;
             result.Armor = 3;
             result.EvasionRating = 98;

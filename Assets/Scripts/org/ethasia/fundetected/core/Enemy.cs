@@ -34,6 +34,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public bool IsAggressiveOnSight
+        {
+            get;
+            private set;
+        }
+
         private int maxLife;
 
         public int CurrentLife
@@ -87,6 +93,7 @@ namespace Org.Ethasia.Fundetected.Core
         public class Builder
         {
             private string id;
+            private bool isAggressiveOnSight;
             private string name;
             private int maxLife;
             private int currentLife;
@@ -101,6 +108,12 @@ namespace Org.Ethasia.Fundetected.Core
                 name = value;
                 return this;
             }            
+
+            public Builder SetIsAggressiveOnSight(bool value)
+            {
+                isAggressiveOnSight = value;
+                return this;
+            }
 
             public Builder SetArmor(int value)
             {
@@ -150,6 +163,7 @@ namespace Org.Ethasia.Fundetected.Core
                 Enemy result = new Enemy();
                 result.Id = id;
                 result.Name = name;
+                result.IsAggressiveOnSight = isAggressiveOnSight;
                 result.armor = armor;
                 result.maxLife = maxLife;
                 result.CurrentLife = currentLife;

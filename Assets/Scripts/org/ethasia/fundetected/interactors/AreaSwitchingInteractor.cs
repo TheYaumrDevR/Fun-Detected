@@ -52,6 +52,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return new Enemy.Builder()
                 .SetId(enemyMasterData.Id)
                 .SetName(enemyMasterData.Name)
+                .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
                 .SetEvasionRating(enemyMasterData.EvasionRating)
