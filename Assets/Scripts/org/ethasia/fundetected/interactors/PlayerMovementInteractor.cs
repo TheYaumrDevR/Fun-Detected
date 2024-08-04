@@ -2,9 +2,15 @@ using Org.Ethasia.Fundetected.Core;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {
-
     public class PlayerMovementInteractor
     {
+        private static InternalInteractorsFactory internalInteractorsFactory;
+
+        public PlayerMovementInteractor()
+        {
+            internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
+        }
+
         public void MovePlayerLeft(double deltaTime)
         {
             PlayerCharacter player = GetPlayerCharacter();
@@ -57,7 +63,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             GetPlayerMovementController().MoveUnitsRight(unitsMoved);
             GetPlayerMovementController().MoveUnitsDown(unitsDropped);
 
-            PlayerAnimationPresenter.StartWalkAnimation();
+            IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+            playerAnimationPresenter.StartWalkAnimation();
         }
 
         private void MovePlayerLeft(int unitsToMove)
@@ -85,7 +92,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             GetPlayerMovementController().MoveUnitsLeft(unitsMoved);
             GetPlayerMovementController().MoveUnitsDown(unitsDropped);
 
-            PlayerAnimationPresenter.StartWalkAnimation();
+            IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+            playerAnimationPresenter.StartWalkAnimation();
         }
 
         private IPlayerMovementController GetPlayerMovementController()

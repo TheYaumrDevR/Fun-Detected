@@ -11,6 +11,7 @@ namespace Org.Ethasia.Fundetected
     {
         public static void Inject()
         {
+            InternalInteractorsFactory.SetInstance(new RealInternalInteractorsFactory());
             IoAdaptersFactoryForInteractors.SetInstance(new RealIoAdaptersFactoryForInteractors());
             RealIoAdaptersFactoryForCore.SetInstance(new RealIoAdaptersFactoryForCore());
             TechnicalFactory.SetInstance(new RealTechnicalFactory());

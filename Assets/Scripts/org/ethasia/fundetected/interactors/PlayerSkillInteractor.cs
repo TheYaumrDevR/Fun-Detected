@@ -6,6 +6,13 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public class PlayerSkillInteractor
     {
+        private static InternalInteractorsFactory internalInteractorsFactory;
+
+        public PlayerSkillInteractor()
+        {
+            internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
+        }
+
         public void ExecutePrimaryPlayerAction()
         {
             Area activeArea = Area.ActiveArea;
@@ -14,11 +21,13 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             if (playerCharacter.CanAutoAttack())
             {
+                IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+
                 if (playerCharacter.FacingDirection == FacingDirection.RIGHT)
                 {
-                    PlayerAnimationPresenter.StartRightArmSwingAnimation();
+                    playerAnimationPresenter.StartRightArmSwingAnimation();
                 } else {
-                    PlayerAnimationPresenter.StartLeftArmSwingAnimation();
+                    playerAnimationPresenter.StartLeftArmSwingAnimation();
                 }
             }
 

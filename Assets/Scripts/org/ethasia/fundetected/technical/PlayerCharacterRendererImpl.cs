@@ -12,6 +12,12 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private static PlayerCharacterRendererImpl instance;
         private static List<GameObjectProxy> startupRenderQueue;
+        private static InternalInteractorsFactory internalInteractorsFactory;
+
+        public PlayerCharacterRendererImpl()
+        {
+            internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
+        }
 
         public static PlayerCharacterRendererImpl GetInstance()
         {
@@ -45,7 +51,8 @@ namespace Org.Ethasia.Fundetected.Technical
 
         protected override void AssignAnimationStateMachine(StateMachine animationStateMachine, GameObjectProxy animatedCharacterProxy)
         {
-            PlayerAnimationPresenter.SetStateMachine(animationStateMachine);
+            IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+            playerAnimationPresenter.SetStateMachine(animationStateMachine);
         }
 
         protected override void AssignCharacterSpriteRendererAndTransform(SpriteRenderer spriteRenderer, Transform transform)

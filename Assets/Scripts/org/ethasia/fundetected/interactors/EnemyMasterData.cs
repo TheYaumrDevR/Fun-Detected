@@ -6,6 +6,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public string Name;
         public int MaxLife;
         public int Armor;
+        public float AttacksPerSecond;
         public int EvasionRating;
         public int DistanceToLeftEdge;
         public int DistanceToRightEdge;

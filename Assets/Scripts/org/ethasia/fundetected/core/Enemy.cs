@@ -49,6 +49,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public float AttacksPerSecond
+        {
+            get;
+            private set;
+        }
+
         public int TakePhysicalHit(int incomingDamage)
         {
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, armor);
@@ -86,6 +92,7 @@ namespace Org.Ethasia.Fundetected.Core
             private int currentLife;
             private int armor;
             private int evasionRating;
+            private float attacksPerSecond;
             private BoundingBox boundingBox;
             private Position position;
 
@@ -114,6 +121,12 @@ namespace Org.Ethasia.Fundetected.Core
                 return this;
             }  
 
+            public Builder SetAttacksPerSecond(float value)
+            {
+                attacksPerSecond = value;
+                return this;
+            }    
+
             public Builder SetBoundingBox(BoundingBox value)
             {
                 boundingBox = value;
@@ -130,7 +143,7 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 id = value;
                 return this;
-            }                           
+            }                       
 
             public Enemy Build()
             {
@@ -141,6 +154,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.maxLife = maxLife;
                 result.CurrentLife = currentLife;
                 result.EvasionRating = evasionRating;
+                result.AttacksPerSecond = attacksPerSecond;
                 result.BoundingBox = boundingBox;
                 result.Position = position;
 

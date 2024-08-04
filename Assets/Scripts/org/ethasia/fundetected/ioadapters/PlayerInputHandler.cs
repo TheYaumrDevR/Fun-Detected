@@ -7,6 +7,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class PlayerInputHandler : MonoBehaviour
     {
+        private static InternalInteractorsFactory internalInteractorsFactory;
+
         private PlayerSkillInteractor playerSkillInteractor;
         private PlayerMovementInteractor playerMovementInteractor;
 
@@ -17,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             playerSkillInteractor = new PlayerSkillInteractor();
             playerMovementInteractor = new PlayerMovementInteractor();
+            internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
         }
 
         public void Update()
@@ -33,7 +36,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction())
             {
-                PlayerAnimationPresenter.StartIdleAnimation();
+                IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+                playerAnimationPresenter.StartIdleAnimation();
             }
         }
 
