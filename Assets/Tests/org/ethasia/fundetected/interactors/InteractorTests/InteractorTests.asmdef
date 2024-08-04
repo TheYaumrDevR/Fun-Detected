@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "GameAssembly",
-        "IoAdaptersMocks"
+        "IoAdaptersMocks",
+        "NewAssembly"
     ],
     "includePlatforms": [
         "Editor"

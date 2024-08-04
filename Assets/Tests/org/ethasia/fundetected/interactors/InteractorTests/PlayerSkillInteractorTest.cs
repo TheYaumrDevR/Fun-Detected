@@ -2,6 +2,7 @@ using NUnit.Framework;
 
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Mocks;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Interactors.Tests
@@ -27,6 +28,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(rngMock);
 
+            InternalInteractorsFactory.SetInstance(new InternalInteractorsFactoryMock());
             IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
         }
 
