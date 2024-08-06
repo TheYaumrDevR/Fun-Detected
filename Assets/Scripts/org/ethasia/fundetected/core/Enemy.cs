@@ -71,10 +71,23 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        private float fireResistance;
+        private float iceResistance;
+        private float lightningResistance;
+        private float magicResistance;
+
         public float AttacksPerSecond
         {
             get;
             private set;
+        }
+
+        public void Update(Area map)
+        {
+            if (isAggressive)
+            {
+                PlayerCharacter enemyPlayer = Area.ActiveArea.Player;
+            }
         }
 
         public int TakePhysicalHit(int incomingDamage)
@@ -84,6 +97,46 @@ namespace Org.Ethasia.Fundetected.Core
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, armor);
             CurrentLife -= finalDamage;
 
+            ExecuteAfterDamageTakenActions();
+
+            return finalDamage;
+        }
+
+        public int TakeNonPhysicalHit(int incomingDamage, ResistanceDamageTypes damageType)
+        {
+            isAggressive = true;
+
+            int finalDamage = 0;
+
+            switch (damageType)
+            {
+                case ResistanceDamageTypes.FIRE:
+                    finalDamage = Formulas.CalculateNonPhysicalDamageAfterReduction(incomingDamage, fireResistance);
+                    break;
+                case ResistanceDamageTypes.ICE:
+                    finalDamage = Formulas.CalculateNonPhysicalDamageAfterReduction(incomingDamage, iceResistance);
+                    break;
+                case ResistanceDamageTypes.LIGHTNING:
+                    finalDamage = Formulas.CalculateNonPhysicalDamageAfterReduction(incomingDamage, lightningResistance);
+                    break;
+                case ResistanceDamageTypes.MAGIC:
+                    finalDamage = Formulas.CalculateNonPhysicalDamageAfterReduction(incomingDamage, magicResistance);
+                    break;
+            }
+
+            CurrentLife -= finalDamage;
+            ExecuteAfterDamageTakenActions();
+
+            return finalDamage;
+        }
+
+        public bool IsDead()
+        {
+            return 0 == CurrentLife;
+        }
+
+        private void ExecuteAfterDamageTakenActions()
+        {
             if (0 > CurrentLife)
             {
                 CurrentLife = 0;
@@ -93,13 +146,6 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 PlayDeathAnimation();
             }
-
-            return finalDamage;
-        }
-
-        public bool IsDead()
-        {
-            return 0 == CurrentLife;
         }
 
         private void PlayDeathAnimation()
@@ -116,6 +162,10 @@ namespace Org.Ethasia.Fundetected.Core
             private int maxLife;
             private int currentLife;
             private int armor;
+            private float fireResistance;
+            private float iceResistance;
+            private float lightningResistance;
+            private float magicResistance;
             private int evasionRating;
             private float attacksPerSecond;
             private BoundingBox boundingBox;
@@ -136,6 +186,30 @@ namespace Org.Ethasia.Fundetected.Core
             public Builder SetArmor(int value)
             {
                 armor = value;
+                return this;
+            }
+
+            public Builder SetFireResistance(float value)
+            {
+                fireResistance = value;
+                return this;
+            }
+
+            public Builder SetIceResistance(float value)
+            {
+                iceResistance = value;
+                return this;
+            }
+
+            public Builder SetLightningResistance(float value)
+            {
+                lightningResistance = value;
+                return this;
+            }
+
+            public Builder SetMagicResistance(float value)
+            {
+                magicResistance = value;
                 return this;
             }
 
@@ -183,6 +257,10 @@ namespace Org.Ethasia.Fundetected.Core
                 result.Name = name;
                 result.IsAggressiveOnSight = isAggressiveOnSight;
                 result.armor = armor;
+                result.fireResistance = fireResistance;
+                result.iceResistance = iceResistance;
+                result.lightningResistance = lightningResistance;
+                result.magicResistance = magicResistance;
                 result.maxLife = maxLife;
                 result.CurrentLife = currentLife;
                 result.EvasionRating = evasionRating;

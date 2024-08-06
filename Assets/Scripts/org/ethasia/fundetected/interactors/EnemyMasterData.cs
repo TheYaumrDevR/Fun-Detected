@@ -7,6 +7,10 @@ namespace Org.Ethasia.Fundetected.Interactors
         public bool IsAggressiveOnSight;
         public int MaxLife;
         public int Armor;
+        public int FireResistance;
+        public int IceResistance;
+        public int LightningResistance;
+        public int MagicResistance;
         public float AttacksPerSecond;
         public int EvasionRating;
         public int DistanceToLeftEdge;
