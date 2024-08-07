@@ -9,6 +9,14 @@ namespace Org.Ethasia.Fundetected.Core
     {
         private IRandomNumberGenerator randomNumberGenerator;
 
+        private double timeSinceLastMovement;  
+
+        public BoundingBox BoundingBox
+        {
+            get;
+            private set;
+        }              
+
         private CharacterClasses characterClass;
 
         public FacingDirection FacingDirection
@@ -20,8 +28,6 @@ namespace Org.Ethasia.Fundetected.Core
         private string name;
 
         private PlayerCharacterBaseStats baseStats;     
-
-        private double timeSinceLastMovement;
 
         private PlayerEquipmentSlots allEquipment;
 
@@ -154,12 +160,19 @@ namespace Org.Ethasia.Fundetected.Core
 
         public class PlayerCharacterBuilder
         {
+            private BoundingBox boundingBox;
             private FacingDirection facingDirection;
             private string name;
             private CharacterClasses characterClass;
 
             private PlayerCharacterBaseStats playerCharacterBaseStats;
             private MeleeHitArcProperties meleeHitArcProperties;
+
+            public PlayerCharacterBuilder SetBoundingBox(BoundingBox value)
+            {
+                boundingBox = value;
+                return this;
+            }  
 
             public PlayerCharacterBuilder SetFacingDirection(FacingDirection value)
             {
@@ -194,6 +207,8 @@ namespace Org.Ethasia.Fundetected.Core
             public PlayerCharacter Build()
             {
                 PlayerCharacter result = new PlayerCharacter();
+
+                result.BoundingBox = boundingBox;
 
                 result.FacingDirection = facingDirection;
 

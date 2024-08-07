@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public abstract ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance();
         public abstract IMeleeHitArcMasterDataProvider GetMeleeHitArcMasterDataProviderInstance();
+        public abstract IPlayerBoundingBoxMasterDataProvider GetPlayerBoundingBoxMasterDataProviderInstance();
         public abstract IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance();
         public abstract IBattleLogPrinter GetBattleLogPrinterInstance();
         public abstract IPlayerMovementController GetPlayerMovementControllerInstance();

@@ -14,6 +14,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return new MeleeHitArcMasterDataProviderMock();
         }
 
+        public override IPlayerBoundingBoxMasterDataProvider GetPlayerBoundingBoxMasterDataProviderInstance()
+        {
+            return new PlayerBoundingBoxMasterDataProviderMock();
+        }
+
         public override IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance()
         {
             return new EnemyMasterDataProviderMock();

@@ -13,5 +13,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
             set;
         }
+
+        public BoundingBoxMasterData BoundingBoxMasterData
+        {
+            get;
+            set;
+        }
     }
 }

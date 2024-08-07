@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     {
         private CharacterClassMasterdataProvider characterClassMasterdataProvider;
         private MeleeHitArcMasterDataProvider meleeHitArcMasterDataProvider;
+        private PlayerBoundingBoxMasterDataProvider playerBoundingBoxMasterDataProvider;
         private EnemyMasterDataProvider enemyMasterDataProvider;
         private BattleLogPrinter battleLogPrinter;
         private PlayerMovementControllerImpl playerMovementController;
@@ -32,6 +33,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return meleeHitArcMasterDataProvider;
+        }
+
+        public override IPlayerBoundingBoxMasterDataProvider GetPlayerBoundingBoxMasterDataProviderInstance()
+        {
+            if (null == playerBoundingBoxMasterDataProvider)
+            {
+                playerBoundingBoxMasterDataProvider = new PlayerBoundingBoxMasterDataProvider();
+            }
+
+            return playerBoundingBoxMasterDataProvider;
         }
 
         public override IEnemyMasterDataProvider GetEnemyMasterDataProviderInstance()

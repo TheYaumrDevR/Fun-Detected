@@ -8,11 +8,13 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         private ICharacterClassMasterDataProvider characterClassMasterDataProvider;
         private IMeleeHitArcMasterDataProvider meleeHitArcMasterDataProvider;
+        private IPlayerBoundingBoxMasterDataProvider playerBoundingBoxMasterDataProvider;
 
         public StartGameInteractor()
         {
             characterClassMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetCharacterClassMasterDataProviderInstance();
             meleeHitArcMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetMeleeHitArcMasterDataProviderInstance();
+            playerBoundingBoxMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerBoundingBoxMasterDataProviderInstance();
         }
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
@@ -30,11 +32,13 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             CharacterClassMasterData characterClassMasterData = CreateCharacterMasterDataBasedOnCharacterClass(characterClass);
             MeleeHitArcMasterData meleeHitArcMasterData = CreateMeleeHitArcMasterDataBasedOnCharacterBodyType();
+            BoundingBoxMasterData playerBoundingBoxMasterData = CreatePlayerBoundingBoxMasterDataBasedOnCharacterBodyType();
 
             return new CharacterCreationMasterData
             {
                 CharacterClassMasterData = characterClassMasterData,
-                MeleeHitArcMasterData = meleeHitArcMasterData
+                MeleeHitArcMasterData = meleeHitArcMasterData,
+                BoundingBoxMasterData = playerBoundingBoxMasterData
             };
         }          
 
@@ -64,6 +68,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             return meleeHitArcMasterDataProvider.CreateFemaleCharacterOneMeleeHitArcMasterData();
         }
 
+        private BoundingBoxMasterData CreatePlayerBoundingBoxMasterDataBasedOnCharacterBodyType()
+        {
+            return playerBoundingBoxMasterDataProvider.CreateFemaleCharacterOneBoundingBoxMasterData();
+        }
+
         private PlayerCharacter CreatePlayerCharacterFromStartingStats(CharacterClasses characterClass, CharacterCreationMasterData playerCharacterBaseStats)
         {
             CharacterClassMasterData playerCharacterStartingStats = playerCharacterBaseStats.CharacterClassMasterData;
@@ -91,6 +100,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             meleeHitArcProperties.HitArcRadius = meleeHitArcMasterData.HitArcRadius;
             meleeHitArcProperties.HitArcCenterXOffset = meleeHitArcMasterData.HitArcCenterXOffset;
             meleeHitArcProperties.HitArcCenterYOffset = meleeHitArcMasterData.HitArcCenterYOffset;
+
+            BoundingBox playerBoundingBox = CreatePlayerBoundingBoxFromMasterData(playerCharacterBaseStats.BoundingBoxMasterData); 
             
             startingStats.DeriveStats();
             startingStats.FullHeal();
@@ -100,7 +111,19 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .SetMeleeHitArcProperties(meleeHitArcProperties)
+                .SetBoundingBox(playerBoundingBox)
                 .Build();            
+        }
+
+        private BoundingBox CreatePlayerBoundingBoxFromMasterData(BoundingBoxMasterData boundingBoxMasterData)
+        {
+            return new BoundingBox
+                .Builder()
+                .SetDistanceToLeftEdge(boundingBoxMasterData.DistanceToLeftEdge)
+                .SetDistanceToRightEdge(boundingBoxMasterData.DistanceToRightEdge)
+                .SetDistanceToTopEdge(boundingBoxMasterData.DistanceToTopEdge)
+                .SetDistanceToBottomEdge(boundingBoxMasterData.DistanceToBottomEdge)
+                .Build();
         }
     }
 }
