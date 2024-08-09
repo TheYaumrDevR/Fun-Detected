@@ -12,6 +12,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int LightningResistance;
         public int MagicResistance;
         public float AttacksPerSecond;
+        public int UnarmedStrikeRange;
+        public int CorpseMass;
         public int EvasionRating;
         public int DistanceToLeftEdge;
         public int DistanceToRightEdge;

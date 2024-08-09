@@ -64,6 +64,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Armor = 3;
             result.EvasionRating = 98;
             result.AttacksPerSecond = 0.714285f;
+            result.UnarmedStrikeRange = 8;
+            result.CorpseMass = 4;
             result.DistanceToLeftEdge = 7;
             result.DistanceToRightEdge = 7;
             result.DistanceToBottomEdge = 7;

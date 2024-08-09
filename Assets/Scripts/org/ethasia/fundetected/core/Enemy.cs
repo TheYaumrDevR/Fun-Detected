@@ -75,6 +75,8 @@ namespace Org.Ethasia.Fundetected.Core
         private float iceResistance;
         private float lightningResistance;
         private float magicResistance;
+        private int unarmedStrikeRange;
+        private int corpseMass;
 
         public float AttacksPerSecond
         {
@@ -168,6 +170,8 @@ namespace Org.Ethasia.Fundetected.Core
             private float magicResistance;
             private int evasionRating;
             private float attacksPerSecond;
+            private int unarmedStrikeRange;
+            private int corpseMass;
             private BoundingBox boundingBox;
             private Position position;
 
@@ -248,7 +252,19 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 id = value;
                 return this;
-            }                       
+            }         
+
+            public Builder SetUnarmedStrikeRange(int value)
+            {
+                unarmedStrikeRange = value;
+                return this;
+            }              
+
+            public Builder SetCorpseMass(int value)
+            {
+                corpseMass = value;
+                return this;
+            }
 
             public Enemy Build()
             {
@@ -265,6 +281,8 @@ namespace Org.Ethasia.Fundetected.Core
                 result.CurrentLife = currentLife;
                 result.EvasionRating = evasionRating;
                 result.AttacksPerSecond = attacksPerSecond;
+                result.unarmedStrikeRange = unarmedStrikeRange;
+                result.corpseMass = corpseMass;
                 result.BoundingBox = boundingBox;
                 result.Position = position;
 
