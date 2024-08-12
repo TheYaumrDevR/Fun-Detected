@@ -4,6 +4,10 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class Enemy
     {
+        private EnemyAI ai;
+
+        private StopWatch lastStartOfAttackStopWatch;
+
         public string Id
         {
             get;
@@ -28,32 +32,10 @@ namespace Org.Ethasia.Fundetected.Core
             set;
         }       
 
-        private bool isAggressive; 
-
         public string Name
         {
             get;
             private set;
-        }
-
-        private bool isAggressiveOnSight;
-
-        public bool IsAggressiveOnSight
-        {
-            get
-            {
-                return isAggressiveOnSight;
-            }
-
-            private set
-            {
-                isAggressiveOnSight = value;
-
-                if (isAggressiveOnSight)
-                {
-                    isAggressive = true;
-                }
-            }
         }
 
         private int maxLife;
@@ -75,7 +57,13 @@ namespace Org.Ethasia.Fundetected.Core
         private float iceResistance;
         private float lightningResistance;
         private float magicResistance;
-        private int unarmedStrikeRange;
+
+        public int UnarmedStrikeRange
+        {
+            get;
+            private set;
+        }
+
         private int corpseMass;
 
         public float AttacksPerSecond
@@ -84,18 +72,20 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        public void Update(Area map)
+        private Enemy()
         {
-            if (isAggressive)
-            {
-                PlayerCharacter enemyPlayer = Area.ActiveArea.Player;
-            }
+            lastStartOfAttackStopWatch = new StopWatch();
+        }
+
+        public void Update(double actionTime, Area map)
+        {
+            lastStartOfAttackStopWatch.Tick(actionTime);
+            ai.Update(map);
         }
 
         public int TakePhysicalHit(int incomingDamage)
         {
-            isAggressive = true;
-
+            ai.OnHitTaken();
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, armor);
             CurrentLife -= finalDamage;
 
@@ -106,8 +96,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public int TakeNonPhysicalHit(int incomingDamage, ResistanceDamageTypes damageType)
         {
-            isAggressive = true;
-
+            ai.OnHitTaken();
             int finalDamage = 0;
 
             switch (damageType)
@@ -130,6 +119,51 @@ namespace Org.Ethasia.Fundetected.Core
             ExecuteAfterDamageTakenActions();
 
             return finalDamage;
+        }
+
+        public void StartIdling()
+        {
+            if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
+            {
+                IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+                animationPresenter.PlayIdleAnimation(ActionStateMachine);
+            }
+        }
+
+        public void StrikeLeft(PlayerCharacter player)
+        {
+            if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
+            {
+                lastStartOfAttackStopWatch.Reset();
+                PlayStrikeLeftAnimation();
+            }
+        }
+
+        public void StrikeRight(PlayerCharacter player)
+        {
+            if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
+            {
+                lastStartOfAttackStopWatch.Reset();
+                PlayStrikeRightAnimation();
+            }
+        }
+
+        private bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
+        {
+            double secondsPerAttack = 1.0 / attacksPerSecond;
+            return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack;            
+        } 
+
+        private void PlayStrikeLeftAnimation()
+        {
+            IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            animationPresenter.PlayLeftStrikeAnimation(ActionStateMachine);
+        }
+
+        private void PlayStrikeRightAnimation()
+        {
+            IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            animationPresenter.PlayRightStrikeAnimation(ActionStateMachine);
         }
 
         public bool IsDead()
@@ -269,9 +303,9 @@ namespace Org.Ethasia.Fundetected.Core
             public Enemy Build()
             {
                 Enemy result = new Enemy();
+
                 result.Id = id;
                 result.Name = name;
-                result.IsAggressiveOnSight = isAggressiveOnSight;
                 result.armor = armor;
                 result.fireResistance = fireResistance;
                 result.iceResistance = iceResistance;
@@ -281,10 +315,17 @@ namespace Org.Ethasia.Fundetected.Core
                 result.CurrentLife = currentLife;
                 result.EvasionRating = evasionRating;
                 result.AttacksPerSecond = attacksPerSecond;
-                result.unarmedStrikeRange = unarmedStrikeRange;
+                result.UnarmedStrikeRange = unarmedStrikeRange;
                 result.corpseMass = corpseMass;
                 result.BoundingBox = boundingBox;
                 result.Position = position;
+
+                EnemyAI enemyAI = new EnemyAI.Builder()
+                    .IsAggressiveOnSight(isAggressiveOnSight)
+                    .ManagedEnemy(result)
+                    .Build();
+
+                result.ai = enemyAI;
 
                 return result;
             }

@@ -4,7 +4,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public class PlayerRepeatedUpdateInteractor
     {
-
         public void Update(double deltaTime)
         {
             Area activeArea = Area.ActiveArea;

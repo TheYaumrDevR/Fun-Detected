@@ -48,6 +48,16 @@ namespace Org.Ethasia.Fundetected.Core
             }
         }        
 
+        public int GetPlayerPositionX()
+        {
+            return playerPosition.X;
+        }
+
+        public int GetPlayerPositionY()
+        {
+            return playerPosition.Y;
+        }
+
         private Area(bool[,] isCollisionTile, AreaDimensions areaDimensions)
         {
             this.areaDimensions = areaDimensions;
