@@ -63,7 +63,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.MaxLife = 21;
             result.Armor = 3;
             result.EvasionRating = 98;
-            result.AttacksPerSecond = 0.714285f;
+            result.AttacksPerSecond = 1.2f;
             result.UnarmedStrikeRange = 8;
             result.CorpseMass = 4;
             result.DistanceToLeftEdge = 7;
