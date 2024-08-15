@@ -75,8 +75,8 @@ namespace Org.Ethasia.Fundetected.Core
                 && map.GetPlayerPositionY() + player.BoundingBox.DistanceToTopEdge <= ManagedEnemy.Position.Y + ManagedEnemy.UnarmedStrikeRange
                 || map.GetPlayerPositionY() - player.BoundingBox.DistanceToBottomEdge >= ManagedEnemy.Position.Y - ManagedEnemy.UnarmedStrikeRange
                 && map.GetPlayerPositionY() - player.BoundingBox.DistanceToBottomEdge <= ManagedEnemy.Position.Y + ManagedEnemy.UnarmedStrikeRange
-                || map.GetPlayerPositionY() - player.BoundingBox.DistanceToBottomEdge < ManagedEnemy.Position.Y - ManagedEnemy.UnarmedStrikeRange)
-                && map.GetPlayerPositionY() + player.BoundingBox.DistanceToTopEdge > ManagedEnemy.Position.Y + ManagedEnemy.UnarmedStrikeRange;
+                || map.GetPlayerPositionY() - player.BoundingBox.DistanceToBottomEdge < ManagedEnemy.Position.Y - ManagedEnemy.UnarmedStrikeRange
+                && map.GetPlayerPositionY() + player.BoundingBox.DistanceToTopEdge > ManagedEnemy.Position.Y + ManagedEnemy.UnarmedStrikeRange);
         }
 
         public class Builder

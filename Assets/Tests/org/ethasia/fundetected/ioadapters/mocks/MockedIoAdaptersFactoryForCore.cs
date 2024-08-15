@@ -6,6 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
     public class MockedIoAdaptersFactoryForCore : IoAdaptersFactoryForCore
     {
         private IRandomNumberGenerator rngInstance;
+        private IEnemyAnimationPresenter enemyAnimationPresenterInstance;
 
         public void SetRngInstance(IRandomNumberGenerator value)
         {
@@ -37,7 +38,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         public override IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance()
         {
-            return new EnemyAnimationPresenterMock();
+            if (null == enemyAnimationPresenterInstance)
+            {
+                enemyAnimationPresenterInstance = new EnemyAnimationPresenterMock();
+            }
+
+            return enemyAnimationPresenterInstance;
         }
     }
 }
