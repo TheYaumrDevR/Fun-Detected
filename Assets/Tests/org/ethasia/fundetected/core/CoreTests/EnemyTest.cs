@@ -97,16 +97,247 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
             Area.ActiveArea = testArea;          
 
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 12, 17);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(1));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsInRangeFromLeft()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 28, 17);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(0));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(1));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }    
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsInRangeFromTop()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 20, 12);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(1));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        } 
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsInRangeFromBottom()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 20, 28);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(1));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }        
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromRight()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 9, 17);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(0));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }     
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromLeft()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 30, 17);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(0));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }                          
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromTop()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 20, 10);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(0));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        } 
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromBottom()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 20, 31);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(0));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }         
+
+        // player right and left border include
+        // player top and bottom border include      
+
+        private Enemy CreateEnemyForAiAttackTests()
+        {
             Position enemyPosition = new Position(20, 20);  
 
-            Enemy testCandidate = new Enemy
+            return new Enemy
                 .Builder()
                 .SetLife(10)
                 .SetPosition(enemyPosition)
                 .SetUnarmedStrikeRange(5)
                 .SetIsAggressiveOnSight(true)
                 .Build();
+        } 
 
+        private PlayerCharacter CreatePlayerCharacterForAiAttackTests()
+        {
             BoundingBox playerBoundingBox = new BoundingBox
                 .Builder()
                 .SetDistanceToLeftEdge(4)
@@ -124,34 +355,12 @@ namespace Org.Ethasia.Fundetected.Core.Tests
                 HitArcCenterYOffset = 0
             };
 
-            PlayerCharacter player = new PlayerCharacter
+            return new PlayerCharacter
                 .PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(new PlayerCharacterBaseStats())
                 .SetBoundingBox(playerBoundingBox)
                 .SetMeleeHitArcProperties(meleeHitArcProperties)
-                .Build();
-
-            testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 12, 17);
-
-            testCandidate.Update(1.5f, testArea);           
-
-            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
-            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
-            {
-                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
-                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(1));
-            }
-        }
-        // player right border is in
-        // player left border is in
-        // player top border is in
-        // player bottom border is in
-        // player right border is out
-        // player left border is out
-        // player top border is out
-        // player bottom border is out
-        // player right and left border include
-        // player top and bottom border include                
+                .Build();            
+        }        
     }
 }
