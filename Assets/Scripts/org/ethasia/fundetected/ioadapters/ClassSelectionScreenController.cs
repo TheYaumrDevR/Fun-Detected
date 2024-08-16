@@ -21,10 +21,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.BATTLE_MAGE);
         }
 
-        public void OnStrongmanSelected()
+        public void OnJockSelected()
         {
             SceneManager.LoadScene("Hill");
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.JOCK);
         }
 
         public void OnDuelistSelected()

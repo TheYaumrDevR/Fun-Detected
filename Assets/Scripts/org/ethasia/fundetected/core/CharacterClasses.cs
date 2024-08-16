@@ -2,7 +2,7 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public enum CharacterClasses
     {
-        STRONGMAN, // Str
+        JOCK, // Str
         DUELIST, // Str / Agi
         BATTLE_MAGE, // Str / Int
         ZOOMER, // Agi (Archer)

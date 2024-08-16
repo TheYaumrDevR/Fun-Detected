@@ -96,7 +96,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             return new PlayerCharacter.PlayerCharacterBuilder()
                 .SetFacingDirection(FacingDirection.RIGHT)
-                .SetCharacterClass(CharacterClasses.STRONGMAN)
+                .SetCharacterClass(CharacterClasses.JOCK)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build(); 

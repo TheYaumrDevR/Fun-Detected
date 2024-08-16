@@ -36,7 +36,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         public void TestExecutePrimaryPlayerActionDealsDamage()
         {   
             StartGameInteractor startGameInteractor = new StartGameInteractor();
-            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.STRONGMAN);
+            startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.JOCK);
 
             rngMock.Reset();
 

@@ -2,7 +2,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public interface ICharacterClassMasterDataProvider
     {
-        CharacterClassMasterData CreateStrongManMasterData();
+        CharacterClassMasterData CreateJockMasterData();
         CharacterClassMasterData CreateDuelistMasterData(); 
         CharacterClassMasterData CreateBattleMageMasterData(); 
         CharacterClassMasterData CreateZoomerMasterData(); 

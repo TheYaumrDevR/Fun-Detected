@@ -5,11 +5,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 {
     public class CharacterClassMasterDataProviderMock : ICharacterClassMasterDataProvider
     {
-        public CharacterClassMasterData CreateStrongManMasterData()
+        public CharacterClassMasterData CreateJockMasterData()
         {
             CharacterClassMasterData result = new CharacterClassMasterData();
 
-            result.CharacterClass = CharacterClasses.STRONGMAN;
+            result.CharacterClass = CharacterClasses.JOCK;
             result.Intelligence = 14;
             result.Agility = 14;
             result.Strength = 32;

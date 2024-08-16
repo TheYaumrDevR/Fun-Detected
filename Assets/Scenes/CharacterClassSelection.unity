@@ -427,7 +427,7 @@ MonoBehaviour:
       - m_Target: {fileID: 559686262}
         m_TargetAssemblyTypeName: Org.Ethasia.Fundetected.Ioadapters.ClassSelectionScreenController,
           GameAssembly
-        m_MethodName: OnStrongmanSelected
+        m_MethodName: OnJockSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

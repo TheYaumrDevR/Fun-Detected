@@ -46,8 +46,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             switch (characterClass)
             {
-                case CharacterClasses.STRONGMAN:
-                    return characterClassMasterDataProvider.CreateStrongManMasterData();
+                case CharacterClasses.JOCK:
+                    return characterClassMasterDataProvider.CreateJockMasterData();
                 case CharacterClasses.DUELIST:
                     return characterClassMasterDataProvider.CreateDuelistMasterData();
                 case CharacterClasses.BATTLE_MAGE:
