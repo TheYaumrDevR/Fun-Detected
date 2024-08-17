@@ -132,6 +132,12 @@ namespace Org.Ethasia.Fundetected.Core
                 }
             }
 
+            foreach (Enemy enemy in result)
+            {
+                IHitboxPresenter hitboxPresenter = IoAdaptersFactoryForCore.GetInstance().GetHitboxPresenterInstance();
+                hitboxPresenter.PresentStrikeRangeHitbox(enemy.Position.X + LowestScreenX, enemy.Position.Y + LowestScreenY, enemy.UnarmedStrikeRange);
+            }
+            
             return result;
         }
 

@@ -8,5 +8,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
 
         }
+
+        public void PresentStrikeRangeHitbox(int logicalPositionX, int logicalPositionY, int strikeRange)
+        {
+
+        }          
     }
 }
