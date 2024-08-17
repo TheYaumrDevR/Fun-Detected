@@ -205,7 +205,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         }        
 
         [Test]
-        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromRight()
+        public void TestAggressiveEnemyDoesNotStrikePlayerIfPlayerIsNotInRangeFromRight()
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
@@ -234,7 +234,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         }     
 
         [Test]
-        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromLeft()
+        public void TestAggressiveEnemyDoesNotStrikePlayerIfPlayerIsNotInRangeFromLeft()
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
@@ -263,7 +263,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         }                          
 
         [Test]
-        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromTop()
+        public void TestAggressiveEnemyDoesNotStrikePlayerIfPlayerIsNotInRangeFromTop()
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
@@ -292,7 +292,7 @@ namespace Org.Ethasia.Fundetected.Core.Tests
         } 
 
         [Test]
-        public void TestAggressiveEnemyStrikesPlayerIfPlayerIsNotInRangeFromBottom()
+        public void TestAggressiveEnemyDoesNotStrikePlayerIfPlayerIsNotInRangeFromBottom()
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
@@ -318,10 +318,65 @@ namespace Org.Ethasia.Fundetected.Core.Tests
 
                 enemyAnimationPresenter.Reset();
             }
-        }         
+        }    
 
-        // player right and left border include
-        // player top and bottom border include      
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerBoundingBoxContainsEnemyHorizontally()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 20, 20);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(1));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }       
+
+        [Test]
+        public void TestAggressiveEnemyStrikesPlayerIfPlayerBoundingBoxContainsEnemyVertically()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;          
+
+            Enemy testCandidate = CreateEnemyForAiAttackTests();
+
+            PlayerCharacter player = CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests();
+
+            testArea.AddEnemy(testCandidate);
+            testArea.AddPlayerAt(player, 20, 20);
+
+            testCandidate.Update(1.5f, testArea);           
+
+            IEnemyAnimationPresenter enemyAnimationPresenterMock = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            if (enemyAnimationPresenterMock is EnemyAnimationPresenterMock)
+            {
+                EnemyAnimationPresenterMock enemyAnimationPresenter = (EnemyAnimationPresenterMock)enemyAnimationPresenterMock;
+                Assert.That(enemyAnimationPresenter.TimesPlayLeftStrikeAnimationWasCalled, Is.EqualTo(1));
+                Assert.That(enemyAnimationPresenter.TimesPlayRightStrikeAnimationWasCalled, Is.EqualTo(0));
+
+                enemyAnimationPresenter.Reset();
+            }
+        }                
 
         private Enemy CreateEnemyForAiAttackTests()
         {
@@ -346,6 +401,37 @@ namespace Org.Ethasia.Fundetected.Core.Tests
                 .SetDistanceToBottomEdge(5)
                 .Build();
 
+            return CreatePlayerCharacterForAiAttackTestsWithBoundingBox(playerBoundingBox);         
+        } 
+
+        private PlayerCharacter CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests()
+        {
+            BoundingBox playerBoundingBox = new BoundingBox
+                .Builder()
+                .SetDistanceToLeftEdge(9)
+                .SetDistanceToRightEdge(10)
+                .SetDistanceToTopEdge(1)
+                .SetDistanceToBottomEdge(2)
+                .Build();
+
+            return CreatePlayerCharacterForAiAttackTestsWithBoundingBox(playerBoundingBox);         
+        }  
+
+        private PlayerCharacter CreatePlayerCharacterWithHighBoundingBoxForAiAttackTests()
+        {
+            BoundingBox playerBoundingBox = new BoundingBox
+                .Builder()
+                .SetDistanceToLeftEdge(1)
+                .SetDistanceToRightEdge(2)
+                .SetDistanceToTopEdge(9)
+                .SetDistanceToBottomEdge(10)
+                .Build();
+
+            return CreatePlayerCharacterForAiAttackTestsWithBoundingBox(playerBoundingBox);         
+        }                 
+
+        private PlayerCharacter CreatePlayerCharacterForAiAttackTestsWithBoundingBox(BoundingBox playerBoundingBox)
+        {
             MeleeHitArcProperties meleeHitArcProperties = new MeleeHitArcProperties
             {
                 HitArcStartAngle = 0.0f,
@@ -361,6 +447,6 @@ namespace Org.Ethasia.Fundetected.Core.Tests
                 .SetBoundingBox(playerBoundingBox)
                 .SetMeleeHitArcProperties(meleeHitArcProperties)
                 .Build();            
-        }        
+        }               
     }
 }
