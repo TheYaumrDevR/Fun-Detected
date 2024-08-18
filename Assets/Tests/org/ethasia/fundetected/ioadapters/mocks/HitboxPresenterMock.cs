@@ -13,5 +13,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
 
         }          
+
+        public void PresentBoundingBox(Position position, BoundingBox boundingBox)
+        {
+            
+        } 
     }
 }

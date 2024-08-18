@@ -15,7 +15,23 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public void PresentStrikeRangeHitbox(int logicalPositionX, int logicalPositionY, int strikeRange)
         {
 
-        }        
+        }      
+
+        public void PresentBoundingBox(Position position, BoundingBox boundingBox)
+        {
+            hitboxRenderer = TechnicalFactory.GetInstance().GetHitboxDebugShapeRendererInstance();
+
+            for (int i = position.X - boundingBox.DistanceToLeftEdge; i <= position.X + boundingBox.DistanceToRightEdge; i++)
+            {
+                for (int j = position.Y - boundingBox.DistanceToBottomEdge; j <= position.Y + boundingBox.DistanceToTopEdge; j++)
+                {
+                    float posX = i / 10.0f;
+                    float posY = j / 10.0f;
+
+                    hitboxRenderer.RenderHitboxDebugShape(posX, posY);
+                }
+            }            
+        }  
 
         private void PresentHitboxReal(int logicalPositionX, int logicalPositionY)
         {

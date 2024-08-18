@@ -89,7 +89,7 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 Player = value;
                 playerPosition.X = x;
-                playerPosition.Y = y;
+                playerPosition.Y = y;             
             }
         }
 
