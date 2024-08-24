@@ -71,6 +71,28 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.DistanceToBottomEdge = 7;
             result.DistanceToTopEdge = 7;
 
+            UnarmedAsymmetricSwingAbilityMasterData unarmedAsymmetricSwingAbilityMasterData = new UnarmedAsymmetricSwingAbilityMasterData
+            {
+                LeftSwingData = new UnarmedSwingAbilityMasterData()
+                {
+                    HitArcStartAngle = -1.7088518706, // -97,91
+                    HitArcEndAngle = -2.671575486, // -153,07
+                    HitArcRadius = 10,
+                    HitArcCenterXOffset = 0,
+                    HitArcCenterYOffset = 0
+                },
+                RightSwingData = new UnarmedSwingAbilityMasterData()
+                {
+                    HitArcStartAngle = -1.4030701857, // -80,39
+                    HitArcEndAngle = -0.637045177, // -36,5
+                    HitArcRadius = 10,
+                    HitArcCenterXOffset = 0,
+                    HitArcCenterYOffset = 0
+                }
+            };
+
+            result.AbilityMasterData = unarmedAsymmetricSwingAbilityMasterData;
+
             return result;
         }    
 

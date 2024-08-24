@@ -19,5 +19,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int DistanceToRightEdge;
         public int DistanceToBottomEdge;
         public int DistanceToTopEdge;
+        public AbilityMasterData AbilityMasterData;
     }
 }

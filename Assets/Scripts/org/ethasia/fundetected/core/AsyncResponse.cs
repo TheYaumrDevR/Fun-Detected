@@ -4,12 +4,14 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public class AsyncResponse<T>
     {
+        private bool responseReceived;
         private T responseObject;
         private Action<T> responseCallback;
 
         public void SetResponseObject(T value)
         {
             responseObject = value;
+            responseReceived = true;
 
             if (null != responseCallback)
             {
@@ -21,7 +23,7 @@ namespace Org.Ethasia.Fundetected.Core
         {
             responseCallback = callback;
 
-            if (null != responseObject)
+            if (responseReceived)
             {
                 responseCallback(responseObject);
             }
