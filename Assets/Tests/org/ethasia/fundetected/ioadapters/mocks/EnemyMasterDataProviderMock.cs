@@ -13,6 +13,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Armor = 1;
             result.EvasionRating = 98;
 
+            AbilityMasterData mockAbilityMasterData = new UnarmedSwingAbilityMasterData
+            {
+                AbilityName = "Mock Ability"
+            };
+            result.AbilityMasterData = mockAbilityMasterData;        
+
             return result;
         }
 
@@ -22,7 +28,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.DistanceToLeftRenderEdge = 7;
             result.DistanceToRightRenderEdge = 7;
             result.DistanceToBottomRenderEdge = 7;
-            result.DistanceToTopRenderEdge = 7;
+            result.DistanceToTopRenderEdge = 7;         
 
             return result;
         }        

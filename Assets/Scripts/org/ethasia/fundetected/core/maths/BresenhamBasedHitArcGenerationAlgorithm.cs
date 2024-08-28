@@ -28,6 +28,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 
         public void CreateFilledCircleArc(double startAngleInRadians, double stopAngleInRadians, int radius)
         {
+            if (radius < 1)
+            {
+                HitboxTilePositionsRight = new List<HitboxTilePosition>();
+                HitboxTilePositionsLeft = new List<HitboxTilePosition>();
+                return;
+            }
+
             this.radius = radius;
             SetCirclePoints();
 

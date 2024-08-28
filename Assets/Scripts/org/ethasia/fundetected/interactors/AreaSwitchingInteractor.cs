@@ -49,7 +49,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetDistanceToTopEdge(enemyMasterData.DistanceToTopEdge)
                 .Build();
 
-            return new Enemy.Builder()
+            Enemy result = new Enemy.Builder()
                 .SetId(enemyMasterData.Id)
                 .SetName(enemyMasterData.Name)
                 .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
@@ -62,6 +62,13 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetBoundingBox(enemyBoundingBox)
                 .SetPosition(spawnLocationData.MapLocation)
                 .Build();
+
+            EnemyAbility enemyAbility = enemyMasterData.AbilityMasterData.CreateAbilityForEnemy(result);
+            string abilityName = enemyMasterData.AbilityMasterData.GetAbilityName();
+
+            result.AddAbilityByName(abilityName, enemyAbility);
+
+            return result;
         }      
 
         private void ShowEnemies(Area map)

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core
@@ -5,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Core
     public class Enemy
     {
         private EnemyAI ai;
+        private Dictionary<string, EnemyAbility> abilitiesByName;
 
         private StopWatch lastStartOfAttackStopWatch;
 
@@ -184,6 +187,16 @@ namespace Org.Ethasia.Fundetected.Core
             }
         }
 
+        public void AddAbilityByName(string name, EnemyAbility ability)
+        {
+            abilitiesByName[name] = ability;
+        }
+
+        public EnemyAbility GetAbilityByName(string name)
+        {
+            return abilitiesByName[name];
+        }
+
         private void PlayDeathAnimation()
         {
             IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
@@ -304,6 +317,11 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 Enemy result = new Enemy();
 
+                EnemyAI enemyAI = new EnemyAI.Builder()
+                    .IsAggressiveOnSight(isAggressiveOnSight)
+                    .ManagedEnemy(result)
+                    .Build();
+
                 result.Id = id;
                 result.Name = name;
                 result.armor = armor;
@@ -319,13 +337,8 @@ namespace Org.Ethasia.Fundetected.Core
                 result.corpseMass = corpseMass;
                 result.BoundingBox = boundingBox;
                 result.Position = position;
-
-                EnemyAI enemyAI = new EnemyAI.Builder()
-                    .IsAggressiveOnSight(isAggressiveOnSight)
-                    .ManagedEnemy(result)
-                    .Build();
-
                 result.ai = enemyAI;
+                result.abilitiesByName = new Dictionary<string, EnemyAbility>();
 
                 return result;
             }

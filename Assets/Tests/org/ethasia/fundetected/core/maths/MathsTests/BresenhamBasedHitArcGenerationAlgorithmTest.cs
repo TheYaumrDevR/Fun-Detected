@@ -354,6 +354,18 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 
             Assert.That(result[19].X, Is.EqualTo(1)); 
             Assert.That(result[19].Y, Is.EqualTo(1));                                                                                                                                                              
-        }                                     
+        }    
+
+        [Test]
+        public void TestThatAlgorithmDoesNotCrashWhenAngleAndRadiusDataIsZero()
+        {
+            BresenhamBasedHitArcGenerationAlgorithm testCandidate = new BresenhamBasedHitArcGenerationAlgorithm();
+
+            testCandidate.CreateFilledCircleArc(0.0, 0.0, 0);
+
+            List<HitboxTilePosition> result = testCandidate.HitboxTilePositionsRight;
+
+            Assert.That(result.Count, Is.EqualTo(0)); 
+        }                                 
     }   
 }

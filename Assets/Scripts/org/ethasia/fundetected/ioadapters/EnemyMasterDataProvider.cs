@@ -73,6 +73,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             UnarmedAsymmetricSwingAbilityMasterData unarmedAsymmetricSwingAbilityMasterData = new UnarmedAsymmetricSwingAbilityMasterData
             {
+                AbilityName = "Branch Swing",
                 LeftSwingData = new UnarmedSwingAbilityMasterData()
                 {
                     HitArcStartAngle = -1.7088518706, // -97,91

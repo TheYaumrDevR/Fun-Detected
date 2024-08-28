@@ -1,11 +1,24 @@
+using Org.Ethasia.Fundetected.Core;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct UnarmedSwingAbilityMasterData : AbilityMasterData
     {
+        public string AbilityName;
         public double HitArcStartAngle;
         public double HitArcEndAngle;
         public int HitArcRadius;
         public int HitArcCenterXOffset;
         public int HitArcCenterYOffset;
+
+        public EnemyAbility CreateAbilityForEnemy(Enemy enemy)
+        {
+            return null;
+        }
+
+        public string GetAbilityName()
+        {
+            return AbilityName;
+        }
     }
 }
