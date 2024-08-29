@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int HitArcRadius;
         public int HitArcCenterXOffset;
         public int HitArcCenterYOffset;
+        public float DefaultTimeToHit;
 
         public EnemyAbility CreateAbilityForEnemy(Enemy enemy)
         {

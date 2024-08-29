@@ -27,7 +27,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return new EnemyStrikeAttack.EnemyStrikeAttackBuilder()
                 .SetAttackHitArea(hitBoxTilePositions)
                 .SetAttacker(enemy)
-                .SetTimeToHitFromStartOfAttack(0.25)
+                .SetTimeToHitFromStartOfAttack(masterData.DefaultTimeToHit)
                 .SetPositionOffsetToAttackerCenter(positionOffsetToAttackerCenter)
                 .Build();
         }

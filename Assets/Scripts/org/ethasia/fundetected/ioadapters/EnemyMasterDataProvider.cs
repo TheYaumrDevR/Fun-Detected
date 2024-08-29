@@ -80,7 +80,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     HitArcEndAngle = -2.671575486, // -153,07
                     HitArcRadius = 10,
                     HitArcCenterXOffset = 0,
-                    HitArcCenterYOffset = 0
+                    HitArcCenterYOffset = 0,
+                    DefaultTimeToHit = 0.25f
                 },
                 RightSwingData = new UnarmedSwingAbilityMasterData()
                 {
@@ -88,7 +89,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     HitArcEndAngle = -0.637045177, // -36,5
                     HitArcRadius = 10,
                     HitArcCenterXOffset = 0,
-                    HitArcCenterYOffset = 0
+                    HitArcCenterYOffset = 0,
+                    DefaultTimeToHit = 0.25f
                 }
             };
 
