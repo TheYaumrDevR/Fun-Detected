@@ -14,6 +14,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         public float AttacksPerSecond;
         public int UnarmedStrikeRange;
         public int CorpseMass;
+        public int MinPhysicalDamage;
+        public int MaxPhysicalDamage;
         public int EvasionRating;
         public int DistanceToLeftEdge;
         public int DistanceToRightEdge;

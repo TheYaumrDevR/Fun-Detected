@@ -31,6 +31,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         private PlayerEquipmentSlots allEquipment;
 
+        private int currentLife;
+
         private MeleeAttack meleeAttack;
 
         private PlayerCharacter()
@@ -115,6 +117,27 @@ namespace Org.Ethasia.Fundetected.Core
 
             return result;            
         }     
+
+        public void TakePhysicalDamage(int incomingDamage)
+        {
+            if (currentLife <= 0)
+            {
+                return;
+            }
+
+            int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, 0);
+            currentLife -= finalDamage;
+
+            if (currentLife < 0)
+            {
+                currentLife = 0;
+            }
+        }
+
+        public void FullHeal()
+        {
+            currentLife = baseStats.MaximumLife;
+        }        
 
         private void DealDamageToHitEnemies(HashSet<Enemy> enemies, AsyncResponse<List<IBattleActionResult>> battleActionResponse)
         {
@@ -216,6 +239,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.characterClass = characterClass;
 
                 result.baseStats = playerCharacterBaseStats;
+                result.currentLife = playerCharacterBaseStats.MaximumLife;
 
                 result.CreateMeleeAttack(meleeHitArcProperties);
 

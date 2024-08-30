@@ -56,6 +56,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
                 .SetUnarmedStrikeRange(enemyMasterData.UnarmedStrikeRange)
                 .SetCorpseMass(enemyMasterData.CorpseMass)
+                .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.MinPhysicalDamage, enemyMasterData.MaxPhysicalDamage))
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
                 .SetEvasionRating(enemyMasterData.EvasionRating)

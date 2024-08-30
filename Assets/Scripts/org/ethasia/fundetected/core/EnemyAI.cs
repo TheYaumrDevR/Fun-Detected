@@ -50,11 +50,11 @@ namespace Org.Ethasia.Fundetected.Core
             {
                 if (map.GetPlayerPositionX() <= ManagedEnemy.Position.X)
                 {
-                    ManagedEnemy.StrikeLeft(player);
+                    ManagedEnemy.StrikeLeft(player, "Branch Swing");
                 } 
                 else 
                 {
-                    ManagedEnemy.StrikeRight(player);
+                    ManagedEnemy.StrikeRight(player, "Branch Swing");
                 }
             }
             else

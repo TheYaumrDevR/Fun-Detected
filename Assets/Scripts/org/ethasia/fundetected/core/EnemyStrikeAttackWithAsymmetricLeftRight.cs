@@ -9,7 +9,10 @@ namespace Org.Ethasia.Fundetected.Core
 
         public void Tick(double actionTime)
         {
-            currentStrikeAttack.Tick(actionTime);
+            if (null != currentStrikeAttack)
+            {
+                currentStrikeAttack.Tick(actionTime);
+            }
         }
 
         public AsyncResponse<bool> Start(double attacksPerSecond)

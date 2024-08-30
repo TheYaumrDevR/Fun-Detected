@@ -69,6 +69,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         private int corpseMass;
 
+        private DamageRange minToMaxPhysicalDamage; 
+
         public float AttacksPerSecond
         {
             get;
@@ -84,6 +86,11 @@ namespace Org.Ethasia.Fundetected.Core
         {
             lastStartOfAttackStopWatch.Tick(actionTime);
             ai.Update(map);
+
+            foreach (var ability in abilitiesByName.Values)
+            {
+                ability.Tick(actionTime);
+            }
         }
 
         public int TakePhysicalHit(int incomingDamage)
@@ -133,20 +140,24 @@ namespace Org.Ethasia.Fundetected.Core
             }
         }
 
-        public void StrikeLeft(PlayerCharacter player)
+        public void StrikeLeft(PlayerCharacter player, string attackName)
         {
             if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
             {
                 lastStartOfAttackStopWatch.Reset();
+                AsyncResponse<bool> playerHit = GetAbilityByName(attackName).Start(AttacksPerSecond);
+                playerHit.OnResponseReceived((hit) => DamagePlayerIfHit(hit, player));
                 PlayStrikeLeftAnimation();
             }
         }
 
-        public void StrikeRight(PlayerCharacter player)
+        public void StrikeRight(PlayerCharacter player, string attackName)
         {
             if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
             {
                 lastStartOfAttackStopWatch.Reset();
+                AsyncResponse<bool> playerHit = GetAbilityByName(attackName).Start(AttacksPerSecond);
+                playerHit.OnResponseReceived((hit) => DamagePlayerIfHit(hit, player));
                 PlayStrikeRightAnimation();
             }
         }
@@ -203,6 +214,16 @@ namespace Org.Ethasia.Fundetected.Core
             animationPresenter.PlayDeathAnimation(ActionStateMachine);
         }
 
+        private void DamagePlayerIfHit(bool isHit, PlayerCharacter player)
+        {
+            if (isHit)
+            {
+                IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+                int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(minToMaxPhysicalDamage.minDamage, minToMaxPhysicalDamage.maxDamage);
+                player.TakePhysicalDamage(damage);
+            }
+        }
+
         public class Builder
         {
             private string id;
@@ -219,6 +240,7 @@ namespace Org.Ethasia.Fundetected.Core
             private float attacksPerSecond;
             private int unarmedStrikeRange;
             private int corpseMass;
+            private DamageRange minToMaxPhysicalDamage;
             private BoundingBox boundingBox;
             private Position position;
 
@@ -313,6 +335,12 @@ namespace Org.Ethasia.Fundetected.Core
                 return this;
             }
 
+            public Builder SetMinToMaxPhysicalDamage(DamageRange value)
+            {
+                minToMaxPhysicalDamage = value;
+                return this;
+            }
+
             public Enemy Build()
             {
                 Enemy result = new Enemy();
@@ -335,6 +363,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.AttacksPerSecond = attacksPerSecond;
                 result.UnarmedStrikeRange = unarmedStrikeRange;
                 result.corpseMass = corpseMass;
+                result.minToMaxPhysicalDamage = minToMaxPhysicalDamage;
                 result.BoundingBox = boundingBox;
                 result.Position = position;
                 result.ai = enemyAI;

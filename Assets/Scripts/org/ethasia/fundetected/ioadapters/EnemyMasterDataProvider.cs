@@ -66,6 +66,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.AttacksPerSecond = 1.2f;
             result.UnarmedStrikeRange = 10;
             result.CorpseMass = 4;
+            result.MinPhysicalDamage = 1;
+            result.MaxPhysicalDamage = 3;
             result.DistanceToLeftEdge = 7;
             result.DistanceToRightEdge = 7;
             result.DistanceToBottomEdge = 7;
