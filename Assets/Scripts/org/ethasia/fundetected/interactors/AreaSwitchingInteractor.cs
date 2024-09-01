@@ -59,6 +59,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.MinPhysicalDamage, enemyMasterData.MaxPhysicalDamage))
                 .SetLife(enemyMasterData.MaxLife)
                 .SetArmor(enemyMasterData.Armor)
+                .SetAccuracyRating(enemyMasterData.AccuracyRating)
                 .SetEvasionRating(enemyMasterData.EvasionRating)
                 .SetBoundingBox(enemyBoundingBox)
                 .SetPosition(spawnLocationData.MapLocation)

@@ -32,6 +32,13 @@ namespace Org.Ethasia.Fundetected.Core
         private PlayerEquipmentSlots allEquipment;
 
         private int currentLife;
+        public int EvasionRating
+        {
+            get
+            {
+                return baseStats.EvasionRating;    
+            }
+        }
 
         private MeleeAttack meleeAttack;
 

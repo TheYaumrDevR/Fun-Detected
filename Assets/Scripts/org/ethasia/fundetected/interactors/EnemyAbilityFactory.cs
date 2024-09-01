@@ -35,7 +35,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         private static List<HitboxTilePosition> CreateHitBoxTilePositionsFromSwingAbilityMasterData(UnarmedSwingAbilityMasterData masterData)
         {
             BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
-            hitArcGenerator.CreateFilledCircleArc(masterData.HitArcStartAngle, masterData.HitArcEndAngle, masterData.HitArcRadius);       
+            hitArcGenerator.CreateFilledCircleArc(masterData.HitArcStartAngle, masterData.HitArcEndAngle, masterData.HitArcRadius);   
 
             return hitArcGenerator.HitboxTilePositionsRight;     
         }

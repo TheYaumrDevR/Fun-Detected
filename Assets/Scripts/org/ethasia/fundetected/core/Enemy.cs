@@ -50,6 +50,8 @@ namespace Org.Ethasia.Fundetected.Core
         }
 
         private int armor;
+        private int accuracyRating;
+
         public int EvasionRating
         {
             get;
@@ -219,8 +221,13 @@ namespace Org.Ethasia.Fundetected.Core
             if (isHit)
             {
                 IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
-                int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(minToMaxPhysicalDamage.minDamage, minToMaxPhysicalDamage.maxDamage);
-                player.TakePhysicalDamage(damage);
+                float chanceToHit = Formulas.CalculateChanceToHit(accuracyRating, player.EvasionRating);
+
+                if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
+                {
+                    int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(minToMaxPhysicalDamage.minDamage, minToMaxPhysicalDamage.maxDamage);
+                    player.TakePhysicalDamage(damage);
+                }
             }
         }
 
@@ -236,6 +243,7 @@ namespace Org.Ethasia.Fundetected.Core
             private float iceResistance;
             private float lightningResistance;
             private float magicResistance;
+            private int accuracyRating;
             private int evasionRating;
             private float attacksPerSecond;
             private int unarmedStrikeRange;
@@ -283,6 +291,12 @@ namespace Org.Ethasia.Fundetected.Core
             public Builder SetMagicResistance(float value)
             {
                 magicResistance = value;
+                return this;
+            }
+
+            public Builder SetAccuracyRating(int value)
+            {
+                accuracyRating = value;
                 return this;
             }
 
@@ -359,6 +373,7 @@ namespace Org.Ethasia.Fundetected.Core
                 result.magicResistance = magicResistance;
                 result.maxLife = maxLife;
                 result.CurrentLife = currentLife;
+                result.accuracyRating = accuracyRating;
                 result.EvasionRating = evasionRating;
                 result.AttacksPerSecond = attacksPerSecond;
                 result.UnarmedStrikeRange = unarmedStrikeRange;

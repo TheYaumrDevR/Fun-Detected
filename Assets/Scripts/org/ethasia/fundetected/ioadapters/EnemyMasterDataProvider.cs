@@ -63,8 +63,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.MaxLife = 21;
             result.Armor = 3;
             result.EvasionRating = 98;
+            result.AccuracyRating = 46;
             result.AttacksPerSecond = 1.2f;
-            result.UnarmedStrikeRange = 10;
+            result.UnarmedStrikeRange = 12;
             result.CorpseMass = 4;
             result.MinPhysicalDamage = 1;
             result.MaxPhysicalDamage = 3;
@@ -78,20 +79,20 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 AbilityName = "Branch Swing",
                 LeftSwingData = new UnarmedSwingAbilityMasterData()
                 {
-                    HitArcStartAngle = -1.7088518706, // -97,91
-                    HitArcEndAngle = -2.671575486, // -153,07
-                    HitArcRadius = 10,
-                    HitArcCenterXOffset = 0,
-                    HitArcCenterYOffset = 0,
+                    HitArcStartAngle = -2.671575486, // -97,91
+                    HitArcEndAngle = -1.7088518706, // -153,07
+                    HitArcRadius = 12,
+                    HitArcCenterXOffset = -1,
+                    HitArcCenterYOffset = -6,
                     DefaultTimeToHit = 0.25f
                 },
                 RightSwingData = new UnarmedSwingAbilityMasterData()
                 {
                     HitArcStartAngle = -1.4030701857, // -80,39
                     HitArcEndAngle = -0.637045177, // -36,5
-                    HitArcRadius = 10,
-                    HitArcCenterXOffset = 0,
-                    HitArcCenterYOffset = 0,
+                    HitArcRadius = 12,
+                    HitArcCenterXOffset = 1,
+                    HitArcCenterYOffset = -7,
                     DefaultTimeToHit = 0.25f
                 }
             };

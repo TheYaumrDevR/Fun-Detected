@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int CorpseMass;
         public int MinPhysicalDamage;
         public int MaxPhysicalDamage;
+        public int AccuracyRating;
         public int EvasionRating;
         public int DistanceToLeftEdge;
         public int DistanceToRightEdge;

@@ -57,7 +57,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public AsyncResponse<bool> Start(double attacksPerSecond)
         {
-            AsyncResponse<bool> result = new AsyncResponse<bool>();
+            AsyncResponse<bool> result = new AsyncResponse<bool>();         
 
             if (EnoughTimePassedForTheNextAttackToBeExecuted(attacksPerSecond))
             {
