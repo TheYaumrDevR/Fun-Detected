@@ -238,7 +238,25 @@ namespace Org.Ethasia.Fundetected.Core
                     int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(minToMaxPhysicalDamage.minDamage, minToMaxPhysicalDamage.maxDamage);
                     player.TakePhysicalDamage(damage);
                 }
+                else
+                {
+                    PresentPlayerMissedText();
+                }
             }
+        }
+
+        private void PresentPlayerMissedText()
+        {
+            IDamageTextPresenter damageTextPresenter = IoAdaptersFactoryForCore.GetInstance().GetDamageTextPresenterInstance();
+
+            Area map = Area.ActiveArea;
+            
+            int textPosX = map.GetPlayerPositionX() + map.LowestScreenX;
+            int textPosY = map.GetPlayerPositionY() + map.LowestScreenY;
+
+            Position damageTextPosition = new Position(textPosX, textPosY);
+
+            damageTextPresenter.PresentPlayerMissedText(damageTextPosition);
         }
 
         public class Builder

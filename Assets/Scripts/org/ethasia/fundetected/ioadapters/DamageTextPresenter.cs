@@ -1,4 +1,4 @@
-using System;
+using System;   
 
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
@@ -24,12 +24,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public void PresentMissText(Position renderPosition)
         {
             damageTextRenderer = TechnicalFactory.GetInstance().GetFloatingDamageTextRendererInstance();
-
-            float posX = renderPosition.X / 10.0f;
-            float posY = renderPosition.Y / 10.0f;
-
-            damageTextRenderer.RenderFloatingDamageText("MISS", posX, posY);
+            PresentMissText(renderPosition, damageTextRenderer.RenderFloatingDamageText);
         }
+
+        public void PresentPlayerMissedText(Position renderPosition)
+        {
+            damageTextRenderer = TechnicalFactory.GetInstance().GetFloatingDamageTextRendererInstance();
+            PresentMissText(renderPosition, damageTextRenderer.RenderFloatingPlayerDamageText);
+        }        
 
         private void PresentDamageText(DamageTextDisplayInformation displayInformation, Action<string, float, float> renderMethod)
         {
@@ -38,6 +40,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             float posY = displayInformation.PositionY / 10.0f;
 
             renderMethod(damageAmount.ToString(), posX, posY);
+        }
+
+        private void PresentMissText(Position renderPosition, Action<string, float, float> renderMethod)
+        {
+            float posX = renderPosition.X / 10.0f;
+            float posY = renderPosition.Y / 10.0f;
+
+            renderMethod("MISS", posX, posY);
         }
     }
 }
