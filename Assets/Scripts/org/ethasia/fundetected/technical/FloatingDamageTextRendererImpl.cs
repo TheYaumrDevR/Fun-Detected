@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private static FloatingDamageTextRendererImpl instance;
         public GameObject floatingDamageTextPrefab;
+        public GameObject floatingPlayerDamagegTextPrefab;
 
         public static FloatingDamageTextRendererImpl GetInstance()
         {
@@ -23,13 +24,23 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void RenderFloatingDamageText(string combatText, float posX, float posY)
         {
+            RenderGivenFloatingDamageText(combatText, posX, posY, floatingDamageTextPrefab);
+        }  
+
+        public void RenderFloatingPlayerDamageText(string combatText, float posX, float posY)
+        {
+            RenderGivenFloatingDamageText(combatText, posX, posY, floatingPlayerDamagegTextPrefab);
+        }             
+
+        private void RenderGivenFloatingDamageText(string combatText, float posX, float posY, GameObject prefab)
+        {
             Vector3 position = new Vector3(posX, posY, 0.0f);
-            GameObject floatingDamageText = GameObject.Instantiate(floatingDamageTextPrefab, position, Quaternion.identity);
+            GameObject floatingDamageText = GameObject.Instantiate(prefab, position, Quaternion.identity);
 
             TMP_Text textComponent = floatingDamageText.GetComponentInChildren<TMP_Text>();
             textComponent.text = combatText;
 
             floatingDamageText.GetComponentInChildren<MeshRenderer>().sortingLayerName = "CombatText";
-        }       
+        }
     }
 }

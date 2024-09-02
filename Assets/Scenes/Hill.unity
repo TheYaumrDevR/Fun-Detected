@@ -2536,3 +2536,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingDamageTextPrefab: {fileID: 5050270301205572866, guid: 93f99a0aceb091e42a2f90d3649b043f, type: 3}
+  floatingPlayerDamagegTextPrefab: {fileID: 5050270301205572866, guid: 328c1e11a81f9894f870099f02f377a7, type: 3}

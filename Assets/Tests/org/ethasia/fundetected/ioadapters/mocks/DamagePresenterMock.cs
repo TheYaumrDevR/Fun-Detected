@@ -9,6 +9,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         }
 
+        public void PresentPlayerDamageText(DamageTextDisplayInformation displayInformation)
+        {
+            
+        }
+
         public void PresentMissText(Position renderPosition)
         {
 
