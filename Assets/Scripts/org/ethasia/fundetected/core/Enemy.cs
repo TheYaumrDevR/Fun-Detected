@@ -146,15 +146,19 @@ namespace Org.Ethasia.Fundetected.Core
         {
             if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
             {
-                lastStartOfAttackStopWatch.Reset();
-
                 if (abilitiesByName.ContainsKey(attackName))
                 {
                     AsyncResponse<bool> playerHit = GetAbilityByName(attackName).Start(AttacksPerSecond);
-                    playerHit.OnResponseReceived((hit) => DamagePlayerIfHit(hit, player));
-                }
+                    playerHit.OnResponseReceived((hit) => {
+                        DamagePlayerIfHit(hit, player);
 
-                PlayStrikeLeftAnimation();
+                        if (hit)
+                        {
+                            lastStartOfAttackStopWatch.Reset();
+                            PlayStrikeLeftAnimation();
+                        }
+                    });
+                }          
             }
         }
 
@@ -162,15 +166,19 @@ namespace Org.Ethasia.Fundetected.Core
         {
             if (EnoughTimePassedForTheNextAttackToBeExecuted(AttacksPerSecond))
             {
-                lastStartOfAttackStopWatch.Reset();
-
                 if (abilitiesByName.ContainsKey(attackName))
                 {
                     AsyncResponse<bool> playerHit = GetAbilityByName(attackName).Start(AttacksPerSecond);
-                    playerHit.OnResponseReceived((hit) => DamagePlayerIfHit(hit, player));
-                }
+                    playerHit.OnResponseReceived((hit) => {
+                        DamagePlayerIfHit(hit, player);
 
-                PlayStrikeRightAnimation();
+                        if (hit)
+                        {
+                            lastStartOfAttackStopWatch.Reset();
+                            PlayStrikeRightAnimation();
+                        }
+                    });
+                }
             }
         }
 
