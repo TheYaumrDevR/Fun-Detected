@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Core.Maths
+namespace Org.Ethasia.Fundetected.Core.Combat
 {
     public class BresenhamBasedHitArcGenerationAlgorithm
     {

@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Core.Maths
+namespace Org.Ethasia.Fundetected.Core.Combat
 {
     public class StopWatch
     {

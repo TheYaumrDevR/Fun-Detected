@@ -1,6 +1,6 @@
 using UnityEngine;
 
-using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters

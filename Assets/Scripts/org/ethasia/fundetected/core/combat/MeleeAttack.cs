@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Maths;
 
-namespace Org.Ethasia.Fundetected.Core
+namespace Org.Ethasia.Fundetected.Core.Combat
 {
     public class MeleeAttack
     {

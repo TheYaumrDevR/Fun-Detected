@@ -1,5 +1,5 @@
 using Org.Ethasia.Fundetected.Core;
-using Org.Ethasia.Fundetected.Core.Maths;
+using Org.Ethasia.Fundetected.Core.Combat;
 
 using System.Collections.Generic;
 

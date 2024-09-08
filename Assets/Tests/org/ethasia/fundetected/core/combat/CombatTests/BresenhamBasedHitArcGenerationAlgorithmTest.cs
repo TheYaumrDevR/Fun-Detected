@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Core.Maths.Tests
+namespace Org.Ethasia.Fundetected.Core.Combat.Tests
 {
     public class BresenhamBasedHitArcGenerationAlgorithmTest
     {

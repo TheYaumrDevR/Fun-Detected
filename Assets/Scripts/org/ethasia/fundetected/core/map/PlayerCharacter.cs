@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Equipment;
-using Org.Ethasia.Fundetected.Core.Maths;
+using Org.Ethasia.Fundetected.Core.Combat;
 
 namespace Org.Ethasia.Fundetected.Core
 {

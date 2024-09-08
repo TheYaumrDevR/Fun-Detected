@@ -1,7 +1,7 @@
 using NUnit.Framework;
 
+using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
-using Org.Ethasia.Fundetected.Core;
 
 namespace Org.Ethasia.Fundetected.Core.Tests
 {
