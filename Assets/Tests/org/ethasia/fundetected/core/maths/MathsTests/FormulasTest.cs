@@ -1,8 +1,6 @@
 using NUnit.Framework;
 
-using Org.Ethasia.Fundetected.Core;
-
-namespace Org.Ethasia.Fundetected.Core.Tests
+namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 {
     public class FormulasTest
     {

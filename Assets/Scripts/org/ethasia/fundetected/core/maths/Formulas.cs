@@ -1,6 +1,6 @@
 using System;
 
-namespace Org.Ethasia.Fundetected.Core
+namespace Org.Ethasia.Fundetected.Core.Maths
 {
     public class Formulas
     {
