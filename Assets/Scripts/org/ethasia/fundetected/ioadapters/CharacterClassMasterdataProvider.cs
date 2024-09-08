@@ -1,5 +1,5 @@
-using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {

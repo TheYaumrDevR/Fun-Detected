@@ -1,7 +1,7 @@
 using System;   
 
-using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters

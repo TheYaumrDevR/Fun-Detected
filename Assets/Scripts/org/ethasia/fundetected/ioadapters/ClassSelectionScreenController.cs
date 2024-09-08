@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters

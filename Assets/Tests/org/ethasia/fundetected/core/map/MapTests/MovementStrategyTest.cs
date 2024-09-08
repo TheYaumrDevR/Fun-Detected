@@ -1,8 +1,6 @@
 using NUnit.Framework;
 
-using Org.Ethasia.Fundetected.Core;
-
-namespace Org.Ethasia.Fundetected.Core.Tests
+namespace Org.Ethasia.Fundetected.Core.Map.Tests
 {
     public class MovementStrategyTest
     {

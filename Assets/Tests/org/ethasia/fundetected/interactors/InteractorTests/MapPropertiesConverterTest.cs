@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Interactors.Tests

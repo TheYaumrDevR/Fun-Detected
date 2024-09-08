@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
-using Org.Ethasia.Fundetected.Core.Maths;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {

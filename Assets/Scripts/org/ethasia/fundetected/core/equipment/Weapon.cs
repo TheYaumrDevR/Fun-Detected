@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {

@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Core
+namespace Org.Ethasia.Fundetected.Core.Map
 {
     public interface IRandomNumberGenerator
     {

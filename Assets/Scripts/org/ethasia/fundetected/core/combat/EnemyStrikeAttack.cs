@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Combat

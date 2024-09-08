@@ -1,10 +1,11 @@
 {
-    "name": "CoreTests",
+    "name": "MapTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "GameAssembly"
+        "GameAssembly",
+        "IoAdaptersMocks"
     ],
     "includePlatforms": [
         "Editor"

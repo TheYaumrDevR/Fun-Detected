@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 
-namespace Org.Ethasia.Fundetected.Core
+namespace Org.Ethasia.Fundetected.Core.Map
 {
     public class Area
     {

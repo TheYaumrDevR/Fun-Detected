@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Combat.Tests
 {
     public class EnemyStrikeAttackTest
