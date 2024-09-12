@@ -38,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat
                     int hitArcCenterOffsetY = attacker.Position.Y + positionOffsetToAttackerCenter.Y;
 
                     foreach (HitboxTilePosition hitArcTile in attackHitArea)
-                    {               
+                    {          
                         HitboxTilePosition offSetHitArcTile = new HitboxTilePosition(hitArcTile.X + hitArcCenterOffsetX, hitArcTile.Y + hitArcCenterOffsetY);
 
                         if (offSetHitArcTile.X >= playerX - playerHitBox.DistanceToLeftEdge 
@@ -58,8 +58,8 @@ namespace Org.Ethasia.Fundetected.Core.Combat
 
         public AsyncResponse<bool> Start(double attacksPerSecond)
         {
-            AsyncResponse<bool> result = new AsyncResponse<bool>();         
-
+            AsyncResponse<bool> result = new AsyncResponse<bool>();    
+            
             if (EnoughTimePassedForTheNextAttackToBeExecuted(attacksPerSecond))
             {
                 playerWasHitResponse = result;

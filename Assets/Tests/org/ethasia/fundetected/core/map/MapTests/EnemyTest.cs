@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
@@ -100,6 +101,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area.ActiveArea = testArea;          
 
             Enemy testCandidate = CreateEnemyForAiAttackTests();
+            testCandidate.AddAbilityByName("Branch Swing", CreateEnemyAssymmetricLeftRightStrikeAttack(testCandidate, new HitboxTilePosition(-5, 0)));   
 
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
@@ -129,6 +131,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area.ActiveArea = testArea;          
 
             Enemy testCandidate = CreateEnemyForAiAttackTests();
+            testCandidate.AddAbilityByName("Branch Swing", CreateEnemyAssymmetricLeftRightStrikeAttack(testCandidate, new HitboxTilePosition(5, 0)));   
 
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
@@ -158,6 +161,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area.ActiveArea = testArea;          
 
             Enemy testCandidate = CreateEnemyForAiAttackTests();
+            testCandidate.AddAbilityByName("Branch Swing", CreateEnemyAssymmetricLeftRightStrikeAttack(testCandidate, new HitboxTilePosition(0, -6))); 
 
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
@@ -187,6 +191,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area.ActiveArea = testArea;          
 
             Enemy testCandidate = CreateEnemyForAiAttackTests();
+            testCandidate.AddAbilityByName("Branch Swing", CreateEnemyAssymmetricLeftRightStrikeAttack(testCandidate, new HitboxTilePosition(0, 3)));   
 
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
@@ -331,7 +336,8 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Area.ActiveArea = testArea;          
 
-            Enemy testCandidate = CreateEnemyForAiAttackTests();
+            Enemy testCandidate = CreateEnemyForAiAttackTests();    
+            testCandidate.AddAbilityByName("Branch Swing", CreateEnemyAssymmetricLeftRightStrikeAttack(testCandidate, new HitboxTilePosition(0, 0)));     
 
             PlayerCharacter player = CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests();
 
@@ -361,6 +367,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area.ActiveArea = testArea;          
 
             Enemy testCandidate = CreateEnemyForAiAttackTests();
+            testCandidate.AddAbilityByName("Branch Swing", CreateEnemyAssymmetricLeftRightStrikeAttack(testCandidate, new HitboxTilePosition(0, 0)));  
 
             PlayerCharacter player = CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests();
 
@@ -382,7 +389,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
         private Enemy CreateEnemyForAiAttackTests()
         {
-            Position enemyPosition = new Position(20, 20);  
+            Position enemyPosition = new Position(20, 20);            
 
             return new Enemy
                 .Builder()
@@ -390,6 +397,8 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetPosition(enemyPosition)
                 .SetUnarmedStrikeRange(5)
                 .SetIsAggressiveOnSight(true)
+                .SetAttacksPerSecond(1.2f)
+                .SetMinToMaxPhysicalDamage(new DamageRange(1, 3))
                 .Build();
         } 
 
@@ -449,6 +458,33 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetBoundingBox(playerBoundingBox)
                 .SetMeleeHitArcProperties(meleeHitArcProperties)
                 .Build();            
-        }               
+        }    
+
+        private EnemyStrikeAttackWithAsymmetricLeftRight CreateEnemyAssymmetricLeftRightStrikeAttack(Enemy enemy, HitboxTilePosition hitBoxTilePosition)
+        {
+            List<HitboxTilePosition> hitBoxTilePositions = new List<HitboxTilePosition>();
+            hitBoxTilePositions.Add(hitBoxTilePosition);
+            
+            EnemyStrikeAttack leftStrikeAttack = new EnemyStrikeAttack
+                .EnemyStrikeAttackBuilder()
+                .SetAttacker(enemy)
+                .SetAttackHitArea(hitBoxTilePositions)
+                .SetPositionOffsetToAttackerCenter(new Position(0, 0))
+                .Build();
+
+            EnemyStrikeAttack rightStrikeAttack = new EnemyStrikeAttack    
+                .EnemyStrikeAttackBuilder()
+                .SetAttacker(enemy)
+                .SetAttackHitArea(hitBoxTilePositions)
+                .SetPositionOffsetToAttackerCenter(new Position(0, 0))
+                .Build();
+
+            return new EnemyStrikeAttackWithAsymmetricLeftRight
+                .EnemyStrikeAttackWithAsymmetricLeftRightBuilder()
+                .SetAttacker(enemy)
+                .SetLeftStrikeAttack(leftStrikeAttack)
+                .SetRightStrikeAttack(rightStrikeAttack)
+                .Build();            
+        }           
     }
 }

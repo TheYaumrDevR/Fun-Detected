@@ -18,7 +18,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat
         }
 
         public AsyncResponse<bool> Start(double attacksPerSecond)
-        {        
+        {    
             if (leftStrikeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(attacksPerSecond) && rightStrikeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(attacksPerSecond))
             {
                 if (attacker.Position.X < Area.ActiveArea.GetPlayerPositionX())
