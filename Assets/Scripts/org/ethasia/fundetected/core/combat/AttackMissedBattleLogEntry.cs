@@ -4,18 +4,15 @@ namespace Org.Ethasia.Fundetected.Core.Combat
 {
     public class AttackMissedBattleLogEntry : IBattleActionResult
     {
-        public Enemy Target
-        {
-            get;
-            private set;
-        }
+        private int enemyPositionX;
+        private int enemyPositionY;
+        private int lowestScreenXofMap;
+        private int lowestScreenYofMap;
 
         public void PresentToPlayer()
         {
-            Area map = Area.ActiveArea;
-
-            int textPositionX = Target.Position.X + map.LowestScreenX;
-            int textPositionY = Target.Position.Y + map.LowestScreenY;
+            int textPositionX = enemyPositionX + lowestScreenXofMap;
+            int textPositionY = enemyPositionY + lowestScreenYofMap;
 
             Position textPosition = new Position(textPositionX, textPositionY);
 
@@ -31,11 +28,32 @@ namespace Org.Ethasia.Fundetected.Core.Combat
 
         public class Builder
         {
-            private Enemy target;
+            private int enemyPositionX;
+            private int enemyPositionY;
+            private int lowestScreenXofMap;
+            private int lowestScreenYofMap;
 
-            public Builder SetTarget(Enemy value)
+            public Builder SetEnemyPositionX(int value)
             {
-                target = value;
+                enemyPositionX = value;
+                return this;
+            }
+
+            public Builder SetEnemyPositionY(int value)
+            {
+                enemyPositionY = value;
+                return this;
+            }
+
+            public Builder SetLowestScreenXOfMap(int value)
+            {
+                lowestScreenXofMap = value;
+                return this;
+            }
+
+            public Builder SetLowestScreenYOfMap(int value)
+            {
+                lowestScreenYofMap = value;
                 return this;
             }
 
@@ -43,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat
             {
                 AttackMissedBattleLogEntry result = new AttackMissedBattleLogEntry();
 
-                result.Target = target;
+                
 
                 return result;
             }               
