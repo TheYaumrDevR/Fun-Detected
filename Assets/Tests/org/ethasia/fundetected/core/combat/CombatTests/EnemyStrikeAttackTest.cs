@@ -2,11 +2,35 @@ using NUnit.Framework;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Combat.Tests
 {
     public class EnemyStrikeAttackTest
     {
+        [OneTimeSetUp]
+        public void SetupPlayerCharacter()
+        {
+            IoAdaptersFactoryForCore.SetInstance(new MockedIoAdaptersFactoryForCore());
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;            
+
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(new MeleeHitArcProperties())
+                .Build();  
+                
+            testArea.AddPlayerAt(playerCharacter, 15, 20);
+        }
+
         [Test]
         public void TestTickStrikeHitsWhenHitTileIsInsidePlayerHitBox()
         {

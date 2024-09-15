@@ -14,6 +14,12 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
         {
             IoAdaptersFactoryForCore.SetInstance(new MockedIoAdaptersFactoryForCore());
 
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .Build();
+
+            Area.ActiveArea = testArea;       
+
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
                 .SetAttacksPerSecond(1.0)
                 .Build();
@@ -23,7 +29,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
                 .SetMeleeHitArcProperties(new MeleeHitArcProperties())
                 .Build();  
                 
-            Area.ActiveArea.AddPlayerAt(playerCharacter, 15, 20);
+            testArea.AddPlayerAt(playerCharacter, 15, 20);
         }
 
         [Test]
