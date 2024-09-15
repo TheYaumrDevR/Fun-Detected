@@ -1,33 +1,139 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Combat.Tests
 {
     public class EnemyStrikeAttackWithAsymmetricLeftRightTest
     {
+        [OneTimeSetUp]
+        public void SetupPlayerCharacter()
+        {
+            IoAdaptersFactoryForCore.SetInstance(new MockedIoAdaptersFactoryForCore());
+
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(new MeleeHitArcProperties())
+                .Build();  
+                
+            Area.ActiveArea.AddPlayerAt(playerCharacter, 15, 20);
+        }
+
         [Test]
         public void TestStartNotEnoughTimeSinceLastAttackDoesNotAttack()
         {
-            Enemy enemy = CreateEnemy();
-            EnemyStrikeAttackWithAsymmetricLeftRight testCandidate = CreateTestCandidate(enemy);
+            Position enemyPosition = new Position(20, 20);
+            Enemy enemy = CreateEnemy(enemyPosition);
 
-            AsyncResponse<bool> firstResult = testCandidate.Start(1.2);
-            AsyncResponse<bool> secondResult = testCandidate.Start(1.2);
+            EnemyStrikeAttackWithAsymmetricLeftRight.EnemyStrikeAttackWithAsymmetricLeftRightBuilder testCandidateBuilder = CreateTestCandidateBuilder(enemy);
 
-            Assert.That(firstResult.ResponseReceived, Is.False); 
+            EnemyStrikeAttackMock leftStrikeAttackMock = new EnemyStrikeAttackMock();
+            EnemyStrikeAttackMock rightStrikeAttackMock = new EnemyStrikeAttackMock();
 
-            secondResult.OnResponseReceived((response) => 
+            EnemyStrikeAttackWithAsymmetricLeftRight testCandidate = testCandidateBuilder
+                .SetLeftStrikeAttack(leftStrikeAttackMock)
+                .SetRightStrikeAttack(rightStrikeAttackMock)
+                .Build();
+
+            AsyncResponse<bool> result = testCandidate.Start(1.2);
+
+            Assert.That(result.ResponseReceived, Is.True); 
+
+            bool callBackResponse = true;
+
+            result.OnResponseReceived((response) => 
             {
-                Assert.That(response, Is.False);
+                callBackResponse = response;
             });
+
+            Assert.That(callBackResponse, Is.False);
         }
 
-        private Enemy CreateEnemy()
+        [Test]
+        public void TestStartPlayerIsToTheLeftStrikesLeft()
         {
-            Position enemyPosition = new Position(20, 20);            
+            Position enemyPosition = new Position(20, 20);
 
+            Enemy enemy = CreateEnemy(enemyPosition);
+            EnemyStrikeAttackWithAsymmetricLeftRight.EnemyStrikeAttackWithAsymmetricLeftRightBuilder testCandidateBuilder = CreateTestCandidateBuilder(enemy);
+
+            EnemyStrikeAttackMock leftStrikeAttackMock = new EnemyStrikeAttackMock();
+            EnemyStrikeAttackMock rightStrikeAttackMock = new EnemyStrikeAttackMock();
+
+            leftStrikeAttackMock.EnoughTimePassedSinceLastAttack = true;
+            rightStrikeAttackMock.EnoughTimePassedSinceLastAttack = true;
+
+            bool leftStrikeWasStarted = false;
+            bool rightStrikeWasStarted = false;
+
+            leftStrikeAttackMock.OnStart(() => 
+            {
+                leftStrikeWasStarted = true;
+            });
+
+            rightStrikeAttackMock.OnStart(() => 
+            {
+                rightStrikeWasStarted = true;
+            });            
+
+            EnemyStrikeAttackWithAsymmetricLeftRight testCandidate = testCandidateBuilder
+                .SetLeftStrikeAttack(leftStrikeAttackMock)
+                .SetRightStrikeAttack(rightStrikeAttackMock)
+                .Build();
+
+            testCandidate.Start(1.2);
+
+            Assert.That(leftStrikeWasStarted, Is.True);
+            Assert.That(rightStrikeWasStarted, Is.False);
+        } 
+
+        [Test]
+        public void TestStartPlayerIsToTheRightStrikesRight()
+        {
+            Position enemyPosition = new Position(5, 20);
+            
+            Enemy enemy = CreateEnemy(enemyPosition);
+            EnemyStrikeAttackWithAsymmetricLeftRight.EnemyStrikeAttackWithAsymmetricLeftRightBuilder testCandidateBuilder = CreateTestCandidateBuilder(enemy);
+
+            EnemyStrikeAttackMock leftStrikeAttackMock = new EnemyStrikeAttackMock();
+            EnemyStrikeAttackMock rightStrikeAttackMock = new EnemyStrikeAttackMock();
+
+            leftStrikeAttackMock.EnoughTimePassedSinceLastAttack = true;
+            rightStrikeAttackMock.EnoughTimePassedSinceLastAttack = true;
+
+            bool leftStrikeWasStarted = false;
+            bool rightStrikeWasStarted = false;
+
+            leftStrikeAttackMock.OnStart(() => 
+            {
+                leftStrikeWasStarted = true;
+            });
+
+            rightStrikeAttackMock.OnStart(() => 
+            {
+                rightStrikeWasStarted = true;
+            });            
+
+            EnemyStrikeAttackWithAsymmetricLeftRight testCandidate = testCandidateBuilder
+                .SetLeftStrikeAttack(leftStrikeAttackMock)
+                .SetRightStrikeAttack(rightStrikeAttackMock)
+                .Build();
+
+            testCandidate.Start(1.2);
+
+            Assert.That(leftStrikeWasStarted, Is.False);
+            Assert.That(rightStrikeWasStarted, Is.True);
+        }               
+
+        private Enemy CreateEnemy(Position enemyPosition)
+        {
             return new Enemy
                 .Builder()
                 .SetLife(10)
@@ -39,33 +145,42 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
                 .Build();
         }         
 
-        private EnemyStrikeAttackWithAsymmetricLeftRight CreateTestCandidate(Enemy enemy)
+        private EnemyStrikeAttackWithAsymmetricLeftRight.EnemyStrikeAttackWithAsymmetricLeftRightBuilder CreateTestCandidateBuilder(Enemy enemy)
         {
             HitboxTilePosition hitBoxTilePosition = new HitboxTilePosition(0, 0);
 
             List<HitboxTilePosition> hitBoxTilePositions = new List<HitboxTilePosition>();
             hitBoxTilePositions.Add(hitBoxTilePosition);
-            
-            EnemyStrikeAttack leftStrikeAttack = new EnemyStrikeAttack
-                .EnemyStrikeAttackBuilder()
-                .SetAttacker(enemy)
-                .SetAttackHitArea(hitBoxTilePositions)
-                .SetPositionOffsetToAttackerCenter(new Position(0, 0))
-                .Build();
-
-            EnemyStrikeAttack rightStrikeAttack = new EnemyStrikeAttack    
-                .EnemyStrikeAttackBuilder()
-                .SetAttacker(enemy)
-                .SetAttackHitArea(hitBoxTilePositions)
-                .SetPositionOffsetToAttackerCenter(new Position(0, 0))
-                .Build();
 
             return new EnemyStrikeAttackWithAsymmetricLeftRight
                 .EnemyStrikeAttackWithAsymmetricLeftRightBuilder()
-                .SetAttacker(enemy)
-                .SetLeftStrikeAttack(leftStrikeAttack)
-                .SetRightStrikeAttack(rightStrikeAttack)
-                .Build();            
+                .SetAttacker(enemy);       
         }         
+
+        private class EnemyStrikeAttackMock : EnemyStrikeAttack
+        {
+            private Action startCallBack;
+            public bool EnoughTimePassedSinceLastAttack;
+
+            public void OnStart(Action callback)
+            {
+                startCallBack = callback;
+            }
+
+            public override AsyncResponse<bool> Start(double attacksPerSecond)
+            {
+                if (null != startCallBack)
+                {
+                    startCallBack();
+                }
+
+                return new AsyncResponse<bool>();
+            }
+
+            public override bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
+            {
+                return EnoughTimePassedSinceLastAttack;
+            }
+        }
     }
 }

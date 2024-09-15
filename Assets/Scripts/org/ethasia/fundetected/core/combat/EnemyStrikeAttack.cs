@@ -15,7 +15,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat
         private bool attackWasQueued; 
         private AsyncResponse<bool> playerWasHitResponse;
 
-        private EnemyStrikeAttack()
+        protected EnemyStrikeAttack()
         {
             lastStartOfAttackStopWatch = new StopWatch();
         }     
@@ -56,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat
             }
         }
 
-        public AsyncResponse<bool> Start(double attacksPerSecond)
+        public virtual AsyncResponse<bool> Start(double attacksPerSecond)
         {
             AsyncResponse<bool> result = new AsyncResponse<bool>();    
             
@@ -76,7 +76,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat
             return result;
         }
 
-        public bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
+        public virtual bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
         {
             double secondsPerAttack = 1.0 / attacksPerSecond;
             return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack;            
