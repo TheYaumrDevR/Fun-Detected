@@ -47,5 +47,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
             return enemyAnimationPresenterInstance;
         }
+
+        public override ISoundPresenter GetSoundPresenterInstance()
+        {
+            return new SoundPresenterMock();
+        }
     }
 }

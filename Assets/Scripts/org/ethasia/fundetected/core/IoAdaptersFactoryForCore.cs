@@ -22,5 +22,6 @@ namespace Org.Ethasia.Fundetected.Core
         public abstract IDamageTextPresenter GetDamageTextPresenterInstance();
         public abstract IHitboxPresenter GetHitboxPresenterInstance();
         public abstract IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance();
+        public abstract ISoundPresenter GetSoundPresenterInstance();
     }
 }

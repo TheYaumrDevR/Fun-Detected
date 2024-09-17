@@ -208,6 +208,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void ExecuteAfterDamageTakenActions()
         {
+            PlayHitSound();
+
             if (0 > CurrentLife)
             {
                 CurrentLife = 0;
@@ -227,6 +229,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public EnemyAbility GetAbilityByName(string name)
         {
             return abilitiesByName[name];
+        }
+
+        private void PlayHitSound()
+        {
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            soundPresenter.PlayEnemyHitSound();
         }
 
         private void PlayDeathAnimation()

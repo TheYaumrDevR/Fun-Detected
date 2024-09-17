@@ -28,5 +28,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             return HitboxDebugShapeRendererImpl.GetInstance();
         }
+
+        public override ISoundPlayer GetSoundPlayerInstance()
+        {
+            return SoundPlayer.GetInstance();
+        }
     }
 }
