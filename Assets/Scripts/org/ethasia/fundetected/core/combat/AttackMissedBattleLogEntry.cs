@@ -61,7 +61,10 @@ namespace Org.Ethasia.Fundetected.Core.Combat
             {
                 AttackMissedBattleLogEntry result = new AttackMissedBattleLogEntry();
 
-                
+                result.enemyPositionX = enemyPositionX;
+                result.enemyPositionY = enemyPositionY;
+                result.lowestScreenXofMap = lowestScreenXofMap;
+                result.lowestScreenYofMap = lowestScreenYofMap;
 
                 return result;
             }               
