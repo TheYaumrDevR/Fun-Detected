@@ -29,22 +29,12 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void RenderAnimatedCharacter(GameObjectProxy animatedCharacterProxy)
         {
-            GameObject animatedCharacter = new GameObject(animatedCharacterProxy.Name);
-            animatedCharacter.transform.position = new Vector3(animatedCharacterProxy.PosX, animatedCharacterProxy.PosY, 0f);
-            animatedCharacter.transform.localScale = new Vector3(animatedCharacterProxy.ScaleX, animatedCharacterProxy.ScaleY, 0f);
+            CharacterWithSpriteFactory.CharacterWithSpriteFactoryProduct createdCharacterEngineObjects = CharacterWithSpriteFactory.CreateCharacterWithSprite(animatedCharacterProxy, GetSortingOrderOfRendererInLayer(), this.transform);
 
-            SpriteRenderer spriteRenderer = animatedCharacter.AddComponent<SpriteRenderer>();
-            spriteRenderer.sortingLayerName = "Sprites";
-            spriteRenderer.sortingOrder = GetSortingOrderOfRendererInLayer();
-
-            Sprite2dAnimatorBehavior animatorBehavior = animatedCharacter.AddComponent<Sprite2dAnimatorBehavior>();
-
-            StateMachine animationStateMachine = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(animatedCharacterProxy.Animation2DGraphNodeProperties, spriteRenderer, animatorBehavior);
-            
-            animatedCharacter.transform.SetParent(this.transform);
-            
+            StateMachine animationStateMachine = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(animatedCharacterProxy.Animation2DGraphNodeProperties, createdCharacterEngineObjects.CharacterSpriteRenderer, createdCharacterEngineObjects.CharacterAnimatorBehavior);
+                        
             AssignAnimationStateMachine(animationStateMachine, animatedCharacterProxy);
-            AssignCharacterSpriteRendererAndTransform(spriteRenderer, animatedCharacter.transform);
+            AssignCharacterSpriteRendererAndTransform(createdCharacterEngineObjects.CharacterSpriteRenderer, createdCharacterEngineObjects.CharacterGameObject.transform);
         }  
 
         protected abstract void AssignInstance();
