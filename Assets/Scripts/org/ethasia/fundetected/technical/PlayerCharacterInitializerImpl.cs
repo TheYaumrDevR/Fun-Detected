@@ -8,18 +8,18 @@ using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class PlayerCharacterRendererImpl : AnimatedCharactersRendererImpl
+    public class PlayerCharacterInitializerImpl : AnimatedCharactersInitializerImpl
     {
-        private static PlayerCharacterRendererImpl instance;
+        private static PlayerCharacterInitializerImpl instance;
         private static List<GameObjectProxy> startupRenderQueue;
         private static InternalInteractorsFactory internalInteractorsFactory;
 
-        public PlayerCharacterRendererImpl()
+        public PlayerCharacterInitializerImpl()
         {
             internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
         }
 
-        public static PlayerCharacterRendererImpl GetInstance()
+        public static PlayerCharacterInitializerImpl GetInstance()
         {
             return instance;
         }          

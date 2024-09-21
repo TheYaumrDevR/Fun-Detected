@@ -6,11 +6,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class RealPlayerCharacterPresenter : AbstractAnimationPresenter, IPlayerCharacterPresenter
     {
-        private IAnimatedCharactersRenderer playerCharacterRenderer;
+        private IAnimatedCharactersInitializer playerCharacterInitializer;
 
         public void PresentPlayer(string playerName)
         {
-            playerCharacterRenderer = TechnicalFactory.GetInstance().GetPlayerCharacterRendererInstance();
+            playerCharacterInitializer = TechnicalFactory.GetInstance().GetPlayerCharacterInitializerInstance();
 
             Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph("FemaleCharacterOne");
 
@@ -23,7 +23,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAnimationProperties(animation2dData)
                 .Build();
 
-            playerCharacterRenderer.RenderAnimatedCharacter(gameObjectProxy);
+            playerCharacterInitializer.InitializeAnimatedCharacter(gameObjectProxy);
         }       
     }
 }

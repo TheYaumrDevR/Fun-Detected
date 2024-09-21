@@ -6,12 +6,12 @@ using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class EnemyRendererImpl : AnimatedCharactersRendererImpl
+    public class EnemyInitializerImpl : AnimatedCharactersInitializerImpl
     {
-        private static EnemyRendererImpl instance;
+        private static EnemyInitializerImpl instance;
         private static List<GameObjectProxy> startupRenderQueue;
 
-        public static EnemyRendererImpl GetInstance()
+        public static EnemyInitializerImpl GetInstance()
         {
             return instance;
         }          

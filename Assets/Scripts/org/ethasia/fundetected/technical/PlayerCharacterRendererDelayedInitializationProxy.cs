@@ -2,24 +2,24 @@ using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class PlayerCharacterRendererDelayedInitializationProxy : IAnimatedCharactersRenderer
+    public class PlayerCharacterRendererDelayedInitializationProxy : IAnimatedCharactersInitializer
     {
-        private PlayerCharacterRendererImpl proxiedRenderer;
+        private PlayerCharacterInitializerImpl proxiedRenderer;
 
-        public PlayerCharacterRendererDelayedInitializationProxy(PlayerCharacterRendererImpl proxiedRenderer)
+        public PlayerCharacterRendererDelayedInitializationProxy(PlayerCharacterInitializerImpl proxiedRenderer)
         {
             this.proxiedRenderer = proxiedRenderer;
         }
 
-        public void RenderAnimatedCharacter(GameObjectProxy animatedCharacter)
+        public void InitializeAnimatedCharacter(GameObjectProxy animatedCharacter)
         {
             if (null != proxiedRenderer)
             {
-                proxiedRenderer.RenderAnimatedCharacter(animatedCharacter);
+                proxiedRenderer.InitializeAnimatedCharacter(animatedCharacter);
             }
             else
             {
-                PlayerCharacterRendererImpl.AddGameObjectToStartupRenderQueue(animatedCharacter);
+                PlayerCharacterInitializerImpl.AddGameObjectToStartupRenderQueue(animatedCharacter);
             }
         }
     }

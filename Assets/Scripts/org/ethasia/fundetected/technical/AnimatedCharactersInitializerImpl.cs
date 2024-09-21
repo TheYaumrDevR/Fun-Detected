@@ -8,7 +8,7 @@ using Org.Ethasia.Fundetected.Technical.Animation;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public abstract class AnimatedCharactersRendererImpl : MonoBehaviour, IAnimatedCharactersRenderer
+    public abstract class AnimatedCharactersInitializerImpl : MonoBehaviour, IAnimatedCharactersInitializer
     {
         void Awake()
         {
@@ -21,13 +21,13 @@ namespace Org.Ethasia.Fundetected.Technical
 
             foreach (GameObjectProxy animatedCharacter in startupRenderQueue)
             {
-                RenderAnimatedCharacter(animatedCharacter);
+                InitializeAnimatedCharacter(animatedCharacter);
             }      
 
             startupRenderQueue.Clear();      
         }  
 
-        public void RenderAnimatedCharacter(GameObjectProxy animatedCharacterProxy)
+        public void InitializeAnimatedCharacter(GameObjectProxy animatedCharacterProxy)
         {
             CharacterWithSpriteFactory.CharacterWithSpriteFactoryProduct createdCharacterEngineObjects = CharacterWithSpriteFactory.CreateCharacterWithSprite(animatedCharacterProxy, GetSortingOrderOfRendererInLayer(), this.transform);
 
