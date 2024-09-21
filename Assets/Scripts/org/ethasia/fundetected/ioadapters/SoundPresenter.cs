@@ -5,13 +5,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class SoundPresenter : ISoundPresenter
     {
-        public void PlayEnemyHitSound()
+        public void PlayEnemyHitSound(string audioSourceId)
         {
             ISoundPlayer soundPlayer = TechnicalFactory.GetInstance().GetSoundPlayerInstance();
 
             if (null != soundPlayer)
             {
-                soundPlayer.PlayEnemyHitSound();
+                soundPlayer.PlayEnemyHitSound(audioSourceId);
             }
         }
     }

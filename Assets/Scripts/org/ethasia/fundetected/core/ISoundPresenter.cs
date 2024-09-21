@@ -2,6 +2,6 @@ namespace Org.Ethasia.Fundetected.Core
 {
     public interface ISoundPresenter
     {
-        void PlayEnemyHitSound();
+        void PlayEnemyHitSound(string audioSourceId);
     }
 }

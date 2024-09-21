@@ -12,7 +12,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private StopWatch lastStartOfAttackStopWatch;
 
-        public string Id
+        public string IndividualId
+        {
+            get;
+            private set;
+        }
+
+        public string TypeId
         {
             get;
             private set;
@@ -234,7 +240,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private void PlayHitSound()
         {
             ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
-            soundPresenter.PlayEnemyHitSound();
+            soundPresenter.PlayEnemyHitSound(IndividualId);
         }
 
         private void PlayDeathAnimation()
@@ -278,7 +284,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public class Builder
         {
-            private string id;
+            private string individualId;
+            private string typeId;
             private bool isAggressiveOnSight;
             private string name;
             private int maxLife;
@@ -296,6 +303,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private DamageRange minToMaxPhysicalDamage;
             private BoundingBox boundingBox;
             private Position position;
+
+            public Builder SetIndividualId(string value)
+            {
+                individualId = value;
+                return this;
+            }
 
             public Builder SetName(string value)
             {
@@ -376,9 +389,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }   
 
-            public Builder SetId(string value)
+            public Builder SetTypeId(string value)
             {
-                id = value;
+                typeId = value;
                 return this;
             }         
 
@@ -409,7 +422,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                     .ManagedEnemy(result)
                     .Build();
 
-                result.Id = id;
+                result.IndividualId = individualId;
+                result.TypeId = typeId;
                 result.Name = name;
                 result.armor = armor;
                 result.fireResistance = fireResistance;

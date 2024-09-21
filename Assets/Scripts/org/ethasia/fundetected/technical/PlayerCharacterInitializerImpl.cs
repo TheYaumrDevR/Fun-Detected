@@ -64,5 +64,10 @@ namespace Org.Ethasia.Fundetected.Technical
             playerCharacterTranslator.SetSpriteRenderer(spriteRenderer);
             playerCharacterTranslator.SetCharacterTransform(transform);
         }
+
+        protected override void AssignAudioSource(string audioSourceId, AudioSource audioSource)
+        {
+
+        }
     }
 }

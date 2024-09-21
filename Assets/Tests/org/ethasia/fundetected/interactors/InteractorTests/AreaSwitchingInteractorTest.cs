@@ -70,10 +70,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();     
 
-            Assert.That(result[1].EnemyId, Is.EqualTo("Fire Mage"));  
-            Assert.That(result[2].EnemyId, Is.EqualTo("Wolf"));
-            Assert.That(result[3].EnemyId, Is.EqualTo("Wolf"));  
-            Assert.That(result[4].EnemyId, Is.EqualTo("Fire Mage"));                 
+            Assert.That(result[1].TypeId, Is.EqualTo("Fire Mage"));  
+            Assert.That(result[2].TypeId, Is.EqualTo("Wolf"));
+            Assert.That(result[3].TypeId, Is.EqualTo("Wolf"));  
+            Assert.That(result[4].TypeId, Is.EqualTo("Fire Mage"));                 
         }        
 
         private PlayerCharacter CreateTestPlayerCharacter()

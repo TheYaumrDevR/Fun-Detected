@@ -36,13 +36,16 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         private void PopulateEnemiesFromSpawners(List<EnemySpawnLocation> spawnedEnemies, Area map)
         {
+            int spawnId = 0;
+
             foreach (EnemySpawnLocation spawnedEnemy in spawnedEnemies)
             {
-                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId), spawnedEnemy));
+                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId), spawnedEnemy, spawnId));
+                spawnId++;
             }
         }
 
-        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData)
+        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData, int spawnId)
         {
             BoundingBox enemyBoundingBox = new BoundingBox.Builder()
                 .SetDistanceToRightEdge(enemyMasterData.DistanceToRightEdge)
@@ -52,7 +55,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .Build();
 
             Enemy result = new Enemy.Builder()
-                .SetId(enemyMasterData.Id)
+                .SetIndividualId(enemyMasterData.Id + spawnId)
+                .SetTypeId(enemyMasterData.Id)
                 .SetName(enemyMasterData.Name)
                 .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
                 .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
@@ -81,13 +85,14 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             foreach (Enemy spawnedEnemy in map.Enemies)
             {
-                EnemyMasterDataForRendering renderingMasterData = enemyMasterDataProvider.CreateEnemyMasterDataForRenderingById(spawnedEnemy.Id);
+                EnemyMasterDataForRendering renderingMasterData = enemyMasterDataProvider.CreateEnemyMasterDataForRenderingById(spawnedEnemy.TypeId);
 
                 AnimationStateMachineAssignmentFunction animationStateMachineAssignmentFunction = new AnimationStateMachineAssignmentFunction();
                 animationStateMachineAssignmentFunction.Enemy = spawnedEnemy;
 
                 EnemyRenderData enemyRenderData = new EnemyRenderData();
-                enemyRenderData.EnemyId = spawnedEnemy.Id;
+                enemyRenderData.TypeId = spawnedEnemy.TypeId;
+                enemyRenderData.IndividualId = spawnedEnemy.IndividualId;
 
                 enemyRenderData.PositionX = spawnedEnemy.Position.X + map.LowestScreenX;
                 enemyRenderData.PositionY = spawnedEnemy.Position.Y + map.LowestScreenY;

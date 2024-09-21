@@ -8,7 +8,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int WidthX;
         public int WidthY;
 
-        public string EnemyId;
+        public string TypeId;
+        public string IndividualId;
 
         public IAnimationStateMachineAssignmentFunction AnimationStateMachineAssignmentFunction;
     }

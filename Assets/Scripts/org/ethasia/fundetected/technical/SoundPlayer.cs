@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
@@ -8,8 +9,8 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private static SoundPlayer instance;
 
-        public AudioSource sceneAudioSource;
         public AudioClip enemyHitSound;
+        private Dictionary<string, AudioSource> audioSourcesById;
 
         public static SoundPlayer GetInstance()
         {
@@ -21,9 +22,22 @@ namespace Org.Ethasia.Fundetected.Technical
             instance = this;
         }
 
-        public void PlayEnemyHitSound()
+        public void AddAudioSource(string audioSourceId, AudioSource audioSource)
         {
-            sceneAudioSource.PlayOneShot(enemyHitSound);
+            if (null == audioSourcesById)
+            {
+                audioSourcesById = new Dictionary<string, AudioSource>();
+            }
+
+            audioSourcesById.Add(audioSourceId, audioSource);
+        }
+
+        public void PlayEnemyHitSound(string individualEnemyId)
+        {
+            if (audioSourcesById.ContainsKey(individualEnemyId))
+            {
+                audioSourcesById[individualEnemyId].PlayOneShot(enemyHitSound);;
+            }
         }
     }
 }

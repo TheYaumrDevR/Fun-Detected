@@ -5,6 +5,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
 {
     public struct GameObjectProxy
     {
+        public string IndividualId
+        {
+            get;
+            private set;
+        }
+
         public string Name
         {
             get;
@@ -49,6 +55,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
 
         public class Builder
         {
+            private string individualId;
             private string name;
             private float posX;
             private float posY; 
@@ -56,6 +63,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private float scaleY;  
             private Animation2dGraphNodeProperties animationProperties;    
             private IAnimationStateMachineAssignmentFunction animationStateMachineAssignmentFunction;
+
+            public Builder SetIndividualId(string value)
+            {
+                individualId = value;
+                return this;
+            }
 
             public Builder SetName(string value)
             {
@@ -103,6 +116,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             {
                 GameObjectProxy result = new GameObjectProxy();
 
+                result.IndividualId = individualId;
                 result.Name = name;
                 result.PosX = posX;
                 result.PosY = posY;

@@ -17,10 +17,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             foreach (EnemyRenderData enemyRenderData in renderData)
             {
-                Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph(enemyRenderData.EnemyId);
+                Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph(enemyRenderData.TypeId);
 
                 GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
-                    .SetName("Enemy " + enemyRenderData.EnemyId)
+                    .SetIndividualId(enemyRenderData.IndividualId)
+                    .SetName("Enemy " + enemyRenderData.TypeId)
                     .SetPosX(enemyRenderData.PositionX / 10.0f)
                     .SetPosY(enemyRenderData.PositionY / 10.0f)
                     .SetScaleX(enemyRenderData.WidthX / 10.0f)

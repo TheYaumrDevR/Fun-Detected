@@ -35,6 +35,7 @@ namespace Org.Ethasia.Fundetected.Technical
                         
             AssignAnimationStateMachine(animationStateMachine, animatedCharacterProxy);
             AssignCharacterSpriteRendererAndTransform(createdCharacterEngineObjects.CharacterSpriteRenderer, createdCharacterEngineObjects.CharacterGameObject.transform);
+            AssignAudioSource(animatedCharacterProxy.IndividualId, createdCharacterEngineObjects.CharacterAudioSource);
         }  
 
         protected abstract void AssignInstance();
@@ -46,5 +47,7 @@ namespace Org.Ethasia.Fundetected.Technical
         protected abstract void AssignAnimationStateMachine(StateMachine animationStateMachine, GameObjectProxy animatedCharacterProxy);
 
         protected abstract void AssignCharacterSpriteRendererAndTransform(SpriteRenderer spriteRenderer, Transform transform);       
+
+        protected abstract void AssignAudioSource(string audioSourceId, AudioSource audioSource);
     }
 }
