@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph("FemaleCharacterOne");
 
             GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
+                .SetIndividualId("PlayerCharacter " + playerName)
                 .SetName("PlayerCharacter " + playerName)
                 .SetPosX(5.5f)
                 .SetPosY(1.63f)

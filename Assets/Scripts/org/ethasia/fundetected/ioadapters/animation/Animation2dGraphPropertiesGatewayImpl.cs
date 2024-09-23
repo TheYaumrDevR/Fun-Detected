@@ -166,11 +166,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             foreach (XmlElement frame in frames)
             {
                 string indexText = frame.GetAttribute("index");
+                string soundMethodId = frame.GetAttribute("soundMethodId");
+
                 Animation2dFrameProperties animationFrame;
 
                 if (int.TryParse(indexText, out int index))
                 {
                     animationFrame = new Animation2dFrameProperties(index, true);
+
+                    if (null != soundMethodId)
+                    {
+                        animationFrame.SoundMethodId = soundMethodId;
+                    }
                 }
                 else
                 {

@@ -14,10 +14,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             private set;
         }
 
+        public string SoundMethodId
+        {
+            get;
+            set;
+        }
+
         public Animation2dFrameProperties(int frameIndex, bool hasImage)
         {
             FrameIndex = frameIndex;
             HasImage = hasImage;
+            SoundMethodId = "";
         }
     }
 }

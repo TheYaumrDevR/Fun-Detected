@@ -50,10 +50,5 @@ namespace Org.Ethasia.Fundetected.Technical
         {
 
         }
-
-        protected override void AssignAudioSource(string audioSourceId, AudioSource audioSource)
-        {
-            SoundPlayer.GetInstance().AddAudioSource(audioSourceId, audioSource);
-        }
     }
 }

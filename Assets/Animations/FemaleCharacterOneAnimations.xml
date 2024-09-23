@@ -28,7 +28,7 @@
 	<animation id="rightArmSwing" speedMultiplier="2.4">
 		<animationFrames spriteImageName="FemaleCharOneRightArmSwing" isLooping="false">
 			<animationFrame index="0"/>
-			<animationFrame index="1"/>
+			<animationFrame index="1" soundMethodId="PlayRandomSwingSound"/>
 		</animationFrames>
 		<transitions>
 			<transition target="idle" />
@@ -40,7 +40,7 @@
 	<animation id="leftArmSwing" speedMultiplier="2.4">
 		<animationFrames spriteImageName="FemaleCharOneLeftArmSwing" isLooping="false">
 			<animationFrame index="0"/>
-			<animationFrame index="1"/>
+			<animationFrame index="1" soundMethodId="PlayRandomSwingSound"/>
 		</animationFrames>
 		<transitions>
 			<transition target="idle" />

@@ -46,8 +46,14 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
 
             var spriteRenderer = new SpriteRenderer();
 
+            Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
+            stateMachineConversionContext.ToConvert = idleNode;
+            stateMachineConversionContext.SpriteRenderer = spriteRenderer;
+            stateMachineConversionContext.Sprite2dAnimatorContainer = new Sprite2dAnimatorBehavior();
+            stateMachineConversionContext.AnimatedObjectId = "";            
+
             // Act
-            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(idleNode, spriteRenderer, new Sprite2dAnimatorBehavior());
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(stateMachineConversionContext);
 
             // Assert
             Assert.That(result.CanExecuteAction("walk"), Is.True);

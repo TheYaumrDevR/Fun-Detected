@@ -8,6 +8,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
         private SpriteRenderer spriteRenderer;
         private List<Sprite2dAnimationFrame> sprites;
         protected bool isLooping;
+        private string animatedObjectId;
 
         private float accumulatedDeltaTime;
         protected int currentFrameIndex;
@@ -64,6 +65,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 if (newFrame.HasSprite && null != newFrame.Sprite)
                 {   
                     spriteRenderer.sprite = newFrame.Sprite;
+                    newFrame.PlayFrameTransitionSoundEffect(animatedObjectId);
                 }                
             }
         }
@@ -73,6 +75,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             protected List<Sprite2dAnimationFrame> sprites;
             protected bool isLooping;
             private SpriteRenderer spriteRenderer;
+            private string animatedObjectId;
 
             public Builder()
             {
@@ -82,6 +85,14 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             public Builder AddAnimationFrame(Sprite sprite)
             {
                 Sprite2dAnimationFrame spriteAnimationFrame = new Sprite2dAnimationFrame(sprite);
+                sprites.Add(spriteAnimationFrame);
+
+                return this;
+            }
+
+            public Builder AddAnimationFrame(Sprite sprite, string soundMethodId)
+            {
+                Sprite2dAnimationFrame spriteAnimationFrame = new Sprite2dAnimationFrame(sprite, soundMethodId);
                 sprites.Add(spriteAnimationFrame);
 
                 return this;
@@ -107,11 +118,19 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 return this;
             }
 
+            public Builder SetAnimatedObjectId(string value)
+            {
+                animatedObjectId = value;
+                return this;
+            }
+
             public Sprite2dAnimation Build()
             {
                 Sprite2dAnimation result = new Sprite2dAnimation(sprites);
+                
                 result.isLooping = isLooping;
                 result.spriteRenderer = spriteRenderer;
+                result.animatedObjectId = animatedObjectId;
 
                 result.UpdateSpriteFrame();
 
