@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   height="1000"
+   width="1000"
+   sodipodi:docname="EthasiaGameUiFont.svg"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.3"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="453.96255"
+     inkscape:cy="529.62298"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer10"
+     showgrid="false"
+     showguides="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="2552"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <sodipodi:guide
+       id="guide_baseline"
+       inkscape:label="baseline"
+       position="0,253"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_ascender"
+       inkscape:label="ascender"
+       position="0,945"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_caps"
+       inkscape:label="caps"
+       position="0,896"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_xheight"
+       inkscape:label="xheight"
+       position="0,729"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       id="guide_descender"
+       inkscape:label="descender"
+       position="0,28"
+       orientation="0,1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="208.77328,246.13578"
+       orientation="1,0"
+       id="guide2"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="702.875,238.75"
+       orientation="1,0"
+       id="guide4"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="449.36636,466.66471"
+       orientation="0,-1"
+       id="guide5"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="447.95214,390.47396"
+       orientation="0,-1"
+       id="guide6"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="284.70312,476.53125"
+       orientation="1,0"
+       id="guide8"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4">
+    <font
+       horiz-adv-x="1000"
+       id="font1"
+       inkscape:label="EthasiaGameUI">
+      <font-face
+         units-per-em="1000"
+         ascent="750"
+         cap-height="600"
+         x-height="400"
+         descent="200"
+         id="font-face1"
+         font-family="EthasiaGameUI" />
+      <missing-glyph
+         d="M0,0h1000v1000h-1000z"
+         id="missing-glyph1" />
+      <glyph
+         glyph-name="Latin Capital Letter E"
+         unicode="E"
+         id="glyph2"
+         d="m 578.66368,892.70963 -369.38674,-0.008 -0.011,-639.19444 369.40805,0.011 -6e-4,75.2239 -294.51478,-0.045 0.0274,192.84104 294.4814,-0.019 0.0221,75.18353 -294.52298,-0.006 0.0233,220.84028 294.48007,-0.003 z" />
+      <glyph
+         glyph-name="Latin Capital Letter R"
+         unicode="R"
+         id="glyph8"
+         d="m 209.28984,895.52356 -0.0215,-642.00977 74.89062,-0.0234 0.0352,276.08985 28.32617,-0.0918 234.75977,-275.97266 74.06054,-0.0195 -233.625,275.92383 97.84961,0.15039 c 0,0 20.78648,-1.21061 37.92973,1.93605 17.14324,3.14665 30.64324,10.65056 40.07027,20.07958 9.42697,9.42896 16.92648,22.92896 20.06925,40.07172 3.14277,17.14276 1.9288,37.92828 1.9288,37.92828 l -0.008,157.9082 c 0,0 1.6853,18.31479 -1.22205,37.22243 -2.90735,18.90764 -8.40735,36.40813 -18.77795,46.77952 -9.42771,9.42842 -26.92771,17.42989 -44.07078,21.07425 -17.14308,3.64436 -35.92922,2.93161 -35.92922,2.93161 z m 74.91797,-75.1875 196.23144,-0.0654 c 0,0 19.29572,-1.28586 24.0127,-6.00295 4.71326,-4.71337 6.00248,-23.9969 6.00248,-23.9969 l 0.0135,-155.5881 c 0,0 -0.9295,-14.93613 -8.0052,-22.00485 -4.71405,-4.7094 -21.99014,-7.98375 -21.99014,-7.98375 l -196.26572,-0.0279 z" />
+      <glyph
+         glyph-name="Latin Capital Letter A"
+         unicode="A"
+         id="glyph15"
+         d="M 455.73633,894.59961 209.4082,253.36719 l 74.9043,0.17578 53.37109,137.33789 0.16016,-0.004 235.80859,-0.041 h 0.0332 l 53.30273,-137.31641 75.17774,0.0508 z m 0.10742,-200.44336 88.63672,-228.24023 -177.41797,0.0215 z"
+         horiz-adv-x="0,00" />
+      <glyph
+         glyph-name="Latin Capital Letter I"
+         unicode="I"
+         id="glyph16"
+         d="m 209.26837,253.49836 74.94436,-0.0263 -0.0174,642.02798 -74.89844,-0.0156 z" />
+      <glyph
+         glyph-name="Latin Capital Letter O"
+         unicode="O"
+         id="glyph17"
+         d="m 369.35156,895.42969 c 0,0 -25.57191,-4.07276 -49.85742,-18.85938 -12.14275,-7.39331 -22.96305,-15.46435 -33.10547,-24.04492 -10.14242,-8.58057 -19.60755,-19.67137 -29.03515,-29.09961 v 0.006 c -9.42762,-9.42825 -18.38931,-23.7676 -25.78125,-40.22266 -7.39195,-16.45505 -13.21337,-37.02535 -16.35547,-54.91796 -6.28423,-35.78523 -5.85547,-72.85743 -5.85547,-72.85743 V 493.43555 c 0,0 -0.42841,-38.07185 5.85742,-74.85743 3.14292,-18.39268 10.96481,-39.46288 18.35742,-56.29296 7.39261,-16.83019 16.35539,-29.41947 25.78321,-38.84766 9.42812,-9.42849 16.89399,-18.26882 27.0371,-26.47461 10.14311,-8.20579 22.96401,-15.77838 35.10743,-22.67187 24.28683,-13.78699 47.85937,-20.85938 47.85937,-20.85938 h 173.12305 c 0,0 38.06737,4.56948 62.84961,17.85156 12.39112,6.6411 22.96047,13.96067 32.78906,21.97657 9.8286,8.01589 14.9164,14.7274 24.34375,24.15429 9.42796,9.42749 16.2664,22.14112 21.4707,39.15821 5.2043,17.01708 10.77426,42.33808 13.66602,60.98046 5.7835,37.28482 4.85351,75.85547 4.85351,75.85547 l -0.01,161.99414 c 0,0 0.42772,37.07246 -5.85742,72.85743 -3.14258,17.89248 -6.96316,36.96309 -14.35547,53.91796 -7.3923,16.95488 -14.35553,29.79268 -23.78321,39.22071 -9.4276,9.42795 -18.89104,22.01723 -29.0332,30.09765 -10.14217,8.08043 -22.96304,17.65167 -35.10547,25.04493 -24.28485,14.7865 -51.85547,18.85937 -51.85547,18.85937 z m -3.99609,-76.18555 181.27539,-0.0273 c 0,0 37.15054,-7.14032 56.00976,-25.99805 28.28306,-28.28081 24.00586,-93.99023 24.00586,-93.99023 l -0.0293,-250.71875 c 0,0 6.27808,-67.70584 -22.00196,-95.99024 -18.85536,-18.85828 -58.00195,-24.01367 -58.00195,-24.01367 l -181.30469,0.0449 c 0,0 -37.12865,5.15129 -55.98047,24.00195 -28.2836,28.28189 -24.00976,95.99415 -24.00976,95.99415 l 0.0488,250.69726 c 0,0 -2.29516,65.7064 25.98437,93.99219 18.85493,18.8591 54.00391,26.00781 54.00391,26.00781 z" />
+      <glyph
+         glyph-name="Latin Capital Letter T"
+         unicode="T"
+         id="glyph20"
+         d="m 355.392,253.4433 74.93122,-0.028 -0.0511,569.55984 148.40721,0.0818 10e-4,72.43797 -369.46331,-0.0382 0.0572,-72.423 146.08504,-0.0615 z" />
+      <glyph
+         glyph-name="Latin Capital Letter N"
+         unicode="N"
+         id="glyph21"
+         d="m 208.77328,253.29524 h 75.66042 l -1.34791,491.02352 336.33975,-490.31641 h 82.73149 l 0.70711,641.34585 h -74.95332 l 1.41422,-516.18795 -345.06812,519.01637 -76.36753,-2.82842 z" />
+    </font>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <path
+       id="path1"
+       style="fill:none;fill-opacity:0.133333;stroke:#000000"
+       d="m 493.73633,105.40039 -246.32813,641.23242 74.9043,-0.17578 53.37109,-137.33789 0.16016,0.004 235.80859,0.041 h 0.0332 l 53.30273,137.31641 75.17774,-0.0508 z m 0.10742,200.44336 88.63672,228.24023 -177.41797,-0.0215 z" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="EthasiaGameUI">
+    <g
+       inkscape:groupmode="layer"
+       id="layer9"
+       inkscape:label="U+000054 T Latin Capital Letter T"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d=""
+         id="path20" />
+      <path
+         style="fill:none;fill-opacity:0.133333;stroke:#000000;stroke-opacity:1"
+         d="m 355.392,746.5567 74.93122,0.028 -0.0511,-569.55984 148.40721,-0.0818 10e-4,-72.43797 -369.46331,0.0382 0.0572,72.423 146.08504,0.0615 z"
+         id="path21"
+         sodipodi:nodetypes="ccccccccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer4"
+       inkscape:label="U+000052 R Latin Capital Letter R"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d=""
+         id="path8" />
+      <path
+         id="path9"
+         style="fill:none;fill-opacity:0.133333;stroke:#000000"
+         d="m 209.28984,104.47644 -0.0215,642.00977 74.89062,0.0234 0.0352,-276.08985 28.32617,0.0918 234.75977,275.97266 74.06054,0.0195 -233.625,-275.92383 97.84961,-0.15039 c 0,0 20.78648,1.21061 37.92973,-1.93605 17.14324,-3.14665 30.64324,-10.65056 40.07027,-20.07958 9.42697,-9.42896 16.92648,-22.92896 20.06925,-40.07172 3.14277,-17.14276 1.9288,-37.92828 1.9288,-37.92828 l -0.008,-157.9082 c 0,0 1.6853,-18.31479 -1.22205,-37.22243 -2.90735,-18.90764 -8.40735,-36.40813 -18.77795,-46.77952 -9.42771,-9.42842 -26.92771,-17.42989 -44.07078,-21.07425 -17.14308,-3.64436 -35.92922,-2.93161 -35.92922,-2.93161 z m 74.91797,75.1875 196.23144,0.0654 c 0,0 19.29572,1.28586 24.0127,6.00295 4.71326,4.71337 6.00248,23.9969 6.00248,23.9969 l 0.0135,155.5881 c 0,0 -0.9295,14.93613 -8.0052,22.00485 -4.71405,4.7094 -21.99014,7.98375 -21.99014,7.98375 l -196.26572,0.0279 z"
+         sodipodi:nodetypes="cccccccccsssccscscccsccscccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer8"
+       inkscape:label="U+00004F O Latin Capital Letter O"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d=""
+         id="path18" />
+      <path
+         id="path19"
+         style="fill:none;fill-opacity:0.133333;stroke:#000000;stroke-opacity:1"
+         d="m 369.35156,104.57031 c 0,0 -25.57191,4.07276 -49.85742,18.85938 -12.14275,7.39331 -22.96305,15.46435 -33.10547,24.04492 -10.14242,8.58057 -19.60755,19.67137 -29.03515,29.09961 v -0.006 c -9.42762,9.42825 -18.38931,23.7676 -25.78125,40.22266 -7.39195,16.45505 -13.21337,37.02535 -16.35547,54.91796 -6.28423,35.78523 -5.85547,72.85743 -5.85547,72.85743 v 161.99804 c 0,0 -0.42841,38.07185 5.85742,74.85743 3.14292,18.39268 10.96481,39.46288 18.35742,56.29296 7.39261,16.83019 16.35539,29.41947 25.78321,38.84766 9.42812,9.42849 16.89399,18.26882 27.0371,26.47461 10.14311,8.20579 22.96401,15.77838 35.10743,22.67187 24.28683,13.78699 47.85937,20.85938 47.85937,20.85938 h 173.12305 c 0,0 38.06737,-4.56948 62.84961,-17.85156 12.39112,-6.6411 22.96047,-13.96067 32.78906,-21.97657 9.8286,-8.01589 14.9164,-14.7274 24.34375,-24.15429 9.42796,-9.42749 16.2664,-22.14112 21.4707,-39.15821 5.2043,-17.01708 10.77426,-42.33808 13.66602,-60.98046 5.7835,-37.28482 4.85351,-75.85547 4.85351,-75.85547 l -0.01,-161.99414 c 0,0 0.42772,-37.07246 -5.85742,-72.85743 -3.14258,-17.89248 -6.96316,-36.96309 -14.35547,-53.91796 -7.3923,-16.95488 -14.35553,-29.79268 -23.78321,-39.22071 -9.4276,-9.42795 -18.89104,-22.01723 -29.0332,-30.09765 -10.14217,-8.08043 -22.96304,-17.65167 -35.10547,-25.04493 -24.28485,-14.7865 -51.85547,-18.85937 -51.85547,-18.85937 z m -3.99609,76.18555 181.27539,0.0273 c 0,0 37.15054,7.14032 56.00976,25.99805 28.28306,28.28081 24.00586,93.99023 24.00586,93.99023 l -0.0293,250.71875 c 0,0 6.27808,67.70584 -22.00196,95.99024 -18.85536,18.85828 -58.00195,24.01367 -58.00195,24.01367 l -181.30469,-0.0449 c 0,0 -37.12865,-5.15129 -55.98047,-24.00195 -28.2836,-28.28189 -24.00976,-95.99415 -24.00976,-95.99415 l 0.0488,-250.69726 c 0,0 -2.29516,-65.7064 25.98437,-93.99219 18.85493,-18.8591 54.00391,-26.00781 54.00391,-26.00781 z" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer10"
+       inkscape:label="U+00004E N Latin Capital Letter N">
+      <path
+         d=""
+         id="path22" />
+      <path
+         style="fill:none;fill-opacity:0.133333;stroke:#000000;stroke-opacity:1"
+         d="m 208.77328,746.70476 h 75.66042 l -1.34791,-491.02352 336.33975,490.31641 h 82.73149 l 0.70711,-641.34585 h -74.95332 l 1.41422,516.18795 -345.06812,-519.01637 -76.36753,2.82842 z"
+         id="path23"
+         sodipodi:nodetypes="ccccccccccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer7"
+       inkscape:label="U+000049 I Latin Capital Letter I"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d=""
+         id="path16" />
+      <path
+         style="fill:none;fill-opacity:0.133333;stroke:#000000;stroke-opacity:1"
+         d="m 209.26837,746.50164 74.94436,0.0263 -0.0174,-642.02798 -74.89844,0.0156 z"
+         id="path17"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer3"
+       inkscape:label="U+000045 E Latin Capital Letter E"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d=""
+         id="path6" />
+      <path
+         style="fill:none;fill-opacity:0.133333;stroke:#000000"
+         d="m 578.66368,107.29037 -369.38674,0.008 -0.011,639.19444 369.40805,-0.011 -6e-4,-75.2239 -294.51478,0.045 0.0274,-192.84104 294.4814,0.019 0.0221,-75.18353 -294.52298,0.006 0.0233,-220.84028 294.48007,0.003 z"
+         id="path7"
+         sodipodi:nodetypes="ccccccccccccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer6"
+       inkscape:label="U+000041 A Latin Capital Letter A"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d="m 455.73633,105.40039 -246.32813,641.23242 74.9043,-0.17578 53.37109,-137.33789 0.16016,0.004 235.80859,0.041 h 0.0332 l 53.30273,137.31641 75.17774,-0.0508 z m 0.10742,200.44336 88.63672,228.24023 -177.41797,-0.0215 z"
+         id="path15" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer5"
+       inkscape:label="U+000020 U+000041  A Latin Capital Letter A"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d="m 455.73633,105.40039 -246.32813,641.23242 74.9043,-0.17578 53.37109,-137.33789 0.16016,0.004 235.80859,0.041 h 0.0332 l 53.30273,137.31641 75.17774,-0.0508 z m 0.10742,200.44336 88.63672,228.24023 -177.41797,-0.0215 z"
+         id="path10"
+         style="fill:none;stroke:#000000;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
