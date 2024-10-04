@@ -136,7 +136,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, 0);
             currentLife -= finalDamage;
 
-            PresentDamageTakenText(finalDamage);
+            PresentDamage(finalDamage);
 
             if (currentLife < 0)
             {
@@ -149,18 +149,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
             currentLife = baseStats.MaximumLife;
         }        
 
-        private void PresentDamageTakenText(int damageTaken)
+        private void PresentDamage(int damageTaken)
         {
-            IDamageTextPresenter damageTextPresenter = IoAdaptersFactoryForCore.GetInstance().GetDamageTextPresenterInstance();
-
-            Area map = Area.ActiveArea;
-
-            DamageTextDisplayInformation damageTextDisplayInformation = new DamageTextDisplayInformation();
-            damageTextDisplayInformation.DamageValue = damageTaken;
-            damageTextDisplayInformation.PositionX = map.GetPlayerPositionX() + map.LowestScreenX;
-            damageTextDisplayInformation.PositionY = map.GetPlayerPositionY() + map.LowestScreenY;
-
-            damageTextPresenter.PresentPlayerDamageText(damageTextDisplayInformation);
+            IPlayerDamageTakenInteractor playerDamageTakenInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDamageTakenInteractorInstance();
+            
+            IPlayerDamageTakenInteractor.PlayerDamageContext playerDamageContext = new IPlayerDamageTakenInteractor.PlayerDamageContext();
+            playerDamageContext.DamageTaken = damageTaken;
+            playerDamageContext.MaximumHealth = baseStats.MaximumLife;
+            playerDamageContext.CurrentHealth = baseStats.CurrentLife;
+            
+            playerDamageTakenInteractor.NotifyPlayerOfDamageTaken(playerDamageContext);
         }
 
         private void DealDamageToHitEnemies(HashSet<Enemy> enemies, AsyncResponse<List<IBattleActionResult>> battleActionResponse)

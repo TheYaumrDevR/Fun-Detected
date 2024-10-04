@@ -48,5 +48,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new PlayerCharacterPresenterMock();
         }
+
+        public override IResourceBarPresenter GetResourceBarPresenterInstance()
+        {
+            return new ResourceBarPresenterMock();
+        }
     }
 }

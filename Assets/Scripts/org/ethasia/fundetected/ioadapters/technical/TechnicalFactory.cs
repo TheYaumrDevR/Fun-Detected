@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract IAnimatedCharactersInitializer GetPlayerCharacterInitializerInstance();    
         public abstract IFloatingDamageTextRenderer GetFloatingDamageTextRendererInstance();   
         public abstract IHitboxDebugShapeRenderer GetHitboxDebugShapeRendererInstance();
-        public abstract ISoundPlayer GetSoundPlayerInstance();
+        public abstract ISoundPlayer GetSoundPlayerInstance();  
+        public abstract IResourceBarRenderer GetResourceBarRendererInstance();
     }
 }

@@ -33,5 +33,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             return SoundPlayer.GetInstance();
         }
+
+        public override IResourceBarRenderer GetResourceBarRendererInstance()
+        {
+            return ResourceBarRenderer.GetInstance();
+        }
     }
 }

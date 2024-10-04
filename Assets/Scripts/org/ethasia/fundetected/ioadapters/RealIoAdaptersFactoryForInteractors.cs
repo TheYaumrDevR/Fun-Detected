@@ -14,6 +14,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IMapPropertiesGateway mapPropertiesGateway;
         private IEnemyPresenter enemyPresenter;
         private IPlayerCharacterPresenter playerCharacterPresenter;
+        private IResourceBarPresenter resourceBarPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -113,6 +114,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return playerCharacterPresenter;
+        }
+
+        public override IResourceBarPresenter GetResourceBarPresenterInstance()
+        {
+            if (null == resourceBarPresenter)
+            {
+                resourceBarPresenter = new ResourceBarPresenter();
+            }
+
+            return resourceBarPresenter;
         }
     }
 }
