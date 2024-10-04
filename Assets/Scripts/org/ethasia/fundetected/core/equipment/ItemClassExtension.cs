@@ -27,7 +27,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         public static bool IsOffHand(this ItemClass itemClass)
         {
-            return false;
+            return itemClass == ItemClass.SHIELD
+                || itemClass == ItemClass.QUIVER
+                || itemClass == ItemClass.MAGIC_SOURCE;
         }           
     }
 }
