@@ -111,6 +111,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
             SecondsToMoveOneUnit = 1.0 / (MovementSpeed / 10); 
         }   
 
+        public void ReduceCurrentLifeBy(int damage)
+        {
+            CurrentLife -= damage;
+
+            if (CurrentLife < 0)
+            {
+                CurrentLife = 0;
+            }
+        }
+
+        public void Heal()
+        {
+            CurrentLife = MaximumLife;
+        }
+
         public void FullHeal()
         {
             CurrentLife = MaximumLife;

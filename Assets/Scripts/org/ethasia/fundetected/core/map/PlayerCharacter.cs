@@ -32,7 +32,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private PlayerEquipmentSlots allEquipment;
 
-        private int currentLife;
         public int EvasionRating
         {
             get
@@ -128,26 +127,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public void TakePhysicalDamage(int incomingDamage)
         {
-            if (currentLife <= 0)
+            if (baseStats.CurrentLife <= 0)
             {
                 return;
             }
 
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, 0);
-            currentLife -= finalDamage;
+            baseStats.ReduceCurrentLifeBy(finalDamage);
 
             PresentDamage(finalDamage);
-
-            if (currentLife < 0)
-            {
-                currentLife = 0;
-            }
-        }
-
-        public void FullHeal()
-        {
-            currentLife = baseStats.MaximumLife;
-        }        
+        }       
 
         private void PresentDamage(int damageTaken)
         {
@@ -264,7 +253,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.characterClass = characterClass;
 
                 result.baseStats = playerCharacterBaseStats;
-                result.currentLife = playerCharacterBaseStats.MaximumLife;
 
                 result.CreateMeleeAttack(meleeHitArcProperties);
 
