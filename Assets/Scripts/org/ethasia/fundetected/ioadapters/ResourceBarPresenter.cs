@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 float healthPercentage = (float)currentHealth / (float)maximumHealth;
                 resourceBarRenderer.FillHealthBarBasedOnHealthPercentage(healthPercentage);
+                resourceBarRenderer.UpdateHealthText(currentHealth, maximumHealth);
             }
         }
     }

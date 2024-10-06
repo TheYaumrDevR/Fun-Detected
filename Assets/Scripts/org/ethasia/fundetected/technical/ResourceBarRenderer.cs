@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,13 @@ namespace Org.Ethasia.Fundetected.Technical
         private Image healthBarImage;
 
         [SerializeField]
-        private Image manaBarImage;        
+        private Image manaBarImage;     
+
+        [SerializeField]
+        private TextMeshProUGUI healthText;
+
+        [SerializeField]
+        private TextMeshProUGUI manaText;
 
         public static ResourceBarRenderer GetInstance()
         {
@@ -29,5 +36,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             healthBarImage.fillAmount = healthPercentage;
         }      
+
+        public void UpdateHealthText(int currentHealth, int maxHealth)
+        {
+            healthText.text = currentHealth + "/" + maxHealth;
+        }
     }
 }
