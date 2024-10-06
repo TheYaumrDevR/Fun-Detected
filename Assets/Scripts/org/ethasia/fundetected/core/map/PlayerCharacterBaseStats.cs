@@ -99,6 +99,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 MaximumLife += 12;
                 MaximumMana += 6;
                 AccuracyRating += 2;
+
+                FullHeal();
             }
         }
 

@@ -16,5 +16,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 resourceBarRenderer.UpdateHealthText(currentHealth, maximumHealth);
             }
         }
+
+        public void PresentManaBarBasedOnCurrentAndMaximumMana(int currentMana, int maximumMana)
+        {
+            IResourceBarRenderer resourceBarRenderer = TechnicalFactory.GetInstance().GetResourceBarRendererInstance();
+
+            if (null != resourceBarRenderer)
+            {
+                float manaPercentage = (float)currentMana / (float)maximumMana;
+                resourceBarRenderer.FillManaBarBasedOnManaPercentage(manaPercentage);
+                resourceBarRenderer.UpdateManaText(currentMana, maximumMana);
+            }
+        }
     }
 }

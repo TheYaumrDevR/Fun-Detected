@@ -28,7 +28,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private string name;
 
-        private PlayerCharacterBaseStats baseStats;     
+        public PlayerCharacterBaseStats BaseStats
+        {
+            get;
+            private set;
+        }   
 
         private PlayerEquipmentSlots allEquipment;
 
@@ -36,7 +40,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             get
             {
-                return baseStats.EvasionRating;    
+                return BaseStats.EvasionRating;    
             }
         }
 
@@ -57,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             meleeAttack = new MeleeAttack.MeleeAttackBuilder()
                 .SetHitArcRightSwing(meleeHitArc)
-                .SetTimeToHitFromStartOfAttack((1.0 / baseStats.AttacksPerSecond) / 2.0)
+                .SetTimeToHitFromStartOfAttack((1.0 / BaseStats.AttacksPerSecond) / 2.0)
                 .SetPositionOffsetRightSwingToPlayerCharacterCenter(new Position(meleeHitArcProperties.HitArcCenterXOffset, meleeHitArcProperties.HitArcCenterYOffset))
                 .Build();
         }
@@ -69,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public bool CanAutoAttack()
         {
-            return baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted();
+            return BaseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted();
         }
 
         public AsyncResponse<List<IBattleActionResult>> AutoAttack()
@@ -77,9 +81,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
             AsyncResponse<List<IBattleActionResult>> result = new AsyncResponse<List<IBattleActionResult>>();
             List<IBattleActionResult> battleActionResults = new List<IBattleActionResult>();
 
-            if (baseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
+            if (BaseStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
-                AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(baseStats.AttacksPerSecond);
+                AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(BaseStats.AttacksPerSecond);
 
                 enemiesHit.OnResponseReceived((enemies) => DealDamageToHitEnemies(enemies, result));
             }
@@ -116,9 +120,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public int CalculateMovementDistance()
         {
             int result = 0;
-            while (timeSinceLastMovement >= baseStats.SecondsToMoveOneUnit) 
+            while (timeSinceLastMovement >= BaseStats.SecondsToMoveOneUnit) 
             {
-                timeSinceLastMovement -= baseStats.SecondsToMoveOneUnit;
+                timeSinceLastMovement -= BaseStats.SecondsToMoveOneUnit;
                 result++;
             }
 
@@ -127,13 +131,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public void TakePhysicalDamage(int incomingDamage)
         {
-            if (baseStats.CurrentLife <= 0)
+            if (BaseStats.CurrentLife <= 0)
             {
                 return;
             }
 
             int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, 0);
-            baseStats.ReduceCurrentLifeBy(finalDamage);
+            BaseStats.ReduceCurrentLifeBy(finalDamage);
 
             PresentDamage(finalDamage);
         }       
@@ -144,8 +148,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             
             IPlayerDamageTakenInteractor.PlayerDamageContext playerDamageContext = new IPlayerDamageTakenInteractor.PlayerDamageContext();
             playerDamageContext.DamageTaken = damageTaken;
-            playerDamageContext.MaximumHealth = baseStats.MaximumLife;
-            playerDamageContext.CurrentHealth = baseStats.CurrentLife;
+            playerDamageContext.MaximumHealth = BaseStats.MaximumLife;
+            playerDamageContext.CurrentHealth = BaseStats.CurrentLife;
             
             playerDamageTakenInteractor.NotifyPlayerOfDamageTaken(playerDamageContext);
         }
@@ -158,11 +162,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             {
                 if (!target.IsDead())
                 {
-                    float chanceToHit = Formulas.CalculateChanceToHit(baseStats.AccuracyRating, target.EvasionRating);
+                    float chanceToHit = Formulas.CalculateChanceToHit(BaseStats.AccuracyRating, target.EvasionRating);
                             
                     if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
                     {
-                        DamageRange damageRange = baseStats.BasePhysicalDamage;
+                        DamageRange damageRange = BaseStats.BasePhysicalDamage;
 
                         int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
 
@@ -192,7 +196,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
-            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(baseStats.AttacksPerSecond);
+            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(BaseStats.AttacksPerSecond);
         }
 
         public class PlayerCharacterBuilder
@@ -252,7 +256,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.name = name;
                 result.characterClass = characterClass;
 
-                result.baseStats = playerCharacterBaseStats;
+                result.BaseStats = playerCharacterBaseStats;
 
                 result.CreateMeleeAttack(meleeHitArcProperties);
 

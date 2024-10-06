@@ -4,5 +4,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
     {
         void FillHealthBarBasedOnHealthPercentage(float healthPercentage);
         void UpdateHealthText(int currentHealth, int maxHealth);
+
+        void FillManaBarBasedOnManaPercentage(float manaPercentage);
+        void UpdateManaText(int currentMana, int maxMana);
     }
 }

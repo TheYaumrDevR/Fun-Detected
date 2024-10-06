@@ -8,5 +8,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             
         }
+
+        public void PresentManaBarBasedOnCurrentAndMaximumMana(int currentMana, int maximumMana)
+        {
+            
+        }
     }
 }

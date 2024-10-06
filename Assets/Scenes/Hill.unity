@@ -2422,8 +2422,9 @@ GameObject:
   - component: {fileID: 1388233960}
   - component: {fileID: 1388233959}
   - component: {fileID: 1388233963}
+  - component: {fileID: 1388233964}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2529,6 +2530,18 @@ MonoBehaviour:
   manaBarImage: {fileID: 670121170}
   healthText: {fileID: 1818177714}
   manaText: {fileID: 1408419007}
+--- !u!114 &1388233964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388233958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5596cf576e3cea4ca92d368c1a114cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1408419005
 GameObject:
   m_ObjectHideFlags: 0

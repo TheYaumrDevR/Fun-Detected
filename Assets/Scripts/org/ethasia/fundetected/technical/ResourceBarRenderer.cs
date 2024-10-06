@@ -41,5 +41,15 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             healthText.text = currentHealth + "/" + maxHealth;
         }
+
+        public void FillManaBarBasedOnManaPercentage(float manaPercentage)
+        {
+            manaBarImage.fillAmount = manaPercentage;
+        }
+
+        public void UpdateManaText(int currentMana, int maxMana)
+        {
+            manaText.text = currentMana + "/" + maxMana;
+        }
     }
 }
