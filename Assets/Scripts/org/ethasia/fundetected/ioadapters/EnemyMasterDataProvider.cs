@@ -116,6 +116,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.DistanceToRightRenderEdge = 12;
             result.DistanceToBottomRenderEdge = 12;
             result.DistanceToTopRenderEdge = 12;
+            result.SpawnPointOffsetX = 0;
+            result.SpawnPointOffsetY = 8;
 
             return result;
         }            

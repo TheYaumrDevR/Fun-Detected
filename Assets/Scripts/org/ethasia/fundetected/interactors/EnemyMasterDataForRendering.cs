@@ -6,5 +6,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int DistanceToRightRenderEdge;
         public int DistanceToBottomRenderEdge;
         public int DistanceToTopRenderEdge;
+        public int SpawnPointOffsetX;
+        public int SpawnPointOffsetY;
     }
 }

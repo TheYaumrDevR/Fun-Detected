@@ -15,6 +15,7 @@
             <definitions>
                 <definition file="EarthGrassPlateau"/>
                 <definition file="EarthGrassLoweringPlateau"/>
+                <definition file="EarthGrassRisingPlateau"/>
             </definitions>
         </chunk>    
         <chunk x="1" y="-1">
