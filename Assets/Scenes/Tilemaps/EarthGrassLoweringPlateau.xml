@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileChunk>
+    <tileMaps>
+        <terrain>
+            <tile id="PlainsAndHillsEarth" startX="0" startY="0" width="2" height="4"/>
+            <tile id="PlainsAndHillsEarth" startX="2" startY="0" width="5" height="3"/>
+            <tile id="PlainsAndHillsEarth" startX="7" startY="0" width="1" height="4"/>
+        </terrain>
+        <ground>
+            <tile id="PlainsAndHillsEarthGrass" startX="0" startY="4" width="2" height="1"/>
+            <tile id="PlainsAndHillsEarthGrass" startX="2" startY="3" width="5" height="1"/>
+            <tile id="PlainsAndHillsEarthGrass" startX="7" startY="4" width="1" height="1"/>
+        </ground>
+    </tileMaps>
+
+    <mapTileProperties>
+        <collisions>
+            <collision startX="0" startY="46" width="20" height="1"/>   
+            <collision startX="20" startY="36" width="50" height="1"/> 
+            <collision startX="70" startY="46" width="10" height="1"/> 
+
+            <collision startX="19" startY="37" width="1" height="9"/>  
+            <collision startX="70" startY="37" width="1" height="9"/>    
+        </collisions>
+
+        <spawners>
+            <spawner x="5" y="48"/>
+            <spawner x="15" y="48"/>
+            <spawner x="25" y="38"/>
+            <spawner x="35" y="38"/>
+            <spawner x="45" y="38"/>
+            <spawner x="55" y="38"/>
+            <spawner x="65" y="38"/>
+            <spawner x="75" y="48"/>
+        </spawners>
+    </mapTileProperties>
+</tileChunk>
