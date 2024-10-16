@@ -1,0 +1,12 @@
+using Org.Ethasia.Fundetected.Interactors;
+
+namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
+{
+    public class MapChunkGatewayMock : IMapChunkGateway
+    {
+        public MapChunkProperties LoadChunkProperties(string chunkName)
+        {
+            return new MapChunkProperties(chunkName);
+        }
+    }
+}

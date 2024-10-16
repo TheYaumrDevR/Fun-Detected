@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IEnemyPresenter enemyPresenter;
         private IPlayerCharacterPresenter playerCharacterPresenter;
         private IResourceBarPresenter resourceBarPresenter;
+        private IMapChunkGateway mapChunkGateway;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -124,6 +125,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return resourceBarPresenter;
+        }
+
+        public override IMapChunkGateway GetMapChunkGatewayInstance()
+        {
+            if (null == mapChunkGateway)
+            {
+                mapChunkGateway = new XmlFilesBasedMapChunkGateway();
+            }
+
+            return mapChunkGateway;
         }
     }
 }
