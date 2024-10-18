@@ -16,7 +16,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
-        public List<string> MapChunkIds
+        public List<MapChunkProperties> PropertiesOfPossibleChunks
         {
             get;
             private set;
@@ -27,7 +27,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             X = x;
             Y = y;
             
-            MapChunkIds = new List<string>();
+            PropertiesOfPossibleChunks = new List<MapChunkProperties>();
         }
     }
 }

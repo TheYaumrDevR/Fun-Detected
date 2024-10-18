@@ -80,11 +80,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     if (null != chunkReferencesRoot)
                     {
                         XmlNodeList chunkReferences = chunkReferencesRoot.GetElementsByTagName("definition");
+                        IMapChunkGateway mapChunkGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapChunkGatewayInstance();
 
                         foreach (XmlElement chunkReference in chunkReferences)
                         {
                             string chunkFileName = chunkReference.GetAttribute("file");
-                            chunk.MapChunkIds.Add(chunkFileName);
+                            MapChunkProperties mapChunkProperties = mapChunkGateway.LoadChunkProperties(chunkFileName);
+
+                            chunk.PropertiesOfPossibleChunks.Add(mapChunkProperties);
                         }
                     }
 
