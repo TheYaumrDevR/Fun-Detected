@@ -58,5 +58,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new MapChunkGatewayMock();
         }
+
+        public override IMapDefinitionGateway GetMapDefinitionGatewayInstance()
+        {
+            return new MapDefinitionGatewayMock();
+        }
     }
 }

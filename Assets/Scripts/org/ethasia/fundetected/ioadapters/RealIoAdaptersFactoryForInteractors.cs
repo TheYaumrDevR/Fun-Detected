@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IPlayerCharacterPresenter playerCharacterPresenter;
         private IResourceBarPresenter resourceBarPresenter;
         private IMapChunkGateway mapChunkGateway;
+        private IMapDefinitionGateway mapDefinitionGateway;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -135,6 +136,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return mapChunkGateway;
+        }
+
+        public override IMapDefinitionGateway GetMapDefinitionGatewayInstance()
+        {
+            if (null == mapDefinitionGateway)
+            {
+                mapDefinitionGateway = new XmlFilesBasedMapDefinitionGateway();
+            }
+
+            return mapDefinitionGateway;
         }
     }
 }

@@ -25,5 +25,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IPlayerCharacterPresenter GetPlayerCharacterPresenterInstance();
         public abstract IResourceBarPresenter GetResourceBarPresenterInstance();
         public abstract IMapChunkGateway GetMapChunkGatewayInstance();
+        public abstract IMapDefinitionGateway GetMapDefinitionGatewayInstance();
     }
 }

@@ -5,7 +5,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class XmlFilesBasedMapDefinitionGateway
+    public class XmlFilesBasedMapDefinitionGateway : IMapDefinitionGateway
     {
         private XmlFiles xmlFiles;
 
