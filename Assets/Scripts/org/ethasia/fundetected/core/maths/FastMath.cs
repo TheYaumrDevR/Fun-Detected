@@ -6,6 +6,16 @@ namespace Org.Ethasia.Fundetected.Core.Maths
     {
         private static readonly double[] RoundAdjustments = CreateRoundAdjustments();
 
+        public static int Min(int a, int b) 
+        {
+            return (a <= b) ? a : b;
+        }        
+
+        public static int Max(int a, int b) 
+        {
+            return (a <= b) ? b : a;
+        }
+
         public static double Round(double value)
         {
             return FastMath.Floor(value + 0.5);
