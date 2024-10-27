@@ -17,6 +17,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IResourceBarPresenter resourceBarPresenter;
         private IMapChunkGateway mapChunkGateway;
         private IMapDefinitionGateway mapDefinitionGateway;
+        private IMapPresenter mapPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -146,6 +147,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return mapDefinitionGateway;
+        }
+
+        public override IMapPresenter GetMapPresenterInstance()
+        {
+            if (null == mapPresenter)
+            {
+                mapPresenter = new MapPresenterImpl();
+            }
+
+            return mapPresenter;
         }
     }
 }

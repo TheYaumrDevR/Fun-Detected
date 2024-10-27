@@ -63,5 +63,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new MapDefinitionGatewayMock();
         }
+
+        public override IMapPresenter GetMapPresenterInstance()
+        {
+            return new MapPresenterMock();
+        }        
     }
 }
