@@ -2,14 +2,14 @@
 <tileChunk>
     <tileMaps>
         <terrain>
-            <tile id="PlainsAndHillsEarth" startX="0" startY="0" width="2" height="5"/>
-            <tile id="PlainsAndHillsEarth" startX="2" startY="0" width="1" height="6"/>
-            <tile id="PlainsAndHillsEarth" startX="3" startY="0" width="5" height="7"/>
+            <tile id="PlainsAndHillsTileset_Earth" startX="0" startY="0" width="2" height="5"/>
+            <tile id="PlainsAndHillsTileset_Earth" startX="2" startY="0" width="1" height="6"/>
+            <tile id="PlainsAndHillsTileset_Earth" startX="3" startY="0" width="5" height="7"/>
         </terrain>
         <ground>
-            <tile id="PlainsAndHillsEarthGrass" startX="0" startY="5" width="2" height="1"/>
-            <tile id="PlainsAndHillsEarthGrass" startX="2" startY="6" width="1" height="1"/>
-            <tile id="PlainsAndHillsEarthGrass" startX="3" startY="7" width="5" height="1"/>
+            <tile id="PlainsAndHillsTileset_Grass" startX="0" startY="5" width="2" height="1"/>
+            <tile id="PlainsAndHillsTileset_Grass" startX="2" startY="6" width="1" height="1"/>
+            <tile id="PlainsAndHillsTileset_Grass" startX="3" startY="7" width="5" height="1"/>
         </ground>
     </tileMaps>
 
