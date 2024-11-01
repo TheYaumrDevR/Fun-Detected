@@ -9,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Technical
     public class TileMapRenderer : MonoBehaviour, ITileMapRenderer
     {
         private static TileMapRenderer instance;
+        private static List<IInitializationObserver> initializationObservers;
 
         public Tilemap Ground;
         public Tilemap Terrain;
@@ -18,9 +19,27 @@ namespace Org.Ethasia.Fundetected.Technical
             return instance;
         }        
 
+        public static void RegisterInitializationObserver(IInitializationObserver observer)
+        {
+            if (null == initializationObservers)
+            {
+                initializationObservers = new List<IInitializationObserver>();
+            }
+
+            initializationObservers.Add(observer);
+        }
+
         void Awake()
         {
             instance = this;
+
+            if (null != initializationObservers)
+            {
+                foreach (IInitializationObserver observer in initializationObservers)
+                {
+                    observer.NotifyInitializationCompleted();
+                }
+            }
         }  
 
         public void RenderGroundTileAtPosition(TileRenderContext tileRenderContext)

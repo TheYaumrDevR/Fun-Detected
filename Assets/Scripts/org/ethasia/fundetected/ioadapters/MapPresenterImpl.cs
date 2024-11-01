@@ -24,9 +24,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {   
             foreach (Tile tile in tilesWithAbsolutePositions)
             {
-                for (int i = tile.StartX; i < tile.Width; i++)
+                for (int i = tile.StartX; i < tile.StartX + tile.Width; i++)
                 {
-                    for (int j = tile.StartY; j < tile.Height; j++)
+                    for (int j = tile.StartY; j < tile.StartY + tile.Height; j++)
                     {
                         if (renderMethodByTileLayerName.ContainsKey(tileMapName))
                         {

@@ -41,7 +41,14 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public override ITileMapRenderer GetTileMapRendererInstance()
         {
-            return TileMapRenderer.GetInstance();
+            TileMapRenderer result = TileMapRenderer.GetInstance();
+
+            if (null == result)
+            {
+                return TileMapRendererDelayedInitializationProxy.GetInstance();
+            }
+
+            return result;
         }
     }
 }
