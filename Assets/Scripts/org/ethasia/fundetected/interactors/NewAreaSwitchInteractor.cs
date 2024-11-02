@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors
@@ -27,6 +28,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             MapDefinition mapDefinition = mapDefinitionGateway.LoadMapDefinition(mapId);
             RandomizeMap(mapDefinition);
             PresentTiles(mapDefinition);
+
+            MapProperties mapProperties = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition); 
+            SetUpAreaEnemiesAndPlayer(mapProperties, playerCharacter);
         }           
 
         private void RandomizeMap(MapDefinition mapDefinition)
@@ -68,8 +72,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 Tile tileWithAbsolutePosition = new Tile.Builder()
                     .SetId(sourceTile.Id)
-                    .SetStartX(sourceTile.StartX + (chunk.X * 8))
-                    .SetStartY(sourceTile.StartY + (chunk.Y * 8))
+                    .SetStartX(sourceTile.StartX + (chunk.X * Area.VISUAL_TILES_PER_CHUNK_EDGE))
+                    .SetStartY(sourceTile.StartY + (chunk.Y * Area.VISUAL_TILES_PER_CHUNK_EDGE))
                     .SetWidth(sourceTile.Width)
                     .SetHeight(sourceTile.Height)
                     .Build();
@@ -77,5 +81,92 @@ namespace Org.Ethasia.Fundetected.Interactors
                 resultTiles.Add(tileWithAbsolutePosition);
             }
         }
+
+        private void SetUpAreaEnemiesAndPlayer(MapProperties mapProperties, PlayerCharacter playerCharacter)
+        {
+            Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
+            map.AddPlayerAt(playerCharacter, 144, 46);
+
+            List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
+            PopulateEnemiesFromSpawners(spawnedEnemies, map);
+
+            Area.ActiveArea = map;
+
+            ShowEnemies(map);
+        }
+
+        private void PopulateEnemiesFromSpawners(List<EnemySpawnLocation> spawnedEnemies, Area map)
+        {
+            int spawnId = 0;
+
+            foreach (EnemySpawnLocation spawnedEnemy in spawnedEnemies)
+            {
+                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId), spawnedEnemy, spawnId));
+                spawnId++;
+            }
+        }
+
+        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData, int spawnId)
+        {
+            BoundingBox enemyBoundingBox = new BoundingBox.Builder()
+                .SetDistanceToRightEdge(enemyMasterData.DistanceToRightEdge)
+                .SetDistanceToLeftEdge(enemyMasterData.DistanceToLeftEdge)
+                .SetDistanceToBottomEdge(enemyMasterData.DistanceToBottomEdge)
+                .SetDistanceToTopEdge(enemyMasterData.DistanceToTopEdge)
+                .Build();
+
+            Enemy result = new Enemy.Builder()
+                .SetIndividualId(enemyMasterData.Id + spawnId)
+                .SetTypeId(enemyMasterData.Id)
+                .SetName(enemyMasterData.Name)
+                .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
+                .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
+                .SetUnarmedStrikeRange(enemyMasterData.UnarmedStrikeRange)
+                .SetCorpseMass(enemyMasterData.CorpseMass)
+                .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.MinPhysicalDamage, enemyMasterData.MaxPhysicalDamage))
+                .SetLife(enemyMasterData.MaxLife)
+                .SetArmor(enemyMasterData.Armor)
+                .SetAccuracyRating(enemyMasterData.AccuracyRating)
+                .SetEvasionRating(enemyMasterData.EvasionRating)
+                .SetBoundingBox(enemyBoundingBox)
+                .SetPosition(spawnLocationData.MapLocation)
+                .Build();
+
+            EnemyAbility enemyAbility = enemyMasterData.AbilityMasterData.CreateAbilityForEnemy(result);
+            string abilityName = enemyMasterData.AbilityMasterData.GetAbilityName();
+
+            result.AddAbilityByName(abilityName, enemyAbility);
+
+            return result;
+        }      
+
+        private void ShowEnemies(Area map)
+        {
+            List<EnemyRenderData> enemiesToShow = new List<EnemyRenderData>();
+
+            foreach (Enemy spawnedEnemy in map.Enemies)
+            {
+                EnemyMasterDataForRendering renderingMasterData = enemyMasterDataProvider.CreateEnemyMasterDataForRenderingById(spawnedEnemy.TypeId);
+
+                AnimationStateMachineAssignmentFunction animationStateMachineAssignmentFunction = new AnimationStateMachineAssignmentFunction();
+                animationStateMachineAssignmentFunction.Enemy = spawnedEnemy;
+
+                EnemyRenderData enemyRenderData = new EnemyRenderData();
+                enemyRenderData.TypeId = spawnedEnemy.TypeId;
+                enemyRenderData.IndividualId = spawnedEnemy.IndividualId;
+
+                enemyRenderData.PositionX = spawnedEnemy.Position.X + map.LowestScreenX;
+                enemyRenderData.PositionY = spawnedEnemy.Position.Y + map.LowestScreenY;
+
+                enemyRenderData.WidthX = renderingMasterData.DistanceToLeftRenderEdge + renderingMasterData.DistanceToRightRenderEdge + 1;
+                enemyRenderData.WidthY = renderingMasterData.DistanceToBottomRenderEdge + renderingMasterData.DistanceToTopRenderEdge + 1;
+
+                enemyRenderData.AnimationStateMachineAssignmentFunction = animationStateMachineAssignmentFunction;
+
+                enemiesToShow.Add(enemyRenderData);
+            }
+
+            enemyPresenter.PresentEnemies(enemiesToShow);
+        }        
     }
 }

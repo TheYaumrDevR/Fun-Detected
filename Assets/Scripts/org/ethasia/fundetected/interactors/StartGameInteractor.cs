@@ -24,9 +24,6 @@ namespace Org.Ethasia.Fundetected.Interactors
             CharacterCreationMasterData playerCharacterBaseStats = CreateCharacterCreationMasterDataFromSelectedCharacterTraits(characterClass); 
             PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterBaseStats);
 
-            AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
-            areaSwitchingInteractor.SwitchActiveMap("Hill", playerCharacter);
-
             NewAreaSwitchInteractor newAreaSwitchInteractor = new NewAreaSwitchInteractor();
             newAreaSwitchInteractor.SwitchActiveMap("HillWithChunks", playerCharacter);
 

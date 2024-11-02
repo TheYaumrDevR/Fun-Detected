@@ -66,6 +66,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             Collisions.Add(value);
         }
 
+        public void AddAllCollisions(List<Collision> values)
+        {
+            Collisions.AddRange(values);
+        }
+
+        public void AddAllSpawners(List<Spawner> values)
+        {
+            Spawners.AddRange(values);
+        }
+
         public int CalculateLowestX()
         {
             int result = 0;

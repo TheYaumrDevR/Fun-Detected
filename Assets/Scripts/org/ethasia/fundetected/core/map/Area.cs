@@ -6,6 +6,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
 {
     public class Area
     {
+        public const int VISUAL_TILES_PER_CHUNK_EDGE = 8;
+        public const int LOGICAL_TILES_PER_VISUAL_TILE_EDGE = 10;
+
         public static Area ActiveArea;
 
         private static MovementStrategy MOVE_LEFT_STRATEGY = new MoveLeftStrategy();
