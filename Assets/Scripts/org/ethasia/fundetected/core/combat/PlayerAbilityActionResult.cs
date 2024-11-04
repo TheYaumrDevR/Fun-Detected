@@ -23,8 +23,8 @@ namespace Org.Ethasia.Fundetected.Core.Combat
             DamageTextDisplayInformation damageTextDisplayInfo = new DamageTextDisplayInformation();
 
             damageTextDisplayInfo.DamageValue = TargetDamageTaken;
-            damageTextDisplayInfo.PositionX = Target.Position.X + map.LowestScreenX;
-            damageTextDisplayInfo.PositionY = Target.Position.Y + map.LowestScreenY;
+            damageTextDisplayInfo.PositionX = Target.Position.X;
+            damageTextDisplayInfo.PositionY = Target.Position.Y;
 
             IDamageTextPresenter damageTextPresenter = IoAdaptersFactoryForCore.GetInstance().GetDamageTextPresenterInstance();
 

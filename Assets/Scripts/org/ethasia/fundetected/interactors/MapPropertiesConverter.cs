@@ -10,8 +10,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             Area.Builder areaBuilder = new Area.Builder()
                 .SetWidthAndHeight(mapProperties.Width, mapProperties.Height)
-                .SetLowestScreenX(mapProperties.LowestScreenX + mapProperties.CalculateLowestX())
-                .SetLowestScreenY(mapProperties.LowestScreenY + mapProperties.CalculateLowestY());
+                .SetLowestScreenX(mapProperties.LowestScreenX)
+                .SetLowestScreenY(mapProperties.LowestScreenY);
 
             ConvertCollisions(mapProperties, areaBuilder);
             ConvertAndSetEnemySpawner(mapProperties, areaBuilder);
@@ -27,8 +27,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 {
                     for (int j = 0; j < collision.Height; j++)
                     {
-                        int x = collision.StartX + i - mapProperties.CalculateLowestX();
-                        int y = collision.StartY + j - mapProperties.CalculateLowestY();
+                        int x = collision.StartX + i;
+                        int y = collision.StartY + j;
                         areaBuilder.SetIsColliding(x, y);
                     }
                 }
@@ -58,12 +58,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             List<EnemySpawnLocation> result = new List<EnemySpawnLocation>();
             float spawnerActivationChance = 1 / (float) mapProperties.Spawners.Count;
 
-            int lowestXCollisionTile = mapProperties.CalculateLowestX();
-            int lowestYCollisionTile = mapProperties.CalculateLowestY();
-
             foreach (Spawner spawner in mapProperties.Spawners)
             {
-                Position spawnerPosition = new Position(spawner.X - lowestXCollisionTile, spawner.Y - lowestYCollisionTile);
+                Position spawnerPosition = new Position(spawner.X, spawner.Y);
                 EnemySpawnLocation enemySpawnLocation = new EnemySpawnLocation(spawnerPosition, spawnerActivationChance);
                 result.Add(enemySpawnLocation);
             }

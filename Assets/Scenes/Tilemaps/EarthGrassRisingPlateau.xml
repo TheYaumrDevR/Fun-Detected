@@ -21,13 +21,13 @@
         </collisions>
 
         <spawners>
-            <spawner x="15" y="48"/>
-            <spawner x="25" y="48"/>
-            <spawner x="35" y="48"/>
-            <spawner x="45" y="48"/>
-            <spawner x="55" y="48"/>
-            <spawner x="65" y="48"/>
-            <spawner x="75" y="48"/>
+            <spawner x="15" y="56"/>
+            <spawner x="25" y="56"/>
+            <spawner x="35" y="56"/>
+            <spawner x="45" y="56"/>
+            <spawner x="55" y="56"/>
+            <spawner x="65" y="56"/>
+            <spawner x="75" y="56"/>
         </spawners>
     </mapTileProperties>
 </tileChunk>

@@ -20,8 +20,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             DamageTextDisplayInformation damageTextDisplayInformation = new DamageTextDisplayInformation();
             damageTextDisplayInformation.DamageValue = damageTaken;
-            damageTextDisplayInformation.PositionX = map.GetPlayerPositionX() + map.LowestScreenX;
-            damageTextDisplayInformation.PositionY = map.GetPlayerPositionY() + map.LowestScreenY;
+            damageTextDisplayInformation.PositionX = map.GetPlayerPositionX();
+            damageTextDisplayInformation.PositionY = map.GetPlayerPositionY();
 
             damageTextPresenter.PresentPlayerDamageText(damageTextDisplayInformation);
         }       

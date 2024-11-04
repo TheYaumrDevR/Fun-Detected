@@ -74,47 +74,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public void AddAllSpawners(List<Spawner> values)
         {
             Spawners.AddRange(values);
-        }
-
-        public int CalculateLowestX()
-        {
-            int result = 0;
-
-            if (Collisions.Count > 0)
-            {
-                result = Collisions[0].StartX;
-            }
-
-            foreach (Collision collision in Collisions)
-            {
-                if (collision.StartX < result)
-                {
-                    result = collision.StartX;
-                }
-            }
-
-            return result;
-        }
-
-        public int CalculateLowestY()
-        {
-            int result = 0;
-
-            if (Collisions.Count > 0)
-            {
-                result = Collisions[0].StartY;
-            }
-
-            foreach (Collision collision in Collisions)
-            {
-                if (collision.StartY < result)
-                {
-                    result = collision.StartY;
-                }
-            }
-
-            return result;
-        }     
+        }   
 
         public class Builder
         {

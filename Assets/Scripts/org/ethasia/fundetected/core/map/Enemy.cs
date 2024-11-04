@@ -274,8 +274,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             Area map = Area.ActiveArea;
             
-            int textPosX = map.GetPlayerPositionX() + map.LowestScreenX;
-            int textPosY = map.GetPlayerPositionY() + map.LowestScreenY;
+            int textPosX = map.GetPlayerPositionX();
+            int textPosY = map.GetPlayerPositionY();
 
             Position damageTextPosition = new Position(textPosX, textPosY);
 

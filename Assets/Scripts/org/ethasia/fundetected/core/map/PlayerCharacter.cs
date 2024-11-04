@@ -182,8 +182,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
                         AttackMissedBattleLogEntry attackMissResult = new AttackMissedBattleLogEntry.Builder()
                             .SetEnemyPositionX(target.Position.X)
                             .SetEnemyPositionY(target.Position.Y)
-                            .SetLowestScreenXOfMap(Area.ActiveArea.LowestScreenX)
-                            .SetLowestScreenYOfMap(Area.ActiveArea.LowestScreenY)
                             .Build();
 
                         battleActionResults.Add(attackMissResult);

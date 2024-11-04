@@ -94,8 +94,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 enemyRenderData.TypeId = spawnedEnemy.TypeId;
                 enemyRenderData.IndividualId = spawnedEnemy.IndividualId;
 
-                enemyRenderData.PositionX = spawnedEnemy.Position.X + map.LowestScreenX;
-                enemyRenderData.PositionY = spawnedEnemy.Position.Y + map.LowestScreenY;
+                enemyRenderData.PositionX = spawnedEnemy.Position.X;
+                enemyRenderData.PositionY = spawnedEnemy.Position.Y;
 
                 enemyRenderData.WidthX = renderingMasterData.DistanceToLeftRenderEdge + renderingMasterData.DistanceToRightRenderEdge + 1;
                 enemyRenderData.WidthY = renderingMasterData.DistanceToBottomRenderEdge + renderingMasterData.DistanceToTopRenderEdge + 1;

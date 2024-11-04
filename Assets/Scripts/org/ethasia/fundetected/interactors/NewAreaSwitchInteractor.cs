@@ -85,7 +85,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         private void SetUpAreaEnemiesAndPlayer(MapProperties mapProperties, PlayerCharacter playerCharacter)
         {
             Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
-            map.AddPlayerAt(playerCharacter, 144, 46);
+            map.AddPlayerAt(playerCharacter, -145, -38);
 
             List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
             PopulateEnemiesFromSpawners(spawnedEnemies, map);
@@ -155,8 +155,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 enemyRenderData.TypeId = spawnedEnemy.TypeId;
                 enemyRenderData.IndividualId = spawnedEnemy.IndividualId;
 
-                enemyRenderData.PositionX = spawnedEnemy.Position.X + map.LowestScreenX;
-                enemyRenderData.PositionY = spawnedEnemy.Position.Y + map.LowestScreenY;
+                enemyRenderData.PositionX = spawnedEnemy.Position.X;
+                enemyRenderData.PositionY = spawnedEnemy.Position.Y;
 
                 enemyRenderData.WidthX = renderingMasterData.DistanceToLeftRenderEdge + renderingMasterData.DistanceToRightRenderEdge + 1;
                 enemyRenderData.WidthY = renderingMasterData.DistanceToBottomRenderEdge + renderingMasterData.DistanceToTopRenderEdge + 1;

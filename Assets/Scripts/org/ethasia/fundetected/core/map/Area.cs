@@ -17,7 +17,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private AreaDimensions areaDimensions;
 
-        private bool[,] isCollisionTile;
+        private Dictionary<PositionImmutable, bool> isCollisionTile;
 
         private Dictionary<HitboxTilePosition, List<Enemy>> enemyHitTiles;
 
@@ -35,22 +35,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             get;
             private set;
-        }
-
-        public int LowestScreenX
-        { 
-            get
-            {
-                return areaDimensions.LowestScreenX;
-            }
-        }
-
-        public int LowestScreenY
-        { 
-            get
-            {
-                return areaDimensions.LowestScreenY;
-            }
         }        
 
         public int GetPlayerPositionX()
@@ -63,7 +47,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return playerPosition.Y;
         }
 
-        private Area(bool[,] isCollisionTile, AreaDimensions areaDimensions)
+        private Area(Dictionary<PositionImmutable, bool> isCollisionTile, AreaDimensions areaDimensions)
         {
             this.areaDimensions = areaDimensions;
 
@@ -75,17 +59,24 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public bool TileAtIsCollision(int x, int y)
         {   
-            if (x < 0 || y < 0)
+            if (x < areaDimensions.LowestScreenX || y < areaDimensions.LowestScreenY)
             {
                 return true;
             }
 
-            if (x >= areaDimensions.Width || y >= areaDimensions.Height)
+            if (x >= areaDimensions.Width + areaDimensions.LowestScreenX || y >= areaDimensions.Height + areaDimensions.LowestScreenY)
             {
                 return true;
             }
 
-            return isCollisionTile[x, y];
+            PositionImmutable position = new PositionImmutable(x, y);
+
+            if (!isCollisionTile.ContainsKey(position))
+            {
+                return false;
+            }
+
+            return isCollisionTile[position];
         }     
 
         public void AddPlayerAt(PlayerCharacter value, int x, int y)
@@ -129,7 +120,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 HitboxTilePosition offSetHitArcTile = new HitboxTilePosition(hitArcTile.X * reflectionFactor + hitArcCenterOffsetX, hitArcTile.Y + hitArcCenterOffsetY);
 
                 IHitboxPresenter hitboxPresenter = IoAdaptersFactoryForCore.GetInstance().GetHitboxPresenterInstance();
-                hitboxPresenter.PresentHitbox(offSetHitArcTile.X + LowestScreenX, offSetHitArcTile.Y + LowestScreenY);
+                hitboxPresenter.PresentHitbox(offSetHitArcTile.X, offSetHitArcTile.Y);
 
                 if (enemyHitTiles.ContainsKey(offSetHitArcTile))
                 {
@@ -140,7 +131,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             foreach (Enemy enemy in result)
             {
                 IHitboxPresenter hitboxPresenter = IoAdaptersFactoryForCore.GetInstance().GetHitboxPresenterInstance();
-                hitboxPresenter.PresentStrikeRangeHitbox(enemy.Position.X + LowestScreenX, enemy.Position.Y + LowestScreenY, enemy.UnarmedStrikeRange);
+                hitboxPresenter.PresentStrikeRangeHitbox(enemy.Position.X, enemy.Position.Y, enemy.UnarmedStrikeRange);
             }
             
             return result;
@@ -160,7 +151,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             int result = 0;
 
-            for (int i = playerPosition.Y - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER - 1; i > 0; i--)
+            for (int i = playerPosition.Y - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER - 1; i > areaDimensions.LowestScreenY; i--)
             {
                 for (int x = playerPosition.X - MovementStrategy.UNITS_TO_PLAYER_LEFT_BORDER; x <= playerPosition.X + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER; x++)
                 {
@@ -225,12 +216,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private int height;
             private int lowestScreenX;
             private int lowestScreenY;
-            private bool[,] isCollisionTile;
+            private Dictionary<PositionImmutable, bool> isCollisionTile;
             private EnemySpawner enemySpawner;
 
             public Builder SetWidthAndHeight(int width, int height)
             {
-                isCollisionTile = new bool[width, height];
+                isCollisionTile = new Dictionary<PositionImmutable, bool>();
                 this.width = width;
                 this.height = height;
                 return this;
@@ -250,7 +241,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             public Builder SetIsColliding(int x, int y)
             {
-                isCollisionTile[x, y] = true;
+                PositionImmutable position = new PositionImmutable(x, y);
+                isCollisionTile.Add(position, true);
+
                 return this;
             }
 
