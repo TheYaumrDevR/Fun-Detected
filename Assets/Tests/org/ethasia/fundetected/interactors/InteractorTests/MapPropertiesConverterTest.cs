@@ -13,7 +13,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {
             MapProperties mapProperties = new MapProperties.Builder()
                 .SetWidth(320)
-                .SetHeight(61)
+                .SetHeight(70)
+                .SetLowestScreenX(-100)
+                .SetLowestScreenY(-25)
                 .Build();
 
             Collision collision1 = new Collision.Builder()
@@ -43,12 +45,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Area result = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
 
-            Assert.That(result.TileAtIsCollision(39, 10), Is.True);  
-            Assert.That(result.TileAtIsCollision(39, 11), Is.False);
-            Assert.That(result.TileAtIsCollision(55, 0), Is.True);
-            Assert.That(result.TileAtIsCollision(39, 0), Is.False);
-            Assert.That(result.TileAtIsCollision(270, 55), Is.True);
-            Assert.That(result.TileAtIsCollision(270, 50), Is.False);
+            Assert.That(result.TileAtIsCollision(-80, -11), Is.True);  
+            Assert.That(result.TileAtIsCollision(-77, -12), Is.False);
+            Assert.That(result.TileAtIsCollision(-55, -21), Is.True);
+            Assert.That(result.TileAtIsCollision(-55, -20), Is.False);
+            Assert.That(result.TileAtIsCollision(170, 38), Is.True);
+            Assert.That(result.TileAtIsCollision(170, 40), Is.False);
         }
     }
 }

@@ -192,7 +192,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
         private Enemy CreateTestEnemy()
         {
-            Position enemyPosition = new Position(148, 44);
+            Position enemyPosition = new Position(-141, -40);
 
             BoundingBox enemyBoundingBox = new BoundingBox.Builder()
                 .SetDistanceToLeftEdge(5)
