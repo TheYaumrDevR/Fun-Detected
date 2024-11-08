@@ -11,7 +11,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private EnemyMasterDataProvider enemyMasterDataProvider;
         private BattleLogPrinter battleLogPrinter;
         private PlayerMovementControllerImpl playerMovementController;
-        private IMapPropertiesGateway mapPropertiesGateway;
         private IEnemyPresenter enemyPresenter;
         private IPlayerCharacterPresenter playerCharacterPresenter;
         private IResourceBarPresenter resourceBarPresenter;
@@ -88,16 +87,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return playerMovementController;
         }  
-
-        public override IMapPropertiesGateway GetMapPropertiesGatewayInstance()
-        {
-            if (null == mapPropertiesGateway)
-            {
-                mapPropertiesGateway = new XmlFileBasedMapPropertiesGateWay();
-            }
-
-            return mapPropertiesGateway;
-        }
 
         public override IEnemyPresenter GetEnemyPresenterInstance()
         {
