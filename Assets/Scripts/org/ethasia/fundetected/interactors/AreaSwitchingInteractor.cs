@@ -9,22 +9,83 @@ namespace Org.Ethasia.Fundetected.Interactors
     public class AreaSwitchingInteractor
     {
         private IEnemyMasterDataProvider enemyMasterDataProvider;
-        private IMapPropertiesGateway mapPropertiesGateway;
+        private IMapDefinitionGateway mapDefinitionGateway;
+        private IRandomNumberGenerator randomNumberGenerator;
         private IEnemyPresenter enemyPresenter;
+        private IMapPresenter mapPresenter;
 
         public AreaSwitchingInteractor()
         {
             enemyMasterDataProvider = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyMasterDataProviderInstance();
-            mapPropertiesGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapPropertiesGatewayInstance();
+            mapDefinitionGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapDefinitionGatewayInstance();
+            randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             enemyPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyPresenterInstance();
-        }        
+            mapPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetMapPresenterInstance();
+        }   
 
         public void SwitchActiveMap(string mapId, PlayerCharacter playerCharacter)
         {
-            MapProperties mapProperties = mapPropertiesGateway.LoadMapProperties(mapId);
+            MapDefinition mapDefinition = mapDefinitionGateway.LoadMapDefinition(mapId);
+            RandomizeMap(mapDefinition);
+            PresentTiles(mapDefinition);
 
+            MapProperties mapProperties = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition); 
+            SetUpAreaEnemiesAndPlayer(mapProperties, playerCharacter);
+        }           
+
+        private void RandomizeMap(MapDefinition mapDefinition)
+        {
+            foreach (Chunk chunk in mapDefinition.Chunks)
+            {
+                if (chunk.PropertiesOfPossibleChunks.Count > 1)
+                {
+                    int randomIndex = randomNumberGenerator.GenerateIntegerBetweenAnd(0, chunk.PropertiesOfPossibleChunks.Count - 1);
+                    MapChunkProperties selectedChunkProperties = chunk.PropertiesOfPossibleChunks[randomIndex];
+                    
+                    chunk.PropertiesOfPossibleChunks.Clear();
+                    chunk.PropertiesOfPossibleChunks.Add(selectedChunkProperties);
+                }
+            }
+        }
+
+        private void PresentTiles(MapDefinition mapDefinition)
+        {
+            List<Tile> terrainTiles = new List<Tile>();
+            List<Tile> groundTiles = new List<Tile>();
+
+            foreach (Chunk chunk in mapDefinition.Chunks)
+            {
+                if (chunk.PropertiesOfPossibleChunks.Count > 0)
+                {
+                    CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(terrainTiles, chunk.PropertiesOfPossibleChunks[0].TerrainTiles, chunk);
+                    CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(groundTiles, chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk); 
+                }
+            }
+
+            mapPresenter.PresentTiles(terrainTiles, "terrain");
+            mapPresenter.PresentTiles(groundTiles, "ground");
+        }
+
+        private void CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<Tile> resultTiles, List<Tile> sourceTiles, Chunk chunk)
+        {
+            foreach (Tile sourceTile in sourceTiles)
+            {
+                Tile tileWithAbsolutePosition = new Tile.Builder()
+                    .SetId(sourceTile.Id)
+                    .SetStartX(sourceTile.StartX + (chunk.X * Area.VISUAL_TILES_PER_CHUNK_EDGE))
+                    .SetStartY(sourceTile.StartY + (chunk.Y * Area.VISUAL_TILES_PER_CHUNK_EDGE))
+                    .SetWidth(sourceTile.Width)
+                    .SetHeight(sourceTile.Height)
+                    .Build();
+                        
+                resultTiles.Add(tileWithAbsolutePosition);
+            }
+        }
+
+        private void SetUpAreaEnemiesAndPlayer(MapProperties mapProperties, PlayerCharacter playerCharacter)
+        {
             Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
-            map.AddPlayerAt(playerCharacter, 144, 46);
+            map.AddPlayerAt(playerCharacter, -145, -38);
 
             List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
             PopulateEnemiesFromSpawners(spawnedEnemies, map);
@@ -106,6 +167,6 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             enemyPresenter.PresentEnemies(enemiesToShow);
-        }  
+        }        
     }
 }
