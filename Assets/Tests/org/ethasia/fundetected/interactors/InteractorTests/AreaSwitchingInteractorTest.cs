@@ -20,19 +20,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestSwitchActiveMapSpawnsEnemies()
         {
-            int[] randomNumbersToGenerate = {};
-            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};       
-
-            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
-            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
-
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
-
-            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
-            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
-
-            testCandidate.SwitchActiveMap("hillWithChunks", testPlayer);
+            AreaSwitchingInteractor testCandidate = InitiateBasicTestSetupAndRunTest();
 
             List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();
 
@@ -78,19 +66,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestSwitchActiveMapSetsCollisionTiles()
         {
-            int[] randomNumbersToGenerate = {};
-            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};       
-
-            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
-            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
-
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
-
-            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
-            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
-
-            testCandidate.SwitchActiveMap("hillWithChunks", testPlayer);
+            AreaSwitchingInteractor testCandidate = InitiateBasicTestSetupAndRunTest();
 
             Area map = Area.ActiveArea;          
 
@@ -122,7 +98,26 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(map.TileAtIsCollision(12, 46), Is.False);   
             Assert.That(map.TileAtIsCollision(11, 47), Is.False);  
             Assert.That(map.TileAtIsCollision(10, 45), Is.False);                  
-        }        
+        }       
+
+        private AreaSwitchingInteractor InitiateBasicTestSetupAndRunTest()
+        {
+            int[] randomNumbersToGenerate = {};
+            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};       
+
+            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+
+            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+
+            testCandidate.SwitchActiveMap("hillWithChunks", testPlayer);  
+
+            return testCandidate;          
+        } 
 
         private PlayerCharacter CreateTestPlayerCharacter()
         {
