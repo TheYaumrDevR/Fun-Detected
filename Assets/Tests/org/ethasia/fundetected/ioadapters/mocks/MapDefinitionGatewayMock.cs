@@ -43,6 +43,23 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             mapChunkProperties.Spawners.Add(spawner7);
             mapChunkProperties.Spawners.Add(spawner8);
 
+            Collision collision1 = new Collision.Builder()
+                .SetStartX(0)
+                .SetStartY(26)
+                .SetWidth(3)
+                .SetHeight(2)
+                .Build();
+
+            Collision collision2 = new Collision.Builder()
+                .SetStartX(40)
+                .SetStartY(16)
+                .SetWidth(2)
+                .SetHeight(3)
+                .Build();    
+
+            mapChunkProperties.CollisionProperties.Add(collision1);
+            mapChunkProperties.CollisionProperties.Add(collision2);
+
             Chunk result = new Chunk(-1, 0);
             result.PropertiesOfPossibleChunks.Add(mapChunkProperties);
 
@@ -66,7 +83,24 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             mapChunkProperties.Spawners.Add(spawner4);
             mapChunkProperties.Spawners.Add(spawner5);
             mapChunkProperties.Spawners.Add(spawner6);
-            mapChunkProperties.Spawners.Add(spawner7);         
+            mapChunkProperties.Spawners.Add(spawner7);    
+
+            Collision collision1 = new Collision.Builder()
+                .SetStartX(0)
+                .SetStartY(36)
+                .SetWidth(1)
+                .SetHeight(2)
+                .Build();
+
+            Collision collision2 = new Collision.Builder()
+                .SetStartX(10)
+                .SetStartY(46)
+                .SetWidth(2)
+                .SetHeight(1)
+                .Build();    
+
+            mapChunkProperties.CollisionProperties.Add(collision1);
+            mapChunkProperties.CollisionProperties.Add(collision2);                 
 
             Chunk result = new Chunk(0, 0);
             result.PropertiesOfPossibleChunks.Add(mapChunkProperties);
