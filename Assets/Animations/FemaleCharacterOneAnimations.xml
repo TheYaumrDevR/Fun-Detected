@@ -1,5 +1,5 @@
 <animations>
-	<entryAnimation id="idle" speedMultiplier="1">
+	<entryAnimation id="idle" speedMultiplier="2">
 		<animationFrames spriteImageName="FemaleCharOneStanding" isLooping="true">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>
