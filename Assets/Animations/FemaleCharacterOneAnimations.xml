@@ -1,5 +1,5 @@
 <animations>
-	<entryAnimation id="idle" speedMultiplier="2">
+	<entryAnimation id="idle" speedMultiplier="1.5">
 		<animationFrames spriteImageName="FemaleCharOneStanding" isLooping="true">
 			<animationFrame index="0"/>
 			<animationFrame index="1"/>
@@ -14,10 +14,10 @@
 	</entryAnimation>
 	<animation id="walk" speedMultiplier="3">
 		<animationFrames spriteImageName="FemaleCharOneWalking" isLooping="true">
-			<animationFrame index="0"/>
 			<animationFrame index="1"/>
 			<animationFrame index="2"/>
 			<animationFrame index="3"/>
+			<animationFrame index="0"/>
 		</animationFrames>
 		<transitions>
 			<transition target="idle" />
