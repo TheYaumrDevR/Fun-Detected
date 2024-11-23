@@ -9,11 +9,14 @@
         <ground>
             <tile id="PlainsAndHillsTileset_Grass" startX="0" startY="5" width="2" height="1"/>
             <tile id="PlainsAndHillsTileset_Grass" startX="2" startY="6" width="1" height="1"/>
-            <tile id="PlainsAndHillsTileset_Grass" startX="3" startY="7" width="5" height="1"/>
+            <tile id="PlainsAndHillsTileset_Grass" startX="3" startY="7" width="4" height="1"/>
+            <tile id="PlainsAndHillsTileset_Pavement" startX="7" startY="7" width="1" height="1"/>
         </ground>
     </tileMaps>
 
     <mapTileProperties>
+        <playerSpawn x="64" y="76"/>
+
         <collisions>
             <collision startX="0" startY="56" width="20" height="1"/>
             <collision startX="20" startY="66" width="10" height="1"/>
@@ -34,7 +37,6 @@
             <spawner x="45" y="86"/>
             <spawner x="55" y="86"/>
             <spawner x="65" y="86"/>
-            <spawner x="75" y="86"/>
         </spawners>
     </mapTileProperties>
 </tileChunk>

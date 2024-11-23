@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d111c30ab999bb04a91327838d867eca
+guid: 09c90030d169f6d42a16f24460bd9942
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,6 +119,27 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: PlainsAndHillsTileset_Pavement
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47ee88c46de502e42966e68afe2dde9f
+      internalID: 653687255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: PlainsAndHillsTileset_Grass
       rect:
         serializedVersion: 2
@@ -133,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea641e1e901c9e74e9aa06cf0db8c148
+      spriteID: ef2e25bf7c3f6554a8262e9ef9fdd5be
       internalID: 1263587257
       vertices: []
       indices: 
@@ -154,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4470d3397fc789944bbad4b5a798d6c7
+      spriteID: 77773f430057c7a43b758ea40ff7999e
       internalID: -854670707
       vertices: []
       indices: 
@@ -172,6 +193,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       PlainsAndHillsTileset_Earth: -854670707
+      PlainsAndHillsTileset_Pavement: 653687255
       PlainsAndHillsTileset_Grass: 1263587257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

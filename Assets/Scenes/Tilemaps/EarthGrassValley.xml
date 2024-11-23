@@ -14,6 +14,8 @@
     </tileMaps>
 
     <mapTileProperties>
+        <playerSpawn x="15" y="26"/>
+
         <collisions>
             <collision startX="0" startY="26" width="40" height="1"/>
             <collision startX="40" startY="16" width="30" height="1"/>

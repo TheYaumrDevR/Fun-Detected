@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapDefinition maximumMonsters="10">
     <chunks>
-        <chunk x="-2" y="-1">
+        <chunk x="-2" y="-1" spawn="true">
             <definitions>   
                 <definition file="EarthGrassValley"/>
             </definitions>
@@ -18,7 +18,7 @@
                 <definition file="EarthGrassRisingPlateau"/>
             </definitions>
         </chunk>    
-        <chunk x="1" y="-1">
+        <chunk x="1" y="-1" id="eastPortal">
             <definitions>
                 <definition file="EarthGrassRisingHill"/>
             </definitions>        
