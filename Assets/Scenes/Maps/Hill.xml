@@ -25,6 +25,7 @@
             </portalTo>
             <definitions>
                 <definition file="EarthGrassRisingHill"/>
+                <definition file="EarthGrassLoweringHill"/>
             </definitions>        
         </chunk>   
         <chunk x="-2" y="0"/>
