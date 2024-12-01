@@ -19,12 +19,15 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             List<GameObjectProxy> startupRenderQueue = GetStartupRenderQueue();
 
-            foreach (GameObjectProxy animatedCharacter in startupRenderQueue)
+            if (null != startupRenderQueue)
             {
-                InitializeAnimatedCharacter(animatedCharacter);
-            }      
+                foreach (GameObjectProxy animatedCharacter in startupRenderQueue)
+                {
+                    InitializeAnimatedCharacter(animatedCharacter);
+                }      
 
-            startupRenderQueue.Clear();      
+                startupRenderQueue.Clear();    
+            }
         }  
 
         public void InitializeAnimatedCharacter(GameObjectProxy animatedCharacterProxy)

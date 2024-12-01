@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileChunk>
+    <tileMaps>
+        <terrain>
+            <tile id="PlainsAndHillsTileset_Earth" startX="0" startY="0" width="8" height="2"/>
+        </terrain>
+        <ground>
+            <tile id="PlainsAndHillsTileset_Pavement" startX="0" startY="2" width="8" height="1"/>
+        </ground>
+    </tileMaps>
+
+    <mapTileProperties>
+        <playerSpawn x="15" y="27"/>
+        <portal x="5" y="27"/>
+
+        <collisions>
+            <collision startX="0" startY="26" width="80" height="1"/>
+        </collisions>
+    </mapTileProperties>
+</tileChunk>

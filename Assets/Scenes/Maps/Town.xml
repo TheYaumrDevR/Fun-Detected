@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapDefinition>
+    <chunks>
+        <chunk x="-2" y="-1" id="westPortal">
+            <portalTo>
+                <map id="Hill"/>
+                <portal id="eastPortal"/>
+            </portalTo>        
+            <definitions>   
+                <definition file="CobblestonePlateau"/>
+            </definitions>
+        </chunk>   
+        <chunk x="-1" y="-1">       
+            <definitions>   
+                <definition file="CobblestonePlateau"/>
+            </definitions>
+        </chunk>                         
+    </chunks>  
+</mapDefinition>

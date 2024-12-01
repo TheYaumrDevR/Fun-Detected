@@ -15,7 +15,8 @@
     </tileMaps>
 
     <mapTileProperties>
-        <playerSpawn x="64" y="76"/>
+        <playerSpawn x="64" y="77"/>
+        <portal x="74" y="77"/>
 
         <collisions>
             <collision startX="0" startY="56" width="20" height="1"/>
