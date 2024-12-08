@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Items;
+
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public class EquipmentSlot

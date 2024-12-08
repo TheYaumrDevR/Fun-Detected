@@ -1,5 +1,7 @@
 using NUnit.Framework;
 
+using Org.Ethasia.Fundetected.Core.Items;
+
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 {
     public class AffixesTest

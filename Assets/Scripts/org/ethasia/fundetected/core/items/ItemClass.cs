@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Core.Equipment
+namespace Org.Ethasia.Fundetected.Core.Items
 {
 
     public enum ItemClass
@@ -28,6 +28,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         RINGS,
         AMULETS,
         BELTS,
+        GLYPH,
         NONE
     }
 }

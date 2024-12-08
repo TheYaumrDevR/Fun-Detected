@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Core.Equipment
+namespace Org.Ethasia.Fundetected.Core.Items
 {
     public abstract class Item
     {

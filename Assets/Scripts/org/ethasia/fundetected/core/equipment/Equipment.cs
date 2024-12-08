@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+using Org.Ethasia.Fundetected.Core.Items;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
