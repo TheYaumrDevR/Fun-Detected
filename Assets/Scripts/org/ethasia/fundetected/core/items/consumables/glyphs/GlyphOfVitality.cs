@@ -12,6 +12,17 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
         public override EquipmentAffix OnApplyToEquipment()
         {   
             return null;
-        }        
+        }     
+
+        new public class Builder : Consumable.Builder
+        {
+            public GlyphOfVitality Build()
+            {
+                GlyphOfVitality result = new GlyphOfVitality();
+                FillConsumableFields(result);
+
+                return result;
+            }
+        }           
     }
 }

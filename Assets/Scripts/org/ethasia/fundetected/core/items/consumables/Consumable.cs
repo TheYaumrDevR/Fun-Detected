@@ -5,7 +5,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
         public int MaximumStackSize
         {
             get;
-            private set;
+            protected set;
         }
 
         public int StackSize
@@ -24,6 +24,11 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
 
         public Consumable AddToStack(Consumable otherConsumable)
         {
+            if (otherConsumable.StackSize < 1)
+            {
+                return null;
+            }
+
             if (StackSize + otherConsumable.StackSize <= MaximumStackSize)
             {
                 StackSize += otherConsumable.StackSize;
@@ -31,8 +36,8 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
             } 
             else 
             {
-                StackSize = MaximumStackSize;
                 otherConsumable.StackSize = StackSize + otherConsumable.StackSize - MaximumStackSize;
+                StackSize = MaximumStackSize;
 
                 return otherConsumable;
             }
@@ -40,7 +45,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
 
         public Consumable SplitStack(int amount)
         {
-            if (StackSize - amount > 0)
+            if (amount > 0 && StackSize - amount > 0)
             {
                 StackSize -= amount;
 
@@ -57,14 +62,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
 
         new public class Builder : Item.Builder
         {
-            private int maximumStackSize;
             private int stackSize;
-
-            public Builder SetMaximumStackSize(int value)
-            {
-                maximumStackSize = value;
-                return this;
-            }
 
             public Builder SetStackSize(int value)
             {
@@ -74,8 +72,14 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
 
             protected void FillConsumableFields(Consumable consumable)
             {
-                consumable.MaximumStackSize = maximumStackSize;
-                consumable.StackSize = stackSize;
+                if (stackSize > consumable.MaximumStackSize)
+                {
+                    consumable.StackSize = consumable.MaximumStackSize;
+                }
+                else
+                {
+                    consumable.StackSize = stackSize;
+                }
 
                 FillItemFields(consumable);
             }

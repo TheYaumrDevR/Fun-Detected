@@ -10,6 +10,11 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
             protected set;
         }
 
+        public Glyph()
+        {
+            MaximumStackSize = 10;
+        }
+
         public abstract EquipmentAffix OnApplyToEquipment();       
     }
 }
