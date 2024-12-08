@@ -4,6 +4,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct Chunk
     {
+        public bool Spawn;
+
         public int X
         {
             get;
@@ -28,6 +30,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             Y = y;
             
             PropertiesOfPossibleChunks = new List<MapChunkProperties>();
+
+            Spawn = false;
         }
     }
 }

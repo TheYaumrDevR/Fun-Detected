@@ -17,21 +17,19 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public MapChunkProperties LoadChunkProperties(string chunkName)
         {
-            MapChunkProperties result = new MapChunkProperties(chunkName);
-
             XmlElement mapChunkProperties = xmlFiles.TryToLoadXmlRoot("/Scenes/Tilemaps/" + chunkName + ".xml");
 
             if (null != mapChunkProperties)
             {
+                MapChunkProperties result = SetupTileProperties(mapChunkProperties, chunkName);
                 SetupTiles(mapChunkProperties, result);
-                SetupTileProperties(mapChunkProperties, result);
+
+                return result;
             }
             else
             {
                 throw new AssetLoadFailureException("XML root node for map chunk properties " + chunkName + " does not exist");
             }
-
-            return result;
         }
 
         private void SetupTiles(XmlElement mapChunkProperties, MapChunkProperties result)
@@ -100,15 +98,45 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
         }
 
-        private void SetupTileProperties(XmlElement mapChunkProperties, MapChunkProperties result)
+        private MapChunkProperties SetupTileProperties(XmlElement mapChunkProperties, string chunkName)
         {
             XmlElement tilePropertiesParent = mapChunkProperties["mapTileProperties"];
 
             if (null != tilePropertiesParent)
             {
+                MapChunkProperties result = SetPlayerSpawnPropertiesFromXmlIfPresent(tilePropertiesParent, chunkName);
                 FillCollisionPropertiesFromXml(tilePropertiesParent, result);
                 FillSpawnerPropertiesFromXml(tilePropertiesParent, result);   
-            }         
+
+                return result;
+            }     
+
+            return new MapChunkProperties(chunkName, PlayerSpawn.CreateUnset());    
+        }
+
+        private MapChunkProperties SetPlayerSpawnPropertiesFromXmlIfPresent(XmlElement tilePropertiesParent, string chunkName)
+        {
+            XmlElement playerSpawnElement = tilePropertiesParent["playerSpawn"];
+
+            if (null != playerSpawnElement)
+            {
+                if (playerSpawnElement.HasAttribute("x") && playerSpawnElement.HasAttribute("y"))
+                {
+                    string xText = playerSpawnElement.GetAttribute("x");
+                    string yText = playerSpawnElement.GetAttribute("y");
+
+                    if (int.TryParse(xText, out int x))
+                    {
+                        if (int.TryParse(yText, out int y))
+                        {
+                            PlayerSpawn playerSpawn = new PlayerSpawn(x, y);
+                            return new MapChunkProperties(chunkName, playerSpawn);
+                        }
+                    }
+                }
+            }
+
+            return new MapChunkProperties(chunkName, PlayerSpawn.CreateUnset());
         }
 
         private void FillCollisionPropertiesFromXml(XmlElement tilePropertiesParent, MapChunkProperties result)

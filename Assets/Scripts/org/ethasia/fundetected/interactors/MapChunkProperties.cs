@@ -9,6 +9,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
+        public PlayerSpawn PlayerSpawnPoint
+        {
+            get;
+        }
+
         public List<Tile> TerrainTiles
         {
             get;
@@ -29,9 +34,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
-        public MapChunkProperties(string id)
+        public MapChunkProperties(string id, PlayerSpawn playerSpawnPoint)
         {
             Id = id;
+            PlayerSpawnPoint = playerSpawnPoint;
+            
             TerrainTiles = new List<Tile>();
             GroundTiles = new List<Tile>();
             CollisionProperties = new List<Collision>();

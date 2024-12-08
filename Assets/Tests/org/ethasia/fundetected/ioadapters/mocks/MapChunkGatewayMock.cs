@@ -6,7 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
     {
         public MapChunkProperties LoadChunkProperties(string chunkName)
         {
-            return new MapChunkProperties(chunkName);
+            return new MapChunkProperties(chunkName, PlayerSpawn.CreateUnset());
         }
     }
 }

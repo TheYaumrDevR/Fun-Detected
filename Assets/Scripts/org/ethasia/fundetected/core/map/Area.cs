@@ -21,6 +21,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private Dictionary<HitboxTilePosition, List<Enemy>> enemyHitTiles;
 
+        private Position playerSpawnPosition;
+
         private EnemySpawner enemySpawner;
 
         private Position playerPosition;
@@ -217,6 +219,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private int lowestScreenX;
             private int lowestScreenY;
             private Dictionary<PositionImmutable, bool> isCollisionTile;
+            private Position playerSpawnPosition;
             private EnemySpawner enemySpawner;
 
             public Builder SetWidthAndHeight(int width, int height)
@@ -247,6 +250,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }
 
+            public Builder SetPlayerSpawnPosition(int x, int y)
+            {
+                playerSpawnPosition = new Position(x, y);
+                return this;
+            }
+
             public Builder SetEnemySpawner(EnemySpawner value)
             {
                 enemySpawner = value;
@@ -263,6 +272,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                     .Build();
 
                 Area result = new Area(isCollisionTile, areaDimensions);
+                result.playerSpawnPosition = playerSpawnPosition;
                 result.enemySpawner = enemySpawner;
                 return result;
             }            

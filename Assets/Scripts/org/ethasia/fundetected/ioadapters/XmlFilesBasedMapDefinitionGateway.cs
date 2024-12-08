@@ -56,6 +56,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 {
                     string xText = chunkDefinition.GetAttribute("x");
                     string yText = chunkDefinition.GetAttribute("y");
+                    string spawnText = "false";                 
 
                     Chunk chunk;
 
@@ -73,28 +74,43 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     else
                     {
                         chunk = new Chunk(0, 0);
-                    }           
+                    }       
 
-                    XmlElement chunkReferencesRoot = chunkDefinition["definitions"];
-
-                    if (null != chunkReferencesRoot)
+                    if (chunkDefinition.HasAttribute("spawn"))
                     {
-                        XmlNodeList chunkReferences = chunkReferencesRoot.GetElementsByTagName("definition");
-                        IMapChunkGateway mapChunkGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapChunkGatewayInstance();
+                        spawnText = chunkDefinition.GetAttribute("spawn");
 
-                        foreach (XmlElement chunkReference in chunkReferences)
+                        if (bool.TryParse(spawnText, out bool spawnValue))
                         {
-                            string chunkFileName = chunkReference.GetAttribute("file");
-                            MapChunkProperties mapChunkProperties = mapChunkGateway.LoadChunkProperties(chunkFileName);
-
-                            chunk.PropertiesOfPossibleChunks.Add(mapChunkProperties);
+                            chunk.Spawn = spawnValue;  
                         }
-                    }
+                    }   
+
+                    SetupChunkProperties(chunkDefinition, chunk);
 
                     result.Chunks.Add(chunk);
                 }                
             }            
         }
+
+        private void SetupChunkProperties(XmlElement chunkDefinition, Chunk chunk)
+        {
+            XmlElement chunkReferencesRoot = chunkDefinition["definitions"];
+
+            if (null != chunkReferencesRoot)
+            {
+                XmlNodeList chunkReferences = chunkReferencesRoot.GetElementsByTagName("definition");
+                IMapChunkGateway mapChunkGateway = IoAdaptersFactoryForInteractors.GetInstance().GetMapChunkGatewayInstance();
+
+                foreach (XmlElement chunkReference in chunkReferences)
+                {
+                    string chunkFileName = chunkReference.GetAttribute("file");
+                    MapChunkProperties mapChunkProperties = mapChunkGateway.LoadChunkProperties(chunkFileName);
+
+                    chunk.PropertiesOfPossibleChunks.Add(mapChunkProperties);
+                }
+            }
+        }        
 
         private void SetupSpawnableMonsters(XmlElement mapDefinitionProperties, MapDefinition result)
         {

@@ -33,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             Spawner spawner7 = new Spawner(65, 26);
             Spawner spawner8 = new Spawner(75, 26);
 
-            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkOne");
+            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkOne", PlayerSpawn.CreateUnset());
             mapChunkProperties.Spawners.Add(spawner1);
             mapChunkProperties.Spawners.Add(spawner2);
             mapChunkProperties.Spawners.Add(spawner3);
@@ -76,7 +76,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             Spawner spawner6 = new Spawner(65, 56);
             Spawner spawner7 = new Spawner(75, 56);
 
-            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkTwo");
+            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkTwo", PlayerSpawn.CreateUnset());
             mapChunkProperties.Spawners.Add(spawner1);
             mapChunkProperties.Spawners.Add(spawner2);
             mapChunkProperties.Spawners.Add(spawner3);
@@ -119,7 +119,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             Spawner spawner7 = new Spawner(65, 56);
             Spawner spawner8 = new Spawner(75, 56);
 
-            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkThree");
+            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkThree", PlayerSpawn.CreateUnset());
             mapChunkProperties.Spawners.Add(spawner1);
             mapChunkProperties.Spawners.Add(spawner2);
             mapChunkProperties.Spawners.Add(spawner3);
