@@ -186,6 +186,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].Spawners[7].X, Is.EqualTo(75)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].Spawners[7].Y, Is.EqualTo(28));                                                                             
-        }                    
+        }  
+
+        [Test]
+        public void TestLoadMapDefinitionLoadsSpawnAttributeOnChunk()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");     
+
+            Assert.That(result.Chunks[0].Spawn, Is.True);         
+        }                  
     }
 }

@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassRisingHill.xml", GetXmlFileContentForEarthGrassRisingHill);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassRisingPlateau.xml", GetXmlFileContentForEarthGrassRisingPlateau);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassValley.xml", GetXmlFileContentForEarthGrassValley);
+            xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CorruptPlayerSpawn.xml", GetXmlFileContentForCorruptPlayerSpawn);
         }
 
         public XmlElement TryToLoadXmlRoot(string fileNameWithDirectory)
@@ -38,7 +39,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             return @"<?xml version=""1.0"" encoding=""UTF-8""?>
                     <mapDefinition maximumMonsters=""10"">
                         <chunks>
-                            <chunk x=""-2"" y=""-1"">
+                            <chunk x=""-2"" y=""-1"" spawn=""true"">
                                 <definitions>   
                                     <definition file=""EarthGrassValley""/>
                                 </definitions>
@@ -243,6 +244,8 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                         </tileMaps>
 
                         <mapTileProperties>
+                            <playerSpawn x=""15"" y=""27""/>
+
                             <collisions>
                                 <collision startX=""0"" startY=""26"" width=""40"" height=""1""/>
                                 <collision startX=""40"" startY=""16"" width=""30"" height=""1""/>
@@ -267,5 +270,32 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                         </mapTileProperties>
                     </tileChunk>";
         }
+
+        private string GetXmlFileContentForCorruptPlayerSpawn()
+        {
+            return @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                    <tileChunk>
+                        <tileMaps>
+                            <terrain>
+                                <tile id=""PlainsAndHillsEarth"" startX=""0"" startY=""0"" width=""4"" height=""4""/>
+                            </terrain>
+                            <ground>
+                                <tile id=""PlainsAndHillsEarthGrass"" startX=""0"" startY=""2"" width=""4"" height=""1""/>
+                            </ground>
+                        </tileMaps>
+
+                        <mapTileProperties>
+                            <playerSpawn y=""27""/>
+
+                            <collisions>
+                                <collision startX=""0"" startY=""26"" width=""40"" height=""1""/>
+                            </collisions>
+
+                            <spawners>
+                                <spawner x=""5"" y=""28""/>
+                            </spawners>
+                        </mapTileProperties>
+                    </tileChunk>";
+        }        
     }
 }
