@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct MapProperties 
@@ -39,6 +41,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
+        public Position PlayerSpawnPosition
+        {
+            get;
+            private set;
+        }
+
         public List<Spawner> Spawners
         {
             get;
@@ -57,6 +65,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             LowestScreenX = 0;
             LowestScreenY = 0;
             Collisions = new List<Collision>();
+            PlayerSpawnPosition = null;
             Spawners = new List<Spawner>();
             SpawnableMonsters = new List<SpawnableMonster>();
         }
@@ -83,6 +92,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int lowestScreenX;
             private int lowestScreenY;
             private int maximumMonsters;
+            private Position playerSpawnPosition;
 
             public Builder SetWidth(int value)
             {
@@ -112,7 +122,13 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 maximumMonsters = value;
                 return this;
-            }            
+            }       
+
+            public Builder SetPlayerSpawnPosition(Position value)
+            {
+                playerSpawnPosition = value;
+                return this;
+            }    
 
             public MapProperties Build()
             {
@@ -121,6 +137,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.LowestScreenX = lowestScreenX;
                 result.LowestScreenY = lowestScreenY;
                 result.MaximumMonsters = maximumMonsters;
+                result.PlayerSpawnPosition = playerSpawnPosition;
 
                 return result;
             }                                  

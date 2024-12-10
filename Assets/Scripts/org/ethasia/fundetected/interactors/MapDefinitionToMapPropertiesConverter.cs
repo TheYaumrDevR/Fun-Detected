@@ -12,11 +12,17 @@ namespace Org.Ethasia.Fundetected.Interactors
             ScreenDimensionProperties screenDimensionProperties = CalculateInitialScreenDimensionProperties(mapDefinition.Chunks);
             List<Collision> absolutePositionCollisions = new List<Collision>();
             List<Spawner> absolutePositionSpawners = new List<Spawner>();
+            Position playerSpawnPosition = null;
 
             foreach (Chunk chunk in mapDefinition.Chunks)
             {
                 screenDimensionProperties = CalculateNewLowestAndHighestScreenProperties(screenDimensionProperties, chunk);
                 CalculateAbsolutePositionCollisionsAndSpawners(chunk, absolutePositionCollisions, absolutePositionSpawners);
+
+                if (null == playerSpawnPosition)
+                {
+                    playerSpawnPosition = DeterminePlayerSpawnPosition(chunk);
+                }
             }
 
             MapProperties result = new MapProperties.Builder()
@@ -25,6 +31,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetLowestScreenY(screenDimensionProperties.LowestScreenY)
                 .SetWidth(screenDimensionProperties.HighestScreenX - screenDimensionProperties.LowestScreenX)
                 .SetHeight(screenDimensionProperties.HighestScreenY - screenDimensionProperties.LowestScreenY)
+                .SetPlayerSpawnPosition(playerSpawnPosition)
                 .Build();    
 
             result.AddAllCollisions(absolutePositionCollisions);
@@ -100,6 +107,26 @@ namespace Org.Ethasia.Fundetected.Interactors
                     absolutePositionSpawners.Add(spawnerWithAbsolutePosition);
                 }
             }
+        }
+
+        private static Position DeterminePlayerSpawnPosition(Chunk chunk)
+        {
+            if (chunk.Spawn)
+            {
+                if (chunk.PropertiesOfPossibleChunks.Count > 0)
+                {
+                    MapChunkProperties mapChunkProperties = chunk.PropertiesOfPossibleChunks[0];
+
+                    if (mapChunkProperties.PlayerSpawnPoint.IsSet)
+                    {
+                        int amountOfLogicalTilesPerChunkEdge = Area.LOGICAL_TILES_PER_VISUAL_TILE_EDGE * Area.VISUAL_TILES_PER_CHUNK_EDGE;
+
+                        return new Position(mapChunkProperties.PlayerSpawnPoint.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.PlayerSpawnPoint.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
+                    }
+                }
+            }
+
+            return null;
         }
 
         private struct ScreenDimensionProperties

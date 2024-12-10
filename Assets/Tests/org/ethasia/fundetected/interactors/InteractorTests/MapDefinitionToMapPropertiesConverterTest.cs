@@ -38,6 +38,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.Height, Is.EqualTo(240));                     
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsPlayerSpawnToPosition()
+        {
+            MapDefinition mapDefinition = new MapDefinition(8);
+            CreateTestChunks(mapDefinition);
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);   
+
+            Assert.That(result.PlayerSpawnPosition.X, Is.EqualTo(-65));
+            Assert.That(result.PlayerSpawnPosition.Y, Is.EqualTo(-114));                     
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk1 = new Chunk(-2, -2);
@@ -53,7 +65,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Chunk chunk9 = new Chunk(-2, 0);
             Chunk chunk10 = new Chunk(-1, 0);
             Chunk chunk11 = new Chunk(0, 0);
-            Chunk chunk12 = new Chunk(1, 0);   
+            Chunk chunk12 = new Chunk(1, 0); 
+
+            MapChunkProperties chunkProperties2 = new MapChunkProperties("EarthGrassValley", new PlayerSpawn(15, 46));
+
+            chunk2.Spawn = true;
+            chunk2.PropertiesOfPossibleChunks.Add(chunkProperties2);
 
             mapDefinition.Chunks.Add(chunk1);
             mapDefinition.Chunks.Add(chunk2);
