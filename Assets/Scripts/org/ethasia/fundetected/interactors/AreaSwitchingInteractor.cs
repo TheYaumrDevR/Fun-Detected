@@ -26,6 +26,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public void SwitchActiveMap(string mapId, PlayerCharacter playerCharacter)
         {
             MapDefinition mapDefinition = mapDefinitionGateway.LoadMapDefinition(mapId);
+
             RandomizeMap(mapDefinition);
             PresentTiles(mapDefinition);
 
@@ -85,7 +86,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         private void SetUpAreaEnemiesAndPlayer(MapProperties mapProperties, PlayerCharacter playerCharacter)
         {
             Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
-            map.AddPlayerAt(playerCharacter, -145, -38);
+            map.SpawnPlayer(playerCharacter);
 
             List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
             PopulateEnemiesFromSpawners(spawnedEnemies, map);

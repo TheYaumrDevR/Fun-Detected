@@ -53,7 +53,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerCharacter testPlayer = CreateTestPlayerCharacter();
             AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
 
-            testCandidate.SwitchActiveMap("hillWithChunks", testPlayer);         
+            testCandidate.SwitchActiveMap("Hill", testPlayer);         
 
             List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();     
 
@@ -114,7 +114,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerCharacter testPlayer = CreateTestPlayerCharacter();
             AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
 
-            testCandidate.SwitchActiveMap("hillWithChunks", testPlayer);  
+            testCandidate.SwitchActiveMap("Hill", testPlayer);  
 
             return testCandidate;          
         } 

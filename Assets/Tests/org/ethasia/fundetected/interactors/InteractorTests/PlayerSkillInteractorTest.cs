@@ -4,7 +4,10 @@ using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Interactors.Mocks;
+using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
+using Org.Ethasia.Fundetected.Ioadapters.Technical;
+using Org.Ethasia.Fundetected.Technical.Mocks;
 
 namespace Org.Ethasia.Fundetected.Interactors.Tests
 {
@@ -16,13 +19,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [OneTimeSetUp] 
         public void Init()
         {
-            IoAdaptersFactoryForInteractors.SetInstance(new MockedIoAdaptersFactoryForInteractors());
+            IoAdaptersFactoryForInteractors.SetInstance(new MockedIoAdaptersFactoryForInteractorsWithRealMapDefinitionGateway());
+            TechnicalFactory.SetInstance(new TechnicalMockFactory());
         }
 
         [SetUp]
         public void ResetStates()
         {
-            int[] randomNumbersToGenerate = {5, 7, 9, 5, 2};
+            int[] randomNumbersToGenerate = {0, 0, 5, 7, 9, 5, 2};
             float[] randomFloatsToGenerate = {};       
 
             rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
@@ -39,9 +43,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.JOCK);
 
-            rngMock.Reset();
-
-            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.RemoveEnemies();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -62,9 +64,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             PlayerRepeatedUpdateInteractor repeatedUpdateInteractor = new PlayerRepeatedUpdateInteractor();
 
-            rngMock.Reset();
-
-            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.RemoveEnemies();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -73,6 +73,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             repeatedUpdateInteractor.Update(0.63);
 
             testCandidate.ExecutePrimaryPlayerAction();
+
+            Area.ActiveArea.Player.Tick(0.2);
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
@@ -87,9 +89,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             PlayerRepeatedUpdateInteractor repeatedUpdateInteractor = new PlayerRepeatedUpdateInteractor();
 
-            rngMock.Reset();
-
-            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.RemoveEnemies();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -109,25 +109,27 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestExecutePrimaryPlayerActionAttackMisses()
         {   
-            int[] randomNumbersToGenerate = {5, 7, 9, 5, 2};
+            int[] randomNumbersToGenerate = {0, 0, 5, 7, 9, 5, 2};
             float[] randomFloatsToGenerate = {0.95f};       
 
             RandomNumberGeneratorMock localRngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(localRngMock);
 
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);            
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);         
 
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.MAGICIAN);
 
             localRngMock.Reset();
 
-            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.RemoveEnemies();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
             testCandidate.ExecutePrimaryPlayerAction();
+
+            Area.ActiveArea.Player.Tick(1.5);
 
             Enemy enemy = Area.ActiveArea.Enemies[0];
 
@@ -140,9 +142,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             StartGameInteractor startGameInteractor = new StartGameInteractor();
             startGameInteractor.CreateCharacterAndStartGame(CharacterClasses.CUCK);
 
-            rngMock.Reset();
-
-            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.RemoveEnemies();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -167,9 +167,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             PlayerRepeatedUpdateInteractor repeatedUpdateInteractor = new PlayerRepeatedUpdateInteractor();
 
-            rngMock.Reset();
-
-            Area.ActiveArea.Enemies.Clear();
+            Area.ActiveArea.RemoveEnemies();
             Area.ActiveArea.AddEnemy(CreateTestEnemy());
 
             PlayerSkillInteractor testCandidate = new PlayerSkillInteractor();
@@ -192,7 +190,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
         private Enemy CreateTestEnemy()
         {
-            Position enemyPosition = new Position(-141, -40);
+            Position enemyPosition = new Position(-141, -56);
 
             BoundingBox enemyBoundingBox = new BoundingBox.Builder()
                 .SetDistanceToLeftEdge(5)
@@ -209,6 +207,19 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetPosition(enemyPosition)
                 .SetBoundingBox(enemyBoundingBox)
                 .Build();         
-        }                 
+        }           
+
+        private class MockedIoAdaptersFactoryForInteractorsWithRealMapDefinitionGateway : MockedIoAdaptersFactoryForInteractors
+        {
+            public override IMapDefinitionGateway GetMapDefinitionGatewayInstance()
+            {
+                return new XmlFilesBasedMapDefinitionGateway();
+            }
+
+            public override IMapChunkGateway GetMapChunkGatewayInstance()
+            {
+                return new XmlFilesBasedMapChunkGateway();
+            }            
+        }      
     }
 }

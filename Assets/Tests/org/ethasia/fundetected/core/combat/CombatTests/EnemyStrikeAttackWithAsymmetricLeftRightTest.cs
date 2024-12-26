@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
 
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(15, 20))
                 .Build();
 
             Area.ActiveArea = testArea;       
@@ -29,7 +30,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
                 .SetMeleeHitArcProperties(new MeleeHitArcProperties())
                 .Build();  
                 
-            testArea.AddPlayerAt(playerCharacter, 15, 20);
+            testArea.SpawnPlayer(playerCharacter);
         }
 
         [Test]

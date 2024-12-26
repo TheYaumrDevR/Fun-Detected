@@ -96,6 +96,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(12, 17))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -106,7 +107,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 12, 17);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -126,6 +127,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(28, 17))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -136,7 +138,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 28, 17);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -156,6 +158,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(20, 12))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -166,7 +169,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 20, 12);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -186,6 +189,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(20, 28))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -196,7 +200,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 20, 28);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -216,6 +220,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(9, 17))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -225,7 +230,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 9, 17);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -245,6 +250,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(30, 17))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -254,7 +260,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 30, 17);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -274,6 +280,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(20, 10))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -283,7 +290,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 20, 10);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -303,6 +310,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(20, 31))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -312,7 +320,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 20, 31);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -332,6 +340,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(20, 20))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -342,7 +351,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 20, 20);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 
@@ -362,6 +371,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(20, 20))
                 .Build();
 
             Area.ActiveArea = testArea;          
@@ -372,7 +382,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter player = CreatePlayerCharacterWithWideBoundingBoxForAiAttackTests();
 
             testArea.AddEnemy(testCandidate);
-            testArea.AddPlayerAt(player, 20, 20);
+            testArea.SpawnPlayer(player);
 
             testCandidate.Update(1.5f, testArea);           
 

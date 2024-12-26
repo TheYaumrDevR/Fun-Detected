@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(30, 50)
                 .SetIsColliding(9, 4)
+                .SetPlayerSpawnPosition(new Position(11, 30))
                 .Build();
 
             Area.ActiveArea = testArea;
@@ -32,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 11, 30);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.CalculateFallDepth();
             Assert.That(result, Is.EqualTo(10)); 
@@ -44,6 +45,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(30, 50)
                 .SetIsColliding(3, 10)
+                .SetPlayerSpawnPosition(new Position(8, 30))
                 .Build();
 
             Area.ActiveArea = testArea;
@@ -57,7 +59,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 8, 30);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.CalculateFallDepth();
             Assert.That(result, Is.EqualTo(14)); 
@@ -69,6 +71,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
                 .SetIsColliding(37, 24)
+                .SetPlayerSpawnPosition(new Position(41, 40))
                 .Build();
 
             Area.ActiveArea = testArea;
@@ -82,7 +85,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 41, 40);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.CalculateFallDepth();
             Assert.That(result, Is.EqualTo(0)); 
@@ -93,6 +96,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(18, 10)
                 .SetIsColliding(19, 10)
                 .SetIsColliding(20, 10)
@@ -116,7 +120,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerRightStepUp();
             Assert.That(result, Is.EqualTo(5)); 
@@ -127,6 +131,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(13, 10)
                 .SetIsColliding(14, 10)
                 .SetIsColliding(15, 10)
@@ -150,7 +155,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(5)); 
@@ -161,6 +166,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(18, 10)
                 .SetIsColliding(19, 10)
                 .SetIsColliding(20, 10)
@@ -190,7 +196,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerRightStepUp();
             Assert.That(result, Is.EqualTo(0)); 
@@ -201,6 +207,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(13, 10)
                 .SetIsColliding(14, 10)
                 .SetIsColliding(15, 10)
@@ -230,7 +237,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(0)); 
@@ -241,6 +248,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(18, 10)
                 .SetIsColliding(19, 10)
                 .SetIsColliding(20, 10)
@@ -265,7 +273,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerRightStepUp();
             Assert.That(result, Is.EqualTo(0)); 
@@ -276,6 +284,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(13, 10)
                 .SetIsColliding(14, 10)
                 .SetIsColliding(15, 10)
@@ -300,7 +309,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(0)); 
@@ -311,6 +320,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(18, 10)
                 .SetIsColliding(19, 10)
                 .SetIsColliding(20, 10)
@@ -335,7 +345,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerRightStepUp();
             Assert.That(result, Is.EqualTo(0)); 
@@ -346,6 +356,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(17, 26))
                 .SetIsColliding(13, 10)
                 .SetIsColliding(14, 10)
                 .SetIsColliding(15, 10)
@@ -370,7 +381,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
-            testArea.AddPlayerAt(playerCharacter, 17, 26);
+            testArea.SpawnPlayer(playerCharacter);
 
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(0)); 

@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
 
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(15, 20))
                 .Build();
 
             Area.ActiveArea = testArea;            
@@ -28,14 +29,14 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
                 .SetMeleeHitArcProperties(new MeleeHitArcProperties())
                 .Build();  
                 
-            testArea.AddPlayerAt(playerCharacter, 15, 20);
+            testArea.SpawnPlayer(playerCharacter);
         }
 
         [Test]
         public void TestTickStrikeHitsWhenHitTileIsInsidePlayerHitBox()
         {
             Area.ActiveArea = CreateArea();
-            Area.ActiveArea.AddPlayerAt(CreatePlayerCharacter(), 9, 4);
+            Area.ActiveArea.SpawnPlayer(CreatePlayerCharacter());
 
             Position positionOffsetToAttackerCenter = new Position(2, 1);
 
@@ -61,7 +62,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
         public void TestTickStrikeDoesNotHitWhenHitTileIsOutsidePlayerHitBox()
         {
             Area.ActiveArea = CreateArea();
-            Area.ActiveArea.AddPlayerAt(CreatePlayerCharacter(), 9, 4);
+            Area.ActiveArea.SpawnPlayer(CreatePlayerCharacter());
 
             Position positionOffsetToAttackerCenter = new Position(1, 1);
 
@@ -87,7 +88,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
         public void TestTickTimeToHitHasNotPassedPlayerIsNotHit()
         {
             Area.ActiveArea = CreateArea();
-            Area.ActiveArea.AddPlayerAt(CreatePlayerCharacter(), 9, 4);
+            Area.ActiveArea.SpawnPlayer(CreatePlayerCharacter());
 
             Position positionOffsetToAttackerCenter = new Position(2, 1);
 
@@ -117,7 +118,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
         public void TestTickAttackTwiceInARowSecondAttackDoesNotLandIfTimeBetweenAttacksIsShorterThanAttackSpeed()
         {
             Area.ActiveArea = CreateArea();
-            Area.ActiveArea.AddPlayerAt(CreatePlayerCharacter(), 9, 4);
+            Area.ActiveArea.SpawnPlayer(CreatePlayerCharacter());
 
             Position positionOffsetToAttackerCenter = new Position(2, 1);
 
@@ -176,6 +177,7 @@ namespace Org.Ethasia.Fundetected.Core.Combat.Tests
         {
             return new Area.Builder()
                 .SetWidthAndHeight(30, 50)
+                .SetPlayerSpawnPosition(new Position(9, 4))
                 .Build();
         }
 

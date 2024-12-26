@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {
@@ -43,6 +44,17 @@ namespace Org.Ethasia.Fundetected.Interactors
             GroundTiles = new List<Tile>();
             CollisionProperties = new List<Collision>();
             Spawners = new List<Spawner>();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append("MapChunkProperties with id: " + Id);
+            result.AppendLine();
+            result.Append("player spawn point is set " + PlayerSpawnPoint.IsSet + " X: " + PlayerSpawnPoint.X + ", Y: " + PlayerSpawnPoint.Y);
+
+            return result.ToString();
         }
     }
 }

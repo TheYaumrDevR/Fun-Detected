@@ -41,7 +41,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 
         public override ITileMapRenderer GetTileMapRendererInstance()
         {
-            return null;
+            return new TileMapRendererMock();
         }
     }
 }

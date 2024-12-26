@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {
@@ -32,6 +33,26 @@ namespace Org.Ethasia.Fundetected.Interactors
             PropertiesOfPossibleChunks = new List<MapChunkProperties>();
 
             Spawn = false;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append("Chunk with spawn: " + Spawn);
+            result.AppendLine();
+            result.Append("at position " + X + ", " + Y);
+            result.AppendLine();
+            result.Append("and chunk properties");
+            result.AppendLine();
+
+            foreach (MapChunkProperties chunkProperties in PropertiesOfPossibleChunks)
+            {
+                result.Append(chunkProperties.ToString());
+                result.AppendLine();
+            }
+
+            return result.ToString();
         }
     }
 }

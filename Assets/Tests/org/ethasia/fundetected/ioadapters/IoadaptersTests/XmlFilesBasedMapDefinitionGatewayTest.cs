@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");
 
             Assert.That(result.MaximumMonsters, Is.EqualTo(10));
             Assert.That(result.Chunks.Count, Is.EqualTo(8));
@@ -32,7 +32,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");
 
             Assert.That(result.Chunks[0].X, Is.EqualTo(-2));
             Assert.That(result.Chunks[0].Y, Is.EqualTo(-1));
@@ -61,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks.Count, Is.EqualTo(1));
             Assert.That(result.Chunks[1].PropertiesOfPossibleChunks.Count, Is.EqualTo(1));
             Assert.That(result.Chunks[2].PropertiesOfPossibleChunks.Count, Is.EqualTo(3));
-            Assert.That(result.Chunks[3].PropertiesOfPossibleChunks.Count, Is.EqualTo(1));
+            Assert.That(result.Chunks[3].PropertiesOfPossibleChunks.Count, Is.EqualTo(2));
             Assert.That(result.Chunks[4].PropertiesOfPossibleChunks.Count, Is.EqualTo(0));
             Assert.That(result.Chunks[5].PropertiesOfPossibleChunks.Count, Is.EqualTo(0));
             Assert.That(result.Chunks[6].PropertiesOfPossibleChunks.Count, Is.EqualTo(0));
@@ -73,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");
 
             Assert.That(result.SpawnableMonsters[0].Name, Is.EqualTo("Animated Thornbush"));
             Assert.That(result.SpawnableMonsters[0].SpawnChanceMillis, Is.EqualTo(1000));                                                                            
@@ -84,39 +84,39 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
         
-            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].Id, Is.EqualTo("PlainsAndHillsEarth")); 
+            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].Id, Is.EqualTo("PlainsAndHillsTileset_Earth")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].StartX, Is.EqualTo(0));
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].StartY, Is.EqualTo(0)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].Width, Is.EqualTo(4));      
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].Height, Is.EqualTo(4)); 
 
-            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[1].Id, Is.EqualTo("PlainsAndHillsEarth")); 
+            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[1].Id, Is.EqualTo("PlainsAndHillsTileset_Earth")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[1].StartX, Is.EqualTo(4));
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[1].StartY, Is.EqualTo(0)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[1].Width, Is.EqualTo(3));      
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[1].Height, Is.EqualTo(1));  
 
-            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[2].Id, Is.EqualTo("PlainsAndHillsEarth")); 
+            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[2].Id, Is.EqualTo("PlainsAndHillsTileset_Earth")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[2].StartX, Is.EqualTo(7));
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[2].StartY, Is.EqualTo(0)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[2].Width, Is.EqualTo(1));      
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[2].Height, Is.EqualTo(2));   
 
-            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[0].Id, Is.EqualTo("PlainsAndHillsEarthGrass")); 
+            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[0].Id, Is.EqualTo("PlainsAndHillsTileset_Grass")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[0].StartX, Is.EqualTo(0));
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[0].StartY, Is.EqualTo(2)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[0].Width, Is.EqualTo(4));      
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[0].Height, Is.EqualTo(1)); 
 
-            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[1].Id, Is.EqualTo("PlainsAndHillsEarthGrass")); 
+            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[1].Id, Is.EqualTo("PlainsAndHillsTileset_Grass")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[1].StartX, Is.EqualTo(4));
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[1].StartY, Is.EqualTo(1)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[1].Width, Is.EqualTo(3));      
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[1].Height, Is.EqualTo(1));  
 
-            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[2].Id, Is.EqualTo("PlainsAndHillsEarthGrass")); 
+            Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[2].Id, Is.EqualTo("PlainsAndHillsTileset_Grass")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[2].StartX, Is.EqualTo(7));
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[2].StartY, Is.EqualTo(2)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].GroundTiles[2].Width, Is.EqualTo(1));      
@@ -128,7 +128,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");  
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");  
 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].CollisionProperties[0].StartX, Is.EqualTo(0)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].CollisionProperties[0].StartY, Is.EqualTo(26)); 
@@ -161,7 +161,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");  
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");  
 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].Spawners[0].X, Is.EqualTo(5)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].Spawners[0].Y, Is.EqualTo(28)); 
@@ -193,7 +193,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("HillWithChunks");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
 
             Assert.That(result.Chunks[0].Spawn, Is.True);         
         }                  

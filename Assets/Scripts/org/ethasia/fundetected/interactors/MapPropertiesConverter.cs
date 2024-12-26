@@ -11,7 +11,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             Area.Builder areaBuilder = new Area.Builder()
                 .SetWidthAndHeight(mapProperties.Width, mapProperties.Height)
                 .SetLowestScreenX(mapProperties.LowestScreenX)
-                .SetLowestScreenY(mapProperties.LowestScreenY);
+                .SetLowestScreenY(mapProperties.LowestScreenY)
+                .SetPlayerSpawnPosition(mapProperties.PlayerSpawnPosition);
 
             ConvertCollisions(mapProperties, areaBuilder);
             ConvertAndSetEnemySpawner(mapProperties, areaBuilder);

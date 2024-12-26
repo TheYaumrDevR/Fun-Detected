@@ -81,13 +81,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return isCollisionTile[position];
         }     
 
-        public void AddPlayerAt(PlayerCharacter value, int x, int y)
+        public void SpawnPlayer(PlayerCharacter playerCharacter)
         {
-            if (null != value && Player == null)
+            if (null != playerSpawnPosition)
             {
-                Player = value;
-                playerPosition.X = x;
-                playerPosition.Y = y;             
+                AddPlayerAt(playerCharacter, playerSpawnPosition.X, playerSpawnPosition.Y);
             }
         }
 
@@ -106,7 +104,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
 
             return new List<EnemySpawnLocation>();
-        }    
+        }   
+
+        public void RemoveEnemies()
+        {
+            Enemies.Clear();
+            enemyHitTiles.Clear();
+        }         
 
         public HashSet<Enemy> GetEnemiesHit(List<HitboxTilePosition> hitArc, Position positionOffsetRightSwingToPlayerCharacterCenter)
         {
@@ -210,7 +214,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
                     }
                 }
             }
-        }           
+        }    
+
+        private void AddPlayerAt(PlayerCharacter value, int x, int y)
+        {
+            if (null != value && Player == null)
+            {
+                Player = value;
+                playerPosition.X = x;
+                playerPosition.Y = y;             
+            }
+        }               
 
         public class Builder
         {
@@ -250,9 +264,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }
 
-            public Builder SetPlayerSpawnPosition(int x, int y)
+            public Builder SetPlayerSpawnPosition(Position value)
             {
-                playerSpawnPosition = new Position(x, y);
+                playerSpawnPosition = value;
                 return this;
             }
 
