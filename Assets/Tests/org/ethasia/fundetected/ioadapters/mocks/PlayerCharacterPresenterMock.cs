@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
@@ -11,7 +12,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return playerWasPresented;
         }
 
-        public void PresentPlayer(string playerName)
+        public void PresentPlayer(string playerName, Position playerPosition)
         {
             playerWasPresented = true;
         }

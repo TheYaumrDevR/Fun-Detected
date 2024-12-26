@@ -27,7 +27,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
             areaSwitchingInteractor.SwitchActiveMap("Hill", playerCharacter);
 
-            IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer("FunEnjoyer");
+            Position playerPosition = new Position(Area.ActiveArea.GetPlayerPositionX(), Area.ActiveArea.GetPlayerPositionY());
+
+            IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer("FunEnjoyer", playerPosition);
         }
 
         private CharacterCreationMasterData CreateCharacterCreationMasterDataFromSelectedCharacterTraits(CharacterClasses characterClass)
