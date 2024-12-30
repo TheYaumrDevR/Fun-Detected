@@ -39,9 +39,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             if (null != tilesParent)
             {
                 XmlElement groundTiles = tilesParent["ground"];
+                XmlElement foliageBackTiles = tilesParent["foliageBack"];
+                XmlElement foliageFrontTiles = tilesParent["foliageFront"];
                 XmlElement terrainTiles = tilesParent["terrain"];
 
                 SetupGroundTiles(groundTiles, result);
+                SetupFoliageBackTiles(foliageBackTiles, result);
+                SetupFoliageFrontTiles(foliageFrontTiles, result);
                 SetupTerrainTiles(terrainTiles, result);
             }
         }
@@ -49,6 +53,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private void SetupGroundTiles(XmlElement groundTiles, MapChunkProperties result)
         {
             ConvertTiles(groundTiles, result.GroundTiles);
+        }
+
+        private void SetupFoliageBackTiles(XmlElement foliageBackTiles, MapChunkProperties result)
+        {
+            ConvertTiles(foliageBackTiles, result.FoliageBackTiles);
+        }
+
+        private void SetupFoliageFrontTiles(XmlElement foliageFrontTiles, MapChunkProperties result)
+        {
+            ConvertTiles(foliageFrontTiles, result.FoliageFrontTiles);
         }
 
         private void SetupTerrainTiles(XmlElement terrainTiles, MapChunkProperties result)

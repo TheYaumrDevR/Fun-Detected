@@ -12,6 +12,8 @@ namespace Org.Ethasia.Fundetected.Technical
         private static List<IInitializationObserver> initializationObservers;
 
         public Tilemap Ground;
+        public Tilemap FoliageBack;
+        public Tilemap FoliageFront;
         public Tilemap Terrain;
 
         public static TileMapRenderer GetInstance()
@@ -47,10 +49,20 @@ namespace Org.Ethasia.Fundetected.Technical
             RenderTileAtPosition(Ground, tileRenderContext);
         }   
 
+        public void RenderFoliageBackTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            RenderTileAtPosition(FoliageBack, tileRenderContext);
+        }
+
+        public void RenderFoliageFrontTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            RenderTileAtPosition(FoliageFront, tileRenderContext);           
+        }   
+
         public void RenderTerrainTileAtPosition(TileRenderContext tileRenderContext)
         {
             RenderTileAtPosition(Terrain, tileRenderContext);
-        }   
+        }    
 
         private void RenderTileAtPosition(Tilemap tilemap, TileRenderContext tileRenderContext)
         {

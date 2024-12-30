@@ -52,6 +52,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         private void PresentTiles(MapDefinition mapDefinition)
         {
             List<Tile> terrainTiles = new List<Tile>();
+            List<Tile> foliageBackTiles = new List<Tile>();
+            List<Tile> foliageFrontTiles = new List<Tile>();
             List<Tile> groundTiles = new List<Tile>();
 
             foreach (Chunk chunk in mapDefinition.Chunks)
@@ -59,11 +61,15 @@ namespace Org.Ethasia.Fundetected.Interactors
                 if (chunk.PropertiesOfPossibleChunks.Count > 0)
                 {
                     CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(terrainTiles, chunk.PropertiesOfPossibleChunks[0].TerrainTiles, chunk);
+                    CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(foliageBackTiles, chunk.PropertiesOfPossibleChunks[0].FoliageBackTiles, chunk);
+                    CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(foliageFrontTiles, chunk.PropertiesOfPossibleChunks[0].FoliageFrontTiles, chunk);
                     CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(groundTiles, chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk); 
                 }
             }
 
             mapPresenter.PresentTiles(terrainTiles, "terrain");
+            mapPresenter.PresentTiles(foliageBackTiles, "foliageBack");
+            mapPresenter.PresentTiles(foliageFrontTiles, "foliageFront");
             mapPresenter.PresentTiles(groundTiles, "ground");
         }
 

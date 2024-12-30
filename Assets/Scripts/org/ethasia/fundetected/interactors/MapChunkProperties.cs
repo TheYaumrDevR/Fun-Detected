@@ -25,6 +25,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
+        public List<Tile> FoliageBackTiles
+        {
+            get;
+        }
+
+        public List<Tile> FoliageFrontTiles
+        {
+            get;
+        }
+
         public List<Collision> CollisionProperties
         {
             get;
@@ -42,6 +52,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             
             TerrainTiles = new List<Tile>();
             GroundTiles = new List<Tile>();
+            FoliageBackTiles = new List<Tile>();
+            FoliageFrontTiles = new List<Tile>();
             CollisionProperties = new List<Collision>();
             Spawners = new List<Spawner>();
         }

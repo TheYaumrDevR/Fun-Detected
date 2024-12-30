@@ -26,6 +26,8 @@ namespace Org.Ethasia.Fundetected.Technical
             storedCallParametersByRenderLayerName = new Dictionary<string, List<TileRenderContext>>();
 
             storedCallParametersByRenderLayerName.Add("ground", new List<TileRenderContext>());
+            storedCallParametersByRenderLayerName.Add("foliageBack", new List<TileRenderContext>());
+            storedCallParametersByRenderLayerName.Add("foliageFront", new List<TileRenderContext>());
             storedCallParametersByRenderLayerName.Add("terrain", new List<TileRenderContext>());
         }
 
@@ -42,6 +44,34 @@ namespace Org.Ethasia.Fundetected.Technical
                 storedCallParametersByRenderLayerName["ground"].Add(tileRenderContext);
             }
         }   
+
+        public void RenderFoliageBackTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            proxiedRenderer = TileMapRenderer.GetInstance();
+
+            if (null != proxiedRenderer)
+            {
+                proxiedRenderer.RenderFoliageBackTileAtPosition(tileRenderContext);
+            }
+            else
+            {
+                storedCallParametersByRenderLayerName["foliageBack"].Add(tileRenderContext);
+            }
+        }
+
+        public void RenderFoliageFrontTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            proxiedRenderer = TileMapRenderer.GetInstance();
+
+            if (null != proxiedRenderer)
+            {
+                proxiedRenderer.RenderFoliageFrontTileAtPosition(tileRenderContext);
+            }
+            else
+            {
+                storedCallParametersByRenderLayerName["foliageFront"].Add(tileRenderContext);
+            }
+        }
 
         public void RenderTerrainTileAtPosition(TileRenderContext tileRenderContext)
         {
@@ -69,6 +99,20 @@ namespace Org.Ethasia.Fundetected.Technical
                 }
 
                 storedCallParametersByRenderLayerName["ground"].Clear();
+
+                foreach (TileRenderContext foliageBackTileRenderContext in storedCallParametersByRenderLayerName["foliageBack"])
+                {
+                    proxiedRenderer.RenderFoliageBackTileAtPosition(foliageBackTileRenderContext);
+                }
+
+                storedCallParametersByRenderLayerName["foliageBack"].Clear();
+
+                foreach (TileRenderContext foliageFrontTileRenderContext in storedCallParametersByRenderLayerName["foliageFront"])
+                {
+                    proxiedRenderer.RenderFoliageFrontTileAtPosition(foliageFrontTileRenderContext);
+                }
+
+                storedCallParametersByRenderLayerName["foliageFront"].Clear();
 
                 foreach (TileRenderContext terrainTileRenderContext in storedCallParametersByRenderLayerName["terrain"])
                 {

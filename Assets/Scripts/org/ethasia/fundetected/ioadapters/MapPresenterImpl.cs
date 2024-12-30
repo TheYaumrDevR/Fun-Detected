@@ -17,6 +17,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             renderMethodByTileLayerName = new Dictionary<string, Action<TileRenderContext>>();
 
             renderMethodByTileLayerName.Add("ground", tileMapRenderer.RenderGroundTileAtPosition);
+            renderMethodByTileLayerName.Add("foliageBack", tileMapRenderer.RenderFoliageBackTileAtPosition);
+            renderMethodByTileLayerName.Add("foliageFront", tileMapRenderer.RenderFoliageFrontTileAtPosition);
             renderMethodByTileLayerName.Add("terrain", tileMapRenderer.RenderTerrainTileAtPosition);
         }
 

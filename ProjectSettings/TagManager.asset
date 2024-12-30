@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: FoliageBack
+    uniqueID: 3251651101
+    locked: 0
+  - name: FoliageFront
+    uniqueID: 2856976927
+    locked: 0
   - name: Ground
     uniqueID: 1826601427
     locked: 0

@@ -9,6 +9,16 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 
         }
 
+        public void RenderFoliageBackTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            
+        }
+
+        public void RenderFoliageFrontTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            
+        }
+
         public void RenderTerrainTileAtPosition(TileRenderContext tileRenderContext)
         {
             
