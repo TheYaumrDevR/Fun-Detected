@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
@@ -93,34 +94,21 @@ namespace Org.Ethasia.Fundetected.Technical
 
             if (null != proxiedRenderer)
             {
-                foreach (TileRenderContext groundTileRenderContext in storedCallParametersByRenderLayerName["ground"])
-                {
-                    proxiedRenderer.RenderGroundTileAtPosition(groundTileRenderContext);
-                }
-
-                storedCallParametersByRenderLayerName["ground"].Clear();
-
-                foreach (TileRenderContext foliageBackTileRenderContext in storedCallParametersByRenderLayerName["foliageBack"])
-                {
-                    proxiedRenderer.RenderFoliageBackTileAtPosition(foliageBackTileRenderContext);
-                }
-
-                storedCallParametersByRenderLayerName["foliageBack"].Clear();
-
-                foreach (TileRenderContext foliageFrontTileRenderContext in storedCallParametersByRenderLayerName["foliageFront"])
-                {
-                    proxiedRenderer.RenderFoliageFrontTileAtPosition(foliageFrontTileRenderContext);
-                }
-
-                storedCallParametersByRenderLayerName["foliageFront"].Clear();
-
-                foreach (TileRenderContext terrainTileRenderContext in storedCallParametersByRenderLayerName["terrain"])
-                {
-                    proxiedRenderer.RenderTerrainTileAtPosition(terrainTileRenderContext);
-                }
-
-                storedCallParametersByRenderLayerName["terrain"].Clear();
+                CallProxiedMethodAndClearStoredCallsForLayer(proxiedRenderer.RenderGroundTileAtPosition, "ground");
+                CallProxiedMethodAndClearStoredCallsForLayer(proxiedRenderer.RenderFoliageBackTileAtPosition, "foliageBack");
+                CallProxiedMethodAndClearStoredCallsForLayer(proxiedRenderer.RenderFoliageFrontTileAtPosition, "foliageFront");
+                CallProxiedMethodAndClearStoredCallsForLayer(proxiedRenderer.RenderTerrainTileAtPosition, "terrain");
             }
+        }
+
+        private void CallProxiedMethodAndClearStoredCallsForLayer(Action<TileRenderContext> proxiedMethod, string layerName)
+        {
+            foreach (TileRenderContext tileRenderContext in storedCallParametersByRenderLayerName[layerName])
+            {
+                proxiedMethod(tileRenderContext);
+            }
+
+            storedCallParametersByRenderLayerName[layerName].Clear();
         }
     }
 }
