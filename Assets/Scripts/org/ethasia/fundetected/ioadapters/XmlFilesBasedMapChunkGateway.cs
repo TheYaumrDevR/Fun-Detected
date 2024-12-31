@@ -118,17 +118,52 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             if (null != tilePropertiesParent)
             {
-                MapChunkProperties result = SetPlayerSpawnPropertiesFromXmlIfPresent(tilePropertiesParent, chunkName);
+                PortalProperties portalProperties = CreatePortalPropertiesFromXmlIfPresent(tilePropertiesParent);
+                PlayerSpawn playerSpawn = CreatePlayerSpawnPropertiesFromXmlIfPresent(tilePropertiesParent);
+
+                MapChunkProperties result = new MapChunkProperties.Builder()
+                    .SetId(chunkName)
+                    .SetPlayerSpawnPoint(playerSpawn)
+                    .SetPortalProperties(portalProperties)
+                    .Build();
+
                 FillCollisionPropertiesFromXml(tilePropertiesParent, result);
                 FillSpawnerPropertiesFromXml(tilePropertiesParent, result);   
 
                 return result;
             }     
 
-            return new MapChunkProperties(chunkName, PlayerSpawn.CreateUnset());    
+            return new MapChunkProperties.Builder()
+                .SetId(chunkName)
+                .SetPlayerSpawnPoint(PlayerSpawn.CreateUnset())
+                .Build(); 
         }
 
-        private MapChunkProperties SetPlayerSpawnPropertiesFromXmlIfPresent(XmlElement tilePropertiesParent, string chunkName)
+        private PortalProperties CreatePortalPropertiesFromXmlIfPresent(XmlElement tilePropertiesParent)
+        {
+            XmlElement portalElement = tilePropertiesParent["portal"];
+
+            if (null != portalElement)
+            {
+                if (portalElement.HasAttribute("x") && portalElement.HasAttribute("y"))
+                {
+                    string xText = portalElement.GetAttribute("x");
+                    string yText = portalElement.GetAttribute("y");
+
+                    if (int.TryParse(xText, out int x))
+                    {
+                        if (int.TryParse(yText, out int y))
+                        {
+                            return new PortalProperties(x, y);
+                        }
+                    }
+                }
+            }
+
+            return PortalProperties.CreateUnset();
+        }
+
+        private PlayerSpawn CreatePlayerSpawnPropertiesFromXmlIfPresent(XmlElement tilePropertiesParent)
         {
             XmlElement playerSpawnElement = tilePropertiesParent["playerSpawn"];
 
@@ -143,14 +178,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     {
                         if (int.TryParse(yText, out int y))
                         {
-                            PlayerSpawn playerSpawn = new PlayerSpawn(x, y);
-                            return new MapChunkProperties(chunkName, playerSpawn);
+                            return new PlayerSpawn(x, y);
                         }
                     }
                 }
             }
 
-            return new MapChunkProperties(chunkName, PlayerSpawn.CreateUnset());
+            return PlayerSpawn.CreateUnset();
         }
 
         private void FillCollisionPropertiesFromXml(XmlElement tilePropertiesParent, MapChunkProperties result)

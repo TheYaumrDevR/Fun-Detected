@@ -33,7 +33,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             Spawner spawner7 = new Spawner(65, 26);
             Spawner spawner8 = new Spawner(75, 26);
 
-            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkOne", PlayerSpawn.CreateUnset());
+            MapChunkProperties mapChunkProperties = new MapChunkProperties.Builder()
+                .SetId("testChunkOne")
+                .SetPlayerSpawnPoint(PlayerSpawn.CreateUnset())
+                .Build(); 
+
             mapChunkProperties.Spawners.Add(spawner1);
             mapChunkProperties.Spawners.Add(spawner2);
             mapChunkProperties.Spawners.Add(spawner3);
@@ -76,7 +80,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             Spawner spawner6 = new Spawner(65, 56);
             Spawner spawner7 = new Spawner(75, 56);
 
-            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkTwo", PlayerSpawn.CreateUnset());
+            MapChunkProperties mapChunkProperties = new MapChunkProperties.Builder()
+                .SetId("testChunkTwo")
+                .SetPlayerSpawnPoint(PlayerSpawn.CreateUnset())
+                .Build(); 
+
             mapChunkProperties.Spawners.Add(spawner1);
             mapChunkProperties.Spawners.Add(spawner2);
             mapChunkProperties.Spawners.Add(spawner3);
@@ -119,7 +127,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             Spawner spawner7 = new Spawner(65, 56);
             Spawner spawner8 = new Spawner(75, 56);
 
-            MapChunkProperties mapChunkProperties = new MapChunkProperties("testChunkThree", PlayerSpawn.CreateUnset());
+            MapChunkProperties mapChunkProperties = new MapChunkProperties.Builder()
+                .SetId("testChunkThree")
+                .SetPlayerSpawnPoint(PlayerSpawn.CreateUnset())
+                .Build(); 
+
             mapChunkProperties.Spawners.Add(spawner1);
             mapChunkProperties.Spawners.Add(spawner2);
             mapChunkProperties.Spawners.Add(spawner3);

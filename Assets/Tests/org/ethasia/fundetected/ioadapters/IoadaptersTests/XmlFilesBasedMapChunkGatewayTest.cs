@@ -41,9 +41,45 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapChunkGateway testCandidate = new XmlFilesBasedMapChunkGateway();
 
-            MapChunkProperties result = testCandidate.LoadChunkProperties("CorruptPlayerSpawn");
+            MapChunkProperties result = testCandidate.LoadChunkProperties("CorruptPlayerSpawnPortal");
 
             Assert.That(result.PlayerSpawnPoint.IsSet, Is.False);
         }  
+
+        [Test]
+        public void TestLoadChunkPropertiesPortalIsLoaded()
+        {
+            XmlFilesBasedMapChunkGateway testCandidate = new XmlFilesBasedMapChunkGateway();
+
+            MapChunkProperties result = testCandidate.LoadChunkProperties("EarthGrassRisingHill");
+
+            Assert.That(result.PortalProperties.AreSet, Is.True);
+            Assert.That(result.PortalProperties.X, Is.EqualTo(74));
+            Assert.That(result.PortalProperties.Y, Is.EqualTo(77));
+        }
+
+        [Test]
+        public void TestLoadChunkPropertiesPortalIsNotSetIfNotDefined()
+        {
+            XmlFilesBasedMapChunkGateway testCandidate = new XmlFilesBasedMapChunkGateway();
+
+            MapChunkProperties result = testCandidate.LoadChunkProperties("EarthGrassValley");
+
+            Assert.That(result.PortalProperties.AreSet, Is.False);
+            Assert.That(result.PortalProperties.X, Is.EqualTo(0));
+            Assert.That(result.PortalProperties.Y, Is.EqualTo(0));
+        }  
+
+        [Test]
+        public void TestLoadChunkPropertiesCorruptPortalIsIgnored()
+        {
+            XmlFilesBasedMapChunkGateway testCandidate = new XmlFilesBasedMapChunkGateway();
+
+            MapChunkProperties result = testCandidate.LoadChunkProperties("CorruptPlayerSpawnPortal");
+
+            Assert.That(result.PortalProperties.AreSet, Is.False);
+            Assert.That(result.PortalProperties.X, Is.EqualTo(0));
+            Assert.That(result.PortalProperties.Y, Is.EqualTo(0));
+        }                 
     }
 }

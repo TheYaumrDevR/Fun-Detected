@@ -19,7 +19,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassRisingHill.xml", GetXmlFileContentForEarthGrassRisingHill);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassRisingPlateau.xml", GetXmlFileContentForEarthGrassRisingPlateau);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassValley.xml", GetXmlFileContentForEarthGrassValley);
-            xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CorruptPlayerSpawn.xml", GetXmlFileContentForCorruptPlayerSpawn);
+            xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CorruptPlayerSpawnPortal.xml", GetXmlFileContentForCorruptPlayerSpawnPortal);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassLoweringHill.xml", GetXmlFileContentForEarthGrassLoweringHill);
         }
 
@@ -169,6 +169,8 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                         </tileMaps>
 
                         <mapTileProperties>
+                            <portal x=""74"" y=""77""/>
+
                             <collisions>
                                 <collision startX=""0"" startY=""56"" width=""20"" height=""1""/>
                                 <collision startX=""20"" startY=""66"" width=""10"" height=""1""/>
@@ -277,7 +279,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                     </tileChunk>";
         }
 
-        private string GetXmlFileContentForCorruptPlayerSpawn()
+        private string GetXmlFileContentForCorruptPlayerSpawnPortal()
         {
             return @"<?xml version=""1.0"" encoding=""UTF-8""?>
                     <tileChunk>
@@ -292,6 +294,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 
                         <mapTileProperties>
                             <playerSpawn y=""27""/>
+                            <portal x=""15""/>
 
                             <collisions>
                                 <collision startX=""0"" startY=""26"" width=""40"" height=""1""/>

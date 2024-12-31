@@ -15,6 +15,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
+        public PortalProperties PortalProperties
+        {
+            get;
+        }
+
         public List<Tile> TerrainTiles
         {
             get;
@@ -45,10 +50,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
-        public MapChunkProperties(string id, PlayerSpawn playerSpawnPoint)
+        private MapChunkProperties(string id, PlayerSpawn playerSpawnPoint, PortalProperties portalProperties)
         {
             Id = id;
             PlayerSpawnPoint = playerSpawnPoint;
+            PortalProperties = portalProperties;
             
             TerrainTiles = new List<Tile>();
             GroundTiles = new List<Tile>();
@@ -67,6 +73,36 @@ namespace Org.Ethasia.Fundetected.Interactors
             result.Append("player spawn point is set " + PlayerSpawnPoint.IsSet + " X: " + PlayerSpawnPoint.X + ", Y: " + PlayerSpawnPoint.Y);
 
             return result.ToString();
+        }
+
+        public class Builder
+        {
+            private string id;
+            private PlayerSpawn playerSpawnPoint;
+            private PortalProperties portalProperties;
+
+            public Builder SetId(string value)
+            {
+                id = value;
+                return this;
+            }
+
+            public Builder SetPlayerSpawnPoint(PlayerSpawn value)
+            {
+                playerSpawnPoint = value;
+                return this;    
+            }
+
+            public Builder SetPortalProperties(PortalProperties value)
+            {
+                portalProperties = value;
+                return this;
+            }            
+
+            public MapChunkProperties Build()
+            {
+                return new MapChunkProperties(id, playerSpawnPoint, portalProperties);
+            }
         }
     }
 }

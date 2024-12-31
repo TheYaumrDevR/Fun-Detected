@@ -67,7 +67,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Chunk chunk11 = new Chunk(0, 0);
             Chunk chunk12 = new Chunk(1, 0); 
 
-            MapChunkProperties chunkProperties2 = new MapChunkProperties("EarthGrassValley", new PlayerSpawn(15, 46));
+            MapChunkProperties chunkProperties2 = new MapChunkProperties.Builder()
+                .SetId("EarthGrassValley")
+                .SetPlayerSpawnPoint(new PlayerSpawn(15, 46))
+                .Build(); 
 
             chunk2.Spawn = true;
             chunk2.PropertiesOfPossibleChunks.Add(chunkProperties2);
