@@ -12,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             ScreenDimensionProperties screenDimensionProperties = CalculateInitialScreenDimensionProperties(mapDefinition.Chunks);
             List<Collision> absolutePositionCollisions = new List<Collision>();
             List<Spawner> absolutePositionSpawners = new List<Spawner>();
+            List<MapPortalProperties> absolutePositionPortals = new List<MapPortalProperties>();
             Position playerSpawnPosition = null;
 
             foreach (Chunk chunk in mapDefinition.Chunks)
@@ -22,6 +23,13 @@ namespace Org.Ethasia.Fundetected.Interactors
                 if (null == playerSpawnPosition)
                 {
                     playerSpawnPosition = DeterminePlayerSpawnPosition(chunk);
+                }
+
+                MapPortalProperties? mapPortalProperties = ConvertPortalPosition(chunk);
+
+                if (null != mapPortalProperties)
+                {
+                    absolutePositionPortals.Add(mapPortalProperties.Value);
                 }
             }
 
@@ -36,7 +44,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             result.AddAllCollisions(absolutePositionCollisions);
             result.AddAllSpawners(absolutePositionSpawners);   
-            result.SpawnableMonsters.AddRange(mapDefinition.SpawnableMonsters);     
+            result.SpawnableMonsters.AddRange(mapDefinition.SpawnableMonsters);  
+            result.Portals.AddRange(absolutePositionPortals);   
 
             return result;
         }
@@ -128,6 +137,27 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             return null;
         }
+
+        private static MapPortalProperties? ConvertPortalPosition(Chunk chunk)
+        {
+            if (chunk.PropertiesOfPossibleChunks.Count > 0)
+            {
+                MapChunkProperties mapChunkProperties = chunk.PropertiesOfPossibleChunks[0];
+
+                if (mapChunkProperties.PortalProperties.AreSet)
+                {
+                    int amountOfLogicalTilesPerChunkEdge = Area.LOGICAL_TILES_PER_VISUAL_TILE_EDGE * Area.VISUAL_TILES_PER_CHUNK_EDGE;
+
+                    Position portalPosition = new Position(mapChunkProperties.PortalProperties.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.PortalProperties.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
+                    int portalWidth = mapChunkProperties.PortalProperties.Width;
+                    int portalHeight = mapChunkProperties.PortalProperties.Height;
+
+                    return new MapPortalProperties(portalPosition, portalWidth, portalHeight);
+                }
+            }
+
+            return null;
+        }        
 
         private struct ScreenDimensionProperties
         {

@@ -169,7 +169,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                         </tileMaps>
 
                         <mapTileProperties>
-                            <portal x=""74"" y=""77""/>
+                            <portal x=""74"" y=""77"" width=""100"" height=""150""/>
 
                             <collisions>
                                 <collision startX=""0"" startY=""56"" width=""20"" height=""1""/>

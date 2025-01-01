@@ -154,13 +154,33 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     {
                         if (int.TryParse(yText, out int y))
                         {
-                            return new PortalProperties(x, y);
+                            PortalProperties result = new PortalProperties(x, y);
+
+                            result.Width = TryParseIntAttribute(portalElement, "width");
+                            result.Height = TryParseIntAttribute(portalElement, "height");
+
+                            return result;
                         }
                     }
                 }
             }
 
             return PortalProperties.CreateUnset();
+        }
+
+        private int TryParseIntAttribute(XmlElement xmlElement, string attributeName)
+        {
+            if (xmlElement.HasAttribute(attributeName))
+            {
+                string resultText = xmlElement.GetAttribute(attributeName);
+
+                if (int.TryParse(resultText, out int result))
+                {
+                    return result;
+                }
+            } 
+
+            return 0;           
         }
 
         private PlayerSpawn CreatePlayerSpawnPropertiesFromXmlIfPresent(XmlElement tilePropertiesParent)

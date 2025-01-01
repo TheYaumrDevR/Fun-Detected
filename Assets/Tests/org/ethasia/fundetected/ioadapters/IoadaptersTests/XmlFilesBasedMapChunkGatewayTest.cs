@@ -56,6 +56,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(result.PortalProperties.AreSet, Is.True);
             Assert.That(result.PortalProperties.X, Is.EqualTo(74));
             Assert.That(result.PortalProperties.Y, Is.EqualTo(77));
+            Assert.That(result.PortalProperties.Width, Is.EqualTo(100));
+            Assert.That(result.PortalProperties.Height, Is.EqualTo(150));
         }
 
         [Test]

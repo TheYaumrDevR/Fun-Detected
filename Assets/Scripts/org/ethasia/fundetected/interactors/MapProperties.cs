@@ -47,6 +47,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public List<MapPortalProperties> Portals
+        {
+            get;
+        }
+
         public List<Spawner> Spawners
         {
             get;
@@ -66,6 +71,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             LowestScreenY = 0;
             Collisions = new List<Collision>();
             PlayerSpawnPosition = null;
+            Portals = new List<MapPortalProperties>();
             Spawners = new List<Spawner>();
             SpawnableMonsters = new List<SpawnableMonster>();
         }

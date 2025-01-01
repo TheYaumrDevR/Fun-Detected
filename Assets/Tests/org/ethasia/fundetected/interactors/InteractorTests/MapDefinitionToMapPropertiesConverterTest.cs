@@ -50,6 +50,25 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.PlayerSpawnPosition.Y, Is.EqualTo(-114));                     
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsPortals()
+        {
+            MapDefinition mapDefinition = new MapDefinition(9);
+            CreateTestChunks(mapDefinition);
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);   
+
+            Assert.That(result.Portals.Count, Is.EqualTo(2));
+            Assert.That(result.Portals[0].Position.X, Is.EqualTo(-144));
+            Assert.That(result.Portals[0].Position.Y, Is.EqualTo(-88));
+            Assert.That(result.Portals[0].Width, Is.EqualTo(75));
+            Assert.That(result.Portals[0].Height, Is.EqualTo(120));  
+            Assert.That(result.Portals[1].Position.X, Is.EqualTo(-35));
+            Assert.That(result.Portals[1].Position.Y, Is.EqualTo(-100));
+            Assert.That(result.Portals[1].Width, Is.EqualTo(100));
+            Assert.That(result.Portals[1].Height, Is.EqualTo(150));                     
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk1 = new Chunk(-2, -2);
@@ -67,13 +86,30 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Chunk chunk11 = new Chunk(0, 0);
             Chunk chunk12 = new Chunk(1, 0); 
 
+            PortalProperties portalPropertiesChunk1 = new PortalProperties(16, 72);
+            portalPropertiesChunk1.Width = 75;
+            portalPropertiesChunk1.Height = 120;            
+
+            MapChunkProperties chunkProperties1 = new MapChunkProperties.Builder()
+                .SetId("EarthGrassRisingHill")
+                .SetPlayerSpawnPoint(new PlayerSpawn(60, 70))
+                .SetPortalProperties(portalPropertiesChunk1)
+                .Build(); 
+
+            PortalProperties portalPropertiesChunk2 = new PortalProperties(45, 60);
+            portalPropertiesChunk2.Width = 100;
+            portalPropertiesChunk2.Height = 150;
+
             MapChunkProperties chunkProperties2 = new MapChunkProperties.Builder()
                 .SetId("EarthGrassValley")
                 .SetPlayerSpawnPoint(new PlayerSpawn(15, 46))
+                .SetPortalProperties(portalPropertiesChunk2)
                 .Build(); 
 
             chunk2.Spawn = true;
             chunk2.PropertiesOfPossibleChunks.Add(chunkProperties2);
+
+            chunk1.PropertiesOfPossibleChunks.Add(chunkProperties1);
 
             mapDefinition.Chunks.Add(chunk1);
             mapDefinition.Chunks.Add(chunk2);
