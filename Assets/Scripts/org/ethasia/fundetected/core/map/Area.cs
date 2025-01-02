@@ -23,8 +23,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private Position playerSpawnPosition;
 
-        private List<MapPortal> portals;
-
         private EnemySpawner enemySpawner;
 
         private Position playerPosition;
@@ -39,7 +37,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             get;
             private set;
-        }        
+        }    
+
+        public List<MapPortal> Portals
+        {
+            get;
+            private set;
+        }    
 
         public int GetPlayerPositionX()
         {
@@ -56,7 +60,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             this.areaDimensions = areaDimensions;
 
             Enemies = new List<Enemy>();
-            portals = new List<MapPortal>();
+            Portals = new List<MapPortal>();
             this.isCollisionTile = isCollisionTile; 
             playerPosition = new Position(0, 0);
             enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
@@ -83,16 +87,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             return isCollisionTile[position];
         }     
-
-        public void AddPortal(MapPortal portal)
-        {
-            portals.Add(portal);
-        }
-
-        public void ClearPortals()
-        {
-            portals.Clear();
-        }
 
         public void SpawnPlayer(PlayerCharacter playerCharacter)
         {

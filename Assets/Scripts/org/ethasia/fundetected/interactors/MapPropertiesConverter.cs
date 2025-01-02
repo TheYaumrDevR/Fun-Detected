@@ -17,7 +17,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             ConvertCollisions(mapProperties, areaBuilder);
             ConvertAndSetEnemySpawner(mapProperties, areaBuilder);
 
-            return areaBuilder.Build();
+            Area result = areaBuilder.Build();
+
+            ConvertAllMapPortalPropertiesToMapPortals(result, mapProperties);
+
+            return result;
         } 
 
         private static void ConvertCollisions(MapProperties mapProperties, Area.Builder areaBuilder)
@@ -80,6 +84,22 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return result;
-        }        
+        } 
+    
+        private static void ConvertAllMapPortalPropertiesToMapPortals(Area resultArea, MapProperties mapProperties)
+        {
+            foreach (MapPortalProperties portalProperties in mapProperties.Portals)
+            {
+                resultArea.Portals.Add(ConvertMapPortalPropertiesToMapPortal(portalProperties));
+            }
+        }
+
+        private static MapPortal ConvertMapPortalPropertiesToMapPortal(MapPortalProperties toConvert)
+        {
+            return new MapPortal.Builder().SetPosition(toConvert.Position)
+                .SetWidth(toConvert.Width)
+                .SetHeight(toConvert.Height)
+                .Build();
+        }       
     }
 }
