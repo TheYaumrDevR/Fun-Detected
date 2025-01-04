@@ -62,6 +62,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public override IMapPresenter GetMapPresenterInstance()
         {
             return new MapPresenterMock();
-        }        
+        }      
     }
 }

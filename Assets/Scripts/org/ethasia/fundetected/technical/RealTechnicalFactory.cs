@@ -4,6 +4,8 @@ namespace Org.Ethasia.Fundetected.Technical
 {
     public class RealTechnicalFactory : TechnicalFactory
     {
+        private PortalRendererDelayedInitializationProxy portalRenderer;
+
         public override XmlFiles CreateXmlFiles()
         {
             return new XmlFilesImpl();
@@ -49,6 +51,16 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             return result;
+        }
+
+        public override IPortalRenderer GetPortalRendererInstance()
+        {
+            if (null == portalRenderer)
+            {
+                portalRenderer = new PortalRendererDelayedInitializationProxy();
+            }
+
+            return portalRenderer;
         }
     }
 }

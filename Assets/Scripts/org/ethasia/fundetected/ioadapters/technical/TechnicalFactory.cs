@@ -22,5 +22,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract ISoundPlayer GetSoundPlayerInstance();  
         public abstract IResourceBarRenderer GetResourceBarRendererInstance();
         public abstract ITileMapRenderer GetTileMapRendererInstance();
+        public abstract IPortalRenderer GetPortalRendererInstance();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -9,10 +10,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class MapPresenterImpl : IMapPresenter
     {
         private ITileMapRenderer tileMapRenderer;
+        private IPortalRenderer portalRenderer;
         private Dictionary<string, Action<TileRenderContext>> renderMethodByTileLayerName;
 
         public MapPresenterImpl()
         {
+            portalRenderer = TechnicalFactory.GetInstance().GetPortalRendererInstance();
             tileMapRenderer = TechnicalFactory.GetInstance().GetTileMapRendererInstance();
             renderMethodByTileLayerName = new Dictionary<string, Action<TileRenderContext>>();
 
@@ -46,6 +49,36 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     }
                 }
             }
+        }
+
+        public void PresentPortal(Position position, int width, int height)
+        {
+            float engineWidth = width * 0.1f;
+            float engineHeight = height * 0.1f;
+
+            float engineX = position.X * 0.1f;
+            float engineY = position.Y * 0.1f;
+
+            if (0 == width % 2)
+            {
+                engineX += 0.1f;
+            }
+            else
+            {
+                engineX += 0.05f;
+            }
+
+            if (0 == height % 2)
+            {
+                engineY += 0.1f;
+            }
+            else
+            {
+                engineY += 0.05f;
+            }
+
+            SingleColorRectangularRenderShapeProxy portalRenderShape = new SingleColorRectangularRenderShapeProxy(engineX, engineY, engineWidth, engineHeight);
+            portalRenderer.RenderPortal(portalRenderShape);
         }
     }
 }

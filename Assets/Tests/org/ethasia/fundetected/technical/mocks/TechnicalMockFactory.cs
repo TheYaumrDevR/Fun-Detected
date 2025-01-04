@@ -43,5 +43,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return new TileMapRendererMock();
         }
+
+        public override IPortalRenderer GetPortalRendererInstance()
+        {
+            return null;
+        }
     }
 }

@@ -99,6 +99,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             Area.ActiveArea = map;
 
+            ShowPortals(map);
             ShowEnemies(map);
         }
 
@@ -145,7 +146,15 @@ namespace Org.Ethasia.Fundetected.Interactors
             result.AddAbilityByName(abilityName, enemyAbility);
 
             return result;
-        }      
+        }   
+
+        private void ShowPortals(Area map)
+        {
+            foreach (MapPortal portal in map.Portals)
+            {
+                mapPresenter.PresentPortal(portal.Position, portal.Width, portal.Height);
+            }
+        }   
 
         private void ShowEnemies(Area map)
         {
