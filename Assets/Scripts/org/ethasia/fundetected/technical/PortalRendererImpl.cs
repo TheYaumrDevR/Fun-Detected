@@ -43,7 +43,7 @@ namespace Org.Ethasia.Fundetected.Technical
             quad.GetComponent<Renderer>().receiveShadows = false;
 
             BoxCollider collider = quad.AddComponent<BoxCollider>();
-            collider.size = new Vector3(renderData.Width, renderData.Height, 0.1f);
+            collider.size = new Vector3(1.0f, 1.0f, 1.0f);
 
             quad.AddComponent<PortalHoverEffect>();
 
