@@ -33,12 +33,19 @@ namespace Org.Ethasia.Fundetected.Technical
 
             quad.transform.position = position;
             quad.transform.localScale = new Vector3(renderData.Width, renderData.Height, 1.0f);
-            
+
             quad.GetComponent<Renderer>().material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
             quad.GetComponent<Renderer>().material.color = Color.white;
 
+            quad.GetComponent<Renderer>().enabled = false;
+
             quad.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             quad.GetComponent<Renderer>().receiveShadows = false;
+
+            BoxCollider collider = quad.AddComponent<BoxCollider>();
+            collider.size = new Vector3(renderData.Width, renderData.Height, 0.1f);
+
+            quad.AddComponent<PortalHoverEffect>();
 
             quad.transform.SetParent(transform);
         }
@@ -49,6 +56,26 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 proxy.OnPortalRendererAwake(this);
             }
-        }        
+        }    
+
+        private class PortalHoverEffect : MonoBehaviour
+        {
+            private Renderer quadRenderer;
+
+            void Start()
+            {
+                quadRenderer = GetComponent<Renderer>();
+            }
+
+            void OnMouseEnter()
+            {
+                quadRenderer.enabled = true;
+            }
+
+            void OnMouseExit()
+            {
+                quadRenderer.enabled = false;
+            }
+        }            
     }
 }
