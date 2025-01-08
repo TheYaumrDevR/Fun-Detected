@@ -28,26 +28,112 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void RenderPortal(SingleColorRectangularRenderShapeProxy renderData)
         {
+            string portalLabel = "Town";
+
+            GameObject quad = CreatePortalQuad(renderData); 
+            SetupOnHoverEffect(quad);
+            AddPortalLabel(quad, portalLabel);
+
+            quad.transform.SetParent(transform);
+        }
+
+        private GameObject CreatePortalQuad(SingleColorRectangularRenderShapeProxy renderData)
+        {
             Vector3 position = new Vector3(renderData.X, renderData.Y, 0.0f);
-            GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            GameObject result = GameObject.CreatePrimitive(PrimitiveType.Quad);
 
-            quad.transform.position = position;
-            quad.transform.localScale = new Vector3(renderData.Width, renderData.Height, 1.0f);
+            result.transform.position = position;
+            result.transform.localScale = new Vector3(renderData.Width, renderData.Height, 1.0f);
 
-            quad.GetComponent<Renderer>().material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
-            quad.GetComponent<Renderer>().material.color = Color.white;
+            result.GetComponent<Renderer>().material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+            result.GetComponent<Renderer>().material.color = Color.white;
 
-            quad.GetComponent<Renderer>().enabled = false;
+            result.GetComponent<Renderer>().enabled = false;
 
-            quad.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            quad.GetComponent<Renderer>().receiveShadows = false;
+            result.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            result.GetComponent<Renderer>().receiveShadows = false;
 
+            return result;
+        }
+
+        private void SetupOnHoverEffect(GameObject quad)
+        {
             BoxCollider collider = quad.AddComponent<BoxCollider>();
             collider.size = new Vector3(1.0f, 1.0f, 1.0f);
 
             quad.AddComponent<PortalHoverEffect>();
+        }
 
-            quad.transform.SetParent(transform);
+        private void AddPortalLabel(GameObject portalQuad, string portalLabel)
+        {
+            GameObject label = new GameObject("PortalLabel");
+            TextMesh textMesh = label.AddComponent<TextMesh>();
+
+            textMesh.text = portalLabel;
+            textMesh.fontSize = 28;
+            textMesh.characterSize = 0.1f;
+            textMesh.color = Color.white;
+
+            textMesh.anchor = TextAnchor.MiddleCenter;
+            textMesh.alignment = TextAlignment.Center;
+
+            // Set the z position value to be in front of the portal quad
+            label.transform.position = portalQuad.transform.position;
+            label.transform.SetParent(portalQuad.transform);
+
+            Renderer textRenderer = textMesh.GetComponent<Renderer>();
+            textRenderer.sortingLayerName = "IngameLabels";
+            textRenderer.sortingOrder = 1;        
+
+            GameObject backGroundQuad = AddPortalLabelBackground(portalQuad, textMesh);
+
+            // Position the background behind the text
+            backGroundQuad.transform.SetParent(label.transform);
+            backGroundQuad.transform.localPosition = new Vector3(0, 0, 0); // Ensure it is behind the text             
+        }
+
+        private GameObject AddPortalLabelBackground(GameObject portalQuad, TextMesh textMesh)
+        {
+            Renderer textRenderer = textMesh.GetComponent<Renderer>();
+            Vector3 textSize = textRenderer.bounds.size;
+
+            GameObject result = new GameObject("BackgroundRectangle");
+
+            SpriteRenderer spriteRenderer = result.AddComponent<SpriteRenderer>();
+
+            int pixelsPerUnit = 100;
+            Texture2D texture = CreateBackgroundRectangleTexture(textSize, pixelsPerUnit);
+
+            Rect rect = new Rect(0, 0, texture.width, texture.height);
+            Vector2 pivot = new Vector2(0.5f, 0.5f);
+            Sprite sprite = Sprite.Create(texture, rect, pivot, pixelsPerUnit);
+            spriteRenderer.sprite = sprite; 
+
+            spriteRenderer.sortingLayerName = "IngameLabels";
+            spriteRenderer.sortingOrder = 0;           
+
+            return result;       
+        }
+
+        private Texture2D CreateBackgroundRectangleTexture(Vector3 textSize, int pixelsPerUnit)
+        {
+            int textureWidth = (int)((textSize.x + 0.1f) * pixelsPerUnit);
+            int textureHeight = (int)(textSize.y * pixelsPerUnit);
+
+            Texture2D result = new Texture2D(textureWidth, textureHeight);
+
+            Color backgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.7f);
+            for (int i = 0; i < textureWidth; i++)
+            {
+                for (int j = 0; j < textureHeight; j++)
+                {
+                    result.SetPixel(i, j, backgroundColor);
+                }
+            }
+
+            result.Apply();
+
+            return result;
         }
 
         private void NotifyProxiesAboutAwake()

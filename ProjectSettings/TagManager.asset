@@ -56,6 +56,9 @@ TagManager:
   - name: ForeGroundTerrain
     uniqueID: 70628353
     locked: 0
+  - name: IngameLabels
+    uniqueID: 1299297639
+    locked: 0
   - name: CombatText
     uniqueID: 1128861993
     locked: 0
