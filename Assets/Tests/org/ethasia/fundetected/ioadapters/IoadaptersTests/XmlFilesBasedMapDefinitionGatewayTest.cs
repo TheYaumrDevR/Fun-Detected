@@ -196,6 +196,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
 
             Assert.That(result.Chunks[0].Spawn, Is.True);         
-        }                  
+        }      
+
+        [Test]
+        public void TestLoadMapDefinitionLoadsPortalToProperly()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+
+            Assert.That(result.Chunks[3].PortalTo.Value.MapId, Is.EqualTo("Town"));             
+            Assert.That(result.Chunks[3].PortalTo.Value.PortalId, Is.EqualTo("westPortal"));                                                               
+        }          
     }
 }

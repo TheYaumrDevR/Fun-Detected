@@ -19,6 +19,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public PortalTo? PortalTo
+        {
+            get;
+            private set;
+        }
+
         public List<MapChunkProperties> PropertiesOfPossibleChunks
         {
             get;
@@ -31,9 +37,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             Y = y;
             
             PropertiesOfPossibleChunks = new List<MapChunkProperties>();
+            PortalTo = null;
 
             Spawn = false;
-        }
+        }    
 
         public override string ToString()
         {
@@ -53,6 +60,55 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return result.ToString();
+        }
+
+        public class Builder
+        {
+            private bool spawn;
+            private int x;
+            private int y;
+            private PortalTo? portalTo;
+            private List<MapChunkProperties> propertiesOfPossibleChunks = new List<MapChunkProperties>();
+
+            public Builder SetSpawn(bool value)
+            {
+                spawn = value;
+                return this;
+            }
+
+            public Builder SetX(int value)
+            {
+                x = value;
+                return this;
+            }
+
+            public Builder SetY(int value)
+            {
+                y = value;
+                return this;
+            }
+
+            public Builder SetPortalTo(PortalTo? value)
+            {
+                portalTo = value;
+                return this;
+            }
+
+            public Builder SetPropertiesOfPossibleChunks(List<MapChunkProperties> value)
+            {
+                propertiesOfPossibleChunks = value;
+                return this;
+            }
+
+            public Chunk Build()
+            {
+                Chunk result = new Chunk(x, y);
+                result.Spawn = spawn;
+                result.PortalTo = portalTo;
+                result.PropertiesOfPossibleChunks = propertiesOfPossibleChunks;
+
+                return result;
+            }
         }
     }
 }

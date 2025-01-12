@@ -59,21 +59,22 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     string spawnText = "false";                 
 
                     Chunk chunk;
+                    Chunk.Builder chunkBuilder = new Chunk.Builder();
 
                     if (int.TryParse(xText, out int x))
                     {
                         if (int.TryParse(yText, out int y))
                         {
-                            chunk = new Chunk(x, y);
+                            chunkBuilder.SetX(x).SetY(y);
                         }
                         else
                         {
-                            chunk = new Chunk(x, 0);
+                            chunkBuilder.SetX(x).SetY(0);
                         }
                     }         
                     else
                     {
-                        chunk = new Chunk(0, 0);
+                        chunkBuilder.SetX(0).SetY(0);
                     }       
 
                     if (chunkDefinition.HasAttribute("spawn"))
@@ -82,15 +83,37 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
                         if (bool.TryParse(spawnText, out bool spawnValue))
                         {
-                            chunk.Spawn = spawnValue;  
+                            chunkBuilder.SetSpawn(spawnValue);
                         }
                     }   
 
+                    SetupPortalToProperties(chunkDefinition, chunkBuilder);
+
+                    chunk = chunkBuilder.Build();
                     SetupChunkProperties(chunkDefinition, chunk);
 
                     result.Chunks.Add(chunk);
                 }                
             }            
+        }
+
+        private void SetupPortalToProperties(XmlElement chunkDefinition, Chunk.Builder chunkBuilder)
+        {
+            XmlElement portalToElement = chunkDefinition["portalTo"];
+
+            if (null != portalToElement)
+            {
+                XmlElement portalToMapElement = portalToElement["map"];
+                XmlElement portalToPortalElement = portalToElement["portal"];
+
+                if (null != portalToMapElement && null != portalToPortalElement)
+                {
+                    string portalToMapName = portalToMapElement.GetAttribute("id");
+                    string portalToPortalId = portalToPortalElement.GetAttribute("id");
+
+                    chunkBuilder.SetPortalTo(new PortalTo(portalToMapName, portalToPortalId));
+                }
+            }
         }
 
         private void SetupChunkProperties(XmlElement chunkDefinition, Chunk chunk)

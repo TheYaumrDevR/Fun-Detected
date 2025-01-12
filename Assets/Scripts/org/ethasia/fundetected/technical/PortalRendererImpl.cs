@@ -28,11 +28,9 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void RenderPortal(SingleColorRectangularRenderShapeProxy renderData)
         {
-            string portalLabel = "Town";
-
             GameObject quad = CreatePortalQuad(renderData); 
             SetupOnHoverEffect(quad);
-            AddPortalLabel(quad, portalLabel);
+            AddPortalLabel(quad, renderData.Label);
 
             quad.transform.SetParent(transform);
         }

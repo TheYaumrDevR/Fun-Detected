@@ -20,11 +20,25 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public string DestinationMapId
+        {
+            get;
+            private set;
+        }
+
+        public string DestinationPortalId
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private Position position;
             private int width;
             private int height;
+            private string destinationMapId;
+            private string destinationPortalId;
 
             public Builder SetPosition(Position value)
             {
@@ -44,6 +58,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }
 
+            public Builder SetDestinationMapId(string value)
+            {
+                destinationMapId = value;
+                return this;
+            }   
+
+            public Builder SetDestinationPortalId(string value)
+            {
+                destinationPortalId = value;
+                return this;
+            }
+
             public MapPortal Build()
             {
                 MapPortal result = new MapPortal();
@@ -51,6 +77,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.Position = position;
                 result.Width = width;
                 result.Height = height;
+                result.DestinationMapId = destinationMapId;
+                result.DestinationPortalId = destinationPortalId;
 
                 return result;
             }

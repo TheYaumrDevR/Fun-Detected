@@ -66,8 +66,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Position portalPosition1 = new Position(10, 10);
             Position portalPosition2 = new Position(-120, -300);
 
-            MapPortalProperties portal1 = new MapPortalProperties(portalPosition1, 100, 150);
-            MapPortalProperties portal2 = new MapPortalProperties(portalPosition2, 50, 50);    
+            MapPortalProperties portal1 = new MapPortalProperties.Builder()
+                .SetPosition(portalPosition1)
+                .SetWidth(100)
+                .SetHeight(150)
+                .SetDestinationMapId("map1")
+                .SetDestinationPortalId("portal1")
+                .Build();
+
+            MapPortalProperties portal2 = new MapPortalProperties.Builder()
+                .SetPosition(portalPosition2)
+                .SetWidth(50)
+                .SetHeight(50)
+                .SetDestinationMapId("map2")
+                .SetDestinationPortalId("portal2")
+                .Build();
 
             mapProperties.Portals.Add(portal1);    
             mapProperties.Portals.Add(portal2);
@@ -80,11 +93,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.Portals[0].Position.Y, Is.EqualTo(10)); 
             Assert.That(result.Portals[0].Width, Is.EqualTo(100));  
             Assert.That(result.Portals[0].Height, Is.EqualTo(150));   
+            Assert.That(result.Portals[0].DestinationMapId, Is.EqualTo("map1"));
+            Assert.That(result.Portals[0].DestinationPortalId, Is.EqualTo("portal1"));
 
             Assert.That(result.Portals[1].Position.X, Is.EqualTo(-120));  
             Assert.That(result.Portals[1].Position.Y, Is.EqualTo(-300)); 
             Assert.That(result.Portals[1].Width, Is.EqualTo(50));  
-            Assert.That(result.Portals[1].Height, Is.EqualTo(50));               
+            Assert.That(result.Portals[1].Height, Is.EqualTo(50));         
+            Assert.That(result.Portals[1].DestinationMapId, Is.EqualTo("map2"));
+            Assert.That(result.Portals[1].DestinationPortalId, Is.EqualTo("portal2"));      
         }
     }
 }

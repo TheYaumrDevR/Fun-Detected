@@ -151,13 +151,41 @@ namespace Org.Ethasia.Fundetected.Interactors
                     Position portalPosition = new Position(mapChunkProperties.PortalProperties.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.PortalProperties.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
                     int portalWidth = mapChunkProperties.PortalProperties.Width;
                     int portalHeight = mapChunkProperties.PortalProperties.Height;
+                    string destinationMapId = GetDestinationMapId(chunk);
+                    string destinationPortalId = GetDestinationPortalId(chunk);
 
-                    return new MapPortalProperties(portalPosition, portalWidth, portalHeight);
+                    return new MapPortalProperties.Builder()
+                        .SetPosition(portalPosition)
+                        .SetWidth(portalWidth)
+                        .SetHeight(portalHeight)
+                        .SetDestinationMapId(destinationMapId)
+                        .SetDestinationPortalId(destinationPortalId)
+                        .Build();
                 }
             }
 
             return null;
-        }        
+        }   
+
+        private static string GetDestinationMapId(Chunk chunk)
+        {
+            if (null != chunk.PortalTo)
+            {
+                return chunk.PortalTo.Value.MapId;
+            }
+
+            return "";
+        }
+
+        private static string GetDestinationPortalId(Chunk chunk)
+        {
+            if (null != chunk.PortalTo)
+            {
+                return chunk.PortalTo.Value.PortalId;
+            }
+
+            return "";
+        }
 
         private struct ScreenDimensionProperties
         {

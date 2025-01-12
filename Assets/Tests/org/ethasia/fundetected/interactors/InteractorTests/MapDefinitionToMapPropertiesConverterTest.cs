@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Org.Ethasia.Fundetected.Interactors.Tests
 {
@@ -69,9 +70,20 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.Portals[1].Height, Is.EqualTo(150));                     
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsPortalIds()
+        {
+            MapDefinition mapDefinition = new MapDefinition(9);
+            CreateTestChunks(mapDefinition);
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);    
+
+            Assert.That(result.Portals[0].DestinationMapId, Is.EqualTo("Town"));
+            Assert.That(result.Portals[0].DestinationPortalId, Is.EqualTo("westPortal"));         
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
-            Chunk chunk1 = new Chunk(-2, -2);
             Chunk chunk2 = new Chunk(-1, -2);
             Chunk chunk3 = new Chunk(0, -2);
             Chunk chunk4 = new Chunk(1, -2);
@@ -109,7 +121,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             chunk2.Spawn = true;
             chunk2.PropertiesOfPossibleChunks.Add(chunkProperties2);
 
-            chunk1.PropertiesOfPossibleChunks.Add(chunkProperties1);
+            List<MapChunkProperties> propertiesOfPossibleChunks1 = new List<MapChunkProperties>();
+            propertiesOfPossibleChunks1.Add(chunkProperties1);
+
+            Chunk chunk1 = new Chunk.Builder()
+                .SetX(-2)
+                .SetY(-2)
+                .SetPropertiesOfPossibleChunks(propertiesOfPossibleChunks1)
+                .SetPortalTo(new PortalTo("Town", "westPortal"))
+                .Build();
 
             mapDefinition.Chunks.Add(chunk1);
             mapDefinition.Chunks.Add(chunk2);

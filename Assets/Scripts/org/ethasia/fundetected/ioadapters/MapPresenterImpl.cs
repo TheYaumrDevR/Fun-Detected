@@ -51,15 +51,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
         }
 
-        public void PresentPortal(Position position, int width, int height)
+        public void PresentPortal(MapPortal portal)
         {
-            float engineWidth = width * 0.1f;
-            float engineHeight = height * 0.1f;
+            float engineWidth = portal.Width * 0.1f;
+            float engineHeight = portal.Height * 0.1f;
 
-            float engineX = position.X * 0.1f;
-            float engineY = position.Y * 0.1f;
+            float engineX = portal.Position.X * 0.1f;
+            float engineY = portal.Position.Y * 0.1f;
 
-            if (0 == width % 2)
+            if (0 == portal.Width % 2)
             {
                 engineX += 0.1f;
             }
@@ -68,7 +68,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 engineX += 0.05f;
             }
 
-            if (0 == height % 2)
+            if (0 == portal.Height % 2)
             {
                 engineY += 0.1f;
             }
@@ -77,7 +77,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 engineY += 0.05f;
             }
 
-            SingleColorRectangularRenderShapeProxy portalRenderShape = new SingleColorRectangularRenderShapeProxy(engineX, engineY, engineWidth, engineHeight);
+            SingleColorRectangularRenderShapeProxy portalRenderShape = new SingleColorRectangularRenderShapeProxy.Builder()
+                .SetX(engineX)
+                .SetY(engineY)
+                .SetWidth(engineWidth)
+                .SetHeight(engineHeight)
+                .SetLabel(portal.DestinationMapId)
+                .Build();
+
             portalRenderer.RenderPortal(portalRenderShape);
         }
     }

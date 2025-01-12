@@ -152,7 +152,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             foreach (MapPortal portal in map.Portals)
             {
-                mapPresenter.PresentPortal(portal.Position, portal.Width, portal.Height);
+                mapPresenter.PresentPortal(portal);
             }
         }   
 

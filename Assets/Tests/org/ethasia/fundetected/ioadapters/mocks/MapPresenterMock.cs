@@ -12,7 +12,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             
         }
 
-        public void PresentPortal(Position position, int width, int height)
+        public void PresentPortal(MapPortal portal)
         {
             
         }

@@ -11,7 +11,7 @@
 
     <mapTileProperties>
         <playerSpawn x="15" y="27"/>
-        <portal x="5" y="27"/>
+        <portal x="5" y="27" width="20" height="20"/>
 
         <collisions>
             <collision startX="0" startY="26" width="80" height="1"/>

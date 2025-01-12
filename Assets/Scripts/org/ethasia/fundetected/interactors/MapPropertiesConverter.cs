@@ -99,6 +99,8 @@ namespace Org.Ethasia.Fundetected.Interactors
             return new MapPortal.Builder().SetPosition(toConvert.Position)
                 .SetWidth(toConvert.Width)
                 .SetHeight(toConvert.Height)
+                .SetDestinationMapId(toConvert.DestinationMapId)
+                .SetDestinationPortalId(toConvert.DestinationPortalId)
                 .Build();
         }       
     }
