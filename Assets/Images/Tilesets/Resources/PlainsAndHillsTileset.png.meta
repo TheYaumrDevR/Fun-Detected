@@ -119,6 +119,90 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 312
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84e4227654215dd4e9bd27142609d2ce
+      internalID: 1072283849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesAboveTopLeft
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 312
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90903e54c9ac4664d813f0dd2ca4b71b
+      internalID: -1901425222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesAboveTopRight
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 312
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3126a697959fae740bb5feb2b2c5a45e
+      internalID: -1448415611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesTopOuterLeft
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 260
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b90a55bb577de25478dbdc4e08ddd389
+      internalID: 342208865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: PlainsAndHillsTileset_TreeLeavesTopLeft
       rect:
         serializedVersion: 2
@@ -133,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 723fee1767be5954cb00d7adb7504322
-      internalID: 257599082
+      spriteID: b02cc58f18b69994aab6edfd3197123d
+      internalID: -1808185857
       vertices: []
       indices: 
       edges: []
@@ -154,8 +238,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96442c5e72da6b64eb0011e44db970bc
-      internalID: 1543758768
+      spriteID: 633d80176dd2fd34286be89bc07bb5b4
+      internalID: -75436978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesTopOuterRight
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 260
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212763b6c9f65ae4d9c3802f027c0865
+      internalID: -40465753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 208
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03717679bfef7044b46c60bd8076a2c
+      internalID: 1018643343
       vertices: []
       indices: 
       edges: []
@@ -175,8 +301,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b175268046b44d499c034087c9d1604
-      internalID: -1119823475
+      spriteID: d60a445d5251f3d4282aaf5736be4d16
+      internalID: -1911538747
       vertices: []
       indices: 
       edges: []
@@ -196,8 +322,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df9415d5034263b4ba93a562563824d4
-      internalID: -108819965
+      spriteID: 8f3058f811232d446b3b4acae69d266c
+      internalID: -1417030391
       vertices: []
       indices: 
       edges: []
@@ -217,8 +343,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c2025860a63a384a96508dfcd541687
-      internalID: -126097385
+      spriteID: 258b58692087d4a43831c4dd91c03831
+      internalID: -1110053482
       vertices: []
       indices: 
       edges: []
@@ -238,8 +364,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82089a9d1a223da439dba40e28296ed8
-      internalID: 112050252
+      spriteID: 00cb0d301820cf6419a3abd8dd76da33
+      internalID: -436436431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeLeavesBottomLeftBorder
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 156
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25b7e6269ec2ca41a747592523980a8
+      internalID: -561262923
       vertices: []
       indices: 
       edges: []
@@ -259,8 +406,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63fb836ff5bd35843bc55b9c8e955c4c
-      internalID: -1152114898
+      spriteID: 69ec3046be8f42f4686183e8eabb1f25
+      internalID: 1979780005
       vertices: []
       indices: 
       edges: []
@@ -280,8 +427,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6357de72284148249a811275976213a0
-      internalID: 1606211224
+      spriteID: d74cdc69c50661e429b60b1d3939d05d
+      internalID: 1943451812
       vertices: []
       indices: 
       edges: []
@@ -301,8 +448,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f476fe1573ad8c4fb9b094ecbcaa4f4
-      internalID: 1389309919
+      spriteID: 013a0560268a24a42bc8b909ff8a2877
+      internalID: 423640231
       vertices: []
       indices: 
       edges: []
@@ -322,8 +469,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e244f50ddff4584a8adad15db8da3cb
-      internalID: 437041157
+      spriteID: 6bee822a690ab6b4fa89fd2971dec111
+      internalID: -1146456724
       vertices: []
       indices: 
       edges: []
@@ -343,8 +490,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2941532c7c4a0a4b8139688f1f49d26
-      internalID: -1817458422
+      spriteID: 61b219473148ef44aaad8c9da160a103
+      internalID: -2069858243
       vertices: []
       indices: 
       edges: []
@@ -364,8 +511,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37526a2487a48554ba9ee2cbf3553742
-      internalID: 1358010007
+      spriteID: 1b3091fef0a99db4a8b22641ba09c7df
+      internalID: -198959125
       vertices: []
       indices: 
       edges: []
@@ -385,8 +532,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edca736530bbfc14abac115cf0bdeea7
-      internalID: -116683024
+      spriteID: cd22b1dc57af9c143aa7007541e16c46
+      internalID: 189567098
       vertices: []
       indices: 
       edges: []
@@ -406,8 +553,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36f02efa539dcf24b9983828e30e0fd7
-      internalID: 1896443107
+      spriteID: 9eeb117180ceee843abf58021b9d84bf
+      internalID: 1772270435
       vertices: []
       indices: 
       edges: []
@@ -427,8 +574,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d831a7f08ec6c2a4fbc508f3b17bd2a0
-      internalID: 1362225873
+      spriteID: 96deb8327817da54a886f221b0235fb2
+      internalID: -1091260629
       vertices: []
       indices: 
       edges: []
@@ -448,8 +595,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cde33cd647652da4a8c3060bea71a98b
-      internalID: 1188599780
+      spriteID: 5bf1c9b37bccca04e8a0617c90356535
+      internalID: -1271051063
       vertices: []
       indices: 
       edges: []
@@ -469,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc5f38e499b2d5c4fa991794b393179a
-      internalID: -1297360158
+      spriteID: 5ee0304449816da458828150cd55b118
+      internalID: 1461693560
       vertices: []
       indices: 
       edges: []
@@ -490,8 +637,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afb6b7947269caa48a834af0fa53e362
-      internalID: -2057883574
+      spriteID: 26ccce3b78fb80b43886d7197be1e8f0
+      internalID: -1537908187
       vertices: []
       indices: 
       edges: []
@@ -511,8 +658,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47f1389e38c99a44b8ff585a83223626
-      internalID: -1658199480
+      spriteID: 03d13ba1b9e84164ba0fdf953c6a6436
+      internalID: -2134002121
       vertices: []
       indices: 
       edges: []
@@ -532,8 +679,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9cc56c9bc188914eb33e6744c336955
-      internalID: -1722843958
+      spriteID: 474ec6a34dde779488787c7560f46f59
+      internalID: -1129308002
       vertices: []
       indices: 
       edges: []
@@ -553,8 +700,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67edecfde94641e4c8a44c66ae5e3637
-      internalID: -1852305258
+      spriteID: e7848a38d10a7664ea48e92c89647c80
+      internalID: 1591298501
       vertices: []
       indices: 
       edges: []
@@ -570,27 +717,34 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlainsAndHillsTileset_TreeLeavesMiddleLeft: -108819965
-      PlainsAndHillsTileset_TreeLeavesMiddleOuterRight: 112050252
-      PlainsAndHillsTileset_TreeRootRight: -1852305258
-      PlainsAndHillsTileset_TreeLeavesLowerRight: 1389309919
-      PlainsAndHillsTileset_TreeLeavesTopRight: 1543758768
-      PlainsAndHillsTileset_TreeLeavesLowerLeft: 1606211224
-      PlainsAndHillsTileset_TreeRootLeft: -1722843958
-      PlainsAndHillsTileset_Earth: -1658199480
-      PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft: -1119823475
-      PlainsAndHillsTileset_TreeLeavesLowerOuterLeft: -1152114898
-      PlainsAndHillsTileset_TreeTopTrunkOuterRight: 1362225873
-      PlainsAndHillsTileset_TreeTrunkRight: -2057883574
-      PlainsAndHillsTileset_TreeLeavesLowerOuterRight: 437041157
-      PlainsAndHillsTileset_Pavement: -1817458422
-      PlainsAndHillsTileset_TreeTopTrunkRight: 1896443107
-      PlainsAndHillsTileset_TreeTopTrunkOuterLeft: 1358010007
-      PlainsAndHillsTileset_TreeLeavesTopLeft: 257599082
-      PlainsAndHillsTileset_Grass: 1188599780
-      PlainsAndHillsTileset_TreeTrunkLeft: -1297360158
-      PlainsAndHillsTileset_TreeLeavesMiddleRight: -126097385
-      PlainsAndHillsTileset_TreeTopTrunkLeft: -116683024
+      PlainsAndHillsTileset_TreeLeavesTopOuterLeft: 342208865
+      PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft: 1072283849
+      PlainsAndHillsTileset_TreeLeavesMiddleLeft: -1417030391
+      PlainsAndHillsTileset_TreeLeavesMiddleOuterRight: -436436431
+      PlainsAndHillsTileset_TreeRootRight: 1591298501
+      PlainsAndHillsTileset_TreeLeavesAboveTopLeft: -1901425222
+      PlainsAndHillsTileset_TreeLeavesLowerRight: 423640231
+      PlainsAndHillsTileset_TreeLeavesTopRight: -75436978
+      PlainsAndHillsTileset_TreeLeavesLowerLeft: 1943451812
+      PlainsAndHillsTileset_TreeRootLeft: -1129308002
+      PlainsAndHillsTileset_Earth: -2134002121
+      PlainsAndHillsTileset_TreeLeavesTopOuterRight: -40465753
+      PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft: -1911538747
+      PlainsAndHillsTileset_TreeLeavesBottomLeftBorder: -561262923
+      PlainsAndHillsTileset_TreeLeavesLowerOuterLeft: 1979780005
+      PlainsAndHillsTileset_TreeTopTrunkOuterRight: -1091260629
+      PlainsAndHillsTileset_TreeTrunkRight: -1537908187
+      PlainsAndHillsTileset_TreeLeavesLowerOuterRight: -1146456724
+      PlainsAndHillsTileset_Pavement: -2069858243
+      PlainsAndHillsTileset_TreeTopTrunkRight: 1772270435
+      PlainsAndHillsTileset_TreeTopTrunkOuterLeft: -198959125
+      PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder: 1018643343
+      PlainsAndHillsTileset_TreeLeavesAboveTopRight: -1448415611
+      PlainsAndHillsTileset_TreeLeavesTopLeft: -1808185857
+      PlainsAndHillsTileset_Grass: -1271051063
+      PlainsAndHillsTileset_TreeTrunkLeft: 1461693560
+      PlainsAndHillsTileset_TreeLeavesMiddleRight: -1110053482
+      PlainsAndHillsTileset_TreeTopTrunkLeft: 189567098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
