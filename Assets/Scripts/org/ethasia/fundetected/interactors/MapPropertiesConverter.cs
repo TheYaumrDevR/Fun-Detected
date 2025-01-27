@@ -90,7 +90,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             foreach (MapPortalProperties portalProperties in mapProperties.Portals)
             {
-                resultArea.Portals.Add(ConvertMapPortalPropertiesToMapPortal(portalProperties));
+                resultArea.AddPortal(ConvertMapPortalPropertiesToMapPortal(portalProperties));
             }
         }
 

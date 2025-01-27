@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using Org.Ethasia.Fundetected.Core.Maths;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
@@ -10,6 +11,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private static InternalInteractorsFactory internalInteractorsFactory;
 
         private PlayerSkillInteractor playerSkillInteractor;
+        private EnvironmentInteractionInteractor environmentInteractionInteractor;
         private PlayerMovementInteractor playerMovementInteractor;
 
         private bool leftMoveButtonIsHeld;
@@ -18,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public PlayerInputHandler()
         {
             playerSkillInteractor = new PlayerSkillInteractor();
+            environmentInteractionInteractor = new EnvironmentInteractionInteractor();
             playerMovementInteractor = new PlayerMovementInteractor();
             internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
         }
@@ -48,7 +51,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return;
             }
 
-            playerSkillInteractor.ExecutePrimaryPlayerAction();
+            Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
+
+            int mousePositionX = FastMath.Floor(mouseWorldPosition.x * 10);
+            int mousePositionY = FastMath.Floor(mouseWorldPosition.y * 10);
+
+            if (!environmentInteractionInteractor.InteractWithEnvironment(mousePositionX, mousePositionY))
+            {
+                playerSkillInteractor.ExecutePrimaryPlayerAction();
+            }
         }
 
         public void OnMoveLeft(InputAction.CallbackContext callBackContext)

@@ -45,6 +45,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }    
 
+        public List<IInteractableEnvironmentObject> InteractableEnvironmentObjects
+        {
+            get;
+            private set;
+        }
+
         public int GetPlayerPositionX()
         {
             return playerPosition.X;
@@ -61,6 +67,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             Enemies = new List<Enemy>();
             Portals = new List<MapPortal>();
+            InteractableEnvironmentObjects = new List<IInteractableEnvironmentObject>();
             this.isCollisionTile = isCollisionTile; 
             playerPosition = new Position(0, 0);
             enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
@@ -101,6 +108,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Enemies.Add(enemy);
             SetEnemyHitBox(enemy);
         }    
+
+        public void AddPortal(MapPortal portal)
+        {
+            Portals.Add(portal);
+            InteractableEnvironmentObjects.Add(portal);
+        }
 
         public List<EnemySpawnLocation> SpawnEnemies()
         {
