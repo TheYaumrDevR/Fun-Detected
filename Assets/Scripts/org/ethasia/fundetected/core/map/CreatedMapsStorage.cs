@@ -7,7 +7,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private static CreatedMapsStorage instance;
         private Dictionary<string, List<Area>> mapIdByStoredMaps;
 
-        public CreatedMapsStorage GetInstance()
+        public static CreatedMapsStorage GetInstance()
         {
             if (null == instance)
             {
