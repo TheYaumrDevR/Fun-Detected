@@ -26,5 +26,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IMapChunkGateway GetMapChunkGatewayInstance();
         public abstract IMapDefinitionGateway GetMapDefinitionGatewayInstance();
         public abstract IMapPresenter GetMapPresenterInstance();
+        public abstract IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance();
     }
 }

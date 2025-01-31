@@ -13,8 +13,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void PresentEnemies(List<EnemyRenderData> renderData)
         {
-            enemyInitializer = TechnicalFactory.GetInstance().GetEnemyInitializerInstance();
-
             foreach (EnemyRenderData enemyRenderData in renderData)
             {
                 Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph(enemyRenderData.TypeId);
@@ -30,8 +28,23 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     .SetAnimationStateMachineAssignmentFunction(enemyRenderData.AnimationStateMachineAssignmentFunction)
                     .Build();
 
-                enemyInitializer.InitializeAnimatedCharacter(gameObjectProxy);
+                GetEnemyInitializer().InitializeAnimatedCharacter(gameObjectProxy);
             }
+        }
+
+        public void PresentNothing()
+        {
+            GetEnemyInitializer().ClearAnimatedCharacters();
+        }
+
+        private IAnimatedCharactersInitializer GetEnemyInitializer()
+        {
+            if (null == enemyInitializer)
+            {
+                enemyInitializer = TechnicalFactory.GetInstance().GetEnemyInitializerInstance();
+            }
+
+            return enemyInitializer;
         }
     }
 }

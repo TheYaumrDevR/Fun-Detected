@@ -15,6 +15,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private static MovementStrategy MOVE_RIGHT_STRATEGY = new MoveRightStrategy();
 
+        public string Name
+        {
+            get;
+            private set;
+        }
+
         private AreaDimensions areaDimensions;
 
         private Dictionary<PositionImmutable, bool> isCollisionTile;
@@ -248,6 +254,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public class Builder
         {
+            private string name;
             private int width;
             private int height;
             private int lowestScreenX;
@@ -255,6 +262,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private Dictionary<PositionImmutable, bool> isCollisionTile;
             private Position playerSpawnPosition;
             private EnemySpawner enemySpawner;
+
+            public Builder SetName(string value)
+            {
+                name = value;
+                return this;
+            }
 
             public Builder SetWidthAndHeight(int width, int height)
             {
@@ -306,6 +319,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                     .Build();
 
                 Area result = new Area(isCollisionTile, areaDimensions);
+                result.Name = name;
                 result.playerSpawnPosition = playerSpawnPosition;
                 result.enemySpawner = enemySpawner;
                 return result;

@@ -8,7 +8,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsMaximumNumberOfMonsters()
         {
-            MapDefinition mapDefinition = new MapDefinition(5);
+            MapDefinition mapDefinition = new MapDefinition(5, "Hill");
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
 
@@ -18,7 +18,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesCalculatesLowestScreenValues()
         {
-            MapDefinition mapDefinition = new MapDefinition(6);
+            MapDefinition mapDefinition = new MapDefinition(6, "Forest");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
@@ -30,7 +30,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesCalculatesWidthAndHeight()
         {
-            MapDefinition mapDefinition = new MapDefinition(7);
+            MapDefinition mapDefinition = new MapDefinition(7, "Lake");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);   
@@ -42,7 +42,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsPlayerSpawnToPosition()
         {
-            MapDefinition mapDefinition = new MapDefinition(8);
+            MapDefinition mapDefinition = new MapDefinition(8, "Beach");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);   
@@ -54,7 +54,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsPortals()
         {
-            MapDefinition mapDefinition = new MapDefinition(9);
+            MapDefinition mapDefinition = new MapDefinition(9, "Canyon");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);   
@@ -73,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsPortalIds()
         {
-            MapDefinition mapDefinition = new MapDefinition(9);
+            MapDefinition mapDefinition = new MapDefinition(9, "Mesa");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);    

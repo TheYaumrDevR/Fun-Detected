@@ -4,6 +4,11 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 {
     public class TileMapRendererMock : ITileMapRenderer
     {
+        public void ClearAllTiles()
+        {
+            
+        }
+        
         public void RenderGroundTileAtPosition(TileRenderContext tileRenderContext)
         {
 

@@ -17,6 +17,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IMapChunkGateway mapChunkGateway;
         private IMapDefinitionGateway mapDefinitionGateway;
         private IMapPresenter mapPresenter;
+        private IPlayerInputOnOffSwitch playerInputOnOffSwitch;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -146,6 +147,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return mapPresenter;
+        }
+
+        public override IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance()
+        {
+            if (null == playerInputOnOffSwitch)
+            {
+                playerInputOnOffSwitch = PlayerInputHandler.GetInstance();
+            }
+
+            return playerInputOnOffSwitch;
         }
     }
 }

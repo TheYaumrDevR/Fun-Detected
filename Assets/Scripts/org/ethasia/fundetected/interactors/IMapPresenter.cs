@@ -8,5 +8,6 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         void PresentTiles(List<Tile> tilesWithAbsolutePositions, string tileMapName);
         void PresentPortal(MapPortal portal);
+        void PresentEmpty();
     }
 }

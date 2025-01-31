@@ -6,8 +6,9 @@ using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class PlayerInputHandler : MonoBehaviour
+    public class PlayerInputHandler : MonoBehaviour, IPlayerInputOnOffSwitch
     {
+        private static PlayerInputHandler instance;
         private static InternalInteractorsFactory internalInteractorsFactory;
 
         private PlayerSkillInteractor playerSkillInteractor;
@@ -17,30 +18,56 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private bool leftMoveButtonIsHeld;
         private bool rightMoveButtonIsHeld;
 
+        private bool isInputEnabled;
+
+        public static PlayerInputHandler GetInstance()
+        {
+            return instance;
+        }
+
         public PlayerInputHandler()
         {
             playerSkillInteractor = new PlayerSkillInteractor();
             environmentInteractionInteractor = new EnvironmentInteractionInteractor();
             playerMovementInteractor = new PlayerMovementInteractor();
             internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
+            isInputEnabled = true;
+        }
+
+        public void DisableInput()
+        {
+            isInputEnabled = false;
+        }
+
+        public void EnableInput()
+        {
+            isInputEnabled = true;
+        }
+
+        void Awake()
+        {
+            instance = this;
         }
 
         public void Update()
         {
-            if (leftMoveButtonIsHeld && !rightMoveButtonIsHeld)
+            if (isInputEnabled)
             {
-                playerMovementInteractor.MovePlayerLeft(Time.deltaTime);
-            }
+                if (leftMoveButtonIsHeld && !rightMoveButtonIsHeld)
+                {
+                    playerMovementInteractor.MovePlayerLeft(Time.deltaTime);
+                }
 
-            if (rightMoveButtonIsHeld && !leftMoveButtonIsHeld)
-            {
-                playerMovementInteractor.MovePlayerRight(Time.deltaTime);
-            }
+                if (rightMoveButtonIsHeld && !leftMoveButtonIsHeld)
+                {
+                    playerMovementInteractor.MovePlayerRight(Time.deltaTime);
+                }
 
-            if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction())
-            {
-                IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
-                playerAnimationPresenter.StartIdleAnimation();
+                if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction())
+                {
+                    IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+                    playerAnimationPresenter.StartIdleAnimation();
+                }
             }
         }
 
@@ -51,15 +78,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return;
             }
 
-            Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
-
-            int mousePositionX = FastMath.Floor(mouseWorldPosition.x * 10);
-            int mousePositionY = FastMath.Floor(mouseWorldPosition.y * 10);
-
-            if (!environmentInteractionInteractor.InteractWithEnvironment(mousePositionX, mousePositionY))
+            if (isInputEnabled)
             {
-                playerSkillInteractor.ExecutePrimaryPlayerAction();
+                Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
+                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
+
+                int mousePositionX = FastMath.Floor(mouseWorldPosition.x * 10);
+                int mousePositionY = FastMath.Floor(mouseWorldPosition.y * 10);
+
+                if (!environmentInteractionInteractor.InteractWithEnvironment(mousePositionX, mousePositionY))
+                {
+                    playerSkillInteractor.ExecutePrimaryPlayerAction();
+                }
             }
         }
 

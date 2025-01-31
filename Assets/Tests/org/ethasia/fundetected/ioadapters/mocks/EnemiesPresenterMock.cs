@@ -17,5 +17,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             presentedEnemiesRenderData = renderData;
         }
+
+        public void PresentNothing()
+        {
+            
+        }
     }
 }

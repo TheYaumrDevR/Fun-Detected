@@ -62,6 +62,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public override IMapPresenter GetMapPresenterInstance()
         {
             return new MapPresenterMock();
-        }      
+        }  
+
+        public override IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance()
+        {
+            return new PlayerInputOnOffSwitchMock();
+        }    
     }
 }

@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             if (null != mapDefinitionProperties)
             {
-                MapDefinition result = SetupMapProperties(mapDefinitionProperties);
+                MapDefinition result = SetupMapProperties(mapDefinitionProperties, mapName);
                 SetupChunks(mapDefinitionProperties, result);
                 SetupSpawnableMonsters(mapDefinitionProperties, result);
 
@@ -32,16 +32,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }          
         }
 
-        private MapDefinition SetupMapProperties(XmlElement mapDefinitionProperties)
+        private MapDefinition SetupMapProperties(XmlElement mapDefinitionProperties, string mapName)
         {
             string maximumMonstersText = mapDefinitionProperties.GetAttribute("maximumMonsters");
 
             if (int.TryParse(maximumMonstersText, out int maximumMonsters))
             {
-                return new MapDefinition(maximumMonsters);
+                return new MapDefinition(maximumMonsters, mapName);
             }
 
-            return new MapDefinition(0);
+            return new MapDefinition(0, mapName);
         }
 
         private void SetupChunks(XmlElement mapDefinitionProperties, MapDefinition result)

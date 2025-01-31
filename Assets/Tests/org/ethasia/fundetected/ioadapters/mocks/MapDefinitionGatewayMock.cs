@@ -7,7 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public MapDefinition LoadMapDefinition(string mapName)
         {
             // Setup test map definition
-            MapDefinition result = new MapDefinition(11);
+            MapDefinition result = new MapDefinition(11, "HillTest");
 
             result.Chunks.Add(CreateTestChunkOne());
             result.Chunks.Add(CreateTestChunkTwo());

@@ -44,6 +44,14 @@ namespace Org.Ethasia.Fundetected.Technical
             }
         }  
 
+        public void ClearAllTiles()
+        {
+            Ground.ClearAllTiles();
+            FoliageBack.ClearAllTiles();
+            FoliageFront.ClearAllTiles();
+            Terrain.ClearAllTiles();
+        }
+
         public void RenderGroundTileAtPosition(TileRenderContext tileRenderContext)
         {
             RenderTileAtPosition(Ground, tileRenderContext);

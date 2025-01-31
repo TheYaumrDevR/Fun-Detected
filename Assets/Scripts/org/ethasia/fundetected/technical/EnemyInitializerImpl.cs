@@ -24,7 +24,7 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             startupRenderQueue.Add(value);
-        }       
+        }     
 
         protected override void AssignInstance()
         {

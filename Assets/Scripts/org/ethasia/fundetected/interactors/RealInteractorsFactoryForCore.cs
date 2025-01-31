@@ -5,6 +5,7 @@ namespace Org.Ethasia.Fundetected.Interactors
     public class RealInteractorsFactoryForCore : InteractorsFactoryForCore
     {
         private IPlayerDamageTakenInteractor playerDamageTakenInteractor;
+        private IPortalTransitionInteractor portalTransitionInteractor;
 
         public override IPlayerDamageTakenInteractor GetPlayerDamageTakenInteractorInstance()
         {
@@ -14,6 +15,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return playerDamageTakenInteractor;
+        }
+
+        public override IPortalTransitionInteractor GetPortalTransitionInteractor()
+        {
+            if (null == portalTransitionInteractor)
+            {
+                portalTransitionInteractor = new PortalTransitionInteractor();
+            }
+
+            return portalTransitionInteractor;
         }
     }
 }

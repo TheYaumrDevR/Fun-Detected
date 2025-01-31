@@ -53,7 +53,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public void OnInteract()
         {
-            // Call AreaSwitchInteractor to switch to the destination map
+            IPortalTransitionInteractor portalTransitionInteractor = InteractorsFactoryForCore.GetInstance().GetPortalTransitionInteractor();
+            portalTransitionInteractor.TransitionToOtherMap(DestinationMapId, DestinationPortalId);
         }
 
         public class Builder

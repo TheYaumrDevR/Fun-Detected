@@ -6,6 +6,12 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct MapProperties 
     {
+        public string MapName
+        {
+            get;
+            private set;
+        }
+
         public int Width
         {
             get;
@@ -64,6 +70,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         private MapProperties(int width, int height)
         {
+            MapName = "";
             Width = width;
             Height = height;
             MaximumMonsters = 0;
@@ -93,12 +100,19 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public class Builder
         {
+            private string mapName;
             private int width;
             private int height;
             private int lowestScreenX;
             private int lowestScreenY;
             private int maximumMonsters;
             private Position playerSpawnPosition;
+
+            public Builder SetMapName(string value)
+            {
+                mapName = value;
+                return this;
+            }
 
             public Builder SetWidth(int value)
             {
@@ -140,6 +154,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 MapProperties result = new MapProperties(width, height);
 
+                result.MapName = mapName;
                 result.LowestScreenX = lowestScreenX;
                 result.LowestScreenY = lowestScreenY;
                 result.MaximumMonsters = maximumMonsters;

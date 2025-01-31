@@ -87,5 +87,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             portalRenderer.RenderPortal(portalRenderShape);
         }
+
+        public void PresentEmpty()
+        {
+            portalRenderer.ClearRenderedPortals();
+            tileMapRenderer.ClearAllTiles();
+        }
     }
 }

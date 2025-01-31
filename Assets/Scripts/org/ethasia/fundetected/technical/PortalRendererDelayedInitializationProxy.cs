@@ -28,6 +28,16 @@ namespace Org.Ethasia.Fundetected.Technical
             }
         }
 
+        public void ClearRenderedPortals()
+        {
+            if (null != realPortalRenderer)
+            {
+                realPortalRenderer.ClearRenderedPortals();
+            }
+
+            storedCallParameters.Clear();
+        }
+
         public void OnPortalRendererAwake(PortalRendererImpl portalRenderer)
         {
             realPortalRenderer = portalRenderer;

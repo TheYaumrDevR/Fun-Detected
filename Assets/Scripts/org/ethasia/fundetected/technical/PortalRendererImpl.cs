@@ -26,6 +26,14 @@ namespace Org.Ethasia.Fundetected.Technical
             NotifyProxiesAboutAwake();
         }
 
+        public void ClearRenderedPortals()
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         public void RenderPortal(SingleColorRectangularRenderShapeProxy renderData)
         {
             GameObject quad = CreatePortalQuad(renderData); 

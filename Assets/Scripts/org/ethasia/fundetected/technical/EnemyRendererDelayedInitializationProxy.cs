@@ -22,5 +22,18 @@ namespace Org.Ethasia.Fundetected.Technical
                 EnemyInitializerImpl.AddGameObjectToStartupRenderQueue(animatedCharacter);
             }
         }
+
+        public void ClearAnimatedCharacters()
+        {
+            if (null == proxiedRenderer)
+            {
+                proxiedRenderer = EnemyInitializerImpl.GetInstance();
+            }
+
+            if (null != proxiedRenderer)
+            {
+                proxiedRenderer.ClearAnimatedCharacters();
+            }            
+        }
     }
 }

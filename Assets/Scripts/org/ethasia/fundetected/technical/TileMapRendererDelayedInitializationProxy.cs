@@ -32,6 +32,21 @@ namespace Org.Ethasia.Fundetected.Technical
             storedCallParametersByRenderLayerName.Add("terrain", new List<TileRenderContext>());
         }
 
+        public void ClearAllTiles()
+        {
+            proxiedRenderer = TileMapRenderer.GetInstance();
+
+            if (null != proxiedRenderer)
+            {
+                proxiedRenderer.ClearAllTiles();
+            }
+
+            foreach (KeyValuePair<string, List<TileRenderContext>> storedCallParametersByRenderLayerNamePair in storedCallParametersByRenderLayerName)
+            {
+                storedCallParametersByRenderLayerNamePair.Value.Clear();
+            }
+        }
+
         public void RenderGroundTileAtPosition(TileRenderContext tileRenderContext)
         {
             proxiedRenderer = TileMapRenderer.GetInstance();

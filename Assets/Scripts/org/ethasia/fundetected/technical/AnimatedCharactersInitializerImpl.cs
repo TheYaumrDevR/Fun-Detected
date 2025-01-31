@@ -47,6 +47,14 @@ namespace Org.Ethasia.Fundetected.Technical
             AssignAudioSource(animatedCharacterProxy.IndividualId, createdCharacterEngineObjects.CharacterAudioSource);
         }  
 
+        public void ClearAnimatedCharacters()
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }            
+        }
+
         protected void AssignAudioSource(string audioSourceId, AudioSource audioSource)
         {
             SoundPlayer.GetInstance().AddAudioSource(audioSourceId, audioSource);

@@ -5,6 +5,12 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct MapDefinition
     {
+        public string MapName
+        {
+            get; 
+            private set;
+        }
+
         public int MaximumMonsters
         {
             get;
@@ -51,9 +57,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             return resultBuilder.ToString();
         }
 
-        public MapDefinition(int maximumMonsters)
+        public MapDefinition(int maximumMonsters, string mapName)
         {
             MaximumMonsters = maximumMonsters;
+            MapName = mapName;
             
             Chunks = new List<Chunk>();
             SpawnableMonsters = new List<SpawnableMonster>();
