@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
@@ -102,6 +103,29 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.Portals[1].Height, Is.EqualTo(50));         
             Assert.That(result.Portals[1].DestinationMapId, Is.EqualTo("map2"));
             Assert.That(result.Portals[1].DestinationPortalId, Is.EqualTo("portal2"));      
+        }
+
+        [Test]
+        public void TestConvertMapPropertiesToAreaConvertsSpawnPositionsByChunkId()
+        {
+            Dictionary<string, Position> spawnPositionsByChunkId = new Dictionary<string, Position>();
+            spawnPositionsByChunkId.Add("westPortal", new Position(32, 36));
+            spawnPositionsByChunkId.Add("eastPortal", new Position(77, 43));
+
+            MapProperties mapProperties = new MapProperties.Builder()
+                .SetWidth(320)
+                .SetHeight(70)
+                .SetLowestScreenX(-100)
+                .SetLowestScreenY(-25)
+                .SetSpawnPositionsByChunkId(spawnPositionsByChunkId)
+                .Build();    
+
+            Area result = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);  
+
+            Assert.That(result.GetSpawnPositionForChunkId("westPortal").X, Is.EqualTo(32));
+            Assert.That(result.GetSpawnPositionForChunkId("westPortal").Y, Is.EqualTo(36));
+            Assert.That(result.GetSpawnPositionForChunkId("eastPortal").X, Is.EqualTo(77));
+            Assert.That(result.GetSpawnPositionForChunkId("eastPortal").Y, Is.EqualTo(43));      
         }
     }
 }

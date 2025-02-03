@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             List<Collision> absolutePositionCollisions = new List<Collision>();
             List<Spawner> absolutePositionSpawners = new List<Spawner>();
             List<MapPortalProperties> absolutePositionPortals = new List<MapPortalProperties>();
+            Dictionary<string, Position> spawnPositionsByChunkId = new Dictionary<string, Position>();
             Position playerSpawnPosition = null;
 
             foreach (Chunk chunk in mapDefinition.Chunks)
@@ -31,6 +32,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 {
                     absolutePositionPortals.Add(mapPortalProperties.Value);
                 }
+
+                AssignSpawnPointsToChunkIds(chunk, spawnPositionsByChunkId);
             }
 
             MapProperties result = new MapProperties.Builder()
@@ -41,12 +44,13 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetWidth(screenDimensionProperties.HighestScreenX - screenDimensionProperties.LowestScreenX)
                 .SetHeight(screenDimensionProperties.HighestScreenY - screenDimensionProperties.LowestScreenY)
                 .SetPlayerSpawnPosition(playerSpawnPosition)
+                .SetSpawnPositionsByChunkId(spawnPositionsByChunkId)
                 .Build();    
 
             result.AddAllCollisions(absolutePositionCollisions);
             result.AddAllSpawners(absolutePositionSpawners);   
             result.SpawnableMonsters.AddRange(mapDefinition.SpawnableMonsters);  
-            result.Portals.AddRange(absolutePositionPortals);   
+            result.Portals.AddRange(absolutePositionPortals);  
 
             return result;
         }
@@ -123,16 +127,23 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             if (chunk.Spawn)
             {
-                if (chunk.PropertiesOfPossibleChunks.Count > 0)
+                return DetermineSpawnPointFromChunk(chunk);
+            }
+
+            return null;
+        }
+
+        private static Position DetermineSpawnPointFromChunk(Chunk chunk)
+        {
+            if (chunk.PropertiesOfPossibleChunks.Count > 0)
+            {
+                MapChunkProperties mapChunkProperties = chunk.PropertiesOfPossibleChunks[0];
+
+                if (mapChunkProperties.PlayerSpawnPoint.IsSet)
                 {
-                    MapChunkProperties mapChunkProperties = chunk.PropertiesOfPossibleChunks[0];
+                    int amountOfLogicalTilesPerChunkEdge = Area.LOGICAL_TILES_PER_VISUAL_TILE_EDGE * Area.VISUAL_TILES_PER_CHUNK_EDGE;
 
-                    if (mapChunkProperties.PlayerSpawnPoint.IsSet)
-                    {
-                        int amountOfLogicalTilesPerChunkEdge = Area.LOGICAL_TILES_PER_VISUAL_TILE_EDGE * Area.VISUAL_TILES_PER_CHUNK_EDGE;
-
-                        return new Position(mapChunkProperties.PlayerSpawnPoint.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.PlayerSpawnPoint.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
-                    }
+                    return new Position(mapChunkProperties.PlayerSpawnPoint.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.PlayerSpawnPoint.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
                 }
             }
 
@@ -167,6 +178,19 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             return null;
         }   
+        
+        private static void AssignSpawnPointsToChunkIds(Chunk chunk, Dictionary<string, Position> spawnPositionsByChunkId)
+        {
+            if (!string.IsNullOrEmpty(chunk.Id))
+            {
+                Position spawnPosition = DetermineSpawnPointFromChunk(chunk);
+
+                if (null != spawnPosition)
+                {
+                    spawnPositionsByChunkId[chunk.Id] = spawnPosition;
+                }
+            }
+        }
 
         private static string GetDestinationMapId(Chunk chunk)
         {

@@ -25,6 +25,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public string Id
+        {
+            get;
+            private set;
+        }
+
         public List<MapChunkProperties> PropertiesOfPossibleChunks
         {
             get;
@@ -37,6 +43,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             Y = y;
             
             PropertiesOfPossibleChunks = new List<MapChunkProperties>();
+            Id = "";
             PortalTo = null;
 
             Spawn = false;
@@ -67,6 +74,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private bool spawn;
             private int x;
             private int y;
+            private string id;
             private PortalTo? portalTo;
             private List<MapChunkProperties> propertiesOfPossibleChunks = new List<MapChunkProperties>();
 
@@ -88,6 +96,12 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
+            public Builder SetId(string value)
+            {
+                id = value;
+                return this;
+            }
+
             public Builder SetPortalTo(PortalTo? value)
             {
                 portalTo = value;
@@ -104,6 +118,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 Chunk result = new Chunk(x, y);
                 result.Spawn = spawn;
+                result.Id = id;
                 result.PortalTo = portalTo;
                 result.PropertiesOfPossibleChunks = propertiesOfPossibleChunks;
 

@@ -4,6 +4,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 {
     public class CreatedMapsStorageTest
     {
+        [SetUp]
+        public void ResetTestState()
+        {
+            CreatedMapsStorage.GetInstance().ClearAllMaps();
+        }
+
         [Test]
         public void TestAddMapByIdWithThreeDifferentIdsAreAllAdded()
         {

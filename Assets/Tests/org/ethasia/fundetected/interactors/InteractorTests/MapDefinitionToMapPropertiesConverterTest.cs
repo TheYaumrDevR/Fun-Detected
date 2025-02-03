@@ -82,6 +82,19 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.Portals[0].DestinationPortalId, Is.EqualTo("westPortal"));         
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsPortalSpawnTargetsForPlayers()
+        {
+            MapDefinition mapDefinition = new MapDefinition(9, "Caverns");
+            CreateTestChunks(mapDefinition);        
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);  
+
+            Assert.That(result.SpawnPositionsByChunkId.Count, Is.EqualTo(1));          
+            Assert.That(result.SpawnPositionsByChunkId["westPortal"].X, Is.EqualTo(-100));
+            Assert.That(result.SpawnPositionsByChunkId["westPortal"].Y, Is.EqualTo(-90));
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk2 = new Chunk(-1, -2);
@@ -125,6 +138,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             propertiesOfPossibleChunks1.Add(chunkProperties1);
 
             Chunk chunk1 = new Chunk.Builder()
+                .SetId("westPortal")
                 .SetX(-2)
                 .SetY(-2)
                 .SetPropertiesOfPossibleChunks(propertiesOfPossibleChunks1)

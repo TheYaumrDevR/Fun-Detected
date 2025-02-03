@@ -36,5 +36,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             return mapIdByStoredMaps[id];
         }
+
+        public void ClearAllMaps()
+        {
+            mapIdByStoredMaps.Clear();
+        }
     }
 }

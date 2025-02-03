@@ -29,6 +29,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private Position playerSpawnPosition;
 
+        private Dictionary<string, Position> playerSpawnPositionBySpawnerId;
+
         private EnemySpawner enemySpawner;
 
         private Position playerPosition;
@@ -107,6 +109,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
             {
                 AddPlayerAt(playerCharacter, playerSpawnPosition.X, playerSpawnPosition.Y);
             }
+        }
+
+        public Position GetSpawnPositionForChunkId(string chunkId)
+        {
+            if (playerSpawnPositionBySpawnerId.ContainsKey(chunkId))
+            {
+                return playerSpawnPositionBySpawnerId[chunkId];
+            }
+
+            return null;
         }
 
         public void AddEnemy(Enemy enemy)
@@ -261,7 +273,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private int lowestScreenY;
             private Dictionary<PositionImmutable, bool> isCollisionTile;
             private Position playerSpawnPosition;
+            private Dictionary<string, Position> playerSpawnPositionBySpawnerId;
             private EnemySpawner enemySpawner;
+
+            public Builder()
+            {
+                playerSpawnPositionBySpawnerId = new Dictionary<string, Position>();
+            }
 
             public Builder SetName(string value)
             {
@@ -297,6 +315,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }
 
+            public Builder SetPlayerSpawnPositionBySpawnerId(Dictionary<string, Position> value)
+            {
+                playerSpawnPositionBySpawnerId = value;
+                return this;
+            }
+
             public Builder SetPlayerSpawnPosition(Position value)
             {
                 playerSpawnPosition = value;
@@ -321,6 +345,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 Area result = new Area(isCollisionTile, areaDimensions);
                 result.Name = name;
                 result.playerSpawnPosition = playerSpawnPosition;
+                result.playerSpawnPositionBySpawnerId = playerSpawnPositionBySpawnerId;
                 result.enemySpawner = enemySpawner;
                 return result;
             }            

@@ -56,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 {
                     string xText = chunkDefinition.GetAttribute("x");
                     string yText = chunkDefinition.GetAttribute("y");
-                    string spawnText = "false";                 
+                    string spawnText = "false";               
 
                     Chunk chunk;
                     Chunk.Builder chunkBuilder = new Chunk.Builder();
@@ -76,6 +76,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     {
                         chunkBuilder.SetX(0).SetY(0);
                     }       
+
+                    if (chunkDefinition.HasAttribute("id"))
+                    {
+                        chunkBuilder.SetId(chunkDefinition.GetAttribute("id"));
+                    }
 
                     if (chunkDefinition.HasAttribute("spawn"))
                     {

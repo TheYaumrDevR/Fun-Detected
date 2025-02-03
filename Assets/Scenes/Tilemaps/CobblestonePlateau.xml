@@ -10,7 +10,7 @@
     </tileMaps>
 
     <mapTileProperties>
-        <playerSpawn x="15" y="27"/>
+        <playerSpawn x="5" y="27"/>
         <portal x="5" y="27" width="20" height="20"/>
 
         <collisions>

@@ -53,6 +53,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public Dictionary<string, Position> SpawnPositionsByChunkId
+        {
+            get;
+            private set;
+        }   
+
         public List<MapPortalProperties> Portals
         {
             get;
@@ -78,6 +84,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             LowestScreenY = 0;
             Collisions = new List<Collision>();
             PlayerSpawnPosition = null;
+            SpawnPositionsByChunkId = new Dictionary<string, Position>();
             Portals = new List<MapPortalProperties>();
             Spawners = new List<Spawner>();
             SpawnableMonsters = new List<SpawnableMonster>();
@@ -107,6 +114,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int lowestScreenY;
             private int maximumMonsters;
             private Position playerSpawnPosition;
+            private Dictionary<string, Position> SpawnPositionsByChunkId;
 
             public Builder SetMapName(string value)
             {
@@ -150,6 +158,12 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }    
 
+            public Builder SetSpawnPositionsByChunkId(Dictionary<string, Position> value)
+            {
+                SpawnPositionsByChunkId = value;
+                return this;
+            }
+
             public MapProperties Build()
             {
                 MapProperties result = new MapProperties(width, height);
@@ -159,6 +173,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.LowestScreenY = lowestScreenY;
                 result.MaximumMonsters = maximumMonsters;
                 result.PlayerSpawnPosition = playerSpawnPosition;
+                result.SpawnPositionsByChunkId = SpawnPositionsByChunkId;
 
                 return result;
             }                                  
