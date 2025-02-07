@@ -111,6 +111,15 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
+        public void PortPlayerTo(PlayerCharacter playerCharacter, string portalDestinationId)
+        {
+            if (playerSpawnPositionBySpawnerId.ContainsKey(portalDestinationId))
+            {
+                playerPosition = playerSpawnPositionBySpawnerId[portalDestinationId];
+                AddPlayerAt(playerCharacter, playerPosition.X, playerPosition.Y);
+            }
+        }
+
         public Position GetSpawnPositionForChunkId(string chunkId)
         {
             if (playerSpawnPositionBySpawnerId.ContainsKey(chunkId))

@@ -39,7 +39,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         }
 
         [Test]
-        public void TestSwitchActiveMapSpawnsDifferentEnemyTypes()
+        public void TestSpawnPlayerIntoNewMapSpawnsDifferentEnemyTypes()
         {
             int[] randomNumbersToGenerate = {180, 479, 789, 33};
             float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};    
@@ -53,7 +53,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerCharacter testPlayer = CreateTestPlayerCharacter();
             AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
 
-            testCandidate.SwitchActiveMap("Hill", testPlayer);         
+            testCandidate.SpawnPlayerIntoNewMap("Hill", testPlayer);         
 
             List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();     
 
@@ -114,7 +114,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             PlayerCharacter testPlayer = CreateTestPlayerCharacter();
             AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
 
-            testCandidate.SwitchActiveMap("Hill", testPlayer);  
+            testCandidate.SpawnPlayerIntoNewMap("Hill", testPlayer);  
 
             return testCandidate;          
         } 

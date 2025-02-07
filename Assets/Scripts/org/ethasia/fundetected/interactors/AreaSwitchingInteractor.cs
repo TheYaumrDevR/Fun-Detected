@@ -23,16 +23,53 @@ namespace Org.Ethasia.Fundetected.Interactors
             mapPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetMapPresenterInstance();
         }   
 
-        public void SwitchActiveMap(string mapId, PlayerCharacter playerCharacter)
+        public void SpawnPlayerIntoNewMap(string mapId, PlayerCharacter playerCharacter)
+        {
+            LoadAndSetupMap(mapId, playerCharacter);
+
+            Area map = Area.ActiveArea;
+            map.SpawnPlayer(playerCharacter);
+        }           
+
+        public void PortalPlayerIntoNewMap(string mapId, string spawnDestinationId, PlayerCharacter playerCharacter)
+        {
+            LoadAndSetupMap(mapId, playerCharacter);
+
+            Area map = Area.ActiveArea;
+            map.PortPlayerTo(playerCharacter, spawnDestinationId);
+        }
+
+        public void PortalPlayerIntoExistingMap(Area existingMap, string spawnDestinationId, PlayerCharacter playerCharacter)
+        {
+
+        }
+
+        public void LoadPlayerIntoNewMap(string mapId, Position loadPosition, PlayerCharacter playerCharacter)
+        {
+
+        }
+
+        private void LoadAndSetupMap(string mapId, PlayerCharacter playerCharacter)
+        {
+            MapDefinition mapDefinition = LoadMapDefinitionAndPresentTiles(mapId);
+            ConvertAndSetupMap(mapDefinition, playerCharacter);
+        }
+
+        private MapDefinition LoadMapDefinitionAndPresentTiles(string mapId)
         {
             MapDefinition mapDefinition = mapDefinitionGateway.LoadMapDefinition(mapId);
 
             RandomizeMap(mapDefinition);
             PresentTiles(mapDefinition);
 
+            return mapDefinition;
+        }
+
+        private void ConvertAndSetupMap(MapDefinition mapDefinition, PlayerCharacter playerCharacter)
+        {
             MapProperties mapProperties = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition); 
-            SetUpAreaEnemiesAndPlayer(mapProperties, playerCharacter);
-        }           
+            SetUpAreaAndEnemies(mapProperties, playerCharacter);            
+        }
 
         private void RandomizeMap(MapDefinition mapDefinition)
         {
@@ -89,10 +126,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }
 
-        private void SetUpAreaEnemiesAndPlayer(MapProperties mapProperties, PlayerCharacter playerCharacter)
+        private void SetUpAreaAndEnemies(MapProperties mapProperties, PlayerCharacter playerCharacter)
         {
             Area map = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
-            map.SpawnPlayer(playerCharacter);
 
             List<EnemySpawnLocation> spawnedEnemies = map.SpawnEnemies();
             PopulateEnemiesFromSpawners(spawnedEnemies, map);
@@ -183,6 +219,6 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             enemyPresenter.PresentEnemies(enemiesToShow);
-        }        
+        }       
     }
 }

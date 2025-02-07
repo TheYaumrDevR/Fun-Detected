@@ -11,5 +11,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public void MoveUnitsDown(int units) {}
 
         public void MoveUnitsUp(int units) {}
+
+        public void TeleportPlayerTo(int x, int y) {}
     }
 }

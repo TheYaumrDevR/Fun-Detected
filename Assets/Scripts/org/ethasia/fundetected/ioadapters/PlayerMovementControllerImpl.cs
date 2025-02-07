@@ -71,6 +71,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }            
         }
 
+        public void TeleportPlayerTo(int x, int y)
+        {
+            float playerPosX = x / 10.0f;
+            float playerPosY = y / 10.0f + 0.4f;
+
+            playerTransform.position = new Vector3(playerPosX, playerPosY, 0);
+            cameraTransform.position = new Vector3(playerPosX, playerPosY, -1);
+        }
+
         public static PlayerMovementControllerImpl GetInstance()
         {
             return instance;

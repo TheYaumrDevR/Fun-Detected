@@ -7,12 +7,12 @@
                 <portal id="eastPortal"/>
             </portalTo>        
             <definitions>   
-                <definition file="CobblestonePlateau"/>
+                <definition file="CobblestonePlateauWestPortal"/>
             </definitions>
         </chunk>   
         <chunk x="-1" y="-1">       
             <definitions>   
-                <definition file="CobblestonePlateau"/>
+                <definition file="CobblestonePlateauEastPortal"/>
             </definitions>
         </chunk>                         
     </chunks>  

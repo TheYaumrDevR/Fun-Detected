@@ -29,11 +29,19 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 mapIdByStoredMaps[id] = new List<Area>();
             }
 
-            mapIdByStoredMaps[id].Add(map);
+            if (!mapIdByStoredMaps[id].Contains(map))
+            {
+                mapIdByStoredMaps[id].Add(map);
+            }
         }
 
         public List<Area> GetStoredMapsById(string id)
         {
+            if (!mapIdByStoredMaps.ContainsKey(id))
+            {
+                return new List<Area>();
+            }
+            
             return mapIdByStoredMaps[id];
         }
 

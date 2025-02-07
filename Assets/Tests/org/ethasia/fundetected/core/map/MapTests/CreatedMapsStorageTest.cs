@@ -50,5 +50,20 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(testCandidate.GetStoredMapsById("Town").Count, Is.EqualTo(1));
             Assert.That(testCandidate.GetStoredMapsById("Forest").Count, Is.EqualTo(3));
         }
+
+        [Test]
+        public void TestAddMapByIdContainedMapIsNotAddedAgain()
+        {
+            CreatedMapsStorage testCandidate = CreatedMapsStorage.GetInstance();
+
+            Area firstMap = new Area.Builder()
+                .SetWidthAndHeight(400, 400)
+                .Build();
+
+            testCandidate.AddMapById("Hill", firstMap);
+            testCandidate.AddMapById("Hill", firstMap);
+
+            Assert.That(testCandidate.GetStoredMapsById("Hill").Count, Is.EqualTo(1));
+        }        
     }
 }

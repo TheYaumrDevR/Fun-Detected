@@ -6,5 +6,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         void MoveUnitsRight(int units);
         void MoveUnitsDown(int units);
         void MoveUnitsUp(int units);
+        void TeleportPlayerTo(int x, int y);
     }
 }
