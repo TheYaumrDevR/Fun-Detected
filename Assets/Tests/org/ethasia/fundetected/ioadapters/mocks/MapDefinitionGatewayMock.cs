@@ -129,7 +129,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
             MapChunkProperties mapChunkProperties = new MapChunkProperties.Builder()
                 .SetId("testChunkThree")
-                .SetPlayerSpawnPoint(PlayerSpawn.CreateUnset())
+                .SetPlayerSpawnPoint(new PlayerSpawn(6, 65))
                 .Build(); 
 
             mapChunkProperties.Spawners.Add(spawner1);
@@ -141,7 +141,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             mapChunkProperties.Spawners.Add(spawner7);         
             mapChunkProperties.Spawners.Add(spawner8);    
 
-            Chunk result = new Chunk(1, 0);
+            Chunk result = new Chunk.Builder()
+                .SetId("westPortal")
+                .SetX(1)
+                .SetY(0)
+                .Build();
+
             result.PropertiesOfPossibleChunks.Add(mapChunkProperties);
 
             return result;

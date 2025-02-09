@@ -65,5 +65,13 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Assert.That(testCandidate.GetStoredMapsById("Hill").Count, Is.EqualTo(1));
         }        
+
+        [Test]
+        public void TestGetStoredMapsByIdReturnsEmptyListIfNoMapWasAdded()
+        {
+            CreatedMapsStorage testCandidate = CreatedMapsStorage.GetInstance();
+
+            Assert.That(testCandidate.GetStoredMapsById("Hill").Count, Is.EqualTo(0));
+        }
     }
 }

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
@@ -386,6 +387,34 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(0)); 
         } 
+
+        [Test]
+        public void TestPortPlayerToPortsToCoordinatesWithDestinationId()
+        {
+            Dictionary<string, Position> playerSpawnPositionBySpawnerId = new Dictionary<string, Position>();
+            playerSpawnPositionBySpawnerId.Add("upperWestPortal", new Position(5, 70));
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPositionBySpawnerId(playerSpawnPositionBySpawnerId)
+                .Build();
+
+            Area.ActiveArea = testArea;
+
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();  
+
+            testArea.PortPlayerTo(playerCharacter, "upperWestPortal");
+
+            Assert.That(testArea.GetPlayerPositionX(), Is.EqualTo(5));      
+            Assert.That(testArea.GetPlayerPositionY(), Is.EqualTo(70));           
+        }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
         {

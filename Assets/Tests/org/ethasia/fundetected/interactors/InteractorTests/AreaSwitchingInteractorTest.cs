@@ -64,7 +64,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         }
 
         [Test]
-        public void TestSwitchActiveMapSetsCollisionTiles()
+        public void TestSpawnPlayerIntoNewMapSetsCollisionTiles()
         {
             AreaSwitchingInteractor testCandidate = InitiateBasicTestSetupAndRunTest();
 
@@ -100,7 +100,32 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(map.TileAtIsCollision(10, 45), Is.False);                  
         }       
 
+        [Test]
+        public void TestPortalPlayerIntoNewMapSpawnsPlayerAtCorrectPosition()
+        {
+            SetupRngMock();
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+            PlayerCharacter playerCharacter = CreateTestPlayerCharacter();
+
+            testCandidate.PortalPlayerIntoNewMap("Hill", "westPortal", playerCharacter);    
+
+            Assert.That(Area.ActiveArea.GetPlayerPositionX, Is.EqualTo(86)); 
+            Assert.That(Area.ActiveArea.GetPlayerPositionY, Is.EqualTo(65)); 
+        }
+
         private AreaSwitchingInteractor InitiateBasicTestSetupAndRunTest()
+        {
+            SetupRngMock();
+
+            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+
+            testCandidate.SpawnPlayerIntoNewMap("HillTest", testPlayer);  
+
+            return testCandidate;          
+        } 
+
+        private void SetupRngMock()
         {
             int[] randomNumbersToGenerate = {};
             float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};       
@@ -109,15 +134,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(rngMock);
 
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
-
-            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
-            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
-
-            testCandidate.SpawnPlayerIntoNewMap("Hill", testPlayer);  
-
-            return testCandidate;          
-        } 
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);            
+        }
 
         private PlayerCharacter CreateTestPlayerCharacter()
         {
