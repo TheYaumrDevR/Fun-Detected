@@ -161,7 +161,10 @@ namespace Org.Ethasia.Fundetected.Technical
 
             void OnMouseEnter()
             {
-                quadRenderer.enabled = true;
+                if (quadRenderer != null)
+                {
+                    quadRenderer.enabled = true;
+                }
             }
 
             void OnMouseExit()

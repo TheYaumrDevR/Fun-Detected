@@ -24,13 +24,13 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             Area currentMap = Area.ActiveArea;
             CreatedMapsStorage.GetInstance().AddMapById(currentMap.Name, currentMap);
-            List<Area> maybeTargetMap = CreatedMapsStorage.GetInstance().GetStoredMapsById(destinationMapId);
+            List<Area> maybeTargetMaps = CreatedMapsStorage.GetInstance().GetStoredMapsById(destinationMapId);
 
             AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
 
-            if (null != maybeTargetMap && maybeTargetMap.Count > 0)
+            if (null != maybeTargetMaps && maybeTargetMaps.Count > 0)
             {
-                areaSwitchingInteractor.PortalPlayerIntoExistingMap(maybeTargetMap[0], destinationPortalId, currentMap.Player);
+                areaSwitchingInteractor.PortalPlayerIntoExistingMap(maybeTargetMaps[0], destinationPortalId, currentMap.Player);
             }
             else
             {
