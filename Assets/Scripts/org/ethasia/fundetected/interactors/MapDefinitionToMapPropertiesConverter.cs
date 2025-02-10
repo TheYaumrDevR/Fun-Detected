@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             List<MapPortalProperties> absolutePositionPortals = new List<MapPortalProperties>();
             Dictionary<string, Position> spawnPositionsByChunkId = new Dictionary<string, Position>();
             Position playerSpawnPosition = null;
+            ReloadableTileMap reloadableTileMap = new ReloadableTileMap();
 
             foreach (Chunk chunk in mapDefinition.Chunks)
             {
@@ -34,6 +35,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 }
 
                 AssignSpawnPointsToChunkIds(chunk, spawnPositionsByChunkId);
+
+                CalculateAbsolutePositionTileMapForMapReload(chunk, reloadableTileMap);
             }
 
             MapProperties result = new MapProperties.Builder()
@@ -45,6 +48,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetHeight(screenDimensionProperties.HighestScreenY - screenDimensionProperties.LowestScreenY)
                 .SetPlayerSpawnPosition(playerSpawnPosition)
                 .SetSpawnPositionsByChunkId(spawnPositionsByChunkId)
+                .SetReloadableTileMap(reloadableTileMap)
                 .Build();    
 
             result.AddAllCollisions(absolutePositionCollisions);
@@ -90,6 +94,42 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             return new ScreenDimensionProperties(lowestScreenX, lowestScreenY, highestScreenX, highestScreenY);
         }
+
+        private static void CalculateAbsolutePositionTileMapForMapReload(Chunk chunk, ReloadableTileMap result)
+        {
+            if (chunk.PropertiesOfPossibleChunks.Count > 0)
+            {
+                List<ReloadableTile> terrainTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].TerrainTiles, chunk);
+                List<ReloadableTile> foliageBackTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageBackTiles, chunk);
+                List<ReloadableTile> foliageFrontTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageFrontTiles, chunk);
+                List<ReloadableTile> groundTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk);       
+
+                result.TerrainTiles.AddRange(terrainTiles);
+                result.FoliageBackTiles.AddRange(foliageBackTiles);
+                result.FoliageFrontTiles.AddRange(foliageFrontTiles);
+                result.GroundTiles.AddRange(groundTiles);      
+            }
+        }
+
+        private static List<ReloadableTile> CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<Tile> sourceTiles, Chunk chunk)
+        {
+            List<ReloadableTile> result = new List<ReloadableTile>();
+
+            foreach (Tile sourceTile in sourceTiles)
+            {
+                ReloadableTile tileWithAbsolutePosition = new ReloadableTile.Builder()
+                    .SetId(sourceTile.Id)
+                    .SetStartX(sourceTile.StartX + (chunk.X * Area.VISUAL_TILES_PER_CHUNK_EDGE))
+                    .SetStartY(sourceTile.StartY + (chunk.Y * Area.VISUAL_TILES_PER_CHUNK_EDGE))
+                    .SetWidth(sourceTile.Width)
+                    .SetHeight(sourceTile.Height)
+                    .Build();
+                        
+                result.Add(tileWithAbsolutePosition);
+            }
+
+            return result;
+        }        
 
         private static void CalculateAbsolutePositionCollisionsAndSpawners(Chunk chunk, List<Collision> absolutePositionCollisions, List<Spawner> absolutePositionSpawners)
         {

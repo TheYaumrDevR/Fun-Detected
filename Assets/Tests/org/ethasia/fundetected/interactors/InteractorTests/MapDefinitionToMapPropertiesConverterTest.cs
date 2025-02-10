@@ -95,6 +95,43 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.SpawnPositionsByChunkId["westPortal"].Y, Is.EqualTo(-90));
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsTiles()
+        {
+            MapDefinition mapDefinition = new MapDefinition(10, "Island");
+            CreateTestChunks(mapDefinition);
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
+
+            Assert.That(result.ReloadableTileMap.TerrainTiles.Count, Is.EqualTo(1));
+            Assert.That(result.ReloadableTileMap.TerrainTiles[0].Id, Is.EqualTo("Earth"));
+            Assert.That(result.ReloadableTileMap.TerrainTiles[0].StartX, Is.EqualTo(-2));
+            Assert.That(result.ReloadableTileMap.TerrainTiles[0].StartY, Is.EqualTo(-10));
+            Assert.That(result.ReloadableTileMap.TerrainTiles[0].Width, Is.EqualTo(3));
+            Assert.That(result.ReloadableTileMap.TerrainTiles[0].Height, Is.EqualTo(2));
+
+            Assert.That(result.ReloadableTileMap.GroundTiles.Count, Is.EqualTo(1));
+            Assert.That(result.ReloadableTileMap.GroundTiles[0].Id, Is.EqualTo("Grass"));
+            Assert.That(result.ReloadableTileMap.GroundTiles[0].StartX, Is.EqualTo(-2));
+            Assert.That(result.ReloadableTileMap.GroundTiles[0].StartY, Is.EqualTo(-16));
+            Assert.That(result.ReloadableTileMap.GroundTiles[0].Width, Is.EqualTo(3));
+            Assert.That(result.ReloadableTileMap.GroundTiles[0].Height, Is.EqualTo(1));
+
+            Assert.That(result.ReloadableTileMap.FoliageBackTiles.Count, Is.EqualTo(1));
+            Assert.That(result.ReloadableTileMap.FoliageBackTiles[0].Id, Is.EqualTo("Tree"));
+            Assert.That(result.ReloadableTileMap.FoliageBackTiles[0].StartX, Is.EqualTo(-3));
+            Assert.That(result.ReloadableTileMap.FoliageBackTiles[0].StartY, Is.EqualTo(-11));
+            Assert.That(result.ReloadableTileMap.FoliageBackTiles[0].Width, Is.EqualTo(2));
+            Assert.That(result.ReloadableTileMap.FoliageBackTiles[0].Height, Is.EqualTo(3));
+
+            Assert.That(result.ReloadableTileMap.FoliageFrontTiles.Count, Is.EqualTo(1));
+            Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].Id, Is.EqualTo("Flower"));
+            Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].StartX, Is.EqualTo(-8));
+            Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].StartY, Is.EqualTo(-13));
+            Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].Width, Is.EqualTo(1));
+            Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].Height, Is.EqualTo(1));
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk2 = new Chunk(-1, -2);
@@ -129,7 +166,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetId("EarthGrassValley")
                 .SetPlayerSpawnPoint(new PlayerSpawn(15, 46))
                 .SetPortalProperties(portalPropertiesChunk2)
-                .Build(); 
+                .Build();   
+
+            CreateTiles(chunkProperties2);
 
             chunk2.Spawn = true;
             chunk2.PropertiesOfPossibleChunks.Add(chunkProperties2);
@@ -159,6 +198,46 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             mapDefinition.Chunks.Add(chunk10);    
             mapDefinition.Chunks.Add(chunk11);
             mapDefinition.Chunks.Add(chunk12);                                    
-        }          
+        }    
+
+        private void CreateTiles(MapChunkProperties chunkProperties)
+        {
+            Tile groundTile = new Tile.Builder()
+                .SetId("Grass")
+                .SetStartX(6)
+                .SetStartY(0)
+                .SetWidth(3)
+                .SetHeight(1)
+                .Build();
+
+            Tile foliageBackTile = new Tile.Builder()
+                .SetId("Tree")
+                .SetStartX(5)
+                .SetStartY(5)
+                .SetWidth(2)
+                .SetHeight(3)
+                .Build();
+
+            Tile foliageFrontTile = new Tile.Builder()
+                .SetId("Flower")
+                .SetStartX(0)
+                .SetStartY(3)
+                .SetWidth(1)
+                .SetHeight(1)
+                .Build();
+
+            Tile terrainTile = new Tile.Builder()
+                .SetId("Earth")
+                .SetStartX(6)
+                .SetStartY(6)
+                .SetWidth(3)
+                .SetHeight(2)
+                .Build(); 
+
+            chunkProperties.GroundTiles.Add(groundTile);
+            chunkProperties.FoliageBackTiles.Add(foliageBackTile);
+            chunkProperties.FoliageFrontTiles.Add(foliageFrontTile);
+            chunkProperties.TerrainTiles.Add(terrainTile); 
+        }      
     }
 }

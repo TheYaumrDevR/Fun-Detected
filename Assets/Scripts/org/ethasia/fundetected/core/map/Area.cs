@@ -59,6 +59,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public ReloadableTileMap ReloadableTileMap
+        {
+            get;
+            private set;
+        }
+
         public int GetPlayerPositionX()
         {
             return playerPosition.X;
@@ -284,6 +290,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private Position playerSpawnPosition;
             private Dictionary<string, Position> playerSpawnPositionBySpawnerId;
             private EnemySpawner enemySpawner;
+            private ReloadableTileMap reloadableTileMap;
 
             public Builder()
             {
@@ -341,6 +348,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 enemySpawner = value;
                 return this;
             }
+
+            public Builder SetReloadableTileMap(ReloadableTileMap value)
+            {
+                reloadableTileMap = value;
+                return this;
+            }
                      
             public Area Build()
             {
@@ -356,6 +369,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.playerSpawnPosition = playerSpawnPosition;
                 result.playerSpawnPositionBySpawnerId = playerSpawnPositionBySpawnerId;
                 result.enemySpawner = enemySpawner;
+                result.ReloadableTileMap = reloadableTileMap;
                 return result;
             }            
         }

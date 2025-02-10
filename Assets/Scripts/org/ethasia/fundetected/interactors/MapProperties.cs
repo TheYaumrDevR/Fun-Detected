@@ -74,6 +74,14 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }        
 
+        #nullable enable
+        public ReloadableTileMap? ReloadableTileMap
+        {
+            get;
+            private set;
+        }
+        #nullable disable
+
         private MapProperties(int width, int height)
         {
             MapName = "";
@@ -88,6 +96,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             Portals = new List<MapPortalProperties>();
             Spawners = new List<Spawner>();
             SpawnableMonsters = new List<SpawnableMonster>();
+            ReloadableTileMap = null;
         }
 
         public void AddCollision(Collision value)
@@ -115,6 +124,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int maximumMonsters;
             private Position playerSpawnPosition;
             private Dictionary<string, Position> SpawnPositionsByChunkId;
+            private ReloadableTileMap reloadableTileMap;
 
             public Builder SetMapName(string value)
             {
@@ -164,6 +174,12 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
+            public Builder SetReloadableTileMap(ReloadableTileMap value)
+            {
+                reloadableTileMap = value;
+                return this;
+            }
+
             public MapProperties Build()
             {
                 MapProperties result = new MapProperties(width, height);
@@ -174,6 +190,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.MaximumMonsters = maximumMonsters;
                 result.PlayerSpawnPosition = playerSpawnPosition;
                 result.SpawnPositionsByChunkId = SpawnPositionsByChunkId;
+                result.ReloadableTileMap = reloadableTileMap;
 
                 return result;
             }                                  
