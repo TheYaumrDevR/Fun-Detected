@@ -14,7 +14,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetLowestScreenX(mapProperties.LowestScreenX)
                 .SetLowestScreenY(mapProperties.LowestScreenY)
                 .SetPlayerSpawnPosition(mapProperties.PlayerSpawnPosition)
-                .SetPlayerSpawnPositionBySpawnerId(mapProperties.SpawnPositionsByChunkId);
+                .SetPlayerSpawnPositionBySpawnerId(mapProperties.SpawnPositionsByChunkId)
+                .SetReloadableTileMap(mapProperties.ReloadableTileMap);
 
             ConvertCollisions(mapProperties, areaBuilder);
             ConvertAndSetEnemySpawner(mapProperties, areaBuilder);

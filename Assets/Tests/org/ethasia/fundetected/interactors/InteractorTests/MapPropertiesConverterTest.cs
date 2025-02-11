@@ -127,5 +127,23 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.GetSpawnPositionForChunkId("eastPortal").X, Is.EqualTo(77));
             Assert.That(result.GetSpawnPositionForChunkId("eastPortal").Y, Is.EqualTo(43));      
         }
+
+        [Test]
+        public void TestConvertMapPropertiesToAreaConvertsReloadableTileMap()
+        {
+            ReloadableTileMap reloadableTileMap = new ReloadableTileMap();
+
+            MapProperties mapProperties = new MapProperties.Builder()
+                .SetWidth(320)
+                .SetHeight(70)
+                .SetLowestScreenX(-100)
+                .SetLowestScreenY(-25)
+                .SetReloadableTileMap(reloadableTileMap)
+                .Build();    
+
+            Area result = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);  
+
+            Assert.That(result.ReloadableTileMap, Is.EqualTo(reloadableTileMap));      
+        }
     }
 }
