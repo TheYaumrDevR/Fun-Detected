@@ -6,7 +6,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public interface IMapPresenter
     {
-        void PresentTiles(List<Tile> tilesWithAbsolutePositions, string tileMapName);
+        void PresentTiles(List<ITile> tilesWithAbsolutePositions, string tileMapName);
         void PresentPortal(MapPortal portal);
         void PresentEmpty();
     }

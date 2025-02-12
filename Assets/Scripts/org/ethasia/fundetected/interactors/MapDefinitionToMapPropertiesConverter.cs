@@ -99,10 +99,10 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             if (chunk.PropertiesOfPossibleChunks.Count > 0)
             {
-                List<ReloadableTile> terrainTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].TerrainTiles, chunk);
-                List<ReloadableTile> foliageBackTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageBackTiles, chunk);
-                List<ReloadableTile> foliageFrontTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageFrontTiles, chunk);
-                List<ReloadableTile> groundTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk);       
+                List<ITile> terrainTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].TerrainTiles, chunk);
+                List<ITile> foliageBackTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageBackTiles, chunk);
+                List<ITile> foliageFrontTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageFrontTiles, chunk);
+                List<ITile> groundTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk);       
 
                 result.TerrainTiles.AddRange(terrainTiles);
                 result.FoliageBackTiles.AddRange(foliageBackTiles);
@@ -111,9 +111,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }
 
-        private static List<ReloadableTile> CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<Tile> sourceTiles, Chunk chunk)
+        private static List<ITile> CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<ITile> sourceTiles, Chunk chunk)
         {
-            List<ReloadableTile> result = new List<ReloadableTile>();
+            List<ITile> result = new List<ITile>();
 
             foreach (Tile sourceTile in sourceTiles)
             {

@@ -25,9 +25,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             renderMethodByTileLayerName.Add("terrain", tileMapRenderer.RenderTerrainTileAtPosition);
         }
 
-        public void PresentTiles(List<Tile> tilesWithAbsolutePositions, string tileMapName)
+        public void PresentTiles(List<ITile> tilesWithAbsolutePositions, string tileMapName)
         {   
-            foreach (Tile tile in tilesWithAbsolutePositions)
+            foreach (ITile tile in tilesWithAbsolutePositions)
             {
                 for (int i = tile.StartX; i < tile.StartX + tile.Width; i++)
                 {

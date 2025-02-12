@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -70,7 +71,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             ConvertTiles(terrainTiles, result.TerrainTiles);
         }   
 
-        private void ConvertTiles(XmlElement tilesRoot, List<Tile> target)
+        private void ConvertTiles(XmlElement tilesRoot, List<ITile> target)
         {
             if (null != tilesRoot)
             {

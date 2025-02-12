@@ -41,12 +41,18 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public void PortalPlayerIntoExistingMap(Area existingMap, string spawnDestinationId, PlayerCharacter playerCharacter)
         {
+            Area.ActiveArea = existingMap;
 
+            PresentTiles(existingMap.ReloadableTileMap);
+            ShowPortals(existingMap);
+            ShowEnemies(existingMap);   
+
+            existingMap.PortPlayerTo(playerCharacter, spawnDestinationId);         
         }
 
         public void LoadPlayerIntoNewMap(string mapId, Position loadPosition, PlayerCharacter playerCharacter)
         {
-
+            
         }
 
         private void LoadAndSetupMap(string mapId, PlayerCharacter playerCharacter)
@@ -88,10 +94,10 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         private void PresentTiles(MapDefinition mapDefinition)
         {
-            List<Tile> terrainTiles = new List<Tile>();
-            List<Tile> foliageBackTiles = new List<Tile>();
-            List<Tile> foliageFrontTiles = new List<Tile>();
-            List<Tile> groundTiles = new List<Tile>();
+            List<ITile> terrainTiles = new List<ITile>();
+            List<ITile> foliageBackTiles = new List<ITile>();
+            List<ITile> foliageFrontTiles = new List<ITile>();
+            List<ITile> groundTiles = new List<ITile>();
 
             foreach (Chunk chunk in mapDefinition.Chunks)
             {
@@ -110,9 +116,17 @@ namespace Org.Ethasia.Fundetected.Interactors
             mapPresenter.PresentTiles(groundTiles, "ground");
         }
 
-        private void CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<Tile> resultTiles, List<Tile> sourceTiles, Chunk chunk)
+        private void PresentTiles(ReloadableTileMap tileMap)
         {
-            foreach (Tile sourceTile in sourceTiles)
+            mapPresenter.PresentTiles(tileMap.TerrainTiles, "terrain");
+            mapPresenter.PresentTiles(tileMap.FoliageBackTiles, "foliageBack");
+            mapPresenter.PresentTiles(tileMap.FoliageFrontTiles, "foliageFront");
+            mapPresenter.PresentTiles(tileMap.GroundTiles, "ground");
+        }
+
+        private void CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<ITile> resultTiles, List<ITile> sourceTiles, Chunk chunk)
+        {
+            foreach (ITile sourceTile in sourceTiles)
             {
                 Tile tileWithAbsolutePosition = new Tile.Builder()
                     .SetId(sourceTile.Id)

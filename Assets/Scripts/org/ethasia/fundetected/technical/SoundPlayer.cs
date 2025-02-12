@@ -12,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private static SoundPlayer instance;
         private Dictionary<string, AudioSource> audioSourcesById;
+        private Dictionary<string, AudioSource> permanentAudioSourcesById;
         private Dictionary<string, Action<string>> soundMethodsById;
 
         public AudioClip enemyHitSound;
@@ -44,11 +45,28 @@ namespace Org.Ethasia.Fundetected.Technical
             audioSourcesById.Add(audioSourceId, audioSource);
         }
 
+        public void AddPermanentAudioSource(string audioSourceId, AudioSource audioSource)
+        {
+            if (null == permanentAudioSourcesById)
+            {
+                permanentAudioSourcesById = new Dictionary<string, AudioSource>();
+            }
+
+            permanentAudioSourcesById.Add(audioSourceId, audioSource);
+        }
+
+        public void ClearAudioSources()
+        {
+            audioSourcesById.Clear();
+        }
+
         public void PlayEnemyHitSound(string audioSourceId)
         {
-            if (audioSourcesById.ContainsKey(audioSourceId))
+            AudioSource audioSource = GetAudioSourceById(audioSourceId);
+
+            if (null != audioSource)
             {
-                audioSourcesById[audioSourceId].PlayOneShot(enemyHitSound);
+                audioSource.PlayOneShot(enemyHitSound);
             }
         }
 
@@ -65,17 +83,33 @@ namespace Org.Ethasia.Fundetected.Technical
             IRandomNumberGenerator rng = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             int randomNumber = rng.GenerateRandomPositiveInteger(1);
 
-            if (audioSourcesById.ContainsKey(audioSourceId))
+            AudioSource audioSource = GetAudioSourceById(audioSourceId);
+
+            if (null != audioSource)
             {
                 if (0 == randomNumber)
                 {
-                    audioSourcesById[audioSourceId].PlayOneShot(swingSoundOne);
+                    audioSource.PlayOneShot(swingSoundOne);
                 }
                 else
                 {
-                    audioSourcesById[audioSourceId].PlayOneShot(swingSoundTwo);
+                    audioSource.PlayOneShot(swingSoundTwo);
                 }
             }
+        }
+
+        private AudioSource GetAudioSourceById(string audioSourceId)
+        {
+            if (null != audioSourcesById && audioSourcesById.ContainsKey(audioSourceId))
+            {
+                return audioSourcesById[audioSourceId];
+            }         
+            else if (null != permanentAudioSourcesById && permanentAudioSourcesById.ContainsKey(audioSourceId))
+            {
+                return permanentAudioSourcesById[audioSourceId];                
+            }
+
+            return null;
         }
     }
 }

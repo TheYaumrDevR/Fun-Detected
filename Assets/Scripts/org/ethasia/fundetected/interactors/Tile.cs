@@ -1,6 +1,8 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
-    public struct Tile
+    public struct Tile : ITile
     {
         public string Id
         {

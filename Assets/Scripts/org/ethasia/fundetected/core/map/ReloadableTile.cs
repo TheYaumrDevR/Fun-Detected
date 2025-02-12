@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Fundetected.Core.Map
 {
-    public struct ReloadableTile
+    public struct ReloadableTile : ITile
     {
         public string Id
         {

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct MapChunkProperties
@@ -20,22 +22,22 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
-        public List<Tile> TerrainTiles
+        public List<ITile> TerrainTiles
         {
             get;
         }
 
-        public List<Tile> GroundTiles
+        public List<ITile> GroundTiles
         {
             get;
         }
 
-        public List<Tile> FoliageBackTiles
+        public List<ITile> FoliageBackTiles
         {
             get;
         }
 
-        public List<Tile> FoliageFrontTiles
+        public List<ITile> FoliageFrontTiles
         {
             get;
         }
@@ -56,10 +58,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             PlayerSpawnPoint = playerSpawnPoint;
             PortalProperties = portalProperties;
             
-            TerrainTiles = new List<Tile>();
-            GroundTiles = new List<Tile>();
-            FoliageBackTiles = new List<Tile>();
-            FoliageFrontTiles = new List<Tile>();
+            TerrainTiles = new List<ITile>();
+            GroundTiles = new List<ITile>();
+            FoliageBackTiles = new List<ITile>();
+            FoliageFrontTiles = new List<ITile>();
             CollisionProperties = new List<Collision>();
             Spawners = new List<Spawner>();
         }

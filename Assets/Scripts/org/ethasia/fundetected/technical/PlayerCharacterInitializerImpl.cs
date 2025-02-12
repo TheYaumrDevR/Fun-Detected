@@ -32,7 +32,12 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             startupRenderQueue.Add(value);
-        }       
+        }     
+
+        protected override void AssignAudioSource(string audioSourceId, AudioSource audioSource)
+        {
+            SoundPlayer.GetInstance().AddPermanentAudioSource(audioSourceId, audioSource);
+        }  
 
         protected override void AssignInstance()
         {

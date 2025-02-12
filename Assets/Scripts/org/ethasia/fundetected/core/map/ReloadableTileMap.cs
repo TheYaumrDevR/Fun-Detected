@@ -4,32 +4,32 @@ namespace Org.Ethasia.Fundetected.Core.Map
 {
     public class ReloadableTileMap
     {
-        public List<ReloadableTile> TerrainTiles
+        public List<ITile> TerrainTiles
         {
             get;
         }
 
-        public List<ReloadableTile> GroundTiles
+        public List<ITile> GroundTiles
         {
             get;
         }
 
-        public List<ReloadableTile> FoliageBackTiles
+        public List<ITile> FoliageBackTiles
         {
             get;
         }
 
-        public List<ReloadableTile> FoliageFrontTiles
+        public List<ITile> FoliageFrontTiles
         {
             get;
         }
 
         public ReloadableTileMap()
         {
-            TerrainTiles = new List<ReloadableTile>();
-            GroundTiles = new List<ReloadableTile>();
-            FoliageBackTiles = new List<ReloadableTile>();
-            FoliageFrontTiles = new List<ReloadableTile>();
+            TerrainTiles = new List<ITile>();
+            GroundTiles = new List<ITile>();
+            FoliageBackTiles = new List<ITile>();
+            FoliageFrontTiles = new List<ITile>();
         }
     }
 }

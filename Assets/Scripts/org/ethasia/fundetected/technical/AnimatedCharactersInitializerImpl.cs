@@ -52,10 +52,12 @@ namespace Org.Ethasia.Fundetected.Technical
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
-            }            
+            }    
+
+            SoundPlayer.GetInstance().ClearAudioSources();        
         }
 
-        protected void AssignAudioSource(string audioSourceId, AudioSource audioSource)
+        protected virtual void AssignAudioSource(string audioSourceId, AudioSource audioSource)
         {
             SoundPlayer.GetInstance().AddAudioSource(audioSourceId, audioSource);
         }
