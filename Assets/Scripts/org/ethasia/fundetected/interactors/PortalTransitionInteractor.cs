@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors
@@ -11,7 +12,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
             IMapPresenter mapPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetMapPresenterInstance();
             IEnemyPresenter enemyPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyPresenterInstance();
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
             
+            soundPresenter.PlayPortalTransitionSound();
             playerInputOnOffSwitch.DisableInput();
             mapPresenter.PresentEmpty();
             enemyPresenter.PresentNothing();

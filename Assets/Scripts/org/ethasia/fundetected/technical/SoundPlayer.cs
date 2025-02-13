@@ -15,9 +15,11 @@ namespace Org.Ethasia.Fundetected.Technical
         private Dictionary<string, AudioSource> permanentAudioSourcesById;
         private Dictionary<string, Action<string>> soundMethodsById;
 
+        public AudioSource globalAudioSource;
         public AudioClip enemyHitSound;
         public AudioClip swingSoundOne;
         public AudioClip swingSoundTwo;
+        public AudioClip portalTransitionSound;
 
         public static SoundPlayer GetInstance()
         {
@@ -68,6 +70,11 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 audioSource.PlayOneShot(enemyHitSound);
             }
+        }
+
+        public void PlayPortalTransitionSound()
+        {
+            globalAudioSource.PlayOneShot(portalTransitionSound);
         }
 
         public void CallSoundMethodById(string soundMethodId, string audioSourceId)

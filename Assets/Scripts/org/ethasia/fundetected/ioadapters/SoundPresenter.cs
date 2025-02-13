@@ -14,5 +14,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 soundPlayer.PlayEnemyHitSound(audioSourceId);
             }
         }
+
+        public void PlayPortalTransitionSound()
+        {
+            ISoundPlayer soundPlayer = TechnicalFactory.GetInstance().GetSoundPlayerInstance();
+
+            if (null != soundPlayer)
+            {
+                soundPlayer.PlayPortalTransitionSound();
+            }
+        }
     }
 }
