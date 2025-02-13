@@ -8,5 +8,6 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayLeftStrikeAnimation(StateMachine animationStateMachine);
         void PlayRightStrikeAnimation(StateMachine animationStateMachine);
         void PlayDeathAnimation(StateMachine animationStateMachine);
+        void PlayInstantDeathAnimation(StateMachine animationStateMachine);
     }
 }

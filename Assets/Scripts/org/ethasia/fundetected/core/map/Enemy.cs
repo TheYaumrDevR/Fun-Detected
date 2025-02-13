@@ -189,6 +189,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
+        public void OnActionStateMachineAssigned()
+        {
+            if (IsDead())
+            {
+                PlayInstantDeathAnimation();
+            }            
+        }
+
         private bool EnoughTimePassedForTheNextAttackToBeExecuted(double attacksPerSecond)
         {
             double secondsPerAttack = 1.0 / attacksPerSecond;
@@ -221,6 +229,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 CurrentLife = 0;
             }
 
+            PlayDeathAnimationIfDead();
+        }
+
+        private void PlayDeathAnimationIfDead()
+        {
             if (IsDead())
             {
                 PlayDeathAnimation();
@@ -247,6 +260,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
             animationPresenter.PlayDeathAnimation(ActionStateMachine);
+        }
+
+        private void PlayInstantDeathAnimation()
+        {
+            IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
+            animationPresenter.PlayInstantDeathAnimation(ActionStateMachine);
         }
 
         private void DamagePlayerIfHit(bool isHit, PlayerCharacter player)

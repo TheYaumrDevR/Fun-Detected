@@ -14,6 +14,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public void AssignActionStateMachineToEnemy(StateMachine actionStateMachine)
         {
             Enemy.ActionStateMachine = actionStateMachine;
+            Enemy.OnActionStateMachineAssigned();
         }
     }
 }

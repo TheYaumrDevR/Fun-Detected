@@ -9,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private const string LEFT_STRIKE_ANIMATION_NAME = "strikeLeft";
         private const string RIGHT_STRIKE_ANIMATION_NAME = "strikeRight";
         private const string DIE_ANIMATION_NAME = "die";
+        private const string INSTANT_DIE_ANIMATION_NAME = "dieInstantly";
 
         public void PlayIdleAnimation(StateMachine animationStateMachine)
         {
@@ -28,6 +29,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public void PlayDeathAnimation(StateMachine animationStateMachine)
         {
             animationStateMachine.ExecuteAction(DIE_ANIMATION_NAME);
+        }
+
+        public void PlayInstantDeathAnimation(StateMachine animationStateMachine)
+        {
+            animationStateMachine.ExecuteAction(INSTANT_DIE_ANIMATION_NAME);
         }
     }
 }

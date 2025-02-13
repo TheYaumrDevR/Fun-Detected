@@ -37,6 +37,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         }
 
+        public void PlayInstantDeathAnimation(StateMachine animationStateMachine)
+        {
+
+        }
+
         public void Reset()
         {
             TimesPlayLeftStrikeAnimationWasCalled = 0;
