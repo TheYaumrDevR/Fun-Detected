@@ -73,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsPortalIds()
         {
-            MapDefinition mapDefinition = new MapDefinition(9, "Mesa");
+            MapDefinition mapDefinition = new MapDefinition(10, "Mesa");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);    
@@ -85,7 +85,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsPortalSpawnTargetsForPlayers()
         {
-            MapDefinition mapDefinition = new MapDefinition(9, "Caverns");
+            MapDefinition mapDefinition = new MapDefinition(11, "Caverns");
             CreateTestChunks(mapDefinition);        
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);  
@@ -98,7 +98,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertMapDefinitionToMapPropertiesConvertsTiles()
         {
-            MapDefinition mapDefinition = new MapDefinition(10, "Island");
+            MapDefinition mapDefinition = new MapDefinition(12, "Island");
             CreateTestChunks(mapDefinition);
 
             MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
@@ -132,6 +132,20 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].Height, Is.EqualTo(1));
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsInfiniteHealingWells()
+        {
+            MapDefinition mapDefinition = new MapDefinition(13, "Valley");
+            CreateTestChunks(mapDefinition);
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition); 
+
+            Assert.That(result.HealingWells.Count, Is.EqualTo(1));          
+            Assert.That(result.HealingWells[0].Position.X, Is.EqualTo(-125));
+            Assert.That(result.HealingWells[0].Position.Y, Is.EqualTo(-125));
+            Assert.That(result.HealingWells[0].Charges, Is.EqualTo(1));
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk2 = new Chunk(-1, -2);
@@ -150,12 +164,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             PortalProperties portalPropertiesChunk1 = new PortalProperties(16, 72);
             portalPropertiesChunk1.Width = 75;
-            portalPropertiesChunk1.Height = 120;            
+            portalPropertiesChunk1.Height = 120;    
+
+            InfiniteHealingWell infiniteHealingWell = new InfiniteHealingWell(35, 35);                    
 
             MapChunkProperties chunkProperties1 = new MapChunkProperties.Builder()
                 .SetId("EarthGrassRisingHill")
                 .SetPlayerSpawnPoint(new PlayerSpawn(60, 70))
                 .SetPortalProperties(portalPropertiesChunk1)
+                .SetInfiniteHealingWell(infiniteHealingWell)                
                 .Build(); 
 
             PortalProperties portalPropertiesChunk2 = new PortalProperties(45, 60);

@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             List<Collision> absolutePositionCollisions = new List<Collision>();
             List<Spawner> absolutePositionSpawners = new List<Spawner>();
             List<MapPortalProperties> absolutePositionPortals = new List<MapPortalProperties>();
+            List<HealingWell> absolutePositionHealingWells = new List<HealingWell>();
             Dictionary<string, Position> spawnPositionsByChunkId = new Dictionary<string, Position>();
             Position playerSpawnPosition = null;
             ReloadableTileMap reloadableTileMap = new ReloadableTileMap();
@@ -28,10 +29,15 @@ namespace Org.Ethasia.Fundetected.Interactors
                 }
 
                 MapPortalProperties? mapPortalProperties = ConvertPortalPosition(chunk);
-
                 if (null != mapPortalProperties)
                 {
                     absolutePositionPortals.Add(mapPortalProperties.Value);
+                }
+
+                HealingWell healingWell = ConvertHealingWells(chunk);
+                if (null != healingWell)
+                {
+                    absolutePositionHealingWells.Add(healingWell);
                 }
 
                 AssignSpawnPointsToChunkIds(chunk, spawnPositionsByChunkId);
@@ -55,6 +61,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             result.AddAllSpawners(absolutePositionSpawners);   
             result.SpawnableMonsters.AddRange(mapDefinition.SpawnableMonsters);  
             result.Portals.AddRange(absolutePositionPortals);  
+            result.HealingWells.AddRange(absolutePositionHealingWells);
 
             return result;
         }
@@ -217,7 +224,33 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return null;
-        }   
+        }  
+
+        private static HealingWell ConvertHealingWells(Chunk chunk)
+        {
+            if (chunk.PropertiesOfPossibleChunks.Count > 0)
+            {
+                MapChunkProperties mapChunkProperties = chunk.PropertiesOfPossibleChunks[0];
+
+                if (mapChunkProperties.InfiniteHealingWell != null)
+                {
+                    int amountOfLogicalTilesPerChunkEdge = Area.LOGICAL_TILES_PER_VISUAL_TILE_EDGE * Area.VISUAL_TILES_PER_CHUNK_EDGE;
+
+                    Position healingWellPosition = new Position(mapChunkProperties.InfiniteHealingWell.Value.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.InfiniteHealingWell.Value.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
+                    int healingWellWidth = 1;
+                    int healingWellHeight = 1;
+
+                    return new HealingWell.Builder()
+                        .SetPosition(healingWellPosition)
+                        .SetWidth(healingWellWidth)
+                        .SetHeight(healingWellHeight)
+                        .MakeInfinite()
+                        .Build();
+                }
+            }
+
+            return null;
+        } 
         
         private static void AssignSpawnPointsToChunkIds(Chunk chunk, Dictionary<string, Position> spawnPositionsByChunkId)
         {

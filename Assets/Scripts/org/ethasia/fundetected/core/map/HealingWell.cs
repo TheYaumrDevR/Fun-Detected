@@ -2,25 +2,28 @@ using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
 {
-    public class MapPortal : InteractableEnvironmentObject
+    public class HealingWell : InteractableEnvironmentObject
     {
-        public string DestinationMapId
+        private bool hasInfiniteCharges;     
+
+        public int Charges
         {
             get;
             private set;
         }
-
-        public string DestinationPortalId
-        {
-            get;
-            private set;
-        }
-
 
         public override void OnInteract()
         {
-            IPortalTransitionInteractor portalTransitionInteractor = InteractorsFactoryForCore.GetInstance().GetPortalTransitionInteractor();
-            portalTransitionInteractor.TransitionToOtherMap(DestinationMapId, DestinationPortalId);
+            if (Charges > 0)
+            {
+                PlayerCharacter player = Area.ActiveArea.Player;
+                player.FullyHealHpAndMp();
+            }
+
+            if (!hasInfiniteCharges)
+            {
+                Charges--;
+            }
         }
 
         public class Builder
@@ -28,8 +31,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private Position position;
             private int width;
             private int height;
-            private string destinationMapId;
-            private string destinationPortalId;
+            private int charges;
+            private bool hasInfiniteCharges;
 
             public Builder SetPosition(Position value)
             {
@@ -49,27 +52,32 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }
 
-            public Builder SetDestinationMapId(string value)
+            public Builder SetCharges(int value)
             {
-                destinationMapId = value;
-                return this;
-            }   
+                if (!hasInfiniteCharges)
+                {
+                    charges = value;
+                }
 
-            public Builder SetDestinationPortalId(string value)
-            {
-                destinationPortalId = value;
                 return this;
             }
 
-            public MapPortal Build()
+            public Builder MakeInfinite()
             {
-                MapPortal result = new MapPortal();
+                hasInfiniteCharges = true;
+                charges = 1;
+                return this;
+            }
+
+            public HealingWell Build()
+            {
+                HealingWell result = new HealingWell();
 
                 result.Position = position;
                 result.Width = width;
                 result.Height = height;
-                result.DestinationMapId = destinationMapId;
-                result.DestinationPortalId = destinationPortalId;
+                result.Charges = charges;
+                result.hasInfiniteCharges = hasInfiniteCharges;
 
                 return result;
             }

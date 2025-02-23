@@ -82,6 +82,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(result.PortalProperties.AreSet, Is.False);
             Assert.That(result.PortalProperties.X, Is.EqualTo(0));
             Assert.That(result.PortalProperties.Y, Is.EqualTo(0));
-        }                 
+        }         
+
+        [Test]
+        public void TestLoadChunkPropertiesLoadsInfiniteHealingWell()
+        {
+            XmlFilesBasedMapChunkGateway testCandidate = new XmlFilesBasedMapChunkGateway();
+
+            MapChunkProperties result = testCandidate.LoadChunkProperties("EarthGrassLoweringHill");
+
+            Assert.That(result.InfiniteHealingWell.Value.X, Is.EqualTo(44));
+            Assert.That(result.InfiniteHealingWell.Value.Y, Is.EqualTo(38));
+        }        
     }
 }

@@ -66,6 +66,7 @@
     <mapTileProperties>
         <playerSpawn x="5" y="42"/>
         <portal x="19" y="38" width="20" height="20"/>
+        <infiniteHealingWell x="44" y="38"/>
 
         <collisions>
             <collision startX="0" startY="26" width="80" height="1"/>

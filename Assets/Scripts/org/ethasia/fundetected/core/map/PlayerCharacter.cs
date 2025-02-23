@@ -127,7 +127,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
 
             return result;            
-        }     
+        }    
+
+        public void FullyHealHp()
+        {
+            BaseStats.Heal();
+        }
+
+        public void FullyHealHpAndMp()
+        {
+            BaseStats.FullHeal();
+        } 
 
         public void TakePhysicalDamage(int incomingDamage)
         {

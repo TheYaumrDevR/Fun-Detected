@@ -121,11 +121,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 PortalProperties portalProperties = CreatePortalPropertiesFromXmlIfPresent(tilePropertiesParent);
                 PlayerSpawn playerSpawn = CreatePlayerSpawnPropertiesFromXmlIfPresent(tilePropertiesParent);
+                InfiniteHealingWell? maybeInfiniteHealingWell = CreateInfiniteHealingWellPropertiesFromXmlIfPresent(tilePropertiesParent);
 
                 MapChunkProperties result = new MapChunkProperties.Builder()
                     .SetId(chunkName)
                     .SetPlayerSpawnPoint(playerSpawn)
                     .SetPortalProperties(portalProperties)
+                    .SetInfiniteHealingWell(maybeInfiniteHealingWell)
                     .Build();
 
                 FillCollisionPropertiesFromXml(tilePropertiesParent, result);
@@ -206,6 +208,30 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return PlayerSpawn.CreateUnset();
+        }
+
+        private InfiniteHealingWell? CreateInfiniteHealingWellPropertiesFromXmlIfPresent(XmlElement tilePropertiesParent)
+        {
+            XmlElement infiniteHealingWellElement = tilePropertiesParent["infiniteHealingWell"];
+
+            if (null != infiniteHealingWellElement)
+            {
+                if (infiniteHealingWellElement.HasAttribute("x") && infiniteHealingWellElement.HasAttribute("y"))
+                {
+                    string xText = infiniteHealingWellElement.GetAttribute("x");
+                    string yText = infiniteHealingWellElement.GetAttribute("y");
+
+                    if (int.TryParse(xText, out int x))
+                    {
+                        if (int.TryParse(yText, out int y))
+                        {
+                            return new InfiniteHealingWell(x, y);
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
         private void FillCollisionPropertiesFromXml(XmlElement tilePropertiesParent, MapChunkProperties result)

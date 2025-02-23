@@ -69,6 +69,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
+        public List<HealingWell> HealingWells
+        {
+            get;
+        }
+
         public List<SpawnableMonster> SpawnableMonsters
         {
             get;
@@ -94,6 +99,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             PlayerSpawnPosition = null;
             SpawnPositionsByChunkId = new Dictionary<string, Position>();
             Portals = new List<MapPortalProperties>();
+            HealingWells = new List<HealingWell>();
             Spawners = new List<Spawner>();
             SpawnableMonsters = new List<SpawnableMonster>();
             ReloadableTileMap = null;

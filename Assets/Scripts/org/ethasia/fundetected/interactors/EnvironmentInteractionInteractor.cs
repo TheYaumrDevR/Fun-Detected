@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             Area activeArea = Area.ActiveArea;
             
-            foreach (IInteractableEnvironmentObject interactableObject in activeArea.InteractableEnvironmentObjects)
+            foreach (InteractableEnvironmentObject interactableObject in activeArea.InteractableEnvironmentObjects)
             {
                 CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox = interactableObject.GetCollisionBoundingBoxContext();
 

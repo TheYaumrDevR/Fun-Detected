@@ -22,6 +22,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
         }
 
+        public InfiniteHealingWell? InfiniteHealingWell
+        {
+            get;
+            private set;
+        }
+
         public List<ITile> TerrainTiles
         {
             get;
@@ -57,6 +63,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             Id = id;
             PlayerSpawnPoint = playerSpawnPoint;
             PortalProperties = portalProperties;
+            InfiniteHealingWell = null;
             
             TerrainTiles = new List<ITile>();
             GroundTiles = new List<ITile>();
@@ -82,6 +89,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private string id;
             private PlayerSpawn playerSpawnPoint;
             private PortalProperties portalProperties;
+            private InfiniteHealingWell? infiniteHealingWell;
 
             public Builder SetId(string value)
             {
@@ -101,9 +109,19 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }            
 
+            public Builder SetInfiniteHealingWell(InfiniteHealingWell? value)
+            {
+                infiniteHealingWell = value;
+                return this;
+            }
+
             public MapChunkProperties Build()
             {
-                return new MapChunkProperties(id, playerSpawnPoint, portalProperties);
+                MapChunkProperties result = new MapChunkProperties(id, playerSpawnPoint, portalProperties);
+
+                result.InfiniteHealingWell = infiniteHealingWell;
+
+                return result;
             }
         }
     }

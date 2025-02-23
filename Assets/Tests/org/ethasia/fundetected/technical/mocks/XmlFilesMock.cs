@@ -328,6 +328,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                 <mapTileProperties>
                     <playerSpawn x=""64"" y=""37""/>
                     <portal x=""74"" y=""37""/>
+                    <infiniteHealingWell x=""44"" y=""38""/>
 
                     <collisions>
                         <collision startX=""0"" startY=""56"" width=""20"" height=""1""/>

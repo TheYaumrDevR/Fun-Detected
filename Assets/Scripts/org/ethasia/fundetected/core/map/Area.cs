@@ -53,7 +53,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }    
 
-        public List<IInteractableEnvironmentObject> InteractableEnvironmentObjects
+        public List<HealingWell> HealingWells
+        {
+            get;
+            private set;
+        }
+
+        public List<InteractableEnvironmentObject> InteractableEnvironmentObjects
         {
             get;
             private set;
@@ -81,7 +87,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             Enemies = new List<Enemy>();
             Portals = new List<MapPortal>();
-            InteractableEnvironmentObjects = new List<IInteractableEnvironmentObject>();
+            HealingWells = new List<HealingWell>();
+            InteractableEnvironmentObjects = new List<InteractableEnvironmentObject>();
             this.isCollisionTile = isCollisionTile; 
             playerPosition = new Position(0, 0);
             enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
@@ -146,6 +153,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             Portals.Add(portal);
             InteractableEnvironmentObjects.Add(portal);
+        }
+
+        public void AddHealingWell(HealingWell healingWell)
+        {
+            HealingWells.Add(healingWell);
+            InteractableEnvironmentObjects.Add(healingWell);
         }
 
         public List<EnemySpawnLocation> SpawnEnemies()

@@ -23,6 +23,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             Area result = areaBuilder.Build();
 
             ConvertAllMapPortalPropertiesToMapPortals(result, mapProperties);
+            AddHealingWellsToMap(result, mapProperties);
 
             return result;
         } 
@@ -94,6 +95,14 @@ namespace Org.Ethasia.Fundetected.Interactors
             foreach (MapPortalProperties portalProperties in mapProperties.Portals)
             {
                 resultArea.AddPortal(ConvertMapPortalPropertiesToMapPortal(portalProperties));
+            }
+        }
+
+        private static void AddHealingWellsToMap(Area map, MapProperties mapProperties)
+        {
+            foreach (HealingWell healingWell in mapProperties.HealingWells)
+            {
+                map.AddHealingWell(healingWell);
             }
         }
 
