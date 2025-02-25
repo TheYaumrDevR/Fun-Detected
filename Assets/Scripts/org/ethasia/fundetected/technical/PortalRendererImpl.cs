@@ -38,7 +38,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             GameObject quad = CreatePortalQuad(renderData); 
             SetupOnHoverEffect(quad);
-            AddPortalLabel(quad, renderData.Label);
+            GameObject portalLabel = InteractableLabelFactory.CreateInteractableLabel(renderData.Label, "PortalLabel");
+
+            portalLabel.transform.position = quad.transform.position;
+            portalLabel.transform.SetParent(quad.transform);            
 
             quad.transform.SetParent(transform);
         }
@@ -91,14 +94,14 @@ namespace Org.Ethasia.Fundetected.Technical
             textRenderer.sortingLayerName = "IngameLabels";
             textRenderer.sortingOrder = 1;        
 
-            GameObject backGroundQuad = AddPortalLabelBackground(portalQuad, textMesh);
+            GameObject backGroundQuad = AddPortalLabelBackground(textMesh);
 
             // Position the background behind the text
             backGroundQuad.transform.SetParent(label.transform);
             backGroundQuad.transform.localPosition = new Vector3(0, 0, 0); // Ensure it is behind the text             
         }
 
-        private GameObject AddPortalLabelBackground(GameObject portalQuad, TextMesh textMesh)
+        private GameObject AddPortalLabelBackground(TextMesh textMesh)
         {
             Renderer textRenderer = textMesh.GetComponent<Renderer>();
             Vector3 textSize = textRenderer.bounds.size;

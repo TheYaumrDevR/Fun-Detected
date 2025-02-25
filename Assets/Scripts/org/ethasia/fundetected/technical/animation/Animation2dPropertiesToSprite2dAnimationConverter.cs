@@ -140,6 +140,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
         private static void ConvertAnimation2dFramesToSprite2dAnimationFrames(Animation2dProperties toConvert, Sprite2dAnimation.Builder resultBuilder)
         {
+            Sprite[] frameSprites = Resources.LoadAll<Sprite>(toConvert.SpriteImageName);
+
             foreach (Animation2dFrameProperties animationFrameProperties in toConvert.AnimationFrames)
             {
                 if (!animationFrameProperties.HasImage)
@@ -148,8 +150,6 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 }
                 else
                 {
-                    Sprite[] frameSprites = Resources.LoadAll<Sprite>(toConvert.SpriteImageName);
-
                     if (frameSprites.Length > animationFrameProperties.FrameIndex)
                     {
                         if ("" != animationFrameProperties.SoundMethodId)
