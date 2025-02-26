@@ -5,6 +5,7 @@ namespace Org.Ethasia.Fundetected.Technical
     public class RealTechnicalFactory : TechnicalFactory
     {
         private PortalRendererDelayedInitializationProxy portalRenderer;
+        private InteractablesRendererDelayedInitializationProxy interactablesRenderer;
 
         public override XmlFiles CreateXmlFiles()
         {
@@ -61,6 +62,16 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             return portalRenderer;
+        }
+
+        public override IInteractablesRenderer GetInteractablesRendererInstance()
+        {
+            if (null == interactablesRenderer)
+            {
+                interactablesRenderer = new InteractablesRendererDelayedInitializationProxy();
+            }
+
+            return interactablesRenderer;
         }
     }
 }

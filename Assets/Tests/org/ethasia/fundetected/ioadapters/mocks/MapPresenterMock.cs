@@ -17,6 +17,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             
         }
 
+        public void PresentHealingWell(HealingWell healingWell)
+        {
+            
+        }
+
         public void PresentEmpty()
         {
             

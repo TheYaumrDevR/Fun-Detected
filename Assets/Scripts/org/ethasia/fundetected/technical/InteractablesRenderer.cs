@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
@@ -6,16 +7,23 @@ namespace Org.Ethasia.Fundetected.Technical
 {
     public class InteractablesRenderer : MonoBehaviour, IInteractablesRenderer
     {
+        private static List<InteractablesRendererDelayedInitializationProxy> interactablesRendererProxies = new List<InteractablesRendererDelayedInitializationProxy>();
         private static InteractablesRenderer instance;
 
         public static InteractablesRenderer GetInstance()
         {
             return instance;
-        }        
+        }      
+
+        public static void RegisterInteractablesRendererProxy(InteractablesRendererDelayedInitializationProxy proxy)
+        {
+            interactablesRendererProxies.Add(proxy);
+        }          
 
         void Awake()
         {
             instance = this;
+            NotifyProxiesAboutAwake();
         }       
 
         public void ClearRenderedInteractables()
@@ -51,5 +59,13 @@ namespace Org.Ethasia.Fundetected.Technical
 
             return result;
         }
+
+        private void NotifyProxiesAboutAwake()
+        {
+            foreach (InteractablesRendererDelayedInitializationProxy proxy in interactablesRendererProxies)
+            {
+                proxy.OnInteractablesRendererAwake(this);
+            }
+        }          
     }    
 }

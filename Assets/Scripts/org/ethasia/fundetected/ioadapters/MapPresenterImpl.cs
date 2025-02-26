@@ -11,12 +11,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     {
         private ITileMapRenderer tileMapRenderer;
         private IPortalRenderer portalRenderer;
+        private IInteractablesRenderer interactablesRenderer;
         private Dictionary<string, Action<TileRenderContext>> renderMethodByTileLayerName;
 
         public MapPresenterImpl()
         {
             portalRenderer = TechnicalFactory.GetInstance().GetPortalRendererInstance();
             tileMapRenderer = TechnicalFactory.GetInstance().GetTileMapRendererInstance();
+            interactablesRenderer = TechnicalFactory.GetInstance().GetInteractablesRendererInstance();
             renderMethodByTileLayerName = new Dictionary<string, Action<TileRenderContext>>();
 
             renderMethodByTileLayerName.Add("ground", tileMapRenderer.RenderGroundTileAtPosition);
@@ -88,9 +90,25 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             portalRenderer.RenderPortal(portalRenderShape);
         }
 
+        public void PresentHealingWell(HealingWell healingWell)
+        {
+            float engineX = healingWell.Position.X * 0.1f;
+            float engineY = healingWell.Position.Y * 0.1f;
+
+            InteractableRenderProxy healingWellRenderProxy = new InteractableRenderProxy.Builder()
+                .SetRenderImageName("healingWell")
+                .SetInteractableDisplayName("Healing Well")
+                .SetPosX(engineX)
+                .SetPosY(engineY)
+                .Build();
+
+            interactablesRenderer.RenderInteractable(healingWellRenderProxy);
+        }
+
         public void PresentEmpty()
         {
             portalRenderer.ClearRenderedPortals();
+            interactablesRenderer.ClearRenderedInteractables();
             tileMapRenderer.ClearAllTiles();
         }
     }

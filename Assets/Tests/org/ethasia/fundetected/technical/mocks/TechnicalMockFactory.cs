@@ -48,5 +48,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return null;
         }
+
+        public override IInteractablesRenderer GetInteractablesRendererInstance()
+        {
+            return null;    
+        }
     }
 }
