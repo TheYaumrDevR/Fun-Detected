@@ -45,6 +45,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             PresentTiles(existingMap.ReloadableTileMap);
             ShowPortals(existingMap);
+            ShowHealingWells(existingMap);
             ShowEnemies(existingMap);   
 
             existingMap.PortPlayerTo(playerCharacter, spawnDestinationId);         
@@ -150,6 +151,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             Area.ActiveArea = map;
 
             ShowPortals(map);
+            ShowHealingWells(map);
             ShowEnemies(map);
         }
 
@@ -205,6 +207,14 @@ namespace Org.Ethasia.Fundetected.Interactors
                 mapPresenter.PresentPortal(portal);
             }
         }   
+
+        private void ShowHealingWells(Area map)
+        {
+            foreach (HealingWell healingWell in map.HealingWells)
+            {
+                mapPresenter.PresentHealingWell(healingWell);
+            }
+        }
 
         private void ShowEnemies(Area map)
         {

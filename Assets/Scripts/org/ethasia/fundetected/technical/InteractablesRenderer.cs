@@ -37,6 +37,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public void RenderInteractable(InteractableRenderProxy renderData)
         {
             GameObject interactable = CreateInteractableSprite(renderData);
+            SetupOnHoverEffect(interactable);
 
             GameObject interactableLabel = InteractableLabelFactory.CreateInteractableLabel(renderData.InteractableDisplayName, renderData.InteractableDisplayName + " Label");
 
@@ -60,12 +61,48 @@ namespace Org.Ethasia.Fundetected.Technical
             return result;
         }
 
+        private void SetupOnHoverEffect(GameObject interactable)
+        {
+            BoxCollider collider = interactable.AddComponent<BoxCollider>();
+            collider.size = new Vector3(1.0f, 1.0f, 1.0f);
+
+            interactable.AddComponent<OutlineHoverEffect>();
+        }        
+
         private void NotifyProxiesAboutAwake()
         {
             foreach (InteractablesRendererDelayedInitializationProxy proxy in interactablesRendererProxies)
             {
                 proxy.OnInteractablesRendererAwake(this);
             }
-        }          
+        } 
+
+        private class OutlineHoverEffect : MonoBehaviour
+        {
+            private Renderer interactableRenderer;
+            private Material originalMaterial;
+            private Material outlineMaterial;
+
+            void Start()
+            {
+                interactableRenderer = GetComponent<Renderer>();
+                originalMaterial = interactableRenderer.material;
+
+                outlineMaterial = Resources.Load<Material>("OutlineHoverEffectMaterial");
+            }            
+
+            void OnMouseEnter()
+            {
+                if (null != interactableRenderer)
+                {
+                    interactableRenderer.material = outlineMaterial;
+                }
+            }
+
+            void OnMouseExit()
+            {
+                interactableRenderer.material = originalMaterial;
+            }
+        }         
     }    
 }
