@@ -1,105 +1,115 @@
-Shader "Custom/OutlineShader"
+Shader "Sprites/Outline"
 {
-    Properties
-    {
-        _MainTex ("Base (RGB)", 2D) = "white" {}
-        _OutlineColor ("Outline Color", Color) = (1,1,1,1) // White outline color
-        _Outline ("Outline width", Range (.002, 0.03)) = .005
-    }
-    SubShader
-    {
-        Tags {"Queue" = "Overlay" }
-        LOD 200
+	Properties
+	{
+		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
+		_Color("Tint", Color) = (1,1,1,1)
+		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 
-        Pass
-        {
-            Name "OUTLINE"
-            Tags { "LightMode" = "Always" }
-            Cull Front
-            ZWrite On
-            ZTest LEqual
+		[PerRendererData] _Outline("Outline", Float) = 0
+		[PerRendererData] _OutlineColor("Outline Color", Color) = (1,0.65,0,1)
+		[PerRendererData] _OutlineSize("Outline Size", int) = 2
+	}
 
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc"
+	SubShader
+	{
+		Tags
+		{
+			"Queue" = "Transparent"
+			"IgnoreProjector" = "True"
+			"RenderType" = "Transparent"
+			"PreviewType" = "Plane"
+			"CanUseSpriteAtlas" = "True"
+		}
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-            };
+		Cull Off
+		Lighting Off
+		ZWrite Off
+		Blend One OneMinusSrcAlpha
 
-            struct v2f
-            {
-                float4 pos : POSITION;
-                float4 color : COLOR;
-            };
+		Pass
+		{
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#pragma multi_compile _ PIXELSNAP_ON
+			#pragma shader_feature ETC1_EXTERNAL_ALPHA
+			#include "UnityCG.cginc"
 
-            uniform float _Outline;
-            uniform float4 _OutlineColor;
+			struct appdata_t
+			{
+				float4 vertex   : POSITION;
+				float4 color    : COLOR;
+				float2 texcoord : TEXCOORD0;
+			};
 
-            v2f vert(appdata v)
-            {
-                // just make a copy of incoming vertex data but scaled according to normal direction
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                float3 norm = mul((float3x3) unity_WorldToObject, v.normal);
-                float2 offset = TransformViewToProjection(norm.xy * _Outline);
-                o.pos.xy += offset;
-                o.color = _OutlineColor;
-                return o;
-            }
+			struct v2f
+			{
+				float4 vertex   : SV_POSITION;
+				fixed4 color : COLOR;
+				float2 texcoord  : TEXCOORD0;
+			};
 
-            half4 frag(v2f i) : COLOR
-            {
-                return i.color;
-            }
-            ENDCG
-        }
+			fixed4 _Color;
+			float _Outline;
+			fixed4 _OutlineColor;
+			int _OutlineSize;
 
-        Pass
-        {
-            Name "BASE"
-            Tags { "LightMode" = "ForwardBase" }
-            Cull Back
-            ZWrite On
-            ZTest LEqual
+			v2f vert(appdata_t IN)
+			{
+				v2f OUT;
+				OUT.vertex = UnityObjectToClipPos(IN.vertex);
+				OUT.texcoord = IN.texcoord;
+				OUT.color = IN.color * _Color;
+				#ifdef PIXELSNAP_ON
+				OUT.vertex = UnityPixelSnap(OUT.vertex);
+				#endif
 
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc"
+				return OUT;
+			}
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
+			sampler2D _MainTex;
+			sampler2D _AlphaTex;
+			float4 _MainTex_TexelSize;
 
-            struct v2f
-            {
-                float4 pos : POSITION;
-                float2 uv : TEXCOORD0;
-            };
+			fixed4 SampleSpriteTexture(float2 uv)
+			{
+				fixed4 color = tex2D(_MainTex, uv);
 
-            sampler2D _MainTex;
+				#if ETC1_EXTERNAL_ALPHA
+				color.a = tex2D(_AlphaTex, uv).r;
+				#endif //ETC1_EXTERNAL_ALPHA
 
-            v2f vert(appdata v)
-            {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
-                return o;
-            }
+				return color;
+			}
 
-            half4 frag(v2f i) : COLOR
-            {
-                half4 texcol = tex2D(_MainTex, i.uv);
-                return texcol;
-            }
-            ENDCG
-        }
-    }
-    FallBack "Diffuse"
+			fixed4 frag(v2f IN) : SV_Target
+			{
+				fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
+
+				if (_Outline > 0 && c.a != 0) {
+					float totalAlpha = 1.0;
+
+					[unroll(16)]
+					for (int i = 1; i < _OutlineSize + 1; i++) {
+						fixed4 pixelUp = tex2D(_MainTex, IN.texcoord + fixed2(0, i * _MainTex_TexelSize.y));
+						fixed4 pixelDown = tex2D(_MainTex, IN.texcoord - fixed2(0,i *  _MainTex_TexelSize.y));
+						fixed4 pixelRight = tex2D(_MainTex, IN.texcoord + fixed2(i * _MainTex_TexelSize.x, 0));
+						fixed4 pixelLeft = tex2D(_MainTex, IN.texcoord - fixed2(i * _MainTex_TexelSize.x, 0));
+
+						totalAlpha = totalAlpha * pixelUp.a * pixelDown.a * pixelRight.a * pixelLeft.a;
+					}
+
+					if (totalAlpha == 0) {
+						c.rgba = fixed4(1, 1, 1, 1) * _OutlineColor;
+					}
+				}
+
+				c.rgb *= c.a;
+
+				return c;
+			}
+			ENDCG
+		}
+	}
 }
