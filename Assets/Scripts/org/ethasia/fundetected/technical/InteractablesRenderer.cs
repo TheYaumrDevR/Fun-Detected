@@ -89,6 +89,7 @@ namespace Org.Ethasia.Fundetected.Technical
                 originalMaterial = interactableRenderer.material;
 
                 outlineMaterial = Resources.Load<Material>("OutlineHoverEffectMaterial");
+                SetupOutlineColor();
             }            
 
             void OnMouseEnter()
@@ -102,6 +103,16 @@ namespace Org.Ethasia.Fundetected.Technical
             void OnMouseExit()
             {
                 interactableRenderer.material = originalMaterial;
+            }
+
+            private void SetupOutlineColor()
+            {
+                Color outlineColor = Color.yellow;
+                MaterialPropertyBlock materialProperties = new MaterialPropertyBlock();
+                interactableRenderer.GetPropertyBlock(materialProperties);
+
+                materialProperties.SetColor("_OutlineColor", outlineColor);
+                interactableRenderer.SetPropertyBlock(materialProperties);
             }
         }         
     }    
