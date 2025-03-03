@@ -32,12 +32,30 @@ namespace Org.Ethasia.Fundetected.Interactors
                     if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
                     {
                         interactableObject.OnInteract();
+                        PresentHealthAndManaBarState();
+
                         return true;
                     }
                 }
             }
 
             return false;
+        }
+
+        private void PresentHealthAndManaBarState()
+        {
+            PlayerCharacterBaseStats playerBaseStats = Area.ActiveArea.Player.BaseStats;
+
+            int maximumLife = playerBaseStats.MaximumLife;
+            int currentLife = playerBaseStats.CurrentLife;             
+
+            int maximumMana = playerBaseStats.MaximumMana;
+            int currentMana = playerBaseStats.CurrentMana;                       
+
+            IResourceBarPresenter resourceBarPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetResourceBarPresenterInstance();
+            
+            resourceBarPresenter.PresentHealthBarBasedOnCurrentAndMaximumHealth(currentLife, maximumLife);
+            resourceBarPresenter.PresentManaBarBasedOnCurrentAndMaximumMana(currentMana, maximumMana);
         }
     }
 }
