@@ -237,13 +237,11 @@ namespace Org.Ethasia.Fundetected.Interactors
                     int amountOfLogicalTilesPerChunkEdge = Area.LOGICAL_TILES_PER_VISUAL_TILE_EDGE * Area.VISUAL_TILES_PER_CHUNK_EDGE;
 
                     Position healingWellPosition = new Position(mapChunkProperties.InfiniteHealingWell.Value.X + (chunk.X * amountOfLogicalTilesPerChunkEdge), mapChunkProperties.InfiniteHealingWell.Value.Y + (chunk.Y * amountOfLogicalTilesPerChunkEdge));
-                    int healingWellWidth = 1;
-                    int healingWellHeight = 1;
 
                     return new HealingWell.Builder()
                         .SetPosition(healingWellPosition)
-                        .SetWidth(healingWellWidth)
-                        .SetHeight(healingWellHeight)
+                        .SetWidth(mapChunkProperties.InfiniteHealingWell.Value.Width)
+                        .SetHeight(mapChunkProperties.InfiniteHealingWell.Value.Height)
                         .MakeInfinite()
                         .Build();
                 }
