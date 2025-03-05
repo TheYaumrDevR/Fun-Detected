@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class RealPlayerCharacterPresenter : AbstractAnimationPresenter, IPlayerCharacterPresenter
     {
+        private const string PLAYER_CHARACTER_ID_PREFIX = "PlayerCharacter ";
         private IAnimatedCharactersInitializer playerCharacterInitializer;
 
         public void PresentPlayer(string playerName, Position playerPosition)
@@ -19,8 +20,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             float playerPosY = playerPosition.Y / 10.0f + 0.4f;
 
             GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
-                .SetIndividualId("PlayerCharacter " + playerName)
-                .SetName("PlayerCharacter " + playerName)
+                .SetIndividualId(PLAYER_CHARACTER_ID_PREFIX + playerName)
+                .SetName(PLAYER_CHARACTER_ID_PREFIX + playerName)
                 .SetPosX(playerPosX)
                 .SetPosY(playerPosY)
                 .SetScaleX(2.936439f)
@@ -30,5 +31,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             playerCharacterInitializer.InitializeAnimatedCharacter(gameObjectProxy);
         }       
+
+        public string GetPlayerCharacterIdPrefix()
+        {
+            return PLAYER_CHARACTER_ID_PREFIX;
+        }
     }
 }

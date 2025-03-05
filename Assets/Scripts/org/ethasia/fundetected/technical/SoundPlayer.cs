@@ -20,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip swingSoundOne;
         public AudioClip swingSoundTwo;
         public AudioClip portalTransitionSound;
+        public AudioClip healingWellUseSound;
 
         public static SoundPlayer GetInstance()
         {
@@ -75,6 +76,16 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayPortalTransitionSound()
         {
             globalAudioSource.PlayOneShot(portalTransitionSound);
+        }
+
+        public void PlayHealingWellUseSound(string audioSourceId)
+        {
+            AudioSource audioSource = GetAudioSourceById(audioSourceId);
+
+            if (null != audioSource)
+            {
+                audioSource.PlayOneShot(healingWellUseSound);
+            }
         }
 
         public void CallSoundMethodById(string soundMethodId, string audioSourceId)

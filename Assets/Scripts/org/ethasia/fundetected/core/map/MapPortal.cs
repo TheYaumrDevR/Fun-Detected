@@ -17,7 +17,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         }
 
 
-        public override void OnInteract()
+        public override void OnInteract(IEnvironmentInteractionInteractor interactor)
         {
             IPortalTransitionInteractor portalTransitionInteractor = InteractorsFactoryForCore.GetInstance().GetPortalTransitionInteractor();
             portalTransitionInteractor.TransitionToOtherMap(DestinationMapId, DestinationPortalId);

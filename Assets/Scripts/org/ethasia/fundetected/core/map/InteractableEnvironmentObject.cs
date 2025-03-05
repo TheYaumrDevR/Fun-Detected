@@ -39,6 +39,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 .Build();
         }
 
-        public abstract void OnInteract();
+        public abstract void OnInteract(IEnvironmentInteractionInteractor interactor);
     }
 }

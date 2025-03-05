@@ -12,17 +12,19 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        public override void OnInteract()
+        public override void OnInteract(IEnvironmentInteractionInteractor interactor)
         {
             if (Charges > 0)
             {
                 PlayerCharacter player = Area.ActiveArea.Player;
                 player.FullyHealHpAndMp();
-            }
 
-            if (!hasInfiniteCharges)
-            {
-                Charges--;
+                if (!hasInfiniteCharges)
+                {
+                    Charges--;
+                }   
+
+                interactor.PlayHealingWellUseSound(player.Name);             
             }
         }
 

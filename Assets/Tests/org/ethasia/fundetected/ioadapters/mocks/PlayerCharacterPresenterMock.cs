@@ -16,5 +16,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             playerWasPresented = true;
         }
+
+        public string GetPlayerCharacterIdPrefix()
+        {
+            return "PlayerCharacter ";
+        }
     }
 }

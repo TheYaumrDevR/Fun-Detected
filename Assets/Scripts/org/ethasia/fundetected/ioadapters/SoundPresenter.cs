@@ -24,5 +24,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 soundPlayer.PlayPortalTransitionSound();
             }
         }
+
+        public void PlayHealingWellUseSound(string audioSourceId)
+        {
+            ISoundPlayer soundPlayer = TechnicalFactory.GetInstance().GetSoundPlayerInstance();
+
+            if (null != soundPlayer)
+            {
+                soundPlayer.PlayHealingWellUseSound(audioSourceId);
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {
-    public class EnvironmentInteractionInteractor
+    public class EnvironmentInteractionInteractor : IEnvironmentInteractionInteractor
     {
         public bool InteractWithEnvironment(int mousePositionX, int mousePositionY)
         {
@@ -31,7 +31,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
                     if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
                     {
-                        interactableObject.OnInteract();
+                        interactableObject.OnInteract(this);
                         PresentHealthAndManaBarState();
 
                         return true;
@@ -40,6 +40,14 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return false;
+        }
+
+        public void PlayHealingWellUseSound(string playerCharacterName)
+        {
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            IPlayerCharacterPresenter playerCharacterPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance();
+
+            soundPresenter.PlayHealingWellUseSound(playerCharacterPresenter.GetPlayerCharacterIdPrefix() + playerCharacterName);
         }
 
         private void PresentHealthAndManaBarState()

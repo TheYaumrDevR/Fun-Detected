@@ -2347,6 +2347,7 @@ MonoBehaviour:
   swingSoundOne: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   swingSoundTwo: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   portalTransitionSound: {fileID: 8300000, guid: e6b5c5ec1b4ccdf4f9deed8276ba3cda, type: 3}
+  healingWellUseSound: {fileID: 8300000, guid: 5304521cdf92f2b48be5f5f72483ad5f, type: 3}
 --- !u!1 &1677757172
 GameObject:
   m_ObjectHideFlags: 0

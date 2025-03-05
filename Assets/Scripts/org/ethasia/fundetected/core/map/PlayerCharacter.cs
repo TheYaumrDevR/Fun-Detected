@@ -26,7 +26,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        private string name;
+        public string Name
+        {
+            get;
+            private set;
+        }
 
         public PlayerCharacterBaseStats BaseStats
         {
@@ -261,7 +265,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
                 result.FacingDirection = facingDirection;
 
-                result.name = name;
+                result.Name = name;
                 result.characterClass = characterClass;
 
                 result.BaseStats = playerCharacterBaseStats;

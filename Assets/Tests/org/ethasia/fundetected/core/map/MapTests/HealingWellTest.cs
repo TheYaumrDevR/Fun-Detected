@@ -43,7 +43,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetCharges(0)
                 .Build();
 
-            testCandidate.OnInteract();
+            testCandidate.OnInteract(new EnvironmentInteractionInteractorMock());
 
             Assert.That(testCandidate.Charges, Is.EqualTo(1));
         }
@@ -58,7 +58,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetCharges(5)
                 .Build();
 
-            testCandidate.OnInteract();
+            testCandidate.OnInteract(new EnvironmentInteractionInteractorMock());
 
             Assert.That(testCandidate.Charges, Is.EqualTo(4));
         }
@@ -75,9 +75,20 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Area.ActiveArea.Player.TakePhysicalDamage(47);
 
-            testCandidate.OnInteract();
+            testCandidate.OnInteract(new EnvironmentInteractionInteractorMock());
 
             Assert.That(Area.ActiveArea.Player.BaseStats.CurrentLife, Is.EqualTo(53));
+        }
+
+        private class EnvironmentInteractionInteractorMock : IEnvironmentInteractionInteractor
+        {
+            public void PlayHealingWellUseSound(string playerCharacterName)
+            {
+            }
+
+            public void PresentHealthAndManaBarState()
+            {
+            }
         }
     }
 }

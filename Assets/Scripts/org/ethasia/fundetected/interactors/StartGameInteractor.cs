@@ -21,15 +21,17 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public void CreateCharacterAndStartGame(CharacterClasses characterClass)
         {
+            string playerName = "FunEnjoyer";
+
             CharacterCreationMasterData playerCharacterBaseStats = CreateCharacterCreationMasterDataFromSelectedCharacterTraits(characterClass); 
-            PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(characterClass, playerCharacterBaseStats);
+            PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(playerName, characterClass, playerCharacterBaseStats);
 
             AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
             areaSwitchingInteractor.SpawnPlayerIntoNewMap("Hill", playerCharacter);
 
             Position playerPosition = new Position(Area.ActiveArea.GetPlayerPositionX(), Area.ActiveArea.GetPlayerPositionY());
 
-            IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer("FunEnjoyer", playerPosition);
+            IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer(playerName, playerPosition);
         }
 
         private CharacterCreationMasterData CreateCharacterCreationMasterDataFromSelectedCharacterTraits(CharacterClasses characterClass)
@@ -77,7 +79,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return playerBoundingBoxMasterDataProvider.CreateFemaleCharacterOneBoundingBoxMasterData();
         }
 
-        private PlayerCharacter CreatePlayerCharacterFromStartingStats(CharacterClasses characterClass, CharacterCreationMasterData playerCharacterBaseStats)
+        private PlayerCharacter CreatePlayerCharacterFromStartingStats(string playerName, CharacterClasses characterClass, CharacterCreationMasterData playerCharacterBaseStats)
         {
             CharacterClassMasterData playerCharacterStartingStats = playerCharacterBaseStats.CharacterClassMasterData;
             MeleeHitArcMasterData meleeHitArcMasterData = playerCharacterBaseStats.MeleeHitArcMasterData;
@@ -111,6 +113,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             startingStats.FullHeal();
 
             return new PlayerCharacter.PlayerCharacterBuilder()
+                .SetName(playerName)
                 .SetFacingDirection(FacingDirection.RIGHT)
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
