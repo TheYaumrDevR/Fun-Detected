@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             Area.Builder areaBuilder = new Area.Builder()
                 .SetName(mapProperties.MapName)
+                .SetAreaLevel(mapProperties.AreaLevel)
                 .SetWidthAndHeight(mapProperties.Width, mapProperties.Height)
                 .SetLowestScreenX(mapProperties.LowestScreenX)
                 .SetLowestScreenY(mapProperties.LowestScreenY)

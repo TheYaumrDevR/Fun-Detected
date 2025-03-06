@@ -146,6 +146,22 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.HealingWells[0].Charges, Is.EqualTo(1));
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsAreaLevel()
+        {
+            MapDefinition mapDefinition = new MapDefinition.Builder()
+                .SetMapName("Desert")
+                .SetAreaLevel(15)
+                .SetMaximumMonsters(14)
+                .Build();
+
+            CreateTestChunks(mapDefinition);    
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
+
+            Assert.That(result.AreaLevel, Is.EqualTo(15));
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk2 = new Chunk(-1, -2);

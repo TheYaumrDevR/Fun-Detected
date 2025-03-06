@@ -12,6 +12,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public int AreaLevel
+        {
+            get;
+            private set;
+        }
+
         public int Width
         {
             get;
@@ -90,6 +96,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         private MapProperties(int width, int height)
         {
             MapName = "";
+            AreaLevel = 1;
             Width = width;
             Height = height;
             MaximumMonsters = 0;
@@ -123,6 +130,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public class Builder
         {
             private string mapName;
+            private int areaLevel;
             private int width;
             private int height;
             private int lowestScreenX;
@@ -135,6 +143,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             public Builder SetMapName(string value)
             {
                 mapName = value;
+                return this;
+            }
+
+            public Builder SetAreaLevel(int value)
+            {
+                areaLevel = value;
                 return this;
             }
 
@@ -191,6 +205,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 MapProperties result = new MapProperties(width, height);
 
                 result.MapName = mapName;
+                result.AreaLevel = areaLevel;
                 result.LowestScreenX = lowestScreenX;
                 result.LowestScreenY = lowestScreenY;
                 result.MaximumMonsters = maximumMonsters;

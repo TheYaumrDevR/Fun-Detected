@@ -35,13 +35,21 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private MapDefinition SetupMapProperties(XmlElement mapDefinitionProperties, string mapName)
         {
             string maximumMonstersText = mapDefinitionProperties.GetAttribute("maximumMonsters");
+            string areaLevelText = mapDefinitionProperties.GetAttribute("areaLevel");
+
+            MapDefinition.Builder mapDefinitionBuilder = new MapDefinition.Builder();
+
+            if (int.TryParse(areaLevelText, out int areaLevel))
+            {
+                mapDefinitionBuilder.SetAreaLevel(areaLevel);
+            }
 
             if (int.TryParse(maximumMonstersText, out int maximumMonsters))
             {
-                return new MapDefinition(maximumMonsters, mapName);
+                return mapDefinitionBuilder.SetMaximumMonsters(maximumMonsters).SetMapName(mapName).Build();
             }
 
-            return new MapDefinition(0, mapName);
+            return mapDefinitionBuilder.SetMapName(mapName).SetMaximumMonsters(0).Build();
         }
 
         private void SetupChunks(XmlElement mapDefinitionProperties, MapDefinition result)

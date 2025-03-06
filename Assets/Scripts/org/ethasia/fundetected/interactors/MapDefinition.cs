@@ -11,6 +11,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public int AreaLevel
+        {
+            get;
+            private set;
+        }
+
         public int MaximumMonsters
         {
             get;
@@ -27,6 +33,16 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             get;
             private set;
+        }
+
+        public MapDefinition(int maximumMonsters, string mapName)
+        {
+            MaximumMonsters = maximumMonsters;
+            MapName = mapName;
+            AreaLevel = 1;
+            
+            Chunks = new List<Chunk>();
+            SpawnableMonsters = new List<SpawnableMonster>();
         }
 
         public override string ToString()
@@ -55,15 +71,39 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return resultBuilder.ToString();
-        }
+        }        
 
-        public MapDefinition(int maximumMonsters, string mapName)
+        public class Builder
         {
-            MaximumMonsters = maximumMonsters;
-            MapName = mapName;
-            
-            Chunks = new List<Chunk>();
-            SpawnableMonsters = new List<SpawnableMonster>();
+            private string mapName;
+            private int maximumMonsters;
+            private int areaLevel;
+
+            public Builder SetMapName(string value)
+            {
+                mapName = value;
+                return this;
+            }
+
+            public Builder SetMaximumMonsters(int value)
+            {
+                maximumMonsters = value;
+                return this;
+            }
+
+            public Builder SetAreaLevel(int value)
+            {
+                areaLevel = value;
+                return this;
+            }
+
+            public MapDefinition Build()
+            {
+                MapDefinition result = new MapDefinition(maximumMonsters, mapName);
+                result.AreaLevel = areaLevel;
+
+                return result;
+            }
         }
     }
 }

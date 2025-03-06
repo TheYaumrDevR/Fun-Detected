@@ -38,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         private string GetXmlFileContentForHill()
         {
             return @"<?xml version=""1.0"" encoding=""UTF-8""?>
-                    <mapDefinition maximumMonsters=""10"">
+                    <mapDefinition maximumMonsters=""10"" areaLevel=""68"">
                         <chunks>
                             <chunk x=""-2"" y=""-1"" spawn=""true"">
                                 <definitions>   

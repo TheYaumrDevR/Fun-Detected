@@ -217,6 +217,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
 
             Assert.That(result.Chunks[3].Id, Is.EqualTo("eastPortal"));         
-        }                 
+        }       
+
+        [Test]
+        public void TestLoadMapDefinitionLoadsAreaLevel()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+
+            Assert.That(result.AreaLevel, Is.EqualTo(68));         
+        }          
     }
 }

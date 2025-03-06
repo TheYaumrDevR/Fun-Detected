@@ -21,6 +21,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public int AreaLevel
+        {
+            get;
+            private set;
+        }
+
         private AreaDimensions areaDimensions;
 
         private Dictionary<PositionImmutable, bool> isCollisionTile;
@@ -295,6 +301,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public class Builder
         {
             private string name;
+            private int areaLevel;
             private int width;
             private int height;
             private int lowestScreenX;
@@ -313,6 +320,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             public Builder SetName(string value)
             {
                 name = value;
+                return this;
+            }
+
+            public Builder SetAreaLevel(int value)
+            {
+                areaLevel = value;
                 return this;
             }
 
@@ -379,6 +392,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
                 Area result = new Area(isCollisionTile, areaDimensions);
                 result.Name = name;
+                result.AreaLevel = areaLevel;
                 result.playerSpawnPosition = playerSpawnPosition;
                 result.playerSpawnPositionBySpawnerId = playerSpawnPositionBySpawnerId;
                 result.enemySpawner = enemySpawner;

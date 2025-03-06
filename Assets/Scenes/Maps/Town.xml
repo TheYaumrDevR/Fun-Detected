@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapDefinition>
+<mapDefinition areaLevel="2">
     <chunks>
         <chunk x="-2" y="-1" id="westPortal">
             <portalTo>

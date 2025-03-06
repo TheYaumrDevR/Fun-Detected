@@ -145,5 +145,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Assert.That(result.ReloadableTileMap, Is.EqualTo(reloadableTileMap));      
         }
+
+        [Test]
+        public void TestConvertMapPropertiesConvertsAreaLevel()
+        {
+            MapProperties mapProperties = new MapProperties.Builder()
+                .SetWidth(320)
+                .SetHeight(70)
+                .SetLowestScreenX(-100)
+                .SetLowestScreenY(-25)
+                .SetAreaLevel(5)
+                .Build();    
+
+            Area result = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);  
+
+            Assert.That(result.AreaLevel, Is.EqualTo(5));
+        }
     }
 }
