@@ -161,8 +161,13 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             foreach (EnemySpawnLocation spawnedEnemy in spawnedEnemies)
             {
-                map.AddEnemy(CreateEnemyFromMasterData(enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId), spawnedEnemy, spawnId));
-                spawnId++;
+                EnemyMasterData enemyMasterData = enemyMasterDataProvider.CreateEnemyMasterDataById(spawnedEnemy.SpawnedEnemyId);
+
+                if (spawnedEnemy.SpawnedEnemyLevel >= enemyMasterData.MinimumSpawnLevel)
+                {
+                    map.AddEnemy(CreateEnemyFromMasterData(enemyMasterData, spawnedEnemy, spawnId));
+                    spawnId++;
+                }
             }
         }
 

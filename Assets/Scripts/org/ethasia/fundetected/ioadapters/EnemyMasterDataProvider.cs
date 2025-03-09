@@ -60,6 +60,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Id = id;
             result.Name = "Animated Thornbush";
             result.IsAggressiveOnSight = false;
+            result.MinimumSpawnLevel = 1;
             result.MaxLife = 21;
             result.Armor = 3;
             result.EvasionRating = 98;
@@ -101,6 +102,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return result;
         }    
+
+        private static EnemyMasterData CreateBloatedHorseFlySwarmMasterData(string id)
+        {
+            // Its attack is an ability which deals physical damage over time in a circle around it. It can apply bleeding to the player.
+            EnemyMasterData result = new EnemyMasterData();
+
+            return result;
+        }        
 
         private static EnemyMasterDataForRendering CreateDrownedZombieMasterDataForRendering(string id)
         {

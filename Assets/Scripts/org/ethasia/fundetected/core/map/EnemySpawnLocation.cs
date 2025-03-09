@@ -23,12 +23,19 @@ namespace Org.Ethasia.Fundetected.Core.Map
             get;
         }
 
-        public EnemySpawnLocation(Position mapLocation, float spawnerActivationChance)
+        public int SpawnedEnemyLevel
+        {
+            get;
+            private set;
+        }
+
+        public EnemySpawnLocation(Position mapLocation, float spawnerActivationChance, int spawnedEnemyLevel)
         {
             MapLocation = mapLocation;
             HasSpawned = false;
             SpawnedEnemyId = "";
             this.spawnerActivationChance = spawnerActivationChance;
+            this.SpawnedEnemyLevel = spawnedEnemyLevel;
         }
 
         public void TrySpawnEnemy(List<EnemySpawnChance> enemySpawnChances)

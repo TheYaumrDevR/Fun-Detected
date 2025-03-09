@@ -5,6 +5,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public string Id;
         public string Name;
         public bool IsAggressiveOnSight;
+        public int MinimumSpawnLevel;
         public int MaxLife;
         public int Armor;
         public int FireResistance;

@@ -1,27 +1,65 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 {
     public class MapDefinitionGatewayMock : IMapDefinitionGateway
     {
+        private Dictionary<string, MapDefinition> mapDefinitionsByMapName;
+
+        public MapDefinitionGatewayMock()
+        {
+            mapDefinitionsByMapName = new Dictionary<string, MapDefinition>();
+
+            mapDefinitionsByMapName["HillTest"] = CreateHillTestMapDefinition();
+            mapDefinitionsByMapName["Higher Level Hill"] = CreateHigherLevelHillTestMapDefinition();
+        }
+
         public MapDefinition LoadMapDefinition(string mapName)
         {
             // Setup test map definition
+            return mapDefinitionsByMapName[mapName];       
+        }
+
+        private MapDefinition CreateHigherLevelHillTestMapDefinition()
+        {
+            MapDefinition result = new MapDefinition.Builder()
+                .SetMaximumMonsters(11)
+                .SetMapName("Higher Level Hill")
+                .SetAreaLevel(2)
+                .Build();
+
+            result.Chunks.Add(CreateTestChunkOne());
+            result.Chunks.Add(CreateTestChunkTwo());
+            result.Chunks.Add(CreateTestChunkThree());                
+
+            SpawnableMonster fireMage = new SpawnableMonster("Fire Mage", 200);
+            SpawnableMonster wolf = new SpawnableMonster("Wolf", 800);
+
+            result.SpawnableMonsters.Add(fireMage);
+            result.SpawnableMonsters.Add(wolf);               
+
+            return result;
+        }           
+
+        private MapDefinition CreateHillTestMapDefinition()
+        {
             MapDefinition result = new MapDefinition(11, "HillTest");
 
             result.Chunks.Add(CreateTestChunkOne());
             result.Chunks.Add(CreateTestChunkTwo());
             result.Chunks.Add(CreateTestChunkThree());
 
-            SpawnableMonster fireMage = new SpawnableMonster("Fire Mage", 200);
+            SpawnableMonster fireMage = new SpawnableMonster("Animated Thornbush", 200);
             SpawnableMonster wolf = new SpawnableMonster("Wolf", 800);
 
             result.SpawnableMonsters.Add(fireMage);
             result.SpawnableMonsters.Add(wolf);   
 
-            return result;         
+            return result;            
         }
-
+ 
         private Chunk CreateTestChunkOne()
         {
             Spawner spawner1 = new Spawner(5, 36);
@@ -150,6 +188,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.PropertiesOfPossibleChunks.Add(mapChunkProperties);
 
             return result;
-        }             
+        }                  
     }
 }

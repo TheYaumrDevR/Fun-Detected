@@ -41,26 +41,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestSpawnPlayerIntoNewMapSpawnsDifferentEnemyTypes()
         {
-            int[] randomNumbersToGenerate = {180, 479, 789, 33};
-            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};    
-        
-            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
-            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-            ioAdaptersFactoryForCore.SetRngInstance(rngMock);  
-
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
-
-            PlayerCharacter testPlayer = CreateTestPlayerCharacter();
             AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
 
-            testCandidate.SpawnPlayerIntoNewMap("Hill", testPlayer);         
+            PlayerCharacter testPlayer = SetupForEnemySpawnTests();
+
+            testCandidate.SpawnPlayerIntoNewMap("HillTest", testPlayer);         
 
             List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();     
 
-            Assert.That(result[0].TypeId, Is.EqualTo("Fire Mage"));  
+            Assert.That(result[0].TypeId, Is.EqualTo("AnimatedThornbush"));  
             Assert.That(result[1].TypeId, Is.EqualTo("Wolf"));
             Assert.That(result[2].TypeId, Is.EqualTo("Wolf"));  
-            Assert.That(result[3].TypeId, Is.EqualTo("Fire Mage"));                      
+            Assert.That(result[3].TypeId, Is.EqualTo("AnimatedThornbush"));                      
         }
 
         [Test]
@@ -107,10 +99,39 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
             PlayerCharacter playerCharacter = CreateTestPlayerCharacter();
 
-            testCandidate.PortalPlayerIntoNewMap("Hill", "westPortal", playerCharacter);    
+            testCandidate.PortalPlayerIntoNewMap("HillTest", "westPortal", playerCharacter);    
 
             Assert.That(Area.ActiveArea.GetPlayerPositionX, Is.EqualTo(86)); 
             Assert.That(Area.ActiveArea.GetPlayerPositionY, Is.EqualTo(65)); 
+        }
+
+        [Test]
+        public void TestSpawnPlayerIntoNewMapDoesNotSpawnEnemiesAboveMinimumLevelTwo()
+        {
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+
+            PlayerCharacter testPlayer = SetupForEnemySpawnTests();
+
+            testCandidate.SpawnPlayerIntoNewMap("Higher Level Hill", testPlayer);         
+
+            List<EnemyRenderData> result = EnemiesPresenterMock.GetPresentedEnemiesRenderData();     
+
+            Assert.That(result[0].TypeId, Is.EqualTo("Wolf"));  
+            Assert.That(result[1].TypeId, Is.EqualTo("Wolf"));        
+        }
+
+        private PlayerCharacter SetupForEnemySpawnTests()
+        {
+            int[] randomNumbersToGenerate = {180, 479, 789, 33};
+            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};    
+        
+            RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);  
+
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+
+            return CreateTestPlayerCharacter();
         }
 
         private AreaSwitchingInteractor InitiateBasicTestSetupAndRunTest()
