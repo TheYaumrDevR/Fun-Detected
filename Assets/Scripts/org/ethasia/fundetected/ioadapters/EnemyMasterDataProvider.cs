@@ -47,9 +47,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             EnemyMasterData result = new EnemyMasterData();
             result.Id = id;
             result.Name = "Drowned Zombie";
-            result.MaxLife = 30;
-            result.Armor = 1;
-            result.EvasionRating = 98;
+            result.ScalableMasterData.MaxLife = 30;
+            result.ScalableMasterData.Armor = 1;
+            result.ScalableMasterData.EvasionRating = 98;
 
             return result;
         }
@@ -61,15 +61,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.Name = "Animated Thornbush";
             result.IsAggressiveOnSight = false;
             result.MinimumSpawnLevel = 1;
-            result.MaxLife = 21;
-            result.Armor = 3;
-            result.EvasionRating = 98;
-            result.AccuracyRating = 8;
+            result.ScalableMasterData.MaxLife = 21;
+            result.ScalableMasterData.Armor = 3;
+            result.ScalableMasterData.EvasionRating = 98;
+            result.ScalableMasterData.AccuracyRating = 8;
             result.AttacksPerSecond = 1.2f;
             result.UnarmedStrikeRange = 12;
             result.CorpseMass = 4;
-            result.MinPhysicalDamage = 1;
-            result.MaxPhysicalDamage = 3;
+            result.ScalableMasterData.MinPhysicalDamage = 1;
+            result.ScalableMasterData.MaxPhysicalDamage = 3;
             result.DistanceToLeftEdge = 7;
             result.DistanceToRightEdge = 7;
             result.DistanceToBottomEdge = 7;
@@ -98,7 +98,25 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 }
             };
 
+            IMasterDataScalingStrategy scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData       
+            {
+                AdditionsPerLevel = new ScalableEnemyMasterData
+                {
+                    MaxLife = 2,
+                    Armor = 1,
+                    FireResistance = 0,
+                    IceResistance = 0,
+                    LightningResistance = 0,
+                    MagicResistance = 0,
+                    MinPhysicalDamage = 1,
+                    MaxPhysicalDamage = 2,
+                    AccuracyRating = 1,
+                    EvasionRating = 9
+                }
+            }; 
+
             result.AbilityMasterData = unarmedAsymmetricSwingAbilityMasterData;
+            result.ScalingStrategy = scalingStrategy;
 
             return result;
         }    

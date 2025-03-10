@@ -165,6 +165,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
                 if (spawnedEnemy.SpawnedEnemyLevel >= enemyMasterData.MinimumSpawnLevel)
                 {
+                    enemyMasterData = enemyMasterData.ScalingStrategy.ScaleMasterData(enemyMasterData, spawnedEnemy.SpawnedEnemyLevel);
                     map.AddEnemy(CreateEnemyFromMasterData(enemyMasterData, spawnedEnemy, spawnId));
                     spawnId++;
                 }
@@ -188,11 +189,11 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
                 .SetUnarmedStrikeRange(enemyMasterData.UnarmedStrikeRange)
                 .SetCorpseMass(enemyMasterData.CorpseMass)
-                .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.MinPhysicalDamage, enemyMasterData.MaxPhysicalDamage))
-                .SetLife(enemyMasterData.MaxLife)
-                .SetArmor(enemyMasterData.Armor)
-                .SetAccuracyRating(enemyMasterData.AccuracyRating)
-                .SetEvasionRating(enemyMasterData.EvasionRating)
+                .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.ScalableMasterData.MinPhysicalDamage, enemyMasterData.ScalableMasterData.MaxPhysicalDamage))
+                .SetLife(enemyMasterData.ScalableMasterData.MaxLife)
+                .SetArmor(enemyMasterData.ScalableMasterData.Armor)
+                .SetAccuracyRating(enemyMasterData.ScalableMasterData.AccuracyRating)
+                .SetEvasionRating(enemyMasterData.ScalableMasterData.EvasionRating)
                 .SetBoundingBox(enemyBoundingBox)
                 .SetPosition(spawnLocationData.MapLocation)
                 .Build();

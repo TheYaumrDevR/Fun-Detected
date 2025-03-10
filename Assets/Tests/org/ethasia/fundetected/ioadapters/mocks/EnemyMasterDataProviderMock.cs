@@ -38,9 +38,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             EnemyMasterData result = new EnemyMasterData();
             result.Id = "DrownedZombie";
             result.Name = "Drowned Zombie";
-            result.MaxLife = 30;
-            result.Armor = 1;
-            result.EvasionRating = 98;
+            result.ScalableMasterData.MaxLife = 30;
+            result.ScalableMasterData.Armor = 1;
+            result.ScalableMasterData.EvasionRating = 98;
 
             AbilityMasterData mockAbilityMasterData = new UnarmedSwingAbilityMasterData
             {
@@ -56,9 +56,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             EnemyMasterData result = new EnemyMasterData();
             result.Id = "Wolf";
             result.Name = "Wolf";
-            result.MaxLife = 40;
-            result.Armor = 1;
-            result.EvasionRating = 98;
+            result.ScalableMasterData.MaxLife = 40;
+            result.ScalableMasterData.Armor = 1;
+            result.ScalableMasterData.EvasionRating = 98;
             result.MinimumSpawnLevel = 1;
 
             AbilityMasterData mockAbilityMasterData = new UnarmedSwingAbilityMasterData
@@ -75,9 +75,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             EnemyMasterData result = new EnemyMasterData();
             result.Id = "FireMage";
             result.Name = "Fire Mage";
-            result.MaxLife = 25;
-            result.Armor = 1;
-            result.EvasionRating = 98;
+            result.ScalableMasterData.MaxLife = 25;
+            result.ScalableMasterData.Armor = 1;
+            result.ScalableMasterData.EvasionRating = 98;
             result.MinimumSpawnLevel = 3;
 
             AbilityMasterData mockAbilityMasterData = new UnarmedSwingAbilityMasterData
@@ -94,9 +94,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             EnemyMasterData result = new EnemyMasterData();
             result.Id = "AnimatedThornbush";
             result.Name = "Animated Thornbush";
-            result.MaxLife = 25;
-            result.Armor = 2;
-            result.EvasionRating = 98;
+            result.ScalableMasterData.MaxLife = 25;
+            result.ScalableMasterData.Armor = 2;
+            result.ScalableMasterData.EvasionRating = 98;
             result.MinimumSpawnLevel = 1;
 
             AbilityMasterData mockAbilityMasterData = new UnarmedSwingAbilityMasterData
