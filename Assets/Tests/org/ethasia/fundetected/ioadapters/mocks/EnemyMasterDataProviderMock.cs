@@ -65,7 +65,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Mock Ability"
             };
-            result.AbilityMasterData = mockAbilityMasterData;        
+            result.AbilityMasterData = mockAbilityMasterData;  
+
+            FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
+
+            ScalableEnemyMasterData additionsPerLevel = new ScalableEnemyMasterData();
+            scalingStrategy.AdditionsPerLevel = additionsPerLevel;
+
+            result.ScalingStrategy = scalingStrategy;
 
             return result;
         }      
@@ -84,7 +91,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Fire Ball"
             };
-            result.AbilityMasterData = mockAbilityMasterData;        
+            result.AbilityMasterData = mockAbilityMasterData;  
+
+            FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
+
+            ScalableEnemyMasterData additionsPerLevel = new ScalableEnemyMasterData();
+            scalingStrategy.AdditionsPerLevel = additionsPerLevel;
+
+            result.ScalingStrategy = scalingStrategy;                  
 
             return result;
         }   
@@ -103,7 +117,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Mock Ability"
             };
-            result.AbilityMasterData = mockAbilityMasterData;        
+            result.AbilityMasterData = mockAbilityMasterData;     
+
+            FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
+
+            ScalableEnemyMasterData additionsPerLevel = new ScalableEnemyMasterData();
+            scalingStrategy.AdditionsPerLevel = additionsPerLevel;
+
+            result.ScalingStrategy = scalingStrategy;               
 
             return result;
         }                              
