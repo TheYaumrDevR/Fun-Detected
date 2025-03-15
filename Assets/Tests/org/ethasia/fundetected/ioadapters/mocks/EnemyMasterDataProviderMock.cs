@@ -70,6 +70,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
 
             ScalableEnemyMasterData additionsPerLevel = new ScalableEnemyMasterData();
+            additionsPerLevel.MaxLife = 5;
+            additionsPerLevel.Armor = 4;
+            additionsPerLevel.FireResistance = 3;
+            additionsPerLevel.IceResistance = 3;
+            additionsPerLevel.LightningResistance = 3;
+            additionsPerLevel.MagicResistance = 3;
+            additionsPerLevel.MinPhysicalDamage = 1;
+            additionsPerLevel.MaxPhysicalDamage = 5;
+            additionsPerLevel.AccuracyRating = 6;
+            additionsPerLevel.EvasionRating = 2;
+
             scalingStrategy.AdditionsPerLevel = additionsPerLevel;
 
             result.ScalingStrategy = scalingStrategy;

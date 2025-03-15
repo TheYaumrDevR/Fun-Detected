@@ -120,6 +120,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result[1].TypeId, Is.EqualTo("Wolf"));        
         }
 
+        [Test]
+        public void TestSpawnPlayerIntoNewMapScalesEnemiesToAreaLevel()
+        {
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+
+            PlayerCharacter testPlayer = SetupForEnemySpawnTests();
+
+            testCandidate.SpawnPlayerIntoNewMap("Higher Level Hill", testPlayer);        
+
+            List<Enemy> spawnedEnemies = Area.ActiveArea.Enemies;    
+
+            Assert.That(spawnedEnemies[0].CurrentLife, Is.EqualTo(45));   
+            Assert.That(spawnedEnemies[0].EvasionRating, Is.EqualTo(100));
+        }
+
         private PlayerCharacter SetupForEnemySpawnTests()
         {
             int[] randomNumbersToGenerate = {180, 479, 789, 33};
