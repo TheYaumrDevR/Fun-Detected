@@ -9,7 +9,7 @@
                     "name": "LeftMouseClick",
                     "type": "Button",
                     "id": "66ad00f1-9550-4ee7-b724-7864a801842b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,7 +18,7 @@
                     "name": "Move Left",
                     "type": "Button",
                     "id": "473c785c-0ccd-4b59-a2f2-2e97def7578c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "Move Right",
                     "type": "Button",
                     "id": "340dbe95-5dc7-4a50-90b2-27e4cf96b74a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -48,7 +48,7 @@
                 {
                     "name": "",
                     "id": "1695d13b-1dd7-4b8f-a258-5f9515b7aad1",
-                    "path": "<Keyboard>/#(Á)",
+                    "path": "<Keyboard>/a",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",

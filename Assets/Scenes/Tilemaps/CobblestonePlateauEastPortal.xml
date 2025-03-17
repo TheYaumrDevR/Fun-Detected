@@ -65,7 +65,7 @@
 
     <mapTileProperties>
        <playerSpawn x="67" y="42"/>
-       <portal x="61" y="38" width="20" height="20"/>
+       <portal x="59" y="38" width="20" height="20"/>
 
         <collisions>
             <collision startX="0" startY="26" width="80" height="1"/>
