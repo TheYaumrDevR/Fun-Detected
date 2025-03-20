@@ -73,5 +73,10 @@ namespace Org.Ethasia.Fundetected.Technical
 
             return interactablesRenderer;
         }
+
+        public override IGuiWindowsController GetGuiWindowsControllerInstance()
+        {
+            return GuiWindowsController.GetInstance();
+        }
     }
 }

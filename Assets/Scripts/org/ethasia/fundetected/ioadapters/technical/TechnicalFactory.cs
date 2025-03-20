@@ -24,5 +24,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract ITileMapRenderer GetTileMapRendererInstance();
         public abstract IPortalRenderer GetPortalRendererInstance();
         public abstract IInteractablesRenderer GetInteractablesRendererInstance(); 
+        public abstract IGuiWindowsController GetGuiWindowsControllerInstance();
     }
 }

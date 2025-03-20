@@ -53,5 +53,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return null;    
         }
+
+        public override IGuiWindowsController GetGuiWindowsControllerInstance()
+        {
+            return null;
+        }
     }
 }
