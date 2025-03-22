@@ -37,7 +37,7 @@ namespace Org.Ethasia.Fundetected.Technical
             mapSelectionWindow.visible = true;
         }
 
-        public void CloseMapSelectionWindow()
+        public void CloseCurrentlyOpenWindow()
         {
             mapSelectionWindow.visible = false;
         }

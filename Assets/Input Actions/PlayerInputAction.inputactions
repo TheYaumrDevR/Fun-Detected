@@ -6,7 +6,7 @@
             "id": "b8397ac3-c273-4e45-bd84-74d3458daac7",
             "actions": [
                 {
-                    "name": "LeftMouseClick",
+                    "name": "Primary Action",
                     "type": "Button",
                     "id": "66ad00f1-9550-4ee7-b724-7864a801842b",
                     "expectedControlType": "",
@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightMouseClick",
+                    "name": "Secondary Action",
                     "type": "Button",
                     "id": "f1b153ca-16e7-41a6-a494-368d9891a3fa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Close Current Window / Cancel",
+                    "type": "Button",
+                    "id": "45a8f70a-dbb1-4ccc-b60a-8724153510eb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -50,7 +59,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftMouseClick",
+                    "action": "Primary Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -83,7 +92,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightMouseClick",
+                    "action": "Secondary Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd3f09b1-6f30-4262-b155-3ec3a518c05e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Current Window / Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

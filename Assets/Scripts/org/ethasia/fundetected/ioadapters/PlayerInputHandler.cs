@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 using Org.Ethasia.Fundetected.Core.Maths;
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
@@ -126,7 +127,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 rightMoveButtonIsHeld = false;
             }
-        }        
+        } 
+
+        public void OnAbort(InputAction.CallbackContext callBackContext)
+        {
+            if (callBackContext.performed)
+            {
+                IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
+                guiWindowsController.CloseCurrentlyOpenWindow();
+            }
+        }       
 
         private bool PlayerIsStill()
         {
