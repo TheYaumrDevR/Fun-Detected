@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RightMouseClick",
+                    "type": "Button",
+                    "id": "f1b153ca-16e7-41a6-a494-368d9891a3fa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -59,11 +68,22 @@
                 {
                     "name": "",
                     "id": "1f07c257-3e39-4f1a-85d1-e2b8ad2d6bc5",
-                    "path": "<Keyboard>/#(D)",
+                    "path": "<Keyboard>/d",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Move Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9fb4a6e-ad66-4326-9926-0637cc0bc9e6",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

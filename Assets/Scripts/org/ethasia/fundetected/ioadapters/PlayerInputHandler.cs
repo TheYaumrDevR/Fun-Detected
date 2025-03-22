@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -80,16 +81,26 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             if (isInputEnabled)
             {
-                Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
+                Tuple<int, int> mousePosition = GetMousePositionInWorldCoordinates();
 
-                int mousePositionX = FastMath.Floor(mouseWorldPosition.x * 10);
-                int mousePositionY = FastMath.Floor(mouseWorldPosition.y * 10);
-
-                if (!environmentInteractionInteractor.InteractWithEnvironment(mousePositionX, mousePositionY))
+                if (!environmentInteractionInteractor.InteractWithEnvironment(mousePosition.Item1, mousePosition.Item2))
                 {
                     playerSkillInteractor.ExecutePrimaryPlayerAction();
                 }
+            }
+        }
+
+        public void OnSecondaryAction(InputAction.CallbackContext callBackContext)
+        {
+            if (!callBackContext.started)
+            {
+                return;
+            }
+
+            if (isInputEnabled)
+            {
+                Tuple<int, int> mousePosition = GetMousePositionInWorldCoordinates();
+                environmentInteractionInteractor.SecondaryInteractWithEnvironment(mousePosition.Item1, mousePosition.Item2);
             }
         }
 
@@ -120,6 +131,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private bool PlayerIsStill()
         {
             return leftMoveButtonIsHeld && rightMoveButtonIsHeld || !leftMoveButtonIsHeld && !rightMoveButtonIsHeld;
-        }        
+        }      
+
+        private Tuple<int, int> GetMousePositionInWorldCoordinates()
+        {
+            Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, 0));
+
+            int mousePositionX = FastMath.Floor(mouseWorldPosition.x * 10);
+            int mousePositionY = FastMath.Floor(mouseWorldPosition.y * 10);
+
+            return new Tuple<int, int>(mousePositionX, mousePositionY);
+        }  
     }
 }

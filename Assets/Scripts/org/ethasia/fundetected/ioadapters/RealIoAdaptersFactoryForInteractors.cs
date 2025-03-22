@@ -18,6 +18,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IMapDefinitionGateway mapDefinitionGateway;
         private IMapPresenter mapPresenter;
         private IPlayerInputOnOffSwitch playerInputOnOffSwitch;
+        private IGuiWindowsPresenter guiWindowsPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -157,6 +158,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return playerInputOnOffSwitch;
+        }
+
+        public override IGuiWindowsPresenter GetGuiWindowsPresenterInstance()
+        {
+            if (null == guiWindowsPresenter)
+            {
+                guiWindowsPresenter = new GuiWindowsPresenter();
+            }
+
+            return guiWindowsPresenter;
         }
     }
 }

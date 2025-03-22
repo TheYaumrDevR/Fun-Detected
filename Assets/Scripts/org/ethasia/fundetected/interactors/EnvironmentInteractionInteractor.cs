@@ -1,3 +1,5 @@
+using System;
+
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Maths;
@@ -8,8 +10,39 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public bool InteractWithEnvironment(int mousePositionX, int mousePositionY)
         {
+            return InteractWithEnvironment(mousePositionX, mousePositionY, (interactableObject) => 
+            {
+                interactableObject.OnInteract(this);
+                PresentHealthAndManaBarState();
+            });
+        }
+
+        public bool SecondaryInteractWithEnvironment(int mousePositionX, int mousePositionY)
+        {
+            return InteractWithEnvironment(mousePositionX, mousePositionY, (interactableObject) => 
+            {
+                interactableObject.OnSecondaryInteract(this);
+            });
+        }
+
+        public void PlayHealingWellUseSound(string playerCharacterName)
+        {
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            IPlayerCharacterPresenter playerCharacterPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance();
+
+            soundPresenter.PlayHealingWellUseSound(playerCharacterPresenter.GetPlayerCharacterIdPrefix() + playerCharacterName);
+        }
+
+        public void ActivateMapSelection(string mapName)
+        {
+            IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
+            guiWindowsPresenter.ShowMapSelectionWindow(mapName);
+        }
+
+        private bool InteractWithEnvironment(int mousePositionX, int mousePositionY, Action<InteractableEnvironmentObject> interactionAction)
+        {
             Area activeArea = Area.ActiveArea;
-            
+
             foreach (InteractableEnvironmentObject interactableObject in activeArea.InteractableEnvironmentObjects)
             {
                 CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox = interactableObject.GetCollisionBoundingBoxContext();
@@ -31,24 +64,14 @@ namespace Org.Ethasia.Fundetected.Interactors
 
                     if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
                     {
-                        interactableObject.OnInteract(this);
-                        PresentHealthAndManaBarState();
-
+                        interactionAction(interactableObject);
                         return true;
                     }
                 }
             }
 
             return false;
-        }
-
-        public void PlayHealingWellUseSound(string playerCharacterName)
-        {
-            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
-            IPlayerCharacterPresenter playerCharacterPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance();
-
-            soundPresenter.PlayHealingWellUseSound(playerCharacterPresenter.GetPlayerCharacterIdPrefix() + playerCharacterName);
-        }
+        }        
 
         private void PresentHealthAndManaBarState()
         {

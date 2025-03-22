@@ -28,6 +28,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
+        public override void OnSecondaryInteract(IEnvironmentInteractionInteractor interactor)
+        {
+            // Nothing to do
+        }
+
         public class Builder
         {
             private Position position;

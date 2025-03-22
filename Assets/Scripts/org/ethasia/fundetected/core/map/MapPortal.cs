@@ -23,6 +23,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             portalTransitionInteractor.TransitionToOtherMap(DestinationMapId, DestinationPortalId);
         }
 
+        public override void OnSecondaryInteract(IEnvironmentInteractionInteractor interactor)
+        {
+            interactor.ActivateMapSelection(DestinationMapId);
+        }
+
         public class Builder
         {
             private Position position;

@@ -68,5 +68,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new PlayerInputOnOffSwitchMock();
         }    
+
+        public override IGuiWindowsPresenter GetGuiWindowsPresenterInstance()
+        {
+            return new GuiWindowsPresenterMock();
+        }
     }
 }
