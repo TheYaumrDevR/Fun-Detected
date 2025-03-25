@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical
@@ -11,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private VisualElement rootElement;
         private VisualElement mapSelectionWindow;     
+        private Button mapSelectionWindowCloseButton;
         private Label mapSelectionUsageHint;
         private string mapSelectionUsageHintOriginalText;
 
@@ -24,7 +26,10 @@ namespace Org.Ethasia.Fundetected.Technical
             instance = this;
             rootElement = GetComponent<UIDocument>().rootVisualElement;
             mapSelectionWindow = rootElement.Q<VisualElement>("MapSelectionWindow");
+            mapSelectionWindowCloseButton = rootElement.Q<Button>("MapSelectionWindowCloseButton");
             mapSelectionUsageHint = rootElement.Q<Label>("MapSelectionUsageHint");
+
+            mapSelectionWindowCloseButton.RegisterCallback<ClickEvent>(OnCloseMapSelectionWindowClick);
 
             mapSelectionUsageHintOriginalText = mapSelectionUsageHint.text;
 
@@ -40,6 +45,12 @@ namespace Org.Ethasia.Fundetected.Technical
         public void CloseCurrentlyOpenWindow()
         {
             mapSelectionWindow.visible = false;
+        }
+
+        private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
+        {
+            this.CloseCurrentlyOpenWindow();
+            PlayerInputHandler.GetInstance().EnableInput();
         }
     }
 }

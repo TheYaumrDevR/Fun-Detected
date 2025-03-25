@@ -135,6 +135,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
                 guiWindowsController.CloseCurrentlyOpenWindow();
+                EnableInput();
             }
         }       
 

@@ -1,0 +1,35 @@
+.windowCloseButton {
+    white-space: pre;
+    align-self: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-image: url("project://database/Assets/UI/Windows/close-window-button.png?fileID=21300000&guid=4f01595c8123d7f4a9f2a44394bbd5e8&type=3#close-window-button");
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+    margin-top: 0;
+    width: 42px;
+    height: 42px;
+    max-width: 42px;
+    max-height: 42px;
+    color: rgba(27, 27, 27, 0);
+    margin-left: 0;
+    margin-bottom: 0;
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.windowCloseButton:hover {
+    background-image: url("project://database/Assets/UI/Windows/close-window-button-hover.png?fileID=2800000&guid=c8c19da866a312c4b9300bfb4237dbf3&type=3#close-window-button-hover");
+}
+
+.windowCloseButton:active {
+    background-image: url("project://database/Assets/UI/Windows/close-window-button-press.png?fileID=2800000&guid=4b7b7632dc43fd143858372175e52d76&type=3#close-window-button-press");
+}

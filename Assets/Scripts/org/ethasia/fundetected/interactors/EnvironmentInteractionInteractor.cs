@@ -35,8 +35,11 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public void ActivateMapSelection(string mapName)
         {
+            IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
+
             IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
             guiWindowsPresenter.ShowMapSelectionWindow(mapName);
+            playerInputOnOffSwitch.DisableInput();
         }
 
         private bool InteractWithEnvironment(int mousePositionX, int mousePositionY, Action<InteractableEnvironmentObject> interactionAction)
