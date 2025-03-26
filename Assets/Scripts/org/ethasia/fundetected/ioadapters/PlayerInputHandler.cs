@@ -64,13 +64,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 {
                     playerMovementInteractor.MovePlayerRight(Time.deltaTime);
                 }
-
-                if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction())
-                {
-                    IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
-                    playerAnimationPresenter.StartIdleAnimation();
-                }
             }
+
+            if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction() || !isInputEnabled)
+            {
+                IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
+                playerAnimationPresenter.StartIdleAnimation();
+            }            
         }
 
         public void OnPrimaryAction(InputAction.CallbackContext callBackContext)
