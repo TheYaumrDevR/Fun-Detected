@@ -40,17 +40,26 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             mapSelectionUsageHint.text = TechnicalUtils.ReplacePlaceHoldersInText(mapSelectionUsageHintOriginalText, windowContent.MapName);
             mapSelectionWindow.visible = true;
+
+            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
         public void CloseCurrentlyOpenWindow()
         {
-            mapSelectionWindow.visible = false;
+            if (mapSelectionWindow.visible)
+            {
+                mapSelectionWindow.visible = false;
+
+                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
         }
 
         private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
         {
             this.CloseCurrentlyOpenWindow();
             PlayerInputHandler.GetInstance().EnableInput();
+
+            SoundPlayer.GetInstance().PlayMouseClickSound();
         }
     }
 }

@@ -6,5 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void PlayPortalTransitionSound();
         void CallSoundMethodById(string soundMethodId, string audioSourceId);
         void PlayHealingWellUseSound(string audioSourceId);
+        void PlayUiWindowOpenSound();
+        void PlayMouseClickSound();
     }
 }
