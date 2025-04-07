@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Map;
@@ -33,12 +34,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             soundPresenter.PlayHealingWellUseSound(playerCharacterPresenter.GetPlayerCharacterIdPrefix() + playerCharacterName);
         }
 
-        public void ActivateMapSelection(string mapName)
+        public void ActivateMapSelection(string mapName, List<Area> mapInstances)
         {
             IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
 
             IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
-            guiWindowsPresenter.ShowMapSelectionWindow(mapName);
+            guiWindowsPresenter.ShowMapSelectionWindow(mapName, ConvertMapInstancesToInstanceIds(mapInstances));
             playerInputOnOffSwitch.DisableInput();
         }
 
@@ -90,6 +91,20 @@ namespace Org.Ethasia.Fundetected.Interactors
             
             resourceBarPresenter.PresentHealthBarBasedOnCurrentAndMaximumHealth(currentLife, maximumLife);
             resourceBarPresenter.PresentManaBarBasedOnCurrentAndMaximumMana(currentMana, maximumMana);
+        }
+
+        private List<string> ConvertMapInstancesToInstanceIds(List<Area> mapInstances)
+        {
+            List<string> result = new List<string>();
+
+            int i = 1;
+            foreach (Area map in mapInstances)
+            {
+                result.Add("Instance #" + i);
+                i++;
+            }
+
+            return result;
         }
     }
 }

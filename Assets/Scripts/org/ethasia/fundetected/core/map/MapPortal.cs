@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
@@ -25,7 +27,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public override void OnSecondaryInteract(IEnvironmentInteractionInteractor interactor)
         {
-            interactor.ActivateMapSelection(DestinationMapId);
+            List<Area> destinationMapInstances = CreatedMapsStorage.GetInstance().GetStoredMapsById(DestinationMapId);
+            interactor.ActivateMapSelection(DestinationMapId, destinationMapInstances);
         }
 
         public class Builder

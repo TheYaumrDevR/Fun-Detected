@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Interactors.Mocks;
 
@@ -86,7 +87,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             {
             }
 
-            public void ActivateMapSelection(string mapName)
+            public void ActivateMapSelection(string mapName, List<Area> mapInstances)
             {
             }
 
