@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -23,6 +24,11 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             return instance;
         }   
+
+        // TODO: Style header of map seleciton list
+        // TODO: Make map selection list columns not rearrangable
+        // TODO: Use custom template and style for map selection list rows with the button and id
+        // TODO: Add first row to map selection list which allows for the creation of a new map
 
         void Awake()
         {
@@ -90,8 +96,12 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private void PopulateMapSelectionList(MapSelectionWindowContent windowContent)
         {
+            List<string> mapIds = windowContent.MapIds;
+            mapIds.Add("Create new instance");
+            mapIds.Reverse();
+
             mapSelectionList.Clear();
-            mapSelectionList.itemsSource = windowContent.MapIds;
+            mapSelectionList.itemsSource = mapIds;
         }
 
         private void BindMapIdToCell(VisualElement element, int index)
