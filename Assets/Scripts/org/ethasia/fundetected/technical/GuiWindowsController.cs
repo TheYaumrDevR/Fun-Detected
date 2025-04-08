@@ -78,11 +78,11 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             mapSelectionList.reorderable = false;
 
-            mapSelectionList.columns.Add(MakeColumn("Action", 127));
+            mapSelectionList.columns.Add(MakeColumn("Action", 127, BindButtonCell, MakeButtonCell));
             mapSelectionList.columns.Add(MakeColumn("ID", 993, BindMapIdToCell));
         }     
 
-        private Column MakeColumn(string title, int width, Action<VisualElement, int> bindCell = null)
+        private Column MakeColumn(string title, int width, Action<VisualElement, int> bindCellFunction = null, Func<VisualElement> makeCellFunction = null)
         {
             return new Column 
             {
@@ -90,25 +90,57 @@ namespace Org.Ethasia.Fundetected.Technical
                 width = width,
                 resizable = false,
                 sortable = false,
-                bindCell = bindCell
+                bindCell = bindCellFunction,
+                makeCell = makeCellFunction
             };
         }   
 
         private void PopulateMapSelectionList(MapSelectionWindowContent windowContent)
         {
             List<string> mapIds = windowContent.MapIds;
-            mapIds.Add("Create new instance");
-            mapIds.Reverse();
+            List<MapSelectionRow> itemsSource = new List<MapSelectionRow>(mapIds.Count + 1);
+
+            for (int i = 0; i < mapIds.Count; i++)
+            {
+                itemsSource.Add(new MapSelectionRow(MapSelectionRowType.STANDARD, mapIds[i]));
+            }
+
+            itemsSource.Add(new MapSelectionRow(MapSelectionRowType.NEW_INSTANCE, "Create new instance"));
+            itemsSource.Reverse();
 
             mapSelectionList.Clear();
-            mapSelectionList.itemsSource = mapIds;
+            mapSelectionList.itemsSource = itemsSource;
+        }
+
+        private VisualElement MakeButtonCell()
+        {
+            var result = new Button();
+
+            result.text = "Enter";
+
+            return result;
+        }
+
+        private void BindButtonCell(VisualElement element, int index)
+        {
+            var button = (Button)element;
+            var selectionLitRow = (MapSelectionRow)mapSelectionList.viewController.GetItemForIndex(index);
+
+            if (selectionLitRow.Type == MapSelectionRowType.NEW_INSTANCE)
+            {
+                button.text = "New";
+            }
+            else
+            {
+                button.text = "Enter";
+            }
         }
 
         private void BindMapIdToCell(VisualElement element, int index)
         {
 			var cellLabel = (Label)element;
-			var mapId = (string)mapSelectionList.viewController.GetItemForIndex(index);
-			cellLabel.text = mapId;            
+			var selectionLitRow = (MapSelectionRow)mapSelectionList.viewController.GetItemForIndex(index);
+			cellLabel.text = selectionLitRow.Id;       
         }
 
         private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
@@ -117,6 +149,33 @@ namespace Org.Ethasia.Fundetected.Technical
             PlayerInputHandler.GetInstance().EnableInput();
 
             SoundPlayer.GetInstance().PlayMouseClickSound();
+        }
+
+        private enum MapSelectionRowType
+        {
+            STANDARD,
+            NEW_INSTANCE
+        }
+
+        private class MapSelectionRow
+        {
+            public MapSelectionRowType Type 
+            { 
+                get; 
+                private set; 
+            }
+
+            public string Id 
+            { 
+                get; 
+                private set; 
+            }
+
+            public MapSelectionRow(MapSelectionRowType type, string id)
+            {
+                Type = type;
+                Id = id;
+            }
         }
     }
 }
