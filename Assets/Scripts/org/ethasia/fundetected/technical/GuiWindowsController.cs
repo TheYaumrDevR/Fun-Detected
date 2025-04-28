@@ -76,6 +76,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private void SetupMapSelectionList()
         {
+            mapSelectionList.AddToClassList("MultiColumnListViewIngameUi");
             mapSelectionList.reorderable = false;
 
             mapSelectionList.columns.Add(MakeColumn("Action", 127, BindButtonCell, MakeButtonCell));
@@ -115,18 +116,15 @@ namespace Org.Ethasia.Fundetected.Technical
         private VisualElement MakeButtonCell()
         {
             var result = new Button();
-
-            result.text = "Enter";
-
             return result;
         }
 
         private void BindButtonCell(VisualElement element, int index)
         {
             var button = (Button)element;
-            var selectionLitRow = (MapSelectionRow)mapSelectionList.viewController.GetItemForIndex(index);
+            var selectionListRow = (MapSelectionRow)mapSelectionList.viewController.GetItemForIndex(index);
 
-            if (selectionLitRow.Type == MapSelectionRowType.NEW_INSTANCE)
+            if (selectionListRow.Type == MapSelectionRowType.NEW_INSTANCE)
             {
                 button.text = "New";
             }

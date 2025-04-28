@@ -33,3 +33,38 @@
 .windowCloseButton:active {
     background-image: url("project://database/Assets/UI/Windows/close-window-button-press.png?fileID=2800000&guid=4b7b7632dc43fd143858372175e52d76&type=3#close-window-button-press");
 }
+
+.MultiColumnListViewIngameUi #unity-multi-column-view__header-container, 
+.MultiColumnListViewIngameUi .unity-multi-column-header__column {
+    background-color: rgba(0, 0, 0, 0);
+    height: 27px !important;
+    min-height: 27px !important;
+    max-height: 27px !important;
+    flex-grow: 0 !important; 
+    flex-shrink: 0 !important; 
+    align-items: center; 
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 0px;
+    border-right-width: 1px;
+    border-bottom-width: 2px;
+    border-left-width: 1px;
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+.MultiColumnListViewIngameUi #unity-multi-column-view__row-container {
+    height: 84px !important; 
+    min-height: 84px !important;
+    max-height: 84px !important;
+    align-items: center; 
+}
+
+.MultiColumnListViewIngameUi #unity-content-container {
+    height: auto !important; /* Allow the container to adjust to the total height of rows */
+    min-height: 0; /* Ensure no minimum height constraint */
+    max-height: none; /* Remove any maximum height constraint */
+    overflow: visible; /* Ensure no clipping occurs */
+}
