@@ -116,6 +116,9 @@ namespace Org.Ethasia.Fundetected.Technical
         private VisualElement MakeButtonCell()
         {
             var result = new Button();
+
+            result.AddToClassList("WindowsButton");
+
             return result;
         }
 
