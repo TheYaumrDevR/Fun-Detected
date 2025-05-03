@@ -54,6 +54,7 @@
     max-width: 101px;
     max-height: 40px;
     color: rgb(0, 0, 0);
+    font-size: 19px;
     margin-left: 0;
     margin-bottom: 0;
     border-left-color: rgba(149, 149, 149, 0);
@@ -62,6 +63,14 @@
     border-bottom-color: rgba(149, 149, 149, 0);
     -unity-background-scale-mode: stretch-to-fill;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.WindowsButton:hover {
+    background-image: url("project://database/Assets/UI/Windows/button-hover-001.png?fileID=21300000&guid=e0494ad91eeef6842a28f68603ba9cf8&type=3#button-hover-001");
+}
+
+.WindowsButton:active {
+    background-image: url("project://database/Assets/UI/Windows/button-press-001.png?fileID=21300000&guid=70b4147ad2418874fa22de81ea44b456&type=3#button-press-001");
 }
 
 .MultiColumnListViewIngameUi #unity-multi-column-view__header-container, 
@@ -90,6 +99,16 @@
     min-height: 84px !important;
     max-height: 84px !important;
     align-items: center; 
+    font-size: 16px;
+   -unity-font-style: bold;
+}
+
+.MultiColumnListViewIngameUi #unity-multi-column-view__row-container:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.MultiColumnListViewIngameUi #unity-multi-column-view__row-container:active {
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .MultiColumnListViewIngameUi #unity-content-container {
