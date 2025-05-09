@@ -18,6 +18,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public bool IsSingleton
+        {
+            get;
+            private set;
+        }
+
         public int Width
         {
             get;
@@ -97,6 +103,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             MapName = "";
             AreaLevel = 1;
+            IsSingleton = false;
             Width = width;
             Height = height;
             MaximumMonsters = 0;
@@ -131,6 +138,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             private string mapName;
             private int areaLevel;
+            private bool isSingleton;
             private int width;
             private int height;
             private int lowestScreenX;
@@ -149,6 +157,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             public Builder SetAreaLevel(int value)
             {
                 areaLevel = value;
+                return this;
+            }
+
+            public Builder SetIsSingleton(bool value)
+            {
+                isSingleton = value;
                 return this;
             }
 
@@ -206,6 +220,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
                 result.MapName = mapName;
                 result.AreaLevel = areaLevel;
+                result.IsSingleton = isSingleton;
                 result.LowestScreenX = lowestScreenX;
                 result.LowestScreenY = lowestScreenY;
                 result.MaximumMonsters = maximumMonsters;

@@ -13,6 +13,9 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         public XmlFilesMock()
         {
             xmlFileContentProvidersByFileName = new Dictionary<string, Func<string>>();
+            xmlFileContentProvidersByFileName.Add("/Scenes/Maps/Town.xml", GetXmlFileContentForTown);
+            xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CobblestonePlateauWestPortal.xml", GetXmlFileContentForCobblestonePlateauWestPortal);
+            xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CobblestonePlateauEastPortal.xml", GetXmlFileContentForCobblestonePlateauEastPortal);
             xmlFileContentProvidersByFileName.Add("/Scenes/Maps/Hill.xml", GetXmlFileContentForHill);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassLoweringPlateau.xml", GetXmlFileContentForEarthGrassLoweringPlateau);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassPlateau.xml", GetXmlFileContentForEarthGrassPlateau);
@@ -33,6 +36,190 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             }
 
             return null;
+        }
+
+        private string GetXmlFileContentForTown()
+        {
+            return @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                        <mapDefinition areaLevel=""2"" isSingleton=""true"">
+                            <chunks>
+                                <chunk x=""-2"" y=""-1"" id=""westPortal"">
+                                    <portalTo>
+                                        <map id=""Hill""/>
+                                        <portal id=""eastPortal""/>
+                                    </portalTo>        
+                                    <definitions>   
+                                        <definition file=""CobblestonePlateauWestPortal""/>
+                                    </definitions>
+                                </chunk>   
+                                <chunk x=""-1"" y=""-1"" id=""eastPortal"">      
+                                    <portalTo>
+                                        <map id=""HillLvl2""/>
+                                        <portal id=""westPortal""/>
+                                    </portalTo>         
+                                    <definitions>   
+                                        <definition file=""CobblestonePlateauEastPortal""/>
+                                    </definitions>
+                                </chunk>                         
+                            </chunks>  
+                        </mapDefinition>";
+        }
+
+        private string GetXmlFileContentForCobblestonePlateauWestPortal()
+        {
+            return @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                    <tileChunk>
+                        <tileMaps>
+                            <foliageBack>
+                                <tile id=""PlainsAndHillsTileset_TreeRootLeft"" startX=""0"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeRootRight"" startX=""1"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkLeft"" startX=""0"" startY=""3"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkRight"" startX=""1"" startY=""3"" width=""1"" height=""1""/>     
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterLeft"" startX=""-1"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkLeft"" startX=""0"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkRight"" startX=""1"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterRight"" startX=""2"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesBottomLeftBorder"" startX=""-2"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterLeft"" startX=""-1"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerLeft"" startX=""0"" startY=""5"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerRight"" startX=""1"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterRight"" startX=""2"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder"" startX=""-2"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft"" startX=""-1"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeft"" startX=""0"" startY=""6"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleRight"" startX=""1"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterRight"" startX=""2"" startY=""6"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterLeft"" startX=""-1"" startY=""7"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopLeft"" startX=""0"" startY=""7"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopRight"" startX=""1"" startY=""7"" width=""1"" height=""1""/>       
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterRight"" startX=""2"" startY=""7"" width=""1"" height=""1""/>   
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft"" startX=""-1"" startY=""8"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopLeft"" startX=""0"" startY=""8"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopRight"" startX=""1"" startY=""8"" width=""1"" height=""1""/>                                                                            
+                            </foliageBack>        
+                            <foliageFront>
+                                <tile id=""PlainsAndHillsTileset_TreeRootLeft"" startX=""2"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeRootRight"" startX=""3"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkLeft"" startX=""2"" startY=""3"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkRight"" startX=""3"" startY=""3"" width=""1"" height=""1""/>     
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterLeft"" startX=""1"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkLeft"" startX=""2"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkRight"" startX=""3"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterRight"" startX=""4"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesBottomLeftBorder"" startX=""0"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterLeft"" startX=""1"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerLeft"" startX=""2"" startY=""5"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerRight"" startX=""3"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterRight"" startX=""4"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder"" startX=""0"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft"" startX=""1"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeft"" startX=""2"" startY=""6"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleRight"" startX=""3"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterRight"" startX=""4"" startY=""6"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterLeft"" startX=""1"" startY=""7"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopLeft"" startX=""2"" startY=""7"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopRight"" startX=""3"" startY=""7"" width=""1"" height=""1""/>       
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterRight"" startX=""4"" startY=""7"" width=""1"" height=""1""/>   
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft"" startX=""1"" startY=""8"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopLeft"" startX=""2"" startY=""8"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopRight"" startX=""3"" startY=""8"" width=""1"" height=""1""/>                                                                               
+                            </foliageFront>        
+                            <terrain>
+                                <tile id=""PlainsAndHillsTileset_Earth"" startX=""0"" startY=""0"" width=""8"" height=""2""/>
+                            </terrain>
+                            <ground>
+                                <tile id=""PlainsAndHillsTileset_Pavement"" startX=""0"" startY=""2"" width=""8"" height=""1""/>
+                            </ground>
+                        </tileMaps>
+
+                        <mapTileProperties>
+                            <playerSpawn x=""5"" y=""42""/>
+                            <portal x=""19"" y=""38"" width=""20"" height=""20""/>
+                            <infiniteHealingWell x=""74"" y=""34""/>
+
+                            <collisions>
+                                <collision startX=""0"" startY=""26"" width=""80"" height=""1""/>
+                            </collisions>
+                        </mapTileProperties>
+                    </tileChunk>";
+        }
+
+        private string GetXmlFileContentForCobblestonePlateauEastPortal()
+        {
+            return @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                    <tileChunk>
+                        <tileMaps>
+                            <foliageBack>
+                                <tile id=""PlainsAndHillsTileset_TreeRootLeft"" startX=""6"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeRootRight"" startX=""7"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkLeft"" startX=""6"" startY=""3"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkRight"" startX=""7"" startY=""3"" width=""1"" height=""1""/>     
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterLeft"" startX=""5"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkLeft"" startX=""6"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkRight"" startX=""7"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterRight"" startX=""8"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesBottomLeftBorder"" startX=""4"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterLeft"" startX=""5"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerLeft"" startX=""6"" startY=""5"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerRight"" startX=""7"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterRight"" startX=""8"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder"" startX=""4"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft"" startX=""5"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeft"" startX=""6"" startY=""6"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleRight"" startX=""7"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterRight"" startX=""8"" startY=""6"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterLeft"" startX=""5"" startY=""7"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopLeft"" startX=""6"" startY=""7"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopRight"" startX=""7"" startY=""7"" width=""1"" height=""1""/>       
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterRight"" startX=""8"" startY=""7"" width=""1"" height=""1""/>   
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft"" startX=""5"" startY=""8"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopLeft"" startX=""6"" startY=""8"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopRight"" startX=""7"" startY=""8"" width=""1"" height=""1""/>                                                                            
+                            </foliageBack>        
+                            <foliageFront>
+                                <tile id=""PlainsAndHillsTileset_TreeRootLeft"" startX=""4"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeRootRight"" startX=""5"" startY=""2"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkLeft"" startX=""4"" startY=""3"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTrunkRight"" startX=""5"" startY=""3"" width=""1"" height=""1""/>     
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterLeft"" startX=""3"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkLeft"" startX=""4"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkRight"" startX=""5"" startY=""4"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeTopTrunkOuterRight"" startX=""6"" startY=""4"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesBottomLeftBorder"" startX=""2"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterLeft"" startX=""3"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerLeft"" startX=""4"" startY=""5"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerRight"" startX=""5"" startY=""5"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesLowerOuterRight"" startX=""6"" startY=""5"" width=""1"" height=""1""/> 
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder"" startX=""2"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft"" startX=""3"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleLeft"" startX=""4"" startY=""6"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleRight"" startX=""5"" startY=""6"" width=""1"" height=""1""/>
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesMiddleOuterRight"" startX=""6"" startY=""6"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterLeft"" startX=""3"" startY=""7"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopLeft"" startX=""4"" startY=""7"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopRight"" startX=""5"" startY=""7"" width=""1"" height=""1""/>       
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesTopOuterRight"" startX=""6"" startY=""7"" width=""1"" height=""1""/>   
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft"" startX=""3"" startY=""8"" width=""1"" height=""1""/>  
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopLeft"" startX=""4"" startY=""8"" width=""1"" height=""1""/>    
+                                <tile id=""PlainsAndHillsTileset_TreeLeavesAboveTopRight"" startX=""5"" startY=""8"" width=""1"" height=""1""/>                                                                               
+                            </foliageFront>       
+                            <terrain>
+                                <tile id=""PlainsAndHillsTileset_Earth"" startX=""0"" startY=""0"" width=""8"" height=""2""/>
+                            </terrain>
+                            <ground>
+                                <tile id=""PlainsAndHillsTileset_Pavement"" startX=""0"" startY=""2"" width=""8"" height=""1""/>
+                            </ground>
+                        </tileMaps>
+
+                        <mapTileProperties>
+                        <playerSpawn x=""67"" y=""42""/>
+                        <portal x=""59"" y=""38"" width=""20"" height=""20""/>
+
+                            <collisions>
+                                <collision startX=""0"" startY=""26"" width=""80"" height=""1""/>
+                            </collisions>
+                        </mapTileProperties>
+                    </tileChunk>";
         }
 
         private string GetXmlFileContentForHill()

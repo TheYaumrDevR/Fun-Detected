@@ -227,6 +227,26 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
 
             Assert.That(result.AreaLevel, Is.EqualTo(68));         
-        }          
+        }       
+
+        [Test]
+        public void TestLoadMapDefinitionMissingSingletonIsFalse()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+
+            Assert.That(result.IsSingleton, Is.False);         
+        }   
+
+        [Test]
+        public void TestLoadMapDefinitionIsSingletonTrue()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("Town");     
+
+            Assert.That(result.IsSingleton, Is.True);         
+        }
     }
 }

@@ -17,6 +17,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public bool IsSingleton
+        {
+            get;
+            private set;
+        }
+
         public int MaximumMonsters
         {
             get;
@@ -40,6 +46,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             MaximumMonsters = maximumMonsters;
             MapName = mapName;
             AreaLevel = 1;
+            IsSingleton = false;
             
             Chunks = new List<Chunk>();
             SpawnableMonsters = new List<SpawnableMonster>();
@@ -78,6 +85,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private string mapName;
             private int maximumMonsters;
             private int areaLevel;
+            private bool isSingleton;
 
             public Builder SetMapName(string value)
             {
@@ -97,10 +105,17 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
+            public Builder SetIsSingleton(bool value)
+            {
+                isSingleton = value;
+                return this;
+            }
+
             public MapDefinition Build()
             {
                 MapDefinition result = new MapDefinition(maximumMonsters, mapName);
                 result.AreaLevel = areaLevel;
+                result.IsSingleton = isSingleton;
 
                 return result;
             }

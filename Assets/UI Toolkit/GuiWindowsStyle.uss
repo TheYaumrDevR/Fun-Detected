@@ -94,12 +94,14 @@
     -unity-font-style: bold;
 }
 
-.MultiColumnListViewIngameUi #unity-multi-column-view__row-container {
+.MultiColumnListViewIngameUi #unity-multi-column-view__row-container, 
+.MultiColumnListViewIngameUi .unity-collection-view__item--selected {
     height: 84px !important; 
     min-height: 84px !important;
     max-height: 84px !important;
     align-items: center; 
     font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
    -unity-font-style: bold;
 }
 

@@ -27,6 +27,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public bool IsSingleton
+        {
+            get;
+            private set;
+        }
+
         private AreaDimensions areaDimensions;
 
         private Dictionary<PositionImmutable, bool> isCollisionTile;
@@ -302,6 +308,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             private string name;
             private int areaLevel;
+            private bool isSingleton;
             private int width;
             private int height;
             private int lowestScreenX;
@@ -326,6 +333,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             public Builder SetAreaLevel(int value)
             {
                 areaLevel = value;
+                return this;
+            }
+
+            public Builder SetIsSingleton(bool value)
+            {
+                isSingleton = value;
                 return this;
             }
 
@@ -393,6 +406,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 Area result = new Area(isCollisionTile, areaDimensions);
                 result.Name = name;
                 result.AreaLevel = areaLevel;
+                result.IsSingleton = isSingleton;
                 result.playerSpawnPosition = playerSpawnPosition;
                 result.playerSpawnPositionBySpawnerId = playerSpawnPositionBySpawnerId;
                 result.enemySpawner = enemySpawner;

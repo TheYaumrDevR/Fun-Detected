@@ -48,6 +48,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             MapProperties result = new MapProperties.Builder()
                 .SetMapName(mapDefinition.MapName)
                 .SetAreaLevel(mapDefinition.AreaLevel)
+                .SetIsSingleton(mapDefinition.IsSingleton)
                 .SetMaximumMonsters(mapDefinition.MaximumMonsters)
                 .SetLowestScreenX(screenDimensionProperties.LowestScreenX)
                 .SetLowestScreenY(screenDimensionProperties.LowestScreenY)

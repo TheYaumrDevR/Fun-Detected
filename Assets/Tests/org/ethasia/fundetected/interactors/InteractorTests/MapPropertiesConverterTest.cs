@@ -161,5 +161,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Assert.That(result.AreaLevel, Is.EqualTo(5));
         }
+
+        [Test]
+        public void TestConvertMapPropertiesConvertsIsSingleton()
+        {
+            MapProperties mapProperties = new MapProperties.Builder()
+                .SetWidth(320)
+                .SetHeight(70)
+                .SetLowestScreenX(-100)
+                .SetLowestScreenY(-25)
+                .SetIsSingleton(true)
+                .Build();    
+
+            Area result = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);  
+
+            Assert.That(result.IsSingleton, Is.True);  
+        }
     }
 }

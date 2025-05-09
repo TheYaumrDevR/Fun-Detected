@@ -162,6 +162,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.AreaLevel, Is.EqualTo(15));
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsIsSingleton()
+        {
+            MapDefinition mapDefinition = new MapDefinition.Builder()
+                .SetMapName("Mountain")
+                .SetIsSingleton(true)
+                .Build();
+
+            CreateTestChunks(mapDefinition);    
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
+
+            Assert.That(result.IsSingleton, Is.True);
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk2 = new Chunk(-1, -2);

@@ -36,6 +36,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             string maximumMonstersText = mapDefinitionProperties.GetAttribute("maximumMonsters");
             string areaLevelText = mapDefinitionProperties.GetAttribute("areaLevel");
+            string isSingletonText = mapDefinitionProperties.GetAttribute("isSingleton");
 
             MapDefinition.Builder mapDefinitionBuilder = new MapDefinition.Builder();
 
@@ -43,6 +44,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 mapDefinitionBuilder.SetAreaLevel(areaLevel);
             }
+
+            mapDefinitionBuilder.SetIsSingleton(isSingletonText == "true");
 
             if (int.TryParse(maximumMonstersText, out int maximumMonsters))
             {
