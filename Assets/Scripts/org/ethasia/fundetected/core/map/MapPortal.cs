@@ -28,7 +28,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public override void OnSecondaryInteract(IEnvironmentInteractionInteractor interactor)
         {
             List<Area> destinationMapInstances = CreatedMapsStorage.GetInstance().GetStoredMapsById(DestinationMapId);
-            interactor.ActivateMapSelection(DestinationMapId, destinationMapInstances);
+
+            bool atLeastOneMapIsSingleton = destinationMapInstances.Exists(destinationMapInstance => destinationMapInstance.IsSingleton);
+            
+            if (atLeastOneMapIsSingleton)
+            {       
+                interactor.ActivateMapSelectionForSingletonMap(DestinationMapId);
+            }
+            else
+            {
+                interactor.ActivateMapSelection(DestinationMapId, destinationMapInstances);
+            }
         }
 
         public class Builder

@@ -106,7 +106,11 @@ namespace Org.Ethasia.Fundetected.Technical
                 itemsSource.Add(new MapSelectionRow(MapSelectionRowType.STANDARD, mapIds[i]));
             }
 
-            itemsSource.Add(new MapSelectionRow(MapSelectionRowType.NEW_INSTANCE, "Create new instance"));
+            if (windowContent.ShowNewInstanceButton)
+            {
+                itemsSource.Add(new MapSelectionRow(MapSelectionRowType.NEW_INSTANCE, "Create new instance"));
+            }
+
             itemsSource.Reverse();
 
             mapSelectionList.Clear();

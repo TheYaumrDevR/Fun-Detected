@@ -43,6 +43,15 @@ namespace Org.Ethasia.Fundetected.Interactors
             playerInputOnOffSwitch.DisableInput();
         }
 
+        public void ActivateMapSelectionForSingletonMap(string mapName)
+        {
+            IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
+
+            IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
+            guiWindowsPresenter.ShowMapSelectionWindowForSingletonMap(mapName, GetMapInstanceId(1));
+            playerInputOnOffSwitch.DisableInput();
+        }
+
         private bool InteractWithEnvironment(int mousePositionX, int mousePositionY, Action<InteractableEnvironmentObject> interactionAction)
         {
             Area activeArea = Area.ActiveArea;
@@ -100,11 +109,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             int i = 1;
             foreach (Area map in mapInstances)
             {
-                result.Add("Instance #" + i);
+                result.Add(GetMapInstanceId(i));
                 i++;
             }
 
             return result;
+        }
+
+        private string GetMapInstanceId(int instanceIndex)
+        {
+            return "Instance #" + instanceIndex;
         }
     }
 }

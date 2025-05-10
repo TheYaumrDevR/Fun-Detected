@@ -91,6 +91,10 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             {
             }
 
+            public void ActivateMapSelectionForSingletonMap(string mapName)
+            {
+            }
+
             public void PresentHealthAndManaBarState()
             {
             }
