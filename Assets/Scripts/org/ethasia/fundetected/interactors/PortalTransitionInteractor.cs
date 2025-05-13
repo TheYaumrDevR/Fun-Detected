@@ -56,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             if (null != maybeTargetMaps && maybeTargetMaps.Count > 0)
             {
-                areaSwitchingInteractor.PortalPlayerIntoExistingMap(maybeTargetMaps[0], destinationPortalId, currentMap.Player);
+                areaSwitchingInteractor.PortalPlayerIntoExistingMap(maybeTargetMaps[maybeTargetMaps.Count - 1], destinationPortalId, currentMap.Player);
             }
             else
             {
