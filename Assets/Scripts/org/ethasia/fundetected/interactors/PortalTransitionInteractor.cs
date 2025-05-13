@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core;
@@ -9,24 +10,46 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public void TransitionToOtherMap(string destinationMapId, string destinationPortalId)
         {
+            PerformTransition(destinationMapId, destinationPortalId, SwitchToAndShowNewMap);
+        }
+
+        public void TransitionToNewlyCreatedMap(string destinationMapId, string destinationPortalId)
+        {
+            PerformTransition(destinationMapId, destinationPortalId, SwitchToAndShowNewlyCreatedMap);
+        }
+
+        private void PerformTransition(string destinationMapId, string destinationPortalId, Action<string, string> switchMapAction)
+        {
             IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
             IMapPresenter mapPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetMapPresenterInstance();
             IEnemyPresenter enemyPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyPresenterInstance();
             ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
-            
+
             soundPresenter.PlayPortalTransitionSound();
             playerInputOnOffSwitch.DisableInput();
             mapPresenter.PresentEmpty();
             enemyPresenter.PresentNothing();
-            SwitchToAndShowNewMap(destinationMapId, destinationPortalId);
+            switchMapAction(destinationMapId, destinationPortalId);
             PresentPlayerOnNewPosition();
             playerInputOnOffSwitch.EnableInput();
+        }        
+
+        private void SwitchToAndShowNewlyCreatedMap(string destinationMapId, string destinationPortalId)
+        {
+            StoreCurrentMap();
+
+            Area currentMap = Area.ActiveArea; 
+
+            AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
+            areaSwitchingInteractor.PortalPlayerIntoNewMap(destinationMapId, destinationPortalId, currentMap.Player);
         }
 
         private void SwitchToAndShowNewMap(string destinationMapId, string destinationPortalId)
         {
-            Area currentMap = Area.ActiveArea;
-            CreatedMapsStorage.GetInstance().AddMapById(currentMap.Name, currentMap);
+            StoreCurrentMap();
+
+            Area currentMap = Area.ActiveArea; 
+
             List<Area> maybeTargetMaps = CreatedMapsStorage.GetInstance().GetStoredMapsById(destinationMapId);
 
             AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
@@ -39,6 +62,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 areaSwitchingInteractor.PortalPlayerIntoNewMap(destinationMapId, destinationPortalId, currentMap.Player);
             }
+        }
+
+        private void StoreCurrentMap()
+        {
+            Area currentMap = Area.ActiveArea;
+            CreatedMapsStorage.GetInstance().AddMapById(currentMap.Name, currentMap);
         }
 
         private void PresentPlayerOnNewPosition()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -19,16 +20,12 @@ namespace Org.Ethasia.Fundetected.Technical
         private Label mapSelectionUsageHint;
         private string mapSelectionUsageHintOriginalText;
         private MultiColumnListView mapSelectionList;
+        private MapSelectionWindowContext model;
 
         public static GuiWindowsController GetInstance()
         {
             return instance;
         }   
-
-        // TODO: Style header of map seleciton list
-        // TODO: Make map selection list columns not rearrangable
-        // TODO: Use custom template and style for map selection list rows with the button and id
-        // TODO: Add first row to map selection list which allows for the creation of a new map
 
         void Awake()
         {
@@ -45,8 +42,10 @@ namespace Org.Ethasia.Fundetected.Technical
             SetupMapSelectionList();
         }
 
-        public void OpenMapSelectionWindow(MapSelectionWindowContent windowContent)
+        public void OpenMapSelectionWindow(MapSelectionWindowContext windowContent)
         {
+            model = windowContent;
+
             mapSelectionUsageHint.text = TechnicalUtils.ReplacePlaceHoldersInText(mapSelectionUsageHintOriginalText, windowContent.MapName);
             mapSelectionWindow.visible = true;
 
@@ -96,7 +95,7 @@ namespace Org.Ethasia.Fundetected.Technical
             };
         }   
 
-        private void PopulateMapSelectionList(MapSelectionWindowContent windowContent)
+        private void PopulateMapSelectionList(MapSelectionWindowContext windowContent)
         {
             List<string> mapIds = windowContent.MapIds;
             List<MapSelectionRow> itemsSource = new List<MapSelectionRow>(mapIds.Count + 1);
@@ -134,6 +133,7 @@ namespace Org.Ethasia.Fundetected.Technical
             if (selectionListRow.Type == MapSelectionRowType.NEW_INSTANCE)
             {
                 button.text = "New";
+                button.RegisterCallback<ClickEvent>(OnNewMapButtonClick);
             }
             else
             {
@@ -154,6 +154,18 @@ namespace Org.Ethasia.Fundetected.Technical
             PlayerInputHandler.GetInstance().EnableInput();
 
             SoundPlayer.GetInstance().PlayMouseClickSound();
+        }
+
+        private void OnNewMapButtonClick(ClickEvent clickEvent)
+        {
+            PortalTransitionInteractor portalTransitionInteractor = new PortalTransitionInteractor();
+
+            this.CloseCurrentlyOpenWindow();
+            PlayerInputHandler.GetInstance().EnableInput();
+
+            SoundPlayer.GetInstance().PlayMouseClickSound();
+
+            portalTransitionInteractor.TransitionToNewlyCreatedMap(model.MapName, model.DestinationPortalId);
         }
 
         private enum MapSelectionRowType

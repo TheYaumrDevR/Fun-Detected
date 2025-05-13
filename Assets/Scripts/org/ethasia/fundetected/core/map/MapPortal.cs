@@ -33,11 +33,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             
             if (atLeastOneMapIsSingleton)
             {       
-                interactor.ActivateMapSelectionForSingletonMap(DestinationMapId);
+                interactor.ActivateMapSelectionForSingletonMap(DestinationMapId, DestinationPortalId);
             }
             else
             {
-                interactor.ActivateMapSelection(DestinationMapId, destinationMapInstances);
+                interactor.ActivateMapSelection(DestinationMapId, DestinationPortalId, destinationMapInstances);
             }
         }
 

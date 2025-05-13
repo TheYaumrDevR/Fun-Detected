@@ -7,18 +7,30 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class GuiWindowsPresenter : IGuiWindowsPresenter
     {
-        public void ShowMapSelectionWindowForSingletonMap(string mapName, string mapInstanceId)
+        public void ShowMapSelectionWindowForSingletonMap(string mapName, string destinationPortalId, string mapInstanceId)
         {
             IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
-            MapSelectionWindowContent mapSelectionWindowContent = MapSelectionWindowContent.CreateForSingletonMap(mapName, mapInstanceId);
+
+            MapSelectionWindowContext mapSelectionWindowContent = new MapSelectionWindowContext.Builder()
+                .SetMapName(mapName)
+                .SetMapIds(new List<string> { mapInstanceId })
+                .SetDestinationPortalId(destinationPortalId)
+                .SetShowNewInstanceButton(false)
+                .Build();
             
             guiWindowsController.OpenMapSelectionWindow(mapSelectionWindowContent);
         }
 
-        public void ShowMapSelectionWindow(string mapName, List<string> mapInstanceIds)
+        public void ShowMapSelectionWindow(string mapName, string destinationPortalId, List<string> mapInstanceIds)
         {
             IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
-            MapSelectionWindowContent mapSelectionWindowContent = new MapSelectionWindowContent(mapName, mapInstanceIds);
+
+            MapSelectionWindowContext mapSelectionWindowContent = new MapSelectionWindowContext.Builder()
+                .SetMapName(mapName)
+                .SetMapIds(mapInstanceIds)
+                .SetDestinationPortalId(destinationPortalId)
+                .SetShowNewInstanceButton(true)
+                .Build();
             
             guiWindowsController.OpenMapSelectionWindow(mapSelectionWindowContent);
         }

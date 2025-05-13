@@ -87,11 +87,11 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             {
             }
 
-            public void ActivateMapSelection(string mapName, List<Area> mapInstances)
+            public void ActivateMapSelection(string mapName, string destinationPortalId, List<Area> mapInstances)
             {
             }
 
-            public void ActivateMapSelectionForSingletonMap(string mapName)
+            public void ActivateMapSelectionForSingletonMap(string mapName, string destinationPortalId)
             {
             }
 

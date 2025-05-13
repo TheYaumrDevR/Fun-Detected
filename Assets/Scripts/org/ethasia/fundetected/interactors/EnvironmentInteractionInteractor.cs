@@ -34,21 +34,21 @@ namespace Org.Ethasia.Fundetected.Interactors
             soundPresenter.PlayHealingWellUseSound(playerCharacterPresenter.GetPlayerCharacterIdPrefix() + playerCharacterName);
         }
 
-        public void ActivateMapSelection(string mapName, List<Area> mapInstances)
+        public void ActivateMapSelection(string mapName, string destinationPortalId, List<Area> mapInstances)
         {
             IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
 
             IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
-            guiWindowsPresenter.ShowMapSelectionWindow(mapName, ConvertMapInstancesToInstanceIds(mapInstances));
+            guiWindowsPresenter.ShowMapSelectionWindow(mapName, destinationPortalId, ConvertMapInstancesToInstanceIds(mapInstances));
             playerInputOnOffSwitch.DisableInput();
         }
 
-        public void ActivateMapSelectionForSingletonMap(string mapName)
+        public void ActivateMapSelectionForSingletonMap(string mapName, string destinationPortalId)
         {
             IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
 
             IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
-            guiWindowsPresenter.ShowMapSelectionWindowForSingletonMap(mapName, GetMapInstanceId(1));
+            guiWindowsPresenter.ShowMapSelectionWindowForSingletonMap(mapName, destinationPortalId, GetMapInstanceId(1));
             playerInputOnOffSwitch.DisableInput();
         }
 
