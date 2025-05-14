@@ -138,14 +138,15 @@ namespace Org.Ethasia.Fundetected.Technical
             else
             {
                 button.text = "Enter";
+                button.RegisterCallback<ClickEvent>(CreateOnMapButtonClickAction(index));
             }
         }
 
         private void BindMapIdToCell(VisualElement element, int index)
         {
 			var cellLabel = (Label)element;
-			var selectionLitRow = (MapSelectionRow)mapSelectionList.viewController.GetItemForIndex(index);
-			cellLabel.text = selectionLitRow.Id;       
+			var selectionListRow = (MapSelectionRow)mapSelectionList.viewController.GetItemForIndex(index);
+			cellLabel.text = selectionListRow.Id;       
         }
 
         private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
@@ -160,12 +161,24 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             PortalTransitionInteractor portalTransitionInteractor = new PortalTransitionInteractor();
 
-            this.CloseCurrentlyOpenWindow();
-            PlayerInputHandler.GetInstance().EnableInput();
-
-            SoundPlayer.GetInstance().PlayMouseClickSound();
+            OnCloseMapSelectionWindowClick(null);
 
             portalTransitionInteractor.TransitionToNewlyCreatedMap(model.MapName, model.DestinationPortalId);
+        }
+
+        private EventCallback<ClickEvent> CreateOnMapButtonClickAction(int index)
+        {
+            return (clickEvent) =>
+            {
+                PortalTransitionInteractor portalTransitionInteractor = new PortalTransitionInteractor();
+
+                OnCloseMapSelectionWindowClick(null);
+
+                index = index > 0 ? index - 1 : index;
+                index = model.MapIds.Count - index - 1;
+
+                portalTransitionInteractor.TransitionToSpecificMap(model.MapName, model.DestinationPortalId, index);
+            };
         }
 
         private enum MapSelectionRowType

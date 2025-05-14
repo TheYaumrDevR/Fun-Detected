@@ -10,15 +10,23 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public void TransitionToOtherMap(string destinationMapId, string destinationPortalId)
         {
-            PerformTransition(destinationMapId, destinationPortalId, SwitchToAndShowNewMap);
+            ISwitchMapActionStrategy switchMapActionStrategy = new SwitchMapActionStrategyWithoutSpecificMapIndex(destinationMapId, destinationPortalId, SwitchToAndShowNewMap);
+            PerformTransition(switchMapActionStrategy);
         }
 
         public void TransitionToNewlyCreatedMap(string destinationMapId, string destinationPortalId)
         {
-            PerformTransition(destinationMapId, destinationPortalId, SwitchToAndShowNewlyCreatedMap);
+            ISwitchMapActionStrategy switchMapActionStrategy = new SwitchMapActionStrategyWithoutSpecificMapIndex(destinationMapId, destinationPortalId, SwitchToAndShowNewlyCreatedMap);
+            PerformTransition(switchMapActionStrategy);
         }
 
-        private void PerformTransition(string destinationMapId, string destinationPortalId, Action<string, string> switchMapAction)
+        public void TransitionToSpecificMap(string destinationMapId, string destinationPortalId, int mapIndex)
+        {
+            ISwitchMapActionStrategy switchMapActionStrategy = new SwitchMapActionStrategyWithSpecificMapIndex(destinationMapId, destinationPortalId, mapIndex, SwitchToAndShowSpecificMap);
+            PerformTransition(switchMapActionStrategy);
+        }
+
+        private void PerformTransition(ISwitchMapActionStrategy switchMapActionStrategy)
         {
             IPlayerInputOnOffSwitch playerInputOnOffSwitch = IoAdaptersFactoryForInteractors.GetInstance().GetPlayerInputOnOffSwitchInstance();
             IMapPresenter mapPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetMapPresenterInstance();
@@ -29,7 +37,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             playerInputOnOffSwitch.DisableInput();
             mapPresenter.PresentEmpty();
             enemyPresenter.PresentNothing();
-            switchMapAction(destinationMapId, destinationPortalId);
+            switchMapActionStrategy.ExecuteSwitchMapAction();
             PresentPlayerOnNewPosition();
             playerInputOnOffSwitch.EnableInput();
         }        
@@ -64,6 +72,22 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }
 
+        private void SwitchToAndShowSpecificMap(string destinationMapId, string destinationPortalId, int mapIndex)
+        {
+            StoreCurrentMap();
+
+            Area currentMap = Area.ActiveArea; 
+
+            List<Area> maybeTargetMaps = CreatedMapsStorage.GetInstance().GetStoredMapsById(destinationMapId);
+
+            AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
+
+            if (null != maybeTargetMaps && maybeTargetMaps.Count > mapIndex)
+            {
+                areaSwitchingInteractor.PortalPlayerIntoExistingMap(maybeTargetMaps[mapIndex], destinationPortalId, currentMap.Player);
+            }            
+        } 
+
         private void StoreCurrentMap()
         {
             Area currentMap = Area.ActiveArea;
@@ -81,5 +105,50 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             return IoAdaptersFactoryForInteractors.GetInstance().GetPlayerMovementControllerInstance();
         } 
+
+        private interface ISwitchMapActionStrategy
+        {
+            void ExecuteSwitchMapAction();       
+        }
+
+        private class SwitchMapActionStrategyWithoutSpecificMapIndex : ISwitchMapActionStrategy
+        {
+            private string destinationMapId;
+            private string destinationPortalId;
+            private Action<string, string> switchMapAction;
+
+            public SwitchMapActionStrategyWithoutSpecificMapIndex(string destinationMapId, string destinationPortalId, Action<string, string> switchMapAction)
+            {
+                this.destinationMapId = destinationMapId;
+                this.destinationPortalId = destinationPortalId;
+                this.switchMapAction = switchMapAction;
+            }
+
+            public void ExecuteSwitchMapAction()
+            {
+                switchMapAction(destinationMapId, destinationPortalId);
+            }
+        }
+
+        private class SwitchMapActionStrategyWithSpecificMapIndex : ISwitchMapActionStrategy
+        {
+            private string destinationMapId;
+            private string destinationPortalId;
+            private int mapIndex;
+            private Action<string, string, int> switchMapAction;
+
+            public SwitchMapActionStrategyWithSpecificMapIndex(string destinationMapId, string destinationPortalId, int mapIndex, Action<string, string, int> switchMapAction)
+            {
+                this.destinationMapId = destinationMapId;
+                this.destinationPortalId = destinationPortalId;
+                this.mapIndex = mapIndex;
+                this.switchMapAction = switchMapAction;
+            }
+
+            public void ExecuteSwitchMapAction()
+            {
+                switchMapAction(destinationMapId, destinationPortalId, mapIndex);
+            }
+        }
     }
 }
