@@ -121,6 +121,7 @@ namespace Org.Ethasia.Fundetected.Technical
             var result = new Button();
 
             result.AddToClassList("WindowsButton");
+            result.RegisterCallback<ClickEvent>(OnButtonClick);
 
             return result;
         }
@@ -133,12 +134,12 @@ namespace Org.Ethasia.Fundetected.Technical
             if (selectionListRow.Type == MapSelectionRowType.NEW_INSTANCE)
             {
                 button.text = "New";
-                button.RegisterCallback<ClickEvent>(OnNewMapButtonClick);
+                button.userData = new EventCallback<ClickEvent>(OnNewMapButtonClick);
             }
             else
             {
                 button.text = "Enter";
-                button.RegisterCallback<ClickEvent>(CreateOnMapButtonClickAction(index));
+                button.userData = CreateOnMapButtonClickAction(index);
             }
         }
 
@@ -155,6 +156,17 @@ namespace Org.Ethasia.Fundetected.Technical
             PlayerInputHandler.GetInstance().EnableInput();
 
             SoundPlayer.GetInstance().PlayMouseClickSound();
+        }
+
+        private void OnButtonClick(ClickEvent clickEvent)
+        {
+            var button = (Button)clickEvent.target;
+            EventCallback<ClickEvent> callback = button.userData as EventCallback<ClickEvent>;
+
+            if (callback != null)
+            {
+                callback(clickEvent);
+            }
         }
 
         private void OnNewMapButtonClick(ClickEvent clickEvent)
