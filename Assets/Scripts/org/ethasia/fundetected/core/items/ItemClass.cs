@@ -25,10 +25,13 @@ namespace Org.Ethasia.Fundetected.Core.Items
         HEAD_GEAR,
         SHOES,
         GLOVES,
-        RINGS,
-        AMULETS,
-        BELTS,
+        RING,
+        AMULET,
+        BELT,
         GLYPH,
+        LIFE_POTION,
+        MANA_POTION,
+        ENHANCING_POTION,
         NONE
     }
 }

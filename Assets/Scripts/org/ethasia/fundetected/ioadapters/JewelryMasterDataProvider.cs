@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             return new JewelryMasterData.Builder()
                 .SetName("Weapons Belt")
-                .SteItemClass(ItemClass.BELTS)
+                .SteItemClass(ItemClass.BELT)
                 .SetFirstImplicit(new PlusStrengthAffix(30))
                 .Build();
         }
