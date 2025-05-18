@@ -97,23 +97,8 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private void PopulateMapSelectionList(MapSelectionWindowContext windowContent)
         {
-            List<string> mapIds = windowContent.MapIds;
-            List<MapSelectionRow> itemsSource = new List<MapSelectionRow>(mapIds.Count + 1);
-
-            for (int i = 0; i < mapIds.Count; i++)
-            {
-                itemsSource.Add(new MapSelectionRow(MapSelectionRowType.STANDARD, mapIds[i]));
-            }
-
-            if (windowContent.ShowNewInstanceButton)
-            {
-                itemsSource.Add(new MapSelectionRow(MapSelectionRowType.NEW_INSTANCE, "Create new instance"));
-            }
-
-            itemsSource.Reverse();
-
             mapSelectionList.Clear();
-            mapSelectionList.itemsSource = itemsSource;
+            mapSelectionList.itemsSource = GuiContentFactory.CreateMapSelectionRows(windowContent);
         }
 
         private VisualElement MakeButtonCell()
@@ -193,13 +178,13 @@ namespace Org.Ethasia.Fundetected.Technical
             };
         }
 
-        private enum MapSelectionRowType
+        public enum MapSelectionRowType
         {
             STANDARD,
             NEW_INSTANCE
         }
 
-        private class MapSelectionRow
+        public class MapSelectionRow
         {
             public MapSelectionRowType Type 
             { 
