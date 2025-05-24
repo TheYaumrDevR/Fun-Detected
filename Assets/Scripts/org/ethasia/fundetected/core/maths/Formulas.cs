@@ -239,7 +239,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 case 99:
                     return 291058498;
                 case 100:
-                    return 317149722;
+                    return 320269442;
                 default:
                     return 0;
             }

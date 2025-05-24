@@ -12,6 +12,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             private set;
         }
 
+        public int MinimumItemLevel
+        {
+            get;
+            private set;
+        }
+
         public string Name
         {
             get;
@@ -45,6 +51,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public class Builder
         {
             private ItemClass itemClass;
+            private int minimumItemLevel;
             private string name;
             private int strengthRequirement;
             private int agilityRequirement;
@@ -54,6 +61,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             public Builder SteItemClass(ItemClass value)
             {
                 itemClass = value;
+                return this;
+            }
+
+            public Builder SetMinimumItemLevel(int value)
+            {
+                minimumItemLevel = value;
                 return this;
             }
 
@@ -92,6 +105,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 JewelryMasterData result = new JewelryMasterData();
                 
                 result.ItemClass = itemClass;
+                result.MinimumItemLevel = minimumItemLevel;
                 result.Name = name;
                 result.StrengthRequirement = strengthRequirement;
                 result.AgilityRequirement = agilityRequirement;
