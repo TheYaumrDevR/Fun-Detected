@@ -2,46 +2,10 @@ using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Interactors
 {
-    public class WeaponMasterData
+    public class WeaponMasterData : ItemMasterData
     {
-        public ItemClass ItemClass
-        {
-            get;
-            private set;
-        }
-
-        public int MinimumItemLevel
-        {
-            get;
-            private set;
-        }
-
-        public string Name
-        {
-            get;
-            private set;
-        }
-
-        public int StrengthRequirement
-        {
-            get;
-            private set;
-        }    
-
-        public int AgilityRequirement
-        {
-            get;
-            private set;
-        }       
-
-        public int IntelligenceRequirement
-        {
-            get;
-            private set;
-        }  
-
         public DamageRange MinToMaxPhysicalDamage
         {
             get;

@@ -10,8 +10,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private static readonly Dictionary<string, Func<string, EnemyMasterData>> enemyIdByProductionFunction;
         private static readonly Dictionary<string, Func<string, EnemyMasterDataForRendering>> enemyIdByRenderMasterDataProductionFunction;
 
+        private static DropTableMasterDataProvider dropTableMasterDataProvider;
+
         static EnemyMasterDataProvider()
         {
+            dropTableMasterDataProvider = new DropTableMasterDataProvider();
+
             enemyIdByProductionFunction = new Dictionary<string, Func<string, EnemyMasterData>>();
             enemyIdByRenderMasterDataProductionFunction = new Dictionary<string, Func<string, EnemyMasterDataForRendering>>();
 
@@ -75,6 +79,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.DistanceToBottomEdge = 7;
             result.DistanceToTopEdge = 7;
 
+            DropTableMasterData globalDropTable = dropTableMasterDataProvider.GetGlobalDropTable();
+
             UnarmedAsymmetricSwingAbilityMasterData unarmedAsymmetricSwingAbilityMasterData = new UnarmedAsymmetricSwingAbilityMasterData
             {
                 AbilityName = "Branch Swing",
@@ -117,6 +123,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             result.AbilityMasterData = unarmedAsymmetricSwingAbilityMasterData;
             result.ScalingStrategy = scalingStrategy;
+
+            result.DropTables = new List<DropTableMasterData>();
+            result.DropTables.Add(globalDropTable);
 
             return result;
         }    

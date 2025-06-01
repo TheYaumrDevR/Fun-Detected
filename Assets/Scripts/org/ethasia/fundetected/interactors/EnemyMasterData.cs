@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct EnemyMasterData
@@ -16,5 +18,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int DistanceToTopEdge;
         public AbilityMasterData AbilityMasterData;
         public IMasterDataScalingStrategy ScalingStrategy;
+        public List<DropTableMasterData> DropTables;
     }
 }
