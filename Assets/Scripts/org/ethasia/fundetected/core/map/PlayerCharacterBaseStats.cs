@@ -1,7 +1,7 @@
 namespace Org.Ethasia.Fundetected.Core.Map
 {
 
-    // Stats derived from level up values and passive skill points
+    // Stats derived from level up values and class base stats
     public class PlayerCharacterBaseStats
     {
         private const int MAXIMUM_LEVEL = 5;
