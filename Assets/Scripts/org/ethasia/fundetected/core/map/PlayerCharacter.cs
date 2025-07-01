@@ -38,6 +38,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }   
 
+        public PlayerCharacterAdditionalStats StatModifiers
+        {
+            get;
+            private set;
+        }
+
+        public PlayerCharacterTotalStats TotalStats
+        {
+            get;
+            private set;
+        }
+
         private PlayerEquipmentSlots allEquipment;
 
         public int EvasionRating
@@ -53,6 +65,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+            StatModifiers = new PlayerCharacterAdditionalStats();
+            TotalStats = new PlayerCharacterTotalStats();
             allEquipment = new PlayerEquipmentSlots();
         }
 
@@ -182,7 +196,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                     {
                         DamageRange damageRange = BaseStats.BasePhysicalDamage;
 
-                        int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.minDamage, damageRange.maxDamage);
+                        int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.MinDamage, damageRange.MaxDamage);
 
                         int damageTaken = target.TakePhysicalHit(damage);
 
@@ -269,6 +283,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.characterClass = characterClass;
 
                 result.BaseStats = playerCharacterBaseStats;
+                result.TotalStats.Calculate(playerCharacterBaseStats, result.StatModifiers);
 
                 result.CreateMeleeAttack(meleeHitArcProperties);
 

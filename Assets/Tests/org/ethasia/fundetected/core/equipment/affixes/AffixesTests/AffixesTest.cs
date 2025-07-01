@@ -169,12 +169,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 
             Weapon bow = weaponBuilder.Build();
 
-            Assert.That(bow.LocalModifiers.PlusMinToMaxPhysicalDamage.minDamage, Is.EqualTo(12));
-            Assert.That(bow.LocalModifiers.PlusMinToMaxPhysicalDamage.maxDamage, Is.EqualTo(24));
-            Assert.That(bow.LocalModifiers.PlusMinToMaxFireDamage.minDamage, Is.EqualTo(41));
-            Assert.That(bow.LocalModifiers.PlusMinToMaxFireDamage.maxDamage, Is.EqualTo(66));
-            Assert.That(bow.LocalModifiers.PlusMinToMaxColdDamage.minDamage, Is.EqualTo(2));
-            Assert.That(bow.LocalModifiers.PlusMinToMaxColdDamage.maxDamage, Is.EqualTo(6));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxPhysicalDamage.MinDamage, Is.EqualTo(12));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(24));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxFireDamage.MinDamage, Is.EqualTo(41));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxFireDamage.MaxDamage, Is.EqualTo(66));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxColdDamage.MinDamage, Is.EqualTo(2));
+            Assert.That(bow.LocalModifiers.PlusMinToMaxColdDamage.MaxDamage, Is.EqualTo(6));
         }
 
         [Test]

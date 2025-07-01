@@ -90,6 +90,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public PlayerCharacterBaseStats()
+        {
+            BasePhysicalDamage = new DamageRange(1, 1);
+        }
+
         public void LevelUp()
         {
             if (Level < MAXIMUM_LEVEL)
@@ -239,6 +244,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.BasePhysicalDamage = basePhysicalDamage;
                 result.AttacksPerSecond = attacksPerSecond;
                 result.MovementSpeed = movementSpeed;
+
+                if (null == basePhysicalDamage)
+                {
+                    result.BasePhysicalDamage = new DamageRange(1, 1);
+                }
 
                 return result;
             }  

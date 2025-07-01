@@ -277,7 +277,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
                 if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
                 {
-                    int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(minToMaxPhysicalDamage.minDamage, minToMaxPhysicalDamage.maxDamage);
+                    int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(minToMaxPhysicalDamage.MinDamage, minToMaxPhysicalDamage.MaxDamage);
                     player.TakePhysicalDamage(damage);
                 }
                 else
