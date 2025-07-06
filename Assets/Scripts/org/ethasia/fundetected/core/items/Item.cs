@@ -13,6 +13,11 @@ namespace Org.Ethasia.Fundetected.Core.Items
             get;
             private set;            
         }
+        
+        public ItemInInventoryShape CreateInventoryShape()
+        {
+            return ItemClass.CreateInventoryShape(this);
+        }
 
         public class Builder
         {
@@ -23,13 +28,13 @@ namespace Org.Ethasia.Fundetected.Core.Items
             {
                 this.itemClass = value;
                 return this;
-            }    
+            }
 
             public Builder SetItemLevel(int value)
             {
                 this.itemLevel = value;
                 return this;
-            }                         
+            }
 
             protected void FillItemFields(Item statlessItem)
             {
