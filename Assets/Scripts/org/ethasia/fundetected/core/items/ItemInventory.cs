@@ -23,13 +23,13 @@ namespace Org.Ethasia.Fundetected.Core.Items
                     ItemInInventoryShape currentItemInGrid = inventoryGrid[position.X + x, position.Y + y];
                     if (currentItemInGrid != null)
                     {
-                        if (!currentItemInGrid.IsSameItemInstanceAs(lastItemInGrid))
+                        if (lastItemInGrid != null && !currentItemInGrid.IsSameItemInstanceAs(lastItemInGrid))
                         {
                             return null; // positions occupied by at least two different items, cannot replace
                         }
-                    }
 
-                    lastItemInGrid = currentItemInGrid;
+                        lastItemInGrid = currentItemInGrid;
+                    }
                 }
             }
 
@@ -42,6 +42,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             }
 
             item.AddToItemGridAtPosition(position);
+
+            if (lastItemInGrid != null)
+            {
+                lastItemInGrid.RemoveFromItemGrid();
+            }
+
             return lastItemInGrid;
         }
 

@@ -5,7 +5,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
     public class ItemInInventoryShape
     {
         private Item Item;
-        private PositionImmutable topLeftCornerPosInItemGrid;
+        private PositionImmutable? topLeftCornerPosInItemGrid;
 
         public int Width
         {
@@ -95,6 +95,11 @@ namespace Org.Ethasia.Fundetected.Core.Items
             this.topLeftCornerPosInItemGrid = position;
         }
 
+        public void RemoveFromItemGrid()
+        {
+            this.topLeftCornerPosInItemGrid = null;
+        }
+
         public bool IsShapeEqualTo(ItemInInventoryShape other)
         {
             return this.Width == other.Width && this.Height == other.Height;
@@ -102,7 +107,22 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
         public bool IsSameItemInstanceAs(ItemInInventoryShape other)
         {
+            if (other == null)
+            {
+                return false;
+            }
+
             return this.Item == other.Item;
+        }
+
+        public bool IsAtPosition(PositionImmutable position)
+        {
+            if (!topLeftCornerPosInItemGrid.HasValue)
+            {
+                return false; 
+            }
+
+            return this.topLeftCornerPosInItemGrid.Equals(position);
         }
     }
 }

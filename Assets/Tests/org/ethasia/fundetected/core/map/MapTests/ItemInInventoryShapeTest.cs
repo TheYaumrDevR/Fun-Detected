@@ -150,5 +150,15 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Assert.IsTrue(itemShape1.IsSameItemInstanceAs(itemShape2));
         }
+
+        [Test]
+        public void TestIsSameItemInstanceAsDoesNotCrashWhenOtherItemShapeIsNull()
+        {
+            Armor item = new Armor.Builder().Build();
+
+            ItemInInventoryShape itemShape1 = ItemInInventoryShape.CreateTwoByTwo(item);
+
+            Assert.IsFalse(itemShape1.IsSameItemInstanceAs(null));
+        }
     }
 }
