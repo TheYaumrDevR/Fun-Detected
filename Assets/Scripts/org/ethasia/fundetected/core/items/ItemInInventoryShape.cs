@@ -1,15 +1,29 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Items
 {
     public class ItemInInventoryShape
     {
-        private int width;
-        private int height;
         private Item Item;
+        private PositionImmutable topLeftCornerPosInItemGrid;
+
+        public int Width
+        {
+            get;
+            private set;
+        }
+
+        public int Height
+        {
+            get;
+            private set;
+        }
+
 
         private ItemInInventoryShape(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
         }
 
         public static ItemInInventoryShape CreateOneByOne(Item item)
@@ -75,10 +89,20 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
             return result;
         }
-        
+
+        public void AddToItemGridAtPosition(PositionImmutable position)
+        {
+            this.topLeftCornerPosInItemGrid = position;
+        }
+
         public bool IsShapeEqualTo(ItemInInventoryShape other)
         {
-            return this.width == other.width && this.height == other.height;
+            return this.Width == other.Width && this.Height == other.Height;
+        }
+
+        public bool IsSameItemInstanceAs(ItemInInventoryShape other)
+        {
+            return this.Item == other.Item;
         }
     }
 }
