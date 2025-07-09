@@ -74,6 +74,45 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
             Assert.That(belt2Shape.IsAtPosition(new PositionImmutable(6, 3)), Is.True);
         }
 
+        [Test]
+        public void TestReplaceItemAtDoesNotPlaceItemWhenPlacedOutsideInventoryGrid()
+        {
+            ItemInventory testCandidate = new ItemInventory();
+
+            ItemInInventoryShape bowShape = CreateBowShape();
+
+            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(11, 1));
+
+            Assert.That(oldItem, Is.Null);
+            Assert.That(bowShape.IsAtPosition(new PositionImmutable(11, 1)), Is.False);
+        }
+
+        [Test]
+        public void TestReplaceItemAtDoesNotPlaceItemOrCrashWithNegativePosition()
+        {
+            ItemInventory testCandidate = new ItemInventory();
+
+            ItemInInventoryShape bowShape = CreateBowShape();
+
+            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(-1, -1));
+
+            Assert.That(oldItem, Is.Null);
+            Assert.That(bowShape.IsAtPosition(new PositionImmutable(-1, -1)), Is.False);
+        }
+
+        [Test]
+        public void TestReplaceItemAtDoesNotPlaceItemOrCrashWithPositionOutsideGrid()
+        {
+            ItemInventory testCandidate = new ItemInventory();
+
+            ItemInInventoryShape bowShape = CreateBowShape();
+
+            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(12, 5));
+
+            Assert.That(oldItem, Is.Null);
+            Assert.That(bowShape.IsAtPosition(new PositionImmutable(12, 5)), Is.False);
+        }
+
         private ItemInInventoryShape CreateBowShape()
         {
             Weapon.Builder bowBuilder = new Weapon.Builder();
