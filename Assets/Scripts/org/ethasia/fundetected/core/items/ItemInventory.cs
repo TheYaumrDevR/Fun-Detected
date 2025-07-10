@@ -33,8 +33,6 @@ namespace Org.Ethasia.Fundetected.Core.Items
             }
 
             PutItemInGrid(item, position);
-
-            item.AddToItemGridAtPosition(position);
             lastItemInGrid?.RemoveFromItemGrid();
 
             return lastItemInGrid;
@@ -44,9 +42,29 @@ namespace Org.Ethasia.Fundetected.Core.Items
         {
             for (int x = 0; x < inventoryGrid.GetLength(0); x++)
             {
+                if (x + item.Width > inventoryGrid.GetLength(0))
+                {
+                    return false;
+                }
+
                 for (int y = 0; y < inventoryGrid.GetLength(1); y++)
                 {
-                    // check if position is free based on item dimensions and if not get the x and y offset (return it as a helper struct)
+                    if (y + item.Height > inventoryGrid.GetLength(1))
+                    {
+                        continue;
+                    }
+
+                    int highestOccupiedYPosition = CalculateHighestOccupiedYPosition(item, new PositionImmutable(x, y));
+
+                    if (highestOccupiedYPosition == -1)
+                    {
+                        PositionImmutable position = new PositionImmutable(x, y);
+                        PutItemInGrid(item, position);
+
+                        return true;
+                    }
+                    
+                    y = highestOccupiedYPosition + 1;
                 }
             }
 
@@ -60,6 +78,28 @@ namespace Org.Ethasia.Fundetected.Core.Items
                    position.Y < 0 || position.Y >= inventoryGrid.GetLength(1);
         }
 
+        private int CalculateHighestOccupiedYPosition(ItemInInventoryShape item, PositionImmutable position)
+        {
+            int highestOccupiedY = -1;
+
+            for (int x = 0; x < item.Width; x++)
+            {
+                for (int y = 0; y < item.Height; y++)
+                {
+                    PositionImmutable gridCellPos = new PositionImmutable(position.X + x, position.Y + y);
+                    if (inventoryGrid[gridCellPos.X, gridCellPos.Y] != null)
+                    {
+                        if (gridCellPos.Y > highestOccupiedY)
+                        {
+                            highestOccupiedY = gridCellPos.Y;
+                        }
+                    }
+                }
+            }
+
+            return highestOccupiedY;
+        }
+
         private void PutItemInGrid(ItemInInventoryShape item, PositionImmutable position)
         {
             for (int x = 0; x < item.Width; x++)
@@ -69,6 +109,8 @@ namespace Org.Ethasia.Fundetected.Core.Items
                     inventoryGrid[position.X + x, position.Y + y] = item;
                 }
             }
+
+            item.AddToItemGridAtPosition(position);
         }
     }
 }
