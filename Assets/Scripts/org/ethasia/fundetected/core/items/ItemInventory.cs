@@ -63,11 +63,10 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
                         return true;
                     }
-                    
-                    y = highestOccupiedYPosition + 1;
+
+                    y = highestOccupiedYPosition;
                 }
             }
-
 
             return false;
         }
