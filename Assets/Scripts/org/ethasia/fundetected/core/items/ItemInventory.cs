@@ -32,7 +32,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 }
             }
 
-            PutItemInGrid(item, position);
+            PutItemInGrid(new ItemInventoryShapeWithPosition(item, position));
             lastItemInGrid?.RemoveFromItemGrid();
 
             return lastItemInGrid;
@@ -42,26 +42,24 @@ namespace Org.Ethasia.Fundetected.Core.Items
         {
             for (int x = 0; x < inventoryGrid.GetLength(0); x++)
             {
-                if (x + item.Width > inventoryGrid.GetLength(0))
+                if (ItemWidthAtPositionIsOutsideGrid(item, x))
                 {
                     return false;
                 }
 
                 for (int y = 0; y < inventoryGrid.GetLength(1); y++)
                 {
-                    if (y + item.Height > inventoryGrid.GetLength(1))
+                    if (ItemHeightAtPositionIsOutsideGrid(item, y))
                     {
-                        continue;
+                        break;
                     }
 
-                    int highestOccupiedYPosition = CalculateHighestOccupiedYPosition(item, new PositionImmutable(x, y));
+                    ItemInventoryShapeWithPosition itemWithPosition = ItemInventoryShapeWithPosition.FromItemAndXAndY(item, x, y);
+                    int highestOccupiedYPosition = CalculateHighestOccupiedYPosition(itemWithPosition);
 
-                    if (highestOccupiedYPosition == -1)
+                    if (PlaceItemIfHighestOccupiedPositionIsNegative(highestOccupiedYPosition, itemWithPosition))
                     {
-                        PositionImmutable position = new PositionImmutable(x, y);
-                        PutItemInGrid(item, position);
-
-                        return true;
+                        return true; // item placed successfully
                     }
 
                     y = highestOccupiedYPosition;
@@ -77,9 +75,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
                    position.Y < 0 || position.Y >= inventoryGrid.GetLength(1);
         }
 
-        private int CalculateHighestOccupiedYPosition(ItemInInventoryShape item, PositionImmutable position)
+        private int CalculateHighestOccupiedYPosition(ItemInventoryShapeWithPosition itemWithPosition)
         {
             int highestOccupiedY = -1;
+
+            ItemInInventoryShape item = itemWithPosition.Item;
+            PositionImmutable position = itemWithPosition.Position;
 
             for (int x = 0; x < item.Width; x++)
             {
@@ -99,8 +100,32 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return highestOccupiedY;
         }
 
-        private void PutItemInGrid(ItemInInventoryShape item, PositionImmutable position)
+        private bool ItemWidthAtPositionIsOutsideGrid(ItemInInventoryShape item, int x)
         {
+            return x + item.Width > inventoryGrid.GetLength(0);
+        }
+
+        private bool ItemHeightAtPositionIsOutsideGrid(ItemInInventoryShape item, int y)
+        {
+            return y + item.Height > inventoryGrid.GetLength(1);
+        }
+
+        private bool PlaceItemIfHighestOccupiedPositionIsNegative(int highestOccupiedYPosition, ItemInventoryShapeWithPosition itemWithPosition)
+        {
+            if (highestOccupiedYPosition == -1)
+            {
+                PutItemInGrid(itemWithPosition);
+                return true;
+            }
+
+            return false;
+        }        
+
+        private void PutItemInGrid(ItemInventoryShapeWithPosition itemWithPosition)
+        {
+            ItemInInventoryShape item = itemWithPosition.Item;
+            PositionImmutable position = itemWithPosition.Position;
+
             for (int x = 0; x < item.Width; x++)
             {
                 for (int y = 0; y < item.Height; y++)
@@ -110,6 +135,32 @@ namespace Org.Ethasia.Fundetected.Core.Items
             }
 
             item.AddToItemGridAtPosition(position);
+        }
+
+        private class ItemInventoryShapeWithPosition
+        {
+            public ItemInInventoryShape Item
+            {
+                get;
+                private set;
+            }
+
+            public PositionImmutable Position
+            {
+                get;
+                private set;
+            }
+
+            public ItemInventoryShapeWithPosition(ItemInInventoryShape item, PositionImmutable position)
+            {
+                Item = item;
+                Position = position;
+            }
+
+            public static ItemInventoryShapeWithPosition FromItemAndXAndY(ItemInInventoryShape item, int x, int y)
+            {
+                return new ItemInventoryShapeWithPosition(item, new PositionImmutable(x, y));
+            }
         }
     }
 }
