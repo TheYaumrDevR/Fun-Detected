@@ -69,6 +69,14 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return false;
         }
 
+        public ItemInInventoryShape RemoveItemAt(PositionImmutable position)
+        {
+            ItemInInventoryShape result = inventoryGrid[position.X, position.Y];
+            result?.RemoveFromItemGrid();
+            
+            return result;
+        }
+
         private bool GridPositionIsOutsideGrid(PositionImmutable position)
         {
             return position.X < 0 || position.X >= inventoryGrid.GetLength(0) ||

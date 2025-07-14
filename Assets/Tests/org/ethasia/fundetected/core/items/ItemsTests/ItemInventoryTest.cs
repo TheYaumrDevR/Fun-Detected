@@ -334,6 +334,36 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
             Assert.That(beltShape2.IsAtPosition(new PositionImmutable(6, 4)), Is.True);
         }
 
+        [Test]
+        public void TestRemoveItemAtRemovesItemFromInventory()
+        {
+            ItemInventory testCandidate = new ItemInventory();
+
+            ItemInInventoryShape bowShape = CreateBowShape();
+
+            testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(10, 1));
+
+            ItemInInventoryShape removedItem = testCandidate.RemoveItemAt(new PositionImmutable(11, 3));
+
+            Assert.That(removedItem, Is.EqualTo(bowShape));
+            Assert.That(bowShape.IsAtPosition(new PositionImmutable(10, 1)), Is.False);
+        }
+
+        [Test]
+        public void TestRemoveItemAtReturnsNullWhenNoItemAtPosition()
+        {
+            ItemInventory testCandidate = new ItemInventory();
+
+            ItemInInventoryShape bowShape = CreateBowShape();
+
+            testCandidate.AddItemAtNextFreePosition(bowShape);
+
+            ItemInInventoryShape removedItem = testCandidate.RemoveItemAt(new PositionImmutable(11, 3));
+
+            Assert.That(removedItem, Is.Null);
+            Assert.That(bowShape.IsAtPosition(new PositionImmutable(0, 0)), Is.True);
+        }
+
         private ItemInInventoryShape CreateBowShape()
         {
             Weapon.Builder bowBuilder = new Weapon.Builder();
