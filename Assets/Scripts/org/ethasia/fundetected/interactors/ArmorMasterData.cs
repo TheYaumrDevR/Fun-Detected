@@ -24,6 +24,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public override Item ToItem()
+        {
+            return ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(this);
+        }
+
         public class Builder
         {
             private ItemClass itemClass;

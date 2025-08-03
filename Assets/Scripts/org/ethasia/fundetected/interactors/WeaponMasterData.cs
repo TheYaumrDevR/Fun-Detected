@@ -35,6 +35,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
             private set;
         }    
+        
+        public override Item ToItem()
+        {
+            return ItemMasterDataToItemConverter.ConvertWeaponMasterDataToWeapon(this);
+        }          
 
         public class Builder
         {
@@ -66,55 +71,55 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 name = value;
                 return this;
-            }     
+            }
 
             public Builder SetStrengthRequirement(int value)
             {
                 strengthRequirement = value;
                 return this;
-            }     
+            }
 
             public Builder SetAgilityRequirement(int value)
             {
                 agilityRequirement = value;
                 return this;
-            }                                        
+            }
 
             public Builder SetIntelligenceRequirement(int value)
             {
                 intelligenceRequirement = value;
                 return this;
-            }  
+            }
 
             public Builder SetMinToMaxPhysicalDamage(DamageRange value)
             {
                 minToMaxPhysicalDamage = value;
                 return this;
-            }    
+            }
 
             public Builder SetMinToMaxSpellDamage(DamageRange value)
             {
                 minToMaxSpellDamage = value;
                 return this;
-            }      
+            }
 
             public Builder SetSkillsPerSecond(double value)
             {
                 skillsPerSecond = value;
                 return this;
-            }        
+            }
 
             public Builder SetCriticalStrikeChance(int value)
             {
                 criticalStrikeChance = value;
                 return this;
-            }   
+            }
 
             public Builder SetWeaponRange(int value)
             {
                 weaponRange = value;
                 return this;
-            }                                                  
+            }
 
             public WeaponMasterData Build()
             {
@@ -133,7 +138,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.WeaponRange = weaponRange;
 
                 return result;
-            }               
+            }
         }                    
     }
 }

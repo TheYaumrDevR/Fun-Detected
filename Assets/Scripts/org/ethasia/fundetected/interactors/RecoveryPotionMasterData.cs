@@ -16,6 +16,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
+        public override Item ToItem()
+        {
+            return ItemMasterDataToItemConverter.ConvertRecoveryPotionMasterDataToPotion(this);
+        }        
+
         public class Builder
         {
             private ItemClass itemClass;

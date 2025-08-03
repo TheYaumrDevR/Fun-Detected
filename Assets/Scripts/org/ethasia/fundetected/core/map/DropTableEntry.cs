@@ -1,6 +1,8 @@
-namespace Org.Ethasia.Fundetected.Interactors
+using Org.Ethasia.Fundetected.Core.Items;
+
+namespace Org.Ethasia.Fundetected.Core.Map
 {
-    public struct DropTableEntryMasterData
+    public struct DropTableEntry
     {
         public double DropChance
         {
@@ -8,13 +10,13 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
-        public ItemMasterData Item
+        public Item Item
         {
             get;
             private set;
         }
 
-        public DropTableEntryMasterData(double dropChance, ItemMasterData item)
+        public DropTableEntry(double dropChance, Item item)
         {
             DropChance = dropChance;
             Item = item;

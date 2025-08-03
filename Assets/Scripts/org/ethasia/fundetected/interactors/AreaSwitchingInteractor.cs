@@ -174,36 +174,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData, int spawnId)
         {
-            BoundingBox enemyBoundingBox = new BoundingBox.Builder()
-                .SetDistanceToRightEdge(enemyMasterData.DistanceToRightEdge)
-                .SetDistanceToLeftEdge(enemyMasterData.DistanceToLeftEdge)
-                .SetDistanceToBottomEdge(enemyMasterData.DistanceToBottomEdge)
-                .SetDistanceToTopEdge(enemyMasterData.DistanceToTopEdge)
-                .Build();
-
-            Enemy result = new Enemy.Builder()
-                .SetIndividualId(enemyMasterData.Id + spawnId)
-                .SetTypeId(enemyMasterData.Id)
-                .SetName(enemyMasterData.Name)
-                .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
-                .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
-                .SetUnarmedStrikeRange(enemyMasterData.UnarmedStrikeRange)
-                .SetCorpseMass(enemyMasterData.CorpseMass)
-                .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.ScalableMasterData.MinPhysicalDamage, enemyMasterData.ScalableMasterData.MaxPhysicalDamage))
-                .SetLife(enemyMasterData.ScalableMasterData.MaxLife)
-                .SetArmor(enemyMasterData.ScalableMasterData.Armor)
-                .SetAccuracyRating(enemyMasterData.ScalableMasterData.AccuracyRating)
-                .SetEvasionRating(enemyMasterData.ScalableMasterData.EvasionRating)
-                .SetBoundingBox(enemyBoundingBox)
-                .SetPosition(spawnLocationData.MapLocation)
-                .Build();
-
-            EnemyAbility enemyAbility = enemyMasterData.AbilityMasterData.CreateAbilityForEnemy(result);
-            string abilityName = enemyMasterData.AbilityMasterData.GetAbilityName();
-
-            result.AddAbilityByName(abilityName, enemyAbility);
-
-            return result;
+            return EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyMasterData, spawnLocationData, spawnId);
         }   
 
         private void ShowPortals(Area map)

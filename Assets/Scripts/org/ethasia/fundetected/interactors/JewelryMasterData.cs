@@ -11,6 +11,11 @@ namespace Org.Ethasia.Fundetected.Interactors
             get;
             private set;
         }
+        
+        public override Item ToItem()
+        {
+            return null;
+        }        
 
         public class Builder
         {
@@ -22,7 +27,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int intelligenceRequirement;
             private EquipmentAffix firstImplicit;
 
-            public Builder SteItemClass(ItemClass value)
+            public Builder SetItemClass(ItemClass value)
             {
                 itemClass = value;
                 return this;
@@ -56,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 intelligenceRequirement = value;
                 return this;
-            }            
+            }
 
             public Builder SetFirstImplicit(EquipmentAffix value)
             {
@@ -67,7 +72,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             public JewelryMasterData Build()
             {
                 JewelryMasterData result = new JewelryMasterData();
-                
+
                 result.ItemClass = itemClass;
                 result.MinimumItemLevel = minimumItemLevel;
                 result.Name = name;

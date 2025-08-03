@@ -48,6 +48,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public int ExperiencePointsGivenOnDeath
+        {
+            get;
+            private set;
+        }
+
         private int maxLife;
 
         public int CurrentLife
@@ -86,9 +92,22 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        private Enemy()
+        protected List<DropTable> dropTables;
+
+        protected Enemy()
         {
             lastStartOfAttackStopWatch = new StopWatch();
+            dropTables = new List<DropTable>();
+        }
+
+        protected Enemy(Enemy other)
+        {
+            dropTables = other.dropTables;
+        }
+
+        public void AddDropTable(DropTable value)
+        {
+            dropTables.Add(value);
         }
 
         public void Update(double actionTime, Area map)
@@ -307,6 +326,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private string typeId;
             private bool isAggressiveOnSight;
             private string name;
+            private int experiencePointsGivenOnDeath;
             private int maxLife;
             private int currentLife;
             private int armor;
@@ -334,6 +354,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 name = value;
                 return this;
             }            
+
+            public Builder SetExperiencePointsGivenOnDeath(int value)
+            {
+                experiencePointsGivenOnDeath = value;
+                return this;
+            }
 
             public Builder SetIsAggressiveOnSight(bool value)
             {
@@ -444,6 +470,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.IndividualId = individualId;
                 result.TypeId = typeId;
                 result.Name = name;
+                result.ExperiencePointsGivenOnDeath = experiencePointsGivenOnDeath;
                 result.armor = armor;
                 result.fireResistance = fireResistance;
                 result.iceResistance = iceResistance;

@@ -2,17 +2,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 {
     public class DamageRange
     {
-        public int MinDamage
-        {
-            get;
-            private set;
-        }
-
-        public int MaxDamage
-        {
-            get;
-            private set;
-        }
+        public int MinDamage;
+        public int MaxDamage;
 
         public DamageRange(int minDamage, int maxDamage)
         {

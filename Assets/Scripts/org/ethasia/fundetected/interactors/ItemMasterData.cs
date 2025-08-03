@@ -10,5 +10,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int StrengthRequirement { get; protected set; }
         public int AgilityRequirement { get; protected set; }
         public int IntelligenceRequirement { get; protected set; }
+
+        public abstract Item ToItem();
     }
 }

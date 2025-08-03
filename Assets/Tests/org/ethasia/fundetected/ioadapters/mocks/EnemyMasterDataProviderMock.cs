@@ -28,7 +28,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.DistanceToLeftRenderEdge = 7;
             result.DistanceToRightRenderEdge = 7;
             result.DistanceToBottomRenderEdge = 7;
-            result.DistanceToTopRenderEdge = 7;         
+            result.DistanceToTopRenderEdge = 7;
 
             return result;
         }
@@ -46,10 +46,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Mock Ability"
             };
-            result.AbilityMasterData = mockAbilityMasterData;        
+            result.AbilityMasterData = mockAbilityMasterData;
+            result.DropTables = new List<DropTableMasterData>();
+            result.DropTables.Add(GetGlobalDropTable());
 
             return result;
-        }    
+        }
 
         private EnemyMasterData CreateWolfMasterData()
         {
@@ -65,7 +67,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Mock Ability"
             };
-            result.AbilityMasterData = mockAbilityMasterData;  
+            result.AbilityMasterData = mockAbilityMasterData;
 
             FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
 
@@ -85,8 +87,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
             result.ScalingStrategy = scalingStrategy;
 
+            result.DropTables = new List<DropTableMasterData>();
+            result.DropTables.Add(GetGlobalDropTable());
+
             return result;
-        }      
+        }
 
         private EnemyMasterData CreateFireMageMasterData()
         {
@@ -102,17 +107,20 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Fire Ball"
             };
-            result.AbilityMasterData = mockAbilityMasterData;  
+            result.AbilityMasterData = mockAbilityMasterData;
 
             FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
 
             ScalableEnemyMasterData additionsPerLevel = new ScalableEnemyMasterData();
             scalingStrategy.AdditionsPerLevel = additionsPerLevel;
 
-            result.ScalingStrategy = scalingStrategy;                  
+            result.ScalingStrategy = scalingStrategy;
+
+            result.DropTables = new List<DropTableMasterData>();
+            result.DropTables.Add(GetGlobalDropTable());
 
             return result;
-        }   
+        }
 
         private EnemyMasterData CreateAnimatedThornbushMasterData()
         {
@@ -128,16 +136,24 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 AbilityName = "Mock Ability"
             };
-            result.AbilityMasterData = mockAbilityMasterData;     
+            result.AbilityMasterData = mockAbilityMasterData;
 
             FixedStatsPerLevelEnemyScalingMasterData scalingStrategy = new FixedStatsPerLevelEnemyScalingMasterData();
 
             ScalableEnemyMasterData additionsPerLevel = new ScalableEnemyMasterData();
             scalingStrategy.AdditionsPerLevel = additionsPerLevel;
 
-            result.ScalingStrategy = scalingStrategy;               
+            result.ScalingStrategy = scalingStrategy;
+
+            result.DropTables = new List<DropTableMasterData>();
+            result.DropTables.Add(GetGlobalDropTable());
 
             return result;
-        }                              
+        }   
+
+        public DropTableMasterData GetGlobalDropTable()
+        {
+            return new DropTableMasterData(100);
+        }                                   
     }
 }

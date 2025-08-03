@@ -10,12 +10,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         protected List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
         protected List<EquipmentAffix> suffixes = new List<EquipmentAffix>();
 
-        public string Name
-        {
-            get;
-            private set;
-        }
-
         public int StrengthRequirement
         {
             get;
@@ -80,19 +74,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         new public class Builder : Item.Builder
         {
-            private string name;
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
             private EquipmentAffix firstImplicit;
             private List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
             private List<EquipmentAffix> suffixes = new List<EquipmentAffix>();            
-
-            public Builder SetName(string value)
-            {
-                this.name = value;
-                return this;
-            }
 
             public Builder SetStrengthRequirement(int value)
             {
@@ -154,7 +141,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             protected void FillEquipmentFields(Equipment statlessEquipment)
             {
-                statlessEquipment.Name = name;
                 statlessEquipment.StrengthRequirement = strengthRequirement;
                 statlessEquipment.AgilityRequirement = agilityRequirement;
                 statlessEquipment.IntelligenceRequirement = intelligenceRequirement;
