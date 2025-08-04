@@ -14,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         
         public override Item ToItem()
         {
-            return null;
+            return ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(this);
         }        
 
         public class Builder

@@ -48,7 +48,26 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(convertedDropTable.DropTableRows[1].DropTableEntries.Count, Is.EqualTo(1));
             Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries.Count, Is.EqualTo(4));
 
-            Assert.That(convertedDropTable.DropTableRows[0].DropTableEntries[0].Item, Is.Not.Null);
+            Assert.That(convertedDropTable.DropTableRows[0].DropTableEntries[0].Item.Name, Is.EqualTo("Hyperinjector"));
+            Assert.That(convertedDropTable.DropTableRows[1].DropTableEntries[0].Item.Name, Is.EqualTo("Steel Artisan's Knife"));
+            Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[0].Item.Name, Is.EqualTo("Tattered Leather Armor"));
+            Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[1].Item.Name, Is.EqualTo("Corroded Cutlass"));
+            Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[2].Item.Name, Is.EqualTo("Minor Mana Potion"));
+            Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[3].Item.Name, Is.EqualTo("Minor Healing Potion"));
+        }
+
+        [Test]
+        public void TestCreateEnemyFromMasterDataConvertsProbabilityOfEqualChanceGroups()
+        {
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(CreateMasterDataForTest(), spawnLocationData, 1);
+            EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
+
+            DropTable convertedDropTable = testableResult.DropTables[0];
+
+            Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[2].DropChance, Is.EqualTo(0.375f));
+            Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[3].DropChance, Is.EqualTo(0.375f));
         }
 
         private EnemyMasterData CreateMasterDataForTest()
