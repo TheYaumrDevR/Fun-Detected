@@ -83,5 +83,26 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.RecoveryAmount, Is.EqualTo(70));
             Assert.That(result.Uses, Is.EqualTo(3));
         }
+
+        [Test]
+        public void TestConvertJewelryMasterDataToJewelryConvertsAllProperties()
+        {
+            JewelryMasterData masterData = new JewelryMasterData.Builder()
+                .SetItemClass(ItemClass.AMULET)
+                .SetMinimumItemLevel(13)
+                .SetName("Iron Amulet")
+                .SetStrengthRequirement(0)
+                .SetAgilityRequirement(0)
+                .SetIntelligenceRequirement(0)
+                .Build();
+            Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(masterData);
+
+            Assert.That(result.Name, Is.EqualTo("Iron Amulet"));
+            Assert.That(result.ItemClass, Is.EqualTo(ItemClass.AMULET));
+            Assert.That(result.MinimumItemLevel, Is.EqualTo(13));
+            Assert.That(result.StrengthRequirement, Is.EqualTo(0));
+            Assert.That(result.AgilityRequirement, Is.EqualTo(0));
+            Assert.That(result.IntelligenceRequirement, Is.EqualTo(0));
+        }
     }
 }

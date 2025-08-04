@@ -15,12 +15,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetCriticalStrikeChance(weaponMasterData.CriticalStrikeChance)
                 .SetWeaponRange(weaponMasterData.WeaponRange);
 
-            weaponBuilder.SetName(weaponMasterData.Name);
-            weaponBuilder.SetStrengthRequirement(weaponMasterData.StrengthRequirement);
-            weaponBuilder.SetAgilityRequirement(weaponMasterData.AgilityRequirement);
-            weaponBuilder.SetIntelligenceRequirement(weaponMasterData.IntelligenceRequirement);
-            weaponBuilder.SetItemClass(weaponMasterData.ItemClass);
-            weaponBuilder.SetMinimumItemLevel(weaponMasterData.MinimumItemLevel);
+            ConvertEquipmentFields(weaponBuilder, weaponMasterData);
 
             return weaponBuilder.Build();
         }
@@ -31,15 +26,20 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetArmorValue(armorMasterData.ArmorValue)
                 .SetMovementSpeedAddend(armorMasterData.MovementSpeedAddend);
 
-            armorBuilder.SetName(armorMasterData.Name);
-            armorBuilder.SetStrengthRequirement(armorMasterData.StrengthRequirement);
-            armorBuilder.SetAgilityRequirement(armorMasterData.AgilityRequirement);
-            armorBuilder.SetIntelligenceRequirement(armorMasterData.IntelligenceRequirement);
-            armorBuilder.SetItemClass(armorMasterData.ItemClass);
-            armorBuilder.SetMinimumItemLevel(armorMasterData.MinimumItemLevel);
+            ConvertEquipmentFields(armorBuilder, armorMasterData);
+
             armorBuilder.SetFirstImplicit(armorMasterData.FirstImplicit);
 
             return armorBuilder.Build();
+        }
+
+        public static Jewelry ConvertJewelryMasterDataToJewelry(JewelryMasterData jewelryMasterData)
+        {
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            ConvertEquipmentFields(jewelryBuilder, jewelryMasterData);
+
+            return jewelryBuilder.Build();
         }
 
         public static RecoveryPotion ConvertRecoveryPotionMasterDataToPotion(RecoveryPotionMasterData potionMasterData)
@@ -53,6 +53,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             potionBuilder.SetMinimumItemLevel(potionMasterData.MinimumItemLevel);
 
             return potionBuilder.Build();
+        }
+
+        private static void ConvertEquipmentFields(Equipment.Builder equipmentBuilder, ItemMasterData itemMasterData)
+        {
+            equipmentBuilder.SetName(itemMasterData.Name);
+            equipmentBuilder.SetStrengthRequirement(itemMasterData.StrengthRequirement);
+            equipmentBuilder.SetAgilityRequirement(itemMasterData.AgilityRequirement);
+            equipmentBuilder.SetIntelligenceRequirement(itemMasterData.IntelligenceRequirement);
+            equipmentBuilder.SetItemClass(itemMasterData.ItemClass);
+            equipmentBuilder.SetMinimumItemLevel(itemMasterData.MinimumItemLevel);
         }
     }
 }
