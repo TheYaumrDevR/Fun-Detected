@@ -39,6 +39,8 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             ConvertEquipmentFields(jewelryBuilder, jewelryMasterData);
 
+            jewelryBuilder.SetFirstImplicit(jewelryMasterData.FirstImplicit);
+
             return jewelryBuilder.Build();
         }
 
