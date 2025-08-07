@@ -2,9 +2,9 @@ using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class AffixMasterDataProvider
+    public class ImplicitsMasterDataProvider
     {
-        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitIncPhysicalDamagePercentWarBelt()
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateIncPhysicalDamagePercentWarBelt()
         {
             return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
                 .SetMinValue(12)
@@ -14,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
-        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitIncArmorPercentIronAmulet()
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateIncArmorPercentIronAmulet()
         {
             return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
                 .SetMinValue(5)
@@ -24,7 +24,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
-        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitIncPhysicalDamageWithAttacksPercentDiamondBand()
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateIncPhysicalDamageWithAttacksPercentDiamondBand()
         {
             return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
                 .SetMinValue(3)
