@@ -33,5 +33,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAffixClasses(AffixClasses.PlusPhysicalDamageWithAttacksIncrease)
                 .Build();
         }
+
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreatePlusStrengthWeaponsBelt()
+        {
+            return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
+                .SetMinValue(25)
+                .SetMaxValue(35)
+                .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusStrength)
+                .Build();
+        }
     }
 }

@@ -1,6 +1,6 @@
 namespace Org.Ethasia.Fundetected.Interactors
 {
-    public struct AffixMasterDataBaseForIntegerMinMaxAndIncrement : AffixMasterData
+    public struct AffixMasterDataBaseForIntegerMinMaxAndIncrement : EquipmentAffixMasterData
     {
         public int MinValue
         {

@@ -6,7 +6,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public class JewelryMasterData : ItemMasterData
     {
-        public EquipmentAffix FirstImplicit
+        public EquipmentAffixMasterData FirstImplicit
         {
             get;
             private set;
@@ -25,7 +25,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
-            private EquipmentAffix firstImplicit;
+            private EquipmentAffixMasterData firstImplicit;
 
             public Builder SetItemClass(ItemClass value)
             {
@@ -63,7 +63,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
-            public Builder SetFirstImplicit(EquipmentAffix value)
+            public Builder SetFirstImplicit(EquipmentAffixMasterData value)
             {
                 firstImplicit = value;
                 return this;

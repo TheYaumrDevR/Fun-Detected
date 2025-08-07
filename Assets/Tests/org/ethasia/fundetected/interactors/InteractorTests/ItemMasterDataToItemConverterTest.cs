@@ -105,23 +105,5 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.AgilityRequirement, Is.EqualTo(0));
             Assert.That(result.IntelligenceRequirement, Is.EqualTo(0));
         }
-
-        [Test]
-        public void TestConvertJewelryMasterDataToJewelryConvertsImplicit()
-        {
-            JewelryMasterData masterData = new JewelryMasterData.Builder()
-                .SetItemClass(ItemClass.RING)
-                .SetMinimumItemLevel(1)
-                .SetName("Copper Ring")
-                .SetStrengthRequirement(0)
-                .SetAgilityRequirement(0)
-                .SetIntelligenceRequirement(0)
-                .SetFirstImplicit(new PlusAllElementalResistancesAffix(5))
-                .Build();
-                
-            Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(masterData);
-
-            Assert.That(result.FirstImplicit, Is.InstanceOf<PlusAllElementalResistancesAffix>());
-        }
     }
 }

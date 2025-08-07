@@ -4,6 +4,7 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         PlusPhysicalDamageIncrease,
         PlusArmorIncrease,
-        PlusPhysicalDamageWithAttacksIncrease
+        PlusPhysicalDamageWithAttacksIncrease,
+        PlusStrength
     }
 }   
