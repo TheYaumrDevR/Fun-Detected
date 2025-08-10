@@ -18,7 +18,7 @@ namespace Org.Ethasia.Fundetected.Core
         {
             get;
             private set;
-        }     
+        }
 
         public int PlusMaximumLife
         {
@@ -84,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Core
         {
             get;
             private set;
-        }   
+        }
 
         public int PlusMaximumLightningResistance
         {
@@ -117,6 +117,12 @@ namespace Org.Ethasia.Fundetected.Core
         }
 
         public int PlusPhysicalDamagePercentReflected
+        {
+            get;
+            private set;
+        }
+
+        public int IncreasedPhysicalDamageInPercent
         {
             get;
             private set;
@@ -180,22 +186,22 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreasePlusColdResistanceBy(int value)
         {
             PlusColdResistance += value;
-        }    
+        }
 
         public void IncreasePlusMagicResistanceBy(int value)
         {
             PlusMagicResistance += value;
-        }    
+        }
 
         public void IncreasePlusMaximumFireResistanceBy(int value)
         {
             PlusMaximumFireResistance += value;
-        }  
+        }
 
         public void IncreasePlusMaximumLightningResistanceBy(int value)
         {
             PlusMaximumLightningResistance += value;
-        }      
+        }
 
         public void IncreasePlusMaximumColdResistanceBy(int value)
         {
@@ -220,6 +226,11 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreasePlusPhysicalDamagePercentReflectedBy(int value)
         {
             PlusPhysicalDamagePercentReflected += value;
+        }
+
+        public void IncreaseIncreasedPhysicalDamageInPercentBy(int value)
+        {
+            IncreasedPhysicalDamageInPercent += value;
         }
 
         public void DecreasePlusIntelligenceBy(int value)
@@ -295,12 +306,12 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusMaximumLightningResistanceBy(int value)
         {
             PlusMaximumLightningResistance -= value;
-        }           
+        }
 
         public void DecreasePlusMaximumColdResistanceBy(int value)
         {
             PlusMaximumColdResistance -= value;
-        }     
+        }
 
         public void DecreasePlusMaximumMagicResistanceBy(int value)
         {
@@ -320,6 +331,11 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusPhysicalDamagePercentReflectedBy(int value)
         {
             PlusPhysicalDamagePercentReflected -= value;
-        }        
+        }   
+
+        public void DecreaseIncreasedPhysicalDamageInPercentBy(int value)
+        {
+            IncreasedPhysicalDamageInPercent -= value;
+        }
     }
 }
