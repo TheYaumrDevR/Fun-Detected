@@ -27,6 +27,19 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return FastMath.Floor(randomNumber);
         }
 
+        public int GenerateIntegerBetweenAndWithStep(int min, int max, int step)
+        {
+            if (step == 1)
+            {
+                return GenerateIntegerBetweenAnd(min, max);
+            }
+
+            int range = max - min + 1;
+            int numSteps = range / step;
+
+            return UnityEngine.Random.Range(0, numSteps + 1) * step + min;
+        }
+
         public int GenerateRandomPositiveInteger(int max)
         {
             float lowerBound = 0.0f;
@@ -48,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     	    return randomNumber <= probability;
         }
 
-        private int GenerateRandomSeed()
+        protected virtual int GenerateRandomSeed()
         {
             long currentDateTimeTicks = DateTime.Now.Ticks;
             int lowerTicksBits = (int)(currentDateTimeTicks & 0xffffffffL);

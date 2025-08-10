@@ -22,6 +22,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return GetNextGeneratedRandomNumber();
         }
 
+        public int GenerateIntegerBetweenAndWithStep(int min, int max, int step)
+        {
+            return GetNextGeneratedRandomNumber();
+        }
+
         public int GenerateRandomPositiveInteger(int max)
         {
             return GetNextGeneratedRandomNumber();

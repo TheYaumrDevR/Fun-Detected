@@ -10,6 +10,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         protected List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
         protected List<EquipmentAffix> suffixes = new List<EquipmentAffix>();
 
+        public EquipmentAffix FirstImplicit
+        {
+            get;
+            private set;
+        }
+
         public int StrengthRequirement
         {
             get;
@@ -27,12 +33,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             get;
             private set;
         }  
-
-        public EquipmentAffix FirstImplicit
-        {
-            get;
-            private set;
-        }
 
         public void OnEquip(StatsFromEquipment statsFromEquipment)
         {
