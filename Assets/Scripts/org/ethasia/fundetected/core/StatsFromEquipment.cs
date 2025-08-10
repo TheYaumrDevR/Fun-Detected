@@ -128,6 +128,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int IncreasedPhysicalDamageWithAttacksInPercent
+        {
+            get;
+            private set;
+        }
+
+        public int IncreasedArmourInPercent
+        {
+            get;
+            private set;
+        }
+
         public void IncreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence += value;
@@ -233,6 +245,16 @@ namespace Org.Ethasia.Fundetected.Core
             IncreasedPhysicalDamageInPercent += value;
         }
 
+        public void IncreaseIncreasedPhysicalDamageWithAttacksInPercentBy(int value)
+        {
+            IncreasedPhysicalDamageWithAttacksInPercent += value;
+        }
+
+        public void IncreaseIncreasedArmourInPercentBy(int value)
+        {
+            IncreasedArmourInPercent += value;
+        }
+
         public void DecreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence -= value;
@@ -331,11 +353,21 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusPhysicalDamagePercentReflectedBy(int value)
         {
             PlusPhysicalDamagePercentReflected -= value;
-        }   
+        }
 
         public void DecreaseIncreasedPhysicalDamageInPercentBy(int value)
         {
             IncreasedPhysicalDamageInPercent -= value;
+        }
+
+        public void DecreaseIncreasedArmourInPercentBy(int value)
+        {
+            IncreasedArmourInPercent -= value;
+        }
+        
+        public void DecreaseIncreasedPhysicalDamageWithAttacksInPercentBy(int value)
+        {
+            IncreasedPhysicalDamageWithAttacksInPercent -= value;
         }
     }
 }

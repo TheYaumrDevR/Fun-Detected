@@ -1,10 +1,10 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedArmourAffix : EquipmentAffix
+    public class IncreasedLocalArmourAffix : EquipmentAffix
     {
         private int value;
 
-        public IncreasedArmourAffix(int value) : base(AffixTypes.PREFIX)
+        public IncreasedLocalArmourAffix(int value) : base(AffixTypes.PREFIX)
         {
             this.value = value;
         }

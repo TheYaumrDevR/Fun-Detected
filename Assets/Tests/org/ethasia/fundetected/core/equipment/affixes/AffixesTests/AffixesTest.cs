@@ -183,7 +183,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
             PlayerEquipmentSlots equipmentSlots = new PlayerEquipmentSlots();
             Armor.Builder armorBuilder = new Armor.Builder();
 
-            IncreasedArmourAffix increasedArmorInPercentAffix = new IncreasedArmourAffix(60);
+            IncreasedLocalArmourAffix increasedArmorInPercentAffix = new IncreasedLocalArmourAffix(60);
 
             armorBuilder.AddAffix(increasedArmorInPercentAffix);
             armorBuilder.SetItemClass(ItemClass.BODY_ARMOR);

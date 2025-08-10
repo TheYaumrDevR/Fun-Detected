@@ -1,0 +1,42 @@
+namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
+{
+    public class IncreasedPhysicalDamageWithAttacksAffix : EquipmentAffix
+    {
+        private int value;
+
+        public IncreasedPhysicalDamageWithAttacksAffix(int value) : base(AffixTypes.PREFIX)
+        {
+            this.value = value;
+        }
+
+        public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
+        {
+            statsFromEquipment.IncreaseIncreasedPhysicalDamageWithAttacksInPercentBy(value);
+        }
+
+        public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
+        {
+            statsFromEquipment.DecreaseIncreasedPhysicalDamageWithAttacksInPercentBy(value);
+        }
+
+        public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+
+        }
+
+        public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
+        {
+
+        }
+
+        public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+
+        }
+
+        public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
+        {
+
+        }
+    }
+}
