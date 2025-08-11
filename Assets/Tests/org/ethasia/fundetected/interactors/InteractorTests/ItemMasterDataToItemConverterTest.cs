@@ -43,13 +43,20 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertArmorMasterDataToArmorConvertsAllProperties()
         {
+            RollableEquipmentAffix rollableImplicit = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(new PlusAllElementalResistancesAffix(1))
+                .SetMinValue(1)
+                .SetMaxValue(1)
+                .SetIncrement(1)
+                .Build();
+            
             ArmorMasterData armorMasterData = new ArmorMasterData.Builder()
                 .SetName("Tattered Cloth Hood")
                 .SetItemClass(ItemClass.HEAD_GEAR)
                 .SetMinimumItemLevel(1)
                 .SetStrengthRequirement(3)
                 .SetArmorValue(4)
-                .SetFirstImplicit(new PlusAllElementalResistancesAffix(1))
+                .SetFirstImplicit(rollableImplicit)
                 .Build();
 
             Armor result = ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(armorMasterData);
@@ -61,7 +68,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.AgilityRequirement, Is.EqualTo(0));
             Assert.That(result.IntelligenceRequirement, Is.EqualTo(0));
             Assert.That(result.ArmorValue, Is.EqualTo(4));
-            Assert.That(result.FirstImplicit, Is.InstanceOf<PlusAllElementalResistancesAffix>());
+            Assert.That(result.FirstImplicit.RerolledAffix, Is.InstanceOf<PlusAllElementalResistancesAffix>());
         }
 
         [Test]

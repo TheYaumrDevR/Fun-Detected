@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         protected List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
         protected List<EquipmentAffix> suffixes = new List<EquipmentAffix>();
 
-        public EquipmentAffix FirstImplicit
+        public RollableEquipmentAffix FirstImplicit
         {
             get;
             private set;
@@ -48,7 +48,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             if (null != FirstImplicit)
             {
-                FirstImplicit.ApplyEffects(statsFromEquipment);
+                FirstImplicit.RerolledAffix.ApplyEffects(statsFromEquipment);
             }
         }     
 
@@ -66,7 +66,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             if (null != FirstImplicit)
             {
-                FirstImplicit.UnApplyEffects(statsFromEquipment);
+                FirstImplicit.RerolledAffix.UnApplyEffects(statsFromEquipment);
             }
         }   
 
@@ -77,7 +77,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
-            private EquipmentAffix firstImplicit;
+            private RollableEquipmentAffix firstImplicit;
             private List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
             private List<EquipmentAffix> suffixes = new List<EquipmentAffix>();            
 
@@ -99,7 +99,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return this;
             }    
 
-            public Builder SetFirstImplicit(EquipmentAffix value)
+            public Builder SetFirstImplicit(RollableEquipmentAffix value)
             {
                 this.firstImplicit = value;
                 return this;

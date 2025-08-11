@@ -18,7 +18,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }      
 
-        public EquipmentAffix FirstImplicit
+        public RollableEquipmentAffix FirstImplicit
         {
             get;
             private set;
@@ -39,7 +39,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int intelligenceRequirement;
             private int armorValue;
             private int movementSpeedAddend;
-            private EquipmentAffix firstImplicit;
+            private RollableEquipmentAffix firstImplicit;
 
             public Builder SetItemClass(ItemClass value)
             {
@@ -89,7 +89,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
-            public Builder SetFirstImplicit(EquipmentAffix value)
+            public Builder SetFirstImplicit(RollableEquipmentAffix value)
             {
                 firstImplicit = value;
                 return this;

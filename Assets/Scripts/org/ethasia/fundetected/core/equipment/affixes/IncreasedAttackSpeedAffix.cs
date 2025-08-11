@@ -4,6 +4,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
     {
         private int value;
 
+        public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
+        {
+            value = rerollStrategy.RerollValue();
+        }
+
         public IncreasedAttackSpeedAffix(int value) : base(AffixTypes.SUFFIX)
         {
             this.value = value;

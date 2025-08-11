@@ -9,6 +9,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             this.plusPhysicalDamagePercentValue = plusPhysicalDamagePercentValue;
         }
 
+        public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
+        {
+            plusPhysicalDamagePercentValue = rerollStrategy.RerollValue();
+        }
+
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
             statsFromEquipment.IncreasePlusPhysicalDamagePercentReflectedBy(plusPhysicalDamagePercentValue);

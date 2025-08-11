@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             AffixType = affixType;
         }
 
+        public abstract void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy);
         public abstract void ApplyEffects(StatsFromEquipment statsFromEquipment);
         public abstract void UnApplyEffects(StatsFromEquipment statsFromEquipment);
         public abstract void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers);

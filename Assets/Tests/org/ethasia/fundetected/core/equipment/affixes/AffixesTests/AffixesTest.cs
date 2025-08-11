@@ -115,8 +115,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
             Weapon.Builder weaponBuilder = new Weapon.Builder();
 
             PlusMaximumColdResistanceAffix plusMaximumColdResistanceAffix = new PlusMaximumColdResistanceAffix(2);
+            RollableEquipmentAffix rollablePlusMaximumColdResistanceAffix = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(plusMaximumColdResistanceAffix)
+                .SetMinValue(1)
+                .SetMaxValue(2)
+                .SetIncrement(1)
+                .Build();
 
-            weaponBuilder.SetFirstImplicit(plusMaximumColdResistanceAffix);
+            weaponBuilder.SetFirstImplicit(rollablePlusMaximumColdResistanceAffix);
             weaponBuilder.SetItemClass(ItemClass.WAND);
 
             Weapon wand = weaponBuilder.Build();  
@@ -133,8 +139,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
             Weapon.Builder weaponBuilder = new Weapon.Builder();
 
             PlusMaximumFireResistanceAffix plusMaximumFireResistanceAffix = new PlusMaximumFireResistanceAffix(5);
+            RollableEquipmentAffix rollablePlusMaximumFireResistanceAffix = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(plusMaximumFireResistanceAffix)
+                .SetMinValue(1)
+                .SetMaxValue(2)
+                .SetIncrement(1)
+                .Build();
 
-            weaponBuilder.SetFirstImplicit(plusMaximumFireResistanceAffix);
+            weaponBuilder.SetFirstImplicit(rollablePlusMaximumFireResistanceAffix);
             weaponBuilder.SetItemClass(ItemClass.WIZARD_STAFF);
 
             Weapon staff = weaponBuilder.Build();  

@@ -11,6 +11,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             this.plusMaxDamageValue = plusMaxDamageValue;
         }
 
+        public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
+        {
+
+        }
+
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
 
