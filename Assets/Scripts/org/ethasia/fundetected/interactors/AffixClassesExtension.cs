@@ -4,7 +4,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public static class AffixClassesExtension
     {
-        // Add a static convert method which converts an AffixClass to a RollableEquipmentAffix
         public static EquipmentAffix ToRollableEquipmentAffix(this AffixClasses affixClass)
         {
             switch (affixClass)

@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct AffixMasterDataBaseForIntegerMinMaxAndIncrement : EquipmentAffixMasterData
@@ -24,7 +26,23 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             get;
             private set;
-        }        
+        }
+
+        public RollableEquipmentAffix ToRollableEquipmentAffix()
+        {
+            EquipmentAffix affix = AffixClasses.ToRollableEquipmentAffix();
+
+            IntegerMinMaxIncrementRollableEquipmentAffix result = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(affix)
+                .SetMinValue(MinValue)
+                .SetMaxValue(MaxValue)
+                .SetIncrement(Increment)
+                .Build();
+
+            result.RerollAffix();
+
+            return result;
+        }
 
         public class Builder
         {
