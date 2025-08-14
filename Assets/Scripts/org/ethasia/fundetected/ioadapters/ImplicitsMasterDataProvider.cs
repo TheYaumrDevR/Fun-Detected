@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(12)
                 .SetMaxValue(24)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusPhysicalDamageIncrease)
+                .SetAffixClasses(AffixClasses.PlusGlobalPhysicalDamageIncrease)
                 .Build();
         }
 
@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(5)
                 .SetMaxValue(6)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusArmorIncrease)
+                .SetAffixClasses(AffixClasses.PlusGlobalArmorIncrease)
                 .Build();
         }
 
