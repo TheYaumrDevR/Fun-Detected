@@ -151,6 +151,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             JewelryMasterData rareBelt = new JewelryMasterData.Builder()
                 .SetItemClass(ItemClass.BELT)
+                .SetFirstImplicit(CreateImplicitMasterDataForTest())
                 .SetMinimumItemLevel(45)
                 .SetName("Hyperinjector")
                 .SetStrengthRequirement(15)
@@ -231,6 +232,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             result.DropTableRows.Add(dropTableRow3);
 
             return result;
+        }
+
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitMasterDataForTest()
+        {
+            return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
+                .SetMinValue(12)
+                .SetMaxValue(24)
+                .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusGlobalPhysicalDamageIncrease)
+                .Build();            
         }
 
         public class EnemyWithExposedDropTable : Enemy

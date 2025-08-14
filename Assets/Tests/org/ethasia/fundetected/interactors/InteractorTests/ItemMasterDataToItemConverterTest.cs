@@ -49,7 +49,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetMaxValue(1)
                 .SetIncrement(1)
                 .Build();
-            
+
             ArmorMasterData armorMasterData = new ArmorMasterData.Builder()
                 .SetName("Tattered Cloth Hood")
                 .SetItemClass(ItemClass.HEAD_GEAR)
@@ -98,6 +98,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetItemClass(ItemClass.AMULET)
                 .SetMinimumItemLevel(13)
                 .SetName("Iron Amulet")
+                .SetFirstImplicit(CreateImplicitMasterDataForTest())
                 .SetStrengthRequirement(0)
                 .SetAgilityRequirement(0)
                 .SetIntelligenceRequirement(0)
@@ -111,6 +112,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.StrengthRequirement, Is.EqualTo(0));
             Assert.That(result.AgilityRequirement, Is.EqualTo(0));
             Assert.That(result.IntelligenceRequirement, Is.EqualTo(0));
+        }
+        
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitMasterDataForTest()
+        {
+            return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
+                .SetMinValue(5)
+                .SetMaxValue(6)
+                .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusGlobalArmorIncrease)
+                .Build();     
         }
     }
 }
