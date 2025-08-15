@@ -6,12 +6,6 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public class JewelryMasterData : ItemMasterData
     {
-        public EquipmentAffixMasterData FirstImplicit
-        {
-            get;
-            private set;
-        }
-        
         public override Item ToItem()
         {
             return ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(this);

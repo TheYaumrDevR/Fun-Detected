@@ -28,7 +28,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             ConvertEquipmentFields(armorBuilder, armorMasterData);
 
-            armorBuilder.SetFirstImplicit(armorMasterData.FirstImplicit);
+            armorBuilder.SetFirstImplicit(armorMasterData.FirstImplicit.ToRollableEquipmentAffix());
 
             return armorBuilder.Build();
         }

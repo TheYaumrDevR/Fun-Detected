@@ -34,6 +34,26 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreatePlusAllElementalResistancesTatteredClothHood()
+        {
+            return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
+                .SetMinValue(1)
+                .SetMaxValue(2)
+                .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .Build();
+        }
+
+        public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreatePlusAllElementalResistancesTatteredWizardRobe()
+        {
+            return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
+                .SetMinValue(2)
+                .SetMaxValue(3)
+                .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .Build();
+        }
+
         public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreatePlusStrengthWeaponsBelt()
         {
             return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()

@@ -43,11 +43,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestConvertArmorMasterDataToArmorConvertsAllProperties()
         {
-            RollableEquipmentAffix rollableImplicit = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
-                .SetRerolledAffix(new PlusAllElementalResistancesAffix(1))
+            AffixMasterDataBaseForIntegerMinMaxAndIncrement rollableImplicit = new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
                 .SetMinValue(1)
-                .SetMaxValue(1)
+                .SetMaxValue(2)
                 .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
                 .Build();
 
             ArmorMasterData armorMasterData = new ArmorMasterData.Builder()

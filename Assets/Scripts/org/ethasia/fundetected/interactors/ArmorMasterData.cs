@@ -18,12 +18,6 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }      
 
-        public RollableEquipmentAffix FirstImplicit
-        {
-            get;
-            private set;
-        }
-
         public override Item ToItem()
         {
             return ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(this);
@@ -39,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int intelligenceRequirement;
             private int armorValue;
             private int movementSpeedAddend;
-            private RollableEquipmentAffix firstImplicit;
+            private EquipmentAffixMasterData firstImplicit;
 
             public Builder SetItemClass(ItemClass value)
             {
@@ -89,7 +83,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
-            public Builder SetFirstImplicit(RollableEquipmentAffix value)
+            public Builder SetFirstImplicit(EquipmentAffixMasterData value)
             {
                 firstImplicit = value;
                 return this;

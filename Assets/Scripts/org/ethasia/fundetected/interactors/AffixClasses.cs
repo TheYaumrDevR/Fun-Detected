@@ -5,6 +5,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         PlusGlobalPhysicalDamageIncrease,
         PlusGlobalArmorIncrease,
         PlusPhysicalDamageWithAttacksIncrease,
+        PlusAllElementalResistances,
         PlusStrength
     }
 }   

@@ -194,6 +194,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetStrengthRequirement(8)
                 .SetArmorValue(15)
                 .SetMovementSpeedAddend(6)
+                .SetFirstImplicit(CreateImplicitMasterDataForTest())
                 .Build();
 
             WeaponMasterData steelArtisansKnife = new WeaponMasterData.Builder()

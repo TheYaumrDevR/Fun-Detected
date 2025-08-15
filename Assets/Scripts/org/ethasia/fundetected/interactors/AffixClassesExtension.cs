@@ -14,6 +14,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                     return new IncreasedGlobalArmourAffix(0);
                 case AffixClasses.PlusPhysicalDamageWithAttacksIncrease:
                     return new IncreasedPhysicalDamageWithAttacksAffix(0);
+                case AffixClasses.PlusAllElementalResistances:
+                    return new PlusAllElementalResistancesAffix(0);
                 case AffixClasses.PlusStrength:
                     return new PlusStrengthAffix(0);
                 default:
