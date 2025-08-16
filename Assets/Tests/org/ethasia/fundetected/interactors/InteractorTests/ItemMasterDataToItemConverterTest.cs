@@ -114,6 +114,31 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(result.IntelligenceRequirement, Is.EqualTo(0));
         }
         
+        [Test]
+        public void TestConvertJewelryMasterDataToJewelryConvertsImplicit()
+        {
+            AffixMasterDataBaseForIntegerMinMaxAndIncrement implicitMasterData = new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
+                .SetMinValue(5)
+                .SetMaxValue(6)
+                .SetIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .Build();
+
+            JewelryMasterData masterData = new JewelryMasterData.Builder()
+                .SetItemClass(ItemClass.RING)
+                .SetMinimumItemLevel(1)
+                .SetName("Copper Ring")
+                .SetStrengthRequirement(0)
+                .SetAgilityRequirement(0)
+                .SetIntelligenceRequirement(0)
+                .SetFirstImplicit(implicitMasterData)
+                .Build();
+                
+            Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(masterData);
+
+            Assert.That(result.FirstImplicit.RerolledAffix, Is.InstanceOf<PlusAllElementalResistancesAffix>());
+        }        
+        
         public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitMasterDataForTest()
         {
             return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
@@ -121,7 +146,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetMaxValue(6)
                 .SetIncrement(1)
                 .SetAffixClasses(AffixClasses.PlusGlobalArmorIncrease)
-                .Build();     
+                .Build();
         }
     }
 }
