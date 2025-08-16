@@ -33,7 +33,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
             if (other is IntegerMinMaxIncrementRollableEquipmentAffix otherAffix)
             {
-                return RerolledAffix.Equals(otherAffix.RerolledAffix) &&
+                bool affixesAreSameType = RerolledAffix?.GetType() == otherAffix.RerolledAffix?.GetType();
+
+                return affixesAreSameType &&
                        minValue == otherAffix.minValue &&
                        maxValue == otherAffix.maxValue &&
                        increment == otherAffix.increment;
