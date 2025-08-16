@@ -30,6 +30,8 @@ namespace Org.Ethasia.Fundetected.Core.Items
         {
             return ItemClass.CreateInventoryShape(this);
         }
+        
+        public abstract void Accept(ItemVisitor visitor);
 
         public class Builder
         {
@@ -42,7 +44,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             {
                 this.name = value;
                 return this;
-            }            
+            }
 
             public Builder SetItemClass(ItemClass value)
             {

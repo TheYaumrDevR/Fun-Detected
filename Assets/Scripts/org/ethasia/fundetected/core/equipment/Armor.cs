@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+using Org.Ethasia.Fundetected.Core.Items;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
@@ -40,6 +41,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 suffix.ApplyLocalArmorEffects(LocalModifiers);
             }
+        }
+
+        public override void Accept(ItemVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         new public class Builder : Equipment.Builder

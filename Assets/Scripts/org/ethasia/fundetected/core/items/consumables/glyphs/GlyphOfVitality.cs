@@ -14,6 +14,11 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
             return null;
         }     
 
+        public override void Accept(ItemVisitor visitor)
+        {
+
+        }
+
         new public class Builder : Consumable.Builder
         {
             public GlyphOfVitality Build()

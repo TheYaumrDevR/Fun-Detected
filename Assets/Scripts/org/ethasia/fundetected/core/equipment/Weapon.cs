@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
@@ -53,7 +54,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 suffix.ApplyLocalWeaponEffects(LocalModifiers);
             }
-        }        
+        }
+
+        public override void Accept(ItemVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
 
         new public class Builder : Equipment.Builder
         {
@@ -73,25 +79,25 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 this.minToMaxSpellDamage = value;
                 return this;
-            }            
+            }
 
             public Weapon.Builder SetSkillsPerSecond(double value)
             {
                 this.skillsPerSecond = value;
                 return this;
-            }         
+            }
 
             public Weapon.Builder SetCriticalStrikeChance(int value)
             {
                 this.criticalStrikeChance = value;
                 return this;
-            }    
+            }
 
             public Weapon.Builder SetWeaponRange(int value)
             {
                 this.weaponRange = value;
                 return this;
-            }               
+            }
 
             public Weapon Build()
             {

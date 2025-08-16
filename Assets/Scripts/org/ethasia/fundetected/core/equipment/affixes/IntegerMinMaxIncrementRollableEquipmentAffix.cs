@@ -24,6 +24,24 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             return randomNumberGenerator.GenerateIntegerBetweenAndWithStep(minValue, maxValue, increment);
         }
 
+        public override bool Equals(RollableEquipmentAffix other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (other is IntegerMinMaxIncrementRollableEquipmentAffix otherAffix)
+            {
+                return RerolledAffix.Equals(otherAffix.RerolledAffix) &&
+                       minValue == otherAffix.minValue &&
+                       maxValue == otherAffix.maxValue &&
+                       increment == otherAffix.increment;
+            }
+
+            return false;
+        }
+
         public class Builder
         {
             private EquipmentAffix rerolledAffix;

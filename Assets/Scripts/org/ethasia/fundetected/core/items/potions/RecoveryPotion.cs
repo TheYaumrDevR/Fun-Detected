@@ -8,6 +8,11 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
             private set;
         }
 
+        public override void Accept(ItemVisitor visitor)
+        {
+
+        }
+
         new public class Builder : Potion.Builder
         {
             private int recoveryAmount;
