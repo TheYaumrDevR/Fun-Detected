@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public int DistanceToRightEdge;
         public int DistanceToBottomEdge;
         public int DistanceToTopEdge;
+        public float DropChance;
         public AbilityMasterData AbilityMasterData;
         public IMasterDataScalingStrategy ScalingStrategy;
         public List<DropTableMasterData> DropTables;

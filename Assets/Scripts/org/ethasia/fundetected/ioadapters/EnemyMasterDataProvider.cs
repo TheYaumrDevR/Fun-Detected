@@ -78,6 +78,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.DistanceToRightEdge = 7;
             result.DistanceToBottomEdge = 7;
             result.DistanceToTopEdge = 7;
+            result.DropChance = 0.2f;
 
             DropTableMasterData globalDropTable = dropTableMasterDataProvider.GetGlobalDropTable();
 

@@ -54,6 +54,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        protected float dropChance;
+
         private int maxLife;
 
         public int CurrentLife
@@ -103,6 +105,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         protected Enemy(Enemy other)
         {
             dropTables = other.dropTables;
+            dropChance = other.dropChance;
         }
 
         public void AddDropTable(DropTable value)
@@ -327,6 +330,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private bool isAggressiveOnSight;
             private string name;
             private int experiencePointsGivenOnDeath;
+            private float dropChance;
             private int maxLife;
             private int currentLife;
             private int armor;
@@ -358,6 +362,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             public Builder SetExperiencePointsGivenOnDeath(int value)
             {
                 experiencePointsGivenOnDeath = value;
+                return this;
+            }
+
+            public Builder SetDropChance(float value)
+            {
+                dropChance = value;
                 return this;
             }
 
@@ -471,6 +481,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.TypeId = typeId;
                 result.Name = name;
                 result.ExperiencePointsGivenOnDeath = experiencePointsGivenOnDeath;
+                result.dropChance = dropChance;
                 result.armor = armor;
                 result.fireResistance = fireResistance;
                 result.iceResistance = iceResistance;

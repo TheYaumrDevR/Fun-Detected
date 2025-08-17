@@ -20,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetTypeId(enemyMasterData.Id)
                 .SetName(enemyMasterData.Name)
                 .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
+                .SetDropChance(enemyMasterData.DropChance)
                 .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
                 .SetUnarmedStrikeRange(enemyMasterData.UnarmedStrikeRange)
                 .SetCorpseMass(enemyMasterData.CorpseMass)

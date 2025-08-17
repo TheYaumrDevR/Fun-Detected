@@ -70,6 +70,17 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(convertedDropTable.DropTableRows[2].DropTableEntries[3].DropChance, Is.EqualTo(0.375f));
         }
 
+        [Test]
+        public void TestCreateEnemyFromMasterDataConvertsDropChance()
+        {
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(45, 12), 1.0f, 4);
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(CreateMasterDataForTest(), spawnLocationData, 1);    
+            EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
+
+            Assert.That(testableResult.DropChance, Is.EqualTo(0.3f));
+        }
+
         private EnemyMasterData CreateMasterDataForTest()
         {
             EnemyMasterData result = new EnemyMasterData();
@@ -77,6 +88,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             result.Name = "Bloated Horsefly Swarm";
             result.IsAggressiveOnSight = true;
             result.MinimumSpawnLevel = 2;
+            result.DropChance = 0.3f;
             result.ScalableMasterData.MaxLife = 30;
             result.ScalableMasterData.Armor = 3;
             result.ScalableMasterData.EvasionRating = 150;
@@ -250,6 +262,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             public List<DropTable> DropTables
             {
                 get { return dropTables; }
+            }
+
+            public float DropChance
+            {
+                get { return dropChance; }
             }
 
             public EnemyWithExposedDropTable(Enemy enemy) : base(enemy) { }
