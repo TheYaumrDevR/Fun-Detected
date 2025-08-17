@@ -27,9 +27,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         public void ResetStates()
         {
             int[] randomNumbersToGenerate = {0, 0, 5, 7, 9, 5, 2};
-            float[] randomFloatsToGenerate = {};       
+            float[] randomFloatsToGenerate = {};   
+            double[] randomDoublesToGenerate = {};    
 
-            rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(rngMock);
 
@@ -111,8 +112,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {   
             int[] randomNumbersToGenerate = {0, 0, 5, 7, 9, 5, 2};
             float[] randomFloatsToGenerate = {0.95f};       
+            double[] randomDoublesToGenerate = {};
 
-            RandomNumberGeneratorMock localRngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+            RandomNumberGeneratorMock localRngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(localRngMock);
 

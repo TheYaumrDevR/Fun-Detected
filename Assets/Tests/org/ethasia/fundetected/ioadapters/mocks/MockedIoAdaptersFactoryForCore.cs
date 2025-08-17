@@ -21,8 +21,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             {
                 int[] randomNumbersToGenerate = {};
                 float[] randomFloatsToGenerate = {};
+                double[] randomDoublesToGenerate = {};
 
-                rngInstance = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate);
+                rngInstance = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
             }
 
             return rngInstance;

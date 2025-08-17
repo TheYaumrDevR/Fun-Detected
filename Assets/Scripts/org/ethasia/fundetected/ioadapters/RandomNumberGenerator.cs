@@ -7,9 +7,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class RandomNumberGenerator : IRandomNumberGenerator
     {
+        private System.Random systemRng;
+
         public RandomNumberGenerator()
         {
-            UnityEngine.Random.InitState(GenerateRandomSeed());
+            int randomSeed = GenerateRandomSeed();
+            systemRng = new System.Random(randomSeed);
+            UnityEngine.Random.InitState(randomSeed);
         }
 
         public int GenerateIntegerBetweenAnd(int min, int max)
@@ -59,6 +63,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             float randomNumber = UnityEngine.Random.Range(0.0f, 1.0f);
     	    return randomNumber <= probability;
+        }
+
+        public bool CheckProbabilityIsHit(double probability)
+        {
+            System.Random rng = new System.Random(GenerateRandomSeed());
+            double randomNumber = rng.NextDouble();
+            return randomNumber <= probability;
         }
 
         protected virtual int GenerateRandomSeed()

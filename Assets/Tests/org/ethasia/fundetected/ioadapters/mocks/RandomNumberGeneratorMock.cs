@@ -8,13 +8,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         private int[] toBeGeneratedRandomNumbers;
         private float[] toBeGeneratedRandomFloats;
+        private double[] toBeGeneratedRandomDoubles;
         private int randomNumberIndex;
         private int nextFloatNumberIndex;
+        private int nextDoubleNumberIndex;
 
-        public RandomNumberGeneratorMock(int[] randomNumbersToGenerate, float[] randomFloatsToGenerate)
+        public RandomNumberGeneratorMock(int[] randomNumbersToGenerate, float[] randomFloatsToGenerate, double[] randomDoublesToGenerate)
         {
             toBeGeneratedRandomNumbers = randomNumbersToGenerate;
             toBeGeneratedRandomFloats = randomFloatsToGenerate;
+            toBeGeneratedRandomDoubles = randomDoublesToGenerate;
         }
 
         public int GenerateIntegerBetweenAnd(int min, int max)
@@ -35,13 +38,20 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public bool CheckProbabilityIsHit(float probability)
         {
             float randomNumber = GetNextGeneratedRandomFloat();
-    	    return randomNumber <= probability;
+            return randomNumber <= probability;
+        }
+
+        public bool CheckProbabilityIsHit(double probability)
+        {
+            double randomNumber = GetNextGeneratedRandomDouble();
+            return randomNumber <= probability;
         }
 
         public void Reset()
         {
             randomNumberIndex = 0;
             nextFloatNumberIndex = 0;
+            nextDoubleNumberIndex = 0;
         }
 
         private int GetNextGeneratedRandomNumber()
@@ -68,6 +78,19 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             }
 
             return -1.0f;
-        }        
+        }
+
+        private double GetNextGeneratedRandomDouble()
+        {
+            if (nextDoubleNumberIndex < toBeGeneratedRandomDoubles.Length)
+            {
+                double result = toBeGeneratedRandomDoubles[nextDoubleNumberIndex];
+                nextDoubleNumberIndex++;
+
+                return result;
+            }
+
+            return -1.0;
+        }
     }
 }
