@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
@@ -252,6 +253,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
 
             PlayDeathAnimationIfDead();
+            MaybeDropItemsIfDead();
         }
 
         private void PlayDeathAnimationIfDead()
@@ -259,6 +261,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
             if (IsDead())
             {
                 PlayDeathAnimation();
+            }
+        }
+
+        private void MaybeDropItemsIfDead()
+        {
+            if (IsDead())
+            {
+                MaybeDropItems();
             }
         }
 
@@ -288,6 +298,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             IEnemyAnimationPresenter animationPresenter = IoAdaptersFactoryForCore.GetInstance().GetEnemyAnimationPresenterInstance();
             animationPresenter.PlayInstantDeathAnimation(ActionStateMachine);
+        }
+
+        private void MaybeDropItems()
+        {
+            IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+            if (randomNumberGenerator.CheckProbabilityIsHit(dropChance))
+            {
+                DropTableEntry? dropTableEntry = ItemDropResolver.ResolveItemDrop(dropTables);
+
+                if (dropTableEntry.HasValue)
+                {
+                    Item item = dropTableEntry.Value.Item;
+                    UnityEngine.Debug.Log($"Enemy: Dropping item {item.Name} with class {item.ItemClass}");
+                }
+            }
         }
 
         private void DamagePlayerIfHit(bool isHit, PlayerCharacter player)
