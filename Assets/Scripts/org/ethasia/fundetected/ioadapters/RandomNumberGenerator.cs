@@ -67,9 +67,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public bool CheckProbabilityIsHit(double probability)
         {
-            System.Random rng = new System.Random(GenerateRandomSeed());
-            double randomNumber = rng.NextDouble();
+            double randomNumber = systemRng.NextDouble();
             return randomNumber <= probability;
+        }
+
+        public double GenerateDoubleBetweenZeroAndOne()
+        {
+            return systemRng.NextDouble();
         }
 
         protected virtual int GenerateRandomSeed()

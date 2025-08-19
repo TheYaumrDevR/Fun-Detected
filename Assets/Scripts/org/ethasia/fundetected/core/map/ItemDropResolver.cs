@@ -74,6 +74,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private static DropTableRow? ChooseDropTableRow(DropTable dropTable)
         {
+            double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
+
             for (int i = 0; i < dropTable.DropTableRows.Count; i++)
             {
                 if (i == dropTable.DropTableRows.Count - 1)
@@ -83,7 +85,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
                 DropTableRow row = dropTable.DropTableRows[i];
 
-                if (randomNumberGenerator.CheckProbabilityIsHit(row.DropChance))
+                if (roll <= row.DropChance)
                 {
                     return row;
                 }
@@ -94,17 +96,20 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private static DropTableEntry? ChooseDropTableEntry(DropTableRow dropTableRow)
         {
+            double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
+
             for (int i = 0; i < dropTableRow.DropTableEntries.Count; i++)
             {
                 DropTableEntry entry = dropTableRow.DropTableEntries[i];
 
-                if (randomNumberGenerator.CheckProbabilityIsHit(entry.DropChance))
+                if (roll <= entry.DropChance)
                 {
                     return entry;
                 }
 
                 if (i == dropTableRow.DropTableEntries.Count - 1)
                 {
+                    roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
                     i = -1;
                 }
             }

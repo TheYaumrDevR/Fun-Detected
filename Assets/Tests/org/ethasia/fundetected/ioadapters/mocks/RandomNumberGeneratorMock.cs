@@ -47,6 +47,19 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return randomNumber <= probability;
         }
 
+        public double GenerateDoubleBetweenZeroAndOne()
+        {
+            return GetNextGeneratedRandomDouble();
+        }
+
+        public void Reset(int[] randomNumbersToGenerate, float[] randomFloatsToGenerate, double[] randomDoublesToGenerate)
+        {
+            toBeGeneratedRandomNumbers = randomNumbersToGenerate;
+            toBeGeneratedRandomFloats = randomFloatsToGenerate;
+            toBeGeneratedRandomDoubles = randomDoublesToGenerate;
+            Reset();
+        }
+
         public void Reset()
         {
             randomNumberIndex = 0;

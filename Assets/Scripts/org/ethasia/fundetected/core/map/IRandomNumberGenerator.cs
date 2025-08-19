@@ -7,5 +7,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
         int GenerateRandomPositiveInteger(int max);
         bool CheckProbabilityIsHit(float probability);
         bool CheckProbabilityIsHit(double probability);
+        double GenerateDoubleBetweenZeroAndOne();
     }
 }
