@@ -96,25 +96,46 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private static DropTableEntry? ChooseDropTableEntry(DropTableRow dropTableRow)
         {
-            double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
+            List<DropTableEntry> possibleDrops = null;
 
-            for (int i = 0; i < dropTableRow.DropTableEntries.Count; i++)
+            while (possibleDrops == null || possibleDrops.Count == 0)
             {
-                DropTableEntry entry = dropTableRow.DropTableEntries[i];
+                double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
+                double lowestDropChanceHittingRoll = FindLowestDropChanceGreaterThanRoll(dropTableRow, roll);
+                possibleDrops = GetEntriesWithSameChance(dropTableRow, lowestDropChanceHittingRoll);
+            }
 
-                if (roll <= entry.DropChance)
-                {
-                    return entry;
-                }
+            return possibleDrops[randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count)];
+        }
 
-                if (i == dropTableRow.DropTableEntries.Count - 1)
+        private static double FindLowestDropChanceGreaterThanRoll(DropTableRow dropTableRow, double roll)
+        {
+            double lowestDropChance = 1.0;
+
+            foreach (var entry in dropTableRow.DropTableEntries)
+            {
+                if (entry.DropChance > roll && entry.DropChance < lowestDropChance)
                 {
-                    roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
-                    i = -1;
+                    lowestDropChance = entry.DropChance;
                 }
             }
 
-            return null;
+            return lowestDropChance;
+        }
+
+        private static List<DropTableEntry> GetEntriesWithSameChance(DropTableRow dropTableRow, double chance)
+        {
+            List<DropTableEntry> result = new List<DropTableEntry>();
+
+            foreach (var entry in dropTableRow.DropTableEntries)
+            {
+                if (entry.DropChance == chance)
+                {
+                    result.Add(entry);
+                }
+            }
+
+            return result;
         }
     }
 }

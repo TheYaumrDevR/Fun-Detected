@@ -22,7 +22,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestResolveItemDropPicksSecondTableSecondRowThirdItem()
         {
-            int[] randomNumbersToGenerate = {223};
+            int[] randomNumbersToGenerate = { 223, 0 };
             float[] randomFloatsToGenerate = {};    
             double[] randomDoublesToGenerate = {0.07, 0.5};
 
@@ -38,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestResolveItemDropPicksLastRowIfNoOtherHit()
         {
-            int[] randomNumbersToGenerate = { 223 };
+            int[] randomNumbersToGenerate = { 223, 0 };
             float[] randomFloatsToGenerate = { };
             double[] randomDoublesToGenerate = { 0.21, 0.5 };
 
@@ -54,7 +54,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestResolveItemDropTriesToFindItemUntilOneIsHit()
         {
-            int[] randomNumbersToGenerate = { 223 };
+            int[] randomNumbersToGenerate = { 223, 0 };
             float[] randomFloatsToGenerate = { };
             double[] randomDoublesToGenerate = { 0.07, 0.8, 0.8, 0.09 };
 
@@ -66,6 +66,22 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Value.Item.Name, Is.EqualTo("First Item"));               
         }
+
+        [Test]
+        public void TestResolveItemDropPicksRandomItemWhenMultipleAreHit()
+        {
+            int[] randomNumbersToGenerate = { 223, 1 };
+            float[] randomFloatsToGenerate = { };
+            double[] randomDoublesToGenerate = { 0.07, 0.09 };
+
+            rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
+            
+            List<DropTable> testInput = GetGlobalDropTables();
+            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput);
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Value.Item.Name, Is.EqualTo("Second Item"));               
+        }        
 
         private List<DropTable> GetGlobalDropTables()
         {
