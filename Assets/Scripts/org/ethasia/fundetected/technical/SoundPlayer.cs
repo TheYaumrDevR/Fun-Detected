@@ -23,6 +23,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip healingWellUseSound;
         public AudioClip uiWindowOpenSound;
         public AudioClip mouseClickSound;
+        public AudioClip itemDropSound;
 
         public static SoundPlayer GetInstance()
         {
@@ -87,6 +88,16 @@ namespace Org.Ethasia.Fundetected.Technical
             if (null != audioSource)
             {
                 audioSource.PlayOneShot(healingWellUseSound);
+            }
+        }
+
+        public void PlayItemDropSound(string audioSourceId)
+        {
+            AudioSource audioSource = GetAudioSourceById(audioSourceId);
+
+            if (null != audioSource)
+            {
+                audioSource.PlayOneShot(itemDropSound);
             }
         }
 

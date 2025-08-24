@@ -2388,6 +2388,7 @@ MonoBehaviour:
   healingWellUseSound: {fileID: 8300000, guid: 5304521cdf92f2b48be5f5f72483ad5f, type: 3}
   uiWindowOpenSound: {fileID: 8300000, guid: 2c19e2b58c6abbd4884d9fac5d5c8789, type: 3}
   mouseClickSound: {fileID: 8300000, guid: e1b0b8c255d58f844b0cb769f7b7c1ce, type: 3}
+  itemDropSound: {fileID: 8300000, guid: 6c50a973c02648e41b7e679bd3bd92f0, type: 3}
 --- !u!1 &1677757172
 GameObject:
   m_ObjectHideFlags: 0

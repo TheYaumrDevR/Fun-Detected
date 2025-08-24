@@ -311,8 +311,15 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 {
                     Item item = dropTableEntry.Value.Item;
                     UnityEngine.Debug.Log($"Enemy: Dropping item {item.Name} with class {item.ItemClass}");
+                    PlayItemDropSound();
                 }
             }
+        }
+
+        private void PlayItemDropSound()
+        {
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            soundPresenter.PlayItemDropSound(IndividualId);
         }
 
         private void DamagePlayerIfHit(bool isHit, PlayerCharacter player)

@@ -8,5 +8,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void PlayHealingWellUseSound(string audioSourceId);
         void PlayUiWindowOpenSound();
         void PlayMouseClickSound();
+        void PlayItemDropSound(string audioSourceId);
     }
 }
