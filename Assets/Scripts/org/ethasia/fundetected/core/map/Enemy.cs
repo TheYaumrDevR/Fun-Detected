@@ -303,16 +303,35 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private void MaybeDropItems()
         {
             IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
-            if (randomNumberGenerator.CheckProbabilityIsHit(dropChance))
-            {
-                DropTableEntry? dropTableEntry = ItemDropResolver.ResolveItemDrop(dropTables);
 
-                if (dropTableEntry.HasValue)
+            if (dropChance < 1.0 && randomNumberGenerator.CheckProbabilityIsHit(dropChance))
+            {
+                ResolveAndDropItem();
+            }
+            else if (dropChance >= 1.0)
+            {
+                double currentDropChance;
+                for (currentDropChance = dropChance; currentDropChance >= 1.0; currentDropChance -= 1.0)
                 {
-                    Item item = dropTableEntry.Value.Item;
-                    UnityEngine.Debug.Log($"Enemy: Dropping item {item.Name} with class {item.ItemClass}");
-                    PlayItemDropSound();
+                    ResolveAndDropItem();
                 }
+
+                if (currentDropChance > 0 && randomNumberGenerator.CheckProbabilityIsHit(currentDropChance))
+                {
+                    ResolveAndDropItem();
+                }
+            }
+        }
+
+        private void ResolveAndDropItem()
+        {
+            DropTableEntry? dropTableEntry = ItemDropResolver.ResolveItemDrop(dropTables);
+
+            if (dropTableEntry.HasValue)
+            {
+                Item item = dropTableEntry.Value.Item;
+                UnityEngine.Debug.Log($"Enemy: Dropping item {item.Name} with class {item.ItemClass}");
+                PlayItemDropSound();
             }
         }
 
