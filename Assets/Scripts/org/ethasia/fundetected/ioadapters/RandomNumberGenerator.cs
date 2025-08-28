@@ -51,7 +51,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             float randomNumber = UnityEngine.Random.Range(lowerBound, upperBound);
 
-            if (max == randomNumber)
+            if (upperBound == randomNumber)
             {
                 return GenerateRandomPositiveInteger(max);
             }

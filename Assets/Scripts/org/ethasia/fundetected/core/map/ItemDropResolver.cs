@@ -105,7 +105,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 possibleDrops = GetEntriesWithSameChance(dropTableRow, lowestDropChanceHittingRoll);
             }
 
-            return possibleDrops[randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count)];
+            return possibleDrops[randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count - 1)];
         }
 
         private static double FindLowestDropChanceGreaterThanRoll(DropTableRow dropTableRow, double roll)
