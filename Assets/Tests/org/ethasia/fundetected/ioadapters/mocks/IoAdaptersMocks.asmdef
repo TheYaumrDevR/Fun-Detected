@@ -2,7 +2,8 @@
     "name": "IoAdaptersMocks",
     "rootNamespace": "",
     "references": [
-        "GUID:2bc57823787170e43889835233e829b0"
+        "GUID:2bc57823787170e43889835233e829b0",
+        "GUID:3671be227b2bbed4bbaa6f07b3ce6109"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

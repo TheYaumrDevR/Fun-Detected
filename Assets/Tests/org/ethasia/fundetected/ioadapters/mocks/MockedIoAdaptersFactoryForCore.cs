@@ -1,6 +1,7 @@
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Core.Mocks;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 {
@@ -9,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
     {
         private IRandomNumberGenerator rngInstance;
         private IEnemyAnimationPresenter enemyAnimationPresenterInstance;
+        private ISoundPresenter soundPresenterInstance;
 
         public void SetRngInstance(IRandomNumberGenerator value)
         {
@@ -51,7 +53,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
         public override ISoundPresenter GetSoundPresenterInstance()
         {
-            return new SoundPresenterMock();
+            if (null == soundPresenterInstance)
+            {
+                soundPresenterInstance = new SoundPresenterMock();
+            }
+
+            return soundPresenterInstance;
         }
     }
 }

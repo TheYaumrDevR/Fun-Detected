@@ -2,12 +2,23 @@ using NUnit.Framework;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Mocks;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Map.Tests
 {
     public class EnemyTest
     {
+        private static RandomNumberGeneratorMock rngMock;
+
+        static EnemyTest()
+        {
+            rngMock = new RandomNumberGeneratorMock(new int[] {}, new float[] {}, new double[] {});
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+        }
+
         [Test]
         public void TestTakePhysicalHitTakesDamage()
         {
@@ -395,11 +406,71 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
                 enemyAnimationPresenter.Reset();
             }
-        }                
+        }
+
+        [Test]
+        public void TestMaybeDropItemsGuaranteesItemDropsIfDropChanceAboveOne()
+        {
+            int[] randomNumbersToGenerate = { 223, 0, 223, 0, 223, 0, 223, 0 };
+            float[] randomFloatsToGenerate = { };
+            double[] randomDoublesToGenerate = { 0.07, 0.5, 0.07, 0.5, 0.07, 0.5, 0.07, 0.5 };
+
+            rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
+
+            Enemy testCandidate = new Enemy
+                .Builder()
+                .SetLife(100)
+                .SetDropChance(2.3f)
+                .Build();
+
+            List<DropTable> dropTables = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
+
+            foreach (DropTable dropTable in dropTables)
+            {
+                testCandidate.AddDropTable(dropTable);
+            }
+
+            SoundPresenterMock mockedSoundPresenter = (SoundPresenterMock)IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            mockedSoundPresenter.ResetMock();
+
+            testCandidate.TakePhysicalHit(100);
+
+            Assert.That(mockedSoundPresenter.GetPlayItemDropSoundCallCount(), Is.EqualTo(3));
+        }
+
+        [Test]
+        public void TestMaybeDropItemsGuaranteesTwoItemsWithDropChanceTwo()
+        {
+            int[] randomNumbersToGenerate = { 223, 0, 223, 0, 223, 0 };
+            float[] randomFloatsToGenerate = { };
+            double[] randomDoublesToGenerate = { 0.07, 0.5, 0.07, 0.5, 0.07, 0.5 };
+
+            rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
+
+            Enemy testCandidate = new Enemy
+                .Builder()
+                .SetLife(100)
+                .SetDropChance(2.0f)
+                .Build();
+
+            List<DropTable> dropTables = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
+
+            foreach (DropTable dropTable in dropTables)
+            {
+                testCandidate.AddDropTable(dropTable);
+            }
+
+            SoundPresenterMock mockedSoundPresenter = (SoundPresenterMock)IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            mockedSoundPresenter.ResetMock();
+
+            testCandidate.TakePhysicalHit(100);
+
+            Assert.That(mockedSoundPresenter.GetPlayItemDropSoundCallCount(), Is.EqualTo(2));
+        }        
 
         private Enemy CreateEnemyForAiAttackTests()
         {
-            Position enemyPosition = new Position(20, 20);            
+            Position enemyPosition = new Position(20, 20);
 
             return new Enemy
                 .Builder()
