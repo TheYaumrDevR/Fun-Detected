@@ -56,6 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         }
 
         protected float dropChance;
+        private int dropLevelOfItems;
 
         private int maxLife;
 
@@ -325,7 +326,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void ResolveAndDropItem()
         {
-            DropTableEntry? dropTableEntry = ItemDropResolver.ResolveItemDrop(dropTables);
+            DropTableEntry? dropTableEntry = ItemDropResolver.ResolveItemDrop(dropTables, dropLevelOfItems);
 
             if (dropTableEntry.HasValue)
             {

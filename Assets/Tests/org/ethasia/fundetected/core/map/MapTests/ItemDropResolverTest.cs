@@ -23,13 +23,13 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestResolveItemDropPicksSecondTableSecondRowThirdItem()
         {
             int[] randomNumbersToGenerate = { 223, 0 };
-            float[] randomFloatsToGenerate = {};    
-            double[] randomDoublesToGenerate = {0.07, 0.5};
+            float[] randomFloatsToGenerate = {};
+            double[] randomDoublesToGenerate = { 0.07, 0.5 };
 
             rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
 
             List<DropTable> testInput = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
-            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput);
+            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput, 100);
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Value.Item.Name, Is.EqualTo("Third Item"));
@@ -43,12 +43,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             double[] randomDoublesToGenerate = { 0.21, 0.5 };
 
             rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
-            
+
             List<DropTable> testInput = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
-            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput);
+            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput, 100);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Value.Item.Name, Is.EqualTo("First Item Third Row"));            
+            Assert.That(result.Value.Item.Name, Is.EqualTo("First Item Third Row"));       
         }
 
         [Test]
@@ -59,12 +59,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             double[] randomDoublesToGenerate = { 0.07, 0.8, 0.8, 0.09 };
 
             rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
-            
-            List<DropTable> testInput = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
-            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput);
 
+            List<DropTable> testInput = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
+            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput, 100);
+            
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Value.Item.Name, Is.EqualTo("First Item"));               
+            Assert.That(result.Value.Item.Name, Is.EqualTo("First Item"));          
         }
 
         [Test]
@@ -75,12 +75,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             double[] randomDoublesToGenerate = { 0.07, 0.09 };
 
             rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
-            
+
             List<DropTable> testInput = TestDropTableFactory.CreateDropTableWithFourJewelryItems();
-            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput);
+            DropTableEntry? result = ItemDropResolver.ResolveItemDrop(testInput, 100);
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Value.Item.Name, Is.EqualTo("Second Item"));               
+            Assert.That(result.Value.Item.Name, Is.EqualTo("Second Item"));         
         }        
     }
 }   

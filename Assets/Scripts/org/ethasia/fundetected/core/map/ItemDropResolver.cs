@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
         }
 
-        public static DropTableEntry? ResolveItemDrop(List<DropTable> dropTables)
+        public static DropTableEntry? ResolveItemDrop(List<DropTable> dropTables, int itemDropLevel)
         {
             DropTable? dropTable = ChooseDropTable(dropTables);
 
@@ -27,7 +27,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return null;
             }
 
-            DropTableEntry? dropTableEntry = ChooseDropTableEntry(dropTableRow.Value);
+            DropTableEntry? dropTableEntry = ChooseDropTableEntry(dropTableRow.Value, itemDropLevel);
 
             if (dropTableEntry == null)
             {
@@ -94,27 +94,37 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return null;
         }
 
-        private static DropTableEntry? ChooseDropTableEntry(DropTableRow dropTableRow)
+        private static DropTableEntry? ChooseDropTableEntry(DropTableRow dropTableRow, int itemDropLevel)
         {
             List<DropTableEntry> possibleDrops = null;
 
             while (possibleDrops == null || possibleDrops.Count == 0)
             {
                 double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
-                double lowestDropChanceHittingRoll = FindLowestDropChanceGreaterThanRoll(dropTableRow, roll);
-                possibleDrops = GetEntriesWithSameChance(dropTableRow, lowestDropChanceHittingRoll);
+                double lowestDropChanceHittingRoll = FindLowestDropChanceGreaterThanRollAndMinimumItemLevelLowerOrEqualTo(dropTableRow, roll, itemDropLevel);
+                possibleDrops = GetEntriesWithSameChanceAndItemLevelLowerOrEqualTo(dropTableRow, lowestDropChanceHittingRoll, itemDropLevel);
             }
 
-            return possibleDrops[randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count - 1)];
+            if (possibleDrops.Count == 1)
+            {
+                return possibleDrops[0];
+            }
+
+            if (possibleDrops.Count > 1)
+            {
+                return possibleDrops[randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count - 1)];
+            }
+
+            return null;
         }
 
-        private static double FindLowestDropChanceGreaterThanRoll(DropTableRow dropTableRow, double roll)
+        private static double FindLowestDropChanceGreaterThanRollAndMinimumItemLevelLowerOrEqualTo(DropTableRow dropTableRow, double roll, int itemDropLevel)
         {
             double lowestDropChance = 1.0;
 
             foreach (var entry in dropTableRow.DropTableEntries)
             {
-                if (entry.DropChance > roll && entry.DropChance < lowestDropChance)
+                if (entry.DropChance > roll && entry.DropChance < lowestDropChance && entry.Item.MinimumItemLevel <= itemDropLevel)
                 {
                     lowestDropChance = entry.DropChance;
                 }
@@ -123,13 +133,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return lowestDropChance;
         }
 
-        private static List<DropTableEntry> GetEntriesWithSameChance(DropTableRow dropTableRow, double chance)
+        private static List<DropTableEntry> GetEntriesWithSameChanceAndItemLevelLowerOrEqualTo(DropTableRow dropTableRow, double chance, int itemDropLevel)
         {
             List<DropTableEntry> result = new List<DropTableEntry>();
 
             foreach (var entry in dropTableRow.DropTableEntries)
             {
-                if (entry.DropChance == chance)
+                if (entry.DropChance == chance && entry.Item.MinimumItemLevel <= itemDropLevel)
                 {
                     result.Add(entry);
                 }
