@@ -125,7 +125,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             foreach (var entry in dropTableRow.DropTableEntries)
             {
-                if (entry.DropChance > roll && entry.DropChance < lowestDropChance && entry.Item.MinimumItemLevel <= itemDropLevel)
+                if (entry.DropChance >= roll && entry.DropChance < lowestDropChance && entry.Item.MinimumItemLevel <= itemDropLevel)
                 {
                     lowestDropChance = entry.DropChance;
                 }

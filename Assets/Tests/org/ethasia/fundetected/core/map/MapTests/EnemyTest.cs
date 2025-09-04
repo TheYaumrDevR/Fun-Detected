@@ -13,10 +13,19 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
         static EnemyTest()
         {
-            rngMock = new RandomNumberGeneratorMock(new int[] {}, new float[] {}, new double[] {});
-            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
-            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+            IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+
+            if (null != randomNumberGenerator && randomNumberGenerator is RandomNumberGeneratorMock)
+            {
+                rngMock = (RandomNumberGeneratorMock)randomNumberGenerator;
+            }
+            else
+            {
+                rngMock = new RandomNumberGeneratorMock(new int[] { }, new float[] { }, new double[] { });
+                MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+                ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+                IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+            }
         }
 
         [Test]
