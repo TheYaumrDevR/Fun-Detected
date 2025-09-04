@@ -112,7 +112,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             if (possibleDrops.Count > 1)
             {
-                return possibleDrops[randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count - 1)];
+                int index = randomNumberGenerator.GenerateRandomPositiveInteger(possibleDrops.Count - 1);
+                return possibleDrops[index];
             }
 
             return null;
