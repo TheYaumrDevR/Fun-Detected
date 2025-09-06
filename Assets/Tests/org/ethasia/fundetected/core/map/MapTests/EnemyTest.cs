@@ -13,19 +13,31 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
         static EnemyTest()
         {
-            IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
-
-            if (null != randomNumberGenerator && randomNumberGenerator is RandomNumberGeneratorMock)
+            if (null == IoAdaptersFactoryForCore.GetInstance())
             {
-                rngMock = (RandomNumberGeneratorMock)randomNumberGenerator;
+                CreateMockIoAdaptersFactoryWithRngMock();
             }
             else
             {
-                rngMock = new RandomNumberGeneratorMock(new int[] { }, new float[] { }, new double[] { });
-                MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-                ioAdaptersFactoryForCore.SetRngInstance(rngMock);
-                IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
+                IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
+
+                if (null != randomNumberGenerator && randomNumberGenerator is RandomNumberGeneratorMock)
+                {
+                    rngMock = (RandomNumberGeneratorMock)randomNumberGenerator;
+                }
+                else
+                {
+                    CreateMockIoAdaptersFactoryWithRngMock();
+                }
             }
+        }
+
+        private static void CreateMockIoAdaptersFactoryWithRngMock()
+        {
+            rngMock = new RandomNumberGeneratorMock(new int[] { }, new float[] { }, new double[] { });
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);            
         }
 
         [Test]
