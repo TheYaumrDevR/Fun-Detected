@@ -434,7 +434,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             int[] randomNumbersToGenerate = { 223, 0, 223, 0, 223, 0, 223, 0 };
             float[] randomFloatsToGenerate = { };
-            double[] randomDoublesToGenerate = { 0.07, 0.5, 0.07, 0.5, 0.07, 0.5, 0.07, 0.5 };
+            double[] randomDoublesToGenerate = { 0.07, 0.09, 0.07, 0.09, 0.07, 0.09, 0.07, 0.09 };
 
             rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
 
@@ -464,7 +464,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             int[] randomNumbersToGenerate = { 223, 0, 223, 0, 223, 0 };
             float[] randomFloatsToGenerate = { };
-            double[] randomDoublesToGenerate = { 0.07, 0.5, 0.07, 0.5, 0.07, 0.5 };
+            double[] randomDoublesToGenerate = { 0.07, 0.09, 0.07, 0.09, 0.07, 0.09 };
 
             rngMock.Reset(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
 
