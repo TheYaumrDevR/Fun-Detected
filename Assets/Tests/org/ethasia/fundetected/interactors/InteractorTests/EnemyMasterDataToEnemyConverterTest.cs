@@ -14,7 +14,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {
             EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
 
-            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(CreateMasterDataForTest(), spawnLocationData, 1);
+            EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+            {
+                EnemyMasterData = CreateMasterDataForTest(),
+                SpawnLocation = spawnLocationData,
+                SpawnId = 1
+            };
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
 
             Assert.That(result.IndividualId, Is.EqualTo("BloatedHorseflySwarm1"));
             Assert.That(result.TypeId, Is.EqualTo("BloatedHorseflySwarm"));
@@ -36,7 +43,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {
             EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
 
-            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(CreateMasterDataForTest(), spawnLocationData, 1);
+            EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+            {
+                EnemyMasterData = CreateMasterDataForTest(),
+                SpawnLocation = spawnLocationData,
+                SpawnId = 1
+            };
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
             EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
 
             Assert.That(testableResult.DropTables.Count, Is.EqualTo(1));
@@ -61,7 +75,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {
             EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
 
-            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(CreateMasterDataForTest(), spawnLocationData, 1);
+            EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+            {
+                EnemyMasterData = CreateMasterDataForTest(),
+                SpawnLocation = spawnLocationData,
+                SpawnId = 1
+            };
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
             EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
 
             DropTable convertedDropTable = testableResult.DropTables[0];
@@ -75,7 +96,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         {
             EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(45, 12), 1.0f, 4);
 
-            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(CreateMasterDataForTest(), spawnLocationData, 1);    
+            EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+            {
+                EnemyMasterData = CreateMasterDataForTest(),
+                SpawnLocation = spawnLocationData,
+                SpawnId = 1
+            };
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
             EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
 
             Assert.That(testableResult.DropChance, Is.EqualTo(0.3f));

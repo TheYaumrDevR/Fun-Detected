@@ -383,6 +383,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private string name;
             private int experiencePointsGivenOnDeath;
             private float dropChance;
+            private int dropLevelOfItems;
             private int maxLife;
             private int currentLife;
             private int armor;
@@ -420,6 +421,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             public Builder SetDropChance(float value)
             {
                 dropChance = value;
+                return this;
+            }
+
+            public Builder SetDropLevelOfItems(int value)
+            {
+                dropLevelOfItems = value;
                 return this;
             }
 
@@ -534,6 +541,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.Name = name;
                 result.ExperiencePointsGivenOnDeath = experiencePointsGivenOnDeath;
                 result.dropChance = dropChance;
+                result.dropLevelOfItems = dropLevelOfItems;
                 result.armor = armor;
                 result.fireResistance = fireResistance;
                 result.iceResistance = iceResistance;

@@ -166,15 +166,24 @@ namespace Org.Ethasia.Fundetected.Interactors
                 if (spawnedEnemy.SpawnedEnemyLevel >= enemyMasterData.MinimumSpawnLevel)
                 {
                     enemyMasterData = enemyMasterData.ScalingStrategy.ScaleMasterData(enemyMasterData, spawnedEnemy.SpawnedEnemyLevel);
-                    map.AddEnemy(CreateEnemyFromMasterData(enemyMasterData, spawnedEnemy, spawnId));
+
+                    EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+                    {
+                        EnemyMasterData = enemyMasterData,
+                        SpawnLocation = spawnedEnemy,
+                        SpawnId = spawnId,
+                        EnemyLevel = spawnedEnemy.SpawnedEnemyLevel
+                    };
+
+                    map.AddEnemy(CreateEnemyFromMasterData(enemyCreationContext));
                     spawnId++;
                 }
             }
         }
 
-        private Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData, int spawnId)
+        private Enemy CreateEnemyFromMasterData(EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext)
         {
-            return EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyMasterData, spawnLocationData, spawnId);
+            return EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
         }   
 
         private void ShowPortals(Area map)

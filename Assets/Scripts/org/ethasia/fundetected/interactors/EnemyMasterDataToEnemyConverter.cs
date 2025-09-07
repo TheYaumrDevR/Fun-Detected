@@ -6,39 +6,40 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public class EnemyMasterDataToEnemyConverter
     {
-        public static Enemy CreateEnemyFromMasterData(EnemyMasterData enemyMasterData, EnemySpawnLocation spawnLocationData, int spawnId)
+        public static Enemy CreateEnemyFromMasterData(EnemyCreationContext enemyCreationContext)
         {
             BoundingBox enemyBoundingBox = new BoundingBox.Builder()
-                .SetDistanceToRightEdge(enemyMasterData.DistanceToRightEdge)
-                .SetDistanceToLeftEdge(enemyMasterData.DistanceToLeftEdge)
-                .SetDistanceToBottomEdge(enemyMasterData.DistanceToBottomEdge)
-                .SetDistanceToTopEdge(enemyMasterData.DistanceToTopEdge)
+                .SetDistanceToRightEdge(enemyCreationContext.EnemyMasterData.DistanceToRightEdge)
+                .SetDistanceToLeftEdge(enemyCreationContext.EnemyMasterData.DistanceToLeftEdge)
+                .SetDistanceToBottomEdge(enemyCreationContext.EnemyMasterData.DistanceToBottomEdge)
+                .SetDistanceToTopEdge(enemyCreationContext.EnemyMasterData.DistanceToTopEdge)
                 .Build();
 
             Enemy result = new Enemy.Builder()
-                .SetIndividualId(enemyMasterData.Id + spawnId)
-                .SetTypeId(enemyMasterData.Id)
-                .SetName(enemyMasterData.Name)
-                .SetIsAggressiveOnSight(enemyMasterData.IsAggressiveOnSight)
-                .SetDropChance(enemyMasterData.DropChance)
-                .SetAttacksPerSecond(enemyMasterData.AttacksPerSecond)
-                .SetUnarmedStrikeRange(enemyMasterData.UnarmedStrikeRange)
-                .SetCorpseMass(enemyMasterData.CorpseMass)
-                .SetMinToMaxPhysicalDamage(new DamageRange(enemyMasterData.ScalableMasterData.MinPhysicalDamage, enemyMasterData.ScalableMasterData.MaxPhysicalDamage))
-                .SetLife(enemyMasterData.ScalableMasterData.MaxLife)
-                .SetArmor(enemyMasterData.ScalableMasterData.Armor)
-                .SetAccuracyRating(enemyMasterData.ScalableMasterData.AccuracyRating)
-                .SetEvasionRating(enemyMasterData.ScalableMasterData.EvasionRating)
+                .SetIndividualId(enemyCreationContext.EnemyMasterData.Id + enemyCreationContext.SpawnId)
+                .SetTypeId(enemyCreationContext.EnemyMasterData.Id)
+                .SetName(enemyCreationContext.EnemyMasterData.Name)
+                .SetIsAggressiveOnSight(enemyCreationContext.EnemyMasterData.IsAggressiveOnSight)
+                .SetDropChance(enemyCreationContext.EnemyMasterData.DropChance)
+                .SetDropLevelOfItems(enemyCreationContext.EnemyLevel)
+                .SetAttacksPerSecond(enemyCreationContext.EnemyMasterData.AttacksPerSecond)
+                .SetUnarmedStrikeRange(enemyCreationContext.EnemyMasterData.UnarmedStrikeRange)
+                .SetCorpseMass(enemyCreationContext.EnemyMasterData.CorpseMass)
+                .SetMinToMaxPhysicalDamage(new DamageRange(enemyCreationContext.EnemyMasterData.ScalableMasterData.MinPhysicalDamage, enemyCreationContext.EnemyMasterData.ScalableMasterData.MaxPhysicalDamage))
+                .SetLife(enemyCreationContext.EnemyMasterData.ScalableMasterData.MaxLife)
+                .SetArmor(enemyCreationContext.EnemyMasterData.ScalableMasterData.Armor)
+                .SetAccuracyRating(enemyCreationContext.EnemyMasterData.ScalableMasterData.AccuracyRating)
+                .SetEvasionRating(enemyCreationContext.EnemyMasterData.ScalableMasterData.EvasionRating)
                 .SetBoundingBox(enemyBoundingBox)
-                .SetPosition(spawnLocationData.MapLocation)
+                .SetPosition(enemyCreationContext.SpawnLocation.MapLocation)
                 .Build();
 
-            EnemyAbility enemyAbility = enemyMasterData.AbilityMasterData.CreateAbilityForEnemy(result);
-            string abilityName = enemyMasterData.AbilityMasterData.GetAbilityName();
+            EnemyAbility enemyAbility = enemyCreationContext.EnemyMasterData.AbilityMasterData.CreateAbilityForEnemy(result);
+            string abilityName = enemyCreationContext.EnemyMasterData.AbilityMasterData.GetAbilityName();
 
             result.AddAbilityByName(abilityName, enemyAbility);
 
-            AddDropTablesToEnemy(result, enemyMasterData);
+            AddDropTablesToEnemy(result, enemyCreationContext.EnemyMasterData);
 
             return result;
         }
@@ -86,16 +87,24 @@ namespace Org.Ethasia.Fundetected.Interactors
             result.DropTableEntries.Sort((a, b) => a.DropChance.CompareTo(b.DropChance));
 
             return result;
-        }        
+        }
 
         private static DropTableEntry ConvertDropTableEntryMasterDataToDropTableEntry(DropTableEntryMasterData masterData)
         {
             return new DropTableEntry(masterData.DropChance, masterData.Item.ToItem());
         }
-        
+
         private static DropTableEntry ConvertDropTableEntryMasterDataToDropTableEntry(DropTableEntryMasterData masterData, double dropChance)
         {
             return new DropTableEntry(dropChance, masterData.Item.ToItem());
+        }
+
+        public struct EnemyCreationContext
+        {
+            public EnemyMasterData EnemyMasterData;
+            public EnemySpawnLocation SpawnLocation;
+            public int SpawnId;
+            public int EnemyLevel;
         }
     }
 }
