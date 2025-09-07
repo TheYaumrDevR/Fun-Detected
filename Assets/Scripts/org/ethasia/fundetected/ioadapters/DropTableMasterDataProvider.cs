@@ -15,10 +15,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public DropTableMasterData GetGlobalDropTable()
         {
-            DropTableEntryMasterData tinyLifePotion = new DropTableEntryMasterData(0.25, potionMasterDataProvider.GetTinyLifePotionMasterData());
-            DropTableEntryMasterData warBelt = new DropTableEntryMasterData(0.25, jewelryMasterDataProvider.GetWarBeltMasterData());
-            DropTableEntryMasterData ironAmulet = new DropTableEntryMasterData(0.25, jewelryMasterDataProvider.GetIronAmuletMasterData());
-            DropTableEntryMasterData ironBand = new DropTableEntryMasterData(0.25, jewelryMasterDataProvider.GetDiamondBandMasterData());
+            DropTableEntryMasterData tinyLifePotion = new DropTableEntryMasterData(1.0, potionMasterDataProvider.GetTinyLifePotionMasterData());
+            DropTableEntryMasterData warBelt = new DropTableEntryMasterData(1.0, jewelryMasterDataProvider.GetWarBeltMasterData());
+            DropTableEntryMasterData ironAmulet = new DropTableEntryMasterData(1.0, jewelryMasterDataProvider.GetIronAmuletMasterData());
+            DropTableEntryMasterData ironBand = new DropTableEntryMasterData(1.0, jewelryMasterDataProvider.GetDiamondBandMasterData());
 
             DropTableRowMasterData tier1Row = new DropTableRowMasterData(1.0);
             tier1Row.DropTableEntries.Add(tinyLifePotion);

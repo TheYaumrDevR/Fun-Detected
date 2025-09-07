@@ -96,14 +96,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private static DropTableEntry? ChooseDropTableEntry(DropTableRow dropTableRow, int itemDropLevel)
         {
-            List<DropTableEntry> possibleDrops = null;
-
-            while (possibleDrops == null || possibleDrops.Count == 0)
-            {
-                double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
-                double lowestDropChanceHittingRoll = FindLowestDropChanceGreaterThanRollAndMinimumItemLevelLowerOrEqualTo(dropTableRow, roll, itemDropLevel);
-                possibleDrops = GetEntriesWithSameChanceAndItemLevelLowerOrEqualTo(dropTableRow, lowestDropChanceHittingRoll, itemDropLevel);
-            }
+            double roll = randomNumberGenerator.GenerateDoubleBetweenZeroAndOne();
+            double lowestDropChanceHittingRoll = FindLowestDropChanceGreaterThanRollAndMinimumItemLevelLowerOrEqualTo(dropTableRow, roll, itemDropLevel);
+            List<DropTableEntry> possibleDrops = GetEntriesWithSameChanceAndItemLevelLowerOrEqualTo(dropTableRow, lowestDropChanceHittingRoll, itemDropLevel);
 
             if (possibleDrops.Count == 1)
             {
