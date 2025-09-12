@@ -51,7 +51,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             };
 
             Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
-            EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
+            EnemyWithExposedFields testableResult = new EnemyWithExposedFields(result);
 
             Assert.That(testableResult.DropTables.Count, Is.EqualTo(1));
 
@@ -83,7 +83,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             };
 
             Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
-            EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
+            EnemyWithExposedFields testableResult = new EnemyWithExposedFields(result);
 
             DropTable convertedDropTable = testableResult.DropTables[0];
 
@@ -104,9 +104,28 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             };
 
             Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
-            EnemyWithExposedDropTable testableResult = new EnemyWithExposedDropTable(result);
+            EnemyWithExposedFields testableResult = new EnemyWithExposedFields(result);
 
             Assert.That(testableResult.DropChance, Is.EqualTo(0.3f));
+        }
+
+        [Test]
+        public void TestCreateEnemyFromMasterDataConvertsItemDropLevel()
+        {
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(45, 12), 1.0f, 4);
+
+            EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+            {
+                EnemyMasterData = CreateMasterDataForTest(),
+                SpawnLocation = spawnLocationData,
+                SpawnId = 1,
+                EnemyLevel = 23
+            };
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
+            EnemyWithExposedFields testableResult = new EnemyWithExposedFields(result);
+
+            Assert.That(testableResult.DropLevelOfItems, Is.EqualTo(23));        
         }
 
         private EnemyMasterData CreateMasterDataForTest()
@@ -285,7 +304,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .Build();            
         }
 
-        public class EnemyWithExposedDropTable : Enemy
+        public class EnemyWithExposedFields : Enemy
         {
             public List<DropTable> DropTables
             {
@@ -297,7 +316,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 get { return dropChance; }
             }
 
-            public EnemyWithExposedDropTable(Enemy enemy) : base(enemy) { }
+            public int DropLevelOfItems
+            {
+                get { return dropLevelOfItems; }
+            }
+
+            public EnemyWithExposedFields(Enemy enemy) : base(enemy) { }
         }
     }
 }
