@@ -303,25 +303,5 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetAffixClasses(AffixClasses.PlusGlobalPhysicalDamageIncrease)
                 .Build();            
         }
-
-        public class EnemyWithExposedFields : Enemy
-        {
-            public List<DropTable> DropTables
-            {
-                get { return dropTables; }
-            }
-
-            public float DropChance
-            {
-                get { return dropChance; }
-            }
-
-            public int DropLevelOfItems
-            {
-                get { return dropLevelOfItems; }
-            }
-
-            public EnemyWithExposedFields(Enemy enemy) : base(enemy) { }
-        }
     }
 }

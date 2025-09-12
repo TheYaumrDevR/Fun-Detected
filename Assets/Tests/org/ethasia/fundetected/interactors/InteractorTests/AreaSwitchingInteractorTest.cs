@@ -135,15 +135,33 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Assert.That(spawnedEnemies[0].EvasionRating, Is.EqualTo(100));
         }
 
+        [Test]
+        public void TestSpawnPlayerIntoNewMapSpawnedEnemiesHaveCorrectItemDropLevel()
+        {
+            AreaSwitchingInteractor testCandidate = new AreaSwitchingInteractor();
+
+            PlayerCharacter testPlayer = SetupForEnemySpawnTests();
+
+            testCandidate.SpawnPlayerIntoNewMap("Higher Level Hill", testPlayer);        
+
+            List<Enemy> spawnedEnemies = Area.ActiveArea.Enemies;    
+
+            EnemyWithExposedFields testableEnemyOne = new EnemyWithExposedFields(spawnedEnemies[0]);
+            EnemyWithExposedFields testableEnemyTwo = new EnemyWithExposedFields(spawnedEnemies[1]);
+
+            Assert.That(testableEnemyOne.DropLevelOfItems, Is.EqualTo(2));
+            Assert.That(testableEnemyTwo.DropLevelOfItems, Is.EqualTo(2));
+        }
+
         private PlayerCharacter SetupForEnemySpawnTests()
         {
-            int[] randomNumbersToGenerate = {180, 479, 789, 33};
-            float[] randomFloatsToGenerate = {0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f};    
-            double[] randomDoublesToGenerate = {};
+            int[] randomNumbersToGenerate = { 180, 479, 789, 33 };
+            float[] randomFloatsToGenerate = { 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f, 0.1f, 0.03f };
+            double[] randomDoublesToGenerate = { };
 
             RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
-            ioAdaptersFactoryForCore.SetRngInstance(rngMock);  
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
 
             IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
 
