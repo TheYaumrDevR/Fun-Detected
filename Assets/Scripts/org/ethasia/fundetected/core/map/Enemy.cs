@@ -56,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         }
 
         protected float dropChance;
-        private int dropLevelOfItems;
+        protected int dropLevelOfItems;
 
         private int maxLife;
 
@@ -108,6 +108,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             dropTables = other.dropTables;
             dropChance = other.dropChance;
+            dropLevelOfItems = other.dropLevelOfItems;
         }
 
         public void AddDropTable(DropTable value)
