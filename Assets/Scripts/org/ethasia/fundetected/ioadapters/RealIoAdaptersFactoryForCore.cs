@@ -8,6 +8,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     {
         private RandomNumberGenerator randomNumberGenerator;
         private DamageTextPresenter damageTextPresenter;
+        private DroppedItemPresenter droppedItemPresenter;
         private HitboxPresenter hitboxPresenter;
         private EnemyAnimationPresenter enemyAnimationPresenter;
         private SoundPresenter soundPresenter;
@@ -31,6 +32,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return damageTextPresenter;
         }  
+
+        public override IDroppedItemPresenter GetDroppedItemPresenterInstance()
+        {
+            if (null == droppedItemPresenter)
+            {
+                droppedItemPresenter = new DroppedItemPresenter();
+            }
+
+            return droppedItemPresenter;
+        }
 
         public override IHitboxPresenter GetHitboxPresenterInstance()
         {

@@ -20,12 +20,12 @@ namespace Org.Ethasia.Fundetected.Technical
         public override IAnimatedCharactersInitializer GetPlayerCharacterInitializerInstance()
         {
             return new PlayerCharacterRendererDelayedInitializationProxy(PlayerCharacterInitializerImpl.GetInstance());
-        }      
+        }
 
         public override IFloatingDamageTextRenderer GetFloatingDamageTextRendererInstance()
         {
             return FloatingDamageTextRendererImpl.GetInstance();
-        }  
+        }
 
         public override IHitboxDebugShapeRenderer GetHitboxDebugShapeRendererInstance()
         {
@@ -77,6 +77,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public override IGuiWindowsController GetGuiWindowsControllerInstance()
         {
             return GuiWindowsController.GetInstance();
+        }
+
+        public override IDroppableItemRenderer GetDroppableItemRendererInstance()
+        {
+            return DroppableItemRenderer.GetInstance();
         }
     }
 }

@@ -333,8 +333,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
             {
                 Item item = dropTableEntry.Value.Item;
                 UnityEngine.Debug.Log($"Enemy: Dropping item {item.Name} with class {item.ItemClass}");
+                ShowDroppedItem(item);
                 PlayItemDropSound();
             }
+        }
+
+        private void ShowDroppedItem(Item item)
+        {
+            IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
+
+            ItemDropPresentationInformation itemDropInfo = new ItemDropPresentationInformation();
+            itemDropInfo.BaseTypeOrUniqueName = item.Name;
+            itemDropInfo.PositionX = Position.X;
+            itemDropInfo.PositionY = Position.Y;
+            
+            droppedItemPresenter.PresentItemDrop(itemDropInfo);
         }
 
         private void PlayItemDropSound()

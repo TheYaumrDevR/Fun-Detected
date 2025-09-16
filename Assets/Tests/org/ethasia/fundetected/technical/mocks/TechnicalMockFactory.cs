@@ -17,12 +17,12 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         public override IAnimatedCharactersInitializer GetPlayerCharacterInitializerInstance()
         {
             return null;
-        }      
+        }
 
         public override IFloatingDamageTextRenderer GetFloatingDamageTextRendererInstance()
         {
             return null;
-        }  
+        }
 
         public override IHitboxDebugShapeRenderer GetHitboxDebugShapeRendererInstance()
         {
@@ -51,10 +51,15 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 
         public override IInteractablesRenderer GetInteractablesRendererInstance()
         {
-            return null;    
+            return null;
         }
 
         public override IGuiWindowsController GetGuiWindowsControllerInstance()
+        {
+            return null;
+        }
+        
+        public override IDroppableItemRenderer GetDroppableItemRendererInstance()
         {
             return null;
         }

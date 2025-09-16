@@ -36,6 +36,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return new DamagePresenterMock();
         }
 
+        public override IDroppedItemPresenter GetDroppedItemPresenterInstance()
+        {
+            return new DroppedItemPresenterMock();
+        }
+
         public override IHitboxPresenter GetHitboxPresenterInstance()
         {
             return new HitboxPresenterMock();

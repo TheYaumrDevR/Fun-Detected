@@ -20,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Core
 
         public abstract IRandomNumberGenerator GetRandomNumberGeneratorInstance();
         public abstract IDamageTextPresenter GetDamageTextPresenterInstance();
+        public abstract IDroppedItemPresenter GetDroppedItemPresenterInstance();
         public abstract IHitboxPresenter GetHitboxPresenterInstance();
         public abstract IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance();
         public abstract ISoundPresenter GetSoundPresenterInstance();
