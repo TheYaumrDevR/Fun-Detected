@@ -12,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private ITileMapRenderer tileMapRenderer;
         private IPortalRenderer portalRenderer;
         private IInteractablesRenderer interactablesRenderer;
+        private IDroppableItemRenderer droppableItemRenderer;
         private Dictionary<string, Action<TileRenderContext>> renderMethodByTileLayerName;
 
         public MapPresenterImpl()
@@ -28,7 +29,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         }
 
         public void PresentTiles(List<ITile> tilesWithAbsolutePositions, string tileMapName)
-        {   
+        {
             foreach (ITile tile in tilesWithAbsolutePositions)
             {
                 for (int i = tile.StartX; i < tile.StartX + tile.Width; i++)
@@ -110,6 +111,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             portalRenderer.ClearRenderedPortals();
             interactablesRenderer.ClearRenderedInteractables();
             tileMapRenderer.ClearAllTiles();
+            GetDroppableItemRenderer().ClearRenderedDroppedItems();
+        }
+
+        private IDroppableItemRenderer GetDroppableItemRenderer()
+        {
+            if (null == droppableItemRenderer)
+            {
+                droppableItemRenderer = TechnicalFactory.GetInstance().GetDroppableItemRendererInstance();
+            }
+            
+            return droppableItemRenderer;
         }
     }
 }
