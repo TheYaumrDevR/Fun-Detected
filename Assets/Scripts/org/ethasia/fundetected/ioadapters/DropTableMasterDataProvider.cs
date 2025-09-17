@@ -15,16 +15,19 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public DropTableMasterData GetGlobalDropTable()
         {
-            DropTableEntryMasterData tinyLifePotion = new DropTableEntryMasterData(1.0, potionMasterDataProvider.GetTinyLifePotionMasterData());
-            DropTableEntryMasterData warBelt = new DropTableEntryMasterData(1.0, jewelryMasterDataProvider.GetWarBeltMasterData());
-            DropTableEntryMasterData ironAmulet = new DropTableEntryMasterData(1.0, jewelryMasterDataProvider.GetIronAmuletMasterData());
-            DropTableEntryMasterData ironBand = new DropTableEntryMasterData(1.0, jewelryMasterDataProvider.GetDiamondBandMasterData());
+            DropTableEntryMasterData tinyLifePotion = new DropTableEntryMasterData(0, potionMasterDataProvider.GetTinyLifePotionMasterData());
+            DropTableEntryMasterData warBelt = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetWarBeltMasterData());
+            DropTableEntryMasterData ironAmulet = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetIronAmuletMasterData());
+            DropTableEntryMasterData ironBand = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetDiamondBandMasterData());
+
+            DropTableEntryEqualChanceGroupMasterData jewelryGroup = new DropTableEntryEqualChanceGroupMasterData(1.0);
+            jewelryGroup.DropTableEntries.Add(tinyLifePotion);
+            jewelryGroup.DropTableEntries.Add(warBelt);
+            jewelryGroup.DropTableEntries.Add(ironAmulet);
+            jewelryGroup.DropTableEntries.Add(ironBand);
 
             DropTableRowMasterData tier1Row = new DropTableRowMasterData(1.0);
-            tier1Row.DropTableEntries.Add(tinyLifePotion);
-            tier1Row.DropTableEntries.Add(warBelt);
-            tier1Row.DropTableEntries.Add(ironAmulet);
-            tier1Row.DropTableEntries.Add(ironBand);
+            tier1Row.DropTableEntryEqualChanceGroups.Add(jewelryGroup);
 
             DropTableMasterData result = new DropTableMasterData(100);
             result.DropTableRows.Add(tier1Row);
