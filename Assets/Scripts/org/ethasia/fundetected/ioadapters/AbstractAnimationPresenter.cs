@@ -2,7 +2,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Animation;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public abstract class AbstractAnimationPresenter
+    public abstract class AbstractAnimationPresenter : SpritesPresenter
     {
         private static Animation2dGraphPropertiesGateway animation2dPropertiesGateway;
 

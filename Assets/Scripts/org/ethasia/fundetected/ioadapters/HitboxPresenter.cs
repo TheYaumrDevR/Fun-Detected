@@ -5,7 +5,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class HitboxPresenter : IHitboxPresenter
+    public class HitboxPresenter : SpritesPresenter,IHitboxPresenter
     {
         private IHitboxDebugShapeRenderer hitboxRenderer;
 
@@ -27,8 +27,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 for (int j = position.Y - boundingBox.DistanceToBottomEdge; j <= position.Y + boundingBox.DistanceToTopEdge; j++)
                 {
-                    float posX = i / 10.0f;
-                    float posY = j / 10.0f;
+                    float posX = ConvertMapPositionToScreenPosition(i);
+                    float posY = ConvertMapPositionToScreenPosition(j);
 
                     hitboxRenderer.RenderHitboxDebugShape(posX, posY);
                 }
@@ -39,8 +39,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             hitboxRenderer = TechnicalFactory.GetInstance().GetHitboxDebugShapeRendererInstance();
 
-            float posX = logicalPositionX / 10.0f;
-            float posY = logicalPositionY / 10.0f;
+            float posX = ConvertMapPositionToScreenPosition(logicalPositionX);
+            float posY = ConvertMapPositionToScreenPosition(logicalPositionY);
 
             hitboxRenderer.RenderHitboxDebugShape(posX, posY);
         }
@@ -53,8 +53,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 for (int j = logicalPositionY - strikeRange; j <= logicalPositionY + strikeRange; j++)
                 {
-                    float posX = i / 10.0f;
-                    float posY = j / 10.0f;
+                    float posX = ConvertMapPositionToScreenPosition(i);
+                    float posY = ConvertMapPositionToScreenPosition(j);
 
                     hitboxRenderer.RenderHitboxDebugShape(posX, posY);
                 }

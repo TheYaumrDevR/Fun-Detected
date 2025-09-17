@@ -6,7 +6,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class DamageTextPresenter : IDamageTextPresenter
+    public class DamageTextPresenter : SpritesPresenter, IDamageTextPresenter
     {
         private IFloatingDamageTextRenderer damageTextRenderer;
 
@@ -37,16 +37,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private void PresentDamageText(DamageTextDisplayInformation displayInformation, Action<string, float, float> renderMethod)
         {
             int damageAmount = displayInformation.DamageValue;
-            float posX = displayInformation.PositionX / 10.0f;
-            float posY = displayInformation.PositionY / 10.0f;
+            float posX = ConvertMapPositionToScreenPosition(displayInformation.PositionX);
+            float posY = ConvertMapPositionToScreenPosition(displayInformation.PositionY);
 
             renderMethod(damageAmount.ToString(), posX, posY);
         }
 
         private void PresentMissText(Position renderPosition, Action<string, float, float> renderMethod)
         {
-            float posX = renderPosition.X / 10.0f;
-            float posY = renderPosition.Y / 10.0f;
+            float posX = ConvertMapPositionToScreenPosition(renderPosition.X);
+            float posY = ConvertMapPositionToScreenPosition(renderPosition.Y);
 
             renderMethod("MISS", posX, posY);
         }

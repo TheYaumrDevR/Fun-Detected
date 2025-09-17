@@ -16,8 +16,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             Animation2dGraphNodeProperties animation2dData = GetAnimation2dPropertiesGateway().LoadAnimation2dGraph("FemaleCharacterOne");
 
-            float playerPosX = playerPosition.X / 10.0f;
-            float playerPosY = playerPosition.Y / 10.0f + 0.4f;
+            float playerPosX = ConvertMapPositionToScreenPosition(playerPosition.X);
+            float playerPosY = ConvertMapPositionToScreenPosition(playerPosition.Y) + 0.4f;
 
             GameObjectProxy gameObjectProxy = new GameObjectProxy.Builder()
                 .SetIndividualId(PLAYER_CHARACTER_ID_PREFIX + playerName)

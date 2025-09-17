@@ -3,7 +3,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class DroppedItemPresenter : IDroppedItemPresenter
+    public class DroppedItemPresenter : SpritesPresenter, IDroppedItemPresenter
     {
         private IDroppableItemRenderer droppableItemRenderer;
 
@@ -15,8 +15,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         private DroppedItemRenderProxy ConvertDropPresentationInformationToRenderProxy(ItemDropPresentationInformation itemDropInfo)
         {
-            float posX = itemDropInfo.PositionX / 10.0f;
-            float posY = itemDropInfo.PositionY / 10.0f;
+            float posX = ConvertMapPositionToScreenPosition(itemDropInfo.PositionX);
+            float posY = ConvertMapPositionToScreenPosition(itemDropInfo.PositionY);
 
             return new DroppedItemRenderProxy.Builder()
                 .SetId(itemDropInfo.BaseTypeOrUniqueName)
