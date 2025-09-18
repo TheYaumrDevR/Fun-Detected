@@ -332,7 +332,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
             if (dropTableEntry.HasValue)
             {
                 Item item = dropTableEntry.Value.Item;
-                UnityEngine.Debug.Log($"Enemy: Dropping item {item.Name} with class {item.ItemClass}");
                 ShowDroppedItem(item);
                 PlayItemDropSound();
             }
