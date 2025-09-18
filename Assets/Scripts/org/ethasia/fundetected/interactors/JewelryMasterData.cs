@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(this);
         }        
 
-        public class Builder
+        new public class Builder : ItemMasterData.Builder
         {
             private ItemClass itemClass;
             private int minimumItemLevel;
@@ -74,6 +74,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.AgilityRequirement = agilityRequirement;
                 result.IntelligenceRequirement = intelligenceRequirement;
                 result.FirstImplicit = firstImplicit;
+
+                FillItemMasterDataFields(result);
 
                 return result;
             }

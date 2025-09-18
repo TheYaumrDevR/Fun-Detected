@@ -41,7 +41,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return ItemMasterDataToItemConverter.ConvertWeaponMasterDataToWeapon(this);
         }          
 
-        public class Builder
+        new public class Builder : ItemMasterData.Builder
         {
             private ItemClass itemClass;
             private int minimumItemLevel;
@@ -136,6 +136,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.SkillsPerSecond = skillsPerSecond;
                 result.CriticalStrikeChance = criticalStrikeChance;
                 result.WeaponRange = weaponRange;
+
+                FillItemMasterDataFields(result);
 
                 return result;
             }

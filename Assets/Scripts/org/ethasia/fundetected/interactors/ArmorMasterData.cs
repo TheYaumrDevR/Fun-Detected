@@ -23,7 +23,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(this);
         }
 
-        public class Builder
+        new public class Builder : ItemMasterData.Builder
         {
             private ItemClass itemClass;
             private int minimumItemLevel;
@@ -102,6 +102,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.ArmorValue = armorValue;
                 result.MovementSpeedAddend = movementSpeedAddend;
                 result.FirstImplicit = firstImplicit;
+
+                FillItemMasterDataFields(result);
 
                 return result;
             }

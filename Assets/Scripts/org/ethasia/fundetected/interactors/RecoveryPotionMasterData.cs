@@ -21,7 +21,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             return ItemMasterDataToItemConverter.ConvertRecoveryPotionMasterDataToPotion(this);
         }        
 
-        public class Builder
+        new public class Builder : ItemMasterData.Builder
         {
             private ItemClass itemClass;
             private int minimumItemLevel;
@@ -68,6 +68,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.Name = name;
                 result.RecoveryAmount = recoveryAmount;
                 result.Uses = uses;
+
+                FillItemMasterDataFields(result);
 
                 return result;
             }
