@@ -13,6 +13,26 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             droppableItemRenderer.RenderDroppedItem(ConvertDropPresentationInformationToRenderProxy(itemDropInfo));
         }
 
+        public void MovePresentedItemUp(string itemId, int units)
+        {
+            droppableItemRenderer.MoveDroppedItemUp(itemId, units);
+        }
+
+        public void MovePresentedItemDown(string itemId, int units)
+        {
+            droppableItemRenderer.MoveDroppedItemDown(itemId, units);
+        }
+
+        public void MovePresentedItemLeft(string itemId, int units)
+        {
+            droppableItemRenderer.MoveDroppedItemLeft(itemId, units);
+        }
+
+        public void MovePresentedItemRight(string itemId, int units)
+        {
+            droppableItemRenderer.MoveDroppedItemRight(itemId, units);
+        }
+
         private DroppedItemRenderProxy ConvertDropPresentationInformationToRenderProxy(ItemDropPresentationInformation itemDropInfo)
         {
             float posX = ConvertMapPositionToScreenPosition(itemDropInfo.PositionX);

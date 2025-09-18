@@ -8,5 +8,25 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
 
         }
+
+        public void MovePresentedItemUp(string itemId, int units)
+        {
+
+        }
+
+        public void MovePresentedItemDown(string itemId, int units)
+        {
+
+        }
+
+        public void MovePresentedItemLeft(string itemId, int units)
+        {
+
+        }
+
+        public void MovePresentedItemRight(string itemId, int units)
+        {
+
+        }
     }
 }
