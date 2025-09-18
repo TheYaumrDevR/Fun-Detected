@@ -440,6 +440,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Enemy testCandidate = new Enemy
                 .Builder()
+                .SetPosition(new Position(0, 0))
                 .SetLife(100)
                 .SetDropChance(2.3f)
                 .Build();
@@ -470,6 +471,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Enemy testCandidate = new Enemy
                 .Builder()
+                .SetPosition(new Position(0, 0))
                 .SetLife(100)
                 .SetDropChance(2.0f)
                 .Build();
