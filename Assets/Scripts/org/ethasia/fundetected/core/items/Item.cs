@@ -25,7 +25,31 @@ namespace Org.Ethasia.Fundetected.Core.Items
             get;
             private set;
         }
-        
+
+        public int CollisionShapeDistanceToLeftEdgeFromCenter
+        {
+            get;
+            protected set;
+        }
+
+        public int CollisionShapeDistanceToRightEdgeFromCenter
+        {
+            get;
+            protected set;
+        }
+
+        public int CollisionShapeDistanceToTopEdgeFromCenter
+        {
+            get;
+            protected set;
+        }
+
+        public int CollisionShapeDistanceToBottomEdgeFromCenter
+        {
+            get;
+            protected set;
+        }
+
         public ItemInInventoryShape CreateInventoryShape()
         {
             return ItemClass.CreateInventoryShape(this);
@@ -39,6 +63,10 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private ItemClass itemClass;
             private int minimumItemLevel;
             private int itemLevel;
+            private int collisionShapeDistanceToLeftEdgeFromCenter;
+            private int collisionShapeDistanceToRightEdgeFromCenter;
+            private int collisionShapeDistanceToTopEdgeFromCenter;
+            private int collisionShapeDistanceToBottomEdgeFromCenter;
 
             public Builder SetName(string value)
             {
@@ -64,12 +92,41 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 return this;
             }
 
+            public Builder SetCollisionShapeDistanceToLeftEdgeFromCenter(int value)
+            {
+                this.collisionShapeDistanceToLeftEdgeFromCenter = value;
+                return this;
+            }
+
+            public Builder SetCollisionShapeDistanceToRightEdgeFromCenter(int value)
+            {
+                this.collisionShapeDistanceToRightEdgeFromCenter = value;
+                return this;
+            }
+
+            public Builder SetCollisionShapeDistanceToTopEdgeFromCenter(int value)
+            {
+                this.collisionShapeDistanceToTopEdgeFromCenter = value;
+                return this;
+            }
+
+            public Builder SetCollisionShapeDistanceToBottomEdgeFromCenter(int value)
+            {
+                this.collisionShapeDistanceToBottomEdgeFromCenter = value;
+                return this;
+            }
+
             protected void FillItemFields(Item statlessItem)
             {
                 statlessItem.Name = name;
                 statlessItem.ItemClass = itemClass;
                 statlessItem.MinimumItemLevel = minimumItemLevel;
                 statlessItem.ItemLevel = itemLevel;
+                
+                statlessItem.CollisionShapeDistanceToLeftEdgeFromCenter = collisionShapeDistanceToLeftEdgeFromCenter;
+                statlessItem.CollisionShapeDistanceToRightEdgeFromCenter = collisionShapeDistanceToRightEdgeFromCenter;
+                statlessItem.CollisionShapeDistanceToTopEdgeFromCenter = collisionShapeDistanceToTopEdgeFromCenter;
+                statlessItem.CollisionShapeDistanceToBottomEdgeFromCenter = collisionShapeDistanceToBottomEdgeFromCenter;
             }
         }        
     }

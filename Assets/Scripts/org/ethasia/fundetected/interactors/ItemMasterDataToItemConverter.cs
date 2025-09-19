@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
 
 namespace Org.Ethasia.Fundetected.Interactors
@@ -16,6 +17,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetWeaponRange(weaponMasterData.WeaponRange);
 
             ConvertEquipmentFields(weaponBuilder, weaponMasterData);
+            ConvertItemFields(weaponBuilder, weaponMasterData);
 
             return weaponBuilder.Build();
         }
@@ -27,6 +29,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetMovementSpeedAddend(armorMasterData.MovementSpeedAddend);
 
             ConvertEquipmentFields(armorBuilder, armorMasterData);
+            ConvertItemFields(armorBuilder, armorMasterData);
 
             armorBuilder.SetFirstImplicit(armorMasterData.FirstImplicit?.ToRollableEquipmentAffix());
 
@@ -38,6 +41,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             ConvertEquipmentFields(jewelryBuilder, jewelryMasterData);
+            ConvertItemFields(jewelryBuilder, jewelryMasterData);
 
             jewelryBuilder.SetFirstImplicit(jewelryMasterData.FirstImplicit?.ToRollableEquipmentAffix());
 
@@ -48,6 +52,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             RecoveryPotion.Builder potionBuilder = new RecoveryPotion.Builder()
                 .SetRecoveryAmount(potionMasterData.RecoveryAmount);
+
+            ConvertItemFields(potionBuilder, potionMasterData);
 
             potionBuilder.SetName(potionMasterData.Name);
             potionBuilder.SetUses(potionMasterData.Uses);
@@ -65,6 +71,14 @@ namespace Org.Ethasia.Fundetected.Interactors
             equipmentBuilder.SetIntelligenceRequirement(itemMasterData.IntelligenceRequirement);
             equipmentBuilder.SetItemClass(itemMasterData.ItemClass);
             equipmentBuilder.SetMinimumItemLevel(itemMasterData.MinimumItemLevel);
+        }
+
+        private static void ConvertItemFields(Item.Builder itemBuilder, ItemMasterData itemMasterData)
+        {
+            itemBuilder.SetCollisionShapeDistanceToLeftEdgeFromCenter(itemMasterData.CollisionShapeDistanceToLeftEdgeFromCenter);
+            itemBuilder.SetCollisionShapeDistanceToRightEdgeFromCenter(itemMasterData.CollisionShapeDistanceToRightEdgeFromCenter);
+            itemBuilder.SetCollisionShapeDistanceToTopEdgeFromCenter(itemMasterData.CollisionShapeDistanceToTopEdgeFromCenter);
+            itemBuilder.SetCollisionShapeDistanceToBottomEdgeFromCenter(itemMasterData.CollisionShapeDistanceToBottomEdgeFromCenter);
         }
     }
 }
