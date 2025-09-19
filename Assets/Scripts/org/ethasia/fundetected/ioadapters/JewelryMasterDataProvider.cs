@@ -16,42 +16,66 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public JewelryMasterData GetWeaponsBeltMasterData()
         {
-            return new JewelryMasterData.Builder()
+            JewelryMasterData.Builder builder = new JewelryMasterData.Builder()
                 .SetName("Weapons Belt")
                 .SetItemClass(ItemClass.BELT)
                 .SetMinimumItemLevel(10)
-                .SetFirstImplicit(implicitsMasterDataProvider.CreatePlusStrengthWeaponsBelt())
-                .Build();
+                .SetFirstImplicit(implicitsMasterDataProvider.CreatePlusStrengthWeaponsBelt());
+
+            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(0);
+
+            return builder.Build();
         }
 
         public JewelryMasterData GetWarBeltMasterData()
         {
-            return new JewelryMasterData.Builder()
+            JewelryMasterData.Builder builder = new JewelryMasterData.Builder()
                 .SetName("War Belt")
                 .SetItemClass(ItemClass.BELT)
                 .SetMinimumItemLevel(2)
-                .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamagePercentWarBelt())
-                .Build();
+                .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamagePercentWarBelt());
+
+            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
+            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(1);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(1);
+
+            return builder.Build();
         }
 
         public JewelryMasterData GetDiamondBandMasterData()
         {
-            return new JewelryMasterData.Builder()
+            JewelryMasterData.Builder builder = new JewelryMasterData.Builder()
                 .SetName("Diamond Band")
                 .SetItemClass(ItemClass.RING)
                 .SetMinimumItemLevel(5)
-                .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamageWithAttacksPercentDiamondBand())
-                .Build();
+                .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamageWithAttacksPercentDiamondBand());
+
+            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(0);
+
+            return builder.Build();
         }
 
         public JewelryMasterData GetIronAmuletMasterData()
         {
-            return new JewelryMasterData.Builder()
+            JewelryMasterData.Builder builder = new JewelryMasterData.Builder()
                 .SetName("Iron Amulet")
                 .SetItemClass(ItemClass.AMULET)
                 .SetMinimumItemLevel(10)
-                .SetFirstImplicit(implicitsMasterDataProvider.CreateIncArmorPercentIronAmulet())
-                .Build();
+                .SetFirstImplicit(implicitsMasterDataProvider.CreateIncArmorPercentIronAmulet());
+
+            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(0);
+
+            return builder.Build();
         }        
     }
 }
