@@ -137,7 +137,87 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
             Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(masterData);
 
             Assert.That(result.FirstImplicit.RerolledAffix, Is.InstanceOf<PlusAllElementalResistancesAffix>());
-        }        
+        }
+
+        [Test]
+        public void TestConvertWeaponMasterDataToWeaponConvertsCollisionDimensions()
+        {
+            WeaponMasterData.Builder weaponMasterDataBuilder = new WeaponMasterData.Builder();
+
+            weaponMasterDataBuilder.SetCollisionShapeDistanceToLeftEdgeFromCenter(1);
+            weaponMasterDataBuilder.SetCollisionShapeDistanceToRightEdgeFromCenter(2);
+            weaponMasterDataBuilder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
+            weaponMasterDataBuilder.SetCollisionShapeDistanceToBottomEdgeFromCenter(4);
+
+            WeaponMasterData testWeaponMasterData = weaponMasterDataBuilder.Build();
+
+            Weapon result = ItemMasterDataToItemConverter.ConvertWeaponMasterDataToWeapon(testWeaponMasterData);
+
+            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(1));
+            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(2));
+            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(3));
+            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(4));
+        }  
+
+        [Test]
+        public void TestConvertArmorMasterDataToArmorConvertsCollisionDimensions()
+        {
+            ArmorMasterData.Builder armorMasterDataBuilder = new ArmorMasterData.Builder();
+
+            armorMasterDataBuilder.SetCollisionShapeDistanceToLeftEdgeFromCenter(4);
+            armorMasterDataBuilder.SetCollisionShapeDistanceToRightEdgeFromCenter(5);
+            armorMasterDataBuilder.SetCollisionShapeDistanceToTopEdgeFromCenter(6);
+            armorMasterDataBuilder.SetCollisionShapeDistanceToBottomEdgeFromCenter(7);
+
+            ArmorMasterData testArmorMasterData = armorMasterDataBuilder.Build();
+
+            Armor result = ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(testArmorMasterData);
+
+            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(4));
+            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(5));
+            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(6));
+            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(7));
+        }
+
+        [Test]
+        public void TestConvertRecoveryPotionMasterDataToPotionConvertsCollisionDimensions()
+        {
+            RecoveryPotionMasterData.Builder potionMasterDataBuilder = new RecoveryPotionMasterData.Builder();
+
+            potionMasterDataBuilder.SetCollisionShapeDistanceToLeftEdgeFromCenter(7);
+            potionMasterDataBuilder.SetCollisionShapeDistanceToRightEdgeFromCenter(8);
+            potionMasterDataBuilder.SetCollisionShapeDistanceToTopEdgeFromCenter(9);
+            potionMasterDataBuilder.SetCollisionShapeDistanceToBottomEdgeFromCenter(10);
+
+            RecoveryPotionMasterData testPotionMasterData = potionMasterDataBuilder.Build();
+
+            RecoveryPotion result = ItemMasterDataToItemConverter.ConvertRecoveryPotionMasterDataToPotion(testPotionMasterData);
+
+            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(7));
+            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(8));
+            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(9));
+            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void TestConvertJewelryMasterDataToJewelryConvertsCollisionDimensions()
+        {
+            JewelryMasterData.Builder jewelryMasterDataBuilder = new JewelryMasterData.Builder();
+
+            jewelryMasterDataBuilder.SetCollisionShapeDistanceToLeftEdgeFromCenter(10);
+            jewelryMasterDataBuilder.SetCollisionShapeDistanceToRightEdgeFromCenter(11);
+            jewelryMasterDataBuilder.SetCollisionShapeDistanceToTopEdgeFromCenter(12);
+            jewelryMasterDataBuilder.SetCollisionShapeDistanceToBottomEdgeFromCenter(13);
+
+            JewelryMasterData testJewelryMasterData = jewelryMasterDataBuilder.Build();
+
+            Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(testJewelryMasterData);
+
+            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(10));
+            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(11));
+            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(12));
+            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(13));
+        }
         
         public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitMasterDataForTest()
         {
