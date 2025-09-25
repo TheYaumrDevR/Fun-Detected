@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
 {
@@ -247,45 +248,20 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public int CalculateFallDepth()
         {
-            int result = 0;
+            RectangleCollisionShape playerCollisionShape = new RectangleCollisionShape.Builder()
+                .SetPosition(playerPosition)
+                .SetCollisionShapeDistanceToLeftEdgeFromCenter(MovementStrategy.UNITS_TO_PLAYER_LEFT_BORDER)
+                .SetCollisionShapeDistanceToRightEdgeFromCenter(MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER)
+                .SetCollisionShapeDistanceToTopEdgeFromCenter(MovementStrategy.UNITS_TO_PLAYER_TOP_BORDER)
+                .SetCollisionShapeDistanceToBottomEdgeFromCenter(MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER)
+                .Build();
 
-            for (int i = playerPosition.Y - MovementStrategy.UNITS_TO_PLAYER_BOTTOM_BORDER - 1; i > areaDimensions.LowestScreenY; i--)
-            {
-                for (int x = playerPosition.X - MovementStrategy.UNITS_TO_PLAYER_LEFT_BORDER; x <= playerPosition.X + MovementStrategy.UNITS_TO_PLAYER_RIGHT_BORDER; x++)
-                {
-                    if (Area.ActiveArea.TileAtIsCollision(x, i))
-                    {
-                        playerPosition.Y -= result;
-                        return result;
-                    }
-                }
-
-                result++;
-            }
-
-            playerPosition.Y -= result;
-            return result;
+            return PhysicsCalculator.CalculateFalling(playerCollisionShape, areaDimensions);
         } 
 
-        public void MakeRecangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape)
+        private void MakeRecangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape)
         {
-            int fallDepth = 0;
-
-            for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > areaDimensions.LowestScreenY; i--)
-            {
-                for (int x = rectangleCollisionShape.Position.X - rectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter; x <= rectangleCollisionShape.Position.X + rectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter; x++)
-                {
-                    if (Area.ActiveArea.TileAtIsCollision(x, i))
-                    {
-                        rectangleCollisionShape.Position.Y -= fallDepth;
-                        return;
-                    }
-                }
-
-                fallDepth++;
-            }
-
-            rectangleCollisionShape.Position.Y -= fallDepth;
+            PhysicsCalculator.CalculateFalling(rectangleCollisionShape, areaDimensions);
         }
 
         public int TryToMovePlayerRightStepUp()
