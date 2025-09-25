@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Items
 {
     public abstract class Item
@@ -13,7 +15,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             get;
             private set;
         }
-        
+
         public int MinimumItemLevel
         {
             get;
@@ -26,35 +28,17 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private set;
         }
 
-        public int CollisionShapeDistanceToLeftEdgeFromCenter
+        public RectangleCollisionShape CollisionShape
         {
             get;
-            protected set;
-        }
-
-        public int CollisionShapeDistanceToRightEdgeFromCenter
-        {
-            get;
-            protected set;
-        }
-
-        public int CollisionShapeDistanceToTopEdgeFromCenter
-        {
-            get;
-            protected set;
-        }
-
-        public int CollisionShapeDistanceToBottomEdgeFromCenter
-        {
-            get;
-            protected set;
+            private set;
         }
 
         public ItemInInventoryShape CreateInventoryShape()
         {
             return ItemClass.CreateInventoryShape(this);
         }
-        
+
         public abstract void Accept(ItemVisitor visitor);
 
         public class Builder
@@ -118,16 +102,20 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
             protected void FillItemFields(Item statlessItem)
             {
+                RectangleCollisionShape collisionShape = new RectangleCollisionShape.Builder()
+                    .SetPosition(new Position(0, 0))
+                    .SetCollisionShapeDistanceToLeftEdgeFromCenter(collisionShapeDistanceToLeftEdgeFromCenter)
+                    .SetCollisionShapeDistanceToRightEdgeFromCenter(collisionShapeDistanceToRightEdgeFromCenter)
+                    .SetCollisionShapeDistanceToTopEdgeFromCenter(collisionShapeDistanceToTopEdgeFromCenter)
+                    .SetCollisionShapeDistanceToBottomEdgeFromCenter(collisionShapeDistanceToBottomEdgeFromCenter)
+                    .Build();
+
                 statlessItem.Name = name;
                 statlessItem.ItemClass = itemClass;
                 statlessItem.MinimumItemLevel = minimumItemLevel;
                 statlessItem.ItemLevel = itemLevel;
-                
-                statlessItem.CollisionShapeDistanceToLeftEdgeFromCenter = collisionShapeDistanceToLeftEdgeFromCenter;
-                statlessItem.CollisionShapeDistanceToRightEdgeFromCenter = collisionShapeDistanceToRightEdgeFromCenter;
-                statlessItem.CollisionShapeDistanceToTopEdgeFromCenter = collisionShapeDistanceToTopEdgeFromCenter;
-                statlessItem.CollisionShapeDistanceToBottomEdgeFromCenter = collisionShapeDistanceToBottomEdgeFromCenter;
+                statlessItem.CollisionShape = collisionShape;
             }
-        }        
+        }
     }
 }

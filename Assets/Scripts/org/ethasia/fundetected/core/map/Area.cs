@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Items;
 
 namespace Org.Ethasia.Fundetected.Core.Map
 {
@@ -83,6 +84,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public List<Item> DroppedItems
+        {
+            get;
+            private set;
+        }
+
         public int GetPlayerPositionX()
         {
             return playerPosition.X;
@@ -101,6 +108,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Portals = new List<MapPortal>();
             HealingWells = new List<HealingWell>();
             InteractableEnvironmentObjects = new List<InteractableEnvironmentObject>();
+            DroppedItems = new List<Item>();
             this.isCollisionTile = isCollisionTile; 
             playerPosition = new Position(0, 0);
             enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
@@ -171,6 +179,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             HealingWells.Add(healingWell);
             InteractableEnvironmentObjects.Add(healingWell);
+        }
+
+        public void AddItem(Item item)
+        {
+            DroppedItems.Add(item);
+            MakeRecangleCollisionShapeFall(item.CollisionShape);
         }
 
         public List<EnemySpawnLocation> SpawnEnemies()
@@ -252,6 +266,27 @@ namespace Org.Ethasia.Fundetected.Core.Map
             playerPosition.Y -= result;
             return result;
         } 
+
+        public void MakeRecangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape)
+        {
+            int fallDepth = 0;
+
+            for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > areaDimensions.LowestScreenY; i--)
+            {
+                for (int x = rectangleCollisionShape.Position.X - rectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter; x <= rectangleCollisionShape.Position.X + rectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter; x++)
+                {
+                    if (Area.ActiveArea.TileAtIsCollision(x, i))
+                    {
+                        rectangleCollisionShape.Position.Y -= fallDepth;
+                        return;
+                    }
+                }
+
+                fallDepth++;
+            }
+
+            rectangleCollisionShape.Position.Y -= fallDepth;
+        }
 
         public int TryToMovePlayerRightStepUp()
         {

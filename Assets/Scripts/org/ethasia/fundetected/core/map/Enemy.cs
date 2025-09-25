@@ -332,6 +332,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             if (dropTableEntry.HasValue)
             {
                 Item item = dropTableEntry.Value.Item;
+                item.CollisionShape.Position.SetFromOtherPosition(Position);
+                Area.ActiveArea.AddItem(item);
                 ShowDroppedItem(item);
                 PlayItemDropSound();
             }
@@ -343,9 +345,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             ItemDropPresentationInformation itemDropInfo = new ItemDropPresentationInformation();
             itemDropInfo.BaseTypeOrUniqueName = item.Name;
-            itemDropInfo.PositionX = Position.X;
-            itemDropInfo.PositionY = Position.Y;
-            
+            itemDropInfo.PositionX = item.CollisionShape.Position.X;
+            itemDropInfo.PositionY = item.CollisionShape.Position.Y;
+
             droppedItemPresenter.PresentItemDrop(itemDropInfo);
         }
 

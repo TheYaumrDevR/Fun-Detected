@@ -33,11 +33,6 @@ namespace Org.Ethasia.Fundetected.Interactors
             return activeArea.Player;
         }
 
-        private bool PlayerCollidedWithWallAndIsOnFloor(int deltaUnitsMoved, int unitsDropped)
-        {
-            return deltaUnitsMoved > 0 && unitsDropped == 0;
-        }
-
         private void MovePlayerRight(int unitsToMove)
         {
             Area activeArea = Area.ActiveArea;
@@ -94,6 +89,11 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
             playerAnimationPresenter.StartWalkAnimation();
+        }
+
+        private bool PlayerCollidedWithWallAndIsOnFloor(int deltaUnitsMoved, int unitsDropped)
+        {
+            return deltaUnitsMoved > 0 && unitsDropped == 0;
         }
 
         private IPlayerMovementController GetPlayerMovementController()

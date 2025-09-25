@@ -153,11 +153,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Weapon result = ItemMasterDataToItemConverter.ConvertWeaponMasterDataToWeapon(testWeaponMasterData);
 
-            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(1));
-            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(2));
-            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(3));
-            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(4));
-        }  
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(1));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(2));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(3));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(4));
+        }
 
         [Test]
         public void TestConvertArmorMasterDataToArmorConvertsCollisionDimensions()
@@ -173,10 +173,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Armor result = ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(testArmorMasterData);
 
-            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(4));
-            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(5));
-            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(6));
-            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(7));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(4));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(5));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(6));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(7));
         }
 
         [Test]
@@ -193,10 +193,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             RecoveryPotion result = ItemMasterDataToItemConverter.ConvertRecoveryPotionMasterDataToPotion(testPotionMasterData);
 
-            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(7));
-            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(8));
-            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(9));
-            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(10));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(7));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(8));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(9));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(10));
         }
 
         [Test]
@@ -213,10 +213,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
 
             Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(testJewelryMasterData);
 
-            Assert.That(result.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(10));
-            Assert.That(result.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(11));
-            Assert.That(result.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(12));
-            Assert.That(result.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(13));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter, Is.EqualTo(10));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToRightEdgeFromCenter, Is.EqualTo(11));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(12));
+            Assert.That(result.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(13));
         }
         
         public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitMasterDataForTest()

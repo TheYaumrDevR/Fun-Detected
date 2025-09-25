@@ -9,6 +9,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             X = x;
             Y = y;
-        }       
+        }  
+
+        public void SetFromOtherPosition(Position other)
+        {
+            X = other.X;
+            Y = other.Y;
+        }
     }
 }
