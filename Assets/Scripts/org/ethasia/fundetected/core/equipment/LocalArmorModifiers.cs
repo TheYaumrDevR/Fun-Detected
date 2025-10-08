@@ -17,5 +17,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         {
             IncreasedArmorInPercent -= value;
         }
+
+        public LocalArmorModifiers Clone()
+        {
+            LocalArmorModifiers copy = new LocalArmorModifiers();
+            copy.IncreasedArmorInPercent = IncreasedArmorInPercent;
+
+            return copy;
+        }
     }
 }

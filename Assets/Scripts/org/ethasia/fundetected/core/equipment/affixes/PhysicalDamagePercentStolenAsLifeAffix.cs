@@ -43,5 +43,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }
+
+        public override EquipmentAffix Clone()
+        {
+            PhysicalDamagePercentStolenAsLifeAffix copy = new PhysicalDamagePercentStolenAsLifeAffix(value);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

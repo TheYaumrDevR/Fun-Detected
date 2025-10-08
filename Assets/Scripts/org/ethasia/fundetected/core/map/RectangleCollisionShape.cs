@@ -32,6 +32,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public RectangleCollisionShape Clone()
+        {
+            var builder = new Builder();
+            builder.SetPosition(new Position(Position.X, Position.Y))
+                .SetCollisionShapeDistanceToLeftEdgeFromCenter(CollisionShapeDistanceToLeftEdgeFromCenter)
+                .SetCollisionShapeDistanceToRightEdgeFromCenter(CollisionShapeDistanceToRightEdgeFromCenter)
+                .SetCollisionShapeDistanceToTopEdgeFromCenter(CollisionShapeDistanceToTopEdgeFromCenter)
+                .SetCollisionShapeDistanceToBottomEdgeFromCenter(CollisionShapeDistanceToBottomEdgeFromCenter);    
+
+            return builder.Build();
+        }
+
         public class Builder
         {
             private Position position;

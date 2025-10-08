@@ -61,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         public void IncreasePlusMinToMaxColdDamageBy(int min, int max)
         {
             PlusMinToMaxColdDamage.Add(min, max);
-        }     
+        }
 
         public void DecreasePlusMinToMaxColdDamageBy(int min, int max)
         {
@@ -86,7 +86,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         public void DecreasePlusMinToMaxLightningDamageBy(int min, int max)
         {
             PlusMinToMaxLightningDamage.Add(-min, -max);
-        }   
+        }
 
         public void IncreaseIncreasedPhysicalDamageInPercentBy(int value)
         {
@@ -106,6 +106,19 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         public void DecreaseIncreasedAttackSpeedInPercentBy(int value)
         {
             IncreasedAttackSpeedInPercent -= value;
+        }
+
+        public LocalWeaponModifiers Clone()
+        {
+            LocalWeaponModifiers clone = new LocalWeaponModifiers();
+            clone.PlusMinToMaxPhysicalDamage = new DamageRange(PlusMinToMaxPhysicalDamage.MinDamage, PlusMinToMaxPhysicalDamage.MaxDamage);
+            clone.PlusMinToMaxFireDamage = new DamageRange(PlusMinToMaxFireDamage.MinDamage, PlusMinToMaxFireDamage.MaxDamage);
+            clone.PlusMinToMaxColdDamage = new DamageRange(PlusMinToMaxColdDamage.MinDamage, PlusMinToMaxColdDamage.MaxDamage);
+            clone.PlusMinToMaxLightningDamage = new DamageRange(PlusMinToMaxLightningDamage.MinDamage, PlusMinToMaxLightningDamage.MaxDamage);
+            clone.IncreasedPhysicalDamageInPercent = IncreasedPhysicalDamageInPercent;
+            clone.IncreasedAttackSpeedInPercent = IncreasedAttackSpeedInPercent;
+
+            return clone;
         }
     }
 }

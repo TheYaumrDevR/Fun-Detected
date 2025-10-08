@@ -42,6 +42,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
 
+        }
+
+        public override EquipmentAffix Clone()
+        {
+            PlusAgilityAffix copy = new PlusAgilityAffix(value);
+            Clone(copy);
+
+            return copy;
         }         
     }
 }

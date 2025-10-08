@@ -30,6 +30,19 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
+        public override Item Clone()
+        {
+            Armor result = new Armor();
+
+            result.ArmorValue = ArmorValue;
+            result.MovementSpeedAddend = MovementSpeedAddend;
+            result.LocalModifiers = LocalModifiers.Clone();
+            
+            Clone(result);
+
+            return result;
+        }
+
         protected override void ApplyLocalAffixes()
         {
             foreach (EquipmentAffix prefix in prefixes)

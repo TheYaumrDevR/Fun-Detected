@@ -8,6 +8,12 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
             private set;
         }
 
+        protected void Clone(Potion clone)
+        {
+            clone.Uses = Uses;
+            Clone(clone);
+        }
+
         new public class Builder : Item.Builder
         {
             private int uses;

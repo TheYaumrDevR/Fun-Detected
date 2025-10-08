@@ -61,6 +61,21 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             visitor.Visit(this);
         }
 
+        public override Item Clone()
+        {
+            Weapon result = new Weapon();
+            result.MinToMaxPhysicalDamage = new DamageRange(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            result.MinToMaxSpellDamage = new DamageRange(MinToMaxSpellDamage.MinDamage, MinToMaxSpellDamage.MaxDamage);
+            result.SkillsPerSecond = SkillsPerSecond;
+            result.CriticalStrikeChance = CriticalStrikeChance;
+            result.WeaponRange = WeaponRange;
+            result.LocalModifiers = LocalModifiers.Clone();
+
+            Clone(result);
+
+            return result;
+        }
+
         new public class Builder : Equipment.Builder
         {
             private DamageRange minToMaxPhysicalDamage;

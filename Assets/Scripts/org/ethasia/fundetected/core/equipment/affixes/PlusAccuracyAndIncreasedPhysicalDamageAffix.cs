@@ -45,5 +45,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }
+
+        public override EquipmentAffix Clone()
+        {
+            PlusAccuracyAndIncreasedPhysicalDamageAffix copy = new PlusAccuracyAndIncreasedPhysicalDamageAffix(plusAccuracyValue, increasedPhysicalDamageValue);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

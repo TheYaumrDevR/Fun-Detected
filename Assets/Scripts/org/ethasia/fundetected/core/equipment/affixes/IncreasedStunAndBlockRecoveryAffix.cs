@@ -43,5 +43,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }
+
+        public override EquipmentAffix Clone()
+        {
+            IncreasedStunAndBlockRecoveryAffix copy = new IncreasedStunAndBlockRecoveryAffix(value);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

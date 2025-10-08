@@ -29,7 +29,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
             localWeaponModifiers.IncreasePlusMinToMaxPhysicalDamageBy(plusMinPhysicalDamageValue, plusMaxPhysicalDamageValue);
-        }        
+        }
 
         public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
@@ -44,6 +44,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
 
-        }           
+        }    
+
+        public override EquipmentAffix Clone()
+        {
+            PlusMinMaxPhysicalDamageAffix copy = new PlusMinMaxPhysicalDamageAffix(plusMinPhysicalDamageValue, plusMaxPhysicalDamageValue);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

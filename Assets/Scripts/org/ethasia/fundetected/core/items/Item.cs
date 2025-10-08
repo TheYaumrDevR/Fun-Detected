@@ -39,7 +39,17 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return ItemClass.CreateInventoryShape(this);
         }
 
+        public abstract Item Clone();
         public abstract void Accept(ItemVisitor visitor);
+
+        protected void Clone(Item clone)
+        {
+            clone.Name = Name;
+            clone.ItemClass = ItemClass;
+            clone.MinimumItemLevel = MinimumItemLevel;
+            clone.ItemLevel = ItemLevel;
+            clone.CollisionShape = CollisionShape.Clone();
+        }
 
         public class Builder
         {

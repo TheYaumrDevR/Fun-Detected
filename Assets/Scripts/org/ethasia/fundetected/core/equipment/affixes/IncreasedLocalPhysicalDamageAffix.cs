@@ -32,7 +32,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
             localWeaponModifiers.DecreaseIncreasedPhysicalDamageInPercentBy(value);
-        }      
+        }
 
         public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
@@ -43,5 +43,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }  
+        
+        public override EquipmentAffix Clone()
+        {
+            IncreasedLocalPhysicalDamageAffix copy = new IncreasedLocalPhysicalDamageAffix(value);
+            Clone(copy);
+            
+            return copy;
+        }
     }
 }

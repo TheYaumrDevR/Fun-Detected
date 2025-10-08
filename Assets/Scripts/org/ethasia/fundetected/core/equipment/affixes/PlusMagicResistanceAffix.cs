@@ -43,5 +43,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }         
+
+        public override EquipmentAffix Clone()
+        {
+            PlusMagicResistanceAffix copy = new PlusMagicResistanceAffix(value);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

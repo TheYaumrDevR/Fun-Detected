@@ -19,6 +19,14 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
 
         }
 
+        public override Item Clone()
+        {
+            GlyphOfVitality result = new GlyphOfVitality();
+            Clone(result);
+            
+            return result;
+        }
+
         new public class Builder : Consumable.Builder
         {
             public GlyphOfVitality Build()

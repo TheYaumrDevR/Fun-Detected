@@ -20,5 +20,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public abstract void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers);
         public abstract void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers);
         public abstract void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers);
+        public abstract EquipmentAffix Clone();
+
+        protected void Clone(EquipmentAffix target)
+        {
+            target.AffixType = AffixType;
+        }
     }
 }

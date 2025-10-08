@@ -32,7 +32,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
 
-        }      
+        }
 
         public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
@@ -43,5 +43,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }  
+        
+        public override EquipmentAffix Clone()
+        {
+            IncreasedGlobalPhysicalDamageAffix copy = new IncreasedGlobalPhysicalDamageAffix(value);
+            Clone(copy);
+            
+            return copy;
+        }
     }
 }

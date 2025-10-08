@@ -45,5 +45,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
 
         }
+
+        public override EquipmentAffix Clone()
+        {
+            PlusMinMaxColdDamageAffix copy = new PlusMinMaxColdDamageAffix(plusMinDamageValue, plusMaxDamageValue);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
             statsFromEquipment.DecreasePlusMaximumFireResistanceBy(value);
-        }  
+        }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
@@ -42,6 +42,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
 
-        }               
+        }    
+
+        public override EquipmentAffix Clone()
+        {
+            PlusMaximumFireResistanceAffix copy = new PlusMaximumFireResistanceAffix(value);
+            Clone(copy);
+
+            return copy;
+        }
     }
 }

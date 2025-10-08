@@ -68,8 +68,38 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 FirstImplicit.RerolledAffix.UnApplyEffects(statsFromEquipment);
             }
-        }   
+        }
 
+        protected void Clone(Equipment clone)
+        {
+            clone.StrengthRequirement = StrengthRequirement;
+            clone.AgilityRequirement = AgilityRequirement;
+            clone.IntelligenceRequirement = IntelligenceRequirement;
+
+            ClonePrefixes(clone);
+            CloneSuffixes(clone);
+
+            clone.FirstImplicit = null == FirstImplicit ? null : FirstImplicit.Clone();
+            
+            Clone(clone);
+        }
+
+        protected void ClonePrefixes(Equipment target)
+        {
+            foreach (EquipmentAffix prefix in prefixes)
+            {
+                target.prefixes.Add(prefix.Clone());
+            }
+        }
+
+        protected void CloneSuffixes(Equipment target)
+        {
+            foreach (EquipmentAffix suffix in suffixes)
+            {
+                target.suffixes.Add(suffix.Clone());
+            }
+        }
+            
         protected abstract void ApplyLocalAffixes();        
 
         new public class Builder : Item.Builder

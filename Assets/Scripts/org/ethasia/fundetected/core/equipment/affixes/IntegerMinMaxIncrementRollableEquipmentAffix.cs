@@ -44,6 +44,18 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             return false;
         }
 
+        public override RollableEquipmentAffix Clone()
+        {
+            IntegerMinMaxIncrementRollableEquipmentAffix copy = new IntegerMinMaxIncrementRollableEquipmentAffix(RerolledAffix.Clone());
+            copy.minValue = minValue;
+            copy.maxValue = maxValue;
+            copy.increment = increment;
+
+            Clone(copy);
+
+            return copy;
+        }
+
         public class Builder
         {
             private EquipmentAffix rerolledAffix;

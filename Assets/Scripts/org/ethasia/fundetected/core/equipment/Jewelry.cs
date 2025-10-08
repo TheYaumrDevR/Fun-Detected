@@ -11,6 +11,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             visitor.Visit(this);
         }
 
+        public override Item Clone()
+        {
+            Jewelry result = new Jewelry();
+            Clone(result);
+            
+            return result;
+        }
+
         new public class Builder : Equipment.Builder
         {
             public Jewelry Build()

@@ -43,5 +43,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         {
             localArmorModifiers.DecreaseIncreasedArmorInPercentBy(value);
         }
+
+        public override EquipmentAffix Clone()
+        {
+            IncreasedLocalArmourAffix copy = new IncreasedLocalArmourAffix(value);
+            Clone(copy);
+            
+            return copy;
+        }
     }
 }
