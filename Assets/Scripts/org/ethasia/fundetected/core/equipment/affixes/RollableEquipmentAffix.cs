@@ -16,10 +16,5 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         public abstract void RerollAffix();
         public abstract bool Equals(RollableEquipmentAffix other);
         public abstract RollableEquipmentAffix Clone();
-
-        protected void Clone(RollableEquipmentAffix target)
-        {
-            target.RerolledAffix = RerolledAffix.Clone();
-        }
     }
 }

@@ -51,8 +51,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             copy.maxValue = maxValue;
             copy.increment = increment;
 
-            Clone(copy);
-
             return copy;
         }
 

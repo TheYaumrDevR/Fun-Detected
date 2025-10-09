@@ -60,12 +60,12 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables
             }
         }
 
-        protected void Clone(Consumable clone)
+        protected void CloneConsumableFields(Consumable clone)
         {
             clone.MaximumStackSize = MaximumStackSize;
             clone.StackSize = StackSize;
 
-            Clone(clone);
+            CloneItemFields(clone);
         }
 
         new public class Builder : Item.Builder

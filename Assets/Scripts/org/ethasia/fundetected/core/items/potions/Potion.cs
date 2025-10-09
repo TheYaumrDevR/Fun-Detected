@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
         protected void Clone(Potion clone)
         {
             clone.Uses = Uses;
-            Clone(clone);
+            CloneItemFields(clone);
         }
 
         new public class Builder : Item.Builder

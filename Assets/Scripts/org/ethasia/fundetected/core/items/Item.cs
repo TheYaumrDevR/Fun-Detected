@@ -42,7 +42,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public abstract Item Clone();
         public abstract void Accept(ItemVisitor visitor);
 
-        protected void Clone(Item clone)
+        protected void CloneItemFields(Item clone)
         {
             clone.Name = Name;
             clone.ItemClass = ItemClass;

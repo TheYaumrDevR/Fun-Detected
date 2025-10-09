@@ -15,11 +15,12 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
             MaximumStackSize = 10;
         }
 
-        public abstract EquipmentAffix OnApplyToEquipment();   
+        public abstract EquipmentAffix OnApplyToEquipment();
 
         protected void Clone(Glyph target)
         {
             target.AffixType = AffixType;
+            CloneConsumableFields(target);
         }    
     }
 }

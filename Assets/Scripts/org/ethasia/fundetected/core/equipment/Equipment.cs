@@ -10,6 +10,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         protected List<EquipmentAffix> prefixes = new List<EquipmentAffix>();
         protected List<EquipmentAffix> suffixes = new List<EquipmentAffix>();
 
+        public IReadOnlyList<EquipmentAffix> Prefixes => prefixes.AsReadOnly();
+        public IReadOnlyList<EquipmentAffix> Suffixes => suffixes.AsReadOnly();
+
         public RollableEquipmentAffix FirstImplicit
         {
             get;
@@ -81,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             clone.FirstImplicit = null == FirstImplicit ? null : FirstImplicit.Clone();
             
-            Clone(clone);
+            CloneItemFields(clone);
         }
 
         protected void ClonePrefixes(Equipment target)
