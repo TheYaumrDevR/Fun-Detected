@@ -331,7 +331,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             if (dropTableEntry.HasValue)
             {
-                Item item = dropTableEntry.Value.Item;
+                Item item = dropTableEntry.Value.DropItem();
                 item.CollisionShape.Position.SetFromOtherPosition(Position);
                 Area.ActiveArea.AddItem(item);
                 ShowDroppedItem(item);

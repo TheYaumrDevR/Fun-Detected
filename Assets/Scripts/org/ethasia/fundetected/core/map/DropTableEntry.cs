@@ -21,5 +21,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
             DropChance = dropChance;
             Item = item;
         }
+
+        public Item DropItem()
+        {
+            return Item.Clone();
+        }
     }
 }
