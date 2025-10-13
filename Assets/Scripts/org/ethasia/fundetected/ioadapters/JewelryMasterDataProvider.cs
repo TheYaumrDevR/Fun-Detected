@@ -40,8 +40,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
-            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(1);
-            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(1);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(3);
 
             return builder.Build();
         }
@@ -56,8 +56,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(3);
 
             return builder.Build();
         }
@@ -72,8 +72,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(3);
 
             return builder.Build();
         }        
