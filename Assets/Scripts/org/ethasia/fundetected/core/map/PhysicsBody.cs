@@ -9,7 +9,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public int OriginalPosY;
         public int InitialVerticalVelocityUnitsPerSecond;
 
-        public double TimePassedSinceVerticalMovemeentStart
+        public double TimePassedSinceVerticalMovementStart
         {
             get
             {

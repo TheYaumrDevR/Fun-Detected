@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         {
             int result = 0;
 
-            int totalFallDistance = CalculateDistanceForConstantAcceleration(physicsBody.TimePassedSinceVerticalMovemeentStart, GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
+            int totalFallDistance = CalculateDistanceForConstantAcceleration(physicsBody.TimePassedSinceVerticalMovementStart, GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
             int targetPosY = physicsBody.OriginalPosY + totalFallDistance;
 
             if (targetPosY < areaDimensions.LowestScreenY)
