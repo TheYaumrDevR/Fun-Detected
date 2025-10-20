@@ -11,14 +11,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             int result = 0;
 
             int totalFallDistance = CalculateDistanceForConstantAcceleration(physicsBody.TimePassedSinceVerticalMovementStart, GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
-            int targetPosY = physicsBody.OriginalPosY + totalFallDistance;
+            int targetPosLowerBorder = physicsBody.OriginalPosY + totalFallDistance - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
 
-            if (targetPosY < areaDimensions.LowestScreenY)
+            if (targetPosLowerBorder < areaDimensions.LowestScreenY)
             {
-                targetPosY = areaDimensions.LowestScreenY;
+                targetPosLowerBorder = areaDimensions.LowestScreenY;
             }
 
-            for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > targetPosY; i--)
+            for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > targetPosLowerBorder; i--)
             {
                 for (int x = rectangleCollisionShape.Position.X - rectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter; x <= rectangleCollisionShape.Position.X + rectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter; x++)
                 {
@@ -33,6 +33,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 result++;
             }
 
+            rectangleCollisionShape.Position.Y -= result;
             return result;
         }
 
@@ -60,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         
         protected static int CalculateDistanceForConstantAcceleration(double timeInSeconds, int acceleration)
         {
-            return (int)(FastMath.Round(acceleration * (0.5 * timeInSeconds * timeInSeconds)) + 0.5);
+            return (int)(FastMath.Round(acceleration * (0.5 * timeInSeconds * timeInSeconds)));
         }
     }
 }

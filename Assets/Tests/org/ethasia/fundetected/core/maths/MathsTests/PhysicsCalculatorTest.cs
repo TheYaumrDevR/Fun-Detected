@@ -7,6 +7,92 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
     public class PhysicsCalculatorTest
     {
         [Test]
+        public void TestCalculateDistanceForConstantAccelerationCalculatesCorrectDistances()
+        {
+            int result = TestablePhysicsCalculator.CallCalculateDistanceForConstantAcceleration(1.2, -9);
+            int result2 = TestablePhysicsCalculator.CallCalculateDistanceForConstantAcceleration(3.7, -9);
+            int result3 = TestablePhysicsCalculator.CallCalculateDistanceForConstantAcceleration(0, -9);
+            int result4 = TestablePhysicsCalculator.CallCalculateDistanceForConstantAcceleration(5.2, -3);
+
+            Assert.That(result, Is.EqualTo(-6));
+            Assert.That(result2, Is.EqualTo(-62));
+            Assert.That(result3, Is.EqualTo(0));
+            Assert.That(result4, Is.EqualTo(-41));
+        }
+
+        [Test]
+        public void TestCalculateFallingFallsToLowestPointWhenNoObstacles()
+        {
+            SetupTestAreaWithNoObstacles();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.OriginalPosY = 14;
+            physicsBody.StartFalling();
+            physicsBody.Fall(3);
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+
+            Assert.That(resultFallingDistance, Is.EqualTo(10));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(4));
+        }
+
+        [Test]
+        public void TestCalculateFallingFallsBasedOnTime()
+        {
+            SetupTestAreaWithNoObstacles();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.OriginalPosY = 14;
+            physicsBody.StartFalling();
+            physicsBody.Fall(1.3);
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+
+            Assert.That(resultFallingDistance, Is.EqualTo(8));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void TestCalculateFallingStopsAtCollidable()
+        {
+            SetupTestArea();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(10, 18);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.OriginalPosY = 18;
+            physicsBody.StartFalling();
+            physicsBody.Fall(1.5);
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+
+            Assert.That(resultFallingDistance, Is.EqualTo(9));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));
+        }
+
+        [Test]
+        public void TestCalculateFallingDoesNotFallOnGround()
+        {
+            SetupTestArea();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(10, 9);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.OriginalPosY = 9;
+            physicsBody.StartFalling();
+            physicsBody.Fall(1.5);
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+
+            Assert.That(resultFallingDistance, Is.EqualTo(0));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));
+        }
+
+        [Test]
         public void TestCalculateFallingSubtractsYPositionCorrectly()
         {
             SetupTestArea();
@@ -69,7 +155,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         private void SetupTestArea()
         {
             Area testArea = new Area.Builder()
-                .SetWidthAndHeight(14, 13)
+                .SetWidthAndHeight(14, 25)
                 .SetIsColliding(0, 2)
                 .SetIsColliding(1, 2)
                 .SetIsColliding(2, 2)
@@ -89,6 +175,15 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetIsColliding(11, 2)
                 .SetIsColliding(12, 2)
                 .SetIsColliding(13, 2)
+                .Build();
+
+            Area.ActiveArea = testArea;
+        }
+
+        private void SetupTestAreaWithNoObstacles()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(14, 13)
                 .Build();
 
             Area.ActiveArea = testArea;

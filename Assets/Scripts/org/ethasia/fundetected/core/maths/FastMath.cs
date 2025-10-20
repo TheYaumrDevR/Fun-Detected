@@ -27,7 +27,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             return FastMath.Floor(value * adjustment + 0.5) / adjustment;
         }        
 
-        public static int Floor(double x) 
+        public static int Floor(double x)
         {
             int xCast = (int)x;
             return x < xCast ? xCast - 1 : xCast;            
