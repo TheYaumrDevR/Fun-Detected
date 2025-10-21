@@ -4,6 +4,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
 {
     public abstract class Item
     {
+        public string UniqueId
+        {
+            get;
+            private set;
+        }
+
         public string Name
         {
             get;
@@ -39,8 +45,15 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return ItemClass.CreateInventoryShape(this);
         }
 
-        public abstract Item Clone();
+        public Item Clone()
+        {
+            Item result = CloneActual();
+            result.UniqueId = Name + System.Guid.NewGuid().ToString();
+            return result;
+        }
+
         public abstract void Accept(ItemVisitor visitor);
+        protected abstract Item CloneActual();
 
         protected void CloneItemFields(Item clone)
         {

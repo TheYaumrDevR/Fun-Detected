@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             visitor.Visit(this);
         }
 
-        public override Item Clone()
+        protected override Item CloneActual()
         {
             Jewelry result = new Jewelry();
             Clone(result);

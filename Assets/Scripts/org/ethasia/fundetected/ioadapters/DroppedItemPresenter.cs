@@ -39,7 +39,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             float posY = ConvertMapPositionToScreenPosition(itemDropInfo.PositionY);
 
             return new DroppedItemRenderProxy.Builder()
-                .SetId(itemDropInfo.BaseTypeOrUniqueName)
+                .SetId(itemDropInfo.UniqueId)
                 .SetItemName(itemDropInfo.BaseTypeOrUniqueName)
                 .SetRenderImageName(itemDropInfo.BaseTypeOrUniqueName)
                 .SetPosX(posX)

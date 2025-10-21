@@ -30,7 +30,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
-        public override Item Clone()
+        protected override Item CloneActual()
         {
             Armor result = new Armor();
 

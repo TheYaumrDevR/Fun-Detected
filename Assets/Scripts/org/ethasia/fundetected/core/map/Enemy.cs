@@ -344,6 +344,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
 
             ItemDropPresentationInformation itemDropInfo = new ItemDropPresentationInformation();
+            itemDropInfo.UniqueId = item.UniqueId;
             itemDropInfo.BaseTypeOrUniqueName = item.Name;
             itemDropInfo.PositionX = item.CollisionShape.Position.X;
             itemDropInfo.PositionY = item.CollisionShape.Position.Y;

@@ -19,7 +19,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
 
         }
 
-        public override Item Clone()
+        protected override Item CloneActual()
         {
             GlyphOfVitality result = new GlyphOfVitality();
             Clone(result);

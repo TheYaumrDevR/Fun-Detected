@@ -13,7 +13,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
 
         }
 
-        public override Item Clone()
+        protected override Item CloneActual()
         {
             RecoveryPotion result = new RecoveryPotion();
             result.RecoveryAmount = RecoveryAmount;

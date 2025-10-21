@@ -61,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             visitor.Visit(this);
         }
 
-        public override Item Clone()
+        protected override Item CloneActual()
         {
             Weapon result = new Weapon();
             result.MinToMaxPhysicalDamage = new DamageRange(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
