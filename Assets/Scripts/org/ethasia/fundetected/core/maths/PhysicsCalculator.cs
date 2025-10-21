@@ -10,13 +10,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         {
             int result = 0;
 
-            int totalFallDistance = CalculateDistanceForConstantAcceleration(physicsBody.TimePassedSinceVerticalMovementStart, GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
-            int targetPosLowerBorder = physicsBody.OriginalPosY + totalFallDistance - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
-
-            if (targetPosLowerBorder < areaDimensions.LowestScreenY)
-            {
-                targetPosLowerBorder = areaDimensions.LowestScreenY;
-            }
+            int targetPosLowerBorder = CalculateTargetPositionLowerBorder(physicsBody, rectangleCollisionShape, areaDimensions);
 
             for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > targetPosLowerBorder; i--)
             {
@@ -31,6 +25,11 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 }
 
                 result++;
+            }
+
+            if (targetPosLowerBorder == areaDimensions.LowestScreenY)
+            {
+                physicsBody.StopFalling();
             }
 
             rectangleCollisionShape.Position.Y -= result;
@@ -56,6 +55,19 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             }
 
             rectangleCollisionShape.Position.Y -= result;
+            return result;
+        }
+
+        private static int CalculateTargetPositionLowerBorder(PhysicsBody physicsBody, RectangleCollisionShape rectangleCollisionShape, AreaDimensions areaDimensions)
+        {
+            int totalFallDistance = CalculateDistanceForConstantAcceleration(physicsBody.TimePassedSinceVerticalMovementStart, GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
+            int result = physicsBody.OriginalPosY + totalFallDistance - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
+
+            if (result < areaDimensions.LowestScreenY)
+            {
+                result = areaDimensions.LowestScreenY;
+            }
+
             return result;
         }
         
