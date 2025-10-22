@@ -5,9 +5,20 @@ namespace Org.Ethasia.Fundetected.Core.Map
     public class PhysicsBody
     {
         private StopWatch stopWatch = new StopWatch();
-        private bool isFalling = false;
-        public int OriginalPosY;
+
         public int InitialVerticalVelocityUnitsPerSecond;
+
+        public int OriginalPosY
+        {
+            get;
+            private set;
+        }
+
+        public bool IsFalling
+        {
+            get;
+            private set;
+        } = false;
 
         public double TimePassedSinceVerticalMovementStart
         {
@@ -17,20 +28,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
-        public void StartFalling()
+        public void StartFalling(int originalPosY)
         {
-            isFalling = true;
+            IsFalling = true;
+            OriginalPosY = originalPosY;
         }
 
         public void StopFalling()
         {
             stopWatch.Reset();
-            isFalling = false;
+            IsFalling = false;
         }
 
         public void Fall(double deltaTime)
         {
-            if (isFalling)
+            if (IsFalling)
             {
                 stopWatch.Tick(deltaTime);
             }

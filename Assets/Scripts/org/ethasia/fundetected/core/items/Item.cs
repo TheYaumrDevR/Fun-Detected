@@ -40,6 +40,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private set;
         }
 
+        public PhysicsBody PhysicsBody
+        {
+            get;
+            private set;
+        } = new PhysicsBody();
+
         public ItemInInventoryShape CreateInventoryShape()
         {
             return ItemClass.CreateInventoryShape(this);

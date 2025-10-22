@@ -28,8 +28,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
 
             PhysicsBody physicsBody = new PhysicsBody();
-            physicsBody.OriginalPosY = 14;
-            physicsBody.StartFalling();
+            physicsBody.StartFalling(14);
             physicsBody.Fall(3);
 
             int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
@@ -46,8 +45,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
 
             PhysicsBody physicsBody = new PhysicsBody();
-            physicsBody.OriginalPosY = 14;
-            physicsBody.StartFalling();
+            physicsBody.StartFalling(14);
             physicsBody.Fall(1.3);
 
             int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
@@ -64,8 +62,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(10, 18);
 
             PhysicsBody physicsBody = new PhysicsBody();
-            physicsBody.OriginalPosY = 18;
-            physicsBody.StartFalling();
+            physicsBody.StartFalling(18);
             physicsBody.Fall(1.5);
 
             int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
@@ -82,8 +79,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(10, 9);
 
             PhysicsBody physicsBody = new PhysicsBody();
-            physicsBody.OriginalPosY = 9;
-            physicsBody.StartFalling();
+            physicsBody.StartFalling(9);
             physicsBody.Fall(1.5);
 
             int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);

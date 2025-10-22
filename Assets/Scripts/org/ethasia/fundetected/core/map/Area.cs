@@ -110,9 +110,24 @@ namespace Org.Ethasia.Fundetected.Core.Map
             HealingWells = new List<HealingWell>();
             InteractableEnvironmentObjects = new List<InteractableEnvironmentObject>();
             DroppedItems = new List<Item>();
-            this.isCollisionTile = isCollisionTile; 
+            this.isCollisionTile = isCollisionTile;
             playerPosition = new Position(0, 0);
             enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
+        }
+        
+        public void Update(double deltaTime)
+        {
+            foreach (Item item in DroppedItems)
+            {
+                if (item.PhysicsBody.IsFalling)
+                {
+                    IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
+
+                    item.PhysicsBody.Fall(deltaTime);
+                    int unitsFallen = MakeRectangleCollisionShapeFall(item.CollisionShape, item.PhysicsBody);
+                    droppedItemPresenter.MovePresentedItemDown(item.UniqueId, unitsFallen);
+                }
+            }
         }
 
         public bool TileAtIsCollision(int x, int y)
@@ -185,7 +200,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public void AddItem(Item item)
         {
             DroppedItems.Add(item);
-            MakeRecangleCollisionShapeFall(item.CollisionShape);
+            item.PhysicsBody.StartFalling(item.CollisionShape.Position.Y);
         }
 
         public List<EnemySpawnLocation> SpawnEnemies()
@@ -259,9 +274,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return PhysicsCalculator.CalculateFalling(playerCollisionShape, areaDimensions);
         } 
 
-        private void MakeRecangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape)
+        private int MakeRectangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape, PhysicsBody physicsBody)
         {
-            PhysicsCalculator.CalculateFalling(rectangleCollisionShape, areaDimensions);
+            return PhysicsCalculator.CalculateFalling(physicsBody, rectangleCollisionShape, areaDimensions);
         }
 
         public int TryToMovePlayerRightStepUp()

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Technical
@@ -19,6 +20,11 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             playerRepeatedUpdateInteractor.Update(Time.deltaTime);
             enemyRepeatedUpdateInteractor.Update(Time.deltaTime);
+
+            if (Area.ActiveArea != null)
+            {
+                Area.ActiveArea.Update(Time.deltaTime);
+            }
         }
     }
 }

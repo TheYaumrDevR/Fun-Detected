@@ -9,7 +9,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             // Arrange
             var testCandidate = new PhysicsBody();
-            testCandidate.StartFalling();
+            testCandidate.StartFalling(0);
 
             // Act
             testCandidate.Fall(1.0f);
@@ -24,7 +24,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             // Arrange
             var testCandidate = new PhysicsBody();
-            testCandidate.StartFalling();
+            testCandidate.StartFalling(0);
             testCandidate.Fall(1.0f);
             testCandidate.Fall(1.2f);
 
@@ -41,7 +41,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             // Arrange
             var testCandidate = new PhysicsBody();
-            testCandidate.StartFalling();
+            testCandidate.StartFalling(0);
             testCandidate.Fall(1.0f);
             testCandidate.Fall(1.2f);
 
@@ -57,13 +57,13 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             // Arrange
             var testCandidate = new PhysicsBody();
-            testCandidate.StartFalling();
+            testCandidate.StartFalling(0);
             testCandidate.Fall(1.0f);
             testCandidate.Fall(1.2f);
             testCandidate.StopFalling();
 
             // Act
-            testCandidate.StartFalling();
+            testCandidate.StartFalling(0);
             testCandidate.Fall(3.3f);
 
             // Assert
