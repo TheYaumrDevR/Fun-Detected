@@ -31,7 +31,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             physicsBody.StartFalling(14);
             physicsBody.Fall(3);
 
-            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(calculationContext);
 
             Assert.That(resultFallingDistance, Is.EqualTo(10));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(4));
@@ -48,7 +54,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             physicsBody.StartFalling(14);
             physicsBody.Fall(1.3);
 
-            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(calculationContext);
 
             Assert.That(resultFallingDistance, Is.EqualTo(8));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(6));
@@ -65,7 +77,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             physicsBody.StartFalling(18);
             physicsBody.Fall(1.5);
 
-            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(calculationContext);
 
             Assert.That(resultFallingDistance, Is.EqualTo(9));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));
@@ -82,7 +100,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             physicsBody.StartFalling(9);
             physicsBody.Fall(1.5);
 
-            int resultFallingDistance = PhysicsCalculator.CalculateFalling(physicsBody, testRectangleCollisionShape, areaDimensions);
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultFallingDistance = PhysicsCalculator.CalculateFalling(calculationContext);
 
             Assert.That(resultFallingDistance, Is.EqualTo(0));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));

@@ -276,7 +276,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private int MakeRectangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape, PhysicsBody physicsBody)
         {
-            return PhysicsCalculator.CalculateFalling(physicsBody, rectangleCollisionShape, areaDimensions);
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(rectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            return PhysicsCalculator.CalculateFalling(calculationContext);
         }
 
         public int TryToMovePlayerRightStepUp()
