@@ -6,11 +6,48 @@ namespace Org.Ethasia.Fundetected.Core.Maths
     {
         private const int GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED = -27;
 
+        public static int CalculateFalling(RectangleCollisionShape rectangleCollisionShape, AreaDimensions areaDimensions)
+        {
+            int result = 0;
+
+            for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > areaDimensions.LowestScreenY; i--)
+            {
+                for (int x = rectangleCollisionShape.Position.X - rectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter; x <= rectangleCollisionShape.Position.X + rectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter; x++)
+                {
+                    if (Area.ActiveArea.TileAtIsCollision(x, i))
+                    {
+                        rectangleCollisionShape.Position.Y -= result;
+                        return result;
+                    }
+                }
+
+                result++;
+            }
+
+            rectangleCollisionShape.Position.Y -= result;
+            return result;
+        }        
+
+        public static int CalculateHorizontalMovement(PhysicsCalculationContext parameters)
+        {
+            int targetPosLowerBorder = CalculateTargetPositionLowerBorder(parameters);
+            int currentYPosLowerBorder = parameters.RectangleCollisionShape.Position.Y - parameters.RectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
+
+            if (currentYPosLowerBorder >= targetPosLowerBorder)
+            {
+                return CalculateFalling(parameters);
+            }
+            else
+            {
+                return CalculateRising(parameters);
+            }
+        }
+
         public static int CalculateFalling(PhysicsCalculationContext parameters)
         {
             int result = 0;
 
-            int targetPosLowerBorder = CalculateTargetPositionLowerBorder(parameters.PhysicsBody, parameters.RectangleCollisionShape, parameters.AreaDimensions);
+            int targetPosLowerBorder = CalculateTargetPositionLowerBorder(parameters);
 
             for (int i = parameters.RectangleCollisionShape.Position.Y - parameters.RectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > targetPosLowerBorder; i--)
             {
@@ -36,17 +73,19 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             return result;
         }
 
-        public static int CalculateFalling(RectangleCollisionShape rectangleCollisionShape, AreaDimensions areaDimensions)
+        protected static int CalculateRising(PhysicsCalculationContext parameters)
         {
             int result = 0;
 
-            for (int i = rectangleCollisionShape.Position.Y - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1; i > areaDimensions.LowestScreenY; i--)
+            int targetPosUpperBorder = CalculateTargetPositionUpperBorder(parameters);
+
+            for (int i = parameters.RectangleCollisionShape.Position.Y + parameters.RectangleCollisionShape.CollisionShapeDistanceToTopEdgeFromCenter - 1; i < targetPosUpperBorder; i++)
             {
-                for (int x = rectangleCollisionShape.Position.X - rectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter; x <= rectangleCollisionShape.Position.X + rectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter; x++)
+                for (int x = parameters.RectangleCollisionShape.Position.X - parameters.RectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter; x <= parameters.RectangleCollisionShape.Position.X + parameters.RectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter; x++)
                 {
                     if (Area.ActiveArea.TileAtIsCollision(x, i))
                     {
-                        rectangleCollisionShape.Position.Y -= result;
+                        parameters.RectangleCollisionShape.Position.Y += result;
                         return result;
                     }
                 }
@@ -54,18 +93,35 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 result++;
             }
 
-            rectangleCollisionShape.Position.Y -= result;
+            parameters.RectangleCollisionShape.Position.Y += result;
             return result;
         }
 
-        private static int CalculateTargetPositionLowerBorder(PhysicsBody physicsBody, RectangleCollisionShape rectangleCollisionShape, AreaDimensions areaDimensions)
+        private static int CalculateTargetPositionLowerBorder(PhysicsCalculationContext parameters)
         {
-            int totalFallDistance = CalculateDistanceForConstantAcceleration(physicsBody.TimePassedSinceVerticalMovementStart, GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
-            int result = physicsBody.OriginalPosY + totalFallDistance - rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
+            int totalFallDistance = CalculateDistanceForConstantAccelerationWithInitialVelocity(parameters.PhysicsBody.TimePassedSinceVerticalMovementStart, parameters.PhysicsBody.InitialVerticalVelocityUnitsPerSecond
+                , GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
+            int result = parameters.PhysicsBody.OriginalPosY + totalFallDistance - parameters.RectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
 
-            if (result < areaDimensions.LowestScreenY)
+            if (result < parameters.AreaDimensions.LowestScreenY)
             {
-                result = areaDimensions.LowestScreenY;
+                result = parameters.AreaDimensions.LowestScreenY;
+            }
+
+            return result;
+        }
+
+        protected static int CalculateTargetPositionUpperBorder(PhysicsCalculationContext parameters)
+        {
+            int totalRisingDistance = CalculateDistanceForConstantAccelerationWithInitialVelocity(parameters.PhysicsBody.TimePassedSinceVerticalMovementStart, parameters.PhysicsBody.InitialVerticalVelocityUnitsPerSecond
+                , GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED);
+            int result = parameters.PhysicsBody.OriginalPosY + totalRisingDistance + parameters.RectangleCollisionShape.CollisionShapeDistanceToTopEdgeFromCenter - 1;
+
+            int highestScreenY = parameters.AreaDimensions.LowestScreenY + parameters.AreaDimensions.Height - 1;
+
+            if (result > highestScreenY)
+            {
+                result = highestScreenY;
             }
 
             return result;
@@ -74,6 +130,11 @@ namespace Org.Ethasia.Fundetected.Core.Maths
         protected static int CalculateDistanceForConstantAcceleration(double timeInSeconds, int acceleration)
         {
             return (int)(FastMath.Round(acceleration * (0.5 * timeInSeconds * timeInSeconds)));
+        }
+
+        protected static int CalculateDistanceForConstantAccelerationWithInitialVelocity(double timeInSeconds, int initialVelocityUnitsPerSecond, int acceleration)
+        {
+            return (int)(FastMath.Round(initialVelocityUnitsPerSecond * timeInSeconds + (acceleration * (0.5 * timeInSeconds * timeInSeconds))));
         }
         
         public struct PhysicsCalculationContext

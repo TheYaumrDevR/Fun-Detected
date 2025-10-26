@@ -21,6 +21,20 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         }
 
         [Test]
+        public void TestCalculateDistanceForConstantAccelerationWithInitialVelocityCalculatesCorrectDistances()
+        {
+            int result = TestablePhysicsCalculator.CallCalculateDistanceForConstantAccelerationWithInitialVelocity(1.2, 10, -9);
+            int result2 = TestablePhysicsCalculator.CallCalculateDistanceForConstantAccelerationWithInitialVelocity(3.7, 5, -9);
+            int result3 = TestablePhysicsCalculator.CallCalculateDistanceForConstantAccelerationWithInitialVelocity(0, 15, -9);
+            int result4 = TestablePhysicsCalculator.CallCalculateDistanceForConstantAccelerationWithInitialVelocity(5.2, 0, -3);
+
+            Assert.That(result, Is.EqualTo(6));
+            Assert.That(result2, Is.EqualTo(-43));
+            Assert.That(result3, Is.EqualTo(0));
+            Assert.That(result4, Is.EqualTo(-41));
+        }
+
+        [Test]
         public void TestCalculateFallingFallsToLowestPointWhenNoObstacles()
         {
             SetupTestAreaWithNoObstacles();

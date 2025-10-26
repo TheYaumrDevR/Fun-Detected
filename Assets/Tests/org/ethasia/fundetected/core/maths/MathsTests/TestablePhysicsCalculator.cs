@@ -8,5 +8,10 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         {
             return CalculateDistanceForConstantAcceleration(timeInSeconds, acceleration);
         }
+
+        public static int CallCalculateDistanceForConstantAccelerationWithInitialVelocity(double timeInSeconds, int initialVelocityUnitsPerSecond, int acceleration)
+        {
+            return CalculateDistanceForConstantAccelerationWithInitialVelocity(timeInSeconds, initialVelocityUnitsPerSecond, acceleration);
+        }
     }
 }
