@@ -165,11 +165,82 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(4));
         }
 
+        [Test]
+        public void TestCalculateHorizontalMovementDownwardsWhenInitialVelocityIsZero()
+        {
+            SetupTestArea();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.StartFalling(14);
+            physicsBody.Fall(0.5);
+
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+
+            Assert.That(resultHorizontalMovement, Is.EqualTo(3));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(11));
+        }
+
+        [Test]
+        public void TestCalculateHorizontalMovementUpwardsWhenInitialVelocityIsGreaterThanZero()
+        {
+            SetupTestArea();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.StartFalling(14);
+            physicsBody.Fall(0.5);
+            physicsBody.InitialVerticalVelocityUnitsPerSecond = 14;
+
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+
+            Assert.That(resultHorizontalMovement, Is.EqualTo(4));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(18));
+        }
+
+        [Test]
+        public void TestCalculateHorizontalMovementUpwardsStopsAtCeiling()
+        {
+            SetupTestArea();
+            AreaDimensions areaDimensions = CreateAreaDimensions();
+            RectangleCollisionShape testRectangleCollisionShape = CreateTestRectangleCollisionShape(4, 14);
+
+            PhysicsBody physicsBody = new PhysicsBody();
+            physicsBody.StartFalling(14);
+            physicsBody.Fall(0.5);
+            physicsBody.InitialVerticalVelocityUnitsPerSecond = 28;
+
+            PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
+                .SetPhysicsBody(physicsBody)
+                .SetRectangleCollisionShape(testRectangleCollisionShape)
+                .SetAreaDimensions(areaDimensions)
+                .Build();
+
+            int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+
+            Assert.That(resultHorizontalMovement, Is.EqualTo(8));
+            Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(22));
+        }
+
         private AreaDimensions CreateAreaDimensions()
         {
             return new AreaDimensions.Builder()
                 .SetWidth(14)
-                .SetHeight(13)
+                .SetHeight(25)
                 .SetLowestScreenX(0)
                 .SetLowestScreenY(0)
                 .Build();
