@@ -43,7 +43,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             }
         }
 
-        public static int CalculateFalling(PhysicsCalculationContext parameters)
+        protected static int CalculateFalling(PhysicsCalculationContext parameters)
         {
             int result = 0;
 

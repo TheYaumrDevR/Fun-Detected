@@ -282,7 +282,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            return PhysicsCalculator.CalculateFalling(calculationContext);
+            return PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
         }
 
         public int TryToMovePlayerRightStepUp()
