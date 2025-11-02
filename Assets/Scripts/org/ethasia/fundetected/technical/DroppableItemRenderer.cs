@@ -53,21 +53,12 @@ namespace Org.Ethasia.Fundetected.Technical
             renderedItemById.Add(renderData.Id, droppedItem);
         }
 
-        public void MoveDroppedItemUp(string itemId, int units)
+        public void MoveDroppedItemVertically(string itemId, int units)
         {
-            if (renderedItemById.ContainsKey(itemId) && units > 0)
+            if (renderedItemById.ContainsKey(itemId) && units != 0)
             {
                 GameObject droppedItem = renderedItemById[itemId];
                 droppedItem.transform.Translate(0, 0.1f * units, 0);
-            }
-        }
-
-        public void MoveDroppedItemDown(string itemId, int units)
-        {
-            if (renderedItemById.ContainsKey(itemId) && units > 0)
-            {
-                GameObject droppedItem = renderedItemById[itemId];
-                droppedItem.transform.Translate(0, -0.1f * units, 0);
             }
         }
 

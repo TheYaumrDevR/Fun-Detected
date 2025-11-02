@@ -51,9 +51,9 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultFallingDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultDisplacementDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
 
-            Assert.That(resultFallingDistance, Is.EqualTo(10));
+            Assert.That(resultDisplacementDistance, Is.EqualTo(-10));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(4));
         }
 
@@ -74,9 +74,9 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultFallingDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultDisplacementDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
 
-            Assert.That(resultFallingDistance, Is.EqualTo(8));
+            Assert.That(resultDisplacementDistance, Is.EqualTo(-8));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(6));
         }
 
@@ -97,9 +97,9 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultFallingDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultDisplacementDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
 
-            Assert.That(resultFallingDistance, Is.EqualTo(9));
+            Assert.That(resultDisplacementDistance, Is.EqualTo(-9));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));
         }
 
@@ -184,7 +184,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 
             int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
 
-            Assert.That(resultHorizontalMovement, Is.EqualTo(3));
+            Assert.That(resultHorizontalMovement, Is.EqualTo(-3));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(11));
         }
 

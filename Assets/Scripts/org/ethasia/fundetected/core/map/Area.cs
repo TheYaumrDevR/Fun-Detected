@@ -125,7 +125,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
                     item.PhysicsBody.Fall(deltaTime);
                     int unitsFallen = MakeRectangleCollisionShapeFall(item.CollisionShape, item.PhysicsBody);
-                    droppedItemPresenter.MovePresentedItemDown(item.UniqueId, unitsFallen);
+                    droppedItemPresenter.MovePresentedItemVertically(item.UniqueId, unitsFallen);
                 }
             }
         }

@@ -55,13 +55,13 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 {
                     if (Area.ActiveArea.TileAtIsCollision(x, i))
                     {
-                        parameters.RectangleCollisionShape.Position.Y -= result;
+                        parameters.RectangleCollisionShape.Position.Y += result;
                         parameters.PhysicsBody.StopFalling();
                         return result;
                     }
                 }
 
-                result++;
+                result--;
             }
 
             if (targetPosLowerBorder == parameters.AreaDimensions.LowestScreenY)
@@ -69,7 +69,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                 parameters.PhysicsBody.StopFalling();
             }
 
-            parameters.RectangleCollisionShape.Position.Y -= result;
+            parameters.RectangleCollisionShape.Position.Y += result;
             return result;
         }
 

@@ -13,14 +13,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             droppableItemRenderer.RenderDroppedItem(ConvertDropPresentationInformationToRenderProxy(itemDropInfo));
         }
 
-        public void MovePresentedItemUp(string itemId, int units)
+        public void MovePresentedItemVertically(string itemId, int units)
         {
-            droppableItemRenderer.MoveDroppedItemUp(itemId, units);
-        }
-
-        public void MovePresentedItemDown(string itemId, int units)
-        {
-            droppableItemRenderer.MoveDroppedItemDown(itemId, units);
+            droppableItemRenderer.MoveDroppedItemVertically(itemId, units);
         }
 
         public void MovePresentedItemLeft(string itemId, int units)
