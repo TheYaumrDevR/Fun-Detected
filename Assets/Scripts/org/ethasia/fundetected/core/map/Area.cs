@@ -123,6 +123,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 {
                     IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
 
+                    item.PhysicsBody.InitialVerticalVelocityUnitsPerSecond = 40;
                     item.PhysicsBody.Fall(deltaTime);
                     int unitsFallen = MakeRectangleCollisionShapeFall(item.CollisionShape, item.PhysicsBody);
                     droppedItemPresenter.MovePresentedItemVertically(item.UniqueId, unitsFallen);

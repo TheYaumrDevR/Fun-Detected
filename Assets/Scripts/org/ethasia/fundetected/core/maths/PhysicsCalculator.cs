@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
 {
     public class PhysicsCalculator
     {
-        private const int GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED = -27;
+        private const int GRAVITY_ACCELERATION_UNITS_PER_SECOND_SQUARED = -81;
 
         public static int CalculateFalling(RectangleCollisionShape rectangleCollisionShape, AreaDimensions areaDimensions)
         {
