@@ -35,7 +35,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementFallsToLowestPointWhenNoObstacles()
+        public void TestCalculateVerticalMovementFallsToLowestPointWhenNoObstacles()
         {
             SetupTestAreaWithNoObstacles();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -51,14 +51,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultDisplacementDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultDisplacementDistance = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultDisplacementDistance, Is.EqualTo(-10));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(4));
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementFallsBasedOnTime()
+        public void TestCalculateVerticalMovementFallsBasedOnTime()
         {
             SetupTestAreaWithNoObstacles();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -74,14 +74,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultDisplacementDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultDisplacementDistance = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultDisplacementDistance, Is.EqualTo(-8));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(6));
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementStopsAtCollidable()
+        public void TestCalculateVerticalMovementStopsAtCollidable()
         {
             SetupTestArea();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -97,14 +97,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultDisplacementDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultDisplacementDistance = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultDisplacementDistance, Is.EqualTo(-9));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementDoesNotFallOnGround()
+        public void TestCalculateVerticalMovementDoesNotFallOnGround()
         {
             SetupTestArea();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -120,7 +120,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultFallingDistance = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultFallingDistance = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultFallingDistance, Is.EqualTo(0));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(9));
@@ -166,7 +166,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementDownwardsWhenInitialVelocityIsZero()
+        public void TestCalculateVerticalMovementDownwardsWhenInitialVelocityIsZero()
         {
             SetupTestArea();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -182,14 +182,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultHorizontalMovement = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultHorizontalMovement, Is.EqualTo(-3));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(11));
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementUpwardsWhenInitialVelocityIsGreaterThanZero()
+        public void TestCalculateVerticalMovementUpwardsWhenInitialVelocityIsGreaterThanZero()
         {
             SetupTestArea();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -206,14 +206,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultHorizontalMovement = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultHorizontalMovement, Is.EqualTo(4));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(18));
         }
 
         [Test]
-        public void TestCalculateHorizontalMovementUpwardsStopsAtCeiling()
+        public void TestCalculateVerticalMovementUpwardsStopsAtCeiling()
         {
             SetupTestArea();
             AreaDimensions areaDimensions = CreateAreaDimensions();
@@ -230,7 +230,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
                 .SetAreaDimensions(areaDimensions)
                 .Build();
 
-            int resultHorizontalMovement = PhysicsCalculator.CalculateHorizontalMovement(calculationContext);
+            int resultHorizontalMovement = PhysicsCalculator.CalculateVerticalMovement(calculationContext);
 
             Assert.That(resultHorizontalMovement, Is.EqualTo(8));
             Assert.That(testRectangleCollisionShape.Position.Y, Is.EqualTo(22));

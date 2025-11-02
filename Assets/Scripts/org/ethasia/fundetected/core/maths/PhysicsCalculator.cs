@@ -28,7 +28,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             return result;
         }        
 
-        public static int CalculateHorizontalMovement(PhysicsCalculationContext parameters)
+        public static int CalculateVerticalMovement(PhysicsCalculationContext parameters)
         {
             int targetPosLowerBorder = CalculateTargetPositionLowerBorder(parameters);
             int currentYPosLowerBorder = parameters.RectangleCollisionShape.Position.Y - parameters.RectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter - 1;
