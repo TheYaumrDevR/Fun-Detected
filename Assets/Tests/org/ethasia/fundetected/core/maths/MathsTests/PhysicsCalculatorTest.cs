@@ -66,7 +66,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 
             PhysicsBody physicsBody = new PhysicsBody();
             physicsBody.StartFalling(14);
-            physicsBody.Fall(1.3);
+            physicsBody.Fall(0.45);
 
             PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
                 .SetPhysicsBody(physicsBody)
@@ -174,7 +174,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 
             PhysicsBody physicsBody = new PhysicsBody();
             physicsBody.StartFalling(14);
-            physicsBody.Fall(0.5);
+            physicsBody.Fall(0.25);
 
             PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
                 .SetPhysicsBody(physicsBody)
@@ -197,8 +197,8 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
 
             PhysicsBody physicsBody = new PhysicsBody();
             physicsBody.StartFalling(14);
-            physicsBody.Fall(0.5);
-            physicsBody.InitialVerticalVelocityUnitsPerSecond = 14;
+            physicsBody.Fall(0.2);
+            physicsBody.InitialVerticalVelocityUnitsPerSecond = 28;
 
             PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
                 .SetPhysicsBody(physicsBody)
@@ -222,7 +222,7 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             PhysicsBody physicsBody = new PhysicsBody();
             physicsBody.StartFalling(14);
             physicsBody.Fall(0.5);
-            physicsBody.InitialVerticalVelocityUnitsPerSecond = 28;
+            physicsBody.InitialVerticalVelocityUnitsPerSecond = 56;
 
             PhysicsCalculator.PhysicsCalculationContext calculationContext = new PhysicsCalculator.PhysicsCalculationContext.Builder()
                 .SetPhysicsBody(physicsBody)
