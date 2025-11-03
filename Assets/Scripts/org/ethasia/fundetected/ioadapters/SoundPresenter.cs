@@ -44,5 +44,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 soundPlayer.PlayItemDropSound(audioSourceId);
             }
         }
+
+        public void PlayNormalItemDroppedSound()
+        {
+            ISoundPlayer soundPlayer = TechnicalFactory.GetInstance().GetSoundPlayerInstance();
+
+            if (null != soundPlayer)
+            {
+                soundPlayer.PlayNormalItemDroppedSound();
+            }
+        }
     }
 }

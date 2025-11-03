@@ -24,6 +24,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip uiWindowOpenSound;
         public AudioClip mouseClickSound;
         public AudioClip itemDropSound;
+        public AudioClip normalItemDroppedSound;
 
         public static SoundPlayer GetInstance()
         {
@@ -109,6 +110,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayMouseClickSound()
         {
             globalAudioSource.PlayOneShot(mouseClickSound);
+        }
+
+        public void PlayNormalItemDroppedSound()
+        {
+            globalAudioSource.PlayOneShot(normalItemDroppedSound);
         }
 
         public void CallSoundMethodById(string soundMethodId, string audioSourceId)

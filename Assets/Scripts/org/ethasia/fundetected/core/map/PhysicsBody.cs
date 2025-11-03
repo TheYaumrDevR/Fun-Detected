@@ -6,6 +6,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
     {
         private StopWatch stopWatch = new StopWatch();
 
+        private IPhysicsBodyEventObserver stopFallingEventObserver;
+
         public int InitialVerticalVelocityUnitsPerSecond;
 
         public int OriginalPosY
@@ -28,6 +30,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
+        public void RegisterStopFallingEventObserver(IPhysicsBodyEventObserver observer)
+        {
+            stopFallingEventObserver = observer;
+        }
+
         public void StartFalling(int originalPosY)
         {
             IsFalling = true;
@@ -38,6 +45,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             stopWatch.Reset();
             IsFalling = false;
+
+            if (null != stopFallingEventObserver)
+            {
+                stopFallingEventObserver.OnEventTriggered();
+            }
         }
 
         public void Fall(double deltaTime)

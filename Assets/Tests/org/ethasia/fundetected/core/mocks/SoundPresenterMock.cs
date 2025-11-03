@@ -8,7 +8,6 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
 
         public void PlayEnemyHitSound(string audioSourceId)
         {
-
         }
 
         public void PlayPortalTransitionSound()
@@ -27,6 +26,10 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
         public int GetPlayItemDropSoundCallCount()
         {
             return playItemDropSoundCallCount;
+        }
+
+        public void PlayNormalItemDroppedSound()
+        {
         }
 
         public void ResetMock()
