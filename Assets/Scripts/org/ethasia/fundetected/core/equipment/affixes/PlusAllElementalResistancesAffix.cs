@@ -2,7 +2,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
     public class PlusAllElementalResistancesAffix : EquipmentAffix
     {
-        private int value;
+        protected int value;
 
         public PlusAllElementalResistancesAffix(int value) : base(AffixTypes.SUFFIX)
         {
