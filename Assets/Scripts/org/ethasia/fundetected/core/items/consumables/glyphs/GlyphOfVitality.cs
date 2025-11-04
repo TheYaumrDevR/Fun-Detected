@@ -12,11 +12,16 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
         public override EquipmentAffix OnApplyToEquipment()
         {   
             return null;
-        }     
+        }
 
         public override void Accept(ItemVisitor visitor)
         {
 
+        }
+        
+        public override void RerollEntireItem()
+        {
+            // TODO: implement later when there is something to reroll
         }
 
         protected override Item CloneActual()

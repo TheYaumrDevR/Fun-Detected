@@ -13,6 +13,11 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
 
         }
 
+        public override void RerollEntireItem()
+        {
+            // TODO: implement later when there is something to reroll
+        }
+
         protected override Item CloneActual()
         {
             RecoveryPotion result = new RecoveryPotion();

@@ -53,7 +53,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 FirstImplicit.RerolledAffix.ApplyEffects(statsFromEquipment);
             }
-        }     
+        }
 
         public void OnUnequip(StatsFromEquipment statsFromEquipment)
         {
@@ -70,6 +70,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             if (null != FirstImplicit)
             {
                 FirstImplicit.RerolledAffix.UnApplyEffects(statsFromEquipment);
+            }
+        }
+        
+        public override void RerollEntireItem()
+        {
+            if (null != FirstImplicit)
+            {
+                FirstImplicit.RerollAffix();
             }
         }
 

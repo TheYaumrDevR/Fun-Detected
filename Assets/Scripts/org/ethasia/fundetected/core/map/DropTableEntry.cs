@@ -24,7 +24,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Item DropItem()
         {
-            return Item.Clone();
+            Item result = Item.Clone();
+            result.RerollEntireItem();
+
+            return result;
         }
     }
 }

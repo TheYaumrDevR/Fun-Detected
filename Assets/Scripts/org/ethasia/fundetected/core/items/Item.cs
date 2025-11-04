@@ -63,6 +63,8 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return result;
         }
 
+        public abstract void RerollEntireItem();
+
         public abstract void Accept(ItemVisitor visitor);
         protected abstract Item CloneActual();
 
