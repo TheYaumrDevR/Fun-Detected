@@ -21,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public Position MapLocation
         {
             get;
+            private set;
         }
 
         public int SpawnedEnemyLevel
@@ -29,13 +30,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        public EnemySpawnLocation(Position mapLocation, float spawnerActivationChance, int spawnedEnemyLevel)
+        public EnemySpawnLocation()
         {
-            MapLocation = mapLocation;
             HasSpawned = false;
             SpawnedEnemyId = "";
-            this.spawnerActivationChance = spawnerActivationChance;
-            this.SpawnedEnemyLevel = spawnedEnemyLevel;
         }
 
         public void TrySpawnEnemy(List<EnemySpawnChance> enemySpawnChances)
@@ -74,8 +72,43 @@ namespace Org.Ethasia.Fundetected.Core.Map
                         HasSpawned = true;
                         SpawnedEnemyId = enemySpawnChance.EnemySpawnId;
                         return;
-                    }                    
+                    }
                 }
+            }
+        }
+        
+        public class Builder
+        {
+            private Position mapLocation;
+            private float spawnerActivationChance;
+            private int spawnedEnemyLevel;
+
+            public Builder SetMapLocation(Position value)
+            {
+                mapLocation = value;
+                return this;
+            }
+
+            public Builder SetSpawnerActivationChance(float value)
+            {
+                spawnerActivationChance = value;
+                return this;
+            }
+
+            public Builder SetSpawnedEnemyLevel(int value)
+            {
+                spawnedEnemyLevel = value;
+                return this;
+            }
+
+            public EnemySpawnLocation Build()
+            {
+                return new EnemySpawnLocation()
+                {
+                    MapLocation = mapLocation,
+                    spawnerActivationChance = spawnerActivationChance,
+                    SpawnedEnemyLevel = spawnedEnemyLevel
+                };
             }
         }
     }

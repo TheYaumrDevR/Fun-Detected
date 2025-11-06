@@ -12,7 +12,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestCreateEnemyFromMasterDataCopiesPropertiesFromMasterData()
         {
-            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation.Builder()
+                .SetMapLocation(new Position(7, 23))
+                .SetSpawnerActivationChance(1.0f)
+                .SetSpawnedEnemyLevel(2)
+                .Build();
 
             EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
             {
@@ -41,7 +45,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestCreateEnemyFromMasterDataConvertsDropTable()
         {
-            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation.Builder()
+                .SetMapLocation(new Position(7, 23))
+                .SetSpawnerActivationChance(1.0f)
+                .SetSpawnedEnemyLevel(2)
+                .Build();
 
             EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
             {
@@ -73,7 +81,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestCreateEnemyFromMasterDataConvertsProbabilityOfEqualChanceGroups()
         {
-            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(7, 23), 1.0f, 2);
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation.Builder()
+                .SetMapLocation(new Position(7, 23))
+                .SetSpawnerActivationChance(1.0f)
+                .SetSpawnedEnemyLevel(2)
+                .Build();
 
             EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
             {
@@ -94,7 +106,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestCreateEnemyFromMasterDataConvertsDropChance()
         {
-            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(45, 12), 1.0f, 4);
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation.Builder()
+                .SetMapLocation(new Position(45, 12))
+                .SetSpawnerActivationChance(1.0f)
+                .SetSpawnedEnemyLevel(4)
+                .Build();
 
             EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
             {
@@ -112,7 +128,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
         [Test]
         public void TestCreateEnemyFromMasterDataConvertsItemDropLevel()
         {
-            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation(new Position(45, 12), 1.0f, 4);
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation.Builder()
+                .SetMapLocation(new Position(45, 12))
+                .SetSpawnerActivationChance(1.0f)
+                .SetSpawnedEnemyLevel(4)
+                .Build();
 
             EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
             {

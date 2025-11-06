@@ -72,7 +72,12 @@ namespace Org.Ethasia.Fundetected.Interactors
             foreach (Spawner spawner in mapProperties.Spawners)
             {
                 Position spawnerPosition = new Position(spawner.X, spawner.Y);
-                EnemySpawnLocation enemySpawnLocation = new EnemySpawnLocation(spawnerPosition, spawnerActivationChance, mapProperties.AreaLevel);
+                EnemySpawnLocation enemySpawnLocation = new EnemySpawnLocation.Builder()
+                    .SetMapLocation(spawnerPosition)
+                    .SetSpawnerActivationChance(spawnerActivationChance)
+                    .SetSpawnedEnemyLevel(mapProperties.AreaLevel)
+                    .Build();
+
                 result.Add(enemySpawnLocation);
             }
 
