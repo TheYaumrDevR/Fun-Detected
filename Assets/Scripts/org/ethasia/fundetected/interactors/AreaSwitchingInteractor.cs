@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors
@@ -13,6 +14,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         private IRandomNumberGenerator randomNumberGenerator;
         private IEnemyPresenter enemyPresenter;
         private IMapPresenter mapPresenter;
+        private IDroppedItemPresenter droppedItemPresenter;
 
         public AreaSwitchingInteractor()
         {
@@ -21,6 +23,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             enemyPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetEnemyPresenterInstance();
             mapPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetMapPresenterInstance();
+            droppedItemPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetDroppedItemPresenterInstance();
         }   
 
         public void SpawnPlayerIntoNewMap(string mapId, PlayerCharacter playerCharacter)
@@ -47,6 +50,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             ShowPortals(existingMap);
             ShowHealingWells(existingMap);
             ShowEnemies(existingMap);   
+            ShowDroppedItems(existingMap);
 
             existingMap.PortPlayerTo(playerCharacter, spawnDestinationId);         
         }
@@ -229,6 +233,20 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             enemyPresenter.PresentEnemies(enemiesToShow);
-        }       
+        } 
+
+        private void ShowDroppedItems(Area map)
+        {
+            foreach (Item droppedItem in map.DroppedItems)
+            {
+                ItemDropPresentationInformation itemDropInfo = new ItemDropPresentationInformation();
+                itemDropInfo.UniqueId = droppedItem.UniqueId;
+                itemDropInfo.BaseTypeOrUniqueName = droppedItem.Name;
+                itemDropInfo.PositionX = droppedItem.CollisionShape.Position.X;
+                itemDropInfo.PositionY = droppedItem.CollisionShape.Position.Y;
+
+                droppedItemPresenter.PresentItemDrop(itemDropInfo);
+            }
+        }      
     }
 }

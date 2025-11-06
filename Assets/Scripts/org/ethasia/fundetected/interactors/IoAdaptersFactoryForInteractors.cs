@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public abstract class IoAdaptersFactoryForInteractors
@@ -12,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public static IoAdaptersFactoryForInteractors GetInstance()
         {
             return instance;
-        }        
+        }
 
         public abstract ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance();
         public abstract IMeleeHitArcMasterDataProvider GetMeleeHitArcMasterDataProviderInstance();
@@ -28,5 +30,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IMapPresenter GetMapPresenterInstance();
         public abstract IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance();
         public abstract IGuiWindowsPresenter GetGuiWindowsPresenterInstance();
+        public abstract IDroppedItemPresenter GetDroppedItemPresenterInstance();
     }
 }

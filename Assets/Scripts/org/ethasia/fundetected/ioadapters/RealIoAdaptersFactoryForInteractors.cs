@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
@@ -19,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IMapPresenter mapPresenter;
         private IPlayerInputOnOffSwitch playerInputOnOffSwitch;
         private IGuiWindowsPresenter guiWindowsPresenter;
+        private IDroppedItemPresenter droppedItemPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -168,6 +170,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return guiWindowsPresenter;
+        }
+
+        public override IDroppedItemPresenter GetDroppedItemPresenterInstance()
+        {
+            if (null == droppedItemPresenter)
+            {
+                droppedItemPresenter = new DroppedItemPresenter();
+            }
+
+            return droppedItemPresenter;
         }
     }
 }

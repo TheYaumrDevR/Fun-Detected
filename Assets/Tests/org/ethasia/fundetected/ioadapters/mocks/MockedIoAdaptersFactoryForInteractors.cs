@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
@@ -67,11 +68,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public override IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance()
         {
             return new PlayerInputOnOffSwitchMock();
-        }    
+        }
 
         public override IGuiWindowsPresenter GetGuiWindowsPresenterInstance()
         {
             return new GuiWindowsPresenterMock();
+        }
+        
+        public override IDroppedItemPresenter GetDroppedItemPresenterInstance()
+        {
+            return new DroppedItemPresenterMock();
         }
     }
 }
