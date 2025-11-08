@@ -19,7 +19,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             bool result = testCandidate.CanEquipInMainHand(twoHandedWeapon);
 
-            Assert.That(result, Is.True);  
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -40,8 +40,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInOffHand(offHandWeapon);
             bool result = testCandidate.CanEquipInMainHand(twoHandedWeapon);
 
-            Assert.That(result, Is.False);  
-        }  
+            Assert.That(result, Is.False);
+        }
 
         [Test]
         public void TestCanEquipInMainHandCanEquipOneHandedWeaponWhenOffhandFree()
@@ -55,8 +55,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
 
-            Assert.That(result, Is.True);  
-        }   
+            Assert.That(result, Is.True);
+        }
 
         [Test]
         public void TestCanEquipInMainHandCanEquipOneHandedWeaponWhenOffhandSame()
@@ -76,8 +76,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInOffHand(offHandWeapon);
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
 
-            Assert.That(result, Is.True);  
-        }             
+            Assert.That(result, Is.True);
+        }
 
         [Test]
         public void TestCanEquipInMainHandCanNotEquipOneHandedWeaponWhenOffhandDifferent()
@@ -97,8 +97,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInOffHand(offHandWeapon);
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
 
-            Assert.That(result, Is.False);  
-        }   
+            Assert.That(result, Is.False);
+        }
 
         [Test]
         public void TestCanEquipInOffHandCanNotEquipTwoHandedWeapon()
@@ -112,8 +112,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             bool result = testCandidate.CanEquipInOffHand(twoHandedWeapon);
 
-            Assert.That(result, Is.False);  
-        }     
+            Assert.That(result, Is.False);
+        }
 
         [Test]
         public void TestCanEquipInOffHandCanEquipOneHandedWeapon()
@@ -127,8 +127,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
 
-            Assert.That(result, Is.True);  
-        }  
+            Assert.That(result, Is.True);
+        }
 
         [Test]
         public void TestCanEquipInOffHandCanEquipOneHandedWeaponWhenSameTypeIsInMainHand()
@@ -148,8 +148,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInMainHand(mainHandWeapon);
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
 
-            Assert.That(result, Is.True);  
-        }     
+            Assert.That(result, Is.True);
+        }
 
         [Test]
         public void TestCanEquipInOffHandCanNotEquipOneHandedWeaponWhenDifferentTypeIsInMainHand()
@@ -169,8 +169,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInMainHand(mainHandWeapon);
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
 
-            Assert.That(result, Is.False);  
-        }         
+            Assert.That(result, Is.False);
+        }
 
         [Test]
         public void TestEquipInMainHandReturnsNullIfNothingIsEquipped()
@@ -184,8 +184,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Equipment result = testCandidate.EquipInMainHand(twoHandedWeapon);
 
-            Assert.That(result, Is.Null); 
-        }    
+            Assert.That(result, Is.Null);
+        }
 
         [Test]
         public void TestEquipInMainHandReturnsOldEquippedItem()
@@ -207,8 +207,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Equipment result = testCandidate.EquipInMainHand(firstWeapon);
 
-            Assert.That(result.Name, Is.EqualTo("Bronze Twohander")); 
-        }  
+            Assert.That(result.Name, Is.EqualTo("Bronze Twohander"));
+        }
 
         [Test]
         public void TestEquipInMainHandReturnsCurrentItemIfItCannotEquip()
@@ -229,8 +229,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInOffHand(offHandWeapon);
             Equipment result = testCandidate.EquipInMainHand(twoHandedWeapon);
 
-            Assert.That(result.Name, Is.EqualTo("Warstaff")); 
-        }         
+            Assert.That(result.Name, Is.EqualTo("Warstaff"));
+        }
 
         [Test]
         public void TestEquipInOffHandReturnsNullIfNothingIsEquipped()
@@ -244,8 +244,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Equipment result = testCandidate.EquipInOffHand(weapon);
 
-            Assert.That(result, Is.Null); 
-        }    
+            Assert.That(result, Is.Null);
+        }
 
         [Test]
         public void TestEquipInOffHandReturnsOldEquippedItem()
@@ -267,8 +267,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Equipment result = testCandidate.EquipInOffHand(firstWeapon);
 
-            Assert.That(result.Name, Is.EqualTo("Spellblade")); 
-        }  
+            Assert.That(result.Name, Is.EqualTo("Spellblade"));
+        }
 
         [Test]
         public void TestEquipInOffHandReturnsCurrentItemIfItCannotEquip()
@@ -289,7 +289,100 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             testCandidate.EquipInMainHand(firstWeapon);
             Equipment result = testCandidate.EquipInOffHand(secondWeapon);
 
-            Assert.That(result.Name, Is.EqualTo("Gladius")); 
-        }                                            
+            Assert.That(result.Name, Is.EqualTo("Gladius"));
+        }
+
+        [Test]
+        public void TestEquipInLeftRingEquipsRingIfSlotIsEmpty()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("Gold Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry goldRing = jewelryBuilder.Build();
+
+            Equipment oldEquipment = testCandidate.EquipInLeftRing(goldRing);
+            Equipment currentEquipment = testCandidate.EquipInLeftRing(goldRing);
+
+            Assert.That(oldEquipment, Is.Null);
+            Assert.That(currentEquipment.Name, Is.EqualTo("Gold Ring"));
+        }
+
+        [Test]
+        public void TestEquipInLeftRingSwapsOutOldEquipment()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("Iron Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry ironRing = jewelryBuilder.Build();
+
+            jewelryBuilder.SetName("Sapphire Ring");
+            Jewelry sapphireRing = jewelryBuilder.Build();
+
+            testCandidate.EquipInLeftRing(ironRing);
+            Equipment oldEquipment = testCandidate.EquipInLeftRing(sapphireRing);
+
+            Assert.That(oldEquipment.Name, Is.EqualTo("Iron Ring"));
+        }
+
+        [Test]
+        public void TestEquipInLeftRingCannotEquipWrongItemClass()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Armor.Builder armorBuilder = new Armor.Builder();
+
+            armorBuilder.SetName("Leather Sandals")
+                .SetItemClass(ItemClass.SHOES);
+
+            Armor leatherSandals = armorBuilder.Build();
+
+            Equipment result = testCandidate.EquipInLeftRing(leatherSandals);
+
+            Assert.That(result.Name, Is.EqualTo("Leather Sandals"));
+        }
+
+        [Test]
+        public void TestEquipInRightRingEquipsRingIfSlotIsEmpty()
+        {
+
+        }
+
+        [Test]
+        public void TestEquipInRightRingSwapsOutOldEquipment()
+        {
+
+        }
+
+        [Test]
+        public void TestEquipInRightRingCannotEquipWrongItemClass()
+        {
+
+        }
+
+        [Test]
+        public void TestEquipInBeltEquipsBeltIfSlotIsEmpty()
+        {
+
+        }
+
+        [Test]
+        public void TestEquipInBeltSwapsOutOldEquipment()
+        {
+
+        }
+
+        [Test]
+        public void TestEquipInBeltCannotEquipWrongItemClass()
+        {
+
+        }
     }
 }

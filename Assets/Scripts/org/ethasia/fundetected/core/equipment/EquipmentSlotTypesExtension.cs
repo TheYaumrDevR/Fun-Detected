@@ -21,9 +21,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 case EquipmentSlotTypes.FEET:
                     return false;  
                 case EquipmentSlotTypes.BELT:
-                    return false;       
+                    return itemClass == ItemClass.BELT;       
                 case EquipmentSlotTypes.RINGS:
-                    return false;       
+                    return itemClass == ItemClass.RING;       
                 case EquipmentSlotTypes.AMULET:
                     return false;  
                 default:

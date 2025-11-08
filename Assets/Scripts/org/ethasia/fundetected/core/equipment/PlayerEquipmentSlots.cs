@@ -12,12 +12,18 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         private EquipmentSlot mainHandSlot;
         private EquipmentSlot offHandSlot;
+        private EquipmentSlot leftRingSlot;
+        private EquipmentSlot rightRingSlot;
+        private EquipmentSlot beltSlot;
 
         public PlayerEquipmentSlots()
         {
             EquipmentStats = new StatsFromEquipment();
             mainHandSlot = new EquipmentSlot(EquipmentSlotTypes.MAIN_HAND);
             offHandSlot = new EquipmentSlot(EquipmentSlotTypes.OFF_HAND);
+            leftRingSlot = new EquipmentSlot(EquipmentSlotTypes.RINGS);
+            rightRingSlot = new EquipmentSlot(EquipmentSlotTypes.RINGS);
+            beltSlot = new EquipmentSlot(EquipmentSlotTypes.BELT);
         }
 
         public Equipment EquipInMainHand(Equipment toEquip)
@@ -27,16 +33,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            toEquip.OnEquip(EquipmentStats);
-
-            Equipment oldEquipment = mainHandSlot.InsertEquipment(toEquip);
-
-            if (null != oldEquipment)
-            {
-                oldEquipment.OnUnequip(EquipmentStats);
-            }
-
-            return oldEquipment;
+            return SwapEquipedEquipment(mainHandSlot, toEquip);
         }
 
         public Equipment EquipInOffHand(Equipment toEquip)
@@ -46,16 +43,37 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            toEquip.OnEquip(EquipmentStats);
+            return SwapEquipedEquipment(offHandSlot, toEquip);
+        }
 
-            Equipment oldEquipment = offHandSlot.InsertEquipment(toEquip);
-
-            if (null != oldEquipment)
+        public Equipment EquipInLeftRing(Equipment toEquip)
+        {
+            if (!leftRingSlot.CanEquip(toEquip.ItemClass))
             {
-                oldEquipment.OnUnequip(EquipmentStats);
+                return toEquip;
             }
 
-            return oldEquipment;            
+            return SwapEquipedEquipment(leftRingSlot, toEquip);
+        }
+
+        public Equipment EquipInRightRing(Equipment toEquip)
+        {
+            if (!rightRingSlot.CanEquip(toEquip.ItemClass))
+            {
+                return toEquip;
+            }
+
+            return SwapEquipedEquipment(rightRingSlot, toEquip);
+        }
+
+        public Equipment EquipInBelt(Equipment toEquip)
+        {
+            if (!beltSlot.CanEquip(toEquip.ItemClass))
+            {
+                return toEquip;
+            }
+
+            return SwapEquipedEquipment(beltSlot, toEquip);
         }
 
         public bool CanEquipInMainHand(Equipment equipment)
@@ -96,6 +114,20 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
 
             return false;
-        }                
+        }
+
+        private Equipment SwapEquipedEquipment(EquipmentSlot slot, Equipment toEquip)
+        {
+            toEquip.OnEquip(EquipmentStats);
+
+            Equipment oldEquipment = slot.InsertEquipment(toEquip);
+
+            if (null != oldEquipment)
+            {
+                oldEquipment.OnUnequip(EquipmentStats);
+            }
+
+            return oldEquipment;
+        }        
     }
 }
