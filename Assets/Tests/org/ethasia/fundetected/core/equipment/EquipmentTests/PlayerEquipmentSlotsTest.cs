@@ -352,37 +352,115 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInRightRingEquipsRingIfSlotIsEmpty()
         {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("Gold Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry goldRing = jewelryBuilder.Build();
+
+            Equipment oldEquipment = testCandidate.EquipInRightRing(goldRing);
+            Equipment currentEquipment = testCandidate.EquipInRightRing(goldRing);
+
+            Assert.That(oldEquipment, Is.Null);
+            Assert.That(currentEquipment.Name, Is.EqualTo("Gold Ring"));
         }
 
         [Test]
         public void TestEquipInRightRingSwapsOutOldEquipment()
         {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("Iron Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry ironRing = jewelryBuilder.Build();
+
+            jewelryBuilder.SetName("Sapphire Ring");
+            Jewelry sapphireRing = jewelryBuilder.Build();
+
+            testCandidate.EquipInRightRing(ironRing);
+            Equipment oldEquipment = testCandidate.EquipInRightRing(sapphireRing);
+
+            Assert.That(oldEquipment.Name, Is.EqualTo("Iron Ring"));
         }
 
         [Test]
         public void TestEquipInRightRingCannotEquipWrongItemClass()
         {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
+            Weapon.Builder weaponBuilder = new Weapon.Builder();
+
+            weaponBuilder.SetName("Hunting Bow")
+                .SetItemClass(ItemClass.BOW);
+
+            Weapon huntingBow = weaponBuilder.Build();
+
+            Equipment result = testCandidate.EquipInLeftRing(huntingBow);
+
+            Assert.That(result.Name, Is.EqualTo("Hunting Bow"));
         }
 
         [Test]
         public void TestEquipInBeltEquipsBeltIfSlotIsEmpty()
         {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("War Belt")
+                .SetItemClass(ItemClass.BELT);
+
+            Jewelry warBelt = jewelryBuilder.Build();
+
+            Equipment oldEquipment = testCandidate.EquipInBelt(warBelt);
+            Equipment currentEquipment = testCandidate.EquipInBelt(warBelt);
+
+            Assert.That(oldEquipment, Is.Null);
+            Assert.That(currentEquipment.Name, Is.EqualTo("War Belt"));
         }
 
         [Test]
         public void TestEquipInBeltSwapsOutOldEquipment()
         {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("Crystal Belt")
+                .SetItemClass(ItemClass.BELT);
+
+            Jewelry crystalBelt = jewelryBuilder.Build();
+
+            jewelryBuilder.SetName("Plated Belt");
+            Jewelry platedBelt = jewelryBuilder.Build();
+
+            testCandidate.EquipInBelt(crystalBelt);
+            Equipment oldEquipment = testCandidate.EquipInBelt(platedBelt);
+
+            Assert.That(oldEquipment.Name, Is.EqualTo("Crystal Belt"));
         }
 
         [Test]
         public void TestEquipInBeltCannotEquipWrongItemClass()
         {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+
+            jewelryBuilder.SetName("Emerald Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry emeraldRing = jewelryBuilder.Build();
+
+            Equipment result = testCandidate.EquipInBelt(emeraldRing);
+
+            Assert.That(result.Name, Is.EqualTo("Emerald Ring"));
         }
     }
 }
