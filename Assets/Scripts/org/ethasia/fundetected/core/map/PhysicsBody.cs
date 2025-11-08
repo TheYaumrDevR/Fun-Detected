@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Combat;
 
 namespace Org.Ethasia.Fundetected.Core.Map
@@ -5,8 +7,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
     public class PhysicsBody
     {
         private StopWatch stopWatch = new StopWatch();
-
-        private IPhysicsBodyEventObserver stopFallingEventObserver;
+        private List<IPhysicsBodyEventObserver> stopFallingEventObservers = new List<IPhysicsBodyEventObserver>();
 
         public int InitialVerticalVelocityUnitsPerSecond;
 
@@ -30,9 +31,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
+        public PhysicsBody()
+        {
+            stopFallingEventObservers = new List<IPhysicsBodyEventObserver>();
+        }
+
         public void RegisterStopFallingEventObserver(IPhysicsBodyEventObserver observer)
         {
-            stopFallingEventObserver = observer;
+            stopFallingEventObservers.Add(observer);
         }
 
         public void StartFalling(int originalPosY)
@@ -46,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             stopWatch.Reset();
             IsFalling = false;
 
-            if (null != stopFallingEventObserver)
+            foreach(IPhysicsBodyEventObserver stopFallingEventObserver in stopFallingEventObservers)
             {
                 stopFallingEventObserver.OnEventTriggered();
             }

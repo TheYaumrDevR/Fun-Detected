@@ -23,5 +23,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
 
         }
+
+        public void UpdateItemPresentationWhenRestingOnGround(ItemDropPresentationInformation itemDropInfo)
+        {
+
+        }
     }
 }

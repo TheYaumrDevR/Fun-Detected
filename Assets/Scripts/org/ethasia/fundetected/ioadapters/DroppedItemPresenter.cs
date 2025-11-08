@@ -28,6 +28,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             droppableItemRenderer.MoveDroppedItemRight(itemId, units);
         }
 
+        public void UpdateItemPresentationWhenRestingOnGround(ItemDropPresentationInformation itemDropInfo)
+        {
+            DroppedItemRenderProxy renderData = ConvertDropPresentationInformationToRenderProxy(itemDropInfo);
+            droppableItemRenderer.RenderDroppedItemLabel(renderData);
+        }
+
         private DroppedItemRenderProxy ConvertDropPresentationInformationToRenderProxy(ItemDropPresentationInformation itemDropInfo)
         {
             float posX = ConvertMapPositionToScreenPosition(itemDropInfo.PositionX);

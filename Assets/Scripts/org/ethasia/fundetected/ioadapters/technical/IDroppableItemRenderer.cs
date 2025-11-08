@@ -7,5 +7,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void MoveDroppedItemVertically(string itemId, int units);
         void MoveDroppedItemLeft(string itemId, int units);
         void MoveDroppedItemRight(string itemId, int units);
+        void RenderDroppedItemLabel(DroppedItemRenderProxy renderData);
     }
 }

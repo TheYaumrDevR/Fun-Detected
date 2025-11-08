@@ -49,6 +49,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
         protected Item()
         {
             PhysicsBody.RegisterStopFallingEventObserver(new PhysicsBodyDropSoundPlayingEventObserver());
+            PhysicsBody.RegisterStopFallingEventObserver(new ItemPresentationUpdateEventObserver(this));
         }
 
         public ItemInInventoryShape CreateInventoryShape()

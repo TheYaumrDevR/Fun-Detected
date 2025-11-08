@@ -79,5 +79,18 @@ namespace Org.Ethasia.Fundetected.Technical
                 droppedItem.transform.Translate(0.1f * units, 0, 0);
             }
         }
+
+        public void RenderDroppedItemLabel(DroppedItemRenderProxy renderData)
+        {
+            if (renderedItemById.ContainsKey(renderData.Id))
+            {
+                GameObject droppedItem = renderedItemById[renderData.Id];
+
+                GameObject itemLabel = InteractableLabelFactory.CreateInteractableLabel(renderData.ItemName, "ItemLabel");
+
+                itemLabel.transform.position = new Vector3(droppedItem.transform.position.x, droppedItem.transform.position.y + 0.5f, 0);
+                itemLabel.transform.SetParent(transform);
+            }
+        }
     }
 }
