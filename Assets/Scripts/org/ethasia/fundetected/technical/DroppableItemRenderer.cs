@@ -86,7 +86,7 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 GameObject droppedItem = renderedItemById[renderData.Id];
 
-                GameObject itemLabel = InteractableLabelFactory.CreateInteractableLabel(renderData.ItemName, "ItemLabel");
+                GameObject itemLabel = InteractableLabelFactory.CreateInteractableLabel(renderData.ItemName, "ItemLabel " + renderData.Id);
 
                 itemLabel.transform.position = new Vector3(droppedItem.transform.position.x, droppedItem.transform.position.y + 0.5f, 0);
                 itemLabel.transform.SetParent(transform);
