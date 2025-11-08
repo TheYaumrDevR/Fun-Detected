@@ -246,6 +246,12 @@ namespace Org.Ethasia.Fundetected.Interactors
                 itemDropInfo.PositionY = droppedItem.CollisionShape.Position.Y;
 
                 droppedItemPresenter.PresentItemDrop(itemDropInfo);
+
+                if (!droppedItem.PhysicsBody.IsFalling)
+                {
+                    itemDropInfo.PositionY = droppedItem.CollisionShape.Position.Y + droppedItem.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter;
+                    droppedItemPresenter.UpdateItemPresentationWhenRestingOnGround(itemDropInfo);
+                }
             }
         }      
     }
