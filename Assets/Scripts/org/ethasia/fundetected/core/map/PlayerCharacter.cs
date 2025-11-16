@@ -155,7 +155,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public void FullyHealHpAndMp()
         {
             BaseStats.FullHeal();
-        } 
+        }
 
         public void TakePhysicalDamage(int incomingDamage)
         {
@@ -168,7 +168,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             BaseStats.ReduceCurrentLifeBy(finalDamage);
 
             PresentDamage(finalDamage);
-        }       
+        }    
+
+        public void PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
+        {
+            allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
+        }
 
         private void PresentDamage(int damageTaken)
         {

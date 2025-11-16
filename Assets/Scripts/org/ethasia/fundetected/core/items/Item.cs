@@ -67,6 +67,9 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public abstract void RerollEntireItem();
 
         public abstract void Accept(ItemVisitor visitor);
+
+        public abstract void OnPickup(PlayerCharacter player);
+
         protected abstract Item CloneActual();
 
         protected void CloneItemFields(Item clone)

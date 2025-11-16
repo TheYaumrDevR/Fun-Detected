@@ -204,6 +204,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             item.PhysicsBody.StartFalling(item.CollisionShape.Position.Y);
         }
 
+        public void PickupItem(int itemIndex)
+        {
+            Item item = DroppedItems[itemIndex];
+            DroppedItems.RemoveAt(itemIndex);
+            item.OnPickup(Player);
+        }
+
         public List<EnemySpawnLocation> SpawnEnemies()
         {
             if (null != enemySpawner)

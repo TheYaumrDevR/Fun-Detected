@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Items.Potions
 {
     public class RecoveryPotion : Potion
@@ -18,13 +20,18 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
             // TODO: implement later when there is something to reroll
         }
 
+        public override void OnPickup(PlayerCharacter player)
+        {
+            // TODO: add to free potion slot
+        }
+
         protected override Item CloneActual()
         {
             RecoveryPotion result = new RecoveryPotion();
             result.RecoveryAmount = RecoveryAmount;
 
             Clone(result);
-            
+
             return result;
         }
 

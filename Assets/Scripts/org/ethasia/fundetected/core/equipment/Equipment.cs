@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
@@ -72,13 +73,18 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 FirstImplicit.RerolledAffix.UnApplyEffects(statsFromEquipment);
             }
         }
-        
+
         public override void RerollEntireItem()
         {
             if (null != FirstImplicit)
             {
                 FirstImplicit.RerollAffix();
             }
+        }
+
+        public override void OnPickup(PlayerCharacter player)
+        {
+            player.PickupEquipment(this);
         }
 
         protected void Clone(Equipment clone)

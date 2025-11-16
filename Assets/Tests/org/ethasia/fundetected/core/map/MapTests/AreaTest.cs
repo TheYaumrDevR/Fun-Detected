@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Map.Tests
@@ -386,7 +388,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             int result = testArea.TryToMovePlayerLeftStepUp();
             Assert.That(result, Is.EqualTo(0)); 
-        } 
+        }
 
         [Test]
         public void TestPortPlayerToPortsToCoordinatesWithDestinationId()
@@ -408,12 +410,52 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();  
+                .Build();
 
             testArea.PortPlayerTo(playerCharacter, "upperWestPortal");
 
-            Assert.That(testArea.GetPlayerPositionX(), Is.EqualTo(5));      
-            Assert.That(testArea.GetPlayerPositionY(), Is.EqualTo(70));           
+            Assert.That(testArea.GetPlayerPositionX(), Is.EqualTo(5));
+            Assert.That(testArea.GetPlayerPositionY(), Is.EqualTo(70));
+        }
+
+        [Test]
+        public void TestPickupItemRemovesItemFromDroppedItemsAndEquipsItToPlayer()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(10, 10))
+                .Build();
+
+            Area.ActiveArea = testArea;
+
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();  
+
+            testArea.SpawnPlayer(playerCharacter);
+
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+            jewelryBuilder.SetItemClass(ItemClass.BELT);
+
+            Jewelry testItem1 = jewelryBuilder.Build();
+
+            jewelryBuilder.SetItemClass(ItemClass.RING);
+
+            Jewelry testItem2 = jewelryBuilder.Build();
+            Jewelry testItem3 = jewelryBuilder.Build();
+
+            testArea.AddItem(testItem2);
+            testArea.AddItem(testItem1);
+            testArea.AddItem(testItem3);
+
+            testArea.PickupItem(1);
+
+            Assert.That(testArea.DroppedItems.Count, Is.EqualTo(2));
         }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
