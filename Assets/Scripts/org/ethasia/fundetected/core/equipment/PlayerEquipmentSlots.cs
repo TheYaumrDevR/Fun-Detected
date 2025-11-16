@@ -26,6 +26,33 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             beltSlot = new EquipmentSlot(EquipmentSlotTypes.BELT);
         }
 
+        public Equipment EquipIntoFreeSlotBasedOnItemClass(Equipment toEquip)
+        {
+            switch (toEquip.ItemClass)
+            {
+                case ItemClass.RING:
+                    if (leftRingSlot.IsEmpty())
+                    {
+                        return EquipInLeftRing(toEquip);
+                    }
+                    else if (rightRingSlot.IsEmpty())
+                    {
+                        return EquipInRightRing(toEquip);
+                    }
+
+                    break;
+                case ItemClass.BELT:
+                    if (beltSlot.IsEmpty())
+                    {
+                        return EquipInBelt(toEquip);
+                    }
+
+                    break;
+            }
+
+            return null;
+        }
+
         public Equipment EquipInMainHand(Equipment toEquip)
         {
             if (!CanEquipInMainHand(toEquip))
@@ -74,31 +101,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
 
             return SwapEquipedEquipment(beltSlot, toEquip);
-        }
-
-        public void EquipIntoFreeSlotBasedOnItemClass(Equipment toEquip)
-        {
-            switch (toEquip.ItemClass)
-            {
-                case ItemClass.RING:
-                    if (leftRingSlot.IsEmpty())
-                    {
-                        EquipInLeftRing(toEquip);
-                    }
-                    else if (rightRingSlot.IsEmpty())
-                    {
-                        EquipInRightRing(toEquip);
-                    }
-                    
-                    break;
-                case ItemClass.BELT:
-                    if (beltSlot.IsEmpty())
-                    {
-                        EquipInBelt(toEquip);
-                    }
-
-                    break;
-            }
         }
 
         public bool CanEquipInMainHand(Equipment equipment)
