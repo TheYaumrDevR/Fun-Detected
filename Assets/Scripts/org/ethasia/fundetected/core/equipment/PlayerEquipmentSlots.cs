@@ -143,6 +143,31 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             return false;
         }
 
+        public void AcceptMainHandVisitor(ItemVisitor visitor)
+        {
+            mainHandSlot.Accept(visitor);
+        }
+
+        public void AcceptOffHandVisitor(ItemVisitor visitor)
+        {
+            offHandSlot.Accept(visitor);
+        }
+
+        public void AcceptLeftRingVisitor(ItemVisitor visitor)
+        {
+            leftRingSlot.Accept(visitor);
+        }
+
+        public void AcceptRightRingVisitor(ItemVisitor visitor)
+        {
+            rightRingSlot.Accept(visitor);
+        }
+
+        public void AcceptBeltVisitor(ItemVisitor visitor)
+        {
+            beltSlot.Accept(visitor);
+        }
+
         private Equipment SwapEquipedEquipment(EquipmentSlot slot, Equipment toEquip)
         {
             toEquip.OnEquip(EquipmentStats);

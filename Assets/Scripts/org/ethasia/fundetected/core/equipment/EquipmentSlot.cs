@@ -57,5 +57,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             return ItemClass.NONE;
         }
+
+        public void Accept(ItemVisitor visitor)
+        {
+            if (null != equipment)
+            {
+                equipment.Accept(visitor);
+            }
+        }
     }
 }

@@ -175,6 +175,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
         }
 
+        public PlayerEquipmentItemsExtractionVisitor CreateItemExtractionVisitor()
+        {
+            return new PlayerEquipmentItemsExtractionVisitor(allEquipment);
+        }
+
         private void PresentDamage(int damageTaken)
         {
             IPlayerDamageTakenInteractor playerDamageTakenInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDamageTakenInteractorInstance();
