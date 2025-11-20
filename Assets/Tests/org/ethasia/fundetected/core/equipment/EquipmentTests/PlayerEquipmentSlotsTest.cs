@@ -462,5 +462,132 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Assert.That(result.Name, Is.EqualTo("Emerald Ring"));
         }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInLeftRingIfFree()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
+
+            testItemBuilder.SetName("Ruby Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry rubyRing = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(rubyRing);
+            resultExtractor.ExtractLeftRingEquipment();
+
+            Assert.That(result, Is.Null);
+            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Ruby Ring"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInRightRingIfLeftIsOccupied()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
+
+            testItemBuilder.SetName("Gold Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry goldRing = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Chrysocolla Band");
+
+            Jewelry chrysocollaBand = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(goldRing);
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(chrysocollaBand);
+
+            resultExtractor.ExtractRightRingEquipment();
+
+            Assert.That(result, Is.Null);
+            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Chrysocolla Band"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInBeltIfFree()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
+
+            testItemBuilder.SetName("Flask Belt")
+                .SetItemClass(ItemClass.BELT);
+
+            Jewelry flaskBelt = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(flaskBelt);
+            resultExtractor.ExtractBeltEquipment();
+
+            Assert.That(result, Is.Null);
+            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Flask Belt"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClassDoesNotEquipRingIfBothSlotsOccupied()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
+
+            testItemBuilder.SetName("Gold Ring")
+                .SetItemClass(ItemClass.RING);
+
+            Jewelry goldRing = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Chrysocolla Band");
+
+            Jewelry chrysocollaBand = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Neodymium Ring");
+
+            Jewelry neodymiumRing = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(goldRing);
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(chrysocollaBand);
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(neodymiumRing);
+
+            resultExtractor.ExtractRightRingEquipment();
+            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Chrysocolla Band"));
+
+            resultExtractor.ExtractLeftRingEquipment();
+            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Gold Ring"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClassDoesNotEquipBeltIfSlotOccupied()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
+
+            testItemBuilder.SetName("Flask Belt")
+                .SetItemClass(ItemClass.BELT);
+
+            Jewelry flaskBelt = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Condensing Belt");
+
+            Jewelry condensingBelt = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(flaskBelt);
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(condensingBelt);
+
+            resultExtractor.ExtractBeltEquipment();
+            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Flask Belt"));
+        }
     }
 }
