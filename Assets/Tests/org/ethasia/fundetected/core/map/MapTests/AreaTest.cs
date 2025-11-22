@@ -455,7 +455,11 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testArea.PickupItem(1);
 
+            PlayerEquipmentItemsExtractionVisitor equipmentExtractionVisitor = playerCharacter.CreateItemExtractionVisitor();
+            equipmentExtractionVisitor.ExtractBeltEquipment();
+
             Assert.That(testArea.DroppedItems.Count, Is.EqualTo(2));
+            Assert.That(equipmentExtractionVisitor.ExtractedJewelry, Is.EqualTo(testItem1));
         }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
