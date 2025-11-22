@@ -60,20 +60,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox = interactableObject.GetCollisionBoundingBoxContext();
 
-                if (mousePositionX >= interactableBoundingBox.PositionX - interactableBoundingBox.DistanceToLeftEdge
-                    && mousePositionX <= interactableBoundingBox.PositionX + interactableBoundingBox.DistanceToRightEdge
-                    && mousePositionY >= interactableBoundingBox.PositionY - interactableBoundingBox.DistanceToBottomEdge
-                    && mousePositionY <= interactableBoundingBox.PositionY + interactableBoundingBox.DistanceToTopEdge)
+                if (CollisionCalculations.IsMousePointerInsideBoundingBox(mousePositionX, mousePositionY, interactableBoundingBox))
                 {
-                    BoundingBox playerBoundingBox = activeArea.Player.BoundingBox;
-                    CollisionCalculations.CollisionBoundingBoxContext playerBoundingBoxContext = new CollisionCalculations.CollisionBoundingBoxContext.Builder()
-                        .SetPositionX(activeArea.GetPlayerPositionX())
-                        .SetPositionY(activeArea.GetPlayerPositionY())
-                        .SetDistanceToLeftEdge(playerBoundingBox.DistanceToLeftEdge)
-                        .SetDistanceToRightEdge(playerBoundingBox.DistanceToRightEdge)
-                        .SetDistanceToBottomEdge(playerBoundingBox.DistanceToBottomEdge)
-                        .SetDistanceToTopEdge(playerBoundingBox.DistanceToTopEdge)
-                        .Build();
+                    CollisionCalculations.CollisionBoundingBoxContext playerBoundingBoxContext = CollisionCalculations.CollisionBoundingBoxContext.FromPlayerCharacterInArea(activeArea);
 
                     if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
                     {

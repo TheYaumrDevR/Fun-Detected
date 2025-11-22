@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Maths
 {
     public class CollisionCalculations
@@ -16,6 +18,14 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             && first.PositionY - first.DistanceToBottomEdge <= second.PositionY + second.DistanceToTopEdge
             || first.PositionY + first.DistanceToTopEdge >= second.PositionY + second.DistanceToTopEdge
             && first.PositionY - first.DistanceToBottomEdge <= second.PositionY - second.DistanceToBottomEdge);	
+        }
+
+        public static bool IsMousePointerInsideBoundingBox(int mousePositionX, int mousePositionY, CollisionBoundingBoxContext interactableBoundingBox)
+        {
+            return mousePositionX >= interactableBoundingBox.PositionX - interactableBoundingBox.DistanceToLeftEdge
+                && mousePositionX <= interactableBoundingBox.PositionX + interactableBoundingBox.DistanceToRightEdge
+                && mousePositionY >= interactableBoundingBox.PositionY - interactableBoundingBox.DistanceToBottomEdge
+                && mousePositionY <= interactableBoundingBox.PositionY + interactableBoundingBox.DistanceToTopEdge;
         }
 
         public struct CollisionBoundingBoxContext
@@ -54,6 +64,20 @@ namespace Org.Ethasia.Fundetected.Core.Maths
             {
                 get;
                 private set;
+            }
+
+            public static CollisionBoundingBoxContext FromPlayerCharacterInArea(Area area)
+            {
+                BoundingBox playerBoundingBox = area.Player.BoundingBox;
+
+                return new Builder()
+                    .SetPositionX(area.GetPlayerPositionX())
+                    .SetPositionY(area.GetPlayerPositionY())
+                    .SetDistanceToLeftEdge(playerBoundingBox.DistanceToLeftEdge)
+                    .SetDistanceToRightEdge(playerBoundingBox.DistanceToRightEdge)
+                    .SetDistanceToBottomEdge(playerBoundingBox.DistanceToBottomEdge)
+                    .SetDistanceToTopEdge(playerBoundingBox.DistanceToTopEdge)
+                    .Build();
             }
 
             public class Builder
