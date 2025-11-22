@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Maths;
 
@@ -11,6 +12,14 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         public bool InteractWithEnvironment(int mousePositionX, int mousePositionY)
         {
+            int pickedUpItemIndex = GetItemIndexInteractedWith(mousePositionX, mousePositionY);
+
+            if (pickedUpItemIndex >= 0)
+            {
+                Area.ActiveArea.PickupItem(pickedUpItemIndex);
+                return true;
+            }
+
             return InteractWithEnvironment(mousePositionX, mousePositionY, (interactableObject) => 
             {
                 interactableObject.OnInteract(this);
@@ -50,6 +59,34 @@ namespace Org.Ethasia.Fundetected.Interactors
             IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
             guiWindowsPresenter.ShowMapSelectionWindowForSingletonMap(mapName, destinationPortalId, GetMapInstanceId(1));
             playerInputOnOffSwitch.DisableInput();
+        }
+
+        private int GetItemIndexInteractedWith(int mousePositionX, int mousePositionY)
+        {
+            Area activeArea = Area.ActiveArea;
+
+            List<Item> droppedItems = activeArea.DroppedItems;
+
+            int result = -1;
+            foreach (Item droppedItem in droppedItems)
+            {
+                result++;
+
+                RectangleCollisionShape itemCollisionShape = droppedItem.CollisionShape;
+                CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox = CollisionCalculations.CollisionBoundingBoxContext.FromRectangleCollisionShape(itemCollisionShape);
+
+                if (CollisionCalculations.IsMousePointerInsideBoundingBox(mousePositionX, mousePositionY, interactableBoundingBox))
+                {
+                    CollisionCalculations.CollisionBoundingBoxContext playerBoundingBoxContext = CollisionCalculations.CollisionBoundingBoxContext.FromPlayerCharacterInArea(activeArea);
+
+                    if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return -1;
         }
 
         private bool InteractWithEnvironment(int mousePositionX, int mousePositionY, Action<InteractableEnvironmentObject> interactionAction)

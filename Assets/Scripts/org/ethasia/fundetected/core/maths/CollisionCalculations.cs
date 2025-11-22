@@ -80,6 +80,18 @@ namespace Org.Ethasia.Fundetected.Core.Maths
                     .Build();
             }
 
+            public static CollisionBoundingBoxContext FromRectangleCollisionShape(RectangleCollisionShape rectangleCollisionShape)
+            {
+                return new Builder()
+                    .SetPositionX(rectangleCollisionShape.Position.X)
+                    .SetPositionY(rectangleCollisionShape.Position.Y)
+                    .SetDistanceToLeftEdge(rectangleCollisionShape.CollisionShapeDistanceToLeftEdgeFromCenter)
+                    .SetDistanceToRightEdge(rectangleCollisionShape.CollisionShapeDistanceToRightEdgeFromCenter)
+                    .SetDistanceToBottomEdge(rectangleCollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter)
+                    .SetDistanceToTopEdge(rectangleCollisionShape.CollisionShapeDistanceToTopEdgeFromCenter)
+                    .Build();
+            }
+
             public class Builder
             {
                 private int distanceToRightEdge;
