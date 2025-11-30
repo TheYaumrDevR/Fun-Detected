@@ -290,6 +290,91 @@ namespace Org.Ethasia.Fundetected.Core.Maths.Tests
             bool result = CollisionCalculations.AreBoundingBoxesOverlapping(secondObject, firstObject);
 
             Assert.That(result, Is.False);                  
-        }                                                     
+        }    
+
+        [Test]
+        public void TestIsMousePointerInsideBoundingBox()
+        {
+            CollisionCalculations.CollisionBoundingBoxContext collisionShape = new CollisionCalculations.CollisionBoundingBoxContext.Builder()
+                .SetPositionX(15)
+                .SetPositionY(25)
+                .SetDistanceToLeftEdge(4)
+                .SetDistanceToRightEdge(4)
+                .SetDistanceToTopEdge(4)
+                .SetDistanceToBottomEdge(4)                
+                .Build();
+
+            bool result = CollisionCalculations.IsMousePointerInsideBoundingBox(17, 23, collisionShape);
+
+            Assert.That(result, Is.True); 
+        }   
+
+        [Test]
+        public void TestIsMousePointerInsideBoundingBoxPointerIsLeftOfBoundingBox()
+        {
+            CollisionCalculations.CollisionBoundingBoxContext collisionShape = new CollisionCalculations.CollisionBoundingBoxContext.Builder()
+                .SetPositionX(15)
+                .SetPositionY(25)
+                .SetDistanceToLeftEdge(4)
+                .SetDistanceToRightEdge(4)
+                .SetDistanceToTopEdge(4)
+                .SetDistanceToBottomEdge(4)                
+                .Build();
+
+            bool result = CollisionCalculations.IsMousePointerInsideBoundingBox(10, 23, collisionShape);
+
+            Assert.That(result, Is.False); 
+        }              
+
+        [Test]
+        public void TestIsMousePointerInsideBoundingBoxPointerIsRightOfBoundingBox()
+        {
+            CollisionCalculations.CollisionBoundingBoxContext collisionShape = new CollisionCalculations.CollisionBoundingBoxContext.Builder()
+                .SetPositionX(15)
+                .SetPositionY(25)
+                .SetDistanceToLeftEdge(4)
+                .SetDistanceToRightEdge(4)
+                .SetDistanceToTopEdge(4)
+                .SetDistanceToBottomEdge(4)                
+                .Build();
+
+            bool result = CollisionCalculations.IsMousePointerInsideBoundingBox(20, 23, collisionShape);
+
+            Assert.That(result, Is.False); 
+        }  
+
+        [Test]
+        public void TestIsMousePointerInsideBoundingBoxPointerIsAboveBoundingBox()
+        {
+            CollisionCalculations.CollisionBoundingBoxContext collisionShape = new CollisionCalculations.CollisionBoundingBoxContext.Builder()
+                .SetPositionX(15)
+                .SetPositionY(25)
+                .SetDistanceToLeftEdge(4)
+                .SetDistanceToRightEdge(4)
+                .SetDistanceToTopEdge(4)
+                .SetDistanceToBottomEdge(4)                
+                .Build();
+
+            bool result = CollisionCalculations.IsMousePointerInsideBoundingBox(17, 30, collisionShape);
+
+            Assert.That(result, Is.False); 
+        }  
+
+        [Test]
+        public void TestIsMousePointerInsideBoundingBoxPointerIsBelowBoundingBox()
+        {
+            CollisionCalculations.CollisionBoundingBoxContext collisionShape = new CollisionCalculations.CollisionBoundingBoxContext.Builder()
+                .SetPositionX(15)
+                .SetPositionY(25)
+                .SetDistanceToLeftEdge(4)
+                .SetDistanceToRightEdge(4)
+                .SetDistanceToTopEdge(4)
+                .SetDistanceToBottomEdge(4)                
+                .Build();
+
+            bool result = CollisionCalculations.IsMousePointerInsideBoundingBox(17, 20, collisionShape);
+
+            Assert.That(result, Is.False); 
+        }                               
     }
 }
