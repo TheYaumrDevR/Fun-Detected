@@ -8,5 +8,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void MoveDroppedItemLeft(string itemId, int units);
         void MoveDroppedItemRight(string itemId, int units);
         void RenderDroppedItemLabel(DroppedItemRenderProxy renderData);
+        void ClearRenderedItem(string itemId);
     }
 }

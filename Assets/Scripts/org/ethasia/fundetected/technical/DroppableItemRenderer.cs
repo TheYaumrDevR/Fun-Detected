@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private static DroppableItemRenderer instance;
 
         private Dictionary<string, GameObject> renderedItemById = new Dictionary<string, GameObject>();
+        private Dictionary<string, GameObject> renderedItemLabelById = new Dictionary<string, GameObject>();
 
         public static DroppableItemRenderer GetInstance()
         {
@@ -19,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public DroppableItemRenderer()
         {
             renderedItemById = new Dictionary<string, GameObject>();
+            renderedItemLabelById = new Dictionary<string, GameObject>();
         }
 
         void Awake()
@@ -34,6 +36,7 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             renderedItemById.Clear();
+            renderedItemLabelById.Clear();
         }
 
         public void RenderDroppedItem(DroppedItemRenderProxy renderData)
@@ -90,6 +93,25 @@ namespace Org.Ethasia.Fundetected.Technical
 
                 itemLabel.transform.position = new Vector3(droppedItem.transform.position.x, droppedItem.transform.position.y + 0.5f, 0);
                 itemLabel.transform.SetParent(transform);
+
+                renderedItemLabelById.Add(renderData.Id, itemLabel);
+            }
+        }
+
+        public void ClearRenderedItem(string itemId)
+        {
+            ClearRenderedItemFromDictionary(itemId, renderedItemById);
+            ClearRenderedItemFromDictionary(itemId, renderedItemLabelById);
+        }
+
+        private void ClearRenderedItemFromDictionary(string itemId, Dictionary<string, GameObject> dictionary)
+        {
+            if (dictionary.ContainsKey(itemId))
+            {
+                GameObject renderedItem = dictionary[itemId];
+
+                Destroy(renderedItem);
+                dictionary.Remove(itemId);
             }
         }
     }

@@ -28,5 +28,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
 
         }
+
+        public void ClearPresentedItem(string itemId)
+        {
+
+        }
     }
 }

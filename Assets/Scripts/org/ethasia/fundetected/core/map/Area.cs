@@ -209,6 +209,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Item item = DroppedItems[itemIndex];
             DroppedItems.RemoveAt(itemIndex);
             item.OnPickup(Player);
+
+            IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
+            droppedItemPresenter.ClearPresentedItem(item.UniqueId);
         }
 
         public List<EnemySpawnLocation> SpawnEnemies()

@@ -7,5 +7,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
         void MovePresentedItemLeft(string itemId, int units);
         void MovePresentedItemRight(string itemId, int units);
         void UpdateItemPresentationWhenRestingOnGround(ItemDropPresentationInformation itemDropInfo);
+        void ClearPresentedItem(string itemId);
     }
 }
