@@ -75,14 +75,9 @@ namespace Org.Ethasia.Fundetected.Interactors
                 RectangleCollisionShape itemCollisionShape = droppedItem.CollisionShape;
                 CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox = CollisionCalculations.CollisionBoundingBoxContext.FromRectangleCollisionShape(itemCollisionShape);
 
-                if (CollisionCalculations.IsMousePointerInsideBoundingBox(mousePositionX, mousePositionY, interactableBoundingBox))
+                if (MousePointerAndPlayerIntersectBoundingBox(new Position(mousePositionX, mousePositionY), interactableBoundingBox))
                 {
-                    CollisionCalculations.CollisionBoundingBoxContext playerBoundingBoxContext = CollisionCalculations.CollisionBoundingBoxContext.FromPlayerCharacterInArea(activeArea);
-
-                    if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
-                    {
-                        return result;
-                    }
+                    return result;
                 }
             }
 
@@ -97,20 +92,30 @@ namespace Org.Ethasia.Fundetected.Interactors
             {
                 CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox = interactableObject.GetCollisionBoundingBoxContext();
 
-                if (CollisionCalculations.IsMousePointerInsideBoundingBox(mousePositionX, mousePositionY, interactableBoundingBox))
+                if (MousePointerAndPlayerIntersectBoundingBox(new Position(mousePositionX, mousePositionY), interactableBoundingBox))
                 {
-                    CollisionCalculations.CollisionBoundingBoxContext playerBoundingBoxContext = CollisionCalculations.CollisionBoundingBoxContext.FromPlayerCharacterInArea(activeArea);
-
-                    if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
-                    {
-                        interactionAction(interactableObject);
-                        return true;
-                    }
+                    interactionAction(interactableObject);
+                    return true;
                 }
             }
 
             return false;
-        }        
+        }  
+
+        private bool MousePointerAndPlayerIntersectBoundingBox(Position mousePosition, CollisionCalculations.CollisionBoundingBoxContext interactableBoundingBox)
+        {
+            if (CollisionCalculations.IsMousePointerInsideBoundingBox(mousePosition.X, mousePosition.Y, interactableBoundingBox))
+            {
+                CollisionCalculations.CollisionBoundingBoxContext playerBoundingBoxContext = CollisionCalculations.CollisionBoundingBoxContext.FromPlayerCharacterInArea(Area.ActiveArea);
+
+                if (CollisionCalculations.AreBoundingBoxesOverlapping(playerBoundingBoxContext, interactableBoundingBox))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }      
 
         private void PresentHealthAndManaBarState()
         {
