@@ -7,5 +7,6 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayHealingWellUseSound(string audioSourceId);
         void PlayItemDropSound(string audioSourceId);
         void PlayNormalItemDroppedSound();
+        void PlayDroppedItemPickedUpSound();
     }
 }

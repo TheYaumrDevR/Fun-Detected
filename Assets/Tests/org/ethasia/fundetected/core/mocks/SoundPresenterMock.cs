@@ -32,6 +32,10 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
         {
         }
 
+        public void PlayDroppedItemPickedUpSound()
+        {
+        }
+
         public void ResetMock()
         {
             playItemDropSoundCallCount = 0;

@@ -25,6 +25,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip mouseClickSound;
         public AudioClip itemDropSound;
         public AudioClip normalItemDroppedSound;
+        public AudioClip droppedItemPickedUpSound;
 
         public static SoundPlayer GetInstance()
         {
@@ -115,6 +116,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayNormalItemDroppedSound()
         {
             globalAudioSource.PlayOneShot(normalItemDroppedSound);
+        }
+
+        public void PlayDroppedItemPickedUpSound()
+        {
+            globalAudioSource.PlayOneShot(droppedItemPickedUpSound);
         }
 
         public void CallSoundMethodById(string soundMethodId, string audioSourceId)

@@ -17,6 +17,10 @@ namespace Org.Ethasia.Fundetected.Interactors
             if (pickedUpItemIndex >= 0)
             {
                 Area.ActiveArea.PickupItem(pickedUpItemIndex);
+
+                ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+                soundPresenter.PlayDroppedItemPickedUpSound();
+                
                 return true;
             }
 
