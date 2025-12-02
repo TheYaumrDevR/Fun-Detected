@@ -82,9 +82,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
         }
 
-        public override void OnPickup(PlayerCharacter player)
+        public override Item OnPickup(PlayerCharacter player)
         {
-            player.PickupEquipment(this);
+            return player.PickupEquipment(this);
         }
 
         protected void Clone(Equipment clone)

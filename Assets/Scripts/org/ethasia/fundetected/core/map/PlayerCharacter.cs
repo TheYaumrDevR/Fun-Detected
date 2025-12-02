@@ -170,9 +170,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PresentDamage(finalDamage);
         }    
 
-        public void PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
+        public Org.Ethasia.Fundetected.Core.Equipment.Equipment PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
         {
-            allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
+            return allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
         }
 
         public PlayerEquipmentItemsExtractionVisitor CreateItemExtractionVisitor()

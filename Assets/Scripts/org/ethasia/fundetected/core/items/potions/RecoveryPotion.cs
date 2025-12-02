@@ -20,9 +20,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
             // TODO: implement later when there is something to reroll
         }
 
-        public override void OnPickup(PlayerCharacter player)
+        public override Item OnPickup(PlayerCharacter player)
         {
             // TODO: add to free potion slot
+            return null;
         }
 
         protected override Item CloneActual()

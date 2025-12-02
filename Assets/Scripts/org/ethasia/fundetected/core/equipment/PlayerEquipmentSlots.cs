@@ -50,7 +50,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                     break;
             }
 
-            return null;
+            return toEquip;
         }
 
         public Equipment EquipInMainHand(Equipment toEquip)

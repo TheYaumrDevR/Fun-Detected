@@ -68,7 +68,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
         public abstract void Accept(ItemVisitor visitor);
 
-        public abstract void OnPickup(PlayerCharacter player);
+        public abstract Item OnPickup(PlayerCharacter player);
 
         protected abstract Item CloneActual();
 

@@ -204,14 +204,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
             item.PhysicsBody.StartFalling(item.CollisionShape.Position.Y);
         }
 
-        public void PickupItem(int itemIndex)
+        public bool PickupItem(int itemIndex)
         {
             Item item = DroppedItems[itemIndex];
-            DroppedItems.RemoveAt(itemIndex);
-            item.OnPickup(Player);
+            Item itemDroppedFromInventory = item.OnPickup(Player);
 
-            IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
-            droppedItemPresenter.ClearPresentedItem(item.UniqueId);
+            if (item != itemDroppedFromInventory)
+            {
+                DroppedItems.RemoveAt(itemIndex);
+                IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
+                droppedItemPresenter.ClearPresentedItem(item.UniqueId);
+
+                return true;
+            }
+
+            return false;
         }
 
         public List<EnemySpawnLocation> SpawnEnemies()

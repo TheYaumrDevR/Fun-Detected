@@ -25,9 +25,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Consumables.Glyphs
             // TODO: implement later when there is something to reroll
         }
         
-        public override void OnPickup(PlayerCharacter player)
+        public override Item OnPickup(PlayerCharacter player)
         {
             // TODO: Add to inventory grid
+            return null;
         }
 
         protected override Item CloneActual()
