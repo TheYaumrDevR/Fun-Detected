@@ -462,6 +462,53 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(equipmentExtractionVisitor.ExtractedJewelry, Is.EqualTo(testItem1));
         }
 
+        [Test]
+        public void TestPickupItemDoesNotPickUpItemWhenNoSpaceInInventory()
+        {
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(10, 10))
+                .Build();
+
+            Area.ActiveArea = testArea;
+
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .Build();
+
+            PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
+                .Build();  
+
+            testArea.SpawnPlayer(playerCharacter);
+
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+            jewelryBuilder.SetItemClass(ItemClass.BELT);
+
+            Jewelry testItem1 = jewelryBuilder.Build();
+
+            jewelryBuilder.SetItemClass(ItemClass.RING);
+
+            Jewelry testItem2 = jewelryBuilder.Build();
+            Jewelry testItem3 = jewelryBuilder.Build();
+            Jewelry testItem4 = jewelryBuilder.Build();
+
+            testArea.AddItem(testItem2);
+            testArea.AddItem(testItem1);
+            testArea.AddItem(testItem3);
+            testArea.AddItem(testItem4);
+
+            bool pickedRingOne = testArea.PickupItem(0);
+            bool pickedRingTwo = testArea.PickupItem(1);
+            bool pickedBelt = testArea.PickupItem(0);
+            bool pickedRingThree = testArea.PickupItem(0);
+
+            Assert.That(testArea.DroppedItems.Count, Is.EqualTo(1));
+            Assert.That(pickedRingOne, Is.True);
+            Assert.That(pickedRingTwo, Is.True);
+            Assert.That(pickedBelt, Is.True);
+            Assert.That(pickedRingThree, Is.False);
+        }
+
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
         {
             MeleeHitArcProperties result = new MeleeHitArcProperties();
