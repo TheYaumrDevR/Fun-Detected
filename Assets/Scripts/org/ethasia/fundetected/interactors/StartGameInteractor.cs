@@ -84,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             CharacterClassMasterData playerCharacterStartingStats = playerCharacterBaseStats.CharacterClassMasterData;
             MeleeHitArcMasterData meleeHitArcMasterData = playerCharacterBaseStats.MeleeHitArcMasterData;
 
-            DamageRange basePhysicalDamage = new DamageRange(playerCharacterStartingStats.MinBasePhysicalDamage, playerCharacterStartingStats.MaxBasePhysicalDamage);
+            DamageRange basePhysicalDamageWithMeleeAttacks = new DamageRange(playerCharacterStartingStats.MinBasePhysicalDamageWithMeleeAttacks, playerCharacterStartingStats.MaxBasePhysicalDamageWithMeleeAttacks);
 
             PlayerCharacterBaseStats startingStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
                 .SetLevel(1)
@@ -94,7 +94,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                 .SetMaxLife(playerCharacterStartingStats.Life)
                 .SetMaxMana(playerCharacterStartingStats.Mana)
                 .SetEvasionRating(playerCharacterStartingStats.EvasionRating)
-                .SetBasePhysicalDamage(basePhysicalDamage)
+                .SetBasePhysicalDamageWithMeleeAttacks(basePhysicalDamageWithMeleeAttacks)
                 .SetAttacksPerSecond(playerCharacterStartingStats.AttacksPerSecond)
                 .SetMovementSpeed(playerCharacterStartingStats.MovementSpeed)
                 .Build();   

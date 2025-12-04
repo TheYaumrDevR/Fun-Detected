@@ -13,7 +13,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Intelligence = 14;
             result.Agility = 14;
             result.Strength = 32;
-            result.MaxBasePhysicalDamage = 8;
+            result.MaxBasePhysicalDamageWithMeleeAttacks = 8;
             
             return result;
         }
@@ -26,8 +26,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Intelligence = 14;
             result.Agility = 23;
             result.Strength = 23;
-            result.MaxBasePhysicalDamage = 6;            
-            
+            result.MaxBasePhysicalDamageWithMeleeAttacks = 6;
+
             return result;
         }  
 
@@ -39,8 +39,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Intelligence = 23;
             result.Agility = 14;
             result.Strength = 23;
-            result.MaxBasePhysicalDamage = 6;
-            
+            result.MaxBasePhysicalDamageWithMeleeAttacks = 6;
+
             return result;
         }   
 
@@ -52,8 +52,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Intelligence = 14;
             result.Agility = 32;
             result.Strength = 14;
-            result.MaxBasePhysicalDamage = 5;
-            
+            result.MaxBasePhysicalDamageWithMeleeAttacks = 5;
+
             return result;
         }   
 
@@ -65,8 +65,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Intelligence = 32;
             result.Agility = 14;
             result.Strength = 14;
-            result.MaxBasePhysicalDamage = 5;
-            
+            result.MaxBasePhysicalDamageWithMeleeAttacks = 5;
+
             return result;
         }     
 
@@ -78,8 +78,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             result.Intelligence = 23;
             result.Agility = 23;
             result.Strength = 14;
-            result.MaxBasePhysicalDamage = 5;
-            
+            result.MaxBasePhysicalDamageWithMeleeAttacks = 5;
+
             return result;
         }  
     }

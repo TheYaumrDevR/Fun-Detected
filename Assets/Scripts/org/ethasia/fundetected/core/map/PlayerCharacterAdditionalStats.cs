@@ -110,6 +110,60 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public DamageRange AddedPhysicalDamageWithMeleeAttacks
+        {
+            get;
+            private set;
+        }
+
+        public float AddedPhysicalDamageWithMeleeAttacksIncrease
+        {
+            get;
+            private set;
+        }
+
+        public float AddedPhysicalDamageWithMeleeAttacksMultiplier
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange AddedPhysicalDamageWithRangedAttacks
+        {
+            get;
+            private set;
+        }
+
+        public float AddedPhysicalDamageWithRangedAttacksIncrease
+        {
+            get;
+            private set;
+        }
+
+        public float AddedPhysicalDamageWithRangedAttacksMultiplier
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange AddedPhysicalDamageWithSpells
+        {
+            get;
+            private set;
+        }
+
+        public float AddedPhysicalDamageWithSpellsIncrease
+        {
+            get;
+            private set;
+        }
+
+        public float AddedPhysicalDamageWithSpellsMultiplier
+        {
+            get;
+            private set;
+        }
+
         public int AccuracyRatingAddend
         {
             get;
@@ -179,6 +233,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public PlayerCharacterAdditionalStats()
         {
             AddedPhysicalDamage = new DamageRange(0, 0);
+            AddedPhysicalDamageWithMeleeAttacks = new DamageRange(0, 0);
+            AddedPhysicalDamageWithRangedAttacks = new DamageRange(0, 0);
+            AddedPhysicalDamageWithSpells = new DamageRange(0, 0);
 
             StrengthIncrease = 1.0f;
             StrengthMultiplier = 1.0f;
@@ -197,6 +254,15 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             AddedPhysicalDamageIncrease = 1.0f;
             AddedPhysicalDamageMultiplier = 1.0f;
+
+            AddedPhysicalDamageWithMeleeAttacksIncrease = 1.0f;
+            AddedPhysicalDamageWithMeleeAttacksMultiplier = 1.0f;
+
+            AddedPhysicalDamageWithRangedAttacksIncrease = 1.0f;
+            AddedPhysicalDamageWithRangedAttacksMultiplier = 1.0f;
+
+            AddedPhysicalDamageWithSpellsIncrease = 1.0f;
+            AddedPhysicalDamageWithSpellsMultiplier = 1.0f;
 
             AccuracyRatingIncrease = 1.0f;
             AccuracyRatingMultiplier = 1.0f;
@@ -299,6 +365,51 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public void AddAddedPhysicalDamageMultiplier(float value)
         {
             AddedPhysicalDamageMultiplier *= value;
+        }
+
+        public void AddAddedPhysicalDamageWithMeleeAttacks(DamageRange value)
+        {
+            AddedPhysicalDamageWithMeleeAttacks.Add(value);
+        }
+
+        public void AddAddedPhysicalDamageWithMeleeAttacksIncrease(float value)
+        {
+            AddedPhysicalDamageWithMeleeAttacksIncrease += value;
+        }
+
+        public void AddAddedPhysicalDamageWithMeleeAttacksMultiplier(float value)
+        {
+            AddedPhysicalDamageWithMeleeAttacksMultiplier *= value;
+        }
+
+        public void AddAddedPhysicalDamageWithRangedAttacks(DamageRange value)
+        {
+            AddedPhysicalDamageWithRangedAttacks.Add(value);
+        }
+
+        public void AddAddedPhysicalDamageWithRangedAttacksIncrease(float value)
+        {
+            AddedPhysicalDamageWithRangedAttacksIncrease += value;
+        }
+
+        public void AddAddedPhysicalDamageWithRangedAttacksMultiplier(float value)
+        {
+            AddedPhysicalDamageWithRangedAttacksMultiplier *= value;
+        }
+
+        public void AddAddedPhysicalDamageWithSpells(DamageRange value)
+        {
+            AddedPhysicalDamageWithSpells.Add(value);
+        }
+
+        public void AddAddedPhysicalDamageWithSpellsIncrease(float value)
+        {
+            AddedPhysicalDamageWithSpellsIncrease += value;
+        }
+
+        public void AddAddedPhysicalDamageWithSpellsMultiplier(float value)
+        {
+            AddedPhysicalDamageWithSpellsMultiplier *= value;
         }
 
         public void AddAccuracyRatingAddend(int value)

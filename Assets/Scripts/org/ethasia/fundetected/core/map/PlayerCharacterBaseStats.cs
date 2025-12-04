@@ -54,7 +54,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }        
 
-        public DamageRange BasePhysicalDamage
+        public DamageRange BasePhysicalDamageWithMeleeAttacks
         {
             get;
             private set;
@@ -92,7 +92,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public PlayerCharacterBaseStats()
         {
-            BasePhysicalDamage = new DamageRange(1, 1);
+            BasePhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
         }
 
         public void LevelUp()
@@ -152,7 +152,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private int currentLife;
             private int currentMana;       
 
-            private DamageRange basePhysicalDamage;     
+            private DamageRange basePhysicalDamageWithMeleeAttacks;     
 
             private int accuracyRating;   
             private int evasionRating;   
@@ -209,9 +209,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }              
 
-            public PlayerCharacterBaseStatsBuilder SetBasePhysicalDamage(DamageRange value)
+            public PlayerCharacterBaseStatsBuilder SetBasePhysicalDamageWithMeleeAttacks(DamageRange value)
             {
-                basePhysicalDamage = value;
+                basePhysicalDamageWithMeleeAttacks = value;
                 return this;
             }   
 
@@ -241,13 +241,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.CurrentMana = currentMana;
                 result.AccuracyRating = accuracyRating;
                 result.EvasionRating = evasionRating;
-                result.BasePhysicalDamage = basePhysicalDamage;
+                result.BasePhysicalDamageWithMeleeAttacks = basePhysicalDamageWithMeleeAttacks;
                 result.AttacksPerSecond = attacksPerSecond;
                 result.MovementSpeed = movementSpeed;
 
-                if (null == basePhysicalDamage)
+                if (null == basePhysicalDamageWithMeleeAttacks)
                 {
-                    result.BasePhysicalDamage = new DamageRange(1, 1);
+                    result.BasePhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
                 }
 
                 return result;

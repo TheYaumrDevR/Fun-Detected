@@ -139,8 +139,8 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.BasePhysicalDamage.MinDamage, Is.EqualTo(70));
-            Assert.That(testCandidate.BasePhysicalDamage.MaxDamage, Is.EqualTo(148));
+            Assert.That(testCandidate.PhysicalDamage.MinDamage, Is.EqualTo(70));
+            Assert.That(testCandidate.PhysicalDamage.MaxDamage, Is.EqualTo(148));
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMaxMana(200)
                 .SetAccuracyRating(51)
                 .SetEvasionRating(168)
-                .SetBasePhysicalDamage(new DamageRange(11, 23))
+                .SetBasePhysicalDamageWithMeleeAttacks(new DamageRange(11, 23))
                 .SetAttacksPerSecond(1.4)
                 .SetMovementSpeed(150)
                 .Build();

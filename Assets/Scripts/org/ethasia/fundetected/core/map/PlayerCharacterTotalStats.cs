@@ -32,7 +32,25 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        public DamageRange BasePhysicalDamage
+        public DamageRange PhysicalDamage
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PhysicalDamageWithMeleeAttacks
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PhysicalDamageWithRangedAttacks
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PhysicalDamageWithSpells
         {
             get;
             private set;
@@ -64,7 +82,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public PlayerCharacterTotalStats()
         {
-            BasePhysicalDamage = new DamageRange(0, 0);
+            PhysicalDamage = new DamageRange(0, 0);
         }
 
         public void Calculate(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
@@ -74,7 +92,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             CalculateTotalStrength(baseStats, modifiers);
             CalculateMaximumLife(baseStats, modifiers);
             CalculateMaximumMana(baseStats, modifiers);
-            CalculateBasePhysicalDamage(baseStats, modifiers);
+            CalculatePhysicalDamage(baseStats, modifiers);
             CalculateAccuracyRating(baseStats, modifiers);
             CalculateEvasionRating(baseStats, modifiers);
             CalculateAttacksPerSecond(baseStats, modifiers);
@@ -143,12 +161,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
 
 
-        private void CalculateBasePhysicalDamage(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculatePhysicalDamage(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
-            BasePhysicalDamage.Add(baseStats.BasePhysicalDamage);
-            BasePhysicalDamage.Add(modifiers.AddedPhysicalDamage);
-            BasePhysicalDamage.Multiply(modifiers.AddedPhysicalDamageIncrease);
-            BasePhysicalDamage.Multiply(modifiers.AddedPhysicalDamageMultiplier);
+            PhysicalDamage.Add(baseStats.BasePhysicalDamageWithMeleeAttacks);
+            PhysicalDamage.Add(modifiers.AddedPhysicalDamage);
+            PhysicalDamage.Multiply(modifiers.AddedPhysicalDamageIncrease);
+            PhysicalDamage.Multiply(modifiers.AddedPhysicalDamageMultiplier);
         }
 
         private void CalculateAccuracyRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)

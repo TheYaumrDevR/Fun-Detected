@@ -52,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }        
 
-        public int MinBasePhysicalDamage
+        public int MinBasePhysicalDamageWithMeleeAttacks
         {
             get
             {
@@ -60,7 +60,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
         }
 
-        public int MaxBasePhysicalDamage
+        public int MaxBasePhysicalDamageWithMeleeAttacks
         {
             get;
             set;
