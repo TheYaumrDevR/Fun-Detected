@@ -135,9 +135,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculateMaximumLife(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
+            int additionalLifeFromStrength = Strength / 2;
+
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.MaximumLife)
-                .SetAddend(modifiers.MaximumLifeAddend)
+                .SetAddend(modifiers.MaximumLifeAddend + additionalLifeFromStrength)
                 .SetIncrease(modifiers.MaximumLifeIncrease)
                 .SetMultiplier(modifiers.MaximumLifeMultiplier)
                 .Build();
@@ -147,9 +149,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculateMaximumMana(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
+            int additionalManaFromIntelligence = Intelligence / 2;
+
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.MaximumMana)
-                .SetAddend(modifiers.MaximumManaAddend)
+                .SetAddend(modifiers.MaximumManaAddend + additionalManaFromIntelligence)
                 .SetIncrease(modifiers.MaximumManaIncrease)
                 .SetMultiplier(modifiers.MaximumManaMultiplier)
                 .Build();
@@ -159,17 +163,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculatePhysicalDamageWithMeleeAttacks(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
-
             PhysicalDamageWithMeleeAttacks.SetToZero();
+
+            float strengthBasedPhysicalDamageIncrease = Strength / 5 * 0.01f;
 
             PhysicalDamageWithMeleeAttacks.Add(baseStats.BasePhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
-            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease);
-            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier);
-
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageIncrease);
-            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageMultiplier);            
+            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease + modifiers.AddedPhysicalDamageIncrease + strengthBasedPhysicalDamageIncrease);
+            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier);
+            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageMultiplier); 
         }
 
         private void CalculatePhysicalDamageWithRangedAttacks(PlayerCharacterAdditionalStats modifiers)
@@ -177,12 +180,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PhysicalDamageWithRangedAttacks.SetToZero();
 
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamageWithRangedAttacks);
-            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksIncrease);
-            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksMultiplier);
-
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageIncrease);
-            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageMultiplier);
+            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksIncrease + modifiers.AddedPhysicalDamageIncrease);
+            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksMultiplier);
+            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageMultiplier);      
         }
 
         private void CalculatePhysicalDamageWithSpells(PlayerCharacterAdditionalStats modifiers)
@@ -190,19 +191,19 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PhysicalDamageWithSpells.SetToZero();
 
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamageWithSpells);
-            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsIncrease);
-            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsMultiplier);
-
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageIncrease);
+            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsIncrease + modifiers.AddedPhysicalDamageIncrease);
+            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsMultiplier);
             PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageMultiplier);
         }
 
         private void CalculateAccuracyRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
+            int additionalAccuracyFromAgility = Agility * 2;
+
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.AccuracyRating)
-                .SetAddend(modifiers.AccuracyRatingAddend)
+                .SetAddend(modifiers.AccuracyRatingAddend + additionalAccuracyFromAgility)
                 .SetIncrease(modifiers.AccuracyRatingIncrease)
                 .SetMultiplier(modifiers.AccuracyRatingMultiplier)
                 .Build();
@@ -212,10 +213,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculateEvasionRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
+            float agilityBasedEvasionRatingIncrease = Agility / 5 * 0.01f;
+
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.EvasionRating)
                 .SetAddend(modifiers.EvasionRatingAddend)
-                .SetIncrease(modifiers.EvasionRatingIncrease)
+                .SetIncrease(modifiers.EvasionRatingIncrease + agilityBasedEvasionRatingIncrease)
                 .SetMultiplier(modifiers.EvasionRatingMultiplier)
                 .Build();
 
