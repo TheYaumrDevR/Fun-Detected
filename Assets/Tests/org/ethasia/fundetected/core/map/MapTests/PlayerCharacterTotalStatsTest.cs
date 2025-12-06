@@ -120,7 +120,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         }
 
         [Test]
-        public void TestCalculateAddsIncreasesAndMultipliesBasePhysicalDamageProperly()
+        public void TestCalculateAddsIncreasesAndMultipliesMeleePhysicalDamageProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
 
@@ -139,8 +139,8 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.PhysicalDamage.MinDamage, Is.EqualTo(70));
-            Assert.That(testCandidate.PhysicalDamage.MaxDamage, Is.EqualTo(148));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(70));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(148));
         }
 
         [Test]
