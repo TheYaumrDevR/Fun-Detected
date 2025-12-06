@@ -93,7 +93,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.MaximumLife, Is.EqualTo(2027)); 
+            Assert.That(testCandidate.MaximumLife, Is.EqualTo(2130)); 
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.MaximumMana, Is.EqualTo(588)); 
+            Assert.That(testCandidate.MaximumMana, Is.EqualTo(639)); 
         }
 
         [Test]
@@ -139,8 +139,8 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(70));
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(148));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(76));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(161));
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.AccuracyRating, Is.EqualTo(190)); 
+            Assert.That(testCandidate.AccuracyRating, Is.EqualTo(350)); 
         }
 
         [Test]
@@ -186,7 +186,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.EvasionRating, Is.EqualTo(648)); 
+            Assert.That(testCandidate.EvasionRating, Is.EqualTo(673)); 
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.AttacksPerSecond, Is.EqualTo(3.0576002897262637)); 
+            Assert.That(testCandidate.AttacksPerSecond, Is.EqualTo(3.0576001495361336)); 
         }
 
         [Test]

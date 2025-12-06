@@ -237,43 +237,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             AddedPhysicalDamageWithRangedAttacks = new DamageRange(0, 0);
             AddedPhysicalDamageWithSpells = new DamageRange(0, 0);
 
-            StrengthIncrease = 1.0f;
             StrengthMultiplier = 1.0f;
-
-            AgilityIncrease = 1.0f;
             AgilityMultiplier = 1.0f;
-
-            IntelligenceIncrease = 1.0f;
             IntelligenceMultiplier = 1.0f;
-
-            MaximumLifeIncrease = 1.0f;
             MaximumLifeMultiplier = 1.0f;
-
-            MaximumManaIncrease = 1.0f;
             MaximumManaMultiplier = 1.0f;
-
-            AddedPhysicalDamageIncrease = 1.0f;
             AddedPhysicalDamageMultiplier = 1.0f;
-
-            AddedPhysicalDamageWithMeleeAttacksIncrease = 1.0f;
             AddedPhysicalDamageWithMeleeAttacksMultiplier = 1.0f;
-
-            AddedPhysicalDamageWithRangedAttacksIncrease = 1.0f;
             AddedPhysicalDamageWithRangedAttacksMultiplier = 1.0f;
-
-            AddedPhysicalDamageWithSpellsIncrease = 1.0f;
             AddedPhysicalDamageWithSpellsMultiplier = 1.0f;
-
-            AccuracyRatingIncrease = 1.0f;
             AccuracyRatingMultiplier = 1.0f;
-
-            EvasionRatingIncrease = 1.0f;
             EvasionRatingMultiplier = 1.0f;
-
-            AttacksPerSecondIncrease = 1.0f;
             AttacksPerSecondMultiplier = 1.0f;
-
-            MovementSpeedIncrease = 1.0f;
             MovementSpeedMultiplier = 1.0f;
         }
 
