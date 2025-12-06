@@ -40,5 +40,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             MinDamage = (int)(MinDamage * multiplier);
             MaxDamage = (int)(MaxDamage * multiplier);
         }
+
+        public void SetToZero()
+        {
+            MinDamage = 0;
+            MaxDamage = 0;
+        }
     }
 }

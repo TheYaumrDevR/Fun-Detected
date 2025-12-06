@@ -159,6 +159,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculatePhysicalDamageWithMeleeAttacks(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
         {
+
+            PhysicalDamageWithMeleeAttacks.SetToZero();
+
             PhysicalDamageWithMeleeAttacks.Add(baseStats.BasePhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease);
@@ -171,6 +174,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculatePhysicalDamageWithRangedAttacks(PlayerCharacterAdditionalStats modifiers)
         {
+            PhysicalDamageWithRangedAttacks.SetToZero();
+
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamageWithRangedAttacks);
             PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksIncrease);
             PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksMultiplier);
@@ -182,6 +187,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculatePhysicalDamageWithSpells(PlayerCharacterAdditionalStats modifiers)
         {
+            PhysicalDamageWithSpells.SetToZero();
+
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamageWithSpells);
             PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsIncrease);
             PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsMultiplier);
