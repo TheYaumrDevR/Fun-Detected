@@ -40,19 +40,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             get;
             private set;
-        }        
-
-        public int CurrentLife
-        {
-            get;
-            private set;
-        }
-
-        public int CurrentMana
-        {
-            get;
-            private set;
-        }        
+        }               
 
         public DamageRange BasePhysicalDamageWithMeleeAttacks
         {
@@ -84,12 +72,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }            
 
-        public double SecondsToMoveOneUnit
-        {
-            get;
-            private set;
-        }
-
         public PlayerCharacterBaseStats()
         {
             BasePhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
@@ -104,40 +86,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 MaximumLife += 12;
                 MaximumMana += 6;
                 AccuracyRating += 2;
-
-                FullHeal();
             }
-        }
-
-        public void DeriveStats()
-        {
-            MaximumLife += Strength / 2;
-            MaximumMana += Intelligence / 2;
-            AccuracyRating += Agility * 2;
-
-            SecondsToMoveOneUnit = 1.0 / (MovementSpeed / 10); 
-        }   
-
-        public void ReduceCurrentLifeBy(int damage)
-        {
-            CurrentLife -= damage;
-
-            if (CurrentLife < 0)
-            {
-                CurrentLife = 0;
-            }
-        }
-
-        public void Heal()
-        {
-            CurrentLife = MaximumLife;
-        }
-
-        public void FullHeal()
-        {
-            CurrentLife = MaximumLife;
-            CurrentMana = MaximumMana;
-        }
+        }  
 
         public class PlayerCharacterBaseStatsBuilder
         {
@@ -147,10 +97,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private int strength;
 
             private int maximumLife;
-            private int maximumMana;   
-
-            private int currentLife;
-            private int currentMana;       
+            private int maximumMana;       
 
             private DamageRange basePhysicalDamageWithMeleeAttacks;     
 
@@ -237,8 +184,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.Strength = strength;
                 result.MaximumLife = maximumLife;
                 result.MaximumMana = maximumMana;
-                result.CurrentLife = currentLife;
-                result.CurrentMana = currentMana;
                 result.AccuracyRating = accuracyRating;
                 result.EvasionRating = evasionRating;
                 result.BasePhysicalDamageWithMeleeAttacks = basePhysicalDamageWithMeleeAttacks;

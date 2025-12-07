@@ -32,6 +32,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public int CurrentLife
+        {
+            get;
+            private set;
+        }
+
+        public int CurrentMana
+        {
+            get;
+            private set;
+        }  
+
         public DamageRange PhysicalDamageWithMeleeAttacks
         {
             get;
@@ -74,11 +86,38 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public double SecondsToMoveOneUnit
+        {
+            get;
+            private set;
+        }
+
         public PlayerCharacterTotalStats()
         {
             PhysicalDamageWithMeleeAttacks = new DamageRange(0, 0);
             PhysicalDamageWithRangedAttacks = new DamageRange(0, 0);
             PhysicalDamageWithSpells = new DamageRange(0, 0);
+        }
+
+        public void Heal()
+        {
+            CurrentLife = MaximumLife;
+        }
+
+        public void FullHeal()
+        {
+            CurrentLife = MaximumLife;
+            CurrentMana = MaximumMana;
+        }
+
+        public void ReduceCurrentLifeBy(int damage)
+        {
+            CurrentLife -= damage;
+
+            if (CurrentLife < 0)
+            {
+                CurrentLife = 0;
+            }
         }
 
         public void Calculate(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
@@ -215,6 +254,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 .Build();
 
             AccuracyRating = CalculateTotal(context);
+
+            UnityEngine.Debug.Log("Accuracy Rating calculated to: " + additionalAccuracyFromAgility);
         }
 
         private void CalculateEvasionRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
@@ -250,6 +291,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 .Build();
 
             MovementSpeed = CalculateTotal(context);
+
+            SecondsToMoveOneUnit = 1.0 / (MovementSpeed / 10); 
         }
 
         private int CalculateTotal(TotalStatValueCalculationContext context)

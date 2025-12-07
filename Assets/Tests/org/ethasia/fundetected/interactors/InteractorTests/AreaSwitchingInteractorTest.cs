@@ -209,16 +209,17 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetAttacksPerSecond(1.2)
                 .SetMovementSpeed(100)
                 .Build();   
-            
-            startingStats.DeriveStats();
-            startingStats.FullHeal();
 
-            return new PlayerCharacter.PlayerCharacterBuilder()
+            PlayerCharacter result = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetFacingDirection(FacingDirection.RIGHT)
                 .SetCharacterClass(CharacterClasses.JOCK)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build(); 
+                .Build();
+
+            result.TotalStats.FullHeal();
+
+            return result;
         }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()

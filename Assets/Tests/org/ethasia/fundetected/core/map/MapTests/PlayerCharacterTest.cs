@@ -16,8 +16,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             IoAdaptersFactoryForCore.SetInstance(new MockedIoAdaptersFactoryForCore());
 
-            testBaseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder().SetMovementSpeed(150).Build();
-            testBaseStats.DeriveStats();            
+            testBaseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder().SetMovementSpeed(150).Build();           
         }
 
         [Test]

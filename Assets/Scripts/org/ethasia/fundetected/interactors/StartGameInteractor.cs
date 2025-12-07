@@ -108,18 +108,19 @@ namespace Org.Ethasia.Fundetected.Interactors
             meleeHitArcProperties.HitArcCenterYOffset = meleeHitArcMasterData.HitArcCenterYOffset;
 
             BoundingBox playerBoundingBox = CreatePlayerBoundingBoxFromMasterData(playerCharacterBaseStats.BoundingBoxMasterData); 
-            
-            startingStats.DeriveStats();
-            startingStats.FullHeal();
 
-            return new PlayerCharacter.PlayerCharacterBuilder()
+            PlayerCharacter result = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetName(playerName)
                 .SetFacingDirection(FacingDirection.RIGHT)
                 .SetCharacterClass(characterClass)
                 .SetPlayerCharacterBaseStats(startingStats)
                 .SetMeleeHitArcProperties(meleeHitArcProperties)
                 .SetBoundingBox(playerBoundingBox)
-                .Build();            
+                .Build();  
+
+            result.TotalStats.FullHeal(); 
+
+            return result;         
         }
 
         private BoundingBox CreatePlayerBoundingBoxFromMasterData(BoundingBoxMasterData boundingBoxMasterData)

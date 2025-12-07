@@ -78,7 +78,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.OnInteract(new EnvironmentInteractionInteractorMock());
 
-            Assert.That(Area.ActiveArea.Player.BaseStats.CurrentLife, Is.EqualTo(53));
+            Assert.That(Area.ActiveArea.Player.TotalStats.CurrentLife, Is.EqualTo(53));
         }
 
         private class EnvironmentInteractionInteractorMock : IEnvironmentInteractionInteractor

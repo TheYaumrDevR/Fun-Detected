@@ -9,13 +9,13 @@ namespace Org.Ethasia.Fundetected.Interactors
         {
             IResourceBarPresenter resourceBarPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetResourceBarPresenterInstance();
 
-            PlayerCharacterBaseStats playerBaseStats = Area.ActiveArea.Player.BaseStats;
+            PlayerCharacterTotalStats playerStats = Area.ActiveArea.Player.TotalStats;
 
-            int maximumLife = playerBaseStats.MaximumLife;
-            int currentLife = playerBaseStats.CurrentLife;
+            int maximumLife = playerStats.MaximumLife;
+            int currentLife = playerStats.CurrentLife;
 
-            int maximumMana = playerBaseStats.MaximumMana;
-            int currentMana = playerBaseStats.CurrentMana;
+            int maximumMana = playerStats.MaximumMana;
+            int currentMana = playerStats.CurrentMana;
 
             resourceBarPresenter.PresentHealthBarBasedOnCurrentAndMaximumHealth(currentLife, maximumLife);
             resourceBarPresenter.PresentManaBarBasedOnCurrentAndMaximumMana(currentMana, maximumMana);
