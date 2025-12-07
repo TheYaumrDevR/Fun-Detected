@@ -133,14 +133,74 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             statModifiers.AddAddedPhysicalDamageMultiplier(1.3f);
             statModifiers.AddAddedPhysicalDamageMultiplier(1.5f);
 
+            statModifiers.AddAddedPhysicalDamageWithMeleeAttacks(new DamageRange(18, 19));
+            statModifiers.AddAddedPhysicalDamageWithMeleeAttacksIncrease(0.1f);
+            statModifiers.AddAddedPhysicalDamageWithMeleeAttacksMultiplier(1.05f);
+
             PlayerCharacterBaseStats baseStats = CreateBaseStats();
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
             testCandidate.Calculate(baseStats, statModifiers);
 
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(76));
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(161));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(153));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(251));
+        }
+
+        [Test]
+        public void TestCalculateAddsIncreasesAndMultipliesRangedPhysicalDamageProperly()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
+
+            statModifiers.AddAddedPhysicalDamageIncrease(0.2f);
+            statModifiers.AddAddedPhysicalDamageIncrease(0.4f);
+
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.3f);
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.5f);
+
+            statModifiers.AddAddedPhysicalDamageWithRangedAttacks(new DamageRange(6, 15));
+            statModifiers.AddAddedPhysicalDamageWithRangedAttacksIncrease(0.05f);
+            statModifiers.AddAddedPhysicalDamageWithRangedAttacksMultiplier(1.1f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers);
+
+            Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(63));
+            Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(141));
+        }
+
+        [Test]
+        public void TestCalculateAddsIncreasesAndMultipliesSpellPhysicalDamageProperly()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
+
+            statModifiers.AddAddedPhysicalDamageIncrease(0.2f);
+            statModifiers.AddAddedPhysicalDamageIncrease(0.4f);
+
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.3f);
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.5f);
+
+            statModifiers.AddAddedPhysicalDamageWithSpells(new DamageRange(18, 19));
+            statModifiers.AddAddedPhysicalDamageWithSpellsIncrease(0.07f);
+            statModifiers.AddAddedPhysicalDamageWithSpellsMultiplier(1.12f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers);
+
+            Assert.That(testCandidate.PhysicalDamageWithSpells.MinDamage, Is.EqualTo(109));
+            Assert.That(testCandidate.PhysicalDamageWithSpells.MaxDamage, Is.EqualTo(160));
         }
 
         [Test]

@@ -167,34 +167,40 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             float strengthBasedPhysicalDamageIncrease = Strength / 5 * 0.01f;
 
+            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease + modifiers.AddedPhysicalDamageIncrease + strengthBasedPhysicalDamageIncrease)
+                * modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier
+                * modifiers.AddedPhysicalDamageMultiplier;
+
             PhysicalDamageWithMeleeAttacks.Add(baseStats.BasePhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithMeleeAttacks.Multiply(1.0f + modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease + modifiers.AddedPhysicalDamageIncrease + strengthBasedPhysicalDamageIncrease);
-            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier);
-            PhysicalDamageWithMeleeAttacks.Multiply(modifiers.AddedPhysicalDamageMultiplier); 
+            PhysicalDamageWithMeleeAttacks.Multiply(totalMultiplier);
         }
 
         private void CalculatePhysicalDamageWithRangedAttacks(PlayerCharacterAdditionalStats modifiers)
         {
             PhysicalDamageWithRangedAttacks.SetToZero();
 
+            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithRangedAttacksIncrease + modifiers.AddedPhysicalDamageIncrease)
+                * modifiers.AddedPhysicalDamageWithRangedAttacksMultiplier
+                * modifiers.AddedPhysicalDamageMultiplier;
+
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamageWithRangedAttacks);
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithRangedAttacks.Multiply(1.0f + modifiers.AddedPhysicalDamageWithRangedAttacksIncrease + modifiers.AddedPhysicalDamageIncrease);
-            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageWithRangedAttacksMultiplier);
-            PhysicalDamageWithRangedAttacks.Multiply(modifiers.AddedPhysicalDamageMultiplier);      
+            PhysicalDamageWithRangedAttacks.Multiply(totalMultiplier);   
         }
 
         private void CalculatePhysicalDamageWithSpells(PlayerCharacterAdditionalStats modifiers)
         {
             PhysicalDamageWithSpells.SetToZero();
 
+            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithSpellsIncrease + modifiers.AddedPhysicalDamageIncrease)
+                * modifiers.AddedPhysicalDamageWithSpellsMultiplier
+                * modifiers.AddedPhysicalDamageMultiplier;
+
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamageWithSpells);
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithSpells.Multiply(1.0f + modifiers.AddedPhysicalDamageWithSpellsIncrease + modifiers.AddedPhysicalDamageIncrease);
-            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageWithSpellsMultiplier);
-            PhysicalDamageWithSpells.Multiply(modifiers.AddedPhysicalDamageMultiplier);
+            PhysicalDamageWithSpells.Multiply(totalMultiplier);
         }
 
         private void CalculateAccuracyRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
