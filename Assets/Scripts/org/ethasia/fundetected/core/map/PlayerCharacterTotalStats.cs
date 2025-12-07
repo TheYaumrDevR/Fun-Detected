@@ -254,8 +254,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 .Build();
 
             AccuracyRating = CalculateTotal(context);
-
-            UnityEngine.Debug.Log("Accuracy Rating calculated to: " + additionalAccuracyFromAgility);
         }
 
         private void CalculateEvasionRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
