@@ -120,27 +120,27 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
-        public void Calculate(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        public void Calculate(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
-            CalculateTotalIntelligence(baseStats, modifiers);
-            CalculateTotalAgility(baseStats, modifiers);
-            CalculateTotalStrength(baseStats, modifiers);
-            CalculateMaximumLife(baseStats, modifiers);
-            CalculateMaximumMana(baseStats, modifiers);
-            CalculatePhysicalDamageWithMeleeAttacks(baseStats, modifiers);
-            CalculatePhysicalDamageWithRangedAttacks(modifiers);
-            CalculatePhysicalDamageWithSpells(modifiers);
-            CalculateAccuracyRating(baseStats, modifiers);
-            CalculateEvasionRating(baseStats, modifiers);
-            CalculateAttacksPerSecond(baseStats, modifiers);
-            CalculateMovementSpeed(baseStats, modifiers);
+            CalculateTotalIntelligence(baseStats, modifiers, equipmentStats);
+            CalculateTotalAgility(baseStats, modifiers, equipmentStats);
+            CalculateTotalStrength(baseStats, modifiers, equipmentStats);
+            CalculateMaximumLife(baseStats, modifiers, equipmentStats);
+            CalculateMaximumMana(baseStats, modifiers, equipmentStats);
+            CalculatePhysicalDamageWithMeleeAttacks(baseStats, modifiers, equipmentStats);
+            CalculatePhysicalDamageWithRangedAttacks(modifiers, equipmentStats);
+            CalculatePhysicalDamageWithSpells(modifiers, equipmentStats);
+            CalculateAccuracyRating(baseStats, modifiers, equipmentStats);
+            CalculateEvasionRating(baseStats, modifiers, equipmentStats);
+            CalculateAttacksPerSecond(baseStats, modifiers, equipmentStats);
+            CalculateMovementSpeed(baseStats, modifiers, equipmentStats);
         }
 
-        private void CalculateTotalIntelligence(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateTotalIntelligence(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.Intelligence)
-                .SetAddend(modifiers.IntelligenceAddend)
+                .SetAddend(modifiers.IntelligenceAddend + equipmentStats.PlusIntelligence)
                 .SetIncrease(1.0f + modifiers.IntelligenceIncrease)
                 .SetMultiplier(modifiers.IntelligenceMultiplier)
                 .Build();
@@ -148,11 +148,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Intelligence = CalculateTotal(context);
         }
 
-        private void CalculateTotalAgility(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateTotalAgility(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.Agility)
-                .SetAddend(modifiers.AgilityAddend)
+                .SetAddend(modifiers.AgilityAddend + equipmentStats.PlusAgility)
                 .SetIncrease(1.0f + modifiers.AgilityIncrease)
                 .SetMultiplier(modifiers.AgilityMultiplier)
                 .Build();
@@ -160,11 +160,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Agility = CalculateTotal(context);
         }
 
-        private void CalculateTotalStrength(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateTotalStrength(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.Strength)
-                .SetAddend(modifiers.StrengthAddend)
+                .SetAddend(modifiers.StrengthAddend + equipmentStats.PlusStrength)
                 .SetIncrease(1.0f + modifiers.StrengthIncrease)
                 .SetMultiplier(modifiers.StrengthMultiplier)
                 .Build();
@@ -172,41 +172,53 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Strength = CalculateTotal(context);
         }
 
-        private void CalculateMaximumLife(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateMaximumLife(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             int additionalLifeFromStrength = Strength / 2;
 
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.MaximumLife)
-                .SetAddend(modifiers.MaximumLifeAddend + additionalLifeFromStrength)
-                .SetIncrease(1.0f + modifiers.MaximumLifeIncrease)
+                .SetAddend(modifiers.MaximumLifeAddend + additionalLifeFromStrength + equipmentStats.PlusMaximumLife)
+                .SetIncrease(1.0f + modifiers.MaximumLifeIncrease + equipmentStats.IncreasedMaximumLifeInPercent / 100.0f)
                 .SetMultiplier(modifiers.MaximumLifeMultiplier)
                 .Build();
 
             MaximumLife = CalculateTotal(context);
+
+            if (CurrentLife > MaximumLife)
+            {
+                CurrentLife = MaximumLife;
+            }
         }
 
-        private void CalculateMaximumMana(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateMaximumMana(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             int additionalManaFromIntelligence = Intelligence / 2;
 
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.MaximumMana)
-                .SetAddend(modifiers.MaximumManaAddend + additionalManaFromIntelligence)
+                .SetAddend(modifiers.MaximumManaAddend + additionalManaFromIntelligence + equipmentStats.PlusMaximumMana)
                 .SetIncrease(1.0f + modifiers.MaximumManaIncrease)
                 .SetMultiplier(modifiers.MaximumManaMultiplier)
                 .Build();
 
             MaximumMana = CalculateTotal(context);
+
+            if (CurrentMana > MaximumMana)
+            {
+                CurrentMana = MaximumMana;
+            }
         }
 
-        private void CalculatePhysicalDamageWithMeleeAttacks(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculatePhysicalDamageWithMeleeAttacks(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             PhysicalDamageWithMeleeAttacks.SetToZero();
 
             float strengthBasedPhysicalDamageIncrease = Strength / 5 * 0.01f;
 
-            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease + modifiers.AddedPhysicalDamageIncrease + strengthBasedPhysicalDamageIncrease)
+            float increasedDamageFromEquipmentStats = (equipmentStats.IncreasedPhysicalDamageInPercent + equipmentStats.IncreasedPhysicalDamageWithAttacksInPercent) / 100.0f;
+
+            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithMeleeAttacksIncrease + modifiers.AddedPhysicalDamageIncrease + increasedDamageFromEquipmentStats + strengthBasedPhysicalDamageIncrease)
                 * modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier
                 * modifiers.AddedPhysicalDamageMultiplier;
 
@@ -216,11 +228,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PhysicalDamageWithMeleeAttacks.Multiply(totalMultiplier);
         }
 
-        private void CalculatePhysicalDamageWithRangedAttacks(PlayerCharacterAdditionalStats modifiers)
+        private void CalculatePhysicalDamageWithRangedAttacks(PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             PhysicalDamageWithRangedAttacks.SetToZero();
 
-            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithRangedAttacksIncrease + modifiers.AddedPhysicalDamageIncrease)
+            float increasedDamageFromEquipmentStats = (equipmentStats.IncreasedPhysicalDamageInPercent + equipmentStats.IncreasedPhysicalDamageWithAttacksInPercent) / 100.0f;
+
+            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithRangedAttacksIncrease + modifiers.AddedPhysicalDamageIncrease + increasedDamageFromEquipmentStats)
                 * modifiers.AddedPhysicalDamageWithRangedAttacksMultiplier
                 * modifiers.AddedPhysicalDamageMultiplier;
 
@@ -229,11 +243,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PhysicalDamageWithRangedAttacks.Multiply(totalMultiplier);   
         }
 
-        private void CalculatePhysicalDamageWithSpells(PlayerCharacterAdditionalStats modifiers)
+        private void CalculatePhysicalDamageWithSpells(PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             PhysicalDamageWithSpells.SetToZero();
 
-            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithSpellsIncrease + modifiers.AddedPhysicalDamageIncrease)
+            float increasedDamageFromEquipmentStats = equipmentStats.IncreasedPhysicalDamageInPercent / 100.0f;
+
+            float totalMultiplier = (1.0f + modifiers.AddedPhysicalDamageWithSpellsIncrease + increasedDamageFromEquipmentStats + modifiers.AddedPhysicalDamageIncrease)
                 * modifiers.AddedPhysicalDamageWithSpellsMultiplier
                 * modifiers.AddedPhysicalDamageMultiplier;
 
@@ -242,13 +258,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PhysicalDamageWithSpells.Multiply(totalMultiplier);
         }
 
-        private void CalculateAccuracyRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateAccuracyRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             int additionalAccuracyFromAgility = Agility * 2;
 
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.AccuracyRating)
-                .SetAddend(modifiers.AccuracyRatingAddend + additionalAccuracyFromAgility)
+                .SetAddend(modifiers.AccuracyRatingAddend + additionalAccuracyFromAgility + equipmentStats.PlusAccuracy)
                 .SetIncrease(1.0f + modifiers.AccuracyRatingIncrease)
                 .SetMultiplier(modifiers.AccuracyRatingMultiplier)
                 .Build();
@@ -256,7 +272,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             AccuracyRating = CalculateTotal(context);
         }
 
-        private void CalculateEvasionRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateEvasionRating(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             float agilityBasedEvasionRatingIncrease = Agility / 5 * 0.01f;
 
@@ -270,7 +286,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             EvasionRating = CalculateTotal(context);
         }
 
-        private void CalculateAttacksPerSecond(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateAttacksPerSecond(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             double result = baseStats.AttacksPerSecond;
             result *= 1.0f + modifiers.AttacksPerSecondIncrease;
@@ -279,7 +295,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             AttacksPerSecond = result;
         }
 
-        private void CalculateMovementSpeed(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers)
+        private void CalculateMovementSpeed(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
             TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
                 .SetBaseStat(baseStats.MovementSpeed)

@@ -172,7 +172,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Org.Ethasia.Fundetected.Core.Equipment.Equipment PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
         {
-            return allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
+            Org.Ethasia.Fundetected.Core.Equipment.Equipment result = allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
+            TotalStats.Calculate(BaseStats, StatModifiers, allEquipment.EquipmentStats);
+
+            return result;
         }
 
         public PlayerEquipmentItemsExtractionVisitor CreateItemExtractionVisitor()
@@ -293,7 +296,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.characterClass = characterClass;
 
                 result.BaseStats = playerCharacterBaseStats;
-                result.TotalStats.Calculate(playerCharacterBaseStats, result.StatModifiers);
+                result.TotalStats.Calculate(playerCharacterBaseStats, result.StatModifiers, result.allEquipment.EquipmentStats);
 
                 result.CreateMeleeAttack(meleeHitArcProperties);
 

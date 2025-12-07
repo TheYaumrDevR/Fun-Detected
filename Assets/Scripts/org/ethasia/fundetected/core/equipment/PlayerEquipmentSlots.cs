@@ -60,7 +60,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            return SwapEquipedEquipment(mainHandSlot, toEquip);
+            return SwapEquippedEquipment(mainHandSlot, toEquip);
         }
 
         public Equipment EquipInOffHand(Equipment toEquip)
@@ -70,7 +70,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            return SwapEquipedEquipment(offHandSlot, toEquip);
+            return SwapEquippedEquipment(offHandSlot, toEquip);
         }
 
         public Equipment EquipInLeftRing(Equipment toEquip)
@@ -80,7 +80,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            return SwapEquipedEquipment(leftRingSlot, toEquip);
+            return SwapEquippedEquipment(leftRingSlot, toEquip);
         }
 
         public Equipment EquipInRightRing(Equipment toEquip)
@@ -90,7 +90,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            return SwapEquipedEquipment(rightRingSlot, toEquip);
+            return SwapEquippedEquipment(rightRingSlot, toEquip);
         }
 
         public Equipment EquipInBelt(Equipment toEquip)
@@ -100,7 +100,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 return toEquip;
             }
 
-            return SwapEquipedEquipment(beltSlot, toEquip);
+            return SwapEquippedEquipment(beltSlot, toEquip);
         }
 
         public bool CanEquipInMainHand(Equipment equipment)
@@ -168,7 +168,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             beltSlot.Accept(visitor);
         }
 
-        private Equipment SwapEquipedEquipment(EquipmentSlot slot, Equipment toEquip)
+        private Equipment SwapEquippedEquipment(EquipmentSlot slot, Equipment toEquip)
         {
             toEquip.OnEquip(EquipmentStats);
 

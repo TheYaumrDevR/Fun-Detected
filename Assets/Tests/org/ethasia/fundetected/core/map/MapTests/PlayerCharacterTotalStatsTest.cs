@@ -8,6 +8,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesIntelligenceProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddIntelligenceAddend(3);
             statModifiers.AddIntelligenceAddend(9);
@@ -22,7 +23,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.Intelligence, Is.EqualTo(177)); 
         }
@@ -31,6 +32,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesAgilityProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddAgilityAddend(2);
             statModifiers.AddAgilityAddend(5);
@@ -45,7 +47,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.Agility, Is.EqualTo(96)); 
         }
@@ -54,6 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesStrengthProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddStrengthAddend(4);
             statModifiers.AddStrengthAddend(8);
@@ -68,7 +71,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.Strength, Is.EqualTo(250)); 
         }
@@ -77,6 +80,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesMaximumLifeProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddMaximumLifeAddend(50);
             statModifiers.AddMaximumLifeAddend(100);
@@ -91,7 +95,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.MaximumLife, Is.EqualTo(2130)); 
         }
@@ -100,6 +104,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesMaximumManaProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddMaximumManaAddend(20);
             statModifiers.AddMaximumManaAddend(30);
@@ -114,7 +119,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.MaximumMana, Is.EqualTo(639)); 
         }
@@ -123,6 +128,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesMeleePhysicalDamageProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
             statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
@@ -141,7 +147,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(153));
             Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(251));
@@ -151,6 +157,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesRangedPhysicalDamageProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
             statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
@@ -169,7 +176,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(63));
             Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(141));
@@ -179,6 +186,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesSpellPhysicalDamageProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
             statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
@@ -197,7 +205,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.PhysicalDamageWithSpells.MinDamage, Is.EqualTo(109));
             Assert.That(testCandidate.PhysicalDamageWithSpells.MaxDamage, Is.EqualTo(160));
@@ -207,6 +215,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesAccuracyRatingProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddAccuracyRatingAddend(10);
             statModifiers.AddAccuracyRatingAddend(20);
@@ -221,7 +230,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.AccuracyRating, Is.EqualTo(350)); 
         }
@@ -230,6 +239,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesEvasionRatingProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddEvasionRatingAddend(15);
             statModifiers.AddEvasionRatingAddend(25);
@@ -244,7 +254,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.EvasionRating, Is.EqualTo(673)); 
         }
@@ -253,6 +263,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesAttacksPerSecondProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddAttacksPerSecondIncrease(0.1f);
             statModifiers.AddAttacksPerSecondIncrease(0.2f);
@@ -264,7 +275,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.AttacksPerSecond, Is.EqualTo(3.0576001495361336)); 
         }
@@ -273,6 +284,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         public void TestCalculateAddsIncreasesAndMultipliesMovementSpeedProperly()
         {
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             statModifiers.AddMovementSpeedAddend(10);
             statModifiers.AddMovementSpeedAddend(20);
@@ -287,7 +299,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.MovementSpeed, Is.EqualTo(423)); 
         }
@@ -297,11 +309,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             PlayerCharacterAdditionalStats statModifiers = CreateAdditionalStats();
             PlayerCharacterBaseStats baseStats = CreateBaseStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
             PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
 
-            testCandidate.Calculate(baseStats, statModifiers);
-            testCandidate.Calculate(baseStats, statModifiers);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.Intelligence, Is.EqualTo(177));
             Assert.That(testCandidate.Agility, Is.EqualTo(96));
