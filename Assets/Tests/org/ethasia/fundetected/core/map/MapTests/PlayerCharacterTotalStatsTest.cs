@@ -333,6 +333,258 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(testCandidate.MovementSpeed, Is.EqualTo(423));
         }
 
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingStrength()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreasePlusStrengthBy(2);
+
+            statModifiers.AddStrengthAddend(4);
+            statModifiers.AddStrengthAddend(8);
+
+            statModifiers.AddStrengthIncrease(0.3f);
+            statModifiers.AddStrengthIncrease(0.5f);
+
+            statModifiers.AddStrengthMultiplier(1.1f);
+            statModifiers.AddStrengthMultiplier(1.6f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.Strength, Is.EqualTo(256));             
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingAgility()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreasePlusAgilityBy(2);
+
+            statModifiers.AddAgilityAddend(2);
+            statModifiers.AddAgilityAddend(5);
+
+            statModifiers.AddAgilityIncrease(0.1f);
+            statModifiers.AddAgilityIncrease(0.3f);
+
+            statModifiers.AddAgilityMultiplier(1.2f);
+            statModifiers.AddAgilityMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.Agility, Is.EqualTo(101));             
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingIntelligence()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreasePlusIntelligenceBy(5);
+
+            statModifiers.AddIntelligenceAddend(3);
+            statModifiers.AddIntelligenceAddend(9);
+
+            statModifiers.AddIntelligenceIncrease(0.2f);
+            statModifiers.AddIntelligenceIncrease(0.4f);
+
+            statModifiers.AddIntelligenceMultiplier(1.3f);
+            statModifiers.AddIntelligenceMultiplier(1.5f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.Intelligence, Is.EqualTo(193));             
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingMaximumLife()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreasePlusMaximumLifeBy(23);
+            equipmentStats.IncreaseIncreasedMaximumLifeInPercentBy(8);
+
+            statModifiers.AddMaximumLifeAddend(50);
+            statModifiers.AddMaximumLifeAddend(100);
+
+            statModifiers.AddMaximumLifeIncrease(0.2f);
+            statModifiers.AddMaximumLifeIncrease(0.4f);
+
+            statModifiers.AddMaximumLifeMultiplier(1.3f);
+            statModifiers.AddMaximumLifeMultiplier(1.5f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.MaximumLife, Is.EqualTo(2312));             
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingMaximumMana()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreasePlusMaximumManaBy(35);
+
+            statModifiers.AddMaximumManaAddend(20);
+            statModifiers.AddMaximumManaAddend(30);
+
+            statModifiers.AddMaximumManaIncrease(0.1f);
+            statModifiers.AddMaximumManaIncrease(0.3f);
+
+            statModifiers.AddMaximumManaMultiplier(1.2f);
+            statModifiers.AddMaximumManaMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.MaximumMana, Is.EqualTo(722));       
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingMeleePhysicalDamage()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreaseIncreasedPhysicalDamageWithAttacksInPercentBy(1);
+            equipmentStats.IncreaseIncreasedPhysicalDamageInPercentBy(6);
+
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
+
+            statModifiers.AddAddedPhysicalDamageIncrease(0.2f);
+            statModifiers.AddAddedPhysicalDamageIncrease(0.4f);
+
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.3f);
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.5f);
+
+            statModifiers.AddAddedPhysicalDamageWithMeleeAttacks(new DamageRange(18, 19));
+            statModifiers.AddAddedPhysicalDamageWithMeleeAttacksIncrease(0.1f);
+            statModifiers.AddAddedPhysicalDamageWithMeleeAttacksMultiplier(1.05f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(159));
+            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(260));    
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingRangedPhysicalDamage()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreaseIncreasedPhysicalDamageWithAttacksInPercentBy(9);
+            equipmentStats.IncreaseIncreasedPhysicalDamageInPercentBy(2);
+
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
+
+            statModifiers.AddAddedPhysicalDamageIncrease(0.2f);
+            statModifiers.AddAddedPhysicalDamageIncrease(0.4f);
+
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.3f);
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.5f);
+
+            statModifiers.AddAddedPhysicalDamageWithRangedAttacks(new DamageRange(6, 15));
+            statModifiers.AddAddedPhysicalDamageWithRangedAttacksIncrease(0.05f);
+            statModifiers.AddAddedPhysicalDamageWithRangedAttacksMultiplier(1.1f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(67));
+            Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(151));
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingSpellPhysicalDamage()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreaseIncreasedPhysicalDamageInPercentBy(10);
+
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
+            statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
+
+            statModifiers.AddAddedPhysicalDamageIncrease(0.2f);
+            statModifiers.AddAddedPhysicalDamageIncrease(0.4f);
+
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.3f);
+            statModifiers.AddAddedPhysicalDamageMultiplier(1.5f);
+
+            statModifiers.AddAddedPhysicalDamageWithSpells(new DamageRange(18, 19));
+            statModifiers.AddAddedPhysicalDamageWithSpellsIncrease(0.07f);
+            statModifiers.AddAddedPhysicalDamageWithSpellsMultiplier(1.12f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.PhysicalDamageWithSpells.MinDamage, Is.EqualTo(115));
+            Assert.That(testCandidate.PhysicalDamageWithSpells.MaxDamage, Is.EqualTo(170));
+        }
+
+        [Test]
+        public void TestCalculateAddsEquipmentStatsWhenCalculatingAccuracy()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.IncreasePlusAccuracyBy(8);
+
+            statModifiers.AddAccuracyRatingAddend(10);
+            statModifiers.AddAccuracyRatingAddend(20);
+
+            statModifiers.AddAccuracyRatingIncrease(0.1f);
+            statModifiers.AddAccuracyRatingIncrease(0.3f);
+
+            statModifiers.AddAccuracyRatingMultiplier(1.2f);
+            statModifiers.AddAccuracyRatingMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.AccuracyRating, Is.EqualTo(369)); 
+        }
+
         private PlayerCharacterAdditionalStats CreateAdditionalStats()
         {
             PlayerCharacterAdditionalStats result = new PlayerCharacterAdditionalStats();
