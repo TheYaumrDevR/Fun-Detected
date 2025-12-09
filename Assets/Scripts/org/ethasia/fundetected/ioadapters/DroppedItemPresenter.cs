@@ -9,23 +9,25 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void PresentItemDrop(ItemDropPresentationInformation itemDropInfo)
         {
-            droppableItemRenderer = TechnicalFactory.GetInstance().GetDroppableItemRendererInstance();
-            droppableItemRenderer.RenderDroppedItem(ConvertDropPresentationInformationToRenderProxy(itemDropInfo));
+            GetDroppableItemRendererInstance().RenderDroppedItem(ConvertDropPresentationInformationToRenderProxy(itemDropInfo));
         }
 
         public void MovePresentedItemVertically(string itemId, int units)
         {
-            droppableItemRenderer.MoveDroppedItemVertically(itemId, units);
+            float engineUnits = ConvertMapPositionToScreenPosition(units);
+            GetDroppableItemRendererInstance().MoveDroppedItemVertically(itemId, engineUnits);
         }
 
         public void MovePresentedItemLeft(string itemId, int units)
         {
-            droppableItemRenderer.MoveDroppedItemLeft(itemId, units);
+            float engineUnits = ConvertMapPositionToScreenPosition(units);
+            GetDroppableItemRendererInstance().MoveDroppedItemLeft(itemId, engineUnits);
         }
 
         public void MovePresentedItemRight(string itemId, int units)
         {
-            droppableItemRenderer.MoveDroppedItemRight(itemId, units);
+            float engineUnits = ConvertMapPositionToScreenPosition(units);
+            GetDroppableItemRendererInstance().MoveDroppedItemRight(itemId, engineUnits);
         }
 
         public void UpdateItemPresentationWhenRestingOnGround(ItemDropPresentationInformation itemDropInfo)
@@ -37,6 +39,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         public void ClearPresentedItem(string itemId)
         {
             droppableItemRenderer.ClearRenderedItem(itemId);
+        }
+
+        private IDroppableItemRenderer GetDroppableItemRendererInstance()
+        {
+            if (null == droppableItemRenderer)
+            {
+                droppableItemRenderer = TechnicalFactory.GetInstance().GetDroppableItemRendererInstance();
+            }
+
+            return droppableItemRenderer;
         }
 
         private DroppedItemRenderProxy ConvertDropPresentationInformationToRenderProxy(ItemDropPresentationInformation itemDropInfo)
