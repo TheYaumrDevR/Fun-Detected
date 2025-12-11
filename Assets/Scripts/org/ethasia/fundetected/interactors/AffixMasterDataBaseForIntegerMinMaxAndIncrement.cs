@@ -22,7 +22,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private set;
         }
 
-        public AffixClasses AffixClasses
+        public AffixClasses AffixClass
         {
             get;
             private set;
@@ -30,7 +30,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
         public RollableEquipmentAffix ToRollableEquipmentAffix()
         {
-            EquipmentAffix affix = AffixClasses.ToRollableEquipmentAffix();
+            EquipmentAffix affix = AffixClass.ToRollableEquipmentAffix();
 
             IntegerMinMaxIncrementRollableEquipmentAffix result = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
                 .SetRerolledAffix(affix)
@@ -49,7 +49,7 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int minValue;
             private int maxValue;
             private int increment;
-            private AffixClasses affixClasses;
+            private AffixClasses affixClass;
 
             public Builder SetMinValue(int value)
             {
@@ -71,7 +71,7 @@ namespace Org.Ethasia.Fundetected.Interactors
 
             public Builder SetAffixClasses(AffixClasses value)
             {
-                affixClasses = value;
+                affixClass = value;
                 return this;
             }
 
@@ -82,7 +82,7 @@ namespace Org.Ethasia.Fundetected.Interactors
                     MinValue = minValue,
                     MaxValue = maxValue,
                     Increment = increment,
-                    AffixClasses = affixClasses
+                    AffixClass = affixClass
                 };
             }
         }

@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core
 {
     public class StatsFromEquipment
@@ -122,6 +124,24 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public DamageRange PlusMinMaxPhysicalDamageWithMeleeAttacks
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PlusMinMaxPhysicalDamageWithRangedAttacks
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PlusMinMaxPhysicalDamageWithSpells
+        {
+            get;
+            private set;
+        }
+
         public int IncreasedPhysicalDamageInPercent
         {
             get;
@@ -138,6 +158,13 @@ namespace Org.Ethasia.Fundetected.Core
         {
             get;
             private set;
+        }
+
+        public StatsFromEquipment()
+        {
+            PlusMinMaxPhysicalDamageWithMeleeAttacks = new DamageRange(0, 0);
+            PlusMinMaxPhysicalDamageWithRangedAttacks = new DamageRange(0, 0);
+            PlusMinMaxPhysicalDamageWithSpells = new DamageRange(0, 0);
         }
 
         public void IncreasePlusIntelligenceBy(int value)
@@ -238,6 +265,27 @@ namespace Org.Ethasia.Fundetected.Core
         public void IncreasePlusPhysicalDamagePercentReflectedBy(int value)
         {
             PlusPhysicalDamagePercentReflected += value;
+        }
+
+        public void IncreasePlusMinMaxPhysicalDamageWithAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithMeleeAttacks.Add(min, max);
+            PlusMinMaxPhysicalDamageWithRangedAttacks.Add(min, max);
+        }
+
+        public void IncreasePlusMinMaxPhysicalDamageWithMeleeAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithMeleeAttacks.Add(min, max);
+        }
+
+        public void IncreasePlusMinMaxPhysicalDamageWithRangedAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithRangedAttacks.Add(min, max);
+        }
+
+        public void IncreasePlusMinMaxPhysicalDamageWithSpellsBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithSpells.Add(min, max);
         }
 
         public void IncreaseIncreasedPhysicalDamageInPercentBy(int value)
@@ -353,6 +401,27 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusPhysicalDamagePercentReflectedBy(int value)
         {
             PlusPhysicalDamagePercentReflected -= value;
+        }
+
+        public void DecreasePlusMinMaxPhysicalDamageWithAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithMeleeAttacks.Subtract(min, max);
+            PlusMinMaxPhysicalDamageWithRangedAttacks.Subtract(min, max);
+        }
+
+        public void DecreasePlusMinMaxPhysicalDamageWithMeleeAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithMeleeAttacks.Subtract(min, max);
+        }
+
+        public void DecreasePlusMinMaxPhysicalDamageWithRangedAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithRangedAttacks.Subtract(min, max);
+        }
+
+        public void DecreasePlusMinMaxPhysicalDamageWithSpellsBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithSpells.Subtract(min, max);
         }
 
         public void DecreaseIncreasedPhysicalDamageInPercentBy(int value)

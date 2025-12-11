@@ -225,6 +225,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             PhysicalDamageWithMeleeAttacks.Add(baseStats.BasePhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
+            PhysicalDamageWithMeleeAttacks.Add(equipmentStats.PlusMinMaxPhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Multiply(totalMultiplier);
         }
 
@@ -240,6 +241,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamageWithRangedAttacks);
             PhysicalDamageWithRangedAttacks.Add(modifiers.AddedPhysicalDamage);
+            PhysicalDamageWithRangedAttacks.Add(equipmentStats.PlusMinMaxPhysicalDamageWithRangedAttacks);
             PhysicalDamageWithRangedAttacks.Multiply(totalMultiplier);   
         }
 
@@ -255,6 +257,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamageWithSpells);
             PhysicalDamageWithSpells.Add(modifiers.AddedPhysicalDamage);
+            PhysicalDamageWithSpells.Add(equipmentStats.PlusMinMaxPhysicalDamageWithSpells);
             PhysicalDamageWithSpells.Multiply(totalMultiplier);
         }
 

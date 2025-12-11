@@ -14,6 +14,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             this.value = value;
         }
 
+        public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
+
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
 

@@ -2,9 +2,10 @@ namespace Org.Ethasia.Fundetected.Interactors
 {
     public enum AffixClasses
     {
+        PlusMinMaxDamageToAttacks,
         PlusGlobalPhysicalDamageIncrease,
-        PlusGlobalArmorIncrease,
         PlusPhysicalDamageWithAttacksIncrease,
+        PlusGlobalArmorIncrease,
         PlusAllElementalResistances,
         PlusStrength
     }

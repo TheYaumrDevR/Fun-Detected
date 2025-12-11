@@ -20,6 +20,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public int RerollValue()
         {
+            if (minValue == maxValue)
+            {
+                return minValue;
+            }
+            
             IRandomNumberGenerator randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             return randomNumberGenerator.GenerateIntegerBetweenAndWithStep(minValue, maxValue, increment);
         }
