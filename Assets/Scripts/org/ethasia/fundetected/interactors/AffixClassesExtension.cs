@@ -18,6 +18,8 @@ namespace Org.Ethasia.Fundetected.Interactors
                     return new PlusAllElementalResistancesAffix(0);
                 case AffixClasses.PlusStrength:
                     return new PlusStrengthAffix(0);
+                case AffixClasses.PlusGlobalMinMaxDamageToAttacks:
+                    return new PlusMinMaxGlobalPhysicalDamageWithAttacksAffix(0, 0);
                 default:
                     throw null;
             }
