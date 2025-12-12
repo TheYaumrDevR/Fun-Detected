@@ -77,5 +77,21 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return builder.Build();
         }        
+
+        public JewelryMasterData GetIronspikeBandMasterData()
+        {
+            JewelryMasterData.Builder builder = new JewelryMasterData.Builder()
+                .SetName("Ironspike Band")
+                .SetItemClass(ItemClass.RING)
+                .SetMinimumItemLevel(1)
+                .SetFirstImplicit(implicitsMasterDataProvider.CreatePlusGlobalMinMaxDamageToAttacksIronspikeBand());
+
+            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(3);
+
+            return builder.Build();
+        } 
     }
 }

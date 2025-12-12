@@ -18,13 +18,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             DropTableEntryMasterData tinyLifePotion = new DropTableEntryMasterData(0, potionMasterDataProvider.GetTinyLifePotionMasterData());
             DropTableEntryMasterData warBelt = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetWarBeltMasterData());
             DropTableEntryMasterData ironAmulet = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetIronAmuletMasterData());
-            DropTableEntryMasterData ironBand = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetDiamondBandMasterData());
+            DropTableEntryMasterData diamondBand = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetDiamondBandMasterData());
+            DropTableEntryMasterData ironSpikeBand = new DropTableEntryMasterData(0, jewelryMasterDataProvider.GetIronspikeBandMasterData());
 
             DropTableEntryEqualChanceGroupMasterData jewelryGroup = new DropTableEntryEqualChanceGroupMasterData(1.0);
             jewelryGroup.DropTableEntries.Add(tinyLifePotion);
             jewelryGroup.DropTableEntries.Add(warBelt);
             jewelryGroup.DropTableEntries.Add(ironAmulet);
-            jewelryGroup.DropTableEntries.Add(ironBand);
+            jewelryGroup.DropTableEntries.Add(diamondBand);
+            jewelryGroup.DropTableEntries.Add(ironSpikeBand);
 
             DropTableRowMasterData tier1Row = new DropTableRowMasterData(1.0);
             tier1Row.DropTableEntryEqualChanceGroups.Add(jewelryGroup);

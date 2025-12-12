@@ -63,5 +63,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAffixClasses(AffixClasses.PlusStrength)
                 .Build();
         }
+
+        public AffixMasterDataBaseForIntegerIntervalMinMaxAndIncrement CreatePlusGlobalMinMaxDamageToAttacksIronspikeBand()
+        {
+            return new AffixMasterDataBaseForIntegerIntervalMinMaxAndIncrement.Builder()
+                .SetLowerBoundMinValue(1)
+                .SetLowerBoundMaxValue(1)
+                .SetLowerBoundIncrement(1)
+                .SetUpperBoundMinValue(4)
+                .SetUpperBoundMaxValue(4)
+                .SetUpperBoundIncrement(1)
+                .SetAffixClasses(AffixClasses.PlusGlobalMinMaxDamageToAttacks)
+                .Build();
+        }
     }
 }
