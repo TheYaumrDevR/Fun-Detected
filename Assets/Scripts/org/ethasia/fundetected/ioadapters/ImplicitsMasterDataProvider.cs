@@ -73,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetUpperBoundMinValue(4)
                 .SetUpperBoundMaxValue(4)
                 .SetUpperBoundIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusGlobalMinMaxDamageToAttacks)
+                .SetAffixClass(AffixClasses.PlusGlobalMinMaxDamageToAttacks)
                 .Build();
         }
     }
