@@ -20,10 +20,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(8)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
-            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
-            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(0);
+            builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
+            builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(8);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(8);
 
             return builder.Build();
         }
