@@ -22,8 +22,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
-            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(8);
-            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(8);
+            builder.SetCollisionShapeDistanceToTopEdgeFromCenter(7);
+            builder.SetCollisionShapeDistanceToBottomEdgeFromCenter(7);
 
             return builder.Build();
         }

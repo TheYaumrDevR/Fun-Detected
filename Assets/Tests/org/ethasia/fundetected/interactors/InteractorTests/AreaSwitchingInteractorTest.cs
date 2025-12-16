@@ -205,7 +205,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Tests
                 .SetMaxLife(40)
                 .SetMaxMana(40)
                 .SetEvasionRating(12)
-                .SetBasePhysicalDamageWithMeleeAttacks(basePhysicalDamage)
+                .SetRightHandPhysicalDamageWithMeleeAttacks(basePhysicalDamage)
                 .SetAttacksPerSecond(1.2)
                 .SetMovementSpeed(100)
                 .Build();   

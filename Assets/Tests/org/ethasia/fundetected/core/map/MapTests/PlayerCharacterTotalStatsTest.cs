@@ -702,7 +702,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetMaxMana(200)
                 .SetAccuracyRating(51)
                 .SetEvasionRating(168)
-                .SetBasePhysicalDamageWithMeleeAttacks(new DamageRange(11, 23))
+                .SetRightHandPhysicalDamageWithMeleeAttacks(new DamageRange(11, 23))
                 .SetAttacksPerSecond(1.4)
                 .SetMovementSpeed(150)
                 .Build();

@@ -222,7 +222,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 * modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier
                 * modifiers.AddedPhysicalDamageMultiplier;
 
-            PhysicalDamageWithMeleeAttacks.Add(baseStats.BasePhysicalDamageWithMeleeAttacks);
+            PhysicalDamageWithMeleeAttacks.Add(baseStats.RightHandPhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
             PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
             PhysicalDamageWithMeleeAttacks.Add(equipmentStats.PlusMinMaxPhysicalDamageWithMeleeAttacks);
