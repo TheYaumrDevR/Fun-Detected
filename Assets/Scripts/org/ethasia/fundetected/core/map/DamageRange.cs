@@ -46,5 +46,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
             MinDamage = 0;
             MaxDamage = 0;
         }
+
+        public DamageRange Clone()
+        {
+            return new DamageRange(MinDamage, MaxDamage);
+        }
     }
 }

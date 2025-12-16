@@ -64,8 +64,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         protected override Item CloneActual()
         {
             Weapon result = new Weapon();
-            result.MinToMaxPhysicalDamage = new DamageRange(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
-            result.MinToMaxSpellDamage = new DamageRange(MinToMaxSpellDamage.MinDamage, MinToMaxSpellDamage.MaxDamage);
+            result.MinToMaxPhysicalDamage = MinToMaxPhysicalDamage?.Clone();
+            result.MinToMaxSpellDamage = MinToMaxSpellDamage?.Clone();
             result.SkillsPerSecond = SkillsPerSecond;
             result.CriticalStrikeChance = CriticalStrikeChance;
             result.WeaponRange = WeaponRange;
