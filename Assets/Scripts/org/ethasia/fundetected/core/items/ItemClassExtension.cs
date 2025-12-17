@@ -2,6 +2,11 @@ namespace Org.Ethasia.Fundetected.Core.Items
 {
     public static class ItemClassExtension
     {
+        public static bool IsWeapon(this ItemClass itemClass)
+        {
+            return itemClass.IsOneHandedWeapon() || itemClass.IsTwoHandedWeapon();
+        }
+
         public static bool IsOneHandedWeapon(this ItemClass itemClass)
         {
             return itemClass == ItemClass.ONE_HANDED_SWORD

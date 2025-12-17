@@ -43,6 +43,20 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
+        public override void OnEquip(StatsFromEquipment statsFromEquipment)
+        {
+            base.OnEquip(statsFromEquipment);
+
+            statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+        }
+
+        public override void OnUnequip(StatsFromEquipment statsFromEquipment)
+        {
+            base.OnUnequip(statsFromEquipment);
+
+            statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+        }
+
         protected override void ApplyLocalAffixes()
         {
             foreach (EquipmentAffix prefix in prefixes)

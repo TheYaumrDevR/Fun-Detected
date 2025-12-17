@@ -28,26 +28,40 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         public Equipment EquipIntoFreeSlotBasedOnItemClass(Equipment toEquip)
         {
-            switch (toEquip.ItemClass)
+            if (toEquip.ItemClass.IsWeapon())
             {
-                case ItemClass.RING:
-                    if (leftRingSlot.IsEmpty())
-                    {
-                        return EquipInLeftRing(toEquip);
-                    }
-                    else if (rightRingSlot.IsEmpty())
-                    {
-                        return EquipInRightRing(toEquip);
-                    }
+                if (mainHandSlot.IsEmpty())
+                {
+                    return EquipInMainHand(toEquip);
+                }        
+                else if (offHandSlot.IsEmpty())
+                {
+                    return EquipInOffHand(toEquip);
+                }
+            }
+            else
+            {
+                switch (toEquip.ItemClass)
+                {
+                    case ItemClass.RING:
+                        if (leftRingSlot.IsEmpty())
+                        {
+                            return EquipInLeftRing(toEquip);
+                        }
+                        else if (rightRingSlot.IsEmpty())
+                        {
+                            return EquipInRightRing(toEquip);
+                        }
 
-                    break;
-                case ItemClass.BELT:
-                    if (beltSlot.IsEmpty())
-                    {
-                        return EquipInBelt(toEquip);
-                    }
+                        break;
+                    case ItemClass.BELT:
+                        if (beltSlot.IsEmpty())
+                        {
+                            return EquipInBelt(toEquip);
+                        }
 
-                    break;
+                        break;
+                }                
             }
 
             return toEquip;
