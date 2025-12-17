@@ -46,7 +46,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             get;
             private set;
-        }        
+        }       
+
+        public DamageRange LeftHandPhysicalDamageWithMeleeAttacks
+        {
+            get;
+            private set;
+        } 
 
         public int AccuracyRating
         {
@@ -75,6 +81,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public PlayerCharacterBaseStats()
         {
             RightHandPhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
+            LeftHandPhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
         }
 
         public void LevelUp()
@@ -100,6 +107,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private int maximumMana;       
 
             private DamageRange rightHandPhysicalDamageWithMeleeAttacks;     
+            private DamageRange leftHandPhysicalDamageWithMeleeAttacks;
 
             private int accuracyRating;   
             private int evasionRating;   
@@ -162,6 +170,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }   
 
+            public PlayerCharacterBaseStatsBuilder SetLeftHandPhysicalDamageWithMeleeAttacks(DamageRange value)
+            {
+                leftHandPhysicalDamageWithMeleeAttacks = value;
+                return this;
+            }
+
             public PlayerCharacterBaseStatsBuilder SetAttacksPerSecond(double value)
             {
                 attacksPerSecond = value;
@@ -187,12 +201,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.AccuracyRating = accuracyRating;
                 result.EvasionRating = evasionRating;
                 result.RightHandPhysicalDamageWithMeleeAttacks = rightHandPhysicalDamageWithMeleeAttacks;
+                result.LeftHandPhysicalDamageWithMeleeAttacks = leftHandPhysicalDamageWithMeleeAttacks;
                 result.AttacksPerSecond = attacksPerSecond;
                 result.MovementSpeed = movementSpeed;
 
                 if (null == rightHandPhysicalDamageWithMeleeAttacks)
                 {
                     result.RightHandPhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
+                }
+
+                if (null == leftHandPhysicalDamageWithMeleeAttacks)
+                {
+                    result.LeftHandPhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
                 }
 
                 return result;

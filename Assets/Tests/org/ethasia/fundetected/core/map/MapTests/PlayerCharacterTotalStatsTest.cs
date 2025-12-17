@@ -149,8 +149,10 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(153));
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(251));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(153));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(251));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(153));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(251));
         }
 
         [Test]
@@ -321,8 +323,10 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(testCandidate.Strength, Is.EqualTo(250));
             Assert.That(testCandidate.MaximumLife, Is.EqualTo(2417));
             Assert.That(testCandidate.MaximumMana, Is.EqualTo(794));
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(184));
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(301));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(184));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(301));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(184));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(301));
             Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(63));
             Assert.That(testCandidate.PhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(141));
             Assert.That(testCandidate.PhysicalDamageWithSpells.MinDamage, Is.EqualTo(109));
@@ -492,8 +496,10 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(159));
-            Assert.That(testCandidate.PhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(260));    
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(159));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(260)); 
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(159));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(260));    
         }
 
         [Test]
@@ -703,6 +709,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetAccuracyRating(51)
                 .SetEvasionRating(168)
                 .SetRightHandPhysicalDamageWithMeleeAttacks(new DamageRange(11, 23))
+                .SetLeftHandPhysicalDamageWithMeleeAttacks(new DamageRange(11, 23))
                 .SetAttacksPerSecond(1.4)
                 .SetMovementSpeed(150)
                 .Build();

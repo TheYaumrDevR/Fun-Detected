@@ -44,7 +44,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }  
 
-        public DamageRange PhysicalDamageWithMeleeAttacks
+        public DamageRange PhysicalDamageWithRightHandMeleeAttacks
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PhysicalDamageWithLeftHandMeleeAttacks
         {
             get;
             private set;
@@ -94,7 +100,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public PlayerCharacterTotalStats()
         {
-            PhysicalDamageWithMeleeAttacks = new DamageRange(0, 0);
+            PhysicalDamageWithRightHandMeleeAttacks = new DamageRange(0, 0);
+            PhysicalDamageWithLeftHandMeleeAttacks = new DamageRange(0, 0);
             PhysicalDamageWithRangedAttacks = new DamageRange(0, 0);
             PhysicalDamageWithSpells = new DamageRange(0, 0);
         }
@@ -212,7 +219,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculatePhysicalDamageWithMeleeAttacks(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
-            PhysicalDamageWithMeleeAttacks.SetToZero();
+            PhysicalDamageWithRightHandMeleeAttacks.SetToZero();
+            PhysicalDamageWithLeftHandMeleeAttacks.SetToZero();
 
             float strengthBasedPhysicalDamageIncrease = Strength / 5 * 0.01f;
 
@@ -222,11 +230,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 * modifiers.AddedPhysicalDamageWithMeleeAttacksMultiplier
                 * modifiers.AddedPhysicalDamageMultiplier;
 
-            PhysicalDamageWithMeleeAttacks.Add(baseStats.RightHandPhysicalDamageWithMeleeAttacks);
-            PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
-            PhysicalDamageWithMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
-            PhysicalDamageWithMeleeAttacks.Add(equipmentStats.PlusMinMaxPhysicalDamageWithMeleeAttacks);
-            PhysicalDamageWithMeleeAttacks.Multiply(totalMultiplier);
+            PhysicalDamageWithRightHandMeleeAttacks.Add(baseStats.RightHandPhysicalDamageWithMeleeAttacks);
+            PhysicalDamageWithRightHandMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
+            PhysicalDamageWithRightHandMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
+            PhysicalDamageWithRightHandMeleeAttacks.Add(equipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks);
+            PhysicalDamageWithRightHandMeleeAttacks.Multiply(totalMultiplier);
+
+            PhysicalDamageWithLeftHandMeleeAttacks.Add(baseStats.LeftHandPhysicalDamageWithMeleeAttacks);
+            PhysicalDamageWithLeftHandMeleeAttacks.Add(modifiers.AddedPhysicalDamageWithMeleeAttacks);
+            PhysicalDamageWithLeftHandMeleeAttacks.Add(modifiers.AddedPhysicalDamage);
+            PhysicalDamageWithLeftHandMeleeAttacks.Add(equipmentStats.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks);
+            PhysicalDamageWithLeftHandMeleeAttacks.Multiply(totalMultiplier);
         }
 
         private void CalculatePhysicalDamageWithRangedAttacks(PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)

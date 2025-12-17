@@ -207,7 +207,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                             
                     if (randomNumberGenerator.CheckProbabilityIsHit(chanceToHit))
                     {
-                        DamageRange damageRange = TotalStats.PhysicalDamageWithMeleeAttacks;
+                        DamageRange damageRange = TotalStats.PhysicalDamageWithRightHandMeleeAttacks;
 
                         int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.MinDamage, damageRange.MaxDamage);
 

@@ -11,8 +11,10 @@ namespace Org.Ethasia.Fundetected.Core.Tests
             StatsFromEquipment testCandidate = new StatsFromEquipment();
             
             // Verify initial state
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(0));
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(0));
             Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(0));
             Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(0));
             
@@ -20,8 +22,10 @@ namespace Org.Ethasia.Fundetected.Core.Tests
             testCandidate.IncreasePlusMinMaxPhysicalDamageWithAttacksBy(5, 12);
             
             // Assert
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(5));
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(12));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(5));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(12));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(5));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(12));
             Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(5));
             Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(12));
         }
@@ -34,13 +38,15 @@ namespace Org.Ethasia.Fundetected.Core.Tests
             
             // Act
             testCandidate.IncreasePlusMinMaxPhysicalDamageWithAttacksBy(3, 7);
-            testCandidate.IncreasePlusMinMaxPhysicalDamageWithAttacksBy(2, 5);
+            testCandidate.IncreasePlusMinMaxPhysicalDamageWithAttacksBy(3, 6);
             
             // Assert
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithMeleeAttacks.MinDamage, Is.EqualTo(5));
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithMeleeAttacks.MaxDamage, Is.EqualTo(12));
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(5));
-            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(12));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(6));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(13));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(6));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(13));            
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MinDamage, Is.EqualTo(6));
+            Assert.That(testCandidate.PlusMinMaxPhysicalDamageWithRangedAttacks.MaxDamage, Is.EqualTo(13));
         }        
     }
 }

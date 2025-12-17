@@ -124,7 +124,13 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
-        public DamageRange PlusMinMaxPhysicalDamageWithMeleeAttacks
+        public DamageRange PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks
+        {
+            get;
+            private set;
+        }
+
+        public DamageRange PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks
         {
             get;
             private set;
@@ -162,7 +168,8 @@ namespace Org.Ethasia.Fundetected.Core
 
         public StatsFromEquipment()
         {
-            PlusMinMaxPhysicalDamageWithMeleeAttacks = new DamageRange(0, 0);
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks = new DamageRange(0, 0);
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks = new DamageRange(0, 0);
             PlusMinMaxPhysicalDamageWithRangedAttacks = new DamageRange(0, 0);
             PlusMinMaxPhysicalDamageWithSpells = new DamageRange(0, 0);
         }
@@ -269,13 +276,25 @@ namespace Org.Ethasia.Fundetected.Core
 
         public void IncreasePlusMinMaxPhysicalDamageWithAttacksBy(int min, int max)
         {
-            PlusMinMaxPhysicalDamageWithMeleeAttacks.Add(min, max);
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.Add(min, max);
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.Add(min, max);
             PlusMinMaxPhysicalDamageWithRangedAttacks.Add(min, max);
         }
 
         public void IncreasePlusMinMaxPhysicalDamageWithMeleeAttacksBy(int min, int max)
         {
-            PlusMinMaxPhysicalDamageWithMeleeAttacks.Add(min, max);
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.Add(min, max);
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.Add(min, max);
+        }
+
+        public void IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.Add(min, max);
+        }
+
+        public void IncreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.Add(min, max);
         }
 
         public void IncreasePlusMinMaxPhysicalDamageWithRangedAttacksBy(int min, int max)
@@ -405,13 +424,25 @@ namespace Org.Ethasia.Fundetected.Core
 
         public void DecreasePlusMinMaxPhysicalDamageWithAttacksBy(int min, int max)
         {
-            PlusMinMaxPhysicalDamageWithMeleeAttacks.Subtract(min, max);
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.Subtract(min, max);
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.Subtract(min, max);
             PlusMinMaxPhysicalDamageWithRangedAttacks.Subtract(min, max);
         }
 
         public void DecreasePlusMinMaxPhysicalDamageWithMeleeAttacksBy(int min, int max)
         {
-            PlusMinMaxPhysicalDamageWithMeleeAttacks.Subtract(min, max);
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.Subtract(min, max);
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.Subtract(min, max);
+        }
+
+        public void DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.Subtract(min, max);
+        }
+
+        public void DecreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(int min, int max)
+        {
+            PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.Subtract(min, max);
         }
 
         public void DecreasePlusMinMaxPhysicalDamageWithRangedAttacksBy(int min, int max)
