@@ -43,18 +43,32 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
-        public override void OnEquip(StatsFromEquipment statsFromEquipment)
+        public override void OnEquip(StatsFromEquipment statsFromEquipment, EquipmentSlotTypes slotType)
         {
-            base.OnEquip(statsFromEquipment);
+            base.OnEquip(statsFromEquipment, slotType);
 
-            statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            if (slotType == EquipmentSlotTypes.MAIN_HAND)
+            {
+                statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            }
+            else if (slotType == EquipmentSlotTypes.OFF_HAND)
+            {
+                statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            }
         }
 
-        public override void OnUnequip(StatsFromEquipment statsFromEquipment)
+        public override void OnUnequip(StatsFromEquipment statsFromEquipment, EquipmentSlotTypes slotType)
         {
-            base.OnUnequip(statsFromEquipment);
+            base.OnUnequip(statsFromEquipment, slotType);
 
-            statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            if (slotType == EquipmentSlotTypes.MAIN_HAND)
+            {
+                statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            }
+            else if (slotType == EquipmentSlotTypes.OFF_HAND)
+            {
+                statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+            }
         }
 
         protected override void ApplyLocalAffixes()

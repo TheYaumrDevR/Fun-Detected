@@ -38,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }  
 
-        public virtual void OnEquip(StatsFromEquipment statsFromEquipment)
+        public virtual void OnEquip(StatsFromEquipment statsFromEquipment, EquipmentSlotTypes slotType)
         {
             foreach (EquipmentAffix prefix in prefixes)
             {
@@ -56,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
         }
 
-        public virtual void OnUnequip(StatsFromEquipment statsFromEquipment)
+        public virtual void OnUnequip(StatsFromEquipment statsFromEquipment, EquipmentSlotTypes slotType)
         {
             foreach (EquipmentAffix prefix in prefixes)
             {

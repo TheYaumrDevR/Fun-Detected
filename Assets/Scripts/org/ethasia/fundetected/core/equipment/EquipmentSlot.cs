@@ -5,11 +5,16 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
     public class EquipmentSlot
     {
         private Equipment equipment;
-        private EquipmentSlotTypes slotType;
+
+        public EquipmentSlotTypes SlotType
+        {
+            get;
+            private set;
+        }
 
         public EquipmentSlot(EquipmentSlotTypes slotType)
         {
-            this.slotType = slotType;
+            SlotType = slotType;
         }
 
         public Equipment InsertEquipment(Equipment inserted)
@@ -45,7 +50,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         public bool CanEquip(ItemClass itemClass)
         {
-            return slotType.CanEquip(itemClass);
+            return SlotType.CanEquip(itemClass);
         }
 
         public ItemClass GetEquipmentItemClass()
