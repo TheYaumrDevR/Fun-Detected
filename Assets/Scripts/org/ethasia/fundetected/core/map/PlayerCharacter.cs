@@ -72,15 +72,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CreateMeleeAttack(MeleeHitArcProperties meleeHitArcProperties)
         {
-            BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
-            hitArcGenerator.CreateFilledCircleArc(meleeHitArcProperties.HitArcStartAngle, meleeHitArcProperties.HitArcEndAngle, meleeHitArcProperties.HitArcRadius);
-
-            List<HitboxTilePosition> meleeHitArc = hitArcGenerator.HitboxTilePositionsRight;
-
             meleeAttack = new MeleeAttack.MeleeAttackBuilder()
-                .SetHitArcRightSwing(meleeHitArc)
                 .SetTimeToHitFromStartOfAttack((1.0 / TotalStats.AttacksPerSecond) / 2.0)
                 .SetPositionOffsetRightSwingToPlayerCharacterCenter(new Position(meleeHitArcProperties.HitArcCenterXOffset, meleeHitArcProperties.HitArcCenterYOffset))
+                .SetOriginalAttackRange(meleeHitArcProperties.HitArcRadius)
+                .SetHitArcStartAngle(meleeHitArcProperties.HitArcStartAngle)
+                .SetHitArcEndAngle(meleeHitArcProperties.HitArcEndAngle)
                 .Build();
         }
 
@@ -174,6 +171,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             Org.Ethasia.Fundetected.Core.Equipment.Equipment result = allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
             TotalStats.Calculate(BaseStats, StatModifiers, allEquipment.EquipmentStats);
+
+            meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
 
             return result;
         }

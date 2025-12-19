@@ -112,6 +112,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int PlusRightHandWeaponRange
+        {
+            get;
+            private set;
+        }
+
+        public int PlusLeftHandWeaponRange
+        {
+            get;
+            private set;
+        }
+
         public int IncreasedStunAndBlockRecoveryInPercent
         {
             get;
@@ -322,6 +334,16 @@ namespace Org.Ethasia.Fundetected.Core
             IncreasedArmourInPercent += value;
         }
 
+        public void IncreasePlusRightHandWeaponRange(int value)
+        {
+            PlusRightHandWeaponRange += value;
+        }
+
+        public void IncreasePlusLeftHandWeaponRange(int value)
+        {
+            PlusLeftHandWeaponRange += value;
+        }
+
         public void DecreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence -= value;
@@ -468,6 +490,16 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreaseIncreasedPhysicalDamageWithAttacksInPercentBy(int value)
         {
             IncreasedPhysicalDamageWithAttacksInPercent -= value;
+        }
+
+        public void DecreasePlusRightHandWeaponRange(int value)
+        {
+            PlusRightHandWeaponRange -= value;
+        }
+
+        public void DecreasePlusLeftHandWeaponRange(int value)
+        {
+            PlusLeftHandWeaponRange -= value;
         }
     }
 }

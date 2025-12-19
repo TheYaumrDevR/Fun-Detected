@@ -98,6 +98,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public int RightHandAbilityRange
+        {
+            get;
+            private set;
+        }
+
+        public int LeftHandAbilityRange
+        {
+            get;
+            private set;
+        }
+
         public PlayerCharacterTotalStats()
         {
             PhysicalDamageWithRightHandMeleeAttacks = new DamageRange(0, 0);
@@ -141,6 +153,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             CalculateEvasionRating(baseStats, modifiers, equipmentStats);
             CalculateAttacksPerSecond(baseStats, modifiers, equipmentStats);
             CalculateMovementSpeed(baseStats, modifiers, equipmentStats);
+            CalculateRightHandAbilityRange(modifiers, equipmentStats);
+            CalculateLeftHandAbilityRange(modifiers, equipmentStats);
         }
 
         private void CalculateTotalIntelligence(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
@@ -324,6 +338,30 @@ namespace Org.Ethasia.Fundetected.Core.Map
             MovementSpeed = CalculateTotal(context);
 
             SecondsToMoveOneUnit = 1.0 / (MovementSpeed / 10); 
+        }
+
+        private void CalculateRightHandAbilityRange(PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
+        {
+            TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
+                .SetBaseStat(0)
+                .SetAddend(equipmentStats.PlusRightHandWeaponRange)
+                .SetIncrease(1.0f)
+                .SetMultiplier(1.0f)
+                .Build();
+
+            RightHandAbilityRange = CalculateTotal(context);
+        }
+
+        private void CalculateLeftHandAbilityRange(PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
+        {
+            TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
+                .SetBaseStat(0)
+                .SetAddend(equipmentStats.PlusLeftHandWeaponRange)
+                .SetIncrease(1.0f)
+                .SetMultiplier(1.0f)
+                .Build();
+
+            LeftHandAbilityRange = CalculateTotal(context);
         }
 
         private int CalculateTotal(TotalStatValueCalculationContext context)

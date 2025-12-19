@@ -24,9 +24,23 @@ namespace Org.Ethasia.Fundetected.Core.Combat
 
         private AsyncResponse<HashSet<Enemy>> enemiesHitResponse;
 
+        private int originalAttackRange;
+
+        private int additionalAttackRange;
+
+        private double hitArcStartAngle;
+
+        private double hitArcEndAngle;
+
         private MeleeAttack()
         {
             lastStartOfAttackStopWatch = new StopWatch();
+        }
+
+        public void SetAdditionalAttackRange(int value)
+        {
+            additionalAttackRange = value;
+            CalculateHitArc();
         }
 
         public void Tick(double actionTime)
@@ -73,17 +87,22 @@ namespace Org.Ethasia.Fundetected.Core.Combat
             return !lastStartOfAttackStopWatch.WasReset || lastStartOfAttackStopWatch.TimePassedSinceStart >= secondsPerAttack || AttackWasCancelled;            
         }      
 
+        private void CalculateHitArc()
+        {
+            BresenhamBasedHitArcGenerationAlgorithm hitArcGenerator = new BresenhamBasedHitArcGenerationAlgorithm();
+            hitArcGenerator.CreateFilledCircleArc(hitArcStartAngle, hitArcEndAngle, originalAttackRange + additionalAttackRange);
+
+            hitArcRightSwing = hitArcGenerator.HitboxTilePositionsRight;
+        }
+
         public class MeleeAttackBuilder
         {
-            private List<HitboxTilePosition> hitArcRightSwing;
             private double timeToHitFromStartOfAttack;
             private Position positionOffsetRightSwingToPlayerCharacterCenter;
-
-            public MeleeAttackBuilder SetHitArcRightSwing(List<HitboxTilePosition> value)
-            {
-                hitArcRightSwing = value;
-                return this;
-            }
+            private int originalAttackRange;
+            private int additionalAttackRange;
+            private double hitArcStartAngle;
+            private double hitArcEndAngle;
 
             public MeleeAttackBuilder SetTimeToHitFromStartOfAttack(double value)
             {
@@ -97,13 +116,42 @@ namespace Org.Ethasia.Fundetected.Core.Combat
                 return this;
             }
 
+            public MeleeAttackBuilder SetOriginalAttackRange(int value)
+            {
+                originalAttackRange = value;
+                return this;
+            }
+
+            public MeleeAttackBuilder SetAdditionalAttackRange(int value)
+            {
+                additionalAttackRange = value;
+                return this;
+            }
+
+            public MeleeAttackBuilder SetHitArcStartAngle(double value)
+            {
+                hitArcStartAngle = value;
+                return this;
+            }
+
+            public MeleeAttackBuilder SetHitArcEndAngle(double value)
+            {
+                hitArcEndAngle = value;
+                return this;
+            }
+
             public MeleeAttack Build()
             {
                 MeleeAttack result = new MeleeAttack();
 
-                result.hitArcRightSwing = hitArcRightSwing;
                 result.timeToHitFromStartOfAttack = timeToHitFromStartOfAttack;
                 result.positionOffsetRightSwingToPlayerCharacterCenter = positionOffsetRightSwingToPlayerCharacterCenter;
+                result.originalAttackRange = originalAttackRange;
+                result.additionalAttackRange = additionalAttackRange;
+                result.hitArcStartAngle = hitArcStartAngle;
+                result.hitArcEndAngle = hitArcEndAngle;
+
+                result.CalculateHitArc();
 
                 return result;
             }
