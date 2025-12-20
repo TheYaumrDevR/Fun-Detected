@@ -1,6 +1,7 @@
 using NUnit.Framework;
 
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 {
@@ -29,11 +30,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Weapon.Builder weaponBuilder = new Weapon.Builder();
 
             weaponBuilder.SetItemClass(ItemClass.BOW);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon twoHandedWeapon = weaponBuilder.Build();
 
             Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
             offHandWeaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
+            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon offHandWeapon = offHandWeaponBuilder.Build();
 
@@ -70,6 +73,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
             offHandWeaponBuilder.SetItemClass(ItemClass.DAGGER);
+            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon offHandWeapon = offHandWeaponBuilder.Build();
 
@@ -91,6 +95,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
             offHandWeaponBuilder.SetItemClass(ItemClass.WAND);
+            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon offHandWeapon = offHandWeaponBuilder.Build();
 
@@ -142,6 +147,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Weapon.Builder mainHandWeaponBuilder = new Weapon.Builder();
             mainHandWeaponBuilder.SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
+            mainHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon mainHandWeapon = mainHandWeaponBuilder.Build();
 
@@ -163,6 +169,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Weapon.Builder mainHandWeaponBuilder = new Weapon.Builder();
             mainHandWeaponBuilder.SetItemClass(ItemClass.ONE_HANDED_MACE);
+            mainHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon mainHandWeapon = mainHandWeaponBuilder.Build();
 
@@ -179,6 +186,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Weapon.Builder weaponBuilder = new Weapon.Builder();
 
             weaponBuilder.SetItemClass(ItemClass.MARTIAL_STAFF);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon twoHandedWeapon = weaponBuilder.Build();
 
@@ -195,6 +203,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             weaponBuilder.SetName("Bronze Twohander")
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon firstWeapon = weaponBuilder.Build();
 
@@ -223,6 +232,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
             offHandWeaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
+            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon offHandWeapon = offHandWeaponBuilder.Build();
 
@@ -239,6 +249,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Weapon.Builder weaponBuilder = new Weapon.Builder();
 
             weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_MACE);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon weapon = weaponBuilder.Build();
 
@@ -255,6 +266,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             weaponBuilder.SetName("Spellblade")
                 .SetItemClass(ItemClass.SPELL_DAGGER);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon firstWeapon = weaponBuilder.Build();
 
@@ -278,11 +290,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             weaponBuilder.SetName("Gladius")
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon secondWeapon = weaponBuilder.Build();
 
             Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
             offHandWeaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
+            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon firstWeapon = offHandWeaponBuilder.Build();
 

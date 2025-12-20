@@ -1,6 +1,7 @@
 using NUnit.Framework;
 
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 {
@@ -23,6 +24,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
             weaponBuilder.AddAffix(physicalDamagePercentStolenAsLifeAffix);
             weaponBuilder.AddAffix(plusAccuracyAffix);
             weaponBuilder.AddAffix(plusAccuracyAndIncreasedPhysicalDamageAffix);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             weaponBuilder.SetItemClass(ItemClass.TWO_HANDED_AXE);
 
@@ -46,6 +48,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 
             weaponBuilder.AddAffix(plusAgilityAffix);
             weaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon claw = weaponBuilder.Build();
 
@@ -59,6 +62,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 
             newWeaponBuilder.AddAffix(plusAgilityAffix);
             newWeaponBuilder.SetItemClass(ItemClass.ONE_HANDED_SWORD);
+            newWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon sword = newWeaponBuilder.Build();        
 
@@ -93,6 +97,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
             weaponBuilder.AddAffix(plusMagicResistanceAffix);
 
             weaponBuilder.SetItemClass(ItemClass.TWO_HANDED_SWORD);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
+
             Weapon twoHandedWeapon = weaponBuilder.Build();  
 
             equipmentSlots.EquipInMainHand(twoHandedWeapon); 
@@ -124,6 +130,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 
             weaponBuilder.SetFirstImplicit(rollablePlusMaximumColdResistanceAffix);
             weaponBuilder.SetItemClass(ItemClass.WAND);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon wand = weaponBuilder.Build();  
 
@@ -148,6 +155,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
 
             weaponBuilder.SetFirstImplicit(rollablePlusMaximumFireResistanceAffix);
             weaponBuilder.SetItemClass(ItemClass.WIZARD_STAFF);
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
 
             Weapon staff = weaponBuilder.Build();  
 
