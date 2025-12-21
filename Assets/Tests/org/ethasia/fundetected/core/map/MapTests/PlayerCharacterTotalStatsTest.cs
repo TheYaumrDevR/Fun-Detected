@@ -130,6 +130,9 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
             StatsFromEquipment equipmentStats = new StatsFromEquipment();
 
+            equipmentStats.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(4, 6);
+            equipmentStats.IncreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(9, 13);
+
             statModifiers.AddAddedPhysicalDamage(new DamageRange(5, 10));
             statModifiers.AddAddedPhysicalDamage(new DamageRange(7, 15));
 
@@ -149,10 +152,10 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
-            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(153));
-            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(251));
-            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(153));
-            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(251));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(168));
+            Assert.That(testCandidate.PhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(273));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(187));
+            Assert.That(testCandidate.PhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(299));
         }
 
         [Test]
