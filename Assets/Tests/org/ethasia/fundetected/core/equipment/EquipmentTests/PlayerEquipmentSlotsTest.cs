@@ -603,5 +603,119 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             resultExtractor.ExtractBeltEquipment();
             Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Flask Belt"));
         }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClass_EquipsWeaponIfMainHandFree()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Weapon.Builder testItemBuilder = new Weapon.Builder();
+
+            testItemBuilder.SetName("Short Sword")
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(3, 7));
+
+            Weapon shortSword = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(shortSword);
+            resultExtractor.ExtractMainHandEquipment();
+
+            Assert.That(result, Is.Null);
+            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Short Sword"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClass_EquipsWeaponIfOffHandFree_AndMainHandIsOccupied()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Weapon.Builder testItemBuilder = new Weapon.Builder();
+
+            testItemBuilder.SetName("Assassin's Dagger")
+                .SetItemClass(ItemClass.DAGGER);
+            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(2, 5));
+
+            Weapon mainHandWeapon = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Shadow Dagger");
+            Weapon offHandWeapon = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(mainHandWeapon);
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(offHandWeapon);
+
+            resultExtractor.ExtractOffHandEquipment();
+
+            Assert.That(result, Is.Null);
+            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Shadow Dagger"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClass_DoesNotEquipWeaponIfBothHandsOccupied()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Weapon.Builder testItemBuilder = new Weapon.Builder();
+
+            testItemBuilder.SetName("Battle Axe")
+                .SetItemClass(ItemClass.ONE_HANDED_AXE);
+            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(5, 10));
+
+            Weapon firstWeapon = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Hatchet");
+            Weapon secondWeapon = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Long Axe");
+            Weapon thirdWeapon = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(firstWeapon);
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(secondWeapon);
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(thirdWeapon);
+
+            resultExtractor.ExtractOffHandEquipment();
+
+            Assert.That(result.Name, Is.EqualTo("Long Axe"));
+            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Hatchet"));
+
+            resultExtractor.ExtractMainHandEquipment();
+            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Battle Axe"));
+        }
+
+        [Test]
+        public void TestEquipIntoFreeSlotBasedOnItemClass_DoesNotEquipOffHandWeaponOfDifferentTypeFromMainHand()
+        {
+            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
+
+            Weapon.Builder testItemBuilder = new Weapon.Builder();
+
+            testItemBuilder.SetName("War Hammer")
+                .SetItemClass(ItemClass.ONE_HANDED_MACE);
+            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(6, 12));
+
+            Weapon mainHandWeapon = testItemBuilder.Build();
+
+            testItemBuilder.SetName("Magic Wand")
+                .SetItemClass(ItemClass.WAND);
+            Weapon offHandWeapon = testItemBuilder.Build();
+
+            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(mainHandWeapon);
+            Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(offHandWeapon);
+
+            resultExtractor.ExtractOffHandEquipment();
+
+            Assert.That(result.Name, Is.EqualTo("Magic Wand"));
+            Assert.That(resultExtractor.ExtractedWeapon, Is.Null);
+
+            resultExtractor.ExtractMainHandEquipment();
+            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("War Hammer"));
+        }
     }
 }
