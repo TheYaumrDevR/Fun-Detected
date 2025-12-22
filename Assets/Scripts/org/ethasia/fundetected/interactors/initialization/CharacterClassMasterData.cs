@@ -1,6 +1,6 @@
 using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Initialization
 {
     public struct CharacterClassMasterData
     {
