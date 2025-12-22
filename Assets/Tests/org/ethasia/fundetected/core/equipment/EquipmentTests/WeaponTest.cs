@@ -69,6 +69,60 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Assert.That(clone.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(testCandidate.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter));
         }
 
+        [Test]
+        public void TestOnEquip_IncreasesRightHandPhysicalDamageAndWeaponRange_WhenEquippedInMainHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(testCandidate.MinToMaxPhysicalDamage.MinDamage));
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(testCandidate.MinToMaxPhysicalDamage.MaxDamage));
+            Assert.That(statsFromEquipment.PlusRightHandWeaponRange, Is.EqualTo(testCandidate.WeaponRange));
+        }
+
+        [Test]
+        public void TestOnEquip_IncreasesLeftHandPhysicalDamageAndWeaponRange_WhenEquippedInOffHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(testCandidate.MinToMaxPhysicalDamage.MinDamage));
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(testCandidate.MinToMaxPhysicalDamage.MaxDamage));
+            Assert.That(statsFromEquipment.PlusLeftHandWeaponRange, Is.EqualTo(testCandidate.WeaponRange));
+        }
+
+        [Test]
+        public void TestOnUnequip_DecreasesRightHandPhysicalDamageAndWeaponRange_WhenUnequippedInMainHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+            testCandidate.OnUnequip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(0));
+            Assert.That(statsFromEquipment.PlusRightHandWeaponRange, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestOnUnequip_DecreasesLeftHandPhysicalDamageAndWeaponRange_WhenUnequippedInOffHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+            testCandidate.OnUnequip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(statsFromEquipment.PlusMinMaxPhysicalDamageWithLeftHandMeleeAttacks.MaxDamage, Is.EqualTo(0));
+            Assert.That(statsFromEquipment.PlusLeftHandWeaponRange, Is.EqualTo(0));
+        }
+
         private Weapon CreateTestWeapon()
         {
             DamageRange minToMaxPhysicalDamage = new DamageRange(52, 98);
