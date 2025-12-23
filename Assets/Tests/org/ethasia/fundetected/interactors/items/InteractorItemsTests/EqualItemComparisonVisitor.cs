@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
 {
     public class EqualItemComparisonVisitor : ItemVisitor
     {

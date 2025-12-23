@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Items
 {
     public struct DropTableMasterData
     {

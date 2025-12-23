@@ -1,45 +1,27 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Items;
-using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Items
 {
-    public class WeaponMasterData : ItemMasterData
-    {
-        public DamageRange MinToMaxPhysicalDamage
+    public class ArmorMasterData : ItemMasterData
+    { 
+        public int ArmorValue
         {
             get;
             private set;
         }
 
-        public DamageRange MinToMaxSpellDamage
+        public int MovementSpeedAddend
         {
             get;
             private set;
-        }
+        }      
 
-        public double SkillsPerSecond
-        {
-            get;
-            private set;
-        }         
-
-        public int CriticalStrikeChance
-        {
-            get;
-            private set;
-        } 
-
-        public int WeaponRange
-        {
-            get;
-            private set;
-        }    
-        
         public override Item ToItem()
         {
-            return ItemMasterDataToItemConverter.ConvertWeaponMasterDataToWeapon(this);
-        }          
+            return ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(this);
+        }
 
         new public class Builder : ItemMasterData.Builder
         {
@@ -49,11 +31,9 @@ namespace Org.Ethasia.Fundetected.Interactors
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
-            private DamageRange minToMaxPhysicalDamage;
-            private DamageRange minToMaxSpellDamage;
-            private double skillsPerSecond;
-            private int criticalStrikeChance;
-            private int weaponRange;
+            private int armorValue;
+            private int movementSpeedAddend;
+            private EquipmentAffixMasterData firstImplicit;
 
             public Builder SetItemClass(ItemClass value)
             {
@@ -91,39 +71,27 @@ namespace Org.Ethasia.Fundetected.Interactors
                 return this;
             }
 
-            public Builder SetMinToMaxPhysicalDamage(DamageRange value)
+            public Builder SetArmorValue(int value)
             {
-                minToMaxPhysicalDamage = value;
+                armorValue = value;
                 return this;
             }
 
-            public Builder SetMinToMaxSpellDamage(DamageRange value)
+            public Builder SetMovementSpeedAddend(int value)
             {
-                minToMaxSpellDamage = value;
+                movementSpeedAddend = value;
                 return this;
             }
 
-            public Builder SetSkillsPerSecond(double value)
+            public Builder SetFirstImplicit(EquipmentAffixMasterData value)
             {
-                skillsPerSecond = value;
+                firstImplicit = value;
                 return this;
             }
 
-            public Builder SetCriticalStrikeChance(int value)
+            public ArmorMasterData Build()
             {
-                criticalStrikeChance = value;
-                return this;
-            }
-
-            public Builder SetWeaponRange(int value)
-            {
-                weaponRange = value;
-                return this;
-            }
-
-            public WeaponMasterData Build()
-            {
-                WeaponMasterData result = new WeaponMasterData();
+                ArmorMasterData result = new ArmorMasterData();
 
                 result.ItemClass = itemClass;
                 result.MinimumItemLevel = minimumItemLevel;
@@ -131,16 +99,14 @@ namespace Org.Ethasia.Fundetected.Interactors
                 result.StrengthRequirement = strengthRequirement;
                 result.AgilityRequirement = agilityRequirement;
                 result.IntelligenceRequirement = intelligenceRequirement;
-                result.MinToMaxPhysicalDamage = minToMaxPhysicalDamage;
-                result.MinToMaxSpellDamage = minToMaxSpellDamage;
-                result.SkillsPerSecond = skillsPerSecond;
-                result.CriticalStrikeChance = criticalStrikeChance;
-                result.WeaponRange = weaponRange;
+                result.ArmorValue = armorValue;
+                result.MovementSpeedAddend = movementSpeedAddend;
+                result.FirstImplicit = firstImplicit;
 
                 FillItemMasterDataFields(result);
 
                 return result;
             }
-        }                    
+        }  
     }
 }

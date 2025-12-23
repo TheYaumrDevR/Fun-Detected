@@ -1,9 +1,8 @@
 using NUnit.Framework;
 
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
-using Org.Ethasia.Fundetected.Interactors;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
 {
     public class AffixMasterDataBaseForIntegerIntervalMinMaxAndIncrementTest
     {

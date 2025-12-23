@@ -6,7 +6,7 @@ using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
 {
     public class ItemMasterDataToItemConverterTest
     {

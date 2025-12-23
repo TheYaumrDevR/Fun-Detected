@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Interactors.Items;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct EnemyMasterData
