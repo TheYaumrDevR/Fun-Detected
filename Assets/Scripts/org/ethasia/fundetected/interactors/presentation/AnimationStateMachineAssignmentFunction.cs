@@ -1,7 +1,7 @@
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Maths;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public class AnimationStateMachineAssignmentFunction : IAnimationStateMachineAssignmentFunction
     {

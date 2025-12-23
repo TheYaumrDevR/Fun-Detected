@@ -1,6 +1,6 @@
 using Org.Ethasia.Fundetected.Core.Maths;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public interface IPlayerAnimationPresenter
     {

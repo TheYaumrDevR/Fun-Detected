@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters

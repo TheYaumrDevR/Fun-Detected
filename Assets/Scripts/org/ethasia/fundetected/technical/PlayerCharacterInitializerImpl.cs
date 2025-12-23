@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Org.Ethasia.Fundetected.Core.Maths;
+using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
-using Org.Ethasia.Fundetected.Interactors;
-using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Technical
 {

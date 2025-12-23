@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Animation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 

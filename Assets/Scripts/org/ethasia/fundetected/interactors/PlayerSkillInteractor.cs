@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {

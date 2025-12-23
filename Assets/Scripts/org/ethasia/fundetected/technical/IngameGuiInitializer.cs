@@ -1,6 +1,6 @@
 using UnityEngine;
 
-using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Technical
 {

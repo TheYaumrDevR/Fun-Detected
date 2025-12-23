@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Interactors.Presentation;
+
 namespace Org.Ethasia.Fundetected.Interactors.Mocks
 {
     public class InternalInteractorsFactoryMock : InternalInteractorsFactory

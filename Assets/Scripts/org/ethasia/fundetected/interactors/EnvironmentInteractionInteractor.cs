@@ -5,6 +5,7 @@ using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Maths;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {

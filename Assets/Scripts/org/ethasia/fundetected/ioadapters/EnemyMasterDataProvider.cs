@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
