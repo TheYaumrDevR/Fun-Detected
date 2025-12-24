@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
 {
     public class EnemyWithExposedFields : Enemy
     {

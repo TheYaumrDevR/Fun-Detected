@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Combat;
 using Org.Ethasia.Fundetected.Interactors.Items;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 

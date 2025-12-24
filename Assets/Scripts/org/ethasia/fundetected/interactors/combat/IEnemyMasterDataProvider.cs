@@ -1,7 +1,7 @@
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Combat
 {
     public interface IEnemyMasterDataProvider
     {

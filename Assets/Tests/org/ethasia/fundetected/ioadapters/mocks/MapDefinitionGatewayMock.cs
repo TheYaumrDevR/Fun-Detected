@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Combat;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 {

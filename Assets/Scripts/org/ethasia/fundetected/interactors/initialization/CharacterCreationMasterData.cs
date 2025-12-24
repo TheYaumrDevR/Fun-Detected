@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Interactors.Combat;
+
 namespace Org.Ethasia.Fundetected.Interactors.Initialization
 {
     public struct CharacterCreationMasterData

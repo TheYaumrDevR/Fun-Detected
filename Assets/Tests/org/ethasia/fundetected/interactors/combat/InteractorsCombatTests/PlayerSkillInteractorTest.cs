@@ -9,7 +9,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 using Org.Ethasia.Fundetected.Technical.Mocks;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
 {
 
     public class PlayerSkillInteractorTest

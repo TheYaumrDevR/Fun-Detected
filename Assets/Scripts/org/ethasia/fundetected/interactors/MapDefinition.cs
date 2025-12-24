@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using Org.Ethasia.Fundetected.Interactors.Combat;
+
 namespace Org.Ethasia.Fundetected.Interactors
 {
     public struct MapDefinition

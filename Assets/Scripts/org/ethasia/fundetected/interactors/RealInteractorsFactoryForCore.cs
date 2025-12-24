@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Interactors.Combat;
 
 namespace Org.Ethasia.Fundetected.Interactors
 {

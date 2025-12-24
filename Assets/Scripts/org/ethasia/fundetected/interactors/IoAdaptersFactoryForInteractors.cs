@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Interactors.Combat;
 using Org.Ethasia.Fundetected.Interactors.Initialization;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 

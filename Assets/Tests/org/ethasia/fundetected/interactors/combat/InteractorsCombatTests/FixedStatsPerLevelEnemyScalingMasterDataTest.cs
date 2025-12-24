@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
 {
     public class FixedStatsPerLevelEnemyScalingMasterDataTest
     {

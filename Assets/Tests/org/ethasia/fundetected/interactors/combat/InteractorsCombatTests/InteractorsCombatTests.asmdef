@@ -1,18 +1,15 @@
 {
-    "name": "InteractorTests",
+    "name": "InteractorsCombatTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "GameAssembly",
         "IoAdaptersMocks",
-        "TechnicalMocks",
         "NewAssembly",
-        "InteractorsCombatTests"
+        "TechnicalMocks"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

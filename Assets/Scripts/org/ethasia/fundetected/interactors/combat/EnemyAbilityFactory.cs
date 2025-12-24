@@ -3,7 +3,7 @@ using Org.Ethasia.Fundetected.Core.Map;
 
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Combat
 {
     public class EnemyAbilityFactory
     {
