@@ -8,7 +8,9 @@
         "InteractorsCombatTests",
         "IoAdaptersMocks"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
