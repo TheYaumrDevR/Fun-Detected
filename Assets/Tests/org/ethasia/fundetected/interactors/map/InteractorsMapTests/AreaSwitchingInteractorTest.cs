@@ -8,7 +8,7 @@ using Org.Ethasia.Fundetected.Interactors.Combat.Tests;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
 {
     public class AreaSwitchingInteractorTest
     {

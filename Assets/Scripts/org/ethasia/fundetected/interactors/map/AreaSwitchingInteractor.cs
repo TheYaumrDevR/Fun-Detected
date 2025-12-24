@@ -7,7 +7,7 @@ using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Combat;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Map
 {
     public class AreaSwitchingInteractor
     {

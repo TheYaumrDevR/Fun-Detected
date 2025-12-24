@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
 {
     public class MapDefinitionToMapPropertiesConverterTest
     {

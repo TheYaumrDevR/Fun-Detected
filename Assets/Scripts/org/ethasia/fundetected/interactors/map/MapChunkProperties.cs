@@ -3,7 +3,7 @@ using System.Text;
 
 using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Map
 {
     public struct MapChunkProperties
     {

@@ -7,7 +7,7 @@ using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Maths;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Map
 {
     public class EnvironmentInteractionInteractor : IEnvironmentInteractionInteractor
     {

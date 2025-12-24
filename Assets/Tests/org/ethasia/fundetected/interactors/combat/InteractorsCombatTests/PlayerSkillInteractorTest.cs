@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Initialization;
+using Org.Ethasia.Fundetected.Interactors.Map;
 using Org.Ethasia.Fundetected.Interactors.Mocks;
 using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;

@@ -5,7 +5,7 @@ using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
 {
     public class EnvironmentInteractionInteractorTest
     {

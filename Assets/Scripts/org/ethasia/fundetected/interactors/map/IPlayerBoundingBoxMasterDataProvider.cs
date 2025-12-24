@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Interactors
+namespace Org.Ethasia.Fundetected.Interactors.Map
 {
     public interface IPlayerBoundingBoxMasterDataProvider
     {

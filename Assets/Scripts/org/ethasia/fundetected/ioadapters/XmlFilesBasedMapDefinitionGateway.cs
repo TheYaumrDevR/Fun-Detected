@@ -1,6 +1,7 @@
 using System.Xml;
 
 using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Map;
 using Org.Ethasia.Fundetected.Interactors.Combat;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 

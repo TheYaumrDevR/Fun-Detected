@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Map;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 using Org.Ethasia.Fundetected.Technical.Mocks;
 

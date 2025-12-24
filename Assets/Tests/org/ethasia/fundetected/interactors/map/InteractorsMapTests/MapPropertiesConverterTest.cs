@@ -2,9 +2,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Map;
-using Org.Ethasia.Fundetected.Interactors;
 
-namespace Org.Ethasia.Fundetected.Interactors.Tests
+namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
 {
     public class MapPropertiesConverterTest
     {
