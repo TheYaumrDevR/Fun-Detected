@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(12)
                 .SetMaxValue(24)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusGlobalPhysicalDamageIncrease)
+                .SetAffixClass(AffixClasses.PlusGlobalPhysicalDamageIncrease)
                 .Build();
         }
 
@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(5)
                 .SetMaxValue(6)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusGlobalArmorIncrease)
+                .SetAffixClass(AffixClasses.PlusGlobalArmorIncrease)
                 .Build();
         }
 
@@ -30,7 +30,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(3)
                 .SetMaxValue(4)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusPhysicalDamageWithAttacksIncrease)
+                .SetAffixClass(AffixClasses.PlusPhysicalDamageWithAttacksIncrease)
                 .Build();
         }
 
@@ -40,7 +40,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(1)
                 .SetMaxValue(2)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .SetAffixClass(AffixClasses.PlusAllElementalResistances)
                 .Build();
         }
 
@@ -50,7 +50,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(2)
                 .SetMaxValue(3)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .SetAffixClass(AffixClasses.PlusAllElementalResistances)
                 .Build();
         }
 
@@ -60,7 +60,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinValue(25)
                 .SetMaxValue(35)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusStrength)
+                .SetAffixClass(AffixClasses.PlusStrength)
                 .Build();
         }
 

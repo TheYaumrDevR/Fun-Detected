@@ -51,7 +51,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
                 .SetMinValue(2)
                 .SetMaxValue(3)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .SetAffixClass(AffixClasses.PlusAllElementalResistances)
                 .Build();
         }
 

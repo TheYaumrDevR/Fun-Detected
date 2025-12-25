@@ -321,7 +321,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
                 .SetMinValue(12)
                 .SetMaxValue(24)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusGlobalPhysicalDamageIncrease)
+                .SetAffixClass(AffixClasses.PlusGlobalPhysicalDamageIncrease)
                 .Build();            
         }
     }

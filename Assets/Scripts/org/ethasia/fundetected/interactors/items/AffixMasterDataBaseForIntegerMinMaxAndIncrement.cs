@@ -69,7 +69,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 return this;
             }
 
-            public Builder SetAffixClasses(AffixClasses value)
+            public Builder SetAffixClass(AffixClasses value)
             {
                 affixClass = value;
                 return this;

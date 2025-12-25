@@ -47,7 +47,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
                 .SetMinValue(1)
                 .SetMaxValue(2)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .SetAffixClass(AffixClasses.PlusAllElementalResistances)
                 .Build();
 
             ArmorMasterData armorMasterData = new ArmorMasterData.Builder()
@@ -121,7 +121,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
                 .SetMinValue(5)
                 .SetMaxValue(6)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusAllElementalResistances)
+                .SetAffixClass(AffixClasses.PlusAllElementalResistances)
                 .Build();
 
             JewelryMasterData masterData = new JewelryMasterData.Builder()
@@ -225,7 +225,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
                 .SetMinValue(5)
                 .SetMaxValue(6)
                 .SetIncrement(1)
-                .SetAffixClasses(AffixClasses.PlusGlobalArmorIncrease)
+                .SetAffixClass(AffixClasses.PlusGlobalArmorIncrease)
                 .Build();
         }
     }
