@@ -397,7 +397,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             playerSpawnPositionBySpawnerId.Add("upperWestPortal", new Position(5, 70));
 
             Area testArea = new Area.Builder()
-                .SetWidthAndHeight(50, 50)
+                .SetWidthAndHeight(50, 90)
                 .SetPlayerSpawnPositionBySpawnerId(playerSpawnPositionBySpawnerId)
                 .Build();
 
@@ -416,6 +416,39 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             Assert.That(testArea.GetPlayerPositionX(), Is.EqualTo(5));
             Assert.That(testArea.GetPlayerPositionY(), Is.EqualTo(70));
+        }
+
+        [Test]
+        public void TestPortPlayerTo_DoesNotModifyPortalTargetPositionWhenPlayerMoves()
+        {
+            string portalTargetId = "upperWestPortal";
+
+            Dictionary<string, Position> playerSpawnPositionBySpawnerId = new Dictionary<string, Position>();
+            playerSpawnPositionBySpawnerId.Add(portalTargetId, new Position(5, 70));
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 90)
+                .SetPlayerSpawnPositionBySpawnerId(playerSpawnPositionBySpawnerId)
+                .Build();
+
+            Area.ActiveArea = testArea;
+
+            PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(baseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();
+
+            testArea.PortPlayerTo(playerCharacter, portalTargetId);
+            testArea.CalculateUnitsPlayerCanMoveRight(4);
+
+            Assert.That(testArea.GetPlayerPositionX(), Is.EqualTo(9));
+            Assert.That(testArea.GetPlayerPositionY(), Is.EqualTo(70));
+            Assert.That(testArea.GetSpawnPositionForChunkId(portalTargetId).X, Is.EqualTo(5));
+            Assert.That(testArea.GetSpawnPositionForChunkId(portalTargetId).Y, Is.EqualTo(70));
         }
 
         [Test]
