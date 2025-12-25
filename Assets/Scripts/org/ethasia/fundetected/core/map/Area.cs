@@ -165,7 +165,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             if (playerSpawnPositionBySpawnerId.ContainsKey(portalDestinationId))
             {
-                playerPosition = playerSpawnPositionBySpawnerId[portalDestinationId];
+                playerPosition.SetFromOtherPosition(playerSpawnPositionBySpawnerId[portalDestinationId]);
                 AddPlayerAt(playerCharacter, playerPosition.X, playerPosition.Y);
             }
         }
