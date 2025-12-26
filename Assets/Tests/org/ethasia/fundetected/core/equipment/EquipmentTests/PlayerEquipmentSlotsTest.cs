@@ -12,11 +12,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInMainHandCanEquipTwoHandedWeaponWhenOffhandFree()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.WIZARD_STAFF);
-
-            Weapon twoHandedWeapon = weaponBuilder.Build();
+            Weapon twoHandedWeapon = CreateWeapon("", ItemClass.WIZARD_STAFF);
 
             bool result = testCandidate.CanEquipInMainHand(twoHandedWeapon);
 
@@ -27,18 +24,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInMainHandCanNotEquipTwoHandedWeaponWhenOffhandUsed()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.BOW);
-            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon twoHandedWeapon = weaponBuilder.Build();
-
-            Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
-            offHandWeaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
-            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon offHandWeapon = offHandWeaponBuilder.Build();
+            Weapon twoHandedWeapon = CreateWeapon("", ItemClass.BOW, new DamageRange(1, 1));
+            Weapon offHandWeapon = CreateWeapon("", ItemClass.FIST_WEAPON, new DamageRange(1, 1));
 
             testCandidate.EquipInOffHand(offHandWeapon);
             bool result = testCandidate.CanEquipInMainHand(twoHandedWeapon);
@@ -50,11 +38,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInMainHandCanEquipOneHandedWeaponWhenOffhandFree()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_SWORD);
-
-            Weapon oneHandedWeapon = weaponBuilder.Build();
+            Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_SWORD);
 
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
 
@@ -65,17 +50,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInMainHandCanEquipOneHandedWeaponWhenOffhandSame()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.DAGGER);
-
-            Weapon oneHandedWeapon = weaponBuilder.Build();
-
-            Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
-            offHandWeaponBuilder.SetItemClass(ItemClass.DAGGER);
-            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon offHandWeapon = offHandWeaponBuilder.Build();
+            Weapon oneHandedWeapon = CreateWeapon("", ItemClass.DAGGER);
+            Weapon offHandWeapon = CreateWeapon("", ItemClass.DAGGER, new DamageRange(1, 1));
 
             testCandidate.EquipInOffHand(offHandWeapon);
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
@@ -87,17 +64,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInMainHandCanNotEquipOneHandedWeaponWhenOffhandDifferent()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            Weapon oneHandedWeapon = weaponBuilder.Build();
-
-            Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
-            offHandWeaponBuilder.SetItemClass(ItemClass.WAND);
-            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon offHandWeapon = offHandWeaponBuilder.Build();
+            Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_AXE);
+            Weapon offHandWeapon = CreateWeapon("", ItemClass.WAND, new DamageRange(1, 1));
 
             testCandidate.EquipInOffHand(offHandWeapon);
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
@@ -109,11 +78,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInOffHandCanNotEquipTwoHandedWeapon()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            Weapon twoHandedWeapon = weaponBuilder.Build();
+            Weapon twoHandedWeapon = CreateWeapon("", ItemClass.TWO_HANDED_MACE);
 
             bool result = testCandidate.CanEquipInOffHand(twoHandedWeapon);
 
@@ -124,11 +90,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInOffHandCanEquipOneHandedWeapon()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.SPELL_DAGGER);
-
-            Weapon oneHandedWeapon = weaponBuilder.Build();
+            Weapon oneHandedWeapon = CreateWeapon("", ItemClass.SPELL_DAGGER);
 
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
 
@@ -139,17 +102,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInOffHandCanEquipOneHandedWeaponWhenSameTypeIsInMainHand()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-
-            Weapon oneHandedWeapon = weaponBuilder.Build();
-
-            Weapon.Builder mainHandWeaponBuilder = new Weapon.Builder();
-            mainHandWeaponBuilder.SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
-            mainHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon mainHandWeapon = mainHandWeaponBuilder.Build();
+            Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_STABBING_SWORD);
+            Weapon mainHandWeapon = CreateWeapon("", ItemClass.ONE_HANDED_STABBING_SWORD, new DamageRange(1, 1));
 
             testCandidate.EquipInMainHand(mainHandWeapon);
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
@@ -161,17 +116,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCanEquipInOffHandCanNotEquipOneHandedWeaponWhenDifferentTypeIsInMainHand()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            Weapon oneHandedWeapon = weaponBuilder.Build();
-
-            Weapon.Builder mainHandWeaponBuilder = new Weapon.Builder();
-            mainHandWeaponBuilder.SetItemClass(ItemClass.ONE_HANDED_MACE);
-            mainHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon mainHandWeapon = mainHandWeaponBuilder.Build();
+            Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_AXE);
+            Weapon mainHandWeapon = CreateWeapon("", ItemClass.ONE_HANDED_MACE, new DamageRange(1, 1));
 
             testCandidate.EquipInMainHand(mainHandWeapon);
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
@@ -183,12 +130,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestEquipInMainHandReturnsNullIfNothingIsEquipped()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.MARTIAL_STAFF);
-            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon twoHandedWeapon = weaponBuilder.Build();
+            Weapon twoHandedWeapon = CreateWeapon("", ItemClass.MARTIAL_STAFF, new DamageRange(1, 1));
 
             Equipment result = testCandidate.EquipInMainHand(twoHandedWeapon);
 
@@ -199,21 +142,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestEquipInMainHandReturnsOldEquippedItem()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetName("Bronze Twohander")
-                .SetItemClass(ItemClass.TWO_HANDED_SWORD);
-            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon firstWeapon = weaponBuilder.Build();
-
+            Weapon firstWeapon = CreateWeapon("Bronze Twohander", ItemClass.TWO_HANDED_SWORD, new DamageRange(1, 1));
             testCandidate.EquipInMainHand(firstWeapon);
 
-            weaponBuilder.SetName("Bronze Warhammer")
-                .SetItemClass(ItemClass.TWO_HANDED_MACE);
-
-            Weapon secondWeapon = weaponBuilder.Build();
-
+            Weapon secondWeapon = CreateWeapon("Bronze Warhammer", ItemClass.TWO_HANDED_MACE);
             Equipment result = testCandidate.EquipInMainHand(firstWeapon);
 
             Assert.That(result.Name, Is.EqualTo("Bronze Twohander"));
@@ -223,18 +156,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestEquipInMainHandReturnsCurrentItemIfItCannotEquip()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetName("Warstaff")
-                .SetItemClass(ItemClass.MARTIAL_STAFF);
-
-            Weapon twoHandedWeapon = weaponBuilder.Build();
-
-            Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
-            offHandWeaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
-            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon offHandWeapon = offHandWeaponBuilder.Build();
+            Weapon twoHandedWeapon = CreateWeapon("Warstaff", ItemClass.MARTIAL_STAFF);
+            Weapon offHandWeapon = CreateWeapon("", ItemClass.FIST_WEAPON, new DamageRange(1, 1));
 
             testCandidate.EquipInOffHand(offHandWeapon);
             Equipment result = testCandidate.EquipInMainHand(twoHandedWeapon);
@@ -246,12 +170,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestEquipInOffHandReturnsNullIfNothingIsEquipped()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_MACE);
-            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon weapon = weaponBuilder.Build();
+            Weapon weapon = CreateWeapon("", ItemClass.ONE_HANDED_MACE, new DamageRange(1, 1));
 
             Equipment result = testCandidate.EquipInOffHand(weapon);
 
@@ -262,22 +182,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestEquipInOffHandReturnsOldEquippedItem()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetName("Spellblade")
-                .SetItemClass(ItemClass.SPELL_DAGGER);
-            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon firstWeapon = weaponBuilder.Build();
-
+            Weapon firstWeapon = CreateWeapon("Spellblade", ItemClass.SPELL_DAGGER, new DamageRange(1, 1));
             testCandidate.EquipInOffHand(firstWeapon);
 
-            weaponBuilder.SetName("Hatchet")
-                .SetItemClass(ItemClass.ONE_HANDED_AXE);
-
-            Weapon secondWeapon = weaponBuilder.Build();
-
-            Equipment result = testCandidate.EquipInOffHand(firstWeapon);
+            Weapon secondWeapon = CreateWeapon("Hatchet", ItemClass.ONE_HANDED_AXE, new DamageRange(1, 1));
+            Equipment result = testCandidate.EquipInOffHand(secondWeapon);
 
             Assert.That(result.Name, Is.EqualTo("Spellblade"));
         }
@@ -286,19 +196,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestEquipInOffHandReturnsCurrentItemIfItCannotEquip()
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
 
-            weaponBuilder.SetName("Gladius")
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon secondWeapon = weaponBuilder.Build();
-
-            Weapon.Builder offHandWeaponBuilder = new Weapon.Builder();
-            offHandWeaponBuilder.SetItemClass(ItemClass.FIST_WEAPON);
-            offHandWeaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1));
-
-            Weapon firstWeapon = offHandWeaponBuilder.Build();
+            Weapon secondWeapon = CreateWeapon("Gladius", ItemClass.ONE_HANDED_SWORD, new DamageRange(1, 1));
+            Weapon firstWeapon = CreateWeapon("", ItemClass.FIST_WEAPON, new DamageRange(1, 1));
 
             testCandidate.EquipInMainHand(firstWeapon);
             Equipment result = testCandidate.EquipInOffHand(secondWeapon);
@@ -408,12 +308,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
-            Weapon.Builder weaponBuilder = new Weapon.Builder();
-
-            weaponBuilder.SetName("Hunting Bow")
-                .SetItemClass(ItemClass.BOW);
-
-            Weapon huntingBow = weaponBuilder.Build();
+            Weapon huntingBow = CreateWeapon("Hunting Bow", ItemClass.BOW);
 
             Equipment result = testCandidate.EquipInLeftRing(huntingBow);
 
@@ -609,13 +504,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
-            Weapon.Builder testItemBuilder = new Weapon.Builder();
-
-            testItemBuilder.SetName("Short Sword")
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
-            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(3, 7));
-
-            Weapon shortSword = testItemBuilder.Build();
+            Weapon shortSword = CreateWeapon("Short Sword", ItemClass.ONE_HANDED_SWORD, new DamageRange(3, 7));
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -631,16 +520,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
-            Weapon.Builder testItemBuilder = new Weapon.Builder();
-
-            testItemBuilder.SetName("Assassin's Dagger")
-                .SetItemClass(ItemClass.DAGGER);
-            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(2, 5));
-
-            Weapon mainHandWeapon = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Shadow Dagger");
-            Weapon offHandWeapon = testItemBuilder.Build();
+            Weapon mainHandWeapon = CreateWeapon("Assassin's Dagger", ItemClass.DAGGER, new DamageRange(2, 5));
+            Weapon offHandWeapon = CreateWeapon("Shadow Dagger", ItemClass.DAGGER, new DamageRange(2, 5));
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -658,19 +539,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
-            Weapon.Builder testItemBuilder = new Weapon.Builder();
-
-            testItemBuilder.SetName("Battle Axe")
-                .SetItemClass(ItemClass.ONE_HANDED_AXE);
-            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(5, 10));
-
-            Weapon firstWeapon = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Hatchet");
-            Weapon secondWeapon = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Long Axe");
-            Weapon thirdWeapon = testItemBuilder.Build();
+            Weapon firstWeapon = CreateWeapon("Battle Axe", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
+            Weapon secondWeapon = CreateWeapon("Hatchet", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
+            Weapon thirdWeapon = CreateWeapon("Long Axe", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -692,17 +563,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
 
-            Weapon.Builder testItemBuilder = new Weapon.Builder();
-
-            testItemBuilder.SetName("War Hammer")
-                .SetItemClass(ItemClass.ONE_HANDED_MACE);
-            testItemBuilder.SetMinToMaxPhysicalDamage(new DamageRange(6, 12));
-
-            Weapon mainHandWeapon = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Magic Wand")
-                .SetItemClass(ItemClass.WAND);
-            Weapon offHandWeapon = testItemBuilder.Build();
+            Weapon mainHandWeapon = CreateWeapon("War Hammer", ItemClass.ONE_HANDED_MACE, new DamageRange(6, 12));
+            Weapon offHandWeapon = CreateWeapon("Magic Wand", ItemClass.WAND, new DamageRange(6, 12));
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -716,6 +578,19 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             resultExtractor.ExtractMainHandEquipment();
             Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("War Hammer"));
+        }
+
+        private Weapon CreateWeapon(string name, ItemClass itemClass, DamageRange damage = null)
+        {
+            var builder = new Weapon.Builder();
+
+            builder.SetName(name)
+                .SetItemClass(itemClass);
+            
+            if (damage != null)
+                builder.SetMinToMaxPhysicalDamage(damage);
+                
+            return builder.Build();
         }
     }
 }
