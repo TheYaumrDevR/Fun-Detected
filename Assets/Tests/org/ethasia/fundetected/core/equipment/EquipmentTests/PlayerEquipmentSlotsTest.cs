@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
@@ -464,6 +465,26 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
                 .SetItemClass(itemClass);
 
             return builder.Build();
+        }
+
+        private void AssertThatWeaponWithNameIsEquipped(PlayerEquipmentSlots slots, string expectedEquipmentName, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
+        {
+            var extractor = ExtractEquipment(slots, slotsExtractAction);
+            Assert.That(extractor.ExtractedWeapon?.Name, Is.EqualTo(expectedEquipmentName));
+        }
+
+        private void AssertThatJewelryWithNameIsEquipped(PlayerEquipmentSlots slots, string expectedEquipmentName, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
+        {
+            var extractor = ExtractEquipment(slots, slotsExtractAction);
+            Assert.That(extractor.ExtractedJewelry?.Name, Is.EqualTo(expectedEquipmentName));
+        }
+
+        private PlayerEquipmentItemsExtractionVisitor ExtractEquipment(PlayerEquipmentSlots slots, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
+        {
+            var extractor = new PlayerEquipmentItemsExtractionVisitor(slots);
+            slotsExtractAction(extractor);
+
+            return extractor;
         }
     }
 }
