@@ -7,12 +7,17 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 {
     public class PlayerEquipmentSlotsTest
     {
+        private PlayerEquipmentSlots testCandidate;
+
+        [SetUp]
+        public void Setup()
+        {
+            testCandidate = new PlayerEquipmentSlots();
+        }
 
         [Test]
         public void TestCanEquipInMainHandCanEquipTwoHandedWeaponWhenOffhandFree()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon twoHandedWeapon = CreateWeapon("", ItemClass.WIZARD_STAFF);
 
             bool result = testCandidate.CanEquipInMainHand(twoHandedWeapon);
@@ -23,8 +28,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInMainHandCanNotEquipTwoHandedWeaponWhenOffhandUsed()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon twoHandedWeapon = CreateWeapon("", ItemClass.BOW, new DamageRange(1, 1));
             Weapon offHandWeapon = CreateWeapon("", ItemClass.FIST_WEAPON, new DamageRange(1, 1));
 
@@ -37,8 +40,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInMainHandCanEquipOneHandedWeaponWhenOffhandFree()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_SWORD);
 
             bool result = testCandidate.CanEquipInMainHand(oneHandedWeapon);
@@ -49,8 +50,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInMainHandCanEquipOneHandedWeaponWhenOffhandSame()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon oneHandedWeapon = CreateWeapon("", ItemClass.DAGGER);
             Weapon offHandWeapon = CreateWeapon("", ItemClass.DAGGER, new DamageRange(1, 1));
 
@@ -63,8 +62,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInMainHandCanNotEquipOneHandedWeaponWhenOffhandDifferent()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_AXE);
             Weapon offHandWeapon = CreateWeapon("", ItemClass.WAND, new DamageRange(1, 1));
 
@@ -77,8 +74,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInOffHandCanNotEquipTwoHandedWeapon()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon twoHandedWeapon = CreateWeapon("", ItemClass.TWO_HANDED_MACE);
 
             bool result = testCandidate.CanEquipInOffHand(twoHandedWeapon);
@@ -89,8 +84,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInOffHandCanEquipOneHandedWeapon()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon oneHandedWeapon = CreateWeapon("", ItemClass.SPELL_DAGGER);
 
             bool result = testCandidate.CanEquipInOffHand(oneHandedWeapon);
@@ -101,8 +94,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInOffHandCanEquipOneHandedWeaponWhenSameTypeIsInMainHand()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_STABBING_SWORD);
             Weapon mainHandWeapon = CreateWeapon("", ItemClass.ONE_HANDED_STABBING_SWORD, new DamageRange(1, 1));
 
@@ -115,8 +106,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestCanEquipInOffHandCanNotEquipOneHandedWeaponWhenDifferentTypeIsInMainHand()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon oneHandedWeapon = CreateWeapon("", ItemClass.ONE_HANDED_AXE);
             Weapon mainHandWeapon = CreateWeapon("", ItemClass.ONE_HANDED_MACE, new DamageRange(1, 1));
 
@@ -129,8 +118,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInMainHandReturnsNullIfNothingIsEquipped()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon twoHandedWeapon = CreateWeapon("", ItemClass.MARTIAL_STAFF, new DamageRange(1, 1));
 
             Equipment result = testCandidate.EquipInMainHand(twoHandedWeapon);
@@ -141,8 +128,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInMainHandReturnsOldEquippedItem()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon firstWeapon = CreateWeapon("Bronze Twohander", ItemClass.TWO_HANDED_SWORD, new DamageRange(1, 1));
             testCandidate.EquipInMainHand(firstWeapon);
 
@@ -155,8 +140,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInMainHandReturnsCurrentItemIfItCannotEquip()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon twoHandedWeapon = CreateWeapon("Warstaff", ItemClass.MARTIAL_STAFF);
             Weapon offHandWeapon = CreateWeapon("", ItemClass.FIST_WEAPON, new DamageRange(1, 1));
 
@@ -169,8 +152,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInOffHandReturnsNullIfNothingIsEquipped()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon weapon = CreateWeapon("", ItemClass.ONE_HANDED_MACE, new DamageRange(1, 1));
 
             Equipment result = testCandidate.EquipInOffHand(weapon);
@@ -181,8 +162,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInOffHandReturnsOldEquippedItem()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon firstWeapon = CreateWeapon("Spellblade", ItemClass.SPELL_DAGGER, new DamageRange(1, 1));
             testCandidate.EquipInOffHand(firstWeapon);
 
@@ -195,8 +174,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInOffHandReturnsCurrentItemIfItCannotEquip()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon secondWeapon = CreateWeapon("Gladius", ItemClass.ONE_HANDED_SWORD, new DamageRange(1, 1));
             Weapon firstWeapon = CreateWeapon("", ItemClass.FIST_WEAPON, new DamageRange(1, 1));
 
@@ -209,8 +186,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInLeftRingEquipsRingIfSlotIsEmpty()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("Gold Ring")
@@ -228,8 +203,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInLeftRingSwapsOutOldEquipment()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("Iron Ring")
@@ -249,8 +222,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInLeftRingCannotEquipWrongItemClass()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Armor.Builder armorBuilder = new Armor.Builder();
 
             armorBuilder.SetName("Leather Sandals")
@@ -266,8 +237,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInRightRingEquipsRingIfSlotIsEmpty()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("Gold Ring")
@@ -285,8 +254,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInRightRingSwapsOutOldEquipment()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("Iron Ring")
@@ -306,8 +273,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInRightRingCannotEquipWrongItemClass()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon huntingBow = CreateWeapon("Hunting Bow", ItemClass.BOW);
 
             Equipment result = testCandidate.EquipInLeftRing(huntingBow);
@@ -318,8 +283,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInBeltEquipsBeltIfSlotIsEmpty()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("War Belt")
@@ -337,8 +300,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInBeltSwapsOutOldEquipment()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("Crystal Belt")
@@ -358,8 +319,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInBeltCannotEquipWrongItemClass()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
 
             jewelryBuilder.SetName("Emerald Ring")
@@ -375,8 +334,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInLeftRingIfFree()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder testItemBuilder = new Jewelry.Builder();
 
             testItemBuilder.SetName("Ruby Ring")
@@ -396,8 +353,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInRightRingIfLeftIsOccupied()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder testItemBuilder = new Jewelry.Builder();
 
             testItemBuilder.SetName("Gold Ring")
@@ -423,8 +378,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInBeltIfFree()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder testItemBuilder = new Jewelry.Builder();
 
             testItemBuilder.SetName("Flask Belt")
@@ -444,8 +397,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassDoesNotEquipRingIfBothSlotsOccupied()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder testItemBuilder = new Jewelry.Builder();
 
             testItemBuilder.SetName("Gold Ring")
@@ -477,8 +428,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassDoesNotEquipBeltIfSlotOccupied()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Jewelry.Builder testItemBuilder = new Jewelry.Builder();
 
             testItemBuilder.SetName("Flask Belt")
@@ -502,8 +451,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClass_EquipsWeaponIfMainHandFree()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon shortSword = CreateWeapon("Short Sword", ItemClass.ONE_HANDED_SWORD, new DamageRange(3, 7));
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
@@ -518,8 +465,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClass_EquipsWeaponIfOffHandFree_AndMainHandIsOccupied()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon mainHandWeapon = CreateWeapon("Assassin's Dagger", ItemClass.DAGGER, new DamageRange(2, 5));
             Weapon offHandWeapon = CreateWeapon("Shadow Dagger", ItemClass.DAGGER, new DamageRange(2, 5));
 
@@ -537,8 +482,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClass_DoesNotEquipWeaponIfBothHandsOccupied()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon firstWeapon = CreateWeapon("Battle Axe", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
             Weapon secondWeapon = CreateWeapon("Hatchet", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
             Weapon thirdWeapon = CreateWeapon("Long Axe", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
@@ -561,8 +504,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClass_DoesNotEquipOffHandWeaponOfDifferentTypeFromMainHand()
         {
-            PlayerEquipmentSlots testCandidate = new PlayerEquipmentSlots();
-
             Weapon mainHandWeapon = CreateWeapon("War Hammer", ItemClass.ONE_HANDED_MACE, new DamageRange(6, 12));
             Weapon offHandWeapon = CreateWeapon("Magic Wand", ItemClass.WAND, new DamageRange(6, 12));
 
