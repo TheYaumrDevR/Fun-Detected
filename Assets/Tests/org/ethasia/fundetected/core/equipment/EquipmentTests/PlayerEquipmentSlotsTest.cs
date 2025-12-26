@@ -186,12 +186,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInLeftRingEquipsRingIfSlotIsEmpty()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("Gold Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry goldRing = jewelryBuilder.Build();
+            Jewelry goldRing = CreateJewelry("Gold Ring", ItemClass.RING);
 
             Equipment oldEquipment = testCandidate.EquipInLeftRing(goldRing);
             Equipment currentEquipment = testCandidate.EquipInLeftRing(goldRing);
@@ -203,15 +198,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInLeftRingSwapsOutOldEquipment()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("Iron Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry ironRing = jewelryBuilder.Build();
-
-            jewelryBuilder.SetName("Sapphire Ring");
-            Jewelry sapphireRing = jewelryBuilder.Build();
+            Jewelry ironRing = CreateJewelry("Iron Ring", ItemClass.RING);
+            Jewelry sapphireRing = CreateJewelry("Sapphire Ring", ItemClass.RING);
 
             testCandidate.EquipInLeftRing(ironRing);
             Equipment oldEquipment = testCandidate.EquipInLeftRing(sapphireRing);
@@ -237,12 +225,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInRightRingEquipsRingIfSlotIsEmpty()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("Gold Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry goldRing = jewelryBuilder.Build();
+            Jewelry goldRing = CreateJewelry("Gold Ring", ItemClass.RING);
 
             Equipment oldEquipment = testCandidate.EquipInRightRing(goldRing);
             Equipment currentEquipment = testCandidate.EquipInRightRing(goldRing);
@@ -254,15 +237,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInRightRingSwapsOutOldEquipment()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("Iron Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry ironRing = jewelryBuilder.Build();
-
-            jewelryBuilder.SetName("Sapphire Ring");
-            Jewelry sapphireRing = jewelryBuilder.Build();
+            Jewelry ironRing = CreateJewelry("Iron Ring", ItemClass.RING);
+            Jewelry sapphireRing = CreateJewelry("Sapphire Ring", ItemClass.RING);
 
             testCandidate.EquipInRightRing(ironRing);
             Equipment oldEquipment = testCandidate.EquipInRightRing(sapphireRing);
@@ -283,12 +259,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInBeltEquipsBeltIfSlotIsEmpty()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("War Belt")
-                .SetItemClass(ItemClass.BELT);
-
-            Jewelry warBelt = jewelryBuilder.Build();
+            Jewelry warBelt = CreateJewelry("War Belt", ItemClass.BELT);
 
             Equipment oldEquipment = testCandidate.EquipInBelt(warBelt);
             Equipment currentEquipment = testCandidate.EquipInBelt(warBelt);
@@ -300,15 +271,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInBeltSwapsOutOldEquipment()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("Crystal Belt")
-                .SetItemClass(ItemClass.BELT);
-
-            Jewelry crystalBelt = jewelryBuilder.Build();
-
-            jewelryBuilder.SetName("Plated Belt");
-            Jewelry platedBelt = jewelryBuilder.Build();
+            Jewelry crystalBelt = CreateJewelry("Crystal Belt", ItemClass.BELT);
+            Jewelry platedBelt = CreateJewelry("Plated Belt", ItemClass.BELT);
 
             testCandidate.EquipInBelt(crystalBelt);
             Equipment oldEquipment = testCandidate.EquipInBelt(platedBelt);
@@ -319,12 +283,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipInBeltCannotEquipWrongItemClass()
         {
-            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
-
-            jewelryBuilder.SetName("Emerald Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry emeraldRing = jewelryBuilder.Build();
+            Jewelry emeraldRing = CreateJewelry("Emerald Ring", ItemClass.RING);
 
             Equipment result = testCandidate.EquipInBelt(emeraldRing);
 
@@ -334,12 +293,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInLeftRingIfFree()
         {
-            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
-
-            testItemBuilder.SetName("Ruby Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry rubyRing = testItemBuilder.Build();
+            Jewelry rubyRing = CreateJewelry("Ruby Ring", ItemClass.RING);
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -353,16 +307,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInRightRingIfLeftIsOccupied()
         {
-            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
-
-            testItemBuilder.SetName("Gold Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry goldRing = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Chrysocolla Band");
-
-            Jewelry chrysocollaBand = testItemBuilder.Build();
+            Jewelry goldRing = CreateJewelry("Gold Ring", ItemClass.RING);
+            Jewelry chrysocollaBand = CreateJewelry("Chrysocolla Band", ItemClass.RING);
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -378,12 +324,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassEquipsInBeltIfFree()
         {
-            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
-
-            testItemBuilder.SetName("Flask Belt")
-                .SetItemClass(ItemClass.BELT);
-
-            Jewelry flaskBelt = testItemBuilder.Build();
+            Jewelry flaskBelt = CreateJewelry("Flask Belt", ItemClass.BELT);
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -397,20 +338,9 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassDoesNotEquipRingIfBothSlotsOccupied()
         {
-            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
-
-            testItemBuilder.SetName("Gold Ring")
-                .SetItemClass(ItemClass.RING);
-
-            Jewelry goldRing = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Chrysocolla Band");
-
-            Jewelry chrysocollaBand = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Neodymium Ring");
-
-            Jewelry neodymiumRing = testItemBuilder.Build();
+            Jewelry goldRing = CreateJewelry("Gold Ring", ItemClass.RING);
+            Jewelry chrysocollaBand = CreateJewelry("Chrysocolla Band", ItemClass.RING);
+            Jewelry neodymiumRing = CreateJewelry("Neodymium Ring", ItemClass.RING);
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -428,16 +358,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestEquipIntoFreeSlotBasedOnItemClassDoesNotEquipBeltIfSlotOccupied()
         {
-            Jewelry.Builder testItemBuilder = new Jewelry.Builder();
-
-            testItemBuilder.SetName("Flask Belt")
-                .SetItemClass(ItemClass.BELT);
-
-            Jewelry flaskBelt = testItemBuilder.Build();
-
-            testItemBuilder.SetName("Condensing Belt");
-
-            Jewelry condensingBelt = testItemBuilder.Build();
+            Jewelry flaskBelt = CreateJewelry("Flask Belt", ItemClass.BELT);
+            Jewelry condensingBelt = CreateJewelry("Condensing Belt", ItemClass.BELT);
 
             PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
 
@@ -531,6 +453,16 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             if (damage != null)
                 builder.SetMinToMaxPhysicalDamage(damage);
                 
+            return builder.Build();
+        }
+
+        private Jewelry CreateJewelry(string name, ItemClass itemClass)
+        {
+            var builder = new Jewelry.Builder();
+
+            builder.SetName(name)
+                .SetItemClass(itemClass);
+
             return builder.Build();
         }
     }
