@@ -296,13 +296,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             Jewelry rubyRing = CreateJewelry("Ruby Ring", ItemClass.RING);
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(rubyRing);
-            resultExtractor.ExtractLeftRingEquipment();
 
             Assert.That(result, Is.Null);
-            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Ruby Ring"));
+            AssertThatJewelryWithNameIsEquipped("Ruby Ring", resultExtractor => resultExtractor.ExtractLeftRingEquipment());
         }
 
         [Test]
@@ -311,15 +308,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Jewelry goldRing = CreateJewelry("Gold Ring", ItemClass.RING);
             Jewelry chrysocollaBand = CreateJewelry("Chrysocolla Band", ItemClass.RING);
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(goldRing);
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(chrysocollaBand);
 
-            resultExtractor.ExtractRightRingEquipment();
-
             Assert.That(result, Is.Null);
-            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Chrysocolla Band"));
+            AssertThatJewelryWithNameIsEquipped("Chrysocolla Band", resultExtractor => resultExtractor.ExtractRightRingEquipment());
         }
 
         [Test]
@@ -327,13 +320,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             Jewelry flaskBelt = CreateJewelry("Flask Belt", ItemClass.BELT);
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(flaskBelt);
-            resultExtractor.ExtractBeltEquipment();
 
             Assert.That(result, Is.Null);
-            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Flask Belt"));
+            AssertThatJewelryWithNameIsEquipped("Flask Belt", resultExtractor => resultExtractor.ExtractBeltEquipment());
         }
 
         [Test]
@@ -343,17 +333,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Jewelry chrysocollaBand = CreateJewelry("Chrysocolla Band", ItemClass.RING);
             Jewelry neodymiumRing = CreateJewelry("Neodymium Ring", ItemClass.RING);
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(goldRing);
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(chrysocollaBand);
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(neodymiumRing);
 
-            resultExtractor.ExtractRightRingEquipment();
-            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Chrysocolla Band"));
-
-            resultExtractor.ExtractLeftRingEquipment();
-            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Gold Ring"));
+            AssertThatJewelryWithNameIsEquipped("Chrysocolla Band", resultExtractor => resultExtractor.ExtractRightRingEquipment());
+            AssertThatJewelryWithNameIsEquipped("Gold Ring", resultExtractor => resultExtractor.ExtractLeftRingEquipment());
         }
 
         [Test]
@@ -362,13 +347,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Jewelry flaskBelt = CreateJewelry("Flask Belt", ItemClass.BELT);
             Jewelry condensingBelt = CreateJewelry("Condensing Belt", ItemClass.BELT);
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(flaskBelt);
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(condensingBelt);
 
-            resultExtractor.ExtractBeltEquipment();
-            Assert.That(resultExtractor.ExtractedJewelry.Name, Is.EqualTo("Flask Belt"));
+            AssertThatJewelryWithNameIsEquipped("Flask Belt", resultExtractor => resultExtractor.ExtractBeltEquipment());
         }
 
         [Test]
@@ -376,13 +358,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         {
             Weapon shortSword = CreateWeapon("Short Sword", ItemClass.ONE_HANDED_SWORD, new DamageRange(3, 7));
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(shortSword);
-            resultExtractor.ExtractMainHandEquipment();
 
             Assert.That(result, Is.Null);
-            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Short Sword"));
+            AssertThatWeaponWithNameIsEquipped("Short Sword", resultExtractor => resultExtractor.ExtractMainHandEquipment());
         }
 
         [Test]
@@ -391,15 +370,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Weapon mainHandWeapon = CreateWeapon("Assassin's Dagger", ItemClass.DAGGER, new DamageRange(2, 5));
             Weapon offHandWeapon = CreateWeapon("Shadow Dagger", ItemClass.DAGGER, new DamageRange(2, 5));
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(mainHandWeapon);
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(offHandWeapon);
 
-            resultExtractor.ExtractOffHandEquipment();
-
             Assert.That(result, Is.Null);
-            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Shadow Dagger"));
+            AssertThatWeaponWithNameIsEquipped("Shadow Dagger", resultExtractor => resultExtractor.ExtractOffHandEquipment());
         }
 
         [Test]
@@ -409,19 +384,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Weapon secondWeapon = CreateWeapon("Hatchet", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
             Weapon thirdWeapon = CreateWeapon("Long Axe", ItemClass.ONE_HANDED_AXE, new DamageRange(5, 10));
 
-            PlayerEquipmentItemsExtractionVisitor resultExtractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
-
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(firstWeapon);
             testCandidate.EquipIntoFreeSlotBasedOnItemClass(secondWeapon);
             Equipment result = testCandidate.EquipIntoFreeSlotBasedOnItemClass(thirdWeapon);
 
-            resultExtractor.ExtractOffHandEquipment();
-
             Assert.That(result.Name, Is.EqualTo("Long Axe"));
-            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Hatchet"));
-
-            resultExtractor.ExtractMainHandEquipment();
-            Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("Battle Axe"));
+            AssertThatWeaponWithNameIsEquipped("Hatchet", resultExtractor => resultExtractor.ExtractOffHandEquipment());
+            AssertThatWeaponWithNameIsEquipped("Battle Axe", resultExtractor => resultExtractor.ExtractMainHandEquipment());
         }
 
         [Test]
@@ -467,21 +436,21 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             return builder.Build();
         }
 
-        private void AssertThatWeaponWithNameIsEquipped(PlayerEquipmentSlots slots, string expectedEquipmentName, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
+        private void AssertThatWeaponWithNameIsEquipped(string expectedEquipmentName, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
         {
-            var extractor = ExtractEquipment(slots, slotsExtractAction);
+            var extractor = ExtractEquipment(slotsExtractAction);
             Assert.That(extractor.ExtractedWeapon?.Name, Is.EqualTo(expectedEquipmentName));
         }
 
-        private void AssertThatJewelryWithNameIsEquipped(PlayerEquipmentSlots slots, string expectedEquipmentName, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
+        private void AssertThatJewelryWithNameIsEquipped(string expectedEquipmentName, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
         {
-            var extractor = ExtractEquipment(slots, slotsExtractAction);
+            var extractor = ExtractEquipment(slotsExtractAction);
             Assert.That(extractor.ExtractedJewelry?.Name, Is.EqualTo(expectedEquipmentName));
         }
 
-        private PlayerEquipmentItemsExtractionVisitor ExtractEquipment(PlayerEquipmentSlots slots, Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
+        private PlayerEquipmentItemsExtractionVisitor ExtractEquipment(Action<PlayerEquipmentItemsExtractionVisitor> slotsExtractAction)
         {
-            var extractor = new PlayerEquipmentItemsExtractionVisitor(slots);
+            var extractor = new PlayerEquipmentItemsExtractionVisitor(testCandidate);
             slotsExtractAction(extractor);
 
             return extractor;
