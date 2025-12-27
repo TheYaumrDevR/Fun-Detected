@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileChunk>
+    <tileMaps>
+        <terrain>
+            <tile id="PlainsAndHillsTileset_Earth" startX="0" startY="0" width="2" height="3"/>
+            <tile id="PlainsAndHillsTileset_Earth" startX="2" startY="0" width="2" height="2"/>
+            <tile id="PlainsAndHillsTileset_Earth" startX="4" startY="0" width="4" height="1"/>
+        </terrain>
+        <ground>
+            <tile id="PlainsAndHillsTileset_Grass" startX="0" startY="3" width="2" height="1"/>
+            <tile id="PlainsAndHillsTileset_Grass" startX="2" startY="2" width="2" height="1"/>
+            <tile id="PlainsAndHillsTileset_Grass" startX="4" startY="1" width="4" height="1"/>
+        </ground>
+    </tileMaps>
+
+    <mapTileProperties>
+        <collisions>
+            <collision startX="0" startY="46" width="80" height="1"/>     
+        </collisions>
+
+        <spawners>
+            <spawner x="5" y="56"/>
+        </spawners>
+    </mapTileProperties>
+</tileChunk>
