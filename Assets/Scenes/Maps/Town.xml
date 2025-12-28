@@ -9,6 +9,11 @@
             <definitions>   
                 <definition file="CobblestonePlateauWestPortal"/>
             </definitions>
+        </chunk>  
+        <chunk x="-2" y="-2">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
         </chunk>   
         <chunk x="-1" y="-1" id="eastPortal">      
             <portalTo>
@@ -18,6 +23,11 @@
             <definitions>   
                 <definition file="CobblestonePlateauEastPortal"/>
             </definitions>
-        </chunk>                         
+        </chunk>      
+        <chunk x="-1" y="-2">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk>                    
     </chunks>  
 </mapDefinition>

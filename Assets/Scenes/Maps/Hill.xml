@@ -6,9 +6,19 @@
                 <definition file="EarthGrassValley"/>
             </definitions>
         </chunk>
+        <chunk x="-2" y="-2">
+            <definitions>   
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk>
         <chunk x="-1" y="-1">
             <definitions>
                 <definition file="EarthGrassRisingPlateau"/>
+            </definitions>
+        </chunk>
+        <chunk x="-1" y="-2">
+            <definitions>
+                <definition file="PureEarth"/>
             </definitions>
         </chunk>
         <chunk x="0" y="-1">
@@ -16,6 +26,11 @@
                 <definition file="EarthGrassPlateau"/>
                 <definition file="EarthGrassLoweringPlateau"/>
                 <definition file="EarthGrassRisingPlateau"/>
+            </definitions>
+        </chunk> 
+        <chunk x="0" y="-2">
+            <definitions>
+                <definition file="PureEarth"/>
             </definitions>
         </chunk>    
         <chunk x="1" y="-1" id="eastPortal">
@@ -28,6 +43,11 @@
                 <definition file="EarthGrassLoweringHill"/>
             </definitions>        
         </chunk>   
+        <chunk x="1" y="-2">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>        
+        </chunk> 
         <chunk x="-2" y="0"/>
         <chunk x="-1" y="0"/>
         <chunk x="0" y="0"/>   
