@@ -1,0 +1,4 @@
+.inventory-window {
+    width: 414px;
+    height: 554px;
+}
