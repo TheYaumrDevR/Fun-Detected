@@ -140,7 +140,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 guiWindowsController.CloseCurrentlyOpenWindow();
                 EnableInput();
             }
-        }       
+        }   
+
+        public void OnToggleInventory(InputAction.CallbackContext callBackContext)
+        {
+            if (callBackContext.performed)
+            {
+                IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
+                guiWindowsController.ToggleInventoryWindow();
+            }
+        }
 
         private bool PlayerIsStill()
         {

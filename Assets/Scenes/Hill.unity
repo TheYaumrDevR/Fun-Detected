@@ -865,6 +865,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 45a8f70a-dbb1-4ccc-b60a-8724153510eb
     m_ActionName: 'SkillControls/Close Current Window / Cancel[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 902780329}
+        m_TargetAssemblyTypeName: Org.Ethasia.Fundetected.Ioadapters.PlayerInputHandler,
+          GameAssembly
+        m_MethodName: OnToggleInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0ed1b099-64dd-4eda-9473-d5e72d602d4a
+    m_ActionName: 'SkillControls/Toggle Inventory Window[/Keyboard/i]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: SkillControls

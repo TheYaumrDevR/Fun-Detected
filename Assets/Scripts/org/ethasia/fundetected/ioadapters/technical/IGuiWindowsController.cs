@@ -4,5 +4,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
     {
         void OpenMapSelectionWindow(MapSelectionWindowContext windowContent);
         void CloseCurrentlyOpenWindow();      
+        void ToggleInventoryWindow();
     }
 }

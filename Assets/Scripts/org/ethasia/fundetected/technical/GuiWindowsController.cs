@@ -16,6 +16,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private VisualElement rootElement;
         private VisualElement mapSelectionWindow;     
+        private VisualElement inventoryWindow;
         private Button mapSelectionWindowCloseButton;
         private Label mapSelectionUsageHint;
         private string mapSelectionUsageHintOriginalText;
@@ -38,6 +39,7 @@ namespace Org.Ethasia.Fundetected.Technical
             mapSelectionUsageHintOriginalText = mapSelectionUsageHint.text;
 
             mapSelectionWindow.visible = false;
+            inventoryWindow.visible = false;
 
             SetupMapSelectionList();
         }
@@ -62,15 +64,37 @@ namespace Org.Ethasia.Fundetected.Technical
 
                 SoundPlayer.GetInstance().PlayUiWindowOpenSound();
             }
+
+            if (inventoryWindow.visible)
+            {
+                inventoryWindow.visible = false;
+
+                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
+        }
+
+        public void ToggleInventoryWindow()
+        {
+            if (inventoryWindow.visible)
+            {
+                CloseInventoryWindow();
+            }
+            else
+            {
+                OpenInventoryWindow();
+            }
         }
 
         private void InitializeElementReferences()
         {
             rootElement = GetComponent<UIDocument>().rootVisualElement;
+
             mapSelectionWindow = rootElement.Q<VisualElement>("MapSelectionWindow");
             mapSelectionWindowCloseButton = rootElement.Q<Button>("MapSelectionWindowCloseButton");
             mapSelectionUsageHint = rootElement.Q<Label>("MapSelectionUsageHint");
             mapSelectionList = rootElement.Q<MultiColumnListView>("MapSelectionList");
+
+            inventoryWindow = rootElement.Q<VisualElement>("InventoryWindow");
         }        
 
         private void SetupMapSelectionList()
@@ -176,6 +200,18 @@ namespace Org.Ethasia.Fundetected.Technical
 
                 portalTransitionInteractor.TransitionToSpecificMap(model.MapName, model.DestinationPortalId, index);
             };
+        }
+
+        private void OpenInventoryWindow()
+        {
+            inventoryWindow.visible = true;
+            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+        }
+
+        private void CloseInventoryWindow()
+        {
+            inventoryWindow.visible = false;
+            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
         public enum MapSelectionRowType
