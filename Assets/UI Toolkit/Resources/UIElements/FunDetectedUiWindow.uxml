@@ -5,5 +5,8 @@
             <ui:Label name="window-title" class="fundetected-window-title" />
             <ui:Button name="window-close-button" text="&#10;" enable-rich-text="false" selectable="true" class="fundetected-window-close-button"/>
         </ui:VisualElement>
+        <ui:VisualElement name="window-content" class="fundetected-window-content">
+            <!-- Specific content will be added here -->
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

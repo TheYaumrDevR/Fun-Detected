@@ -58,19 +58,8 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void CloseCurrentlyOpenWindow()
         {
-            if (mapSelectionWindow.visible)
-            {
-                mapSelectionWindow.visible = false;
-
-                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
-            }
-
-            if (inventoryWindow.visible)
-            {
-                inventoryWindow.visible = false;
-
-                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
-            }
+            CloseMapSelectionWindow();
+            CloseInventoryWindow();
         }
 
         public void ToggleInventoryWindow()
@@ -159,14 +148,6 @@ namespace Org.Ethasia.Fundetected.Technical
 			cellLabel.text = selectionListRow.Id;       
         }
 
-        private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
-        {
-            this.CloseCurrentlyOpenWindow();
-            PlayerInputHandler.GetInstance().EnableInput();
-
-            SoundPlayer.GetInstance().PlayMouseClickSound();
-        }
-
         private void OnButtonClick(ClickEvent clickEvent)
         {
             var button = (Button)clickEvent.target;
@@ -176,6 +157,14 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 callback(clickEvent);
             }
+        }
+
+        private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
+        {
+            CloseMapSelectionWindow();
+            PlayerInputHandler.GetInstance().EnableInput();
+
+            SoundPlayer.GetInstance().PlayMouseClickSound();
         }
 
         private void OnNewMapButtonClick(ClickEvent clickEvent)
@@ -202,6 +191,11 @@ namespace Org.Ethasia.Fundetected.Technical
             };
         }
 
+        private void CloseMapSelectionWindow()
+        {
+            CloseWindow(mapSelectionWindow);
+        }
+
         private void OpenInventoryWindow()
         {
             inventoryWindow.visible = true;
@@ -210,8 +204,16 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private void CloseInventoryWindow()
         {
-            inventoryWindow.visible = false;
-            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            CloseWindow(inventoryWindow);
+        }
+
+        private void CloseWindow(VisualElement window)
+        {
+            if (window.visible)
+            {
+                window.visible = false;
+                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
         }
 
         public enum MapSelectionRowType

@@ -7,6 +7,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
     public partial class FunDetectedWindow : VisualElement
     {
         private const string TITLE_LABEL_NAME = "window-title";
+        private const string CLOSE_BUTTON_NAME = "window-close-button";
 
         [UxmlAttribute]
         public string Title
@@ -23,6 +24,27 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/FunDetectedUiWindow");
             visualTree.CloneTree(this);
+
+            var closeWindowButton = this.Q<Button>(CLOSE_BUTTON_NAME);
+            if (closeWindowButton != null)
+            {
+                closeWindowButton.RegisterCallback<ClickEvent>(OnCloseWindowClick);
+            }
+        }
+
+        public void Close()
+        {
+            if (this.visible)
+            {
+                this.visible = false;
+                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
+        }
+
+        private void OnCloseWindowClick(ClickEvent clickEvent)
+        {
+            Close();
+            SoundPlayer.GetInstance().PlayMouseClickSound();
         }
     }
 }
