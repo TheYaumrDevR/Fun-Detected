@@ -18,6 +18,7 @@
     -unity-text-align: middle-center;
     align-self: center;
     flex-grow: 1;
+    margin-left: 29px;
 }
 
 .fundetected-window-close-button {
