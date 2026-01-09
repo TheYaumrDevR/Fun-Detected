@@ -1,5 +1,4 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" engine="UnityEngine.UIElements" editor-extension-mode="False">
-    <ui:Template name="InventoryWindow" src="project://database/Assets/UI%20Toolkit/InventoryWindow.uxml?fileID=9197481963319205126&amp;guid=e0a5ba8eba4fab546b966e6eb67f662f&amp;type=3#InventoryWindow" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" engine="UnityEngine.UIElements" xmlns:fund="Org.Ethasia.Fundetected.Technical.UIToolkit" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/GuiWindowsStyle.uss?fileID=7433441132597879392&amp;guid=77161e14fca504740bd1af9c96b5952c&amp;type=3#GuiWindowsStyle" />
     
     <ui:VisualElement name="WindowsRoot" style="flex-grow: 1; align-items: center; justify-content: center; width: 100%; height: 100%; -unity-slice-bottom: 0; color: rgb(255, 255, 255);">
@@ -17,5 +16,5 @@
             <ui:MultiColumnListView name="MapSelectionList" style="width: 1120px; max-width: 1120px; height: 731px; max-height: 731px; background-image: url(&quot;project://database/Assets/UI/Windows/panel-border-003.png?fileID=2800000&amp;guid=6bf0be1eb3f44c74296028e498840022&amp;type=3#panel-border-003&quot;); -unity-slice-left: 2; -unity-slice-top: 2; -unity-slice-right: 2; -unity-slice-bottom: 2; margin-left: 0; margin-right: 0; margin-bottom: 18px; padding-left: 0; margin-top: 18px;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:Instance name="InventoryWindow" template="InventoryWindow" style="position: absolute; top: 0px; right: 0px;" />
+    <fund:InventoryWindow name="InventoryWindow" style="position: absolute; top: 0px; right: 0px;" />
 </ui:UXML>

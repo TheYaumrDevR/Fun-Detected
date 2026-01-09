@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using Org.Ethasia.Fundetected.Interactors.Map;
 using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
+using Org.Ethasia.Fundetected.Technical.UIToolkit;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
@@ -16,7 +17,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private VisualElement rootElement;
         private VisualElement mapSelectionWindow;     
-        private VisualElement inventoryWindow;
+        private InventoryWindow inventoryWindow;
         private Button mapSelectionWindowCloseButton;
         private Label mapSelectionUsageHint;
         private string mapSelectionUsageHintOriginalText;
@@ -39,7 +40,7 @@ namespace Org.Ethasia.Fundetected.Technical
             mapSelectionUsageHintOriginalText = mapSelectionUsageHint.text;
 
             mapSelectionWindow.visible = false;
-            inventoryWindow.visible = false;
+            inventoryWindow.IsOpen = false;
 
             SetupMapSelectionList();
         }
@@ -64,7 +65,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void ToggleInventoryWindow()
         {
-            if (inventoryWindow.visible)
+            if (inventoryWindow.IsOpen)
             {
                 CloseInventoryWindow();
             }
@@ -83,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Technical
             mapSelectionUsageHint = rootElement.Q<Label>("MapSelectionUsageHint");
             mapSelectionList = rootElement.Q<MultiColumnListView>("MapSelectionList");
 
-            inventoryWindow = rootElement.Q<VisualElement>("InventoryWindow");
+            inventoryWindow = rootElement.Q<InventoryWindow>("InventoryWindow");
         }        
 
         private void SetupMapSelectionList()
@@ -198,13 +199,17 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private void OpenInventoryWindow()
         {
-            inventoryWindow.visible = true;
+            inventoryWindow.IsOpen = true;
             SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
         private void CloseInventoryWindow()
         {
-            CloseWindow(inventoryWindow);
+            if (inventoryWindow.IsOpen)
+            {
+                inventoryWindow.IsOpen = false;
+                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
         }
 
         private void CloseWindow(VisualElement window)
