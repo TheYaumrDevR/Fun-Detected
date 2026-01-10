@@ -43,6 +43,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         private void OnCloseWindowClick(ClickEvent clickEvent)
         {
+            clickEvent.StopPropagation();
+
             Close();
             SoundPlayer.GetInstance().PlayMouseClickSound();
         }
