@@ -37,6 +37,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             if (this.visible)
             {
                 this.visible = false;
+                GuiWindowsController.GetInstance().EnablePlayerInputIfAllWindowsAreClosed();
                 SoundPlayer.GetInstance().PlayUiWindowOpenSound();
             }
         }

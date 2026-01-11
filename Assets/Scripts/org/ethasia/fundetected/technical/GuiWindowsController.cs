@@ -75,6 +75,16 @@ namespace Org.Ethasia.Fundetected.Technical
             }
         }
 
+        public void EnablePlayerInputIfAllWindowsAreClosed()
+        {
+            PlayerInputHandler playerInputHandler = PlayerInputHandler.GetInstance();
+
+            if (!mapSelectionWindow.visible && !inventoryWindow.IsOpen)
+            {
+                playerInputHandler.EnableInput();
+            }
+        }
+
         private void InitializeElementReferences()
         {
             rootElement = GetComponent<UIDocument>().rootVisualElement;
@@ -163,7 +173,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private void OnCloseMapSelectionWindowClick(ClickEvent clickEvent)
         {
             CloseMapSelectionWindow();
-            PlayerInputHandler.GetInstance().EnableInput();
+            EnablePlayerInputIfAllWindowsAreClosed();
 
             SoundPlayer.GetInstance().PlayMouseClickSound();
         }
@@ -200,6 +210,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private void OpenInventoryWindow()
         {
             inventoryWindow.IsOpen = true;
+            PlayerInputHandler.GetInstance().DisableInput();
             SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
@@ -208,6 +219,7 @@ namespace Org.Ethasia.Fundetected.Technical
             if (inventoryWindow.IsOpen)
             {
                 inventoryWindow.IsOpen = false;
+                EnablePlayerInputIfAllWindowsAreClosed();
                 SoundPlayer.GetInstance().PlayUiWindowOpenSound();
             }
         }
