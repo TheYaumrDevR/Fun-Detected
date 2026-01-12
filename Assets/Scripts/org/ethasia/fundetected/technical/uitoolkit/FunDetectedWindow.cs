@@ -9,6 +9,25 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private const string TITLE_LABEL_NAME = "window-title";
         private const string CLOSE_BUTTON_NAME = "window-close-button";
 
+        private string titleKey;
+
+        [UxmlAttribute]
+        public string TitleKey
+        {
+            get
+            {
+                return titleKey;
+            }
+
+            set
+            {
+                titleKey = value;
+
+                var localizationGateway = new DictionaryBasedLocalizationGateway();
+                Title = localizationGateway.GetLocalizedString(value);
+            }
+        }
+
         [UxmlAttribute]
         public string Title
         {
