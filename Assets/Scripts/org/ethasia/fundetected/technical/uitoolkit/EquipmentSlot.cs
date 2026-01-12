@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 {
     public class EquipmentSlot : VisualElement
