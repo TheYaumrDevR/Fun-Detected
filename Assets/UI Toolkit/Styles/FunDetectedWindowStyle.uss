@@ -11,6 +11,11 @@
     flex-direction: row;
 }
 
+.fundetected-window-content {
+    flex-direction: column; 
+    flex-grow: 1;
+}
+
 .fundetected-window-title {
     color: #ffffff;
     font-size: 20px; /* 2 sizes bigger than default */
