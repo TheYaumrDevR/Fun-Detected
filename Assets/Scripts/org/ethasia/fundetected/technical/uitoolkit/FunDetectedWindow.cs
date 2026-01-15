@@ -11,8 +11,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private const string TITLE_LABEL_NAME = "window-title";
         private const string CLOSE_BUTTON_NAME = "window-close-button";
         private const string CONTENT_CONTAINER_NAME = "window-content";
-        private const string ROOT_ELEMENT_CLASS_NAME = "fundetected-window";
-        private const string WINDOW_HEADER_CLASS_NAME = "fundetected-window-header";
 
         private string titleKey;
 
@@ -46,8 +44,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         public FunDetectedWindow()
         {
-            var childrenToMove = FindChildrenToMoveToContentArea();
-
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/FunDetectedUiWindow");
             visualTree.CloneTree(this);
 
@@ -56,11 +52,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             {
                 closeWindowButton.RegisterCallback<ClickEvent>(OnCloseWindowClick);
             }
-
-            MoveChildrenToContentArea(childrenToMove);
         }
 
-        private void MoveChildrenToContentArea(List<VisualElement> childrenToMove)
+        public void MoveChildrenToContainer(List<VisualElement> children)
         {
             var contentContainer = this.Q<VisualElement>(CONTENT_CONTAINER_NAME);
             if (contentContainer == null) 
@@ -68,7 +62,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 return;
             }
 
-            MoveChildrenToContainer(childrenToMove, contentContainer);
+            foreach (var child in children)
+            {
+                child.RemoveFromHierarchy();
+                contentContainer.Add(child);
+            }
         }
 
         public void Close()
@@ -87,27 +85,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             Close();
             SoundPlayer.GetInstance().PlayMouseClickSound();
-        }
-
-        private List<VisualElement> FindChildrenToMoveToContentArea()
-        {
-            var result = new List<VisualElement>();
-
-            foreach (var child in this.Children())
-            {
-                result.Add(child);
-            }
-
-            return result;
-        }
-
-        private void MoveChildrenToContainer(List<VisualElement> children, VisualElement container)
-        {
-            foreach (var child in children)
-            {
-                child.RemoveFromHierarchy();
-                container.Add(child);
-            }
         }
     }
 }

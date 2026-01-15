@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/InventoryWindowStyle.uss?fileID=7433441132597879392&amp;guid=17834ea79d2b3bd4cbe60cf187e7b3df&amp;type=3#InventoryWindowStyle" />
 
     <fund:FunDetectedWindow name="base-window" title-key="inventory-window-title" class="inventory-window">
-        <engine:VisualElement class="inventory-bar"/>
-        <engine:VisualElement class="inventory-placeholder"/>
+        <engine:VisualElement name="inventory-bar" class="inventory-bar"/>
+        <engine:VisualElement name="inventory-placeholder" class="inventory-placeholder"/>
     </fund:FunDetectedWindow>
 </engine:UXML>
