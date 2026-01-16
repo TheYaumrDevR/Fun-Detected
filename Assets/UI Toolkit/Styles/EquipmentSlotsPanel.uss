@@ -1,0 +1,125 @@
+.equipmentslot-container {
+    width: 408px;
+    height: 308px;
+    background-color: #a9a9a9;
+}
+
+.equipmentslot-mainhand {
+    left: 45px;
+    top: 84px;
+    width: 72px;
+    height: 140px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGWeapon.png');
+}
+
+.equipmentslot-offhand {
+    left: 297px;
+    top: 84px;
+    width: 72px;
+    height: 140px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGWeapon.png');
+}
+
+.equipmentslot-chest {
+    left: 171px;
+    top: 152px;
+    width: 72px;
+    height: 106px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGArmor.png');
+}
+
+.equipmentslot-head {
+    left: 171px;
+    top: 78px;
+    width: 72px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGTwoByTwo.png');
+}
+
+.equipmentslot-feet {
+    left: 251px;
+    top: 226px;
+    width: 72px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGTwoByTwo.png');
+}
+
+.equipmentslot-hands {
+    left: 91px;
+    top: 226px;
+    width: 72px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGTwoByTwo.png');
+}
+
+.equipmentslot-belt {
+    left: 171px;
+    top: 260px;
+    width: 72px;
+    height: 38px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGBelt.png');
+}
+
+.equipmentslot-left-ring {
+    left: 125px;
+    top: 186px;
+    width: 38px;
+    height: 38px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGJewelry.png');
+}
+
+.equipmentslot-right-ring {
+    left: 251px;
+    top: 186px;
+    width: 38px;
+    height: 38px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGJewelry.png');
+}
+
+.equipmentslot-neck {
+    left: 251px;
+    top: 146px;
+    width: 38px;
+    height: 38px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGJewelry.png');
+}
+
+.equipmentslot-leftmost-potion {
+    left: 112px;
+    top: 300px;
+    width: 38px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGPotion.png');
+}
+
+.equipmentslot-leftmiddle-potion {
+    left: 150px;
+    top: 300px;
+    width: 38px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGPotion.png');
+}
+
+.equipmentslot-middle-potion {
+    left: 188px;
+    top: 300px;
+    width: 38px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGPotion.png');
+}
+
+.equipmentslot-rightmiddle-potion {
+    left: 226px;
+    top: 300px;
+    width: 38px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGPotion.png');
+}
+
+.equipmentslot-rightmost-potion {
+    left: 264px;
+    top: 300px;
+    width: 38px;
+    height: 72px;
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGPotion.png');
+}

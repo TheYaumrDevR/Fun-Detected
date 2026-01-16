@@ -20,9 +20,6 @@
     flex-grow: 0;
 }
 
-.inventory-placeholder {
-    width: 408px;
-    height: 308px;
-    background-color: #a9a9a9;
+.inventory-equipment-panel {
     align-self: center;
 }

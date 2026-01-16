@@ -4,7 +4,8 @@ using UnityEngine.UIElements;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 {
-    public abstract class FunDetectedWindowExtension : VisualElement
+    [UxmlElement]
+    public abstract partial class FunDetectedWindowExtension : VisualElement
     {
         private FunDetectedWindow baseWindow;
 
