@@ -4,5 +4,6 @@
     <fund:FunDetectedWindow name="base-window" title-key="inventory-window-title" class="inventory-window">
         <engine:VisualElement name="inventory-bar" class="inventory-bar"/>
         <fund:EquipmentSlotsPanel name="inventory-equipment-panel" class="inventory-equipment-panel"/>
+        <fund:InventoryGridPanel name="inventory-grid-panel" class="inventory-grid-panel"/>
     </fund:FunDetectedWindow>
 </engine:UXML>

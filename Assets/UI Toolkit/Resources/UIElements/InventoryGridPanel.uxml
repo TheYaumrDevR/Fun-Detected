@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/InventoryGridPanel.uss?fileID=7433441132597879392&amp;guid=1c48b40f98b66524989793a4eb5bee9a&amp;type=3#InventoryGridPanel" />
+    <engine:VisualElement class="inventory-grid-border1">
+        <engine:VisualElement class="inventory-grid-border2">
+            <engine:VisualElement class="inventory-grid-border3" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

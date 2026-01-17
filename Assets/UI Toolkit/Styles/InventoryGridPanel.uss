@@ -1,0 +1,25 @@
+.inventory-grid-border1 {
+    width: 414px;
+    height: 176px;
+    border-width: 1px;
+    border-color: #54514f;
+    background-color: #2d2c2c;
+}
+
+.inventory-grid-border2 {
+    width: 412px;
+    height: 174px;
+    border-width: 1px;
+    border-color: #696562;
+    background-color: #2d2c2c;
+    margin: auto;
+}
+
+.inventory-grid-border3 {
+    width: 410px;
+    height: 172px;
+    border-width: 1px;
+    border-color: #54514f;
+    background-color: #2d2c2c;
+    margin: auto;
+}
