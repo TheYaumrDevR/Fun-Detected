@@ -3,6 +3,6 @@
 
     <fund:FunDetectedWindow name="base-window" title-key="inventory-window-title" class="inventory-window">
         <engine:VisualElement name="inventory-bar" class="inventory-bar"/>
-        <fund:EquipmentSlotsPanel name="equipment-panel" class="inventory-equipment-panel"/>
+        <fund:EquipmentSlotsPanel name="inventory-equipment-panel" class="inventory-equipment-panel"/>
     </fund:FunDetectedWindow>
 </engine:UXML>
