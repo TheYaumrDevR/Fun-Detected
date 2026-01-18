@@ -19,14 +19,26 @@
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.5; 
 }
 
 .equipment-slot-item {
+    width: 100%;
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     flex-shrink: 0;
+}
+
+.equipment-slot-overlay-blue {
+    background-color: #132137;
+}
+
+.equipment-slot-overlay-red {
+    background-color: #371313;
 }

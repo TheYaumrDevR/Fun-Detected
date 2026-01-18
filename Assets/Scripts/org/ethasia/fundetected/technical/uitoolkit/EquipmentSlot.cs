@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Ioadapters.Technical;
+
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 {
     [UxmlElement]
@@ -8,6 +10,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
     {
         private const string OVERLAY_NAME = "overlay-element";
         private const string ITEM_IMAGE_NAME = "item-image";
+        private const string BLUE_OVERLAY_CLASS_NAME = "equipment-slot-overlay-blue";
+        private const string RED_OVERLAY_CLASS_NAME = "equipment-slot-overlay-red";
 
         private VisualElement overlay;
         private VisualElement itemImage;
@@ -19,6 +23,43 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             overlay = this.Q<VisualElement>(OVERLAY_NAME);
             itemImage = this.Q<VisualElement>(ITEM_IMAGE_NAME);
+        }
+
+        public void RenderEquippedItem(EquipmentSlotRenderContext renderContext)
+        {
+            if (renderContext.ItemImagePath != null && renderContext.ItemImagePath.Length > 0)
+            {
+                itemImage.style.backgroundImage = new StyleBackground(
+                    Resources.Load<Sprite>(renderContext.ItemImagePath)
+                );
+
+                SetOverlayColor(renderContext.IsEquipped);
+            }
+            else
+            {
+                itemImage.style.backgroundImage = new StyleBackground();
+                RemoveOverlayColor();
+            }
+        }
+
+        private void SetOverlayColor(bool isEquipped)
+        {
+            if (isEquipped)
+            {
+                overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
+                overlay.AddToClassList(BLUE_OVERLAY_CLASS_NAME);
+            }
+            else
+            {
+                overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
+                overlay.AddToClassList(RED_OVERLAY_CLASS_NAME);
+            }
+        }
+
+        private void RemoveOverlayColor()
+        {
+            overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
+            overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
         }
     }
 }
