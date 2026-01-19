@@ -51,6 +51,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             headSlot = this.Q<EquipmentSlot>(HEAD_SLOT_NAME);
             footSlot = this.Q<EquipmentSlot>(FEET_SLOT_NAME);
             handSlot = this.Q<EquipmentSlot>(HANDS_SLOT_NAME);
+            beltSlot = this.Q<EquipmentSlot>(BELT_SLOT_NAME);
             leftRingSlot = this.Q<EquipmentSlot>(LEFT_RING_SLOT_NAME);
             rightRingSlot = this.Q<EquipmentSlot>(RIGHT_RING_SLOT_NAME);
             neckSlot = this.Q<EquipmentSlot>(NECK_SLOT_NAME);
@@ -76,6 +77,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             if (chestSlot != null)
             {
                 chestSlot.RenderEquippedItem(renderContext.Chest);
+            }
+
+            if (beltSlot != null)
+            {
+                beltSlot.RenderEquippedItem(renderContext.Belt);
             }
 
             if (headSlot != null)

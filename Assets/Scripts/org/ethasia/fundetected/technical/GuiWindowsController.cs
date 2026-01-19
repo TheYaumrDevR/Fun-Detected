@@ -262,31 +262,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         private InventoryRenderContext CreateTestRenderContextForInventory()
         {
-            EquipmentSlotRenderContext mainHandRenderContext = new EquipmentSlotRenderContext.Builder()
-                .SetItemImagePath("Images/Items/Basetypes/Resources/CorrodedCutlass.png")
-                .SetIsEquipped(true)
-                .Build();
-
-            EquipmentSlotRenderContext beltSlotRenderContext = new EquipmentSlotRenderContext.Builder()
-                .SetItemImagePath("Images/Items/Basetypes/Resources/WarBelt.png")
-                .SetIsEquipped(true)
-                .Build();
-
-            EquipmentSlotRenderContext leftRingSlotRenderContext = new EquipmentSlotRenderContext.Builder()
-                .SetItemImagePath("Images/Items/Basetypes/Resources/IronspikeBand.png")
-                .SetIsEquipped(true)
-                .Build();
-
-            EquipmentSlotRenderContext rightRingSlotRenderContext = new EquipmentSlotRenderContext.Builder()
-                .SetItemImagePath("Images/Items/Basetypes/Resources/IronspikeBand.png")
-                .SetIsEquipped(true)
-                .Build();
-
             EquipmentSlotsRenderContext equipmentSlotsRenderContext = new EquipmentSlotsRenderContext.Builder()
-                .SetMainHand(mainHandRenderContext)
-                .SetBelt(beltSlotRenderContext)
-                .SetLeftRing(leftRingSlotRenderContext)
-                .SetRightRing(rightRingSlotRenderContext)
                 .Build();
 
             return new InventoryRenderContext(equipmentSlotsRenderContext);

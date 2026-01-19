@@ -29,9 +29,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             if (renderContext.ItemImagePath != null && renderContext.ItemImagePath.Length > 0)
             {
+                Sprite itemSprite = Resources.Load<Sprite>(renderContext.ItemImagePath);
+
                 itemImage.style.backgroundImage = new StyleBackground(
-                    Resources.Load<Sprite>(renderContext.ItemImagePath)
+                    itemSprite
                 );
+
+                itemImage.style.width = itemSprite.rect.width;
+                itemImage.style.height = itemSprite.rect.height;
 
                 SetOverlayColor(renderContext.IsEquipped);
             }
