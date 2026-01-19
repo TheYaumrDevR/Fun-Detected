@@ -34,5 +34,48 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             
             guiWindowsController.OpenMapSelectionWindow(mapSelectionWindowContent);
         }
+
+        public void OpenInventoryWindow(InventoryPresentationContext context)
+        {
+            IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
+
+            InventoryRenderContext inventoryRenderContext = ConvertInventoryPresentationContext(context);
+            guiWindowsController.OpenInventoryWindow(inventoryRenderContext);
+        }
+
+        private InventoryRenderContext ConvertInventoryPresentationContext(InventoryPresentationContext context)
+        {
+            EquipmentSlotsRenderContext equipmentSlotsRenderContext = ConvertEquipmentSlotsPresentationContext(context.EquipmentSlotsPresentationContext);
+            return new InventoryRenderContext(equipmentSlotsRenderContext);
+        }
+
+        private EquipmentSlotsRenderContext ConvertEquipmentSlotsPresentationContext(EquipmentSlotsPresentationContext context)
+        {
+            return new EquipmentSlotsRenderContext.Builder()
+                .SetMainHand(ConvertEquipmentSlotPresentationContext(context.MainHand))
+                .SetOffHand(ConvertEquipmentSlotPresentationContext(context.OffHand))
+                .SetHead(ConvertEquipmentSlotPresentationContext(context.Head))
+                .SetChest(ConvertEquipmentSlotPresentationContext(context.Chest))
+                .SetHands(ConvertEquipmentSlotPresentationContext(context.Hands))
+                .SetFeet(ConvertEquipmentSlotPresentationContext(context.Feet))
+                .SetBelt(ConvertEquipmentSlotPresentationContext(context.Belt))
+                .SetLeftRing(ConvertEquipmentSlotPresentationContext(context.LeftRing))
+                .SetRightRing(ConvertEquipmentSlotPresentationContext(context.RightRing))
+                .SetNeck(ConvertEquipmentSlotPresentationContext(context.Neck))
+                .SetLeftMostPotion(ConvertEquipmentSlotPresentationContext(context.LeftMostPotion))
+                .SetLeftMiddlePotion(ConvertEquipmentSlotPresentationContext(context.LeftMiddlePotion))
+                .SetMiddlePotion(ConvertEquipmentSlotPresentationContext(context.MiddlePotion))
+                .SetRightMiddlePotion(ConvertEquipmentSlotPresentationContext(context.RightMiddlePotion))
+                .SetRightMostPotion(ConvertEquipmentSlotPresentationContext(context.RightMostPotion))
+                .Build();
+        }
+
+        private EquipmentSlotRenderContext ConvertEquipmentSlotPresentationContext(EquipmentSlotPresentationContext context)
+        {
+            return new EquipmentSlotRenderContext.Builder()
+                .SetItemImagePath(context.ItemId)
+                .SetIsEquipped(context.IsLegallyEquipped)
+                .Build();
+        }
     }
 }

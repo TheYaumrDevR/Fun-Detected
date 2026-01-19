@@ -71,8 +71,15 @@ namespace Org.Ethasia.Fundetected.Technical
             }
             else
             {
-                OpenInventoryWindow();
+                OpenInventoryWindow(CreateTestRenderContextForInventory());
             }
+        }
+
+        public void OpenInventoryWindow(InventoryRenderContext context)
+        {
+            inventoryWindow.Open(context);
+            PlayerInputHandler.GetInstance().DisableInput();
+            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
         public void EnablePlayerInputIfAllWindowsAreClosed()
@@ -205,13 +212,6 @@ namespace Org.Ethasia.Fundetected.Technical
         private void CloseMapSelectionWindow()
         {
             CloseWindow(mapSelectionWindow);
-        }
-
-        private void OpenInventoryWindow()
-        {
-            inventoryWindow.Open(CreateTestRenderContextForInventory());
-            PlayerInputHandler.GetInstance().DisableInput();
-            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
         private void CloseInventoryWindow()
