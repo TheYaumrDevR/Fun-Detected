@@ -212,6 +212,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             private set;
         }
 
+        public static EquipmentSlotPresentationContext CreateEmpty()
+        {
+            return new EquipmentSlotPresentationContext
+            {
+                ItemId = string.Empty,
+                IsLegallyEquipped = false
+            };
+        }
+
         public class Builder
         {
             private EquipmentSlotPresentationContext result;

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 using Org.Ethasia.Fundetected.Interactors.Map;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 using Org.Ethasia.Fundetected.Technical.UIToolkit;
@@ -23,6 +24,8 @@ namespace Org.Ethasia.Fundetected.Technical
         private string mapSelectionUsageHintOriginalText;
         private MultiColumnListView mapSelectionList;
         private MapSelectionWindowContext model;
+
+        private InventoryDisplayInteractor inventoryDisplayInteractor;
 
         public static GuiWindowsController GetInstance()
         {
@@ -43,6 +46,7 @@ namespace Org.Ethasia.Fundetected.Technical
             inventoryWindow.IsOpen = false;
 
             SetupMapSelectionList();
+            inventoryDisplayInteractor = new InventoryDisplayInteractor();
         }
 
         public void OpenMapSelectionWindow(MapSelectionWindowContext windowContent)
@@ -71,7 +75,7 @@ namespace Org.Ethasia.Fundetected.Technical
             }
             else
             {
-                OpenInventoryWindow(CreateTestRenderContextForInventory());
+                inventoryDisplayInteractor.ExtractAndShowInventory();
             }
         }
 

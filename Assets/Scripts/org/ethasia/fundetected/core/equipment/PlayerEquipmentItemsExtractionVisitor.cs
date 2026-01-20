@@ -68,5 +68,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         {
             ExtractedJewelry = equipment;
         }
+
+        public void Reset()
+        {
+            ExtractedWeapon = null;
+            ExtractedArmor = null;
+            ExtractedJewelry = null;
+        }
     }
 }
