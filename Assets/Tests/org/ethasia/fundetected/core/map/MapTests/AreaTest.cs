@@ -467,7 +467,6 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
-                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
 
             testArea.SpawnPlayer(playerCharacter);
