@@ -4,6 +4,13 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 {
     public class TechnicalMockFactory : TechnicalFactory
     {
+        private static GuiWindowsControllerMock guiWindowsControllerMockInstance = new GuiWindowsControllerMock();
+
+        public static GuiWindowsControllerMock GetGuiWindowsControllerMockInstance()
+        {
+            return guiWindowsControllerMockInstance;
+        }
+
         public override XmlFiles CreateXmlFiles()
         {
             return new XmlFilesMock();
@@ -56,7 +63,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 
         public override IGuiWindowsController GetGuiWindowsControllerInstance()
         {
-            return null;
+            return guiWindowsControllerMockInstance;
         }
         
         public override IDroppableItemRenderer GetDroppableItemRendererInstance()
