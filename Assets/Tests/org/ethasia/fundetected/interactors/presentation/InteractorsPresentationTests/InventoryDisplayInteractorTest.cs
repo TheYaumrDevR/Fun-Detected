@@ -18,15 +18,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Weapon mainHandWeapon = CreateTestWeapon(itemName, ItemClass.MARTIAL_STAFF);
 
             playerCharacter.PickupEquipment(mainHandWeapon);
-            PlayerEquipmentItemsExtractionVisitor itemExtractionVisitor = playerCharacter.CreateItemExtractionVisitor();
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
 
-            InventoryDisplayInteractorWithCreatedPresentationContext testCandidate = new InventoryDisplayInteractorWithCreatedPresentationContext(itemExtractionVisitor);
-            testCandidate.ExtractAndShowInventory();
-
-            InventoryPresentationContext createdContext = testCandidate.LastCreatedContext;
-            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = createdContext.EquipmentSlotsPresentationContext;
-
-            Assert.That(createdContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
             Assert.That(equipmentSlotsPresentationContext.MainHand.ItemId, Is.EqualTo(itemName));
             Assert.That(equipmentSlotsPresentationContext.MainHand.IsLegallyEquipped, Is.True);
 
@@ -36,6 +30,137 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
             AssertThatBeltIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatFeetAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMostPotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMostPotionIsEmpty(equipmentSlotsPresentationContext);
+        }
+
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsOffHandCorrectly()
+        {
+            string itemName = "Exceptional Mace";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Weapon mainHandWeapon = CreateTestWeapon("Fine Mace", ItemClass.ONE_HANDED_MACE);
+            Weapon offHandWeapon = CreateTestWeapon(itemName, ItemClass.ONE_HANDED_MACE);
+
+            playerCharacter.PickupEquipment(mainHandWeapon);
+            playerCharacter.PickupEquipment(offHandWeapon);
+
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
+
+            Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.OffHand.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.OffHand.IsLegallyEquipped, Is.True);
+
+            AssertThatLeftRingIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightRingIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatBeltIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatFeetAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMostPotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMostPotionIsEmpty(equipmentSlotsPresentationContext);
+        }
+
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsLeftRingCorrectly()
+        {
+            string itemName = "Ruby Ring";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Jewelry leftRing = CreateTestJewelry(itemName, ItemClass.RING);
+
+            playerCharacter.PickupEquipment(leftRing);
+
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
+
+            Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.LeftRing.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.LeftRing.IsLegallyEquipped, Is.True);
+
+            AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightRingIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatBeltIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatFeetAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMostPotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMostPotionIsEmpty(equipmentSlotsPresentationContext);
+        }
+
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsRightRingCorrectly()
+        {
+            string itemName = "Gold Ring";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Jewelry leftRing = CreateTestJewelry("Ruby Ring", ItemClass.RING);
+            Jewelry rightRing = CreateTestJewelry(itemName, ItemClass.RING);
+
+            playerCharacter.PickupEquipment(leftRing);
+            playerCharacter.PickupEquipment(rightRing);
+
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
+
+            Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.RightRing.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.RightRing.IsLegallyEquipped, Is.True);
+
+            AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatBeltIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatFeetAreEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMostPotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMiddlePotionIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightMostPotionIsEmpty(equipmentSlotsPresentationContext);
+        }
+
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsBeltCorrectly()
+        {
+            string itemName = "Plated Belt";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Jewelry belt = CreateTestJewelry(itemName, ItemClass.BELT);
+
+            playerCharacter.PickupEquipment(belt);
+
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
+
+            Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.Belt.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.Belt.IsLegallyEquipped, Is.True);
+
+            AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatRightRingIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatLeftRingIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
+            AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
             AssertThatFeetAreEmpty(equipmentSlotsPresentationContext);
             AssertThatLeftMostPotionIsEmpty(equipmentSlotsPresentationContext);
@@ -67,6 +192,26 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             weaponBuilder.SetMinToMaxPhysicalDamage(weaponDamageRange);
 
             return weaponBuilder.Build();
+        }
+
+        private Jewelry CreateTestJewelry(string itemId, ItemClass jewelryClass)
+        {
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+            jewelryBuilder.SetName(itemId);
+            jewelryBuilder.SetItemClass(jewelryClass);
+
+            return jewelryBuilder.Build();
+        }
+
+        private EquipmentSlotsPresentationContext CallEquipmentExtraction(PlayerCharacter playerCharacter)
+        {
+            PlayerEquipmentItemsExtractionVisitor itemExtractionVisitor = playerCharacter.CreateItemExtractionVisitor();
+
+            InventoryDisplayInteractorWithCreatedPresentationContext testCandidate = new InventoryDisplayInteractorWithCreatedPresentationContext(itemExtractionVisitor);
+            testCandidate.ExtractAndShowInventory();
+
+            InventoryPresentationContext createdContext = testCandidate.LastCreatedContext;
+            return createdContext.EquipmentSlotsPresentationContext;
         }
 
         private void AssertThatMainHandIsEmpty(EquipmentSlotsPresentationContext equipmentSlotsPresentationContext)
@@ -109,6 +254,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
         {
             Assert.That(equipmentSlotsPresentationContext.Head.ItemId, Is.Null.Or.Empty);
             Assert.That(equipmentSlotsPresentationContext.Head.IsLegallyEquipped, Is.False);
+        }
+
+        private void AssertThatChestIsEmpty(EquipmentSlotsPresentationContext equipmentSlotsPresentationContext)
+        {
+            Assert.That(equipmentSlotsPresentationContext.Chest.ItemId, Is.Null.Or.Empty);
+            Assert.That(equipmentSlotsPresentationContext.Chest.IsLegallyEquipped, Is.False);
         }
 
         private void AssertThatHandsAreEmpty(EquipmentSlotsPresentationContext equipmentSlotsPresentationContext)
