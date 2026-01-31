@@ -1,5 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" xmlns:fund="Org.Ethasia.Fundetected.Technical.UIToolkit" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Styles/EquipmentSlotsPanel.uss?fileID=7433441132597879392&amp;guid=501c2536d66a0b14d92b146fc0eced6b&amp;type=3#EquipmentSlotsPanel" />
+    
     <engine:VisualElement class="equipmentslot-container">
         <fund:EquipmentSlot name="mainhand-slot" class="equipmentslot-mainhand" />
         <fund:EquipmentSlot name="offhand-slot" class="equipmentslot-offhand" />

@@ -2,8 +2,12 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/FunDetectedWindowStyle.uss?fileID=7433441132597879392&amp;guid=5565e3618de682b4a87841e9de1941e6&amp;type=3#FunDetectedWindowStyle" />
     <ui:VisualElement class="fundetected-window">
         <ui:VisualElement class="fundetected-window-header">
-            <ui:Label name="window-title" class="fundetected-window-title" />
-            <ui:Button name="window-close-button" text="&#10;" enable-rich-text="false" selectable="true" class="fundetected-window-close-button"/>
+            <ui:VisualElement class="fundetected-window-header-border2">
+                <ui:VisualElement class="fundetected-window-header-border3">
+                    <ui:Label name="window-title" class="fundetected-window-title" />
+                    <ui:Button name="window-close-button" text="&#10;" enable-rich-text="false" selectable="true" class="fundetected-window-close-button"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="window-content" class="fundetected-window-content">
             <!-- Specific content will be added here -->

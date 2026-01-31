@@ -3,11 +3,25 @@
 }
 
 .fundetected-window-header {
-    background-color: #320f06;
-    border-bottom-width: 3px;
+    border-bottom-width: 1px;
     border-bottom-color: #54514f;
     width: 100%;
     height: 35px;
+}
+
+.fundetected-window-header-border2 {
+    border-bottom-width: 1px;
+    border-bottom-color: #696562;
+    width: 100%;
+    height: 34px;
+}
+
+.fundetected-window-header-border3 {
+    background-color: #320f06;
+    border-bottom-width: 1px;
+    border-bottom-color: #54514f;
+    width: 100%;
+    height: 33px;
     flex-direction: row;
 }
 
