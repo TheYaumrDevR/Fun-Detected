@@ -3,7 +3,7 @@ guid: 09c90030d169f6d42a16f24460bd9942
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -67,7 +67,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -77,9 +77,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -89,9 +90,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -101,10 +103,11 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -129,6 +133,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -150,6 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -171,6 +177,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -192,6 +199,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -213,6 +221,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -234,6 +243,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -255,6 +265,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -276,6 +287,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -297,6 +309,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -318,6 +331,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -339,6 +353,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -360,6 +375,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -381,6 +397,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -402,6 +419,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -423,6 +441,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -444,6 +463,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -465,6 +485,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -486,6 +507,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -507,6 +529,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -528,6 +551,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -549,6 +573,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -570,6 +595,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -591,6 +617,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -612,6 +639,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -633,6 +661,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -654,6 +683,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -675,6 +705,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -696,6 +727,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -706,7 +738,96 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_RightSlopeConnectionGrass
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd2778f5a638184ca8ba1bbd7fa9165
+      internalID: 898790055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_RightSlope
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8944d3d89ac158d4bbabd43390432fe7
+      internalID: 1192253351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_RightSlopeStart
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 52
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7aca5d13b728946a78f3dd1e411a11
+      internalID: 726711787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_RightSlopeConnectionEarth
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 52
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbb9598ac34256b4ba5d806527c5bcf2
+      internalID: 1634852973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: c8fe07fc5979863459411086884a41e5
@@ -716,35 +837,41 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      PlainsAndHillsTileset_TreeLeavesTopOuterLeft: 342208865
-      PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft: 1072283849
-      PlainsAndHillsTileset_TreeLeavesMiddleLeft: -1417030391
-      PlainsAndHillsTileset_TreeLeavesMiddleOuterRight: -436436431
-      PlainsAndHillsTileset_TreeRootRight: 1591298501
-      PlainsAndHillsTileset_TreeLeavesAboveTopLeft: -1901425222
-      PlainsAndHillsTileset_TreeLeavesLowerRight: 423640231
-      PlainsAndHillsTileset_TreeLeavesTopRight: -75436978
-      PlainsAndHillsTileset_TreeLeavesLowerLeft: 1943451812
-      PlainsAndHillsTileset_TreeRootLeft: -1129308002
       PlainsAndHillsTileset_Earth: -2134002121
-      PlainsAndHillsTileset_TreeLeavesTopOuterRight: -40465753
-      PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft: -1911538747
-      PlainsAndHillsTileset_TreeLeavesBottomLeftBorder: -561262923
-      PlainsAndHillsTileset_TreeLeavesLowerOuterLeft: 1979780005
-      PlainsAndHillsTileset_TreeTopTrunkOuterRight: -1091260629
-      PlainsAndHillsTileset_TreeTrunkRight: -1537908187
-      PlainsAndHillsTileset_TreeLeavesLowerOuterRight: -1146456724
-      PlainsAndHillsTileset_Pavement: -2069858243
-      PlainsAndHillsTileset_TreeTopTrunkRight: 1772270435
-      PlainsAndHillsTileset_TreeTopTrunkOuterLeft: -198959125
-      PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder: 1018643343
-      PlainsAndHillsTileset_TreeLeavesAboveTopRight: -1448415611
-      PlainsAndHillsTileset_TreeLeavesTopLeft: -1808185857
       PlainsAndHillsTileset_Grass: -1271051063
-      PlainsAndHillsTileset_TreeTrunkLeft: 1461693560
+      PlainsAndHillsTileset_Pavement: -2069858243
+      PlainsAndHillsTileset_RightSlope: 1192253351
+      PlainsAndHillsTileset_RightSlopeConnectionEarth: 1634852973
+      PlainsAndHillsTileset_RightSlopeConnectionGrass: 898790055
+      PlainsAndHillsTileset_RightSlopeStart: 726711787
+      PlainsAndHillsTileset_TreeLeavesAboveTopLeft: -1901425222
+      PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft: 1072283849
+      PlainsAndHillsTileset_TreeLeavesAboveTopRight: -1448415611
+      PlainsAndHillsTileset_TreeLeavesBottomLeftBorder: -561262923
+      PlainsAndHillsTileset_TreeLeavesLowerLeft: 1943451812
+      PlainsAndHillsTileset_TreeLeavesLowerOuterLeft: 1979780005
+      PlainsAndHillsTileset_TreeLeavesLowerOuterRight: -1146456724
+      PlainsAndHillsTileset_TreeLeavesLowerRight: 423640231
+      PlainsAndHillsTileset_TreeLeavesMiddleLeft: -1417030391
+      PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder: 1018643343
+      PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft: -1911538747
+      PlainsAndHillsTileset_TreeLeavesMiddleOuterRight: -436436431
       PlainsAndHillsTileset_TreeLeavesMiddleRight: -1110053482
+      PlainsAndHillsTileset_TreeLeavesTopLeft: -1808185857
+      PlainsAndHillsTileset_TreeLeavesTopOuterLeft: 342208865
+      PlainsAndHillsTileset_TreeLeavesTopOuterRight: -40465753
+      PlainsAndHillsTileset_TreeLeavesTopRight: -75436978
+      PlainsAndHillsTileset_TreeRootLeft: -1129308002
+      PlainsAndHillsTileset_TreeRootRight: 1591298501
       PlainsAndHillsTileset_TreeTopTrunkLeft: 189567098
+      PlainsAndHillsTileset_TreeTopTrunkOuterLeft: -198959125
+      PlainsAndHillsTileset_TreeTopTrunkOuterRight: -1091260629
+      PlainsAndHillsTileset_TreeTopTrunkRight: 1772270435
+      PlainsAndHillsTileset_TreeTrunkLeft: 1461693560
+      PlainsAndHillsTileset_TreeTrunkRight: -1537908187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
