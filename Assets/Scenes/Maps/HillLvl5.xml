@@ -23,6 +23,10 @@
             </definitions>
         </chunk>    
         <chunk x="1" y="-1" id="eastPortal">
+            <portalTo>
+                <map id="MaggotPlain"/>
+                <portal id="westPortal"/>
+            </portalTo>
             <definitions>
                 <definition file="EarthGrassRisingHill"/>
                 <definition file="EarthGrassLoweringHill"/>

@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapDefinition maximumMonsters="40" areaLevel="2">
-    <chunks>            
+    <chunks>      
+        <chunk x="-6" y="0" id="westPortal">
+            <portalTo>
+                <map id="HillLvl5"/>
+                <portal id="eastPortal"/>
+            </portalTo>
+            <definitions>   
+                <definition file="EarthGrassPlateauPortal"/>
+            </definitions>
+        </chunk>     
+        <chunk x="-5" y="0">
+            <definitions>
+                <definition file="EarthGrassDoubleStepLoweringPlateau"/>
+            </definitions>
+        </chunk>
+        <chunk x="-4" y="0">
+            <definitions>
+                <definition file="EarthGrassLowFlatWithRightSlope"/>
+            </definitions>
+        </chunk> 
     </chunks>
     <spawnedMonsters>
+        <monster name="Animated Thornbush" spawnChance="1000"/>
     </spawnedMonsters>    
 </mapDefinition>
