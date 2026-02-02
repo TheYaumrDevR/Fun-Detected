@@ -20,6 +20,21 @@
                 <definition file="EarthGrassLowFlatWithRightSlope"/>
             </definitions>
         </chunk> 
+        <chunk x="-3" y="0">
+            <definitions>
+                <definition file="EarthGrassThreeHeightChunk"/>
+            </definitions>
+        </chunk> 
+        <chunk x="-2" y="0">
+            <definitions>
+                <definition file="EarthGrassDoubleStepLoweringPlateauHeight3"/>
+            </definitions>
+        </chunk> 
+        <chunk x="-1" y="0">
+            <definitions>
+                <definition file="EarthGrassDoubleStepRisingPlateauHeight3"/>
+            </definitions>
+        </chunk> 
     </chunks>
     <spawnedMonsters>
         <monster name="Animated Thornbush" spawnChance="1000"/>
