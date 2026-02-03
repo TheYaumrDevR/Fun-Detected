@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapDefinition maximumMonsters="40" areaLevel="2">
+    <chunks>      
+        <chunk x="-4" y="0" id="westPortal">
+            <portalTo>
+                <map id="Town"/>
+                <portal id="eastPortal"/>
+            </portalTo>
+            <definitions>   
+                <definition file="EarthGrassPlateauPortal"/>
+            </definitions>
+        </chunk>     
+        <chunk x="-3" y="0">
+            <definitions>
+                <definition file="EarthGrassDoubleStepLoweringPlateau"/>
+            </definitions>
+        </chunk>
+        <chunk x="-2" y="0">
+            <definitions>
+                <definition file="EarthGrassLowFlatWithRightSlope"/>
+            </definitions>
+        </chunk> 
+        <chunk x="-1" y="0">
+            <definitions>
+                <definition file="EarthGrassThreeHeightChunk"/>
+            </definitions>
+        </chunk> 
+        <chunk x="0" y="0">
+            <definitions>
+                <definition file="EarthGrassDoubleStepLoweringPlateauHeight3"/>
+            </definitions>
+        </chunk> 
+        <chunk x="1" y="0">
+            <definitions>
+                <definition file="EarthGrassDoubleStepRisingPlateauHeight3"/>
+            </definitions>
+        </chunk> 
+        <chunk x="2" y="0">
+            <definitions>
+                <definition file="EarthGrassThreeHeightChunk"/>
+            </definitions>
+        </chunk> 
+        <chunk x="3" y="0">
+            <definitions>
+                <definition file="EarthGrassFourHeightChunk"/>
+            </definitions>
+        </chunk> 
+        <chunk x="4" y="0" id="eastPortal">
+            <portalTo>
+                <map id="HillLvl3"/>
+                <portal id="westPortal"/>
+            </portalTo>
+
+            <definitions>
+                <definition file="EarthGrassFourToThreeRightPortal"/>
+            </definitions>
+        </chunk> 
+        <chunk x="-4" y="-1">
+            <definitions>   
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk>     
+        <chunk x="-3" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk>
+        <chunk x="-2" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+        <chunk x="-1" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+        <chunk x="0" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+        <chunk x="1" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+        <chunk x="2" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+        <chunk x="3" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+        <chunk x="4" y="-1">
+            <definitions>
+                <definition file="PureEarth"/>
+            </definitions>
+        </chunk> 
+    </chunks>
+    <spawnedMonsters>
+        <monster name="Animated Thornbush" spawnChance="1000"/>
+    </spawnedMonsters>    
+</mapDefinition>
