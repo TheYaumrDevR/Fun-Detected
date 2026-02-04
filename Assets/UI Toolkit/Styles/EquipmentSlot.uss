@@ -24,6 +24,36 @@
     flex-shrink: 0;
 }
 
+.equipment-slot-border {
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.equipment-slot-border-large {
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGWeaponBorder.png');
+}
+
+.equipment-slot-border-medium {
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGArmorBorder.png');
+}
+
+.equipment-slot-border-small {
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGTwoByTwoBorder.png');
+}
+
+.equipment-slot-border-belt {
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGBeltBorder.png');
+}
+
+.equipment-slot-border-jewelry {
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGJewelryBorder.png');
+}
+
+.equipment-slot-border-potion {
+    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/EquipmentSlotBGPotionBorder.png');
+}
+
 .equipment-slot-overlay-blue {
     background-color: #132137;
 }
