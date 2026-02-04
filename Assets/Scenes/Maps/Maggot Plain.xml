@@ -23,6 +23,7 @@
         <chunk x="-1" y="0">
             <definitions>
                 <definition file="EarthGrassThreeHeightChunk"/>
+                <definition file="EarthGrassValley"/>
             </definitions>
         </chunk> 
         <chunk x="0" y="0">
@@ -38,6 +39,7 @@
         <chunk x="2" y="0">
             <definitions>
                 <definition file="EarthGrassThreeHeightChunk"/>
+                <definition file="EarthGrassValley"/>
             </definitions>
         </chunk> 
         <chunk x="3" y="0">
