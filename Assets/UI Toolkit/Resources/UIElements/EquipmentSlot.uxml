@@ -4,6 +4,5 @@
     <engine:VisualElement class="equipment-slot">
         <engine:VisualElement name="overlay-element" class="equipment-slot-overlay" />
         <engine:VisualElement name="item-image" class="equipment-slot-item" />
-        <engine:VisualElement name="border-image" class="equipment-slot-border" />
     </engine:VisualElement>
 </engine:UXML>
