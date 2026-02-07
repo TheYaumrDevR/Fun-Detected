@@ -59,7 +59,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
                     if (PlaceItemIfHighestOccupiedPositionIsNegative(highestOccupiedYPosition, itemWithPosition))
                     {
-                        return true; // item placed successfully
+                        return true;
                     }
 
                     y = highestOccupiedYPosition;

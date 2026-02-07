@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
@@ -51,6 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         }
 
         private PlayerEquipmentSlots allEquipment;
+        private ItemInventory inventory;
 
         public int EvasionRating
         {
@@ -68,6 +70,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             StatModifiers = new PlayerCharacterAdditionalStats();
             TotalStats = new PlayerCharacterTotalStats();
             allEquipment = new PlayerEquipmentSlots();
+            inventory = new ItemInventory();
         }
 
         private void CreateMeleeAttack(MeleeHitArcProperties meleeHitArcProperties)
@@ -170,9 +173,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public Org.Ethasia.Fundetected.Core.Equipment.Equipment PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
         {
             Org.Ethasia.Fundetected.Core.Equipment.Equipment result = allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
-            TotalStats.Calculate(BaseStats, StatModifiers, allEquipment.EquipmentStats);
 
-            meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
+            if (result != equipment)
+            {
+                TotalStats.Calculate(BaseStats, StatModifiers, allEquipment.EquipmentStats);
+                meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
+            }
+            else
+            {
+                if (!inventory.AddItemAtNextFreePosition(equipment.CreateInventoryShape()))
+                {
+                    return result;
+                }
+
+                return null;
+            }
 
             return result;
         }
