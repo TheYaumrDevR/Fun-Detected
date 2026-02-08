@@ -8,9 +8,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             private set;
         }
 
-        public InventoryPresentationContext(EquipmentSlotsPresentationContext equipmentSlotsPresentationContext)
+        public InventoryGridPresentationContext InventoryGridPresentationContext
+        {
+            get;
+            private set;
+        }
+
+        public InventoryPresentationContext(EquipmentSlotsPresentationContext equipmentSlotsPresentationContext, InventoryGridPresentationContext inventoryGridPresentationContext)
         {
             EquipmentSlotsPresentationContext = equipmentSlotsPresentationContext;
+            InventoryGridPresentationContext = inventoryGridPresentationContext;
         }
     }
 }

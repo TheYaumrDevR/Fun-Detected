@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
 {
@@ -19,6 +20,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         }
 
         public Jewelry ExtractedJewelry
+        {
+            get;
+            private set;
+        }
+
+        public RecoveryPotion ExtractedRecoveryPotion
         {
             get;
             private set;
@@ -54,19 +61,24 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             equipmentSlots.AcceptBeltVisitor(this);
         }
 
-        public override void Visit(Weapon equipment)
+        public override void Visit(Weapon item)
         {
-            ExtractedWeapon = equipment;
+            ExtractedWeapon = item;
         }
 
-        public override void Visit(Armor equipment)
+        public override void Visit(Armor item)
         {
-            ExtractedArmor = equipment;
+            ExtractedArmor = item;
         }
 
-        public override void Visit(Jewelry equipment)
+        public override void Visit(Jewelry item)
         {
-            ExtractedJewelry = equipment;
+            ExtractedJewelry = item;
+        }
+
+        public override void Visit(RecoveryPotion item)
+        {
+            ExtractedRecoveryPotion = item;
         }
 
         public void Reset()

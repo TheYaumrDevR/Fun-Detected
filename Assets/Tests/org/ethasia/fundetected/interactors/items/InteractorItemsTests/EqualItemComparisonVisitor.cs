@@ -2,6 +2,7 @@ using NUnit.Framework;
 
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 
 namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
 {
@@ -10,6 +11,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
         private Weapon extractedWeapon;
         private Armor extractedArmor;
         private Jewelry extractedJewelry;
+        private RecoveryPotion extractedRecoveryPotion;
 
         public override void Visit(Weapon weapon)
         {
@@ -24,6 +26,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
         public override void Visit(Jewelry jewelry)
         {
             extractedJewelry = jewelry;
+        }
+
+        public override void Visit(RecoveryPotion recoveryPotion)
+        {
+            extractedRecoveryPotion = recoveryPotion;
         }
 
         public void AssertExtractedWeaponIsEqualTo(Weapon expectedWeapon)

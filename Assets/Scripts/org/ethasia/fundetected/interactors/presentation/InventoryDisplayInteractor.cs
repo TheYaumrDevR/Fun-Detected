@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors.Presentation
@@ -15,8 +16,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
                 if (null != player)
                 {
-                    PlayerEquipmentItemsExtractionVisitor itemsExtractionVisitor = player.CreateItemExtractionVisitor();
-                    InventoryPresentationContext inventoryPresentationContext = CreateInventoryPresentationContext(itemsExtractionVisitor);
+                    PlayerEquipmentItemsExtractionVisitor equipmentItemsExtractionVisitor = player.CreateItemExtractionVisitor();
+                    ItemInventoryExtractionVisitor inventoryExtractionVisitor = player.CreateInventoryItemExtractionVisitor();
+
+                    InventoryPresentationContext inventoryPresentationContext = CreateInventoryPresentationContext(equipmentItemsExtractionVisitor, inventoryExtractionVisitor);
 
                     IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
                     guiWindowsPresenter.OpenInventoryWindow(inventoryPresentationContext);
@@ -24,12 +27,85 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             }
         }
 
-        protected InventoryPresentationContext CreateInventoryPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor)
+        protected InventoryPresentationContext CreateInventoryPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor, ItemInventoryExtractionVisitor inventoryExtractor)
         {
-            return new InventoryPresentationContext(CreateEquipmentSlotsPresentationContext(extractor));
+            return new InventoryPresentationContext(CreateEquipmentSlotsPresentationContext(extractor), CreateInventoryGridPresentationContext(inventoryExtractor));
         }
 
-        protected EquipmentSlotsPresentationContext CreateEquipmentSlotsPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor)
+        private InventoryGridPresentationContext CreateInventoryGridPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor)
+        {
+            InventoryGridPresentationContext result = new InventoryGridPresentationContext();
+
+            ConvertWeaponsToPresentationContext(inventoryExtractor, result);
+            ConvertArmorsToPresentationContext(inventoryExtractor, result);
+            ConvertJewelryToPresentationContext(inventoryExtractor, result);
+            ConvertRecoveryPotionsToPresentationContext(inventoryExtractor, result);
+
+            return result;
+        }
+
+        private void ConvertWeaponsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        {
+            foreach (var weapon in inventoryExtractor.ExtractedWeapons)
+            {
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
+                    .WithItemId(weapon.Item.Name)
+                    .WithCanBeEquipped(true);
+                ConvertShapeAndPositionToPresentationContext(weapon.ItemInInventoryShape, itemPresentationContextBuilder);
+
+                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+            }
+        }
+
+        private void ConvertArmorsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        {
+            foreach (var armor in inventoryExtractor.ExtractedArmors)
+            {
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
+                    .WithItemId(armor.Item.Name)
+                    .WithCanBeEquipped(true);
+                ConvertShapeAndPositionToPresentationContext(armor.ItemInInventoryShape, itemPresentationContextBuilder);
+
+                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+            }
+        }
+
+        private void ConvertJewelryToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        {
+            foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
+            {
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
+                    .WithItemId(jewelry.Item.Name)
+                    .WithCanBeEquipped(true);
+                ConvertShapeAndPositionToPresentationContext(jewelry.ItemInInventoryShape, itemPresentationContextBuilder);
+
+                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+            }
+        }
+
+        private void ConvertRecoveryPotionsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        {
+            foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
+            {
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
+                    .WithItemId(recoveryPotion.Item.Name)
+                    .WithCanBeEquipped(false);
+                ConvertShapeAndPositionToPresentationContext(recoveryPotion.ItemInInventoryShape, itemPresentationContextBuilder);
+
+                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+            }
+        }
+
+        private void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)
+        {
+            contextBuilder
+                .WithTopLeftCornerX(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.X)
+                .WithTopLeftCornerY(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.Y)
+                .WithDimensionX(itemInInventoryShape.Width)
+                .WithDimensionY(itemInInventoryShape.Height);
+        }
+
+        private EquipmentSlotsPresentationContext CreateEquipmentSlotsPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             return new EquipmentSlotsPresentationContext.Builder()
                 .SetMainHand(ExtractMainHandEquipment(extractor))
@@ -40,7 +116,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .Build();
         }
 
-        protected EquipmentSlotPresentationContext ExtractMainHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractMainHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             extractor.Reset();
             extractor.ExtractMainHandEquipment();
@@ -48,7 +124,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return ExtractWeapon(extractor);
         }
 
-        protected EquipmentSlotPresentationContext ExtractOffHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractOffHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             extractor.Reset();
             extractor.ExtractOffHandEquipment();
@@ -56,7 +132,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return ExtractWeapon(extractor);
         }
 
-        protected EquipmentSlotPresentationContext ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             Weapon extractedWeapon = extractor.ExtractedWeapon;
 
@@ -71,7 +147,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return EquipmentSlotPresentationContext.CreateEmpty();            
         }
 
-        protected EquipmentSlotPresentationContext ExtractLeftRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractLeftRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             extractor.Reset();
             extractor.ExtractLeftRingEquipment();
@@ -79,7 +155,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return ExtractJewelry(extractor);
         }
 
-        protected EquipmentSlotPresentationContext ExtractRightRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractRightRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             extractor.Reset();
             extractor.ExtractRightRingEquipment();
@@ -87,7 +163,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return ExtractJewelry(extractor);
         }
 
-        protected EquipmentSlotPresentationContext ExtractBeltEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractBeltEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             extractor.Reset();
             extractor.ExtractBeltEquipment();
@@ -95,7 +171,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return ExtractJewelry(extractor);
         }
 
-        protected EquipmentSlotPresentationContext ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquipmentSlotPresentationContext ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             Jewelry extractedJewelry = extractor.ExtractedJewelry;
 

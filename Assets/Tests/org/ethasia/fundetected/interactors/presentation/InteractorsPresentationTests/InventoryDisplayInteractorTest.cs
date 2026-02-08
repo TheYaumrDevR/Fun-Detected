@@ -206,8 +206,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
         private EquipmentSlotsPresentationContext CallEquipmentExtraction(PlayerCharacter playerCharacter)
         {
             PlayerEquipmentItemsExtractionVisitor itemExtractionVisitor = playerCharacter.CreateItemExtractionVisitor();
+            ItemInventoryExtractionVisitor inventoryExtractionVisitor = playerCharacter.CreateInventoryItemExtractionVisitor();
 
-            InventoryDisplayInteractorWithCreatedPresentationContext testCandidate = new InventoryDisplayInteractorWithCreatedPresentationContext(itemExtractionVisitor);
+            InventoryDisplayInteractorWithCreatedPresentationContext testCandidate = new InventoryDisplayInteractorWithCreatedPresentationContext(itemExtractionVisitor, inventoryExtractionVisitor);
             testCandidate.ExtractAndShowInventory();
 
             InventoryPresentationContext createdContext = testCandidate.LastCreatedContext;
@@ -307,6 +308,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
         private class InventoryDisplayInteractorWithCreatedPresentationContext : InventoryDisplayInteractor
         {
             private PlayerEquipmentItemsExtractionVisitor itemsExtractionVisitor;
+            private ItemInventoryExtractionVisitor inventoryExtractionVisitor;
 
             public InventoryPresentationContext LastCreatedContext
             {
@@ -314,14 +316,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
                 private set;
             }
 
-            public InventoryDisplayInteractorWithCreatedPresentationContext(PlayerEquipmentItemsExtractionVisitor itemsExtractionVisitor)
+            public InventoryDisplayInteractorWithCreatedPresentationContext(PlayerEquipmentItemsExtractionVisitor itemsExtractionVisitor, ItemInventoryExtractionVisitor inventoryExtractionVisitor)
             {
                 this.itemsExtractionVisitor = itemsExtractionVisitor;
+                this.inventoryExtractionVisitor = inventoryExtractionVisitor;
             }
 
             public override void ExtractAndShowInventory()
             {
-                LastCreatedContext = CreateInventoryPresentationContext(itemsExtractionVisitor);
+                LastCreatedContext = CreateInventoryPresentationContext(itemsExtractionVisitor, inventoryExtractionVisitor);
             }
         }
     }

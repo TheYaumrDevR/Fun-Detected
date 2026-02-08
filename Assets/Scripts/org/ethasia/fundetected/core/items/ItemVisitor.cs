@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 
 namespace Org.Ethasia.Fundetected.Core.Items
 {
@@ -7,5 +8,6 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public abstract void Visit(Weapon weapon);
         public abstract void Visit(Armor armour);
         public abstract void Visit(Jewelry jewelry);
+        public abstract void Visit(RecoveryPotion recoveryPotion);
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Items
@@ -5,6 +7,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
     public class ItemInventory
     {
         private ItemInInventoryShape[,] inventoryGrid = new ItemInInventoryShape[12, 5];
+        private List<ItemInInventoryShape> items = new List<ItemInInventoryShape>();
+
+        public List<ItemInInventoryShape> GetItems()
+        {
+            return items;
+        }
 
         public ItemInInventoryShape ReplaceItemAt(ItemInInventoryShape item, PositionImmutable position)
         {
@@ -139,6 +147,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 for (int y = 0; y < item.Height; y++)
                 {
                     inventoryGrid[position.X + x, position.Y + y] = item;
+                    items.Add(item);
                 }
             }
 

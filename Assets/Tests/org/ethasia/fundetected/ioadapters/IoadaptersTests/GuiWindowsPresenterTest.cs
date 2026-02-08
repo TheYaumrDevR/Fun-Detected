@@ -150,7 +150,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .SetRightMostPotion(rightMostPotionContext)
                 .Build();
 
-            return new InventoryPresentationContext(equipmentSlotsContext);
+            InventoryGridPresentationContext inventoryGridContext = new InventoryGridPresentationContext();
+
+            return new InventoryPresentationContext(equipmentSlotsContext, inventoryGridContext);
         }
     }
 }

@@ -197,6 +197,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return new PlayerEquipmentItemsExtractionVisitor(allEquipment);
         }
 
+        public ItemInventoryExtractionVisitor CreateInventoryItemExtractionVisitor()
+        {
+            return new ItemInventoryExtractionVisitor(inventory);
+        }
+
         private void PresentDamage(int damageTaken)
         {
             IPlayerDamageTakenInteractor playerDamageTakenInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDamageTakenInteractorInstance();
