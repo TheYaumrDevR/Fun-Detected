@@ -10,8 +10,10 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
     public partial class InventoryWindow : FunDetectedWindowExtension
     {
         private const string EQUIPMENT_SLOTS_PANEL_NAME = "inventory-equipment-panel";
+        private const string INVENTORY_GRID_PANEL_NAME = "inventory-grid-panel";
 
         private EquipmentSlotsPanel equipmentSlotsPanel;
+        private InventoryGridPanel inventoryGridPanel;
 
         protected override string GetBaseWindowName() 
         {
@@ -24,6 +26,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             visualTree.CloneTree(this);
 
             equipmentSlotsPanel = this.Q<EquipmentSlotsPanel>(EQUIPMENT_SLOTS_PANEL_NAME);
+            inventoryGridPanel = this.Q<InventoryGridPanel>(INVENTORY_GRID_PANEL_NAME);
         }
 
         public void Open(InventoryRenderContext renderContext)
@@ -33,6 +36,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             if (equipmentSlotsPanel != null)
             {
                 equipmentSlotsPanel.RenderEquippedItems(renderContext.EquipmentSlotsRenderContext);
+            }
+
+            if (inventoryGridPanel != null)
+            {
+                inventoryGridPanel.RenderInventoryItems(renderContext.InventoryGridRenderContext);
             }
         }
 

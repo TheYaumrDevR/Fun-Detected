@@ -263,13 +263,5 @@ namespace Org.Ethasia.Fundetected.Technical
                 Id = id;
             }
         }
-
-        private InventoryRenderContext CreateTestRenderContextForInventory()
-        {
-            EquipmentSlotsRenderContext equipmentSlotsRenderContext = new EquipmentSlotsRenderContext.Builder()
-                .Build();
-
-            return new InventoryRenderContext(equipmentSlotsRenderContext);
-        }
     }
 }

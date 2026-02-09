@@ -46,7 +46,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private InventoryRenderContext ConvertInventoryPresentationContext(InventoryPresentationContext context)
         {
             EquipmentSlotsRenderContext equipmentSlotsRenderContext = ConvertEquipmentSlotsPresentationContext(context.EquipmentSlotsPresentationContext);
-            return new InventoryRenderContext(equipmentSlotsRenderContext);
+            InventoryGridRenderContext inventoryGridRenderContext = ConvertInventoryGridPresentationContext(context.InventoryGridPresentationContext);
+
+            return new InventoryRenderContext(equipmentSlotsRenderContext, inventoryGridRenderContext);
         }
 
         private EquipmentSlotsRenderContext ConvertEquipmentSlotsPresentationContext(EquipmentSlotsPresentationContext context)
@@ -76,6 +78,50 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemImagePath(context.ItemId)
                 .SetIsEquipped(context.IsLegallyEquipped)
                 .Build();
+        }
+
+        private InventoryGridRenderContext ConvertInventoryGridPresentationContext(InventoryGridPresentationContext toConvert)
+        {
+            InventoryGridRenderContext result = new InventoryGridRenderContext();
+
+            if (toConvert.ItemsPresentationContexts != null)
+            {
+                foreach (var itemContext in toConvert.ItemsPresentationContexts)
+                {
+                    ConvertAndAddInventoryRenderContext(itemContext, result);
+                }
+            }
+
+            return result;
+        }
+
+        private void ConvertAndAddInventoryRenderContext(InventoryItemPresentationContext itemContext, InventoryGridRenderContext inventoryGridRenderContext)
+        {
+            for (int x = 0; x < itemContext.DimensionX; x++)
+            {
+                for (int y = 0; y < itemContext.DimensionY; y++)
+                {
+                    if (x == 0 && y == 0)
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithItemImageName(itemContext.ItemId)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
+                    }
+                    else
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
+                    }
+                }
+            }
         }
     }
 }
