@@ -35,6 +35,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         private InventoryGridPresentationContext CreateInventoryGridPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor)
         {
             InventoryGridPresentationContext result = new InventoryGridPresentationContext();
+            inventoryExtractor.ExtractItems();
 
             ConvertWeaponsToPresentationContext(inventoryExtractor, result);
             ConvertArmorsToPresentationContext(inventoryExtractor, result);

@@ -142,12 +142,13 @@ namespace Org.Ethasia.Fundetected.Core.Items
             ItemInInventoryShape item = itemWithPosition.Item;
             PositionImmutable position = itemWithPosition.Position;
 
+            items.Add(item);
+
             for (int x = 0; x < item.Width; x++)
             {
                 for (int y = 0; y < item.Height; y++)
                 {
                     inventoryGrid[position.X + x, position.Y + y] = item;
-                    items.Add(item);
                 }
             }
 

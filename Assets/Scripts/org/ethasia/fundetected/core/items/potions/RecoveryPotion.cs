@@ -12,7 +12,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
 
         public override void Accept(ItemVisitor visitor)
         {
-
+            visitor.Visit(this);
         }
 
         public override void RerollEntireItem()

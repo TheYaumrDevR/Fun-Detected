@@ -37,7 +37,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 for (int j = 0; j < 5; j++)
                 {
                     InventorySlotRenderContext slotRenderContext = renderContext.SlotRenderContexts[i, j];
-                    
+
                     if (inventorySlots[i, j] != null)
                     {
                         inventorySlots[i, j].RenderItem(slotRenderContext);
