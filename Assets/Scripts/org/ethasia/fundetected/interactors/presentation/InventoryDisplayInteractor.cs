@@ -37,15 +37,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             InventoryGridPresentationContext result = new InventoryGridPresentationContext();
             inventoryExtractor.ExtractItems();
 
-            ConvertWeaponsToPresentationContext(inventoryExtractor, result);
-            ConvertArmorsToPresentationContext(inventoryExtractor, result);
-            ConvertJewelryToPresentationContext(inventoryExtractor, result);
-            ConvertRecoveryPotionsToPresentationContext(inventoryExtractor, result);
+            result = ConvertWeaponsToPresentationContext(inventoryExtractor, result);
+            result = ConvertArmorsToPresentationContext(inventoryExtractor, result);
+            result = ConvertJewelryToPresentationContext(inventoryExtractor, result);
+            result = ConvertRecoveryPotionsToPresentationContext(inventoryExtractor, result);
 
             return result;
         }
 
-        private void ConvertWeaponsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        private InventoryGridPresentationContext ConvertWeaponsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
         {
             foreach (var weapon in inventoryExtractor.ExtractedWeapons)
             {
@@ -56,9 +56,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
                 presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
             }
+
+            return presentationContext;
         }
 
-        private void ConvertArmorsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        private InventoryGridPresentationContext ConvertArmorsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
         {
             foreach (var armor in inventoryExtractor.ExtractedArmors)
             {
@@ -69,9 +71,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
                 presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
             }
+
+            return presentationContext;
         }
 
-        private void ConvertJewelryToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        private InventoryGridPresentationContext ConvertJewelryToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
         {
             foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
             {
@@ -82,9 +86,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
                 presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
             }
+
+            return presentationContext;
         }
 
-        private void ConvertRecoveryPotionsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
+        private InventoryGridPresentationContext ConvertRecoveryPotionsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
         {
             foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
             {
@@ -95,6 +101,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
                 presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
             }
+
+            return presentationContext;
         }
 
         private void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)

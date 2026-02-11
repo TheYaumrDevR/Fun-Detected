@@ -88,14 +88,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 foreach (var itemContext in toConvert.ItemsPresentationContexts)
                 {
-                    ConvertAndAddInventoryRenderContext(itemContext, result);
+                    result = ConvertAndAddInventoryRenderContext(itemContext, result);
                 }
             }
 
             return result;
         }
 
-        private void ConvertAndAddInventoryRenderContext(InventoryItemPresentationContext itemContext, InventoryGridRenderContext inventoryGridRenderContext)
+        private InventoryGridRenderContext ConvertAndAddInventoryRenderContext(InventoryItemPresentationContext itemContext, InventoryGridRenderContext inventoryGridRenderContext)
         {
             for (int x = 0; x < itemContext.DimensionX; x++)
             {
@@ -122,6 +122,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     }
                 }
             }
+
+            return inventoryGridRenderContext;
         }
     }
 }

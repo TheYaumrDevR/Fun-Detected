@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/InventorySlot.uss?fileID=7433441132597879392&amp;guid=f9735ded1cfe2c9489034bf46cd48446&amp;type=3#InventorySlot" />
     
     <engine:VisualElement class="inventory-slot">
-        <engine:VisualElement name="overlay-element" class="inventory-slot-small-item" />
+        <engine:VisualElement name="overlay-element" class="inventory-slot-overlay" />
         <engine:VisualElement name="item-image" class="inventory-slot-small-item-image" />
     </engine:VisualElement>
 </engine:UXML>
