@@ -33,74 +33,32 @@
 
 .inventory-slot-one-two {
     position: absolute;
-    left: 34px;
-    top: 0px;
+    left: 0px;
+    top: 34px;
 }
 
 .inventory-slot-one-three {
     position: absolute;
-    left: 68px;
-    top: 0px;
+    left: 0px;
+    top: 68px;
 }
 
 .inventory-slot-one-four {
     position: absolute;
-    left: 102px;
-    top: 0px;
+    left: 0px;
+    top: 102px;
 }
 
 .inventory-slot-one-five {
     position: absolute;
-    left: 136px;
-    top: 0px;
-}
-
-.inventory-slot-one-six {
-    position: absolute;
-    left: 170px;
-    top: 0px;
-}
-
-.inventory-slot-one-seven {
-    position: absolute;
-    left: 204px;
-    top: 0px;
-}
-
-.inventory-slot-one-eight {
-    position: absolute;
-    left: 238px;
-    top: 0px;
-}
-
-.inventory-slot-one-nine {
-    position: absolute;
-    left: 272px;
-    top: 0px;
-}
-
-.inventory-slot-one-ten {
-    position: absolute;
-    left: 306px;
-    top: 0px;
-}
-
-.inventory-slot-one-eleven {
-    position: absolute;
-    left: 340px;
-    top: 0px;
-}
-
-.inventory-slot-one-twelve {
-    position: absolute;
-    left: 374px;
-    top: 0px;
+    left: 0px;
+    top: 136px;
 }
 
 .inventory-slot-two-one {
     position: absolute;
-    left: 0px;
-    top: 34px;
+    left: 34px;
+    top: 0px;
 }
 
 .inventory-slot-two-two {
@@ -111,74 +69,32 @@
 
 .inventory-slot-two-three {
     position: absolute;
-    left: 68px;
-    top: 34px;
+    left: 34px;
+    top: 68px;
 }
 
 .inventory-slot-two-four {
     position: absolute;
-    left: 102px;
-    top: 34px;
+    left: 34px;
+    top: 102px;
 }
 
 .inventory-slot-two-five {
     position: absolute;
-    left: 136px;
-    top: 34px;
-}
-
-.inventory-slot-two-six {
-    position: absolute;
-    left: 170px;
-    top: 34px;
-}
-
-.inventory-slot-two-seven {
-    position: absolute;
-    left: 204px;
-    top: 34px;
-}
-
-.inventory-slot-two-eight {
-    position: absolute;
-    left: 238px;
-    top: 34px;
-}
-
-.inventory-slot-two-nine {
-    position: absolute;
-    left: 272px;
-    top: 34px;
-}
-
-.inventory-slot-two-ten {
-    position: absolute;
-    left: 306px;
-    top: 34px;
-}
-
-.inventory-slot-two-eleven {
-    position: absolute;
-    left: 340px;
-    top: 34px;
-}
-
-.inventory-slot-two-twelve {
-    position: absolute;
-    left: 374px;
-    top: 34px;
+    left: 34px;
+    top: 136px;
 }
 
 .inventory-slot-three-one {
     position: absolute;
-    left: 0px;
-    top: 68px;
+    left: 68px;
+    top: 0px;
 }
 
 .inventory-slot-three-two {
     position: absolute;
-    left: 34px;
-    top: 68px;
+    left: 68px;
+    top: 34px;
 }
 
 .inventory-slot-three-three {
@@ -189,74 +105,32 @@
 
 .inventory-slot-three-four {
     position: absolute;
-    left: 102px;
-    top: 68px;
+    left: 68px;
+    top: 102px;
 }
 
 .inventory-slot-three-five {
     position: absolute;
-    left: 136px;
-    top: 68px;
-}
-
-.inventory-slot-three-six {
-    position: absolute;
-    left: 170px;
-    top: 68px;
-}
-
-.inventory-slot-three-seven {
-    position: absolute;
-    left: 204px;
-    top: 68px;
-}
-
-.inventory-slot-three-eight {
-    position: absolute;
-    left: 238px;
-    top: 68px;
-}
-
-.inventory-slot-three-nine {
-    position: absolute;
-    left: 272px;
-    top: 68px;
-}
-
-.inventory-slot-three-ten {
-    position: absolute;
-    left: 306px;
-    top: 68px;
-}
-
-.inventory-slot-three-eleven {
-    position: absolute;
-    left: 340px;
-    top: 68px;
-}
-
-.inventory-slot-three-twelve {
-    position: absolute;
-    left: 374px;
-    top: 68px;
+    left: 68px;
+    top: 136px;
 }
 
 .inventory-slot-four-one {
     position: absolute;
-    left: 0px;
-    top: 102px;
+    left: 102px;
+    top: 0px;
 }
 
 .inventory-slot-four-two {
     position: absolute;
-    left: 34px;
-    top: 102px;
+    left: 102px;
+    top: 34px;
 }
 
 .inventory-slot-four-three {
     position: absolute;
-    left: 68px;
-    top: 102px;
+    left: 102px;
+    top: 68px;
 }
 
 .inventory-slot-four-four {
@@ -267,120 +141,6 @@
 
 .inventory-slot-four-five {
     position: absolute;
-    left: 136px;
-    top: 102px;
-}
-
-.inventory-slot-four-six {
-    position: absolute;
-    left: 170px;
-    top: 102px;
-}
-
-.inventory-slot-four-seven {
-    position: absolute;
-    left: 204px;
-    top: 102px;
-}
-
-.inventory-slot-four-eight {
-    position: absolute;
-    left: 238px;
-    top: 102px;
-}
-
-.inventory-slot-four-nine {
-    position: absolute;
-    left: 272px;
-    top: 102px;
-}
-
-.inventory-slot-four-ten {
-    position: absolute;
-    left: 306px;
-    top: 102px;
-}
-
-.inventory-slot-four-eleven {
-    position: absolute;
-    left: 340px;
-    top: 102px;
-}
-
-.inventory-slot-four-twelve {
-    position: absolute;
-    left: 374px;
-    top: 102px;
-}
-
-.inventory-slot-five-one {
-    position: absolute;
-    left: 0px;
-    top: 136px;
-}
-
-.inventory-slot-five-two {
-    position: absolute;
-    left: 34px;
-    top: 136px;
-}
-
-.inventory-slot-five-three {
-    position: absolute;
-    left: 68px;
-    top: 136px;
-}
-
-.inventory-slot-five-four {
-    position: absolute;
     left: 102px;
-    top: 136px;
-}
-
-.inventory-slot-five-five {
-    position: absolute;
-    left: 136px;
-    top: 136px;
-}
-
-.inventory-slot-five-six {
-    position: absolute;
-    left: 170px;
-    top: 136px;
-}
-
-.inventory-slot-five-seven {
-    position: absolute;
-    left: 204px;
-    top: 136px;
-}
-
-.inventory-slot-five-eight {
-    position: absolute;
-    left: 238px;
-    top: 136px;
-}
-
-.inventory-slot-five-nine {
-    position: absolute;
-    left: 272px;
-    top: 136px;
-}
-
-.inventory-slot-five-ten {
-    position: absolute;
-    left: 306px;
-    top: 136px;
-}
-
-.inventory-slot-five-eleven {
-    position: absolute;
-    left: 340px;
-    top: 136px;
-}
-
-.inventory-slot-five-twelve {
-    position: absolute;
-    left: 374px;
     top: 136px;
 }
