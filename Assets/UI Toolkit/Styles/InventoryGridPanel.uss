@@ -144,3 +144,243 @@
     left: 102px;
     top: 136px;
 }
+
+.inventory-slot-five-one {
+    position: absolute;
+    left: 136px;
+    top: 0px;
+}
+
+.inventory-slot-five-two {
+    position: absolute;
+    left: 136px;
+    top: 34px;
+}
+
+.inventory-slot-five-three {
+    position: absolute;
+    left: 136px;
+    top: 68px;
+}
+
+.inventory-slot-five-four {
+    position: absolute;
+    left: 136px;
+    top: 102px;
+}
+
+.inventory-slot-five-five {
+    position: absolute;
+    left: 136px;
+    top: 136px;
+}
+
+.inventory-slot-six-one {
+    position: absolute;
+    left: 170px;
+    top: 0px;
+}
+
+.inventory-slot-six-two {
+    position: absolute;
+    left: 170px;
+    top: 34px;
+}
+
+.inventory-slot-six-three {
+    position: absolute;
+    left: 170px;
+    top: 68px;
+}
+
+.inventory-slot-six-four {
+    position: absolute;
+    left: 170px;
+    top: 102px;
+}
+
+.inventory-slot-six-five {
+    position: absolute;
+    left: 170px;
+    top: 136px;
+}
+
+.inventory-slot-seven-one {
+    position: absolute;
+    left: 204px;
+    top: 0px;
+}
+
+.inventory-slot-seven-two {
+    position: absolute;
+    left: 204px;
+    top: 34px;
+}
+
+.inventory-slot-seven-three {
+    position: absolute;
+    left: 204px;
+    top: 68px;
+}
+
+.inventory-slot-seven-four {
+    position: absolute;
+    left: 204px;
+    top: 102px;
+}
+
+.inventory-slot-seven-five {
+    position: absolute;
+    left: 204px;
+    top: 136px;
+}
+
+.inventory-slot-eight-one {
+    position: absolute;
+    left: 238px;
+    top: 0px;
+}
+
+.inventory-slot-eight-two {
+    position: absolute;
+    left: 238px;
+    top: 34px;
+}
+
+.inventory-slot-eight-three {
+    position: absolute;
+    left: 238px;
+    top: 68px;
+}
+
+.inventory-slot-eight-four {
+    position: absolute;
+    left: 238px;
+    top: 102px;
+}
+
+.inventory-slot-eight-five {
+    position: absolute;
+    left: 238px;
+    top: 136px;
+}
+
+.inventory-slot-nine-one {
+    position: absolute;
+    left: 272px;
+    top: 0px;
+}
+
+.inventory-slot-nine-two {
+    position: absolute;
+    left: 272px;
+    top: 34px;
+}
+
+.inventory-slot-nine-three {
+    position: absolute;
+    left: 272px;
+    top: 68px;
+}
+
+.inventory-slot-nine-four {
+    position: absolute;
+    left: 272px;
+    top: 102px;
+}
+
+.inventory-slot-nine-five {
+    position: absolute;
+    left: 272px;
+    top: 136px;
+}
+
+.inventory-slot-ten-one {
+    position: absolute;
+    left: 306px;
+    top: 0px;
+}
+
+.inventory-slot-ten-two {
+    position: absolute;
+    left: 306px;
+    top: 34px;
+}
+
+.inventory-slot-ten-three {
+    position: absolute;
+    left: 306px;
+    top: 68px;
+}
+
+.inventory-slot-ten-four {
+    position: absolute;
+    left: 306px;
+    top: 102px;
+}
+
+.inventory-slot-ten-five {
+    position: absolute;
+    left: 306px;
+    top: 136px;
+}
+
+.inventory-slot-eleven-one {
+    position: absolute;
+    left: 340px;
+    top: 0px;
+}
+
+.inventory-slot-eleven-two {
+    position: absolute;
+    left: 340px;
+    top: 34px;
+}
+
+.inventory-slot-eleven-three {
+    position: absolute;
+    left: 340px;
+    top: 68px;
+}
+
+.inventory-slot-eleven-four {
+    position: absolute;
+    left: 340px;
+    top: 102px;
+}
+
+.inventory-slot-eleven-five {
+    position: absolute;
+    left: 340px;
+    top: 136px;
+}
+
+.inventory-slot-twelve-one {
+    position: absolute;
+    left: 374px;
+    top: 0px;
+}
+
+.inventory-slot-twelve-two {
+    position: absolute;
+    left: 374px;
+    top: 34px;
+}
+
+.inventory-slot-twelve-three {
+    position: absolute;
+    left: 374px;
+    top: 68px;
+}
+
+.inventory-slot-twelve-four {
+    position: absolute;
+    left: 374px;
+    top: 102px;
+}
+
+.inventory-slot-twelve-five {
+    position: absolute;
+    left: 374px;
+    top: 136px;
+}
