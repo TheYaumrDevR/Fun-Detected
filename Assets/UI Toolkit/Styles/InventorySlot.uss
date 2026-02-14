@@ -1,33 +1,8 @@
-.inventory-slot-small-item {
+
+.inventory-slot-cell {
     width: 34px;
     height: 34px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-image: url('project://database/Assets/UI/Images/Inventory/Resources/InventoryGridCell.png');
-}
-
-.inventory-slot-small-item-image {
-    background-repeat: no-repeat;
-    background-size: contain;
-    flex-shrink: 0;
-}
-
-.inventory-slot-large-item {
-    width: 34px;
-    height: 34px;
-    position: relative;
-    background-image: url('project://database/Assets/UI/Images/Inventory/Resources/InventoryGridCell.png');
-}
-
-.inventory-slot-large-item-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-repeat: no-repeat;
-    background-position: top left; 
-    background-size: auto;
 }
 
 .inventory-slot-overlay {

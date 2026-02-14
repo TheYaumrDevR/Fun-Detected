@@ -9,32 +9,36 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
     [UxmlElement]
     public partial class InventoryGridPanel : VisualElement
     {
-        private const string INVENTORY_SLOT_NAME_SUFFIX = "inventory-slot";
+        private const int GRID_ROWS = 5;
+        private const int GRID_COLUMNS = 12;
+        private const int CELL_SIZE = 34;
+
+        private const string GRID_CELLS_LAYER_NAME = "grid-cells";
+        private const string ITEM_IMAGES_LAYER_NAME = "item-images";
 
         private InventorySlot[,] inventorySlots;
+        private VisualElement[,] alreadyRenderedItems;
+        private VisualElement grid;
+        private VisualElement itemImagesLayer;
 
         public InventoryGridPanel()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/InventoryGridPanel");
             visualTree.CloneTree(this);
 
-            inventorySlots = new InventorySlot[12, 5];
+            grid = this.Q<VisualElement>(GRID_CELLS_LAYER_NAME);
+            itemImagesLayer = this.Q<VisualElement>(ITEM_IMAGES_LAYER_NAME);
 
-            for (int row = 0; row < 12; row++)
-            {
-                for (int col = 0; col < 5; col++)
-                {
-                    string slotName = $"{row}-{col}-{INVENTORY_SLOT_NAME_SUFFIX}";
-                    inventorySlots[row, col] = this.Q<InventorySlot>(slotName);
-                }
-            }
+            alreadyRenderedItems = new VisualElement[GRID_COLUMNS, GRID_ROWS];
+
+            CreateInventorySlots();
         }
 
         public void RenderInventoryItems(InventoryGridRenderContext renderContext)
         {
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < GRID_COLUMNS; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < GRID_ROWS; j++)
                 {
                     InventorySlotRenderContext slotRenderContext = renderContext.SlotRenderContexts[i, j];
 
@@ -42,6 +46,55 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     {
                         inventorySlots[i, j].RenderItem(slotRenderContext);
                     }
+
+                    RenderItemImage(slotRenderContext, i, j);
+                }
+            }
+        }
+
+        private void CreateInventorySlots()
+        {
+            inventorySlots = new InventorySlot[GRID_COLUMNS, GRID_ROWS];
+
+            for (int row = 0; row < GRID_COLUMNS; row++)
+            {
+                for (int col = 0; col < GRID_ROWS; col++)
+                {
+                    var cell = new InventorySlot();
+
+                    grid.Add(cell);
+                    inventorySlots[row, col] = cell;
+                }
+            }            
+        }
+
+        private void RenderItemImage(InventorySlotRenderContext slotRenderContext, int posX, int posY)
+        {
+            if (!string.IsNullOrEmpty(slotRenderContext.ItemImageName))
+            {
+                if (alreadyRenderedItems[posX, posY] == null)
+                {
+                    var itemImage = new VisualElement();
+
+                    Sprite itemSprite = Resources.Load<Sprite>(slotRenderContext.ItemImageName);
+
+                    itemImage.style.backgroundImage = new StyleBackground(
+                        itemSprite
+                    );
+
+                    itemImage.style.position = Position.Absolute;
+                    itemImage.style.left = posX * CELL_SIZE;
+                    itemImage.style.top = posY * CELL_SIZE;
+
+                    itemImage.style.width = itemSprite.rect.width;
+                    itemImage.style.height = itemSprite.rect.height;
+
+                    if (itemImagesLayer != null)
+                    {
+                        itemImagesLayer.Add(itemImage);
+                    }
+
+                    alreadyRenderedItems[posX, posY] = itemImage;
                 }
             }
         }
