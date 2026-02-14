@@ -74,29 +74,44 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             {
                 if (alreadyRenderedItems[posX, posY] == null)
                 {
-                    var itemImage = new VisualElement();
-
                     Sprite itemSprite = Resources.Load<Sprite>(slotRenderContext.ItemImageName);
 
-                    itemImage.style.backgroundImage = new StyleBackground(
-                        itemSprite
-                    );
-
-                    itemImage.style.position = Position.Absolute;
-                    itemImage.style.left = posX * CELL_SIZE;
-                    itemImage.style.top = posY * CELL_SIZE;
-
-                    itemImage.style.width = itemSprite.rect.width;
-                    itemImage.style.height = itemSprite.rect.height;
-
-                    if (itemImagesLayer != null)
-                    {
-                        itemImagesLayer.Add(itemImage);
-                    }
-
-                    alreadyRenderedItems[posX, posY] = itemImage;
+                    var itemImage = CreateItemImage(itemSprite);
+                    StyleItemImage(itemImage, itemSprite, posX, posY);  
+                    AddItemImageToLayer(itemImage, posX, posY);
                 }
             }
+        }
+
+        private VisualElement CreateItemImage(Sprite itemSprite)
+        {
+            var result = new VisualElement();
+
+            result.style.backgroundImage = new StyleBackground(
+                itemSprite
+            );
+
+            return result;
+        }
+
+        private void StyleItemImage(VisualElement itemImage, Sprite itemSprite, int posX, int posY)
+        {
+            itemImage.style.position = Position.Absolute;
+            itemImage.style.left = posX * CELL_SIZE;
+            itemImage.style.top = posY * CELL_SIZE;
+
+            itemImage.style.width = itemSprite.rect.width;
+            itemImage.style.height = itemSprite.rect.height;
+        }
+
+        private void AddItemImageToLayer(VisualElement itemImage, int posX, int posY)
+        {
+            if (itemImagesLayer != null)
+            {
+                itemImagesLayer.Add(itemImage);
+            }
+
+            alreadyRenderedItems[posX, posY] = itemImage;            
         }
     }
 }
