@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Items.Potions
 {
     public abstract class Potion : Item
@@ -6,6 +8,11 @@ namespace Org.Ethasia.Fundetected.Core.Items.Potions
         {
             get;
             private set;
+        }
+
+        public override Item OnPickup(PlayerCharacter player)
+        {
+            return player.PickupPotion(this);
         }
 
         protected void Clone(Potion clone)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
@@ -178,6 +179,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             {
                 TotalStats.Calculate(BaseStats, StatModifiers, allEquipment.EquipmentStats);
                 meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
+
+                return result;
             }
             else
             {
@@ -188,8 +191,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
                 return null;
             }
+        }
 
-            return result;
+        public Potion PickupPotion(Potion potion)
+        {
+            if (!inventory.AddItemAtNextFreePosition(potion.CreateInventoryShape()))
+            {
+                return potion;
+            }
+
+            return null;
         }
 
         public PlayerEquipmentItemsExtractionVisitor CreateItemExtractionVisitor()
