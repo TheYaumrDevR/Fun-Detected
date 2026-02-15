@@ -524,21 +524,65 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Jewelry testItem3 = jewelryBuilder.Build();
             Jewelry testItem4 = jewelryBuilder.Build();
 
+            Weapon.Builder weaponBuilder = new Weapon.Builder()
+                .SetMinToMaxPhysicalDamage(new DamageRange(3, 5));
+            weaponBuilder.SetItemClass(ItemClass.ONE_HANDED_SWORD);
+
+            Weapon testWeapon1 = weaponBuilder.Build();
+            Weapon testWeapon2 = weaponBuilder.Build();
+            Weapon testWeapon3 = weaponBuilder.Build();
+            Weapon testWeapon4 = weaponBuilder.Build();
+            Weapon testWeapon5 = weaponBuilder.Build();
+            Weapon testWeapon6 = weaponBuilder.Build();
+            Weapon testWeapon7 = weaponBuilder.Build();
+            Weapon testWeapon8 = weaponBuilder.Build();
+            Weapon testWeapon9 = weaponBuilder.Build();
+
             testArea.AddItem(testItem2);
             testArea.AddItem(testItem1);
             testArea.AddItem(testItem3);
             testArea.AddItem(testItem4);
+
+            testArea.AddItem(testWeapon1);
+            testArea.AddItem(testWeapon2);
+            testArea.AddItem(testWeapon3);
+            testArea.AddItem(testWeapon4);
+            testArea.AddItem(testWeapon5);
+            testArea.AddItem(testWeapon6);
+            testArea.AddItem(testWeapon7);
+            testArea.AddItem(testWeapon8);
+            testArea.AddItem(testWeapon9);
 
             bool pickedRingOne = testArea.PickupItem(0);
             bool pickedRingTwo = testArea.PickupItem(1);
             bool pickedBelt = testArea.PickupItem(0);
             bool pickedRingThree = testArea.PickupItem(0);
 
+            bool pickedWeaponOne = testArea.PickupItem(0);
+            bool pickedWeaponTwo = testArea.PickupItem(0);
+            bool pickedWeaponThree = testArea.PickupItem(0);
+            bool pickedWeaponFour = testArea.PickupItem(0);
+            bool pickedWeaponFive = testArea.PickupItem(0);
+            bool pickedWeaponSix = testArea.PickupItem(0);
+            bool pickedWeaponSeven = testArea.PickupItem(0);
+            bool pickedWeaponEight = testArea.PickupItem(0);
+            bool pickedWeaponNine = testArea.PickupItem(0);
+
             Assert.That(testArea.DroppedItems.Count, Is.EqualTo(1));
             Assert.That(pickedRingOne, Is.True);
             Assert.That(pickedRingTwo, Is.True);
             Assert.That(pickedBelt, Is.True);
-            Assert.That(pickedRingThree, Is.False);
+            Assert.That(pickedRingThree, Is.True);
+
+            Assert.That(pickedWeaponOne, Is.True);
+            Assert.That(pickedWeaponTwo, Is.True);
+            Assert.That(pickedWeaponThree, Is.True);
+            Assert.That(pickedWeaponFour, Is.True);
+            Assert.That(pickedWeaponFive, Is.True);
+            Assert.That(pickedWeaponSix, Is.True);
+            Assert.That(pickedWeaponSeven, Is.True);
+            Assert.That(pickedWeaponEight, Is.True);
+            Assert.That(pickedWeaponNine, Is.False);
         }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
