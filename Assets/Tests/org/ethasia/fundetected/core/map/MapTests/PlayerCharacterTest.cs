@@ -1,6 +1,8 @@
 using NUnit.Framework;
 
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Map.Tests
@@ -66,6 +68,33 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             int unitsMoved = testCandidate.MoveRight(0.065);
             Assert.That(unitsMoved, Is.EqualTo(0)); 
         } 
+
+        [Test]
+        public void TestPickupEquipmentPutsEquipmentInInventoryIfCannotBeEquipped()
+        {
+            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();  
+
+            Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
+            jewelryBuilder.SetItemClass(ItemClass.BELT);
+
+            Jewelry belt1 = jewelryBuilder.Build();
+            Jewelry belt2 = jewelryBuilder.Build();
+
+            testCandidate.PickupEquipment(belt1);
+            testCandidate.PickupEquipment(belt2);
+
+            ItemInventoryExtractionVisitor inventoryExtractor = testCandidate.CreateInventoryItemExtractionVisitor();
+
+            inventoryExtractor.ExtractItems();
+
+            Assert.That(inventoryExtractor.ExtractedWeapons.Count, Is.EqualTo(0));
+            Assert.That(inventoryExtractor.ExtractedArmors.Count, Is.EqualTo(0));
+            Assert.That(inventoryExtractor.ExtractedJewelry.Count, Is.EqualTo(1));
+            Assert.That(inventoryExtractor.ExtractedJewelry[0].Item, Is.EqualTo(belt2));
+        }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
         {
