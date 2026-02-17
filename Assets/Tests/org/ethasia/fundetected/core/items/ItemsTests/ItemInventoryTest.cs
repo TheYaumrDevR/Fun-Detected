@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
@@ -362,6 +363,30 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
 
             Assert.That(removedItem, Is.Null);
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(0, 0)), Is.True);
+        }
+
+        [Test]
+        public void TestAddItemAtNextFreePositionAddsItemsToItemList()
+        {
+            ItemInventory testCandidate = new ItemInventory();
+
+            ItemInInventoryShape ring1Shape = CreateRingShape();
+            ItemInInventoryShape ring2Shape = CreateRingShape();
+            ItemInInventoryShape potionShape = CreatePotionShape();
+            ItemInInventoryShape helmShape = CreateHelmetShape();
+
+            testCandidate.AddItemAtNextFreePosition(ring1Shape);
+            testCandidate.AddItemAtNextFreePosition(ring2Shape);
+            testCandidate.AddItemAtNextFreePosition(potionShape);
+            testCandidate.AddItemAtNextFreePosition(helmShape);
+
+            List<ItemInInventoryShape> result = testCandidate.GetItems();
+
+            Assert.That(result, Has.Count.EqualTo(4));
+            Assert.That(result, Has.Member(ring1Shape));
+            Assert.That(result, Has.Member(ring2Shape));
+            Assert.That(result, Has.Member(potionShape));
+            Assert.That(result, Has.Member(helmShape));
         }
 
         private ItemInInventoryShape CreateBowShape()
