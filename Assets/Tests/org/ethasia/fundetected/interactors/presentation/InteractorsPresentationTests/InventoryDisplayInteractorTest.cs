@@ -3,6 +3,7 @@ using System.Collections;
 
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
@@ -170,6 +171,74 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             AssertThatRightMostPotionIsEmpty(equipmentSlotsPresentationContext);
         }
 
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsInventoryGridCorrectly()
+        {
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+
+            RecoveryPotion potion1 = CreateTestRecoveryPotion("Life Potion");
+            RecoveryPotion potion2 = CreateTestRecoveryPotion("Mana Potion");
+
+            Jewelry ring1 = CreateTestJewelry("Ruby Ring", ItemClass.RING);
+            Jewelry ring2 = CreateTestJewelry("Emerald Ring", ItemClass.RING);
+            Jewelry ring3 = CreateTestJewelry("Sapphire Ring", ItemClass.RING);
+
+            Weapon weapon1 = CreateTestWeapon("Sharp Axe", ItemClass.ONE_HANDED_AXE);
+            Weapon weapon2 = CreateTestWeapon("Steel Axe", ItemClass.ONE_HANDED_AXE);
+            Weapon weapon3 = CreateTestWeapon("Cutlass", ItemClass.ONE_HANDED_SWORD);
+            Weapon weapon4 = CreateTestWeapon("The Mirage", ItemClass.ONE_HANDED_SWORD);
+
+            playerCharacter.PickupPotion(potion1);
+            playerCharacter.PickupPotion(potion2);
+            playerCharacter.PickupEquipment(ring1);
+            playerCharacter.PickupEquipment(ring2);
+            playerCharacter.PickupEquipment(ring3);
+            playerCharacter.PickupEquipment(weapon1);
+            playerCharacter.PickupEquipment(weapon2);
+            playerCharacter.PickupEquipment(weapon3);
+            playerCharacter.PickupEquipment(weapon4);
+
+            InventoryGridPresentationContext inventoryGridPresentationContext = CallInventoryGridExtraction(playerCharacter);
+
+            Assert.That(inventoryGridPresentationContext.ItemsPresentationContexts.Count, Is.EqualTo(5));
+
+            InventoryItemPresentationContext firstResult = inventoryGridPresentationContext.ItemsPresentationContexts[0];
+            InventoryItemPresentationContext secondResult = inventoryGridPresentationContext.ItemsPresentationContexts[1];
+            InventoryItemPresentationContext thirdResult = inventoryGridPresentationContext.ItemsPresentationContexts[2];
+            InventoryItemPresentationContext fourthResult = inventoryGridPresentationContext.ItemsPresentationContexts[3];
+            InventoryItemPresentationContext fifthResult = inventoryGridPresentationContext.ItemsPresentationContexts[4];
+
+            Assert.That(firstResult.ItemId, Is.EqualTo("Cutlass"));
+            Assert.That(firstResult.TopLeftCornerX, Is.EqualTo(1));
+            Assert.That(firstResult.TopLeftCornerY, Is.EqualTo(0));
+            Assert.That(firstResult.DimensionX, Is.EqualTo(2));
+            Assert.That(firstResult.DimensionY, Is.EqualTo(3));
+
+            Assert.That(secondResult.ItemId, Is.EqualTo("The Mirage"));
+            Assert.That(secondResult.TopLeftCornerX, Is.EqualTo(3));
+            Assert.That(secondResult.TopLeftCornerY, Is.EqualTo(0));
+            Assert.That(secondResult.DimensionX, Is.EqualTo(2));
+            Assert.That(secondResult.DimensionY, Is.EqualTo(3));
+
+            Assert.That(thirdResult.ItemId, Is.EqualTo("Sapphire Ring"));
+            Assert.That(thirdResult.TopLeftCornerX, Is.EqualTo(0));
+            Assert.That(thirdResult.TopLeftCornerY, Is.EqualTo(4));
+            Assert.That(thirdResult.DimensionX, Is.EqualTo(1));
+            Assert.That(thirdResult.DimensionY, Is.EqualTo(1));
+
+            Assert.That(fourthResult.ItemId, Is.EqualTo("Life Potion"));
+            Assert.That(fourthResult.TopLeftCornerX, Is.EqualTo(0));
+            Assert.That(fourthResult.TopLeftCornerY, Is.EqualTo(0));
+            Assert.That(fourthResult.DimensionX, Is.EqualTo(1));
+            Assert.That(fourthResult.DimensionY, Is.EqualTo(2));
+
+            Assert.That(fifthResult.ItemId, Is.EqualTo("Mana Potion"));
+            Assert.That(fifthResult.TopLeftCornerX, Is.EqualTo(0));
+            Assert.That(fifthResult.TopLeftCornerY, Is.EqualTo(2));
+            Assert.That(fifthResult.DimensionX, Is.EqualTo(1));
+            Assert.That(fifthResult.DimensionY, Is.EqualTo(2));
+        }
+
         private PlayerCharacter CreateTestPlayer()
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
@@ -203,7 +272,28 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             return jewelryBuilder.Build();
         }
 
+        private RecoveryPotion CreateTestRecoveryPotion(string itemId)
+        {
+            RecoveryPotion.Builder potionBuilder = new RecoveryPotion.Builder();
+            potionBuilder.SetName(itemId);
+            potionBuilder.SetItemClass(ItemClass.LIFE_POTION);
+
+            return potionBuilder.Build();
+        }
+
         private EquipmentSlotsPresentationContext CallEquipmentExtraction(PlayerCharacter playerCharacter)
+        {
+            InventoryPresentationContext createdContext = CallInventoryExtraction(playerCharacter);
+            return createdContext.EquipmentSlotsPresentationContext;
+        }
+
+        private InventoryGridPresentationContext CallInventoryGridExtraction(PlayerCharacter playerCharacter)
+        {
+            InventoryPresentationContext createdContext = CallInventoryExtraction(playerCharacter);
+            return createdContext.InventoryGridPresentationContext;
+        }
+
+        private InventoryPresentationContext CallInventoryExtraction(PlayerCharacter playerCharacter)
         {
             PlayerEquipmentItemsExtractionVisitor itemExtractionVisitor = playerCharacter.CreateItemExtractionVisitor();
             ItemInventoryExtractionVisitor inventoryExtractionVisitor = playerCharacter.CreateInventoryItemExtractionVisitor();
@@ -211,8 +301,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             InventoryDisplayInteractorWithCreatedPresentationContext testCandidate = new InventoryDisplayInteractorWithCreatedPresentationContext(itemExtractionVisitor, inventoryExtractionVisitor);
             testCandidate.ExtractAndShowInventory();
 
-            InventoryPresentationContext createdContext = testCandidate.LastCreatedContext;
-            return createdContext.EquipmentSlotsPresentationContext;
+            return testCandidate.LastCreatedContext;
         }
 
         private void AssertThatMainHandIsEmpty(EquipmentSlotsPresentationContext equipmentSlotsPresentationContext)
