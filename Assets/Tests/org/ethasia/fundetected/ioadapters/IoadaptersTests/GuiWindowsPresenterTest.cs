@@ -17,12 +17,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         [Test]
         public void TestOpenInventoryWindowCreatesProperRenderContext()
         {
-            GuiWindowsPresenter testCandidate = new GuiWindowsPresenter();
-
-            testCandidate.OpenInventoryWindow(CreateSampleInventoryPresentationContext());
-
-            GuiWindowsControllerMock guiWindowsControllerMock = TechnicalMockFactory.GetGuiWindowsControllerMockInstance();
-            InventoryRenderContext result = guiWindowsControllerMock.LastOpenedInventoryContext;
+            InventoryRenderContext result = ExecuteTest();
 
             EquipmentSlotsRenderContext equipmentSlotsContext = result.EquipmentSlotsRenderContext;
 
@@ -56,6 +51,85 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(equipmentSlotsContext.RightMiddlePotion.IsEquipped, Is.True);
             Assert.That(equipmentSlotsContext.RightMostPotion.ItemImagePath, Is.EqualTo("right_most_potion_icon"));
             Assert.That(equipmentSlotsContext.RightMostPotion.IsEquipped, Is.True);
+        }
+
+        [Test]
+        public void TestOpenInventoryWindowConvertsInventoryGridRenderContext()
+        {
+            InventoryRenderContext result = ExecuteTest();
+
+            InventoryGridRenderContext inventoryGridRenderContext = result.InventoryGridRenderContext;      
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].CanBeEquipped, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ItemImageName, Is.EqualTo("first_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 1].CanBeEquipped, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 1].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].CanBeEquipped, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ItemImageName, Is.EqualTo("second_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 3].CanBeEquipped, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 3].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ItemImageName, Is.EqualTo("third_item_icon"));
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ItemImageName, Is.EqualTo("fourth_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 1].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 1].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 2].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 2].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 3].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 3].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 4].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 4].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 0].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 0].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 1].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 1].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 2].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 2].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 3].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 3].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 4].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[2, 4].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 0].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 0].ItemImageName, Is.EqualTo("fifth_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 1].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 1].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 2].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 2].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 3].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 3].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 4].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 4].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 0].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 0].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 1].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 1].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 2].CanBeEquipped, Is.True);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 2].ItemImageName, Is.Null);
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 3].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 3].ItemImageName, Is.Null);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 4].ShouldRenderSomething, Is.False);
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 4].ItemImageName, Is.Null);
+        }
+
+        private InventoryRenderContext ExecuteTest()
+        {
+            GuiWindowsPresenter testCandidate = new GuiWindowsPresenter();
+
+            testCandidate.OpenInventoryWindow(CreateSampleInventoryPresentationContext());
+
+            GuiWindowsControllerMock guiWindowsControllerMock = TechnicalMockFactory.GetGuiWindowsControllerMockInstance();
+            return guiWindowsControllerMock.LastOpenedInventoryContext;            
         }
 
         private InventoryPresentationContext CreateSampleInventoryPresentationContext()
@@ -150,9 +224,65 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .SetRightMostPotion(rightMostPotionContext)
                 .Build();
 
-            InventoryGridPresentationContext inventoryGridContext = new InventoryGridPresentationContext();
+            return new InventoryPresentationContext(equipmentSlotsContext, CreateInventoryGridPresentationContextForTesting());
+        }
 
-            return new InventoryPresentationContext(equipmentSlotsContext, inventoryGridContext);
+        private InventoryGridPresentationContext CreateInventoryGridPresentationContextForTesting()
+        {
+            InventoryItemPresentationContext firstItemPresentationContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("first_item_icon")
+                .WithCanBeEquipped(false)
+                .WithTopLeftCornerX(0)
+                .WithTopLeftCornerY(0)
+                .WithDimensionX(1)
+                .WithDimensionY(2)
+                .Build();
+
+            InventoryItemPresentationContext secondItemPresentationContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("second_item_icon")
+                .WithCanBeEquipped(false)
+                .WithTopLeftCornerX(0)
+                .WithTopLeftCornerY(2)
+                .WithDimensionX(1)
+                .WithDimensionY(2)
+                .Build();
+
+            InventoryItemPresentationContext thirdItemPresentationContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("third_item_icon")
+                .WithCanBeEquipped(true)
+                .WithTopLeftCornerX(0)
+                .WithTopLeftCornerY(4)
+                .WithDimensionX(1)
+                .WithDimensionY(1)
+                .Build();
+
+            InventoryItemPresentationContext fourthItemPresentationContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("fourth_item_icon")
+                .WithCanBeEquipped(true)
+                .WithTopLeftCornerX(1)
+                .WithTopLeftCornerY(0)
+                .WithDimensionX(2)
+                .WithDimensionY(3)
+                .Build();
+
+            InventoryItemPresentationContext fifthItemPresentationContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("fifth_item_icon")
+                .WithCanBeEquipped(true)
+                .WithTopLeftCornerX(3)
+                .WithTopLeftCornerY(0)
+                .WithDimensionX(2)
+                .WithDimensionY(3)
+                .Build();
+
+            InventoryGridPresentationContext result = new InventoryGridPresentationContext();
+
+            result.AddItemPresentationContext(firstItemPresentationContext);
+            result.AddItemPresentationContext(secondItemPresentationContext);
+            result.AddItemPresentationContext(thirdItemPresentationContext);
+            result.AddItemPresentationContext(fourthItemPresentationContext);
+            result.AddItemPresentationContext(fifthItemPresentationContext);
+
+            return result;
         }
     }
 }
