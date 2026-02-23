@@ -1,0 +1,28 @@
+.tooltip-header-normal-border1 {
+    height: 29px;
+    border-width: 1px;
+    border-color: #b3b3b3;
+}
+
+.tooltip-header-normal-border2 {
+    height: 27px;
+    border-width: 1px;
+    border-color: #dcdcdc;
+}
+
+.tooltip-header-normal-border3 {
+    height: 25px;
+    border-width: 1px;
+    border-color: #b3b3b3;
+    justify-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #737373;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tooltip-header-normal-title {
+    font-size: 16px;
+    white-space: nowrap; 
+}

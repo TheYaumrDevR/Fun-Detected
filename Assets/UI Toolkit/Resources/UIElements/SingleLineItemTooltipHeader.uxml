@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/SingleLineItemTooltipHeaderStyles.uss?fileID=7433441132597879392&amp;guid=56712ec4c10489341ad089d800d8761e&amp;type=3#SingleLineItemTooltipHeaderStyles" />
+    
+    <ui:VisualElement name="header-outer-border">
+        <ui:VisualElement name="header-inner-border">
+            <ui:VisualElement name="header-background">
+                <ui:Label name="item-name" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
