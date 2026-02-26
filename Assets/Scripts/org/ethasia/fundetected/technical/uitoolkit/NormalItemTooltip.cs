@@ -26,21 +26,31 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             {
                 tooltipHeader.SetItemName(displayInformation.ItemName);
 
-                style.left = displayInformation.PosX;
-                style.top = displayInformation.PosY;
                 style.visibility = Visibility.Visible;
+                CorrectPositionBasedOnWindowBounds(displayInformation.PosX, displayInformation.PosY);
             }
         }
 
         public void Reposition(float posX, float posY)
         {
-            style.left = posX;
-            style.top = posY;
+            CorrectPositionBasedOnWindowBounds(posX, posY);
         }
 
         public void Hide()
         {
             style.visibility = Visibility.Hidden;
+        }
+
+        private void CorrectPositionBasedOnWindowBounds(float posX, float posY)
+        {
+            float maxX = Screen.width - resolvedStyle.width;
+            float maxY = Screen.height - resolvedStyle.height;
+
+            posX = Mathf.Min(posX, maxX);
+            posY = Mathf.Min(posY, maxY);
+
+            style.left = posX;
+            style.top = posY;
         }
 
         public struct TooltipDisplayInformation
