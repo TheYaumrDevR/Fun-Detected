@@ -79,6 +79,11 @@ namespace Org.Ethasia.Fundetected.Technical
             return GuiWindowsController.GetInstance();
         }
 
+        public override IItemTooltipPresenter GetItemTooltipPresenterInstance()
+        {
+            return GuiWindowsController.GetInstance();
+        }
+
         public override IDroppableItemRenderer GetDroppableItemRendererInstance()
         {
             return DroppableItemRenderer.GetInstance();

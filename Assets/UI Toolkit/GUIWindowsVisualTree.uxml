@@ -1,6 +1,6 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" engine="UnityEngine.UIElements" xmlns:fund="Org.Ethasia.Fundetected.Technical.UIToolkit" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:fund="Org.Ethasia.Fundetected.Technical.UIToolkit" engine="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/GuiWindowsStyle.uss?fileID=7433441132597879392&amp;guid=77161e14fca504740bd1af9c96b5952c&amp;type=3#GuiWindowsStyle" />
-    
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/FloatingTooltip.uss?fileID=7433441132597879392&amp;guid=bb581ceba1561f24da3d2053b73f819e&amp;type=3#FloatingTooltip" />
     <ui:VisualElement name="WindowsRoot" style="flex-grow: 1; align-items: center; justify-content: center; width: 100%; height: 100%; -unity-slice-bottom: 0; color: rgb(255, 255, 255);">
         <ui:VisualElement name="MapSelectionWindow" style="flex-grow: 1; align-items: center; justify-content: flex-start; width: 1159px; height: 869px; min-width: 0; min-height: 0; max-width: 1159px; max-height: 869px; align-self: center; background-image: url(&quot;project://database/Assets/UI/Windows/panel-border-001.png?fileID=2800000&amp;guid=44866fb9aa1694b4a94227932e0fe8bd&amp;type=3#panel-border-001&quot;); -unity-slice-left: 14; -unity-slice-top: 14; -unity-slice-right: 14; -unity-slice-bottom: 14; -unity-slice-scale: 1px; -unity-background-scale-mode: stretch-to-fill; background-position-y: center 0; background-position-x: center 0; background-size: 100% 100%; background-repeat: no-repeat no-repeat; background-color: rgba(0, 0, 0, 0.77);">
             <ui:VisualElement name="MapSelectionWindowHeaderLine" style="flex-grow: 1; height: 59px; max-height: 59px; align-items: flex-end; align-content: flex-start; align-self: flex-start; justify-content: flex-start; white-space: normal; -unity-text-align: upper-left; width: 100%; max-width: 100%; flex-direction: row;">
@@ -16,5 +16,6 @@
             <ui:MultiColumnListView name="MapSelectionList" style="width: 1120px; max-width: 1120px; height: 731px; max-height: 731px; background-image: url(&quot;project://database/Assets/UI/Windows/panel-border-003.png?fileID=2800000&amp;guid=6bf0be1eb3f44c74296028e498840022&amp;type=3#panel-border-003&quot;); -unity-slice-left: 2; -unity-slice-top: 2; -unity-slice-right: 2; -unity-slice-bottom: 2; margin-left: 0; margin-right: 0; margin-bottom: 18px; padding-left: 0; margin-top: 18px;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <fund:InventoryWindow name="InventoryWindow" style="position: absolute; top: 0px; right: 0px;" />
+    <fund:InventoryWindow name="InventoryWindow" style="position: absolute; top: 0; right: 0;" />
+    <fund:NormalItemTooltip name="item-tooltip" class="floating-tooltip" />
 </ui:UXML>

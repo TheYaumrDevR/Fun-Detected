@@ -20,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             this.pickingMode = PickingMode.Ignore;
         }
 
-        public void Show(ToolDisplayInformation displayInformation)
+        public void Show(TooltipDisplayInformation displayInformation)
         {
             if (null != tooltipHeader)
             {
@@ -28,16 +28,22 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
                 style.left = displayInformation.PosX;
                 style.top = displayInformation.PosY;
-                style.display = DisplayStyle.Flex;
+                style.visibility = Visibility.Visible;
             }
+        }
+
+        public void Reposition(float posX, float posY)
+        {
+            style.left = posX;
+            style.top = posY;
         }
 
         public void Hide()
         {
-            style.display = DisplayStyle.None;
+            style.visibility = Visibility.Hidden;
         }
 
-        public struct ToolDisplayInformation
+        public struct TooltipDisplayInformation
         {
             public string ItemName
             {
@@ -59,11 +65,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             public class Builder
             {
-                private ToolDisplayInformation product;
+                private TooltipDisplayInformation product;
 
                 public Builder()
                 {
-                    product = new ToolDisplayInformation();
+                    product = new TooltipDisplayInformation();
                 }
 
                 public Builder SetItemName(string value)
@@ -79,7 +85,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     return this;
                 }
 
-                public ToolDisplayInformation Build()
+                public TooltipDisplayInformation Build()
                 {
                     return product;
                 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
+<ui:UXML
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:ui="UnityEditor.UIElements"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:engine="UnityEditor.UIElements"
     xmlns:fund="Org.Ethasia.Fundetected.Technical.UIToolkit"
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
     <ui:VisualElement>
         <fund:SingleLineItemTooltipHeader name="tooltip-header"/>
     </ui:VisualElement>
-</engine:UXML>
+</ui:UXML>

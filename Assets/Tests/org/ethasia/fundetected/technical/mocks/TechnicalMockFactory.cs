@@ -65,7 +65,12 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return guiWindowsControllerMockInstance;
         }
-        
+
+        public override IItemTooltipPresenter GetItemTooltipPresenterInstance()
+        {
+            return null;
+        }
+
         public override IDroppableItemRenderer GetDroppableItemRendererInstance()
         {
             return null;

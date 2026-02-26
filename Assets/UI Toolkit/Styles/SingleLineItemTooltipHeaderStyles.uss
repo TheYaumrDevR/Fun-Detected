@@ -1,28 +1,31 @@
 .tooltip-header-normal-border1 {
     height: 29px;
     border-width: 1px;
-    border-color: #b3b3b3;
+    border-color: #554a41;
 }
 
 .tooltip-header-normal-border2 {
     height: 27px;
     border-width: 1px;
-    border-color: #dcdcdc;
+    border-color: #4b4745;
 }
 
 .tooltip-header-normal-border3 {
     height: 25px;
     border-width: 1px;
-    border-color: #b3b3b3;
+    border-color: #807673;
     justify-content: center;
     padding-left: 8px;
     padding-right: 8px;
-    background-color: #737373;
+    background-color: #343333;
     flex-direction: row;
     align-items: center;
 }
 
 .tooltip-header-normal-title {
+    color: #e7e8e8;
     font-size: 16px;
     white-space: nowrap; 
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
 }

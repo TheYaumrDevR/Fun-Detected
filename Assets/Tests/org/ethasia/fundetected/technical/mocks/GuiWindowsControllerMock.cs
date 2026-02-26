@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
+using Org.Ethasia.Fundetected.Technical.UIToolkit;
 
 namespace Org.Ethasia.Fundetected.Technical.Mocks
 {
@@ -24,6 +25,18 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         }
 
         public void ToggleInventoryWindow()
+        {
+        }
+
+        public void ShowItemTooltip(NormalItemTooltip.TooltipDisplayInformation displayInformation)
+        {
+        }
+
+        public void RepositionItemTooltip(float posX, float posY)
+        {
+        }
+
+        public void HideItemTooltip()
         {
         }
     }

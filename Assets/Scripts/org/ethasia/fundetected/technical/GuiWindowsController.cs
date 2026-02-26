@@ -12,13 +12,14 @@ using Org.Ethasia.Fundetected.Technical.UIToolkit;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class GuiWindowsController : MonoBehaviour, IGuiWindowsController
+    public class GuiWindowsController : MonoBehaviour, IGuiWindowsController, IItemTooltipPresenter
     {
         private static GuiWindowsController instance;
 
         private VisualElement rootElement;
         private VisualElement mapSelectionWindow;     
         private InventoryWindow inventoryWindow;
+        private NormalItemTooltip itemTooltip;
         private Button mapSelectionWindowCloseButton;
         private Label mapSelectionUsageHint;
         private string mapSelectionUsageHintOriginalText;
@@ -86,6 +87,30 @@ namespace Org.Ethasia.Fundetected.Technical
             SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
+        public void ShowItemTooltip(NormalItemTooltip.TooltipDisplayInformation displayInformation)
+        {
+            if (itemTooltip != null)
+            {
+                itemTooltip.Show(displayInformation);
+            }
+        }
+
+        public void RepositionItemTooltip(float posX, float posY)
+        {
+            if (itemTooltip != null)
+            {
+                itemTooltip.Reposition(posX, posY);
+            }
+        }
+
+        public void HideItemTooltip()
+        {
+            if (itemTooltip != null)
+            {
+                itemTooltip.Hide();
+            }
+        }
+
         public void EnablePlayerInputIfAllWindowsAreClosed()
         {
             PlayerInputHandler playerInputHandler = PlayerInputHandler.GetInstance();
@@ -106,6 +131,7 @@ namespace Org.Ethasia.Fundetected.Technical
             mapSelectionList = rootElement.Q<MultiColumnListView>("MapSelectionList");
 
             inventoryWindow = rootElement.Q<InventoryWindow>("InventoryWindow");
+            itemTooltip = rootElement.Q<NormalItemTooltip>("item-tooltip");
         }        
 
         private void SetupMapSelectionList()
