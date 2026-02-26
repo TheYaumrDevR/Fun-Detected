@@ -77,7 +77,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     Sprite itemSprite = Resources.Load<Sprite>(slotRenderContext.ItemImageName);
 
                     var itemImage = CreateItemImage(itemSprite);
-                    RegisterItemHoverEvents(itemImage, slotRenderContext);
+                    UiElementUtils.RegisterItemHoverEvents(itemImage, slotRenderContext);
                     StyleItemImage(itemImage, itemSprite, posX, posY);  
                     AddItemImageToLayer(itemImage, posX, posY);
                 }
@@ -93,31 +93,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             );
 
             return result;
-        }
-
-        private void RegisterItemHoverEvents(VisualElement itemImage, InventorySlotRenderContext context)
-        {
-            IItemTooltipPresenter itemTooltipPresenter = TechnicalFactory.GetInstance().GetItemTooltipPresenterInstance();
-
-            itemImage.RegisterCallback<PointerEnterEvent>(evt =>
-            {
-                NormalItemTooltip.TooltipDisplayInformation tooltipInfo = new NormalItemTooltip.TooltipDisplayInformation.Builder()
-                    .SetItemName(context.ItemImageName)
-                    .SetPosition(evt.position.x + 15, evt.position.y + 15)
-                    .Build();
-
-                itemTooltipPresenter.ShowItemTooltip(tooltipInfo);
-            });
-
-            itemImage.RegisterCallback<PointerMoveEvent>(evt =>
-            {
-                itemTooltipPresenter.RepositionItemTooltip(evt.position.x + 15, evt.position.y + 15);
-            });
-
-            itemImage.RegisterCallback<PointerLeaveEvent>(evt =>
-            {
-                itemTooltipPresenter.HideItemTooltip();
-            });
         }
 
         private void StyleItemImage(VisualElement itemImage, Sprite itemSprite, int posX, int posY)

@@ -40,6 +40,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 itemImage.style.height = itemSprite.rect.height;
 
                 SetOverlayColor(renderContext.IsEquipped);
+                UiElementUtils.RegisterItemHoverEvents(itemImage, renderContext);
             }
             else
             {
