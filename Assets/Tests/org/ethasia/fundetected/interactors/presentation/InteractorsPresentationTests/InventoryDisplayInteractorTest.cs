@@ -200,13 +200,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
 
             InventoryGridPresentationContext inventoryGridPresentationContext = CallInventoryGridExtraction(playerCharacter);
 
-            Assert.That(inventoryGridPresentationContext.ItemsPresentationContexts.Count, Is.EqualTo(5));
+            Assert.That(inventoryGridPresentationContext.WeaponsPresentationContexts.Count, Is.EqualTo(2));
+            Assert.That(inventoryGridPresentationContext.ArmorsPresentationContexts, Is.Null);
+            Assert.That(inventoryGridPresentationContext.JewelriesPresentationContexts.Count, Is.EqualTo(1));
+            Assert.That(inventoryGridPresentationContext.RecoveryPotionsPresentationContexts.Count, Is.EqualTo(2));
 
-            InventoryItemPresentationContext firstResult = inventoryGridPresentationContext.ItemsPresentationContexts[0];
-            InventoryItemPresentationContext secondResult = inventoryGridPresentationContext.ItemsPresentationContexts[1];
-            InventoryItemPresentationContext thirdResult = inventoryGridPresentationContext.ItemsPresentationContexts[2];
-            InventoryItemPresentationContext fourthResult = inventoryGridPresentationContext.ItemsPresentationContexts[3];
-            InventoryItemPresentationContext fifthResult = inventoryGridPresentationContext.ItemsPresentationContexts[4];
+            InventoryItemPresentationContext firstResult = inventoryGridPresentationContext.WeaponsPresentationContexts[0].ItemContext;
+            InventoryItemPresentationContext secondResult = inventoryGridPresentationContext.WeaponsPresentationContexts[1].ItemContext;
+            InventoryItemPresentationContext thirdResult = inventoryGridPresentationContext.JewelriesPresentationContexts[0];
+            InventoryItemPresentationContext fourthResult = inventoryGridPresentationContext.RecoveryPotionsPresentationContexts[0].ItemContext;
+            InventoryItemPresentationContext fifthResult = inventoryGridPresentationContext.RecoveryPotionsPresentationContexts[1].ItemContext;
 
             Assert.That(firstResult.ItemId, Is.EqualTo("Cutlass"));
             Assert.That(firstResult.TopLeftCornerX, Is.EqualTo(1));

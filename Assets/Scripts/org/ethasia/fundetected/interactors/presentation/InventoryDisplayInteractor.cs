@@ -54,7 +54,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(true);
                 ConvertShapeAndPositionToPresentationContext(weapon.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+                InventoryWeaponPresentationContext inventoryWeaponPresentationContext = new InventoryWeaponPresentationContext.Builder()
+                    .WithMinToMaxPhysicalDamage(weapon.Item.MinToMaxPhysicalDamage)
+                    .WithMinToMaxSpellDamage(weapon.Item.MinToMaxSpellDamage)
+                    .WithSkillsPerSecond(weapon.Item.SkillsPerSecond)
+                    .WithCriticalStrikeChance(weapon.Item.CriticalStrikeChance)
+                    .WithItemContext(itemPresentationContextBuilder.Build())
+                    .Build();
+
+                presentationContext.AddWeaponPresentationContext(inventoryWeaponPresentationContext);
             }
 
             return presentationContext;
@@ -69,7 +77,13 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(true);
                 ConvertShapeAndPositionToPresentationContext(armor.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+                InventoryArmorPresentationContext inventoryArmorPresentationContext = new InventoryArmorPresentationContext.Builder()
+                    .WithArmorValue(armor.Item.ArmorValue)
+                    .WithMovementSpeedAddend(armor.Item.MovementSpeedAddend)
+                    .WithItemContext(itemPresentationContextBuilder.Build())
+                    .Build();
+
+                presentationContext.AddArmorPresentationContext(inventoryArmorPresentationContext);
             }
 
             return presentationContext;
@@ -84,7 +98,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(true);
                 ConvertShapeAndPositionToPresentationContext(jewelry.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+                presentationContext.AddJewelryPresentationContext(itemPresentationContextBuilder.Build());
             }
 
             return presentationContext;
@@ -99,7 +113,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(false);
                 ConvertShapeAndPositionToPresentationContext(recoveryPotion.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                presentationContext.AddItemPresentationContext(itemPresentationContextBuilder.Build());
+                InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionPresentationContext = new InventoryRecoveryPotionPresentationContext.Builder()
+                    .WithUses(recoveryPotion.Item.Uses)
+                    .WithRecoveryAmount(recoveryPotion.Item.RecoveryAmount)
+                    .WithItemContext(itemPresentationContextBuilder.Build())
+                    .Build();
+                presentationContext.AddRecoveryPotionPresentationContext(inventoryRecoveryPotionPresentationContext);
             }
 
             return presentationContext;

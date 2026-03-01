@@ -1,5 +1,6 @@
 using NUnit.Framework;
 
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 using Org.Ethasia.Fundetected.Technical.Mocks;
@@ -238,6 +239,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithDimensionY(2)
                 .Build();
 
+            InventoryWeaponPresentationContext weaponContext1 = new InventoryWeaponPresentationContext.Builder()
+                .WithMinToMaxPhysicalDamage(new DamageRange(5, 13))
+                .WithMinToMaxSpellDamage(new DamageRange(0, 0))
+                .WithSkillsPerSecond(1.4f)
+                .WithCriticalStrikeChance(500)
+                .WithItemContext(firstItemPresentationContext)
+                .Build();
+
             InventoryItemPresentationContext secondItemPresentationContext = new InventoryItemPresentationContext.Builder()
                 .WithItemId("second_item_icon")
                 .WithCanBeEquipped(false)
@@ -245,6 +254,14 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithTopLeftCornerY(2)
                 .WithDimensionX(1)
                 .WithDimensionY(2)
+                .Build();
+
+            InventoryWeaponPresentationContext weaponContext2 = new InventoryWeaponPresentationContext.Builder()
+                .WithMinToMaxPhysicalDamage(new DamageRange(0, 0))
+                .WithMinToMaxSpellDamage(new DamageRange(6, 14))
+                .WithSkillsPerSecond(1.5f)
+                .WithCriticalStrikeChance(400)
+                .WithItemContext(secondItemPresentationContext)
                 .Build();
 
             InventoryItemPresentationContext thirdItemPresentationContext = new InventoryItemPresentationContext.Builder()
@@ -256,6 +273,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithDimensionY(1)
                 .Build();
 
+            InventoryArmorPresentationContext armorContext1 = new InventoryArmorPresentationContext.Builder()
+                .WithArmorValue(5)
+                .WithMovementSpeedAddend(3)
+                .WithItemContext(thirdItemPresentationContext)
+                .Build();
+
             InventoryItemPresentationContext fourthItemPresentationContext = new InventoryItemPresentationContext.Builder()
                 .WithItemId("fourth_item_icon")
                 .WithCanBeEquipped(true)
@@ -263,6 +286,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithTopLeftCornerY(0)
                 .WithDimensionX(2)
                 .WithDimensionY(3)
+                .Build();
+
+            InventoryRecoveryPotionPresentationContext recoveryPotionContext1 = new InventoryRecoveryPotionPresentationContext.Builder()
+                .WithRecoveryAmount(20)
+                .WithUses(2)
+                .WithItemContext(fourthItemPresentationContext)
                 .Build();
 
             InventoryItemPresentationContext fifthItemPresentationContext = new InventoryItemPresentationContext.Builder()
@@ -276,11 +305,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             InventoryGridPresentationContext result = new InventoryGridPresentationContext();
 
-            result.AddItemPresentationContext(firstItemPresentationContext);
-            result.AddItemPresentationContext(secondItemPresentationContext);
-            result.AddItemPresentationContext(thirdItemPresentationContext);
-            result.AddItemPresentationContext(fourthItemPresentationContext);
-            result.AddItemPresentationContext(fifthItemPresentationContext);
+            result.AddWeaponPresentationContext(weaponContext1);
+            result.AddWeaponPresentationContext(weaponContext2);
+            result.AddArmorPresentationContext(armorContext1);
+            result.AddRecoveryPotionPresentationContext(recoveryPotionContext1);
+            result.AddJewelryPresentationContext(fifthItemPresentationContext);
 
             return result;
         }

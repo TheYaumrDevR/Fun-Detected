@@ -84,15 +84,64 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             InventoryGridRenderContext result = new InventoryGridRenderContext();
 
-            if (toConvert.ItemsPresentationContexts != null)
+            result = ConvertWeaponPresentationContexts(toConvert, result);
+            result = ConvertArmorPresentationContexts(toConvert, result);
+            result = ConvertJewelryPresentationContexts(toConvert, result);
+            result = ConvertRecoveryPotionPresentationContexts(toConvert, result);
+
+            return result;
+        }
+
+        private InventoryGridRenderContext ConvertWeaponPresentationContexts(InventoryGridPresentationContext toConvert, InventoryGridRenderContext parentContext)
+        {
+            if (toConvert.WeaponsPresentationContexts != null)
             {
-                foreach (var itemContext in toConvert.ItemsPresentationContexts)
+                foreach (var weaponContext in toConvert.WeaponsPresentationContexts)
                 {
-                    result = ConvertAndAddInventoryRenderContext(itemContext, result);
+                    parentContext = ConvertAndAddInventoryRenderContext(weaponContext.ItemContext, parentContext);
                 }
             }
 
-            return result;
+            return parentContext;
+        }
+
+        private InventoryGridRenderContext ConvertArmorPresentationContexts(InventoryGridPresentationContext toConvert, InventoryGridRenderContext parentContext)
+        {
+            if (toConvert.ArmorsPresentationContexts != null)
+            {
+                foreach (var armorContext in toConvert.ArmorsPresentationContexts)
+                {
+                    parentContext = ConvertAndAddInventoryRenderContext(armorContext.ItemContext, parentContext);
+                }
+            }
+
+            return parentContext;
+        }
+
+        private InventoryGridRenderContext ConvertJewelryPresentationContexts(InventoryGridPresentationContext toConvert, InventoryGridRenderContext parentContext)
+        {
+            if (toConvert.JewelriesPresentationContexts != null)
+            {
+                foreach (var jewelryContext in toConvert.JewelriesPresentationContexts)
+                {
+                    parentContext = ConvertAndAddInventoryRenderContext(jewelryContext, parentContext);
+                }
+            }
+
+            return parentContext;
+        }
+
+        private InventoryGridRenderContext ConvertRecoveryPotionPresentationContexts(InventoryGridPresentationContext toConvert, InventoryGridRenderContext parentContext)
+        {
+            if (toConvert.RecoveryPotionsPresentationContexts != null)
+            {
+                foreach (var recoveryPotionContext in toConvert.RecoveryPotionsPresentationContexts)
+                {
+                    parentContext = ConvertAndAddInventoryRenderContext(recoveryPotionContext.ItemContext, parentContext);
+                }
+            }
+
+            return parentContext;
         }
 
         private InventoryGridRenderContext ConvertAndAddInventoryRenderContext(InventoryItemPresentationContext itemContext, InventoryGridRenderContext inventoryGridRenderContext)

@@ -1,8 +1,22 @@
+using Org.Ethasia.Fundetected.Core.Items;
+
 namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public struct InventoryItemPresentationContext
     {
         public string ItemId
+        {
+            get;
+            private set;
+        }
+
+        public ItemClass ItemClass
+        {
+            get;
+            private set;
+        }
+
+        public ItemPotential ItemPotential
         {
             get;
             private set;
@@ -45,6 +59,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             public Builder WithItemId(string itemId)
             {
                 result.ItemId = itemId;
+                return this;
+            }
+
+            public Builder WithItemClass(ItemClass itemClass)
+            {
+                result.ItemClass = itemClass;
+                return this;
+            }
+
+            public Builder WithItemPotential(ItemPotential itemPotential)
+            {
+                result.ItemPotential = itemPotential;
                 return this;
             }
 
