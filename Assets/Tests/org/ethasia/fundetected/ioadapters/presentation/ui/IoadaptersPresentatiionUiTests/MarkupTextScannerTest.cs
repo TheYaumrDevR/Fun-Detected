@@ -61,7 +61,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Presentation.UI.Tests
             Assert.That(testCandidate.CurrentToken.Type, Is.EqualTo(TokenType.Text));
             Assert.That(testCandidate.CurrentToken.Content.ToString(), Is.EqualTo(" life and "));
             Assert.That(testCandidate.ScanNext(), Is.True);
-            Assert.That(testCandidate.CurrentToken.Type, IsEqualTo(TokenType.BoldStart));
+            Assert.That(testCandidate.CurrentToken.Type, Is.EqualTo(TokenType.BoldStart));
             Assert.That(testCandidate.CurrentToken.Content.ToString(), Is.EqualTo("<b>"));
             Assert.That(testCandidate.ScanNext(), Is.True);
             Assert.That(testCandidate.CurrentToken.Type, Is.EqualTo(TokenType.Text));
