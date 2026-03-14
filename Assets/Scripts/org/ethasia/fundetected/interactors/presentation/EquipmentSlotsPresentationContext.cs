@@ -1,92 +1,28 @@
+using System.Collections.Generic;
+
 namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public struct EquipmentSlotsPresentationContext
     {
-        public EquipmentSlotPresentationContext MainHand
+        public List<EquippedWeaponPresentationContext> EquippedWeapons
         {
             get;
             private set;
         }
 
-        public EquipmentSlotPresentationContext OffHand
+        public List<EquippedArmorPresentationContext> EquippedArmors
         {
             get;
             private set;
         }
 
-        public EquipmentSlotPresentationContext Head
+        public List<EquippedJewelryPresentationContext> EquippedJewelry
         {
             get;
             private set;
         }
 
-        public EquipmentSlotPresentationContext Chest
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext Feet
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext Hands
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext Belt
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext LeftRing
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext RightRing
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext Neck
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext LeftMostPotion
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext LeftMiddlePotion
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext MiddlePotion
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext RightMiddlePotion
-        {
-            get;
-            private set;
-        }
-
-        public EquipmentSlotPresentationContext RightMostPotion
+        public List<EquippedRecoveryPotionPresentationContext> EquippedRecoveryPotions
         {
             get;
             private set;
@@ -94,157 +30,44 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
         public class Builder
         {
-            private EquipmentSlotsPresentationContext result;
+            private List<EquippedWeaponPresentationContext> equippedWeapons = new List<EquippedWeaponPresentationContext>();
+            private List<EquippedArmorPresentationContext> equippedArmors = new List<EquippedArmorPresentationContext>();
+            private List<EquippedJewelryPresentationContext> equippedJewelry = new List<EquippedJewelryPresentationContext>();
+            private List<EquippedRecoveryPotionPresentationContext> equippedRecoveryPotions = new List<EquippedRecoveryPotionPresentationContext>();
 
-            public Builder()
+            public Builder AddEquippedWeapon(EquippedWeaponPresentationContext value)
             {
-                result = new EquipmentSlotsPresentationContext();
-            }
-
-            public Builder SetMainHand(EquipmentSlotPresentationContext value)
-            {
-                result.MainHand = value;
+                equippedWeapons.Add(value);
                 return this;
             }
 
-            public Builder SetOffHand(EquipmentSlotPresentationContext value)
+            public Builder AddEquippedArmor(EquippedArmorPresentationContext value)
             {
-                result.OffHand = value;
+                equippedArmors.Add(value);
                 return this;
             }
 
-            public Builder SetHead(EquipmentSlotPresentationContext value)
+            public Builder AddEquippedJewelry(EquippedJewelryPresentationContext value)
             {
-                result.Head = value;
+                equippedJewelry.Add(value);
                 return this;
             }
 
-            public Builder SetChest(EquipmentSlotPresentationContext value)
+            public Builder AddEquippedRecoveryPotion(EquippedRecoveryPotionPresentationContext value)
             {
-                result.Chest = value;
-                return this;
-            }
-
-            public Builder SetFeet(EquipmentSlotPresentationContext value)
-            {
-                result.Feet = value;
-                return this;
-            }
-
-            public Builder SetHands(EquipmentSlotPresentationContext value)
-            {
-                result.Hands = value;
-                return this;
-            }
-
-            public Builder SetBelt(EquipmentSlotPresentationContext value)
-            {
-                result.Belt = value;
-                return this;
-            }
-
-            public Builder SetLeftRing(EquipmentSlotPresentationContext value)
-            {
-                result.LeftRing = value;
-                return this;
-            }
-
-            public Builder SetRightRing(EquipmentSlotPresentationContext value)
-            {
-                result.RightRing = value;
-                return this;
-            }
-
-            public Builder SetNeck(EquipmentSlotPresentationContext value)
-            {
-                result.Neck = value;
-                return this;
-            }
-
-            public Builder SetLeftMostPotion(EquipmentSlotPresentationContext value)
-            {
-                result.LeftMostPotion = value;
-                return this;
-            }
-
-            public Builder SetLeftMiddlePotion(EquipmentSlotPresentationContext value)
-            {
-                result.LeftMiddlePotion = value;
-                return this;
-            }
-
-            public Builder SetMiddlePotion(EquipmentSlotPresentationContext value)
-            {
-                result.MiddlePotion = value;
-                return this;
-            }
-
-            public Builder SetRightMiddlePotion(EquipmentSlotPresentationContext value)
-            {
-                result.RightMiddlePotion = value;
-                return this;
-            }
-
-            public Builder SetRightMostPotion(EquipmentSlotPresentationContext value)
-            {
-                result.RightMostPotion = value;
+                equippedRecoveryPotions.Add(value);
                 return this;
             }
 
             public EquipmentSlotsPresentationContext Build()
             {
-                return result;
-            }
-        }        
-    }
-
-    public struct EquipmentSlotPresentationContext
-    {
-        public string ItemId
-        {
-            get;
-            private set;
-        }
-
-        public bool IsLegallyEquipped
-        {
-            get;
-            private set;
-        }
-
-        public static EquipmentSlotPresentationContext CreateEmpty()
-        {
-            return new EquipmentSlotPresentationContext
-            {
-                ItemId = string.Empty,
-                IsLegallyEquipped = false
-            };
-        }
-
-        public class Builder
-        {
-            private EquipmentSlotPresentationContext result;
-
-            public Builder()
-            {
-                result = new EquipmentSlotPresentationContext();
-            }
-
-            public Builder SetItemId(string value)
-            {
-                result.ItemId = value;
-                return this;
-            }
-
-            public Builder SetIsLegallyEquipped(bool value)
-            {
-                result.IsLegallyEquipped = value;
-                return this;
-            }
-
-            public EquipmentSlotPresentationContext Build()
-            {
-                return result;
+                return new EquipmentSlotsPresentationContext
+                {
+                    EquippedWeapons = equippedWeapons,
+                    EquippedArmors = equippedArmors,
+                    EquippedJewelry = equippedJewelry,
+                    EquippedRecoveryPotions = equippedRecoveryPotions
+                };
             }
         }
     }

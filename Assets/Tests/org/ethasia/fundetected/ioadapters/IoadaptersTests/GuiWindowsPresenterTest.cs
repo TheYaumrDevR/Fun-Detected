@@ -135,94 +135,154 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
         private InventoryPresentationContext CreateSampleInventoryPresentationContext()
         {
-            EquipmentSlotPresentationContext mainHandContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("sword_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext mainHandItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("sword_icon")
+                .WithCanBeEquipped(true)
                 .Build();
 
-            EquipmentSlotPresentationContext offHandContext = new EquipmentSlotPresentationContext.Builder()
-                .SetIsLegallyEquipped(false)
+            EquippedWeaponPresentationContext mainHandContext = new EquippedWeaponPresentationContext.Builder()
+                .WithItemPresentationContext(mainHandItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext headContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("helmet_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext offHandItemContext = new InventoryItemPresentationContext.Builder()
+                .WithCanBeEquipped(false)
                 .Build();
 
-            EquipmentSlotPresentationContext chestContext = new EquipmentSlotPresentationContext.Builder()
-                .SetIsLegallyEquipped(false)
+            EquippedWeaponPresentationContext offHandContext = new EquippedWeaponPresentationContext.Builder()
+                .WithItemPresentationContext(offHandItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext handsContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("gloves_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext headItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("helmet_icon")
+                .WithCanBeEquipped(true)
                 .Build();
 
-            EquipmentSlotPresentationContext feetContext = new EquipmentSlotPresentationContext.Builder()
-                .SetIsLegallyEquipped(false)
+            EquippedArmorPresentationContext headContext = new EquippedArmorPresentationContext.Builder()
+                .WithItemPresentationContext(headItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext beltContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("belt_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext chestItemContext = new InventoryItemPresentationContext.Builder()
+                .WithCanBeEquipped(false)
                 .Build();
 
-            EquipmentSlotPresentationContext leftRingContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("left_ring_icon")
-                .SetIsLegallyEquipped(true)
+            EquippedArmorPresentationContext chestContext = new EquippedArmorPresentationContext.Builder()
+                .WithItemPresentationContext(chestItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext rightRingContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("right_ring_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext handsItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("gloves_icon")
+                .WithCanBeEquipped(true)
                 .Build();
 
-            EquipmentSlotPresentationContext necklaceContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("necklace_icon")
-                .SetIsLegallyEquipped(true)
+            EquippedArmorPresentationContext handsContext = new EquippedArmorPresentationContext.Builder()
+                .WithItemPresentationContext(handsItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext leftMostPotionContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("left_most_potion_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext feetItemContext = new InventoryItemPresentationContext.Builder()
+                .WithCanBeEquipped(false)
                 .Build();
 
-            EquipmentSlotPresentationContext leftMiddlePotionContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("left_middle_potion_icon")
-                .SetIsLegallyEquipped(true)
+            EquippedArmorPresentationContext feetContext = new EquippedArmorPresentationContext.Builder()
+                .WithItemPresentationContext(feetItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext middlePotionContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("middle_potion_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext beltItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("belt_icon")
+                .WithCanBeEquipped(true)
                 .Build();
 
-            EquipmentSlotPresentationContext rightMiddlePotionContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("right_middle_potion_icon")
-                .SetIsLegallyEquipped(true)
+            EquippedJewelryPresentationContext beltContext = new EquippedJewelryPresentationContext.Builder()
+                .WithItemPresentationContext(beltItemContext)
                 .Build();
 
-            EquipmentSlotPresentationContext rightMostPotionContext = new EquipmentSlotPresentationContext.Builder()
-                .SetItemId("right_most_potion_icon")
-                .SetIsLegallyEquipped(true)
+            InventoryItemPresentationContext leftRingItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("left_ring_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedJewelryPresentationContext leftRingContext = new EquippedJewelryPresentationContext.Builder()
+                .WithItemPresentationContext(leftRingItemContext)
+                .Build();
+
+            InventoryItemPresentationContext rightRingItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("right_ring_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedJewelryPresentationContext rightRingContext = new EquippedJewelryPresentationContext.Builder()
+                .WithItemPresentationContext(rightRingItemContext)
+                .Build();
+
+            InventoryItemPresentationContext necklaceItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("necklace_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedJewelryPresentationContext necklaceContext = new EquippedJewelryPresentationContext.Builder()
+                .WithItemPresentationContext(necklaceItemContext)
+                .Build();
+
+            InventoryItemPresentationContext leftMostPotionItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("left_most_potion_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedRecoveryPotionPresentationContext leftMostPotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
+                .WithItemPresentationContext(leftMostPotionItemContext)
+                .Build();
+
+            InventoryItemPresentationContext leftMiddlePotionItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("left_middle_potion_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedRecoveryPotionPresentationContext leftMiddlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
+                .WithItemPresentationContext(leftMiddlePotionItemContext)
+                .Build();
+
+            InventoryItemPresentationContext middlePotionItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("middle_potion_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedRecoveryPotionPresentationContext middlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
+                .WithItemPresentationContext(middlePotionItemContext)
+                .Build();
+
+            InventoryItemPresentationContext rightMiddlePotionItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("right_middle_potion_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedRecoveryPotionPresentationContext rightMiddlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
+                .WithItemPresentationContext(rightMiddlePotionItemContext)
+                .Build();
+
+            InventoryItemPresentationContext rightMostPotionItemContext = new InventoryItemPresentationContext.Builder()
+                .WithItemId("right_most_potion_icon")
+                .WithCanBeEquipped(true)
+                .Build();
+
+            EquippedRecoveryPotionPresentationContext rightMostPotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
+                .WithItemPresentationContext(rightMostPotionItemContext)
                 .Build();
 
             EquipmentSlotsPresentationContext equipmentSlotsContext = new EquipmentSlotsPresentationContext.Builder()
-                .SetMainHand(mainHandContext)
-                .SetOffHand(offHandContext)
-                .SetHead(headContext)
-                .SetChest(chestContext)
-                .SetHands(handsContext)
-                .SetFeet(feetContext)
-                .SetBelt(beltContext)
-                .SetLeftRing(leftRingContext)
-                .SetRightRing(rightRingContext)
-                .SetNeck(necklaceContext)
-                .SetLeftMostPotion(leftMostPotionContext)
-                .SetLeftMiddlePotion(leftMiddlePotionContext)
-                .SetMiddlePotion(middlePotionContext)
-                .SetRightMiddlePotion(rightMiddlePotionContext)
-                .SetRightMostPotion(rightMostPotionContext)
+                .AddEquippedWeapon(mainHandContext)
+                .AddEquippedWeapon(offHandContext)
+                .AddEquippedArmor(headContext)
+                .AddEquippedArmor(chestContext)
+                .AddEquippedArmor(handsContext)
+                .AddEquippedArmor(feetContext)
+                .AddEquippedJewelry(beltContext)
+                .AddEquippedJewelry(leftRingContext)
+                .AddEquippedJewelry(rightRingContext)
+                .AddEquippedJewelry(necklaceContext)
+                .AddEquippedRecoveryPotion(leftMostPotionContext)
+                .AddEquippedRecoveryPotion(leftMiddlePotionContext)
+                .AddEquippedRecoveryPotion(middlePotionContext)
+                .AddEquippedRecoveryPotion(rightMiddlePotionContext)
+                .AddEquippedRecoveryPotion(rightMostPotionContext)
                 .Build();
 
             return new InventoryPresentationContext(equipmentSlotsContext, CreateInventoryGridPresentationContextForTesting());

@@ -4,7 +4,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public struct EquippedWeaponPresentationContext
     {
-        public EquipmentSlotTypes SlotType
+        public EquipmentSlotPositions SlotPosition
         {
             get;
             private set;
@@ -22,13 +22,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             private set;
         }
 
+        public static EquippedWeaponPresentationContext CreateEmpty()
+        {
+            return new Builder().Build();
+        }
+
         public class Builder
         {
             private EquippedWeaponPresentationContext result;
 
-            public Builder WithSlotType(EquipmentSlotTypes value)
+            public Builder WithSlotPosition(EquipmentSlotPositions value)
             {
-                result.SlotType = value;
+                result.SlotPosition = value;
                 return this;
             }
 

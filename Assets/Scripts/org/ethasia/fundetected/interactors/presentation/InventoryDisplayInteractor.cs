@@ -147,83 +147,103 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
         private EquipmentSlotsPresentationContext CreateEquipmentSlotsPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor)
         {
-            return new EquipmentSlotsPresentationContext.Builder()
-                .SetMainHand(ExtractMainHandEquipment(extractor))
-                .SetOffHand(ExtractOffHandEquipment(extractor))
-                .SetLeftRing(ExtractLeftRingEquipment(extractor))
-                .SetRightRing(ExtractRightRingEquipment(extractor))
-                .SetBelt(ExtractBeltEquipment(extractor))
-                .Build();
+            EquipmentSlotsPresentationContext.Builder builder = new EquipmentSlotsPresentationContext.Builder();
+
+            ExtractMainHandEquipment(extractor, builder);
+            ExtractOffHandEquipment(extractor, builder);
+            ExtractLeftRingEquipment(extractor, builder);
+            ExtractRightRingEquipment(extractor, builder);
+            ExtractBeltEquipment(extractor, builder);
+
+            return builder.Build();
         }
 
-        private EquipmentSlotPresentationContext ExtractMainHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private void ExtractMainHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
         {
             extractor.Reset();
             extractor.ExtractMainHandEquipment();
 
-            return ExtractWeapon(extractor);
+            slotsBuilder.AddEquippedWeapon(ExtractWeapon(extractor, EquipmentSlotPositions.MAIN_HAND));
         }
 
-        private EquipmentSlotPresentationContext ExtractOffHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
+        private void ExtractOffHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
         {
             extractor.Reset();
             extractor.ExtractOffHandEquipment();
 
-            return ExtractWeapon(extractor);
+            slotsBuilder.AddEquippedWeapon(ExtractWeapon(extractor, EquipmentSlotPositions.OFF_HAND));
         }
 
-        private EquipmentSlotPresentationContext ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor)
+        private void ExtractLeftRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
+        {
+            extractor.Reset();
+            extractor.ExtractLeftRingEquipment();
+
+            slotsBuilder.AddEquippedJewelry(ExtractJewelry(extractor, EquipmentSlotPositions.LEFT_RING));
+        }
+
+        private void ExtractRightRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
+        {
+            extractor.Reset();
+            extractor.ExtractRightRingEquipment();
+
+            slotsBuilder.AddEquippedJewelry(ExtractJewelry(extractor, EquipmentSlotPositions.RIGHT_RING));
+        }
+
+        private void ExtractBeltEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
+        {
+            extractor.Reset();
+            extractor.ExtractBeltEquipment();
+
+            slotsBuilder.AddEquippedJewelry(ExtractJewelry(extractor, EquipmentSlotPositions.BELT));
+        }
+
+        private EquippedWeaponPresentationContext ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
         {
             Weapon extractedWeapon = extractor.ExtractedWeapon;
 
             if (null != extractedWeapon)
             {
-                return new EquipmentSlotPresentationContext.Builder()
-                    .SetItemId(extractedWeapon.Name)
-                    .SetIsLegallyEquipped(true)
+                InventoryItemPresentationContext itemContext = new InventoryItemPresentationContext.Builder()
+                    .WithItemId(extractedWeapon.Name)
+                    .WithCanBeEquipped(true)
+                    .Build();
+
+                WeaponPresentationContext weaponContext = new WeaponPresentationContext.Builder()
+                    .WithMinToMaxPhysicalDamage(extractedWeapon.MinToMaxPhysicalDamage)
+                    .WithMinToMaxSpellDamage(extractedWeapon.MinToMaxSpellDamage)
+                    .WithSkillsPerSecond(extractedWeapon.SkillsPerSecond)
+                    .WithCriticalStrikeChance(extractedWeapon.CriticalStrikeChance)
+                    .Build();
+
+                return new EquippedWeaponPresentationContext.Builder()
+                    .WithSlotPosition(slotPosition)
+                    .WithItemPresentationContext(itemContext)
+                    .WithWeaponPresentationContext(weaponContext)
                     .Build();
             }
 
-            return EquipmentSlotPresentationContext.CreateEmpty();            
+            return EquippedWeaponPresentationContext.CreateEmpty();            
         }
 
-        private EquipmentSlotPresentationContext ExtractLeftRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
-        {
-            extractor.Reset();
-            extractor.ExtractLeftRingEquipment();
-
-            return ExtractJewelry(extractor);
-        }
-
-        private EquipmentSlotPresentationContext ExtractRightRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
-        {
-            extractor.Reset();
-            extractor.ExtractRightRingEquipment();
-
-            return ExtractJewelry(extractor);
-        }
-
-        private EquipmentSlotPresentationContext ExtractBeltEquipment(PlayerEquipmentItemsExtractionVisitor extractor)
-        {
-            extractor.Reset();
-            extractor.ExtractBeltEquipment();
-
-            return ExtractJewelry(extractor);
-        }
-
-        private EquipmentSlotPresentationContext ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor)
+        private EquippedJewelryPresentationContext ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
         {
             Jewelry extractedJewelry = extractor.ExtractedJewelry;
 
             if (null != extractedJewelry)
             {
-                return new EquipmentSlotPresentationContext.Builder()
-                    .SetItemId(extractedJewelry.Name)
-                    .SetIsLegallyEquipped(true)
+                InventoryItemPresentationContext itemContext = new InventoryItemPresentationContext.Builder()
+                    .WithItemId(extractedJewelry.Name)
+                    .WithCanBeEquipped(true)
+                    .Build();
+
+                return new EquippedJewelryPresentationContext.Builder()
+                    .WithSlotPosition(slotPosition)
+                    .WithItemPresentationContext(itemContext)
                     .Build();
             }
 
-            return EquipmentSlotPresentationContext.CreateEmpty();
+            return EquippedJewelryPresentationContext.CreateEmpty();
         }
     }
 }

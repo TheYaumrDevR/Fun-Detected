@@ -53,30 +53,105 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         private EquipmentSlotsRenderContext ConvertEquipmentSlotsPresentationContext(EquipmentSlotsPresentationContext context)
         {
-            return new EquipmentSlotsRenderContext.Builder()
-                .SetMainHand(ConvertEquipmentSlotPresentationContext(context.MainHand))
-                .SetOffHand(ConvertEquipmentSlotPresentationContext(context.OffHand))
-                .SetHead(ConvertEquipmentSlotPresentationContext(context.Head))
-                .SetChest(ConvertEquipmentSlotPresentationContext(context.Chest))
-                .SetHands(ConvertEquipmentSlotPresentationContext(context.Hands))
-                .SetFeet(ConvertEquipmentSlotPresentationContext(context.Feet))
-                .SetBelt(ConvertEquipmentSlotPresentationContext(context.Belt))
-                .SetLeftRing(ConvertEquipmentSlotPresentationContext(context.LeftRing))
-                .SetRightRing(ConvertEquipmentSlotPresentationContext(context.RightRing))
-                .SetNeck(ConvertEquipmentSlotPresentationContext(context.Neck))
-                .SetLeftMostPotion(ConvertEquipmentSlotPresentationContext(context.LeftMostPotion))
-                .SetLeftMiddlePotion(ConvertEquipmentSlotPresentationContext(context.LeftMiddlePotion))
-                .SetMiddlePotion(ConvertEquipmentSlotPresentationContext(context.MiddlePotion))
-                .SetRightMiddlePotion(ConvertEquipmentSlotPresentationContext(context.RightMiddlePotion))
-                .SetRightMostPotion(ConvertEquipmentSlotPresentationContext(context.RightMostPotion))
-                .Build();
+            EquipmentSlotsRenderContext.Builder builder = new EquipmentSlotsRenderContext.Builder();
+
+            ConvertEquippedWeaponsContexts(context, builder);
+            ConvertEquippedArmorsContexts(context, builder);
+            ConvertEquippedJewelryContexts(context, builder);
+            ConvertEquippedRecoveryPotionsContexts(context, builder);
+
+            return builder.Build();
         }
 
-        private EquipmentSlotRenderContext ConvertEquipmentSlotPresentationContext(EquipmentSlotPresentationContext context)
+        private void ConvertEquippedWeaponsContexts(EquipmentSlotsPresentationContext context, EquipmentSlotsRenderContext.Builder builder)
+        {
+            foreach (var weapon in context.EquippedWeapons)
+            {
+                if (weapon.SlotPosition == EquipmentSlotPositions.MAIN_HAND)
+                {
+                    builder.SetMainHand(ConvertEquipmentSlotPresentationContext(weapon.ItemPresentationContext));
+                }
+                else if (weapon.SlotPosition == EquipmentSlotPositions.OFF_HAND)
+                {
+                    builder.SetOffHand(ConvertEquipmentSlotPresentationContext(weapon.ItemPresentationContext));
+                }
+            }
+        }
+
+        private void ConvertEquippedArmorsContexts(EquipmentSlotsPresentationContext context, EquipmentSlotsRenderContext.Builder builder)
+        {
+            foreach (var armor in context.EquippedArmors)
+            {
+                switch (armor.SlotPosition)
+                {
+                    case EquipmentSlotPositions.HEAD:
+                        builder.SetHead(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.CHEST:
+                        builder.SetChest(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.HANDS:
+                        builder.SetHands(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.FEET:
+                        builder.SetFeet(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        break;
+                }
+            }
+        }
+
+        private void ConvertEquippedJewelryContexts(EquipmentSlotsPresentationContext context, EquipmentSlotsRenderContext.Builder builder)
+        {
+            foreach (var jewelry in context.EquippedJewelry)
+            {
+                switch (jewelry.SlotPosition)
+                {
+                    case EquipmentSlotPositions.BELT:
+                        builder.SetBelt(ConvertEquipmentSlotPresentationContext(jewelry.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.LEFT_RING:
+                        builder.SetLeftRing(ConvertEquipmentSlotPresentationContext(jewelry.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.RIGHT_RING:
+                        builder.SetRightRing(ConvertEquipmentSlotPresentationContext(jewelry.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.AMULET:
+                        builder.SetNeck(ConvertEquipmentSlotPresentationContext(jewelry.ItemPresentationContext));
+                        break;
+                }
+            }
+        }
+
+        private void ConvertEquippedRecoveryPotionsContexts(EquipmentSlotsPresentationContext context, EquipmentSlotsRenderContext.Builder builder)
+        {
+            foreach (var potion in context.EquippedRecoveryPotions)
+            {
+                switch (potion.SlotPosition)
+                {
+                    case EquipmentSlotPositions.OUTER_LEFT_POTION:
+                        builder.SetLeftMostPotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.MIDDLE_LEFT_POTION:
+                        builder.SetLeftMiddlePotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.MIDDLE_POTION:
+                        builder.SetMiddlePotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.MIDDLE_RIGHT_POTION:
+                        builder.SetRightMiddlePotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        break;
+                    case EquipmentSlotPositions.OUTER_RIGHT_POTION:
+                        builder.SetRightMostPotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        break;
+                }
+            }
+        }
+
+        private EquipmentSlotRenderContext ConvertEquipmentSlotPresentationContext(InventoryItemPresentationContext context)
         {
             return new EquipmentSlotRenderContext.Builder()
                 .SetItemImagePath(context.ItemId)
-                .SetIsEquipped(context.IsLegallyEquipped)
+                .SetIsEquipped(context.CanBeEquipped)
                 .Build();
         }
 
