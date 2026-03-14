@@ -22,10 +22,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
 
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons.Count, Is.EqualTo(1));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.CanBeEquipped, Is.True);
 
-            AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
             AssertThatLeftRingIsEmpty(equipmentSlotsPresentationContext);
             AssertThatRightRingIsEmpty(equipmentSlotsPresentationContext);
             AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
@@ -87,14 +87,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
 
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry.Count, Is.EqualTo(1));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
             AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatRightRingIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatBeltIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
             AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
@@ -121,13 +119,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
 
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry.Count, Is.EqualTo(2));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemId, Is.EqualTo("Ruby Ring"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.CanBeEquipped, Is.True);
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[1].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[1].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
             AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatBeltIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
             AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);
@@ -152,14 +151,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
 
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry.Count, Is.EqualTo(1));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
             AssertThatOffHandIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatRightRingIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatLeftRingIsEmpty(equipmentSlotsPresentationContext);
-            AssertThatNeckIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHeadIsEmpty(equipmentSlotsPresentationContext);
             AssertThatChestIsEmpty(equipmentSlotsPresentationContext);
             AssertThatHandsAreEmpty(equipmentSlotsPresentationContext);

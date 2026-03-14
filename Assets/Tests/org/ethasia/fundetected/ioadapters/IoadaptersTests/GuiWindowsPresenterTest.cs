@@ -142,6 +142,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedWeaponPresentationContext mainHandContext = new EquippedWeaponPresentationContext.Builder()
                 .WithItemPresentationContext(mainHandItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.MAIN_HAND)
                 .Build();
 
             InventoryItemPresentationContext offHandItemContext = new InventoryItemPresentationContext.Builder()
@@ -150,6 +151,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedWeaponPresentationContext offHandContext = new EquippedWeaponPresentationContext.Builder()
                 .WithItemPresentationContext(offHandItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.OFF_HAND)
                 .Build();
 
             InventoryItemPresentationContext headItemContext = new InventoryItemPresentationContext.Builder()
@@ -159,6 +161,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedArmorPresentationContext headContext = new EquippedArmorPresentationContext.Builder()
                 .WithItemPresentationContext(headItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.HEAD)
                 .Build();
 
             InventoryItemPresentationContext chestItemContext = new InventoryItemPresentationContext.Builder()
@@ -167,6 +170,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedArmorPresentationContext chestContext = new EquippedArmorPresentationContext.Builder()
                 .WithItemPresentationContext(chestItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.CHEST)
                 .Build();
 
             InventoryItemPresentationContext handsItemContext = new InventoryItemPresentationContext.Builder()
@@ -176,6 +180,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedArmorPresentationContext handsContext = new EquippedArmorPresentationContext.Builder()
                 .WithItemPresentationContext(handsItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.HANDS)
                 .Build();
 
             InventoryItemPresentationContext feetItemContext = new InventoryItemPresentationContext.Builder()
@@ -184,6 +189,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedArmorPresentationContext feetContext = new EquippedArmorPresentationContext.Builder()
                 .WithItemPresentationContext(feetItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.FEET)
                 .Build();
 
             InventoryItemPresentationContext beltItemContext = new InventoryItemPresentationContext.Builder()
@@ -193,6 +199,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedJewelryPresentationContext beltContext = new EquippedJewelryPresentationContext.Builder()
                 .WithItemPresentationContext(beltItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.BELT)
                 .Build();
 
             InventoryItemPresentationContext leftRingItemContext = new InventoryItemPresentationContext.Builder()
@@ -202,6 +209,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedJewelryPresentationContext leftRingContext = new EquippedJewelryPresentationContext.Builder()
                 .WithItemPresentationContext(leftRingItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.LEFT_RING)
                 .Build();
 
             InventoryItemPresentationContext rightRingItemContext = new InventoryItemPresentationContext.Builder()
@@ -211,6 +219,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedJewelryPresentationContext rightRingContext = new EquippedJewelryPresentationContext.Builder()
                 .WithItemPresentationContext(rightRingItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.RIGHT_RING)
                 .Build();
 
             InventoryItemPresentationContext necklaceItemContext = new InventoryItemPresentationContext.Builder()
@@ -220,6 +229,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedJewelryPresentationContext necklaceContext = new EquippedJewelryPresentationContext.Builder()
                 .WithItemPresentationContext(necklaceItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.AMULET)
                 .Build();
 
             InventoryItemPresentationContext leftMostPotionItemContext = new InventoryItemPresentationContext.Builder()
@@ -229,6 +239,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedRecoveryPotionPresentationContext leftMostPotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
                 .WithItemPresentationContext(leftMostPotionItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.OUTER_LEFT_POTION)
                 .Build();
 
             InventoryItemPresentationContext leftMiddlePotionItemContext = new InventoryItemPresentationContext.Builder()
@@ -238,6 +249,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedRecoveryPotionPresentationContext leftMiddlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
                 .WithItemPresentationContext(leftMiddlePotionItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.MIDDLE_LEFT_POTION)
                 .Build();
 
             InventoryItemPresentationContext middlePotionItemContext = new InventoryItemPresentationContext.Builder()
@@ -247,6 +259,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedRecoveryPotionPresentationContext middlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
                 .WithItemPresentationContext(middlePotionItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.MIDDLE_POTION)
                 .Build();
 
             InventoryItemPresentationContext rightMiddlePotionItemContext = new InventoryItemPresentationContext.Builder()
@@ -256,6 +269,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedRecoveryPotionPresentationContext rightMiddlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
                 .WithItemPresentationContext(rightMiddlePotionItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.MIDDLE_RIGHT_POTION)
                 .Build();
 
             InventoryItemPresentationContext rightMostPotionItemContext = new InventoryItemPresentationContext.Builder()
@@ -265,6 +279,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             EquippedRecoveryPotionPresentationContext rightMostPotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
                 .WithItemPresentationContext(rightMostPotionItemContext)
+                .WithSlotPosition(EquipmentSlotPositions.OUTER_RIGHT_POTION)
                 .Build();
 
             EquipmentSlotsPresentationContext equipmentSlotsContext = new EquipmentSlotsPresentationContext.Builder()
