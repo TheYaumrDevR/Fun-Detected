@@ -20,11 +20,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }
 
+        public ItemTooltipRenderContext ToolTipRenderContext
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private bool shouldRenderSomething;
             private string itemImageName;
             private bool canBeEquipped;
+            private ItemTooltipRenderContext toolTipRenderContext;
 
             public Builder ShouldRenderSomething(bool value)
             {
@@ -44,13 +51,20 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 return this;
             }
 
+            public Builder WithToolTipRenderContext(ItemTooltipRenderContext value)
+            {
+                toolTipRenderContext = value;
+                return this;
+            }
+
             public InventorySlotRenderContext Build()
             {
                 return new InventorySlotRenderContext
                 {
                     ShouldRenderSomething = shouldRenderSomething,
                     ItemImageName = itemImageName,
-                    CanBeEquipped = canBeEquipped
+                    CanBeEquipped = canBeEquipped,
+                    ToolTipRenderContext = toolTipRenderContext
                 };
             }
         }

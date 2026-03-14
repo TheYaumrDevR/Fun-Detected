@@ -212,6 +212,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }
 
+        public ItemTooltipRenderContext ToolTipRenderContext
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private EquipmentSlotRenderContext result;
@@ -230,6 +236,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             public Builder SetIsEquipped(bool value)
             {
                 result.IsEquipped = value;
+                return this;
+            }
+
+            public Builder SetToolTipRenderContext(ItemTooltipRenderContext value)
+            {
+                result.ToolTipRenderContext = value;
                 return this;
             }
 
