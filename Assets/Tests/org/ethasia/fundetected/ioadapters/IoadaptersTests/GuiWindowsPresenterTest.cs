@@ -239,11 +239,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithDimensionY(2)
                 .Build();
 
-            InventoryWeaponPresentationContext weaponContext1 = new InventoryWeaponPresentationContext.Builder()
+            WeaponPresentationContext weaponPresentationContext = new WeaponPresentationContext.Builder()
                 .WithMinToMaxPhysicalDamage(new DamageRange(5, 13))
                 .WithMinToMaxSpellDamage(new DamageRange(0, 0))
                 .WithSkillsPerSecond(1.4f)
                 .WithCriticalStrikeChance(500)
+                .Build();
+
+            InventoryWeaponPresentationContext weaponContext1 = new InventoryWeaponPresentationContext.Builder()
+                .WithWeaponContext(weaponPresentationContext)
                 .WithItemContext(firstItemPresentationContext)
                 .Build();
 
@@ -256,11 +260,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithDimensionY(2)
                 .Build();
 
-            InventoryWeaponPresentationContext weaponContext2 = new InventoryWeaponPresentationContext.Builder()
+            WeaponPresentationContext weaponPresentationContext2 = new WeaponPresentationContext.Builder()
                 .WithMinToMaxPhysicalDamage(new DamageRange(0, 0))
                 .WithMinToMaxSpellDamage(new DamageRange(6, 14))
                 .WithSkillsPerSecond(1.5f)
                 .WithCriticalStrikeChance(400)
+                .Build();
+
+            InventoryWeaponPresentationContext weaponContext2 = new InventoryWeaponPresentationContext.Builder()
+                .WithWeaponContext(weaponPresentationContext2)
                 .WithItemContext(secondItemPresentationContext)
                 .Build();
 
@@ -273,9 +281,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithDimensionY(1)
                 .Build();
 
-            InventoryArmorPresentationContext armorContext1 = new InventoryArmorPresentationContext.Builder()
+            ArmorPresentationContext armorPresentationContext = new ArmorPresentationContext.Builder()
                 .WithArmorValue(5)
                 .WithMovementSpeedAddend(3)
+                .Build();
+
+            InventoryArmorPresentationContext armorContext1 = new InventoryArmorPresentationContext.Builder()
+                .WithArmorContext(armorPresentationContext)
                 .WithItemContext(thirdItemPresentationContext)
                 .Build();
 
@@ -288,9 +300,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithDimensionY(3)
                 .Build();
 
-            InventoryRecoveryPotionPresentationContext recoveryPotionContext1 = new InventoryRecoveryPotionPresentationContext.Builder()
+            RecoveryPotionPresentationContext recoveryPotionContext = new RecoveryPotionPresentationContext.Builder()
                 .WithRecoveryAmount(20)
                 .WithUses(2)
+                .Build();
+
+            InventoryRecoveryPotionPresentationContext recoveryPotionContext1 = new InventoryRecoveryPotionPresentationContext.Builder()
+                .WithRecoveryPotionContext(recoveryPotionContext)
                 .WithItemContext(fourthItemPresentationContext)
                 .Build();
 

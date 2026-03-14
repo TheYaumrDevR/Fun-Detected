@@ -2,13 +2,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public struct InventoryArmorPresentationContext
     {
-        public int ArmorValue
-        {
-            get;
-            private set;
-        }
-
-        public int MovementSpeedAddend
+        public ArmorPresentationContext ArmorContext
         {
             get;
             private set;
@@ -24,15 +18,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             private InventoryArmorPresentationContext result;
 
-            public Builder WithArmorValue(int value)
+            public Builder WithArmorContext(ArmorPresentationContext value)
             {
-                result.ArmorValue = value;
-                return this;
-            }
-
-            public Builder WithMovementSpeedAddend(int value)
-            {
-                result.MovementSpeedAddend = value;
+                result.ArmorContext = value;
                 return this;
             }
 

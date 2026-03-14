@@ -2,13 +2,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public struct InventoryRecoveryPotionPresentationContext
     {
-        public int Uses
-        {
-            get;
-            private set;
-        }
-
-        public int RecoveryAmount
+        public RecoveryPotionPresentationContext RecoveryPotionContext
         {
             get;
             private set;
@@ -24,15 +18,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             private InventoryRecoveryPotionPresentationContext result;
 
-            public Builder WithUses(int value)
+            public Builder WithRecoveryPotionContext(RecoveryPotionPresentationContext value)
             {
-                result.Uses = value;
-                return this;
-            }
-
-            public Builder WithRecoveryAmount(int value)
-            {
-                result.RecoveryAmount = value;
+                result.RecoveryPotionContext = value;
                 return this;
             }
 
