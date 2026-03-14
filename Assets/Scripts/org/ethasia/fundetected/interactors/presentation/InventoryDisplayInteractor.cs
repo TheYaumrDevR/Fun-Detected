@@ -163,7 +163,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractMainHandEquipment();
 
-            slotsBuilder.AddEquippedWeapon(ExtractWeapon(extractor, EquipmentSlotPositions.MAIN_HAND));
+            EquippedWeaponPresentationContext? weaponContext = ExtractWeapon(extractor, EquipmentSlotPositions.MAIN_HAND);
+            if (weaponContext != null)
+            {
+                slotsBuilder.AddEquippedWeapon(weaponContext.Value);
+            }
         }
 
         private void ExtractOffHandEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
@@ -171,7 +175,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractOffHandEquipment();
 
-            slotsBuilder.AddEquippedWeapon(ExtractWeapon(extractor, EquipmentSlotPositions.OFF_HAND));
+            EquippedWeaponPresentationContext? offHandWeaponContext = ExtractWeapon(extractor, EquipmentSlotPositions.OFF_HAND);
+            if (offHandWeaponContext != null)
+            {
+                slotsBuilder.AddEquippedWeapon(offHandWeaponContext.Value);
+            }
         }
 
         private void ExtractLeftRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
@@ -179,7 +187,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractLeftRingEquipment();
 
-            slotsBuilder.AddEquippedJewelry(ExtractJewelry(extractor, EquipmentSlotPositions.LEFT_RING));
+            EquippedJewelryPresentationContext? leftRingContext = ExtractJewelry(extractor, EquipmentSlotPositions.LEFT_RING);
+            if (leftRingContext != null)
+            {
+                slotsBuilder.AddEquippedJewelry(leftRingContext.Value);
+            }
         }
 
         private void ExtractRightRingEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
@@ -187,7 +199,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractRightRingEquipment();
 
-            slotsBuilder.AddEquippedJewelry(ExtractJewelry(extractor, EquipmentSlotPositions.RIGHT_RING));
+            EquippedJewelryPresentationContext? rightRingContext = ExtractJewelry(extractor, EquipmentSlotPositions.RIGHT_RING);
+            if (rightRingContext != null)
+            {
+                slotsBuilder.AddEquippedJewelry(rightRingContext.Value);
+            }
         }
 
         private void ExtractBeltEquipment(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotsPresentationContext.Builder slotsBuilder)
@@ -195,10 +211,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractBeltEquipment();
 
-            slotsBuilder.AddEquippedJewelry(ExtractJewelry(extractor, EquipmentSlotPositions.BELT));
+            EquippedJewelryPresentationContext? beltContext = ExtractJewelry(extractor, EquipmentSlotPositions.BELT);
+            if (beltContext != null)
+            {
+                slotsBuilder.AddEquippedJewelry(beltContext.Value);
+            }
         }
 
-        private EquippedWeaponPresentationContext ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
+        private EquippedWeaponPresentationContext? ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
         {
             Weapon extractedWeapon = extractor.ExtractedWeapon;
 
@@ -223,10 +243,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .Build();
             }
 
-            return EquippedWeaponPresentationContext.CreateEmpty();            
+            return null;
         }
 
-        private EquippedJewelryPresentationContext ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
+        private EquippedJewelryPresentationContext? ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
         {
             Jewelry extractedJewelry = extractor.ExtractedJewelry;
 
@@ -243,7 +263,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .Build();
             }
 
-            return EquippedJewelryPresentationContext.CreateEmpty();
+            return null;
         }
     }
 }
