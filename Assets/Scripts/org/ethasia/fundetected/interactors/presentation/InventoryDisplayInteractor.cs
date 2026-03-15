@@ -1,5 +1,6 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors.Presentation
@@ -54,12 +55,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(true);
                 ConvertShapeAndPositionToPresentationContext(weapon.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                WeaponPresentationContext weaponPresentationContext = new WeaponPresentationContext.Builder()
-                    .WithMinToMaxPhysicalDamage(weapon.Item.MinToMaxPhysicalDamage)
-                    .WithMinToMaxSpellDamage(weapon.Item.MinToMaxSpellDamage)
-                    .WithSkillsPerSecond(weapon.Item.SkillsPerSecond)
-                    .WithCriticalStrikeChance(weapon.Item.CriticalStrikeChance)
-                    .Build();
+                WeaponPresentationContext weaponPresentationContext = ConvertWeaponToPresentationContext(weapon.Item);
 
                 InventoryWeaponPresentationContext inventoryWeaponPresentationContext = new InventoryWeaponPresentationContext.Builder()
                     .WithWeaponContext(weaponPresentationContext)
@@ -81,10 +77,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(true);
                 ConvertShapeAndPositionToPresentationContext(armor.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                ArmorPresentationContext armorPresentationContext = new ArmorPresentationContext.Builder()
-                    .WithArmorValue(armor.Item.ArmorValue)
-                    .WithMovementSpeedAddend(armor.Item.MovementSpeedAddend)
-                    .Build();
+                ArmorPresentationContext armorPresentationContext = ConvertArmorToPresentationContext(armor.Item);
 
                 InventoryArmorPresentationContext inventoryArmorPresentationContext = new InventoryArmorPresentationContext.Builder()
                     .WithArmorContext(armorPresentationContext)
@@ -121,10 +114,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(false);
                 ConvertShapeAndPositionToPresentationContext(recoveryPotion.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                RecoveryPotionPresentationContext recoveryPotionPresentationContext = new RecoveryPotionPresentationContext.Builder()
-                    .WithUses(recoveryPotion.Item.Uses)
-                    .WithRecoveryAmount(recoveryPotion.Item.RecoveryAmount)
-                    .Build();
+                RecoveryPotionPresentationContext recoveryPotionPresentationContext = ConvertRecoveryPotionToPresentationContext(recoveryPotion.Item);
 
                 InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionPresentationContext = new InventoryRecoveryPotionPresentationContext.Builder()
                     .WithRecoveryPotionContext(recoveryPotionPresentationContext)
@@ -229,12 +219,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                     .WithCanBeEquipped(true)
                     .Build();
 
-                WeaponPresentationContext weaponContext = new WeaponPresentationContext.Builder()
-                    .WithMinToMaxPhysicalDamage(extractedWeapon.MinToMaxPhysicalDamage)
-                    .WithMinToMaxSpellDamage(extractedWeapon.MinToMaxSpellDamage)
-                    .WithSkillsPerSecond(extractedWeapon.SkillsPerSecond)
-                    .WithCriticalStrikeChance(extractedWeapon.CriticalStrikeChance)
-                    .Build();
+                WeaponPresentationContext weaponContext = ConvertWeaponToPresentationContext(extractedWeapon);
 
                 return new EquippedWeaponPresentationContext.Builder()
                     .WithSlotPosition(slotPosition)
@@ -264,6 +249,32 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             }
 
             return null;
+        }
+
+        private WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
+        {
+            return new WeaponPresentationContext.Builder()
+                .WithMinToMaxPhysicalDamage(weapon.MinToMaxPhysicalDamage)
+                .WithMinToMaxSpellDamage(weapon.MinToMaxSpellDamage)
+                .WithSkillsPerSecond(weapon.SkillsPerSecond)
+                .WithCriticalStrikeChance(weapon.CriticalStrikeChance)
+                .Build();            
+        }
+
+        private ArmorPresentationContext ConvertArmorToPresentationContext(Armor armor)
+        {
+            return new ArmorPresentationContext.Builder()
+                .WithArmorValue(armor.ArmorValue)
+                .WithMovementSpeedAddend(armor.MovementSpeedAddend)
+                .Build();
+        }
+
+        private RecoveryPotionPresentationContext ConvertRecoveryPotionToPresentationContext(RecoveryPotion recoveryPotion)
+        {
+            return new RecoveryPotionPresentationContext.Builder()
+                .WithUses(recoveryPotion.Uses)
+                .WithRecoveryAmount(recoveryPotion.RecoveryAmount)
+                .Build();
         }
     }
 }
