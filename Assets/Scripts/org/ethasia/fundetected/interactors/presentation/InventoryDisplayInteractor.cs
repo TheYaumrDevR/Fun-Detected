@@ -50,9 +50,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var weapon in inventoryExtractor.ExtractedWeapons)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
-                    .WithItemId(weapon.Item.Name)
-                    .WithCanBeEquipped(true);
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(weapon.Item, true);
                 ConvertShapeAndPositionToPresentationContext(weapon.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 WeaponPresentationContext weaponPresentationContext = ConvertWeaponToPresentationContext(weapon.Item);
@@ -72,9 +70,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var armor in inventoryExtractor.ExtractedArmors)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
-                    .WithItemId(armor.Item.Name)
-                    .WithCanBeEquipped(true);
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(armor.Item, true);
                 ConvertShapeAndPositionToPresentationContext(armor.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 ArmorPresentationContext armorPresentationContext = ConvertArmorToPresentationContext(armor.Item);
@@ -94,9 +90,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
-                    .WithItemId(jewelry.Item.Name)
-                    .WithCanBeEquipped(true);
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(jewelry.Item, true);
                 ConvertShapeAndPositionToPresentationContext(jewelry.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 presentationContext.AddJewelryPresentationContext(itemPresentationContextBuilder.Build());
@@ -109,9 +103,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = new InventoryItemPresentationContext.Builder()
-                    .WithItemId(recoveryPotion.Item.Name)
-                    .WithCanBeEquipped(false);
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(recoveryPotion.Item, false);
                 ConvertShapeAndPositionToPresentationContext(recoveryPotion.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 RecoveryPotionPresentationContext recoveryPotionPresentationContext = ConvertRecoveryPotionToPresentationContext(recoveryPotion.Item);
@@ -214,11 +206,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
             if (null != extractedWeapon)
             {
-                InventoryItemPresentationContext itemContext = new InventoryItemPresentationContext.Builder()
-                    .WithItemId(extractedWeapon.Name)
-                    .WithCanBeEquipped(true)
-                    .Build();
-
+                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedWeapon, true).Build();
                 WeaponPresentationContext weaponContext = ConvertWeaponToPresentationContext(extractedWeapon);
 
                 return new EquippedWeaponPresentationContext.Builder()
@@ -237,10 +225,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
             if (null != extractedJewelry)
             {
-                InventoryItemPresentationContext itemContext = new InventoryItemPresentationContext.Builder()
-                    .WithItemId(extractedJewelry.Name)
-                    .WithCanBeEquipped(true)
-                    .Build();
+                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedJewelry, true).Build();
 
                 return new EquippedJewelryPresentationContext.Builder()
                     .WithSlotPosition(slotPosition)
@@ -249,6 +234,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             }
 
             return null;
+        }
+
+        private InventoryItemPresentationContext.Builder ConvertItemToPresentationContext(Item item, bool canBeEquipped)
+        {
+            return new InventoryItemPresentationContext.Builder()
+                .WithItemId(item.Name)
+                .WithItemClass(item.ItemClass)
+                .WithCanBeEquipped(canBeEquipped);
         }
 
         private WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
