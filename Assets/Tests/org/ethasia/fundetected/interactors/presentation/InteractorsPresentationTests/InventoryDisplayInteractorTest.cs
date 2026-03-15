@@ -24,6 +24,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons.Count, Is.EqualTo(1));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.ItemClass, Is.EqualTo(ItemClass.MARTIAL_STAFF));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatLeftRingIsEmpty(equipmentSlotsPresentationContext);
@@ -57,6 +58,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
 
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[1].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[1].ItemPresentationContext.ItemClass, Is.EqualTo(ItemClass.ONE_HANDED_MACE));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[1].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatLeftRingIsEmpty(equipmentSlotsPresentationContext);
@@ -89,6 +91,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry.Count, Is.EqualTo(1));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemClass, Is.EqualTo(ItemClass.RING));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
@@ -121,8 +124,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry.Count, Is.EqualTo(2));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemId, Is.EqualTo("Ruby Ring"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemClass, Is.EqualTo(ItemClass.RING));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.CanBeEquipped, Is.True);
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[1].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[1].ItemPresentationContext.ItemClass, Is.EqualTo(ItemClass.RING));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[1].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
@@ -153,6 +158,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(equipmentSlotsPresentationContext, Is.Not.Null);
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry.Count, Is.EqualTo(1));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemId, Is.EqualTo(itemName));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.ItemClass, Is.EqualTo(ItemClass.BELT));
             Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.CanBeEquipped, Is.True);
 
             AssertThatMainHandIsEmpty(equipmentSlotsPresentationContext);
@@ -209,30 +215,35 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             InventoryItemPresentationContext fifthResult = inventoryGridPresentationContext.RecoveryPotionsPresentationContexts[1].ItemContext;
 
             Assert.That(firstResult.ItemId, Is.EqualTo("Cutlass"));
+            Assert.That(firstResult.ItemClass, Is.EqualTo(ItemClass.ONE_HANDED_SWORD));
             Assert.That(firstResult.TopLeftCornerX, Is.EqualTo(1));
             Assert.That(firstResult.TopLeftCornerY, Is.EqualTo(0));
             Assert.That(firstResult.DimensionX, Is.EqualTo(2));
             Assert.That(firstResult.DimensionY, Is.EqualTo(3));
 
             Assert.That(secondResult.ItemId, Is.EqualTo("The Mirage"));
+            Assert.That(secondResult.ItemClass, Is.EqualTo(ItemClass.ONE_HANDED_SWORD));
             Assert.That(secondResult.TopLeftCornerX, Is.EqualTo(3));
             Assert.That(secondResult.TopLeftCornerY, Is.EqualTo(0));
             Assert.That(secondResult.DimensionX, Is.EqualTo(2));
             Assert.That(secondResult.DimensionY, Is.EqualTo(3));
 
             Assert.That(thirdResult.ItemId, Is.EqualTo("Sapphire Ring"));
+            Assert.That(thirdResult.ItemClass, Is.EqualTo(ItemClass.RING));
             Assert.That(thirdResult.TopLeftCornerX, Is.EqualTo(0));
             Assert.That(thirdResult.TopLeftCornerY, Is.EqualTo(4));
             Assert.That(thirdResult.DimensionX, Is.EqualTo(1));
             Assert.That(thirdResult.DimensionY, Is.EqualTo(1));
 
             Assert.That(fourthResult.ItemId, Is.EqualTo("Life Potion"));
+            Assert.That(fourthResult.ItemClass, Is.EqualTo(ItemClass.LIFE_POTION));
             Assert.That(fourthResult.TopLeftCornerX, Is.EqualTo(0));
             Assert.That(fourthResult.TopLeftCornerY, Is.EqualTo(0));
             Assert.That(fourthResult.DimensionX, Is.EqualTo(1));
             Assert.That(fourthResult.DimensionY, Is.EqualTo(2));
 
             Assert.That(fifthResult.ItemId, Is.EqualTo("Mana Potion"));
+            Assert.That(fifthResult.ItemClass, Is.EqualTo(ItemClass.LIFE_POTION));
             Assert.That(fifthResult.TopLeftCornerX, Is.EqualTo(0));
             Assert.That(fifthResult.TopLeftCornerY, Is.EqualTo(2));
             Assert.That(fifthResult.DimensionX, Is.EqualTo(1));
@@ -258,7 +269,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             weaponBuilder.SetName(itemId);
 
             weaponBuilder.SetItemClass(weaponClass);
-            weaponBuilder.SetMinToMaxPhysicalDamage(weaponDamageRange);
+            weaponBuilder.SetMinToMaxPhysicalDamage(weaponDamageRange)
+                .SetMinToMaxSpellDamage(new DamageRange(3, 8))
+                .SetSkillsPerSecond(1.0)
+                .SetCriticalStrikeChance(1000);
 
             return weaponBuilder.Build();
         }
@@ -277,6 +291,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             RecoveryPotion.Builder potionBuilder = new RecoveryPotion.Builder();
             potionBuilder.SetName(itemId);
             potionBuilder.SetItemClass(ItemClass.LIFE_POTION);
+            potionBuilder.SetUses(3);
+            potionBuilder.SetRecoveryAmount(50);
 
             return potionBuilder.Build();
         }
