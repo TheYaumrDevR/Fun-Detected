@@ -250,6 +250,47 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(fifthResult.DimensionY, Is.EqualTo(2));
         }
 
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsEquippedWeaponProperties()
+        {
+            string itemName = "Ancient Axe";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Weapon mainHandWeapon = CreateTestWeapon(itemName, ItemClass.TWO_HANDED_AXE);
+
+            playerCharacter.PickupEquipment(mainHandWeapon);
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
+
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(5));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(10));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxSpellDamage.MinDamage, Is.EqualTo(3));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxSpellDamage.MaxDamage, Is.EqualTo(8));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.SkillsPerSecond, Is.EqualTo(1.0));   
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.CriticalStrikeChance,Is.EqualTo(1000));           
+        }
+
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsInventoryWeaponProperties()
+        {
+            string itemName = "Ancient Mace";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Weapon weapon = CreateTestWeapon(itemName, ItemClass.TWO_HANDED_MACE);
+
+            playerCharacter.PickupEquipment(weapon);
+            playerCharacter.PickupEquipment(weapon);
+            playerCharacter.PickupEquipment(weapon);
+
+            InventoryGridPresentationContext result = CallInventoryGridExtraction(playerCharacter);
+
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(5));
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(10));
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxSpellDamage.MinDamage, Is.EqualTo(3));
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxSpellDamage.MaxDamage, Is.EqualTo(8));
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.SkillsPerSecond, Is.EqualTo(1.0));   
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.CriticalStrikeChance,Is.EqualTo(1000));   
+        }
+
         private PlayerCharacter CreateTestPlayer()
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
@@ -275,6 +316,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
                 .SetCriticalStrikeChance(1000);
 
             return weaponBuilder.Build();
+        }
+
+        private Armor CreateTestArmor(string itemId, ItemClass armorClass)
+        {
+            Armor.Builder armorBuilder = new Armor.Builder();
+
+            armorBuilder.SetName(itemId)
+                .SetItemClass(armorClass);
+            armorBuilder.SetArmorValue(32)
+                .SetMovementSpeedAddend(3);
+
+            return armorBuilder.Build();
         }
 
         private Jewelry CreateTestJewelry(string itemId, ItemClass jewelryClass)
