@@ -291,6 +291,36 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.CriticalStrikeChance,Is.EqualTo(1000));   
         }
 
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsInventoryArmorProperties()
+        {
+            string itemName = "Bronze Armor";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            Armor armor = CreateTestArmor(itemName, ItemClass.BODY_ARMOR);
+
+            playerCharacter.PickupEquipment(armor);
+            InventoryGridPresentationContext result = CallInventoryGridExtraction(playerCharacter);
+
+            Assert.That(result.ArmorsPresentationContexts[0].ArmorContext.ArmorValue, Is.EqualTo(32));
+            Assert.That(result.ArmorsPresentationContexts[0].ArmorContext.MovementSpeedAddend, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void TestCreateInventoryPresentationContextConvertsInventoryRecoveryPotionProperties()
+        {
+            string itemName = "Radiant Life Potion";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            RecoveryPotion potion = CreateTestRecoveryPotion(itemName);
+
+            playerCharacter.PickupPotion(potion);
+            InventoryGridPresentationContext result = CallInventoryGridExtraction(playerCharacter);
+
+            Assert.That(result.RecoveryPotionsPresentationContexts[0].RecoveryPotionContext.RecoveryAmount, Is.EqualTo(50));
+            Assert.That(result.RecoveryPotionsPresentationContexts[0].RecoveryPotionContext.Uses, Is.EqualTo(3));
+        }
+
         private PlayerCharacter CreateTestPlayer()
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
