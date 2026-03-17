@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Ioadapters.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical
@@ -87,6 +88,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public override IDroppableItemRenderer GetDroppableItemRendererInstance()
         {
             return DroppableItemRenderer.GetInstance();
+        }
+
+        public override ILocalizationGateway CreateLocalizationGateway()
+        {
+            return new DictionaryBasedLocalizationGateway();
         }
     }
 }

@@ -1,12 +1,18 @@
 using System.Collections.Generic;
 
+using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
+using Org.Ethasia.Fundetected.Ioadapters.Presentation;
+using Org.Ethasia.Fundetected.Ioadapters.Presentation.UI;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class GuiWindowsPresenter : IGuiWindowsPresenter
     {
+        private ILocalizationGateway localizationGateway = TechnicalFactory.GetInstance().CreateLocalizationGateway();
+
         public void ShowMapSelectionWindowForSingletonMap(string mapName, string destinationPortalId, string mapInstanceId)
         {
             IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
@@ -219,6 +225,78 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return parentContext;
         }
 
+        private InventoryGridRenderContext ConvertAndAddInventoryWeaponRenderContext(InventoryWeaponPresentationContext inventoryWeaponContext, InventoryGridRenderContext inventoryGridRenderContext)
+        {
+            var itemContext = inventoryWeaponContext.ItemContext;
+            var weaponContext = inventoryWeaponContext.WeaponContext;
+
+            for (int x = 0; x < itemContext.DimensionX; x++)
+            {
+                for (int y = 0; y < itemContext.DimensionY; y++)
+                {
+                    if (x == 0 && y == 0)
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithItemImageName(itemContext.ItemId)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .WithToolTipRenderContext(ConvertWeaponPresentationContext(weaponContext, itemContext))
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
+                    }
+                    else
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .WithToolTipRenderContext(ConvertWeaponPresentationContext(weaponContext, itemContext))
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
+                    }
+                }
+            }
+
+            return inventoryGridRenderContext;
+        }
+
+        private InventoryGridRenderContext ConvertAndAddInventoryArmorRenderContext(InventoryArmorPresentationContext inventoryArmorContext, InventoryGridRenderContext inventoryGridRenderContext)
+        {
+            var itemContext = inventoryArmorContext.ItemContext;
+            var armorContext = inventoryArmorContext.ArmorContext;
+
+            for (int x = 0; x < itemContext.DimensionX; x++)
+            {
+                for (int y = 0; y < itemContext.DimensionY; y++)
+                {
+                    if (x == 0 && y == 0)
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithItemImageName(itemContext.ItemId)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .WithToolTipRenderContext(ConvertArmorPresentationContext(armorContext, itemContext))
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
+                    }
+                    else
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .WithToolTipRenderContext(ConvertArmorPresentationContext(armorContext, itemContext))
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
+                    }
+                }
+            }
+
+            return inventoryGridRenderContext;
+        }
+
         private InventoryGridRenderContext ConvertAndAddInventoryRenderContext(InventoryItemPresentationContext itemContext, InventoryGridRenderContext inventoryGridRenderContext)
         {
             for (int x = 0; x < itemContext.DimensionX; x++)
@@ -248,6 +326,171 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return inventoryGridRenderContext;
+        }
+
+        private InventoryGridRenderContext ConvertAndAddInventoryRecoveryPotionRenderContext(InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionContext, InventoryGridRenderContext inventoryGridRenderContext)
+        {
+            var itemContext = inventoryRecoveryPotionContext.ItemContext;
+            var recoveryPotionContext = inventoryRecoveryPotionContext.RecoveryPotionContext;
+
+            for (int x = 0; x < itemContext.DimensionX; x++)
+            {
+                for (int y = 0; y < itemContext.DimensionY; y++)
+                {
+                    if (x == 0 && y == 0)
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithItemImageName(itemContext.ItemId)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .WithToolTipRenderContext(ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext))
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
+                    }
+                    else
+                    {
+                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
+                            .ShouldRenderSomething(true)
+                            .WithCanBeEquipped(itemContext.CanBeEquipped)
+                            .WithToolTipRenderContext(ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext))
+                            .Build();
+
+                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
+                    }
+                }
+            }
+
+            return inventoryGridRenderContext;
+        }
+
+        private ItemTooltipRenderContext ConvertWeaponPresentationContext(WeaponPresentationContext weaponContext, InventoryItemPresentationContext itemContext)
+        {
+            return new ItemTooltipRenderContext.Builder()
+                .WithItemName(itemContext.ItemId)
+                .WithItemBaseTypeName(itemContext.ItemId)
+                .WithItemPotential(itemContext.ItemPotential)
+                .WithItemHeaderLines(ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(weaponContext))
+                .Build();
+        }
+
+        private ItemTooltipRenderContext ConvertArmorPresentationContext(ArmorPresentationContext armorContext, InventoryItemPresentationContext itemContext)
+        {
+            return new ItemTooltipRenderContext.Builder()
+                .WithItemName(itemContext.ItemId)
+                .WithItemBaseTypeName(itemContext.ItemId)
+                .WithItemPotential(itemContext.ItemPotential)
+                .WithItemHeaderLines(ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(armorContext))
+                .Build();
+        }
+
+        private ItemTooltipRenderContext ConvertJewelryPresentationContext(InventoryItemPresentationContext itemContext)
+        {
+            return new ItemTooltipRenderContext.Builder()
+                .WithItemName(itemContext.ItemId)
+                .WithItemBaseTypeName(itemContext.ItemId)
+                .WithItemPotential(itemContext.ItemPotential)
+                .Build();
+        }
+
+        private ItemTooltipRenderContext ConvertRecoveryPotionPresentationContext(RecoveryPotionPresentationContext recoveryPotionContext, InventoryItemPresentationContext itemContext)
+        {
+            return new ItemTooltipRenderContext.Builder()
+                .WithItemName(itemContext.ItemId)
+                .WithItemBaseTypeName(itemContext.ItemId)
+                .WithItemPotential(itemContext.ItemPotential)
+                .WithItemHeaderLines(ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(recoveryPotionContext))
+                .Build();
+        }
+
+        private List<List<UiTextSegment>> ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(WeaponPresentationContext weaponContext)
+        {
+            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+
+            result.Add(ConvertWeaponPhysDamageToTextSegments(weaponContext.MinToMaxPhysicalDamage));
+            result.Add(ConvertWeaponSpellDamageToTextSegments(weaponContext.MinToMaxSpellDamage));
+            result.Add(ConvertWeaponCritChanceToTextSegments(weaponContext.CriticalStrikeChance));
+            result.Add(ConvertWeaponSkillsPerSecondToTextSegments(weaponContext.SkillsPerSecond));
+
+            return result;
+        }
+
+        private List<List<UiTextSegment>> ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(ArmorPresentationContext armorContext)
+        {
+            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+
+            result.Add(ConvertArmorValueToTextSegments(armorContext.ArmorValue));
+            result.Add(ConvertArmorMovementSpeedAddendToTextSegments(armorContext.MovementSpeedAddend));
+
+            return result;
+        }
+
+        private List<List<UiTextSegment>> ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(RecoveryPotionPresentationContext recoveryPotionContext)
+        {
+            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+
+            result.Add(ConvertRecoveryPotionRecoveryAmountToTextSegments(recoveryPotionContext.RecoveryAmount));
+            result.Add(ConvertRecoveryPotionUsesToTextSegments(recoveryPotionContext.Uses));
+
+            return result;
+        }
+
+        private List<UiTextSegment> ConvertWeaponPhysDamageToTextSegments(DamageRange physMinMaxDam)
+        {
+            return ConvertDamageRangeToTextSegments("weapon-tooltip-phys-dam", physMinMaxDam);
+        }
+
+        private List<UiTextSegment> ConvertWeaponSpellDamageToTextSegments(DamageRange spellMinMaxDam)
+        {
+            return ConvertDamageRangeToTextSegments("weapon-tooltip-spell-dam", spellMinMaxDam);
+        }
+
+        private List<UiTextSegment> ConvertDamageRangeToTextSegments(string localizationKey, DamageRange damageRange)
+        {
+            string localizedString = localizationGateway.GetLocalizedString(localizationKey);
+            string formattedString = string.Format(localizedString, damageRange.MinDamage, damageRange.MaxDamage);
+            return MarkupTextParser.Parse(formattedString);
+        }
+
+        private List<UiTextSegment> ConvertWeaponCritChanceToTextSegments(int critChanceCents)
+        {
+            string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-crit-chance");
+            string formattedString = string.Format(localizedString, critChanceCents / 100.0);
+            return MarkupTextParser.Parse(formattedString);
+        }
+
+        private List<UiTextSegment> ConvertWeaponSkillsPerSecondToTextSegments(double skillsPerSecondCents)
+        {
+            string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-skills-per-second");
+            string formattedString = string.Format(localizedString, skillsPerSecondCents);
+            return MarkupTextParser.Parse(formattedString);
+        }
+
+        private List<UiTextSegment> ConvertArmorValueToTextSegments(int armorValue)
+        {
+            return ConvertIntegerToTextSegments("armor-tooltip-armor", armorValue);
+        }
+
+        private List<UiTextSegment> ConvertArmorMovementSpeedAddendToTextSegments(int movementSpeedAddend)
+        {
+            return ConvertIntegerToTextSegments("armor-tooltip-movement-speed", movementSpeedAddend);
+        }
+
+        private List<UiTextSegment> ConvertRecoveryPotionUsesToTextSegments(int uses)
+        {
+            return ConvertIntegerToTextSegments("life-potion-tooltip-heal-value", uses);
+        }
+
+        private List<UiTextSegment> ConvertRecoveryPotionRecoveryAmountToTextSegments(int recoveryAmount)
+        {
+            return ConvertIntegerToTextSegments("life-potion-tooltip-usages", recoveryAmount);
+        }
+
+        private List<UiTextSegment> ConvertIntegerToTextSegments(string localizationKey, int value)
+        {
+            string localizedString = localizationGateway.GetLocalizedString(localizationKey);
+            string formattedString = string.Format(localizedString, value);
+            return MarkupTextParser.Parse(formattedString);
         }
     }
 }

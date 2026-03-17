@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Ioadapters.Presentation;
+
 namespace Org.Ethasia.Fundetected.Ioadapters.Technical
 {
     public abstract class TechnicalFactory
@@ -27,5 +29,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract IGuiWindowsController GetGuiWindowsControllerInstance();
         public abstract IItemTooltipPresenter GetItemTooltipPresenterInstance();
         public abstract IDroppableItemRenderer GetDroppableItemRendererInstance();
+        public abstract ILocalizationGateway CreateLocalizationGateway();
     }
 }

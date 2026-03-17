@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Ioadapters.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.Mocks
@@ -72,6 +73,11 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         }
 
         public override IDroppableItemRenderer GetDroppableItemRendererInstance()
+        {
+            return null;
+        }
+
+        public override ILocalizationGateway CreateLocalizationGateway()
         {
             return null;
         }
