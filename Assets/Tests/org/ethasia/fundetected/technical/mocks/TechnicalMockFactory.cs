@@ -79,7 +79,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
 
         public override ILocalizationGateway CreateLocalizationGateway()
         {
-            return null;
+            return new LocalizationGatewayMock();
         }
     }
 }
