@@ -179,7 +179,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 foreach (var weaponContext in toConvert.WeaponsPresentationContexts)
                 {
-                    parentContext = ConvertAndAddInventoryRenderContext(weaponContext.ItemContext, parentContext);
+                    parentContext = ConvertAndAddInventoryWeaponRenderContext(weaponContext, parentContext);
                 }
             }
 
@@ -192,7 +192,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 foreach (var armorContext in toConvert.ArmorsPresentationContexts)
                 {
-                    parentContext = ConvertAndAddInventoryRenderContext(armorContext.ItemContext, parentContext);
+                    parentContext = ConvertAndAddInventoryArmorRenderContext(armorContext, parentContext);
                 }
             }
 
@@ -205,7 +205,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 foreach (var jewelryContext in toConvert.JewelriesPresentationContexts)
                 {
-                    parentContext = ConvertAndAddInventoryRenderContext(jewelryContext, parentContext);
+                    parentContext = ConvertAndAddInventoryPlainItemRenderContext(jewelryContext, parentContext);
                 }
             }
 
@@ -218,7 +218,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 foreach (var recoveryPotionContext in toConvert.RecoveryPotionsPresentationContexts)
                 {
-                    parentContext = ConvertAndAddInventoryRenderContext(recoveryPotionContext.ItemContext, parentContext);
+                    parentContext = ConvertAndAddInventoryRecoveryPotionRenderContext(recoveryPotionContext, parentContext);
                 }
             }
 
@@ -229,135 +229,64 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             var itemContext = inventoryWeaponContext.ItemContext;
             var weaponContext = inventoryWeaponContext.WeaponContext;
+            var tooltip = ConvertWeaponPresentationContext(weaponContext, itemContext);
 
-            for (int x = 0; x < itemContext.DimensionX; x++)
-            {
-                for (int y = 0; y < itemContext.DimensionY; y++)
-                {
-                    if (x == 0 && y == 0)
-                    {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithItemImageName(itemContext.ItemId)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .WithToolTipRenderContext(ConvertWeaponPresentationContext(weaponContext, itemContext))
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
-                    }
-                    else
-                    {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .WithToolTipRenderContext(ConvertWeaponPresentationContext(weaponContext, itemContext))
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
-                    }
-                }
-            }
-
-            return inventoryGridRenderContext;
+            return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
 
         private InventoryGridRenderContext ConvertAndAddInventoryArmorRenderContext(InventoryArmorPresentationContext inventoryArmorContext, InventoryGridRenderContext inventoryGridRenderContext)
         {
             var itemContext = inventoryArmorContext.ItemContext;
             var armorContext = inventoryArmorContext.ArmorContext;
+            var tooltip = ConvertArmorPresentationContext(armorContext, itemContext);
 
-            for (int x = 0; x < itemContext.DimensionX; x++)
-            {
-                for (int y = 0; y < itemContext.DimensionY; y++)
-                {
-                    if (x == 0 && y == 0)
-                    {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithItemImageName(itemContext.ItemId)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .WithToolTipRenderContext(ConvertArmorPresentationContext(armorContext, itemContext))
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
-                    }
-                    else
-                    {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .WithToolTipRenderContext(ConvertArmorPresentationContext(armorContext, itemContext))
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
-                    }
-                }
-            }
-
-            return inventoryGridRenderContext;
+            return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
 
-        private InventoryGridRenderContext ConvertAndAddInventoryRenderContext(InventoryItemPresentationContext itemContext, InventoryGridRenderContext inventoryGridRenderContext)
+        private InventoryGridRenderContext ConvertAndAddInventoryPlainItemRenderContext(
+            InventoryItemPresentationContext itemContext, 
+            InventoryGridRenderContext inventoryGridRenderContext)
         {
-            for (int x = 0; x < itemContext.DimensionX; x++)
-            {
-                for (int y = 0; y < itemContext.DimensionY; y++)
-                {
-                    if (x == 0 && y == 0)
-                    {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithItemImageName(itemContext.ItemId)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
-                    }
-                    else
-                    {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
-                    }
-                }
-            }
-
-            return inventoryGridRenderContext;
+            return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext);
         }
 
         private InventoryGridRenderContext ConvertAndAddInventoryRecoveryPotionRenderContext(InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionContext, InventoryGridRenderContext inventoryGridRenderContext)
         {
             var itemContext = inventoryRecoveryPotionContext.ItemContext;
             var recoveryPotionContext = inventoryRecoveryPotionContext.RecoveryPotionContext;
+            var tooltip = ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext);
 
+            return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
+        }
+
+        private InventoryGridRenderContext ConvertAndAddInventoryItemRenderContext(
+            InventoryItemPresentationContext itemContext, 
+            InventoryGridRenderContext inventoryGridRenderContext, 
+            ItemTooltipRenderContext? tooltipRenderContext = null)
+        {
             for (int x = 0; x < itemContext.DimensionX; x++)
             {
                 for (int y = 0; y < itemContext.DimensionY; y++)
                 {
+                    InventorySlotRenderContext.Builder builder = new InventorySlotRenderContext.Builder()
+                        .ShouldRenderSomething(true)
+                        .WithCanBeEquipped(itemContext.CanBeEquipped);
+
                     if (x == 0 && y == 0)
                     {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithItemImageName(itemContext.ItemId)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .WithToolTipRenderContext(ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext))
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX, itemContext.TopLeftCornerY, slotRenderContext);
+                        builder.WithItemImageName(itemContext.ItemId);
                     }
-                    else
+
+                    if (tooltipRenderContext != null)
                     {
-                        InventorySlotRenderContext slotRenderContext = new InventorySlotRenderContext.Builder()
-                            .ShouldRenderSomething(true)
-                            .WithCanBeEquipped(itemContext.CanBeEquipped)
-                            .WithToolTipRenderContext(ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext))
-                            .Build();
-
-                        inventoryGridRenderContext.AddSlotRenderContext(itemContext.TopLeftCornerX + x, itemContext.TopLeftCornerY + y, slotRenderContext);
+                        builder.WithToolTipRenderContext(tooltipRenderContext.Value);
                     }
+
+                    InventorySlotRenderContext slotRenderContext = builder.Build();
+                    inventoryGridRenderContext.AddSlotRenderContext(
+                        itemContext.TopLeftCornerX + x, 
+                        itemContext.TopLeftCornerY + y, 
+                        slotRenderContext);
                 }
             }
 
@@ -407,8 +336,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
 
-            result.Add(ConvertWeaponPhysDamageToTextSegments(weaponContext.MinToMaxPhysicalDamage));
-            result.Add(ConvertWeaponSpellDamageToTextSegments(weaponContext.MinToMaxSpellDamage));
+            if (weaponContext.MinToMaxPhysicalDamage != null)
+            {
+                result.Add(ConvertWeaponPhysDamageToTextSegments(weaponContext.MinToMaxPhysicalDamage));
+            }
+            
+            if (weaponContext.MinToMaxSpellDamage != null)
+            {
+                result.Add(ConvertWeaponSpellDamageToTextSegments(weaponContext.MinToMaxSpellDamage));
+            }
+
             result.Add(ConvertWeaponCritChanceToTextSegments(weaponContext.CriticalStrikeChance));
             result.Add(ConvertWeaponSkillsPerSecondToTextSegments(weaponContext.SkillsPerSecond));
 
