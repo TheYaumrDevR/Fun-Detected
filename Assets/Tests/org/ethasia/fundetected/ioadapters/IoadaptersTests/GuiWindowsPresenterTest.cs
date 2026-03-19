@@ -1,5 +1,6 @@
 using NUnit.Framework;
 
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
@@ -63,19 +64,48 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].CanBeEquipped, Is.False);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ItemImageName, Is.EqualTo("first_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemName, Is.EqualTo("first_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("first_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-phys-dam"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second"));
+
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 1].CanBeEquipped, Is.False);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 1].ItemImageName, Is.Null);
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].CanBeEquipped, Is.False);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ItemImageName, Is.EqualTo("second_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemName, Is.EqualTo("second_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("second_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-spell-dam"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second"));
+
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 3].CanBeEquipped, Is.False);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 3].ItemImageName, Is.Null);
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].CanBeEquipped, Is.True);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ItemImageName, Is.EqualTo("third_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemName, Is.EqualTo("third_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("third_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(2));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("armor-tooltip-armor"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("armor-tooltip-movement-speed"));
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].CanBeEquipped, Is.True);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ItemImageName, Is.EqualTo("fourth_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemName, Is.EqualTo("fourth_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("fourth_item_icon"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(2));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("life-potion-tooltip-usages"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("life-potion-tooltip-heal-value"));
+
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 1].CanBeEquipped, Is.True);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 1].ItemImageName, Is.Null);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 2].CanBeEquipped, Is.True);
@@ -316,12 +346,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             WeaponPresentationContext weaponPresentationContext = new WeaponPresentationContext.Builder()
                 .WithMinToMaxPhysicalDamage(new DamageRange(5, 13))
-                .WithMinToMaxSpellDamage(new DamageRange(0, 0))
-                .WithSkillsPerSecond(1.4f)
-                .WithCriticalStrikeChance(500)
+                .WithSkillsPerSecond(1.25f)
+                .WithCriticalStrikeChance(650)
                 .Build();
 
-            InventoryWeaponPresentationContext weaponContext1 = new InventoryWeaponPresentationContext.Builder()
+            InventoryWeaponPresentationContext inventoryWeaponContext = new InventoryWeaponPresentationContext.Builder()
                 .WithWeaponContext(weaponPresentationContext)
                 .WithItemContext(firstItemPresentationContext)
                 .Build();
@@ -336,13 +365,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .Build();
 
             WeaponPresentationContext weaponPresentationContext2 = new WeaponPresentationContext.Builder()
-                .WithMinToMaxPhysicalDamage(new DamageRange(0, 0))
                 .WithMinToMaxSpellDamage(new DamageRange(6, 14))
                 .WithSkillsPerSecond(1.5f)
                 .WithCriticalStrikeChance(400)
                 .Build();
 
-            InventoryWeaponPresentationContext weaponContext2 = new InventoryWeaponPresentationContext.Builder()
+            InventoryWeaponPresentationContext inventoryWeaponContext2 = new InventoryWeaponPresentationContext.Builder()
                 .WithWeaponContext(weaponPresentationContext2)
                 .WithItemContext(secondItemPresentationContext)
                 .Build();
@@ -361,7 +389,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithMovementSpeedAddend(3)
                 .Build();
 
-            InventoryArmorPresentationContext armorContext1 = new InventoryArmorPresentationContext.Builder()
+            InventoryArmorPresentationContext inventoryArmorContext = new InventoryArmorPresentationContext.Builder()
                 .WithArmorContext(armorPresentationContext)
                 .WithItemContext(thirdItemPresentationContext)
                 .Build();
@@ -380,7 +408,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithUses(2)
                 .Build();
 
-            InventoryRecoveryPotionPresentationContext recoveryPotionContext1 = new InventoryRecoveryPotionPresentationContext.Builder()
+            InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionContext = new InventoryRecoveryPotionPresentationContext.Builder()
                 .WithRecoveryPotionContext(recoveryPotionContext)
                 .WithItemContext(fourthItemPresentationContext)
                 .Build();
@@ -396,10 +424,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             InventoryGridPresentationContext result = new InventoryGridPresentationContext();
 
-            result.AddWeaponPresentationContext(weaponContext1);
-            result.AddWeaponPresentationContext(weaponContext2);
-            result.AddArmorPresentationContext(armorContext1);
-            result.AddRecoveryPotionPresentationContext(recoveryPotionContext1);
+            result.AddWeaponPresentationContext(inventoryWeaponContext);
+            result.AddWeaponPresentationContext(inventoryWeaponContext2);
+            result.AddArmorPresentationContext(inventoryArmorContext);
+            result.AddRecoveryPotionPresentationContext(inventoryRecoveryPotionContext);
             result.AddJewelryPresentationContext(fifthItemPresentationContext);
 
             return result;
