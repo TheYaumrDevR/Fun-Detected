@@ -75,11 +75,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 if (weapon.SlotPosition == EquipmentSlotPositions.MAIN_HAND)
                 {
-                    builder.SetMainHand(ConvertEquipmentSlotPresentationContext(weapon.ItemPresentationContext));
+                    builder.SetMainHand(ConvertWeaponEquipmentSlotPresentationContext(weapon.ItemPresentationContext, weapon.WeaponPresentationContext));
                 }
                 else if (weapon.SlotPosition == EquipmentSlotPositions.OFF_HAND)
                 {
-                    builder.SetOffHand(ConvertEquipmentSlotPresentationContext(weapon.ItemPresentationContext));
+                    builder.SetOffHand(ConvertWeaponEquipmentSlotPresentationContext(weapon.ItemPresentationContext, weapon.WeaponPresentationContext));
                 }
             }
         }
@@ -91,16 +91,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 switch (armor.SlotPosition)
                 {
                     case EquipmentSlotPositions.HEAD:
-                        builder.SetHead(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        builder.SetHead(ConvertArmorEquipmentSlotPresentationContext(armor.ItemPresentationContext, armor.ArmorPresentationContext));
                         break;
                     case EquipmentSlotPositions.CHEST:
-                        builder.SetChest(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        builder.SetChest(ConvertArmorEquipmentSlotPresentationContext(armor.ItemPresentationContext, armor.ArmorPresentationContext));
                         break;
                     case EquipmentSlotPositions.HANDS:
-                        builder.SetHands(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        builder.SetHands(ConvertArmorEquipmentSlotPresentationContext(armor.ItemPresentationContext, armor.ArmorPresentationContext));
                         break;
                     case EquipmentSlotPositions.FEET:
-                        builder.SetFeet(ConvertEquipmentSlotPresentationContext(armor.ItemPresentationContext));
+                        builder.SetFeet(ConvertArmorEquipmentSlotPresentationContext(armor.ItemPresentationContext, armor.ArmorPresentationContext));
                         break;
                 }
             }
@@ -135,22 +135,40 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 switch (potion.SlotPosition)
                 {
                     case EquipmentSlotPositions.OUTER_LEFT_POTION:
-                        builder.SetLeftMostPotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        builder.SetLeftMostPotion(ConvertRecoveryPotionEquipmentSlotPresentationContext(potion.ItemPresentationContext, potion.RecoveryPotionPresentationContext));
                         break;
                     case EquipmentSlotPositions.MIDDLE_LEFT_POTION:
-                        builder.SetLeftMiddlePotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        builder.SetLeftMiddlePotion(ConvertRecoveryPotionEquipmentSlotPresentationContext(potion.ItemPresentationContext, potion.RecoveryPotionPresentationContext));
                         break;
                     case EquipmentSlotPositions.MIDDLE_POTION:
-                        builder.SetMiddlePotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        builder.SetMiddlePotion(ConvertRecoveryPotionEquipmentSlotPresentationContext(potion.ItemPresentationContext, potion.RecoveryPotionPresentationContext));
                         break;
                     case EquipmentSlotPositions.MIDDLE_RIGHT_POTION:
-                        builder.SetRightMiddlePotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        builder.SetRightMiddlePotion(ConvertRecoveryPotionEquipmentSlotPresentationContext(potion.ItemPresentationContext, potion.RecoveryPotionPresentationContext));
                         break;
                     case EquipmentSlotPositions.OUTER_RIGHT_POTION:
-                        builder.SetRightMostPotion(ConvertEquipmentSlotPresentationContext(potion.ItemPresentationContext));
+                        builder.SetRightMostPotion(ConvertRecoveryPotionEquipmentSlotPresentationContext(potion.ItemPresentationContext, potion.RecoveryPotionPresentationContext));
                         break;
                 }
             }
+        }
+
+        private EquipmentSlotRenderContext ConvertWeaponEquipmentSlotPresentationContext(InventoryItemPresentationContext context, WeaponPresentationContext weaponContext)
+        {
+            return new EquipmentSlotRenderContext.Builder()
+                .SetItemImagePath(context.ItemId)
+                .SetIsEquipped(context.CanBeEquipped)
+                .SetToolTipRenderContext(ConvertWeaponPresentationContext(weaponContext, context))
+                .Build();
+        }
+
+        private EquipmentSlotRenderContext ConvertArmorEquipmentSlotPresentationContext(InventoryItemPresentationContext context, ArmorPresentationContext armorContext)
+        {
+            return new EquipmentSlotRenderContext.Builder()
+                .SetItemImagePath(context.ItemId)
+                .SetIsEquipped(context.CanBeEquipped)
+                .SetToolTipRenderContext(ConvertArmorPresentationContext(armorContext, context))
+                .Build();
         }
 
         private EquipmentSlotRenderContext ConvertEquipmentSlotPresentationContext(InventoryItemPresentationContext context)
@@ -158,6 +176,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return new EquipmentSlotRenderContext.Builder()
                 .SetItemImagePath(context.ItemId)
                 .SetIsEquipped(context.CanBeEquipped)
+                .Build();
+        }
+
+        private EquipmentSlotRenderContext ConvertRecoveryPotionEquipmentSlotPresentationContext(InventoryItemPresentationContext context, RecoveryPotionPresentationContext recoveryPotionContext)
+        {
+            return new EquipmentSlotRenderContext.Builder()
+                .SetItemImagePath(context.ItemId)
+                .SetIsEquipped(context.CanBeEquipped)
+                .SetToolTipRenderContext(ConvertRecoveryPotionPresentationContext(recoveryPotionContext, context))
                 .Build();
         }
 
