@@ -25,10 +25,26 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             Assert.That(equipmentSlotsContext.MainHand.ItemImagePath, Is.EqualTo("sword_icon"));
             Assert.That(equipmentSlotsContext.MainHand.IsEquipped, Is.True);
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemName, Is.EqualTo("sword_icon"));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("sword_icon"));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-phys-dam 6-14"));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance 6%"));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second 1,30"));
+
             Assert.That(equipmentSlotsContext.OffHand.ItemImagePath, Is.Null);
             Assert.That(equipmentSlotsContext.OffHand.IsEquipped, Is.False);
+
             Assert.That(equipmentSlotsContext.Head.ItemImagePath, Is.EqualTo("helmet_icon"));
             Assert.That(equipmentSlotsContext.Head.IsEquipped, Is.True);
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemName, Is.EqualTo("helmet_icon"));
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("helmet_icon"));
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(2));
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("armor-tooltip-armor 12"));
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("armor-tooltip-movement-speed 200%"));
+
             Assert.That(equipmentSlotsContext.Chest.ItemImagePath, Is.Null);
             Assert.That(equipmentSlotsContext.Chest.IsEquipped, Is.False);
             Assert.That(equipmentSlotsContext.Hands.ItemImagePath, Is.EqualTo("gloves_icon"));
@@ -43,8 +59,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(equipmentSlotsContext.RightRing.IsEquipped, Is.True);
             Assert.That(equipmentSlotsContext.Neck.ItemImagePath, Is.EqualTo("necklace_icon"));
             Assert.That(equipmentSlotsContext.Neck.IsEquipped, Is.True);
+
             Assert.That(equipmentSlotsContext.LeftMostPotion.ItemImagePath, Is.EqualTo("left_most_potion_icon"));
             Assert.That(equipmentSlotsContext.LeftMostPotion.IsEquipped, Is.True);
+            Assert.That(equipmentSlotsContext.LeftMostPotion.ToolTipRenderContext.ItemName, Is.EqualTo("left_most_potion_icon"));
+            Assert.That(equipmentSlotsContext.LeftMostPotion.ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("left_most_potion_icon"));
+            Assert.That(equipmentSlotsContext.LeftMostPotion.ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
+            Assert.That(equipmentSlotsContext.LeftMostPotion.ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(2));
+            Assert.That(equipmentSlotsContext.LeftMostPotion.ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("life-potion-tooltip-heal-value 72"));
+            Assert.That(equipmentSlotsContext.LeftMostPotion.ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("life-potion-tooltip-usages 3"));
+
             Assert.That(equipmentSlotsContext.LeftMiddlePotion.ItemImagePath, Is.EqualTo("left_middle_potion_icon"));
             Assert.That(equipmentSlotsContext.LeftMiddlePotion.IsEquipped, Is.True);
             Assert.That(equipmentSlotsContext.MiddlePotion.ItemImagePath, Is.EqualTo("middle_potion_icon"));
@@ -68,9 +92,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("first_item_icon"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-phys-dam"));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance"));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-phys-dam 5-13"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance 6,5%"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second 1,25"));
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 1].CanBeEquipped, Is.False);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 1].ItemImageName, Is.Null);
@@ -81,9 +105,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("second_item_icon"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-spell-dam"));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance"));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-spell-dam 6-14"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance 4%"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 2].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second 1,50"));
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 3].CanBeEquipped, Is.False);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 3].ItemImageName, Is.Null);
@@ -94,8 +118,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("third_item_icon"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(2));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("armor-tooltip-armor"));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("armor-tooltip-movement-speed"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("armor-tooltip-armor 5"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("armor-tooltip-movement-speed 3%"));
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].CanBeEquipped, Is.True);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ItemImageName, Is.EqualTo("fourth_item_icon"));
@@ -103,8 +127,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("fourth_item_icon"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(2));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("life-potion-tooltip-usages"));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("life-potion-tooltip-heal-value"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("life-potion-tooltip-heal-value 20"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("life-potion-tooltip-usages 2"));
 
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 1].CanBeEquipped, Is.True);
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[1, 1].ItemImageName, Is.Null);
@@ -170,9 +194,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithCanBeEquipped(true)
                 .Build();
 
+            WeaponPresentationContext weaponPresentationContext = new WeaponPresentationContext.Builder()
+                .WithMinToMaxPhysicalDamage(new DamageRange(6, 14))
+                .WithSkillsPerSecond(1.3f)
+                .WithCriticalStrikeChance(600)
+                .Build();
+
             EquippedWeaponPresentationContext mainHandContext = new EquippedWeaponPresentationContext.Builder()
                 .WithItemPresentationContext(mainHandItemContext)
                 .WithSlotPosition(EquipmentSlotPositions.MAIN_HAND)
+                .WithWeaponPresentationContext(weaponPresentationContext)
                 .Build();
 
             InventoryItemPresentationContext offHandItemContext = new InventoryItemPresentationContext.Builder()
@@ -189,9 +220,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithCanBeEquipped(true)
                 .Build();
 
+            ArmorPresentationContext armorPresentationContext = new ArmorPresentationContext.Builder()
+                .WithArmorValue(12)
+                .WithMovementSpeedAddend(200)
+                .Build();
+
             EquippedArmorPresentationContext headContext = new EquippedArmorPresentationContext.Builder()
                 .WithItemPresentationContext(headItemContext)
                 .WithSlotPosition(EquipmentSlotPositions.HEAD)
+                .WithArmorPresentationContext(armorPresentationContext)
                 .Build();
 
             InventoryItemPresentationContext chestItemContext = new InventoryItemPresentationContext.Builder()
@@ -267,9 +304,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithCanBeEquipped(true)
                 .Build();
 
+            RecoveryPotionPresentationContext recoveryPotionContext = new RecoveryPotionPresentationContext.Builder()
+                .WithRecoveryAmount(72)
+                .WithUses(3)
+                .Build();
+
             EquippedRecoveryPotionPresentationContext leftMostPotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
                 .WithItemPresentationContext(leftMostPotionItemContext)
                 .WithSlotPosition(EquipmentSlotPositions.OUTER_LEFT_POTION)
+                .WithRecoveryPotionPresentationContext(recoveryPotionContext)
                 .Build();
 
             InventoryItemPresentationContext leftMiddlePotionItemContext = new InventoryItemPresentationContext.Builder()

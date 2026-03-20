@@ -423,10 +423,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return MarkupTextParser.Parse(formattedString);
         }
 
-        private List<UiTextSegment> ConvertWeaponSkillsPerSecondToTextSegments(double skillsPerSecondCents)
+        private List<UiTextSegment> ConvertWeaponSkillsPerSecondToTextSegments(double skillsPerSecond)
         {
+            string skillsPerSecondTwoDecimal = skillsPerSecond.ToString("F2");
             string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-skills-per-second");
-            string formattedString = string.Format(localizedString, skillsPerSecondCents);
+            string formattedString = string.Format(localizedString, skillsPerSecondTwoDecimal);
             return MarkupTextParser.Parse(formattedString);
         }
 
@@ -442,12 +443,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         private List<UiTextSegment> ConvertRecoveryPotionUsesToTextSegments(int uses)
         {
-            return ConvertIntegerToTextSegments("life-potion-tooltip-heal-value", uses);
+            return ConvertIntegerToTextSegments("life-potion-tooltip-usages", uses);
         }
 
         private List<UiTextSegment> ConvertRecoveryPotionRecoveryAmountToTextSegments(int recoveryAmount)
         {
-            return ConvertIntegerToTextSegments("life-potion-tooltip-usages", recoveryAmount);
+            return ConvertIntegerToTextSegments("life-potion-tooltip-heal-value", recoveryAmount);
         }
 
         private List<UiTextSegment> ConvertIntegerToTextSegments(string localizationKey, int value)
