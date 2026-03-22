@@ -28,7 +28,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemName, Is.EqualTo("sword_icon"));
             Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("sword_icon"));
             Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
-            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(4));
             Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-phys-dam 6-14"));
             Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance 6%"));
             Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second 1,30"));
@@ -91,7 +91,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemName, Is.EqualTo("first_item_icon"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemBaseTypeName, Is.EqualTo("first_item_icon"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemPotential, Is.EqualTo(ItemPotential.NORMAL));
-            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(3));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines.Count, Is.EqualTo(4));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[0][0].Text, Is.EqualTo("weapon-tooltip-phys-dam 5-13"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[1][0].Text, Is.EqualTo("weapon-tooltip-crit-chance 6,5%"));
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 0].ToolTipRenderContext.ItemHeaderLines[2][0].Text, Is.EqualTo("weapon-tooltip-skills-per-second 1,25"));
