@@ -1,5 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+
+using Org.Ethasia.Fundetected.Ioadapters.Presentation.UI;
+using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 {
@@ -7,8 +11,16 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
     public partial class NormalItemTooltip : VisualElement
     {
         private const string HEADER_NAME = "tooltip-header";
+        private const string CONTENT_AREA_NAME = "tooltip-content";
+
+        private const string TEXT_ROW_CLASS = "item-tooltip-text-row";
+        private const string TEXT_LABEL_CLASS = "item-tooltip-text-label";
+        private const string TEXT_VALUE_CLASS = "item-tooltip-text-value";
+        private const string TEXT_PADDING_LEFT_CLASS = "item-tooltip-text-padding-left";
+        private const string TEXT_PADDING_RIGHT_CLASS = "item-tooltip-text-padding-right";
 
         private SingleLineItemTooltipHeader tooltipHeader;
+        private VisualElement contentArea;
 
         public NormalItemTooltip()
         {
@@ -16,6 +28,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             visualTree.CloneTree(this);
 
             tooltipHeader = this.Q<SingleLineItemTooltipHeader>(HEADER_NAME);
+            contentArea = this.Q<VisualElement>(CONTENT_AREA_NAME);
 
             this.pickingMode = PickingMode.Ignore;
         }
@@ -28,6 +41,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
                 style.visibility = Visibility.Visible;
                 CorrectPositionBasedOnWindowBounds(displayInformation.PosX, displayInformation.PosY);
+            }
+
+            if (null != contentArea)
+            {
+                SetupToolTipContentAreaHeader(displayInformation.TooltipRenderContext.ItemHeaderLines);
             }
         }
 
@@ -53,9 +71,59 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             style.top = posY;
         }
 
+        private void SetupToolTipContentAreaHeader(List<List<UiTextSegment>> tooltipContext)
+        {
+            contentArea.Clear();
+
+            if (tooltipContext != null)
+            {
+                foreach (var textSegments in tooltipContext)
+                {
+                    var row = ConvertTextSegmentsToVisualElement(textSegments);
+                    contentArea.Add(row);
+                }
+            }
+        }
+
+        private VisualElement ConvertTextSegmentsToVisualElement(List<UiTextSegment> textSegments)
+        {
+            var row = new VisualElement();
+            row.AddToClassList(TEXT_ROW_CLASS);
+
+            var i = 0;
+            foreach (var textSegment in textSegments)
+            {
+                var label = new Label(textSegment.Text);
+                string labelClass = textSegment.IsBold ? TEXT_VALUE_CLASS : TEXT_LABEL_CLASS;
+                label.AddToClassList(labelClass);
+
+                if (i == 0)
+                {
+                    label.AddToClassList(TEXT_PADDING_LEFT_CLASS);
+                }
+
+                if (i == textSegments.Count - 1)
+                {
+                    label.AddToClassList(TEXT_PADDING_RIGHT_CLASS);
+                }
+
+                row.Add(label);
+
+                i++;
+            }
+
+            return row;
+        }
+
         public struct TooltipDisplayInformation
         {
             public string ItemName
+            {
+                get;
+                private set;
+            }
+
+            public ItemTooltipRenderContext TooltipRenderContext
             {
                 get;
                 private set;
@@ -85,6 +153,12 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 public Builder SetItemName(string value)
                 {
                     product.ItemName = value;
+                    return this;
+                }
+
+                public Builder SetTooltipRenderContext(ItemTooltipRenderContext value)
+                {
+                    product.TooltipRenderContext = value;
                     return this;
                 }
 

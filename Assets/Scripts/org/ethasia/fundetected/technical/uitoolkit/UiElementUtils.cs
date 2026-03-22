@@ -9,7 +9,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         public static void RegisterItemHoverEvents(VisualElement itemImage, InventorySlotRenderContext context)
         {
             NormalItemTooltip.TooltipDisplayInformation.Builder tooltipContentBuilder = new NormalItemTooltip.TooltipDisplayInformation.Builder()
-                .SetItemName(context.ItemImageName);
+                .SetItemName(context.ItemImageName)
+                .SetTooltipRenderContext(context.ToolTipRenderContext);
 
             RegisterItemHoverEvents(itemImage, tooltipContentBuilder);
         }
@@ -17,7 +18,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         public static void RegisterItemHoverEvents(VisualElement itemImage, EquipmentSlotRenderContext renderContext)
         {
             NormalItemTooltip.TooltipDisplayInformation.Builder tooltipContentBuilder = new NormalItemTooltip.TooltipDisplayInformation.Builder()
-                .SetItemName(renderContext.ItemImagePath);
+                .SetItemName(renderContext.ItemImagePath)
+                .SetTooltipRenderContext(renderContext.ToolTipRenderContext);
 
             RegisterItemHoverEvents(itemImage, tooltipContentBuilder);
         }

@@ -1,0 +1,36 @@
+.item-tooltip-content {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.item-tooltip-text-row {
+    flex-direction: row;
+    align-self: flex-start;
+}
+
+.item-tooltip-text-label {
+    color: #8f8f8f;
+    font-size: 14px;
+    white-space: nowrap; 
+
+    margin: 3px;
+    padding: 0;
+}
+
+.item-tooltip-text-value {
+    color: #ffffff;
+    font-size: 12px;
+    white-space: nowrap; 
+    -unity-font-style: bold;
+
+    margin: 3px;
+    padding: 0;
+}
+
+.item-tooltip-text-padding-left {
+    padding-left: 8px;
+}
+
+.item-tooltip-text-padding-right {
+    padding-right: 8px;
+}
