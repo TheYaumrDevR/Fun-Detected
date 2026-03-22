@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -80,6 +81,11 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         public override ILocalizationGateway CreateLocalizationGateway()
         {
             return new LocalizationGatewayMock();
+        }
+
+        public override IEnumLocalizationGateway CreateEnumLocalizationGateway()
+        {
+            return new EnumLocalizationGatewayMock();
         }
     }
 }

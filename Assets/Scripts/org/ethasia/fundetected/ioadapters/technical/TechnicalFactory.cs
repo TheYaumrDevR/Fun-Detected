@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Presentation;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Technical
@@ -30,5 +31,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract IItemTooltipPresenter GetItemTooltipPresenterInstance();
         public abstract IDroppableItemRenderer GetDroppableItemRendererInstance();
         public abstract ILocalizationGateway CreateLocalizationGateway();
+        public abstract IEnumLocalizationGateway CreateEnumLocalizationGateway();
     }
 }

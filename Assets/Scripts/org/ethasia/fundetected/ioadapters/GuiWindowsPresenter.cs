@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Presentation.UI;
@@ -12,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class GuiWindowsPresenter : IGuiWindowsPresenter
     {
         private ILocalizationGateway localizationGateway = TechnicalFactory.GetInstance().CreateLocalizationGateway();
+        private IEnumLocalizationGateway enumLocalizationGateway = TechnicalFactory.GetInstance().CreateEnumLocalizationGateway();
 
         public void ShowMapSelectionWindowForSingletonMap(string mapName, string destinationPortalId, string mapInstanceId)
         {
@@ -326,7 +328,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemName(itemContext.ItemId)
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(weaponContext))
+                .WithItemHeaderLines(ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(weaponContext, itemContext.ItemClass))
                 .Build();
         }
 
@@ -336,7 +338,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemName(itemContext.ItemId)
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(armorContext))
+                .WithItemHeaderLines(ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(armorContext, itemContext.ItemClass))
                 .Build();
         }
 
@@ -346,6 +348,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemName(itemContext.ItemId)
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
+                .WithItemHeaderLines(ConvertItemClassToTooltipForJewelry(itemContext.ItemClass))
                 .Build();
         }
 
@@ -355,13 +358,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemName(itemContext.ItemId)
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(recoveryPotionContext))
+                .WithItemHeaderLines(ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(recoveryPotionContext, itemContext.ItemClass))
                 .Build();
         }
 
-        private List<List<UiTextSegment>> ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(WeaponPresentationContext weaponContext)
+        private List<List<UiTextSegment>> ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(WeaponPresentationContext weaponContext, ItemClass itemClass)
         {
             List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+
+            result.Add(ConvertItemClassToTextSegment(itemClass));
 
             if (weaponContext.MinToMaxPhysicalDamage != null)
             {
@@ -379,20 +384,31 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return result;
         }
 
-        private List<List<UiTextSegment>> ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(ArmorPresentationContext armorContext)
+        private List<List<UiTextSegment>> ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(ArmorPresentationContext armorContext, ItemClass itemClass)
         {
             List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
 
+            result.Add(ConvertItemClassToTextSegment(itemClass));
             result.Add(ConvertArmorValueToTextSegments(armorContext.ArmorValue));
             result.Add(ConvertArmorMovementSpeedAddendToTextSegments(armorContext.MovementSpeedAddend));
 
             return result;
         }
 
-        private List<List<UiTextSegment>> ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(RecoveryPotionPresentationContext recoveryPotionContext)
+        private List<List<UiTextSegment>> ConvertItemClassToTooltipForJewelry(ItemClass itemClass)
         {
             List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
 
+            result.Add(ConvertItemClassToTextSegment(itemClass));
+
+            return result;
+        }
+
+        private List<List<UiTextSegment>> ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(RecoveryPotionPresentationContext recoveryPotionContext, ItemClass itemClass)
+        {
+            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+
+            result.Add(ConvertItemClassToTextSegment(itemClass));
             result.Add(ConvertRecoveryPotionRecoveryAmountToTextSegments(recoveryPotionContext.RecoveryAmount));
             result.Add(ConvertRecoveryPotionUsesToTextSegments(recoveryPotionContext.Uses));
 
@@ -449,6 +465,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private List<UiTextSegment> ConvertRecoveryPotionRecoveryAmountToTextSegments(int recoveryAmount)
         {
             return ConvertIntegerToTextSegments("life-potion-tooltip-heal-value", recoveryAmount);
+        }
+
+        private List<UiTextSegment> ConvertItemClassToTextSegment(ItemClass itemClass)
+        {
+            List<UiTextSegment> result = new List<UiTextSegment>();
+            string localizedClassName = enumLocalizationGateway.GetLocalizedEnumString<ItemClass>(itemClass);
+
+            result.Add(new UiTextSegment(localizedClassName, false));
+
+            return result;
         }
 
         private List<UiTextSegment> ConvertIntegerToTextSegments(string localizationKey, int value)
