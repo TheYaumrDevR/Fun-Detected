@@ -178,6 +178,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return new EquipmentSlotRenderContext.Builder()
                 .SetItemImagePath(context.ItemId)
                 .SetIsEquipped(context.CanBeEquipped)
+                .SetToolTipRenderContext(ConvertPlainItemPresentationContextToTooltipContext(context))
                 .Build();
         }
 
@@ -276,7 +277,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             InventoryItemPresentationContext itemContext, 
             InventoryGridRenderContext inventoryGridRenderContext)
         {
-            return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext);
+            var tooltip = ConvertPlainItemPresentationContextToTooltipContext(itemContext);
+            return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
 
         private InventoryGridRenderContext ConvertAndAddInventoryRecoveryPotionRenderContext(InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionContext, InventoryGridRenderContext inventoryGridRenderContext)
@@ -342,7 +344,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
-        private ItemTooltipRenderContext ConvertJewelryPresentationContext(InventoryItemPresentationContext itemContext)
+        private ItemTooltipRenderContext ConvertPlainItemPresentationContextToTooltipContext(InventoryItemPresentationContext itemContext)
         {
             return new ItemTooltipRenderContext.Builder()
                 .WithItemName(itemContext.ItemId)
