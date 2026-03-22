@@ -5,7 +5,7 @@
 
 .item-tooltip-text-row {
     flex-direction: row;
-    align-self: flex-start;
+    justify-content: center;
 }
 
 .item-tooltip-text-label {
