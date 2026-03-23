@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 52
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -70,7 +70,7 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -138,8 +138,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84e4227654215dd4e9bd27142609d2ce
-      internalID: 1072283849
+      spriteID: 9dab8ea1bd700464d8cddc3f20ca3903
+      internalID: 1204962893
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90903e54c9ac4664d813f0dd2ca4b71b
-      internalID: -1901425222
+      spriteID: a13ca34ca8d47bc46ae7b4cec7143d5a
+      internalID: 666676922
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3126a697959fae740bb5feb2b2c5a45e
-      internalID: -1448415611
+      spriteID: ac028a33309cee041956edddc055101a
+      internalID: -1230733664
       vertices: []
       indices: 
       edges: []
@@ -204,8 +204,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b90a55bb577de25478dbdc4e08ddd389
-      internalID: 342208865
+      spriteID: a3cef320934d61947ba428f36436afab
+      internalID: -750223266
       vertices: []
       indices: 
       edges: []
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b02cc58f18b69994aab6edfd3197123d
-      internalID: -1808185857
+      spriteID: 38e05ce55c3c46143b4d60a472604c25
+      internalID: -498813550
       vertices: []
       indices: 
       edges: []
@@ -248,8 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 633d80176dd2fd34286be89bc07bb5b4
-      internalID: -75436978
+      spriteID: fb540ebff4b3df44181131340673b85b
+      internalID: -1741812855
       vertices: []
       indices: 
       edges: []
@@ -270,8 +270,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 212763b6c9f65ae4d9c3802f027c0865
-      internalID: -40465753
+      spriteID: 7d38437077ff8404893375130cc0836e
+      internalID: 492168100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_FlowerUpper
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c3faceca8c16a4f888cceb40610611
+      internalID: 1415307918
       vertices: []
       indices: 
       edges: []
@@ -292,8 +314,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b03717679bfef7044b46c60bd8076a2c
-      internalID: 1018643343
+      spriteID: 255b925343af8d247a3f977e87bbd98a
+      internalID: 693952853
       vertices: []
       indices: 
       edges: []
@@ -314,8 +336,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d60a445d5251f3d4282aaf5736be4d16
-      internalID: -1911538747
+      spriteID: 39605eb29be12394686cf1aa4d478ce0
+      internalID: 429478500
       vertices: []
       indices: 
       edges: []
@@ -336,8 +358,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f3058f811232d446b3b4acae69d266c
-      internalID: -1417030391
+      spriteID: 1821d4fc283c8d745977429c66d77572
+      internalID: -1178209480
       vertices: []
       indices: 
       edges: []
@@ -358,8 +380,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 258b58692087d4a43831c4dd91c03831
-      internalID: -1110053482
+      spriteID: 23beebd0987ab31429088b56fcc303b4
+      internalID: 551020030
       vertices: []
       indices: 
       edges: []
@@ -380,8 +402,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00cb0d301820cf6419a3abd8dd76da33
-      internalID: -436436431
+      spriteID: 2504e8db433bad646b76a020bbb3fd30
+      internalID: 1178380491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_FlowerLower
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46ec51aec74c0746b54e53aaedd354a
+      internalID: -1505853419
       vertices: []
       indices: 
       edges: []
@@ -402,8 +446,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f25b7e6269ec2ca41a747592523980a8
-      internalID: -561262923
+      spriteID: aad3277f9b5d99b4ab99c583b6b4e118
+      internalID: -684455734
       vertices: []
       indices: 
       edges: []
@@ -424,8 +468,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69ec3046be8f42f4686183e8eabb1f25
-      internalID: 1979780005
+      spriteID: a3e911ba7bdacae4fbeba1a3fc2657c5
+      internalID: -212314263
       vertices: []
       indices: 
       edges: []
@@ -446,8 +490,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d74cdc69c50661e429b60b1d3939d05d
-      internalID: 1943451812
+      spriteID: 75f05db5e49a50e4ca0ac521e7b011ee
+      internalID: 93217047
       vertices: []
       indices: 
       edges: []
@@ -468,8 +512,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 013a0560268a24a42bc8b909ff8a2877
-      internalID: 423640231
+      spriteID: bc8edb2975c51c048ac3f569a2e34dde
+      internalID: 1008533498
       vertices: []
       indices: 
       edges: []
@@ -490,8 +534,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bee822a690ab6b4fa89fd2971dec111
-      internalID: -1146456724
+      spriteID: c8f396f058e25fe4c935de016c909e70
+      internalID: 987577667
       vertices: []
       indices: 
       edges: []
@@ -512,228 +556,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b219473148ef44aaad8c9da160a103
-      internalID: -2069858243
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeTopTrunkOuterLeft
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 104
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b3091fef0a99db4a8b22641ba09c7df
-      internalID: -198959125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeTopTrunkLeft
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 104
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cd22b1dc57af9c143aa7007541e16c46
-      internalID: 189567098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeTopTrunkRight
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 104
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9eeb117180ceee843abf58021b9d84bf
-      internalID: 1772270435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeTopTrunkOuterRight
-      rect:
-        serializedVersion: 2
-        x: 364
-        y: 104
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96deb8327817da54a886f221b0235fb2
-      internalID: -1091260629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_Grass
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 52
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bf1c9b37bccca04e8a0617c90356535
-      internalID: -1271051063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeTrunkLeft
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 52
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ee0304449816da458828150cd55b118
-      internalID: 1461693560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeTrunkRight
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 52
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26ccce3b78fb80b43886d7197be1e8f0
-      internalID: -1537908187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_Earth
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03d13ba1b9e84164ba0fdf953c6a6436
-      internalID: -2134002121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeRootLeft
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 0
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 474ec6a34dde779488787c7560f46f59
-      internalID: -1129308002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlainsAndHillsTileset_TreeRootRight
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 0
-        width: 52
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7848a38d10a7664ea48e92c89647c80
-      internalID: 1591298501
+      spriteID: 6034bea3ee8dd964cb7db6a079f5a73c
+      internalID: 286589819
       vertices: []
       indices: 
       edges: []
@@ -754,8 +578,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcd2778f5a638184ca8ba1bbd7fa9165
-      internalID: 898790055
+      spriteID: 20425ec4ee41b084698e534c0fa485d3
+      internalID: 1377707706
       vertices: []
       indices: 
       edges: []
@@ -776,8 +600,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8944d3d89ac158d4bbabd43390432fe7
-      internalID: 1192253351
+      spriteID: 31a093e86a5fbcc4f83125b515b727fd
+      internalID: 57272379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeTopTrunkOuterLeft
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c370c201f6ce2e41acae5f80963a8be
+      internalID: -364973479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeTopTrunkLeft
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f85773c53c7f9704bb102f735cae6030
+      internalID: -397385926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeTopTrunkRight
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa49c86fbdf212d4d8942f90b1dde370
+      internalID: 1672352019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeTopTrunkOuterRight
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 104
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 506b154da4c63fc418cbae917683931e
+      internalID: 3251665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_Grass
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29bb638fb513a4847b8b34f4ab06bcce
+      internalID: -1772119688
       vertices: []
       indices: 
       edges: []
@@ -798,8 +732,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e7aca5d13b728946a78f3dd1e411a11
-      internalID: 726711787
+      spriteID: 2d27d035a7fea64409c534989c105d67
+      internalID: 898557897
       vertices: []
       indices: 
       edges: []
@@ -820,8 +754,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbb9598ac34256b4ba5d806527c5bcf2
-      internalID: 1634852973
+      spriteID: 2f826c38a95ae464bbc5f28b6d6afcb4
+      internalID: -1265496967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeTrunkLeft
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 52
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fca0c29b342f1c4ebb68c4474134b2b
+      internalID: 108939578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeTrunkRight
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 52
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b419e1b27ab3f45b9baaaffb8f352c
+      internalID: 1575045143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_Earth
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4029570dda77ee469f0e6fdf294dea7
+      internalID: 929454307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeRootLeft
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a307ca8ccc0ebd4682a5ecc9e115328
+      internalID: -721336754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlainsAndHillsTileset_TreeRootRight
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 0
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5108285b2417646ada27ec8af416d1
+      internalID: 1770066917
       vertices: []
       indices: 
       edges: []
@@ -840,38 +884,40 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlainsAndHillsTileset_Earth: -2134002121
-      PlainsAndHillsTileset_Grass: -1271051063
-      PlainsAndHillsTileset_Pavement: -2069858243
-      PlainsAndHillsTileset_RightSlope: 1192253351
-      PlainsAndHillsTileset_RightSlopeConnectionEarth: 1634852973
-      PlainsAndHillsTileset_RightSlopeConnectionGrass: 898790055
-      PlainsAndHillsTileset_RightSlopeStart: 726711787
-      PlainsAndHillsTileset_TreeLeavesAboveTopLeft: -1901425222
-      PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft: 1072283849
-      PlainsAndHillsTileset_TreeLeavesAboveTopRight: -1448415611
-      PlainsAndHillsTileset_TreeLeavesBottomLeftBorder: -561262923
-      PlainsAndHillsTileset_TreeLeavesLowerLeft: 1943451812
-      PlainsAndHillsTileset_TreeLeavesLowerOuterLeft: 1979780005
-      PlainsAndHillsTileset_TreeLeavesLowerOuterRight: -1146456724
-      PlainsAndHillsTileset_TreeLeavesLowerRight: 423640231
-      PlainsAndHillsTileset_TreeLeavesMiddleLeft: -1417030391
-      PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder: 1018643343
-      PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft: -1911538747
-      PlainsAndHillsTileset_TreeLeavesMiddleOuterRight: -436436431
-      PlainsAndHillsTileset_TreeLeavesMiddleRight: -1110053482
-      PlainsAndHillsTileset_TreeLeavesTopLeft: -1808185857
-      PlainsAndHillsTileset_TreeLeavesTopOuterLeft: 342208865
-      PlainsAndHillsTileset_TreeLeavesTopOuterRight: -40465753
-      PlainsAndHillsTileset_TreeLeavesTopRight: -75436978
-      PlainsAndHillsTileset_TreeRootLeft: -1129308002
-      PlainsAndHillsTileset_TreeRootRight: 1591298501
-      PlainsAndHillsTileset_TreeTopTrunkLeft: 189567098
-      PlainsAndHillsTileset_TreeTopTrunkOuterLeft: -198959125
-      PlainsAndHillsTileset_TreeTopTrunkOuterRight: -1091260629
-      PlainsAndHillsTileset_TreeTopTrunkRight: 1772270435
-      PlainsAndHillsTileset_TreeTrunkLeft: 1461693560
-      PlainsAndHillsTileset_TreeTrunkRight: -1537908187
+      PlainsAndHillsTileset_Earth: 929454307
+      PlainsAndHillsTileset_FlowerLower: -1505853419
+      PlainsAndHillsTileset_FlowerUpper: 1415307918
+      PlainsAndHillsTileset_Grass: -1772119688
+      PlainsAndHillsTileset_Pavement: 286589819
+      PlainsAndHillsTileset_RightSlope: 57272379
+      PlainsAndHillsTileset_RightSlopeConnectionEarth: -1265496967
+      PlainsAndHillsTileset_RightSlopeConnectionGrass: 1377707706
+      PlainsAndHillsTileset_RightSlopeStart: 898557897
+      PlainsAndHillsTileset_TreeLeavesAboveTopLeft: 666676922
+      PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft: 1204962893
+      PlainsAndHillsTileset_TreeLeavesAboveTopRight: -1230733664
+      PlainsAndHillsTileset_TreeLeavesBottomLeftBorder: -684455734
+      PlainsAndHillsTileset_TreeLeavesLowerLeft: 93217047
+      PlainsAndHillsTileset_TreeLeavesLowerOuterLeft: -212314263
+      PlainsAndHillsTileset_TreeLeavesLowerOuterRight: 987577667
+      PlainsAndHillsTileset_TreeLeavesLowerRight: 1008533498
+      PlainsAndHillsTileset_TreeLeavesMiddleLeft: -1178209480
+      PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder: 693952853
+      PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft: 429478500
+      PlainsAndHillsTileset_TreeLeavesMiddleOuterRight: 1178380491
+      PlainsAndHillsTileset_TreeLeavesMiddleRight: 551020030
+      PlainsAndHillsTileset_TreeLeavesTopLeft: -498813550
+      PlainsAndHillsTileset_TreeLeavesTopOuterLeft: -750223266
+      PlainsAndHillsTileset_TreeLeavesTopOuterRight: 492168100
+      PlainsAndHillsTileset_TreeLeavesTopRight: -1741812855
+      PlainsAndHillsTileset_TreeRootLeft: -721336754
+      PlainsAndHillsTileset_TreeRootRight: 1770066917
+      PlainsAndHillsTileset_TreeTopTrunkLeft: -397385926
+      PlainsAndHillsTileset_TreeTopTrunkOuterLeft: -364973479
+      PlainsAndHillsTileset_TreeTopTrunkOuterRight: 3251665
+      PlainsAndHillsTileset_TreeTopTrunkRight: 1672352019
+      PlainsAndHillsTileset_TreeTrunkLeft: 108939578
+      PlainsAndHillsTileset_TreeTrunkRight: 1575045143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
