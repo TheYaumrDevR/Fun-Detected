@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileChunk>
     <tileMaps>
+        <foliageFront>
+            <tile id="PlainsAndHillsTileset_FlowerLower" startX="0" startY="3" width="1" height="1"/>
+            <tile id="PlainsAndHillsTileset_FlowerUpper" startX="0" startY="4" width="1" height="1"/>
+            <tile id="PlainsAndHillsTileset_FlowerLower" startX="1" startY="3" width="1" height="1"/>
+            <tile id="PlainsAndHillsTileset_FlowerUpper" startX="1" startY="4" width="1" height="1"/>
+            <tile id="PlainsAndHillsTileset_FlowerLower" startX="4" startY="1" width="1" height="1"/>
+            <tile id="PlainsAndHillsTileset_FlowerUpper" startX="4" startY="2" width="1" height="1"/>
+        </foliageFront>
         <terrain>
             <tile id="PlainsAndHillsTileset_Earth" startX="0" startY="0" width="2" height="3"/>
             <tile id="PlainsAndHillsTileset_Earth" startX="2" startY="0" width="2" height="2"/>
