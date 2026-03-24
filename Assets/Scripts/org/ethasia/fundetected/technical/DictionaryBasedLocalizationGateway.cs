@@ -17,7 +17,13 @@ namespace Org.Ethasia.Fundetected.Technical
             { "armor-tooltip-armor", "Armor: <b>{0}</b>" },
             { "armor-tooltip-movement-speed", "Movement Speed: <b>{0}%</b>" },
             { "life-potion-tooltip-heal-value", "Recovers <b>{0}</b> Life on Use" },
-            { "life-potion-tooltip-usages", "Maximum Usages: <b>{0}</b>" }
+            { "life-potion-tooltip-usages", "Maximum Usages: <b>{0}</b>" },
+
+            { "PlusStrengthAffix", "+{0} to Strength" },
+            { "IncreasedGlobalPhysicalDamageAffix", "+{0}% to Global Physical Damage Increase" },
+            { "IncreasedPhysicalDamageWithAttacksAffix", "+{0}% to Global Physical Damage with Attacks Increase" },
+            { "IncreasedGlobalArmourAffix", "+{0}% to Global Armour Increase" },
+            { "PlusMinMaxGlobalPhysicalDamageWithAttacksAffix", "+{0} to {1} to Global Physical Damage with Attacks" }
         };
 
         public string GetLocalizedString(string key)
