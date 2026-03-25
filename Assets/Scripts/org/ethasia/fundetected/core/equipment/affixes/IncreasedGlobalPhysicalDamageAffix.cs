@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedGlobalPhysicalDamageAffix : EquipmentAffix
+    public class IncreasedGlobalPhysicalDamageAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public IncreasedGlobalPhysicalDamageAffix(int value) : base(AffixTypes.PREFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreaseIncreasedPhysicalDamageInPercentBy(value);
+            statsFromEquipment.IncreaseIncreasedPhysicalDamageInPercentBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreaseIncreasedPhysicalDamageInPercentBy(value);
+            statsFromEquipment.DecreaseIncreasedPhysicalDamageInPercentBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         
         public override EquipmentAffix Clone()
         {
-            IncreasedGlobalPhysicalDamageAffix copy = new IncreasedGlobalPhysicalDamageAffix(value);
+            IncreasedGlobalPhysicalDamageAffix copy = new IncreasedGlobalPhysicalDamageAffix(Value);
             Clone(copy);
             
             return copy;

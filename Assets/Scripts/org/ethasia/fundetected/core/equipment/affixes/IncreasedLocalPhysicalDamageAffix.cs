@@ -1,17 +1,21 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedLocalPhysicalDamageAffix : EquipmentAffix
+    public class IncreasedLocalPhysicalDamageAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public IncreasedLocalPhysicalDamageAffix(int value) : base(AffixTypes.PREFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
@@ -28,12 +32,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
-            localWeaponModifiers.IncreaseIncreasedPhysicalDamageInPercentBy(value);
+            localWeaponModifiers.IncreaseIncreasedPhysicalDamageInPercentBy(Value);
         }
 
         public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
-            localWeaponModifiers.DecreaseIncreasedPhysicalDamageInPercentBy(value);
+            localWeaponModifiers.DecreaseIncreasedPhysicalDamageInPercentBy(Value);
         }
 
         public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
         
         public override EquipmentAffix Clone()
         {
-            IncreasedLocalPhysicalDamageAffix copy = new IncreasedLocalPhysicalDamageAffix(value);
+            IncreasedLocalPhysicalDamageAffix copy = new IncreasedLocalPhysicalDamageAffix(Value);
             Clone(copy);
             
             return copy;

@@ -1,33 +1,37 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusAllAttributesAffix : EquipmentAffix
+    public class PlusAllAttributesAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public PlusAllAttributesAffix(int value) : base(AffixTypes.SUFFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusStrengthBy(value);
-            statsFromEquipment.IncreasePlusAgilityBy(value);
-            statsFromEquipment.IncreasePlusIntelligenceBy(value);
+            statsFromEquipment.IncreasePlusStrengthBy(Value);
+            statsFromEquipment.IncreasePlusAgilityBy(Value);
+            statsFromEquipment.IncreasePlusIntelligenceBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusStrengthBy(value);
-            statsFromEquipment.DecreasePlusAgilityBy(value);
-            statsFromEquipment.DecreasePlusIntelligenceBy(value);
+            statsFromEquipment.DecreasePlusStrengthBy(Value);
+            statsFromEquipment.DecreasePlusAgilityBy(Value);
+            statsFromEquipment.DecreasePlusIntelligenceBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -52,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PlusAllAttributesAffix copy = new PlusAllAttributesAffix(value);
+            PlusAllAttributesAffix copy = new PlusAllAttributesAffix(Value);
             Clone(copy);
 
             return copy;

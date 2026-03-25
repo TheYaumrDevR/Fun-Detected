@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusAgilityAffix : EquipmentAffix
+    public class PlusAgilityAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public PlusAgilityAffix(int value) : base(AffixTypes.SUFFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusAgilityBy(value);
+            statsFromEquipment.IncreasePlusAgilityBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusAgilityBy(value);
+            statsFromEquipment.DecreasePlusAgilityBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PlusAgilityAffix copy = new PlusAgilityAffix(value);
+            PlusAgilityAffix copy = new PlusAgilityAffix(Value);
             Clone(copy);
 
             return copy;

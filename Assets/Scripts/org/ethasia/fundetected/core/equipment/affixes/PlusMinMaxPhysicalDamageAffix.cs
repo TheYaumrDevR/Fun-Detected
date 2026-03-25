@@ -1,9 +1,12 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusMinMaxPhysicalDamageAffix : EquipmentAffix
+    public class PlusMinMaxPhysicalDamageAffix : EquipmentAffix, IAffixWithTwoIntegers
     {
         private int plusMinPhysicalDamageValue;
         private int plusMaxPhysicalDamageValue;
+
+        public int ValueOne => plusMinPhysicalDamageValue;
+        public int ValueTwo => plusMaxPhysicalDamageValue;
 
         public PlusMinMaxPhysicalDamageAffix(int plusMinPhysicalDamageValue, int plusMaxPhysicalDamageValue) : base(AffixTypes.PREFIX)
         {

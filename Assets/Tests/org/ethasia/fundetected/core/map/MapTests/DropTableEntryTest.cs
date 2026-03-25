@@ -83,12 +83,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             public int GetValueForTesting()
             {
-                return value;
+                return Value;
             }
 
             public override EquipmentAffix Clone()
             {
-                TestablePlusAllElementalResistancesAffix copy = new TestablePlusAllElementalResistancesAffix(value);
+                TestablePlusAllElementalResistancesAffix copy = new TestablePlusAllElementalResistancesAffix(Value);
                 Clone(copy);
 
                 return copy;

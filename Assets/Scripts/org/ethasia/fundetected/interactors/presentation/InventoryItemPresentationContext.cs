@@ -28,6 +28,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             private set;
         }
 
+        public AffixesPresentationContext Affixes
+        {
+            get;
+            private set;
+        }
+
         public int TopLeftCornerX
         {
             get;
@@ -77,6 +83,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             public Builder WithCanBeEquipped(bool canBeEquipped)
             {
                 result.CanBeEquipped = canBeEquipped;
+                return this;
+            }
+
+            public Builder WithAffixes(AffixesPresentationContext affixes)
+            {
+                result.Affixes = affixes;
                 return this;
             }
 

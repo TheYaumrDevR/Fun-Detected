@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusAllSocketedSpellsLevelAffix : EquipmentAffix
+    public class PlusAllSocketedSpellsLevelAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public PlusAllSocketedSpellsLevelAffix(int value) : base(AffixTypes.PREFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusAllSocketedSpellsLevelBy(value);
+            statsFromEquipment.IncreasePlusAllSocketedSpellsLevelBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusAllSocketedSpellsLevelBy(value);
+            statsFromEquipment.DecreasePlusAllSocketedSpellsLevelBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PlusAllSocketedSpellsLevelAffix copy = new PlusAllSocketedSpellsLevelAffix(value);
+            PlusAllSocketedSpellsLevelAffix copy = new PlusAllSocketedSpellsLevelAffix(Value);
             Clone(copy);
 
             return copy;

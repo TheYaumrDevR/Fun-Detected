@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedMaximumLifeAffix : EquipmentAffix
+    public class IncreasedMaximumLifeAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public IncreasedMaximumLifeAffix(int value) : base(AffixTypes.PREFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreaseIncreasedMaximumLifeInPercentBy(value);
+            statsFromEquipment.IncreaseIncreasedMaximumLifeInPercentBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreaseIncreasedMaximumLifeInPercentBy(value);
+            statsFromEquipment.DecreaseIncreasedMaximumLifeInPercentBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            IncreasedMaximumLifeAffix copy = new IncreasedMaximumLifeAffix(value);
+            IncreasedMaximumLifeAffix copy = new IncreasedMaximumLifeAffix(Value);
             Clone(copy);
 
             return copy;

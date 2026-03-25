@@ -1,12 +1,16 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PhysicalDamagePercentStolenAsLifeAffix : EquipmentAffix
+    public class PhysicalDamagePercentStolenAsLifeAffix : EquipmentAffix, IAffixWithOneFloat
     {
-        private float value;
+        public float Value 
+        { 
+            get; 
+            private set;
+        }
 
         public PhysicalDamagePercentStolenAsLifeAffix(float value) : base(AffixTypes.PREFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
@@ -18,12 +22,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePhysicalDamagePercentStolenAsLife(value);
+            statsFromEquipment.IncreasePhysicalDamagePercentStolenAsLife(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePhysicalDamagePercentStolenAsLife(value);
+            statsFromEquipment.DecreasePhysicalDamagePercentStolenAsLife(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PhysicalDamagePercentStolenAsLifeAffix copy = new PhysicalDamagePercentStolenAsLifeAffix(value);
+            PhysicalDamagePercentStolenAsLifeAffix copy = new PhysicalDamagePercentStolenAsLifeAffix(Value);
             Clone(copy);
 
             return copy;

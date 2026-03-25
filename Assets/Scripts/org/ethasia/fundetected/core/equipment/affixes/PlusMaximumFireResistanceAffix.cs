@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusMaximumFireResistanceAffix : EquipmentAffix
+    public class PlusMaximumFireResistanceAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public PlusMaximumFireResistanceAffix(int value) : base(AffixTypes.IMPLICIT_ONLY)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusMaximumFireResistanceBy(value);
+            statsFromEquipment.IncreasePlusMaximumFireResistanceBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusMaximumFireResistanceBy(value);
+            statsFromEquipment.DecreasePlusMaximumFireResistanceBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PlusMaximumFireResistanceAffix copy = new PlusMaximumFireResistanceAffix(value);
+            PlusMaximumFireResistanceAffix copy = new PlusMaximumFireResistanceAffix(Value);
             Clone(copy);
 
             return copy;

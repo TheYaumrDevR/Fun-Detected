@@ -1,17 +1,21 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedAttackSpeedAffix : EquipmentAffix
+    public class IncreasedAttackSpeedAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public IncreasedAttackSpeedAffix(int value) : base(AffixTypes.SUFFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
@@ -28,12 +32,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
-            localWeaponModifiers.IncreaseIncreasedAttackSpeedInPercentBy(value);
+            localWeaponModifiers.IncreaseIncreasedAttackSpeedInPercentBy(Value);
         }
 
         public override void UnApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
         {
-            localWeaponModifiers.DecreaseIncreasedAttackSpeedInPercentBy(value);
+            localWeaponModifiers.DecreaseIncreasedAttackSpeedInPercentBy(Value);
         }
 
         public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            IncreasedAttackSpeedAffix copy = new IncreasedAttackSpeedAffix(value);
+            IncreasedAttackSpeedAffix copy = new IncreasedAttackSpeedAffix(Value);
             Clone(copy);
             
             return copy;

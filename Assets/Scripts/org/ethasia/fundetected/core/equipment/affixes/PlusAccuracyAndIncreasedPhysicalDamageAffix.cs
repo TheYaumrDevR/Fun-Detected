@@ -1,9 +1,12 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusAccuracyAndIncreasedPhysicalDamageAffix : EquipmentAffix
+    public class PlusAccuracyAndIncreasedPhysicalDamageAffix : EquipmentAffix, IAffixWithTwoIntegers
     {
         private int plusAccuracyValue;
         private int increasedPhysicalDamageValue;
+
+        public int ValueOne => plusAccuracyValue;
+        public int ValueTwo => increasedPhysicalDamageValue;
 
         public PlusAccuracyAndIncreasedPhysicalDamageAffix(int plusAccuracyValue, int increasedPhysicalDamageValue) : base(AffixTypes.PREFIX)
         {

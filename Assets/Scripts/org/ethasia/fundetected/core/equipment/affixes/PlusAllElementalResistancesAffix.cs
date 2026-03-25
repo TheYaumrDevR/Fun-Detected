@@ -1,33 +1,37 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusAllElementalResistancesAffix : EquipmentAffix
+    public class PlusAllElementalResistancesAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        protected int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public PlusAllElementalResistancesAffix(int value) : base(AffixTypes.SUFFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusColdResistanceBy(value);
-            statsFromEquipment.IncreasePlusFireResistanceBy(value);
-            statsFromEquipment.IncreasePlusLightningResistanceBy(value);
+            statsFromEquipment.IncreasePlusColdResistanceBy(Value);
+            statsFromEquipment.IncreasePlusFireResistanceBy(Value);
+            statsFromEquipment.IncreasePlusLightningResistanceBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusColdResistanceBy(value);
-            statsFromEquipment.DecreasePlusFireResistanceBy(value);
-            statsFromEquipment.DecreasePlusLightningResistanceBy(value);
+            statsFromEquipment.DecreasePlusColdResistanceBy(Value);
+            statsFromEquipment.DecreasePlusFireResistanceBy(Value);
+            statsFromEquipment.DecreasePlusLightningResistanceBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -52,7 +56,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PlusAllElementalResistancesAffix copy = new PlusAllElementalResistancesAffix(value);
+            PlusAllElementalResistancesAffix copy = new PlusAllElementalResistancesAffix(Value);
             Clone(copy);
 
             return copy;

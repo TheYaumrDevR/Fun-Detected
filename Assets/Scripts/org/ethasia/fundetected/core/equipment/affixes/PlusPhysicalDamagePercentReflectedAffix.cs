@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusPhysicalDamagePercentReflectedAffix : EquipmentAffix
+    public class PlusPhysicalDamagePercentReflectedAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int plusPhysicalDamagePercentValue;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public PlusPhysicalDamagePercentReflectedAffix(int plusPhysicalDamagePercentValue) : base(AffixTypes.PREFIX)
         {
-            this.plusPhysicalDamagePercentValue = plusPhysicalDamagePercentValue;
+            Value = plusPhysicalDamagePercentValue;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            plusPhysicalDamagePercentValue = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreasePlusPhysicalDamagePercentReflectedBy(plusPhysicalDamagePercentValue);
+            statsFromEquipment.IncreasePlusPhysicalDamagePercentReflectedBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreasePlusPhysicalDamagePercentReflectedBy(plusPhysicalDamagePercentValue);
+            statsFromEquipment.DecreasePlusPhysicalDamagePercentReflectedBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            PlusPhysicalDamagePercentReflectedAffix copy = new PlusPhysicalDamagePercentReflectedAffix(plusPhysicalDamagePercentValue);
+            PlusPhysicalDamagePercentReflectedAffix copy = new PlusPhysicalDamagePercentReflectedAffix(Value);
             Clone(copy);
 
             return copy;

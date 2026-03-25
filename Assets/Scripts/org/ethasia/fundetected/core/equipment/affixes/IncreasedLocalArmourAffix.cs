@@ -1,17 +1,21 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedLocalArmourAffix : EquipmentAffix
+    public class IncreasedLocalArmourAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public IncreasedLocalArmourAffix(int value) : base(AffixTypes.PREFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
@@ -38,17 +42,17 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override void ApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
-            localArmorModifiers.IncreaseIncreasedArmorInPercentBy(value);
+            localArmorModifiers.IncreaseIncreasedArmorInPercentBy(Value);
         }
 
         public override void UnApplyLocalArmorEffects(LocalArmorModifiers localArmorModifiers)
         {
-            localArmorModifiers.DecreaseIncreasedArmorInPercentBy(value);
+            localArmorModifiers.DecreaseIncreasedArmorInPercentBy(Value);
         }
 
         public override EquipmentAffix Clone()
         {
-            IncreasedLocalArmourAffix copy = new IncreasedLocalArmourAffix(value);
+            IncreasedLocalArmourAffix copy = new IncreasedLocalArmourAffix(Value);
             Clone(copy);
             
             return copy;

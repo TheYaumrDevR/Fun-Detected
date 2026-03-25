@@ -1,29 +1,33 @@
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class IncreasedStunAndBlockRecoveryAffix : EquipmentAffix
+    public class IncreasedStunAndBlockRecoveryAffix : EquipmentAffix, IAffixWithOneInteger
     {
-        private int value;
+        public int Value 
+        { 
+            get; 
+            private set; 
+        }
 
         public IncreasedStunAndBlockRecoveryAffix(int value) : base(AffixTypes.SUFFIX)
         {
-            this.value = value;
+            Value = value;
         }
 
         public override void RerollValue(IntegerMinMaxIncrementRollableEquipmentAffix rerollStrategy)
         {
-            value = rerollStrategy.RerollValue();
+            Value = rerollStrategy.RerollValue();
         }
 
         public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.IncreaseIncreasedStunAndBlockRecoveryInPercentBy(value);
+            statsFromEquipment.IncreaseIncreasedStunAndBlockRecoveryInPercentBy(Value);
         }
 
         public override void UnApplyEffects(StatsFromEquipment statsFromEquipment)
         {
-            statsFromEquipment.DecreaseIncreasedStunAndBlockRecoveryInPercentBy(value);
+            statsFromEquipment.DecreaseIncreasedStunAndBlockRecoveryInPercentBy(Value);
         }
 
         public override void ApplyLocalWeaponEffects(LocalWeaponModifiers localWeaponModifiers)
@@ -48,7 +52,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         public override EquipmentAffix Clone()
         {
-            IncreasedStunAndBlockRecoveryAffix copy = new IncreasedStunAndBlockRecoveryAffix(value);
+            IncreasedStunAndBlockRecoveryAffix copy = new IncreasedStunAndBlockRecoveryAffix(Value);
             Clone(copy);
 
             return copy;

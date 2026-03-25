@@ -2,10 +2,13 @@ using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
-    public class PlusMinMaxGlobalPhysicalDamageWithAttacksAffix : EquipmentAffix
+    public class PlusMinMaxGlobalPhysicalDamageWithAttacksAffix : EquipmentAffix, IAffixWithTwoIntegers
     {
         private int lowerValue;
         private int upperValue;
+
+        public int ValueOne => lowerValue;
+        public int ValueTwo => upperValue;
 
         public PlusMinMaxGlobalPhysicalDamageWithAttacksAffix(int lowerValue, int upperValue) : base(AffixTypes.PREFIX)
         {
