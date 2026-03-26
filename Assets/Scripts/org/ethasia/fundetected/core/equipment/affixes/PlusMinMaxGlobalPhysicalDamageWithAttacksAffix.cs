@@ -53,6 +53,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             Clone(copy);
 
             return copy;
-        }        
+        }   
+
+        public override void Accept(IAffixVisitor visitor)
+        {
+            visitor.Visit(this);
+        }     
     }
 }

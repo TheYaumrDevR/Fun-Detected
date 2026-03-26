@@ -51,6 +51,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             foreach (var weapon in inventoryExtractor.ExtractedWeapons)
             {
                 InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(weapon.Item, true);
+                itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(weapon.Item));
                 ConvertShapeAndPositionToPresentationContext(weapon.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 WeaponPresentationContext weaponPresentationContext = ConvertWeaponToPresentationContext(weapon.Item);
@@ -71,6 +72,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             foreach (var armor in inventoryExtractor.ExtractedArmors)
             {
                 InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(armor.Item, true);
+                itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(armor.Item));
                 ConvertShapeAndPositionToPresentationContext(armor.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 ArmorPresentationContext armorPresentationContext = ConvertArmorToPresentationContext(armor.Item);
@@ -91,6 +93,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
             {
                 InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(jewelry.Item, true);
+                itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(jewelry.Item));
                 ConvertShapeAndPositionToPresentationContext(jewelry.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 presentationContext.AddJewelryPresentationContext(itemPresentationContextBuilder.Build());
@@ -206,7 +209,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
             if (null != extractedWeapon)
             {
-                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedWeapon, true).Build();
+                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedWeapon, true)
+                    .WithAffixes(ConvertItemAffixesToPresentationContext(extractedWeapon))
+                    .Build();
                 WeaponPresentationContext weaponContext = ConvertWeaponToPresentationContext(extractedWeapon);
 
                 return new EquippedWeaponPresentationContext.Builder()
@@ -225,7 +230,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
             if (null != extractedJewelry)
             {
-                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedJewelry, true).Build();
+                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedJewelry, true)
+                    .WithAffixes(ConvertItemAffixesToPresentationContext(extractedJewelry))
+                    .Build();
 
                 return new EquippedJewelryPresentationContext.Builder()
                     .WithSlotPosition(slotPosition)
@@ -242,6 +249,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithItemId(item.Name)
                 .WithItemClass(item.ItemClass)
                 .WithCanBeEquipped(canBeEquipped);
+        }
+
+        private AffixesPresentationContext ConvertItemAffixesToPresentationContext(Equipment item)
+        {
+            AffixToPresentationContextConversionVisitor converter = new AffixToPresentationContextConversionVisitor();
+            converter.ConvertAffixesToPresentationContexts(item.FirstImplicit, item.Prefixes, item.Suffixes);
+
+            return new AffixesPresentationContext(converter.Implicits, converter.Explicits);
         }
 
         private WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
