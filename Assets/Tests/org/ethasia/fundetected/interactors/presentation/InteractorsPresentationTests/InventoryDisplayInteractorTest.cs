@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Map;
@@ -321,6 +322,42 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(result.RecoveryPotionsPresentationContexts[0].RecoveryPotionContext.Uses, Is.EqualTo(3));
         }
 
+        [Test]
+        public void TestExtractAndShowInventoryExtractsAffixes()
+        {
+            string weaponName = "Steel Hatchet";
+            string armorName = "Cloth Boots";
+            string jewelryName = "War Belt";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+
+            Weapon weapon = CreateTestWeapon(weaponName, ItemClass.ONE_HANDED_AXE);
+            Armor armor = CreateTestArmor(armorName, ItemClass.SHOES);
+            Jewelry jewelry = CreateTestJewelry(jewelryName, ItemClass.BELT);
+
+            playerCharacter.PickupEquipment(weapon);
+            playerCharacter.PickupEquipment(weapon);
+            playerCharacter.PickupEquipment(weapon);
+            playerCharacter.PickupEquipment(armor);
+            playerCharacter.PickupEquipment(jewelry);
+            playerCharacter.PickupEquipment(jewelry);
+
+            InventoryPresentationContext inventoryPresentationContext = CallInventoryExtraction(playerCharacter);
+            EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = inventoryPresentationContext.EquipmentSlotsPresentationContext;
+            InventoryGridPresentationContext inventoryGridPresentationContext = inventoryPresentationContext.InventoryGridPresentationContext;
+
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Implicits[0].Name, Is.EqualTo("IncreasedGlobalPhysicalDamageAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[0].Name, Is.EqualTo("PlusMinMaxPhysicalDamageAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[1].Name, Is.EqualTo("PlusMinMaxLightningDamageAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[2].Name, Is.EqualTo("PlusToLifeRecoveredPerEnemyHitAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[3].Name, Is.EqualTo("PlusStrengthAffix"));
+
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Implicits[0].Name, Is.EqualTo("PlusStrengthAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Explicits[0].Name, Is.EqualTo("PlusMaximumLifeAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Explicits[1].Name, Is.EqualTo("PlusFireResistanceAffix"));
+            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Explicits[2].Name, Is.EqualTo("PlusStrengthAffix"));
+        }
+
         private PlayerCharacter CreateTestPlayer()
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
@@ -345,6 +382,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
                 .SetSkillsPerSecond(1.0)
                 .SetCriticalStrikeChance(1000);
 
+            IntegerMinMaxIncrementRollableEquipmentAffix implicitAffix = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(new IncreasedGlobalPhysicalDamageAffix(8))
+                .Build();
+
+            weaponBuilder.SetFirstImplicit(implicitAffix)
+                .AddAffix(new PlusMinMaxPhysicalDamageAffix(7, 13))
+                .AddAffix(new PlusMinMaxLightningDamageAffix(8, 175))
+                .AddAffix(new PlusToLifeRecoveredPerEnemyHitAffix(14))
+                .AddAffix(new PlusStrengthAffix(28));
+
             return weaponBuilder.Build();
         }
 
@@ -357,6 +404,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             armorBuilder.SetArmorValue(32)
                 .SetMovementSpeedAddend(3);
 
+            armorBuilder.AddAffix(new IncreasedStunAndBlockRecoveryAffix(6))
+                .AddAffix(new PlusMaximumLifeAffix(85))
+                .AddAffix(new PlusIntelligenceAffix(45))
+                .AddAffix(new PlusLightningResistanceAffix(17));
+
             return armorBuilder.Build();
         }
 
@@ -365,6 +417,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
             jewelryBuilder.SetName(itemId);
             jewelryBuilder.SetItemClass(jewelryClass);
+
+            IntegerMinMaxIncrementRollableEquipmentAffix implicitAffix = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(new PlusStrengthAffix(33))
+                .Build();
+
+            jewelryBuilder.SetFirstImplicit(implicitAffix)
+                .AddAffix(new PlusMaximumLifeAffix(23))
+                .AddAffix(new PlusFireResistanceAffix(30))
+                .AddAffix(new PlusStrengthAffix(56));
 
             return jewelryBuilder.Build();
         }
