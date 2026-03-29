@@ -19,5 +19,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             Name = name;
             Value = value;
         }
+
+        public object[] GetValues()
+        {
+            return new object[] { Value };
+        }
     }
 }

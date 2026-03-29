@@ -26,5 +26,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             ValueOne = valueOne;
             ValueTwo = valueTwo;
         }
+
+        public object[] GetValues()
+        {
+            return new object[] { ValueOne, ValueTwo };
+        }
     }
 }

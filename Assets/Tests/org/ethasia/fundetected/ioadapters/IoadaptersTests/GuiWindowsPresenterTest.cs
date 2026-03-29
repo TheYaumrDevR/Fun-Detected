@@ -200,6 +200,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("sword_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.ONE_HANDED_SWORD)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             WeaponPresentationContext weaponPresentationContext = new WeaponPresentationContext.Builder()
@@ -217,6 +218,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             InventoryItemPresentationContext offHandItemContext = new InventoryItemPresentationContext.Builder()
                 .WithCanBeEquipped(false)
                 .WithItemClass(ItemClass.QUIVER)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedWeaponPresentationContext offHandContext = new EquippedWeaponPresentationContext.Builder()
@@ -228,6 +230,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("helmet_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.HEAD_GEAR)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             ArmorPresentationContext armorPresentationContext = new ArmorPresentationContext.Builder()
@@ -244,6 +247,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             InventoryItemPresentationContext chestItemContext = new InventoryItemPresentationContext.Builder()
                 .WithCanBeEquipped(false)
                 .WithItemClass(ItemClass.BODY_ARMOR)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedArmorPresentationContext chestContext = new EquippedArmorPresentationContext.Builder()
@@ -255,6 +259,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("gloves_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.GLOVES)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedArmorPresentationContext handsContext = new EquippedArmorPresentationContext.Builder()
@@ -265,6 +270,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             InventoryItemPresentationContext feetItemContext = new InventoryItemPresentationContext.Builder()
                 .WithCanBeEquipped(false)
                 .WithItemClass(ItemClass.SHOES)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedArmorPresentationContext feetContext = new EquippedArmorPresentationContext.Builder()
@@ -276,6 +282,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("belt_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.BELT)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedJewelryPresentationContext beltContext = new EquippedJewelryPresentationContext.Builder()
@@ -287,6 +294,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("left_ring_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.RING)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedJewelryPresentationContext leftRingContext = new EquippedJewelryPresentationContext.Builder()
@@ -298,6 +306,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("right_ring_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.RING)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedJewelryPresentationContext rightRingContext = new EquippedJewelryPresentationContext.Builder()
@@ -309,6 +318,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("necklace_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.AMULET)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedJewelryPresentationContext necklaceContext = new EquippedJewelryPresentationContext.Builder()
@@ -320,6 +330,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("left_most_potion_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.LIFE_POTION)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             RecoveryPotionPresentationContext recoveryPotionContext = new RecoveryPotionPresentationContext.Builder()
@@ -337,6 +348,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("left_middle_potion_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.MANA_POTION)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedRecoveryPotionPresentationContext leftMiddlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
@@ -348,6 +360,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("middle_potion_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.LIFE_POTION)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedRecoveryPotionPresentationContext middlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
@@ -359,6 +372,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("right_middle_potion_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.LIFE_POTION)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedRecoveryPotionPresentationContext rightMiddlePotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
@@ -370,6 +384,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("right_most_potion_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.LIFE_POTION)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .Build();
 
             EquippedRecoveryPotionPresentationContext rightMostPotionContext = new EquippedRecoveryPotionPresentationContext.Builder()
@@ -404,6 +419,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("first_item_icon")
                 .WithCanBeEquipped(false)
                 .WithItemClass(ItemClass.FIST_WEAPON)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .WithTopLeftCornerX(0)
                 .WithTopLeftCornerY(0)
                 .WithDimensionX(1)
@@ -425,6 +441,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("second_item_icon")
                 .WithCanBeEquipped(false)
                 .WithItemClass(ItemClass.WIZARD_STAFF)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .WithTopLeftCornerX(0)
                 .WithTopLeftCornerY(2)
                 .WithDimensionX(1)
@@ -446,6 +463,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("third_item_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.BODY_ARMOR)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .WithTopLeftCornerX(0)
                 .WithTopLeftCornerY(4)
                 .WithDimensionX(1)
@@ -466,6 +484,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("fourth_item_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.LIFE_POTION)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .WithTopLeftCornerX(1)
                 .WithTopLeftCornerY(0)
                 .WithDimensionX(2)
@@ -486,6 +505,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("fifth_item_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.BELT)
+                .WithAffixes(CreateAffixPresentationContextOne())
                 .WithTopLeftCornerX(3)
                 .WithTopLeftCornerY(0)
                 .WithDimensionX(2)
@@ -501,6 +521,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             result.AddJewelryPresentationContext(fifthItemPresentationContext);
 
             return result;
+        }
+
+        private AffixesPresentationContext CreateAffixPresentationContextOne()
+        {
+            OneIntegerAffixPresentationContext implicitOne = new OneIntegerAffixPresentationContext("PlusStrengthAffix", 38);
+            IAffixPresentationContext[] implicits = new IAffixPresentationContext[] { implicitOne };
+
+            TwoIntegerAffixPresentationContext explicitOne = new TwoIntegerAffixPresentationContext("PlusMinMaxPhysicalDamageAffix", 7, 53);
+            IAffixPresentationContext[] explicits = new IAffixPresentationContext[] { explicitOne };
+
+            return new AffixesPresentationContext(implicits, explicits);
         }
     }
 }

@@ -331,6 +331,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(weaponContext, itemContext.ItemClass))
+                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
                 .Build();
         }
 
@@ -341,6 +342,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(armorContext, itemContext.ItemClass))
+                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
                 .Build();
         }
 
@@ -351,6 +353,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertItemClassToTooltipForJewelry(itemContext.ItemClass))
+                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
                 .Build();
         }
 
@@ -361,6 +364,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemBaseTypeName(itemContext.ItemId)
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(recoveryPotionContext, itemContext.ItemClass))
+                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
                 .Build();
         }
 
@@ -469,6 +473,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return ConvertIntegerToTextSegments("life-potion-tooltip-heal-value", recoveryAmount);
         }
 
+        private List<UiTextSegment> ConvertIntegerToTextSegments(string localizationKey, int value)
+        {
+            string localizedString = localizationGateway.GetLocalizedString(localizationKey);
+            string formattedString = string.Format(localizedString, value);
+            return MarkupTextParser.Parse(formattedString);
+        }
+
         private List<UiTextSegment> ConvertItemClassToTextSegment(ItemClass itemClass)
         {
             List<UiTextSegment> result = new List<UiTextSegment>();
@@ -479,11 +490,30 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return result;
         }
 
-        private List<UiTextSegment> ConvertIntegerToTextSegments(string localizationKey, int value)
+        private List<List<UiTextSegment>> ConvertItemImplicitsToTextSegments(InventoryItemPresentationContext itemContext)
         {
-            string localizedString = localizationGateway.GetLocalizedString(localizationKey);
-            string formattedString = string.Format(localizedString, value);
-            return MarkupTextParser.Parse(formattedString);
+            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+            AffixesPresentationContext affixes = itemContext.Affixes;
+
+            for (int i = 0; i < affixes.Implicits.Length; i++)
+            {
+                IAffixPresentationContext affix = affixes.Implicits[i];
+                result.Add(ConvertAffixToTextSegments(affix));
+            }
+
+            return result;
+        }
+
+        private List<UiTextSegment> ConvertAffixToTextSegments(IAffixPresentationContext affix)
+        {
+            List<UiTextSegment> result = new List<UiTextSegment>();
+            string affixUiText = localizationGateway.GetLocalizedString(affix.Name);
+
+            string formattedAffixText = string.Format(affixUiText, affix.GetValues());
+
+            result.Add(new UiTextSegment(formattedAffixText, false));
+
+            return result;
         }
     }
 }
