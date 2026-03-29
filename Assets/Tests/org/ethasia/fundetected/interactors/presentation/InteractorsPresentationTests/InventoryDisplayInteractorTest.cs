@@ -346,16 +346,38 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = inventoryPresentationContext.EquipmentSlotsPresentationContext;
             InventoryGridPresentationContext inventoryGridPresentationContext = inventoryPresentationContext.InventoryGridPresentationContext;
 
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Implicits[0].Name, Is.EqualTo("IncreasedGlobalPhysicalDamageAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[0].Name, Is.EqualTo("PlusMinMaxPhysicalDamageAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[1].Name, Is.EqualTo("PlusMinMaxLightningDamageAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[2].Name, Is.EqualTo("PlusToLifeRecoveredPerEnemyHitAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes.Explicits[3].Name, Is.EqualTo("PlusStrengthAffix"));
+            AffixesPresentationContext equippedWeaponAffixes = equipmentSlotsPresentationContext.EquippedWeapons[0].ItemPresentationContext.Affixes;
+            Assert.That(equippedWeaponAffixes.Implicits[0].Name, Is.EqualTo("IncreasedGlobalPhysicalDamageAffix"));
+            Assert.That(equippedWeaponAffixes.Explicits[0].Name, Is.EqualTo("PlusMinMaxPhysicalDamageAffix"));
+            Assert.That(equippedWeaponAffixes.Explicits[1].Name, Is.EqualTo("PlusMinMaxLightningDamageAffix"));
+            Assert.That(equippedWeaponAffixes.Explicits[2].Name, Is.EqualTo("PlusToLifeRecoveredPerEnemyHitAffix"));
+            Assert.That(equippedWeaponAffixes.Explicits[3].Name, Is.EqualTo("PlusStrengthAffix"));
 
-            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Implicits[0].Name, Is.EqualTo("PlusStrengthAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Explicits[0].Name, Is.EqualTo("PlusMaximumLifeAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Explicits[1].Name, Is.EqualTo("PlusFireResistanceAffix"));
-            Assert.That(equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes.Explicits[2].Name, Is.EqualTo("PlusStrengthAffix"));
+            AffixesPresentationContext equippedJewelryAffixes = equipmentSlotsPresentationContext.EquippedJewelry[0].ItemPresentationContext.Affixes;
+            Assert.That(equippedJewelryAffixes.Implicits[0].Name, Is.EqualTo("PlusStrengthAffix"));
+            Assert.That(equippedJewelryAffixes.Explicits[0].Name, Is.EqualTo("PlusMaximumLifeAffix"));
+            Assert.That(equippedJewelryAffixes.Explicits[1].Name, Is.EqualTo("PlusFireResistanceAffix"));
+            Assert.That(equippedJewelryAffixes.Explicits[2].Name, Is.EqualTo("PlusStrengthAffix"));
+
+            AffixesPresentationContext inventoryWeaponAffixes = inventoryGridPresentationContext.WeaponsPresentationContexts[0].ItemContext.Affixes;
+            Assert.That(inventoryWeaponAffixes.Implicits[0].Name, Is.EqualTo("IncreasedGlobalPhysicalDamageAffix"));
+            Assert.That(inventoryWeaponAffixes.Explicits[0].Name, Is.EqualTo("PlusMinMaxPhysicalDamageAffix"));
+            Assert.That(inventoryWeaponAffixes.Explicits[1].Name, Is.EqualTo("PlusMinMaxLightningDamageAffix"));
+            Assert.That(inventoryWeaponAffixes.Explicits[2].Name, Is.EqualTo("PlusToLifeRecoveredPerEnemyHitAffix"));
+            Assert.That(inventoryWeaponAffixes.Explicits[3].Name, Is.EqualTo("PlusStrengthAffix"));
+
+            AffixesPresentationContext inventoryArmorAffixes = inventoryGridPresentationContext.ArmorsPresentationContexts[0].ItemContext.Affixes;
+            Assert.That(inventoryArmorAffixes.Implicits.Length, Is.EqualTo(0));
+            Assert.That(inventoryArmorAffixes.Explicits[0].Name, Is.EqualTo("PlusMaximumLifeAffix"));
+            Assert.That(inventoryArmorAffixes.Explicits[1].Name, Is.EqualTo("IncreasedStunAndBlockRecoveryAffix"));
+            Assert.That(inventoryArmorAffixes.Explicits[2].Name, Is.EqualTo("PlusIntelligenceAffix"));
+            Assert.That(inventoryArmorAffixes.Explicits[3].Name, Is.EqualTo("PlusLightningResistanceAffix"));
+
+            AffixesPresentationContext inventoryJewelryAffixes = inventoryGridPresentationContext.JewelriesPresentationContexts[0].Affixes;
+            Assert.That(inventoryJewelryAffixes.Implicits[0].Name, Is.EqualTo("PlusStrengthAffix"));
+            Assert.That(inventoryJewelryAffixes.Explicits[0].Name, Is.EqualTo("PlusMaximumLifeAffix"));
+            Assert.That(inventoryJewelryAffixes.Explicits[1].Name, Is.EqualTo("PlusFireResistanceAffix"));
+            Assert.That(inventoryJewelryAffixes.Explicits[2].Name, Is.EqualTo("PlusStrengthAffix"));
         }
 
         private PlayerCharacter CreateTestPlayer()

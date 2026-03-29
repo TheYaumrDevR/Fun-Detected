@@ -23,13 +23,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
         public void ConvertAffixesToPresentationContexts(RollableEquipmentAffix firstImplicit, IReadOnlyList<EquipmentAffix> prefixes, IReadOnlyList<EquipmentAffix> suffixes)
         {
-            Implicits = new IAffixPresentationContext[1];
             Explicits = new IAffixPresentationContext[prefixes.Count + suffixes.Count];
 
             if (firstImplicit != null)
             {
+                Implicits = new IAffixPresentationContext[1];
+
                 currentImplicitIndex = 0;
                 firstImplicit.RerolledAffix.Accept(this);
+            }
+            else
+            {
+                Implicits = new IAffixPresentationContext[0];
             }
 
             currentImplicitIndex = -1;
