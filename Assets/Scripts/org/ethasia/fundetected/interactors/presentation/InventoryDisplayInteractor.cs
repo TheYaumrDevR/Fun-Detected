@@ -107,6 +107,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
             {
                 InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(recoveryPotion.Item, false);
+                itemPresentationContextBuilder.WithAffixes(new AffixesPresentationContext(new IAffixPresentationContext[] { }, new IAffixPresentationContext[] { }));
                 ConvertShapeAndPositionToPresentationContext(recoveryPotion.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 RecoveryPotionPresentationContext recoveryPotionPresentationContext = ConvertRecoveryPotionToPresentationContext(recoveryPotion.Item);
