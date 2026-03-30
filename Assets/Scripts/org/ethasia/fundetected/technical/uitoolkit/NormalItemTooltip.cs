@@ -18,6 +18,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private const string TEXT_VALUE_CLASS = "item-tooltip-text-value";
         private const string TEXT_PADDING_LEFT_CLASS = "item-tooltip-text-padding-left";
         private const string TEXT_PADDING_RIGHT_CLASS = "item-tooltip-text-padding-right";
+        private const string TEXT_BLUE_CLASS = "item-tooltip-text-blue";
+        private const string SEGMENT_DIVIDER_CLASS = "item-tooltip-section-divider";
 
         private SingleLineItemTooltipHeader tooltipHeader;
         private VisualElement contentArea;
@@ -45,7 +47,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             if (null != contentArea)
             {
+                contentArea.Clear();
                 SetupToolTipContentAreaHeader(displayInformation.TooltipRenderContext.ItemHeaderLines);
+                SetupToolTipContentAreaImplicits(displayInformation.TooltipRenderContext.ItemImplicitLines);
             }
         }
 
@@ -73,19 +77,17 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         private void SetupToolTipContentAreaHeader(List<List<UiTextSegment>> tooltipContext)
         {
-            contentArea.Clear();
-
             if (tooltipContext != null)
             {
                 foreach (var textSegments in tooltipContext)
                 {
-                    var row = ConvertTextSegmentsToVisualElement(textSegments);
+                    var row = ConvertTextSegmentsToVisualElement(textSegments, new string[] {});
                     contentArea.Add(row);
                 }
             }
         }
 
-        private VisualElement ConvertTextSegmentsToVisualElement(List<UiTextSegment> textSegments)
+        private VisualElement ConvertTextSegmentsToVisualElement(List<UiTextSegment> textSegments, string[] additionalLabelClasses)
         {
             var row = new VisualElement();
             row.AddToClassList(TEXT_ROW_CLASS);
@@ -107,12 +109,42 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     label.AddToClassList(TEXT_PADDING_RIGHT_CLASS);
                 }
 
+                foreach (var additionalClass in additionalLabelClasses)
+                {
+                    label.AddToClassList(additionalClass);
+                }
+
                 row.Add(label);
 
                 i++;
             }
 
             return row;
+        }
+
+        private void SetupToolTipContentAreaImplicits(List<List<UiTextSegment>> implicitsLines)
+        {
+            if (implicitsLines != null)
+            {
+                if (implicitsLines.Count > 0)
+                {
+                    contentArea.Add(CreateTooltipSegmentDivider());
+                }
+
+                foreach (var textSegments in implicitsLines)
+                {
+                    var labelRow = ConvertTextSegmentsToVisualElement(textSegments, new string[] { TEXT_BLUE_CLASS });
+                    contentArea.Add(labelRow);
+                }
+            }
+        }
+
+        private VisualElement CreateTooltipSegmentDivider()
+        {
+            var result = new VisualElement();
+            result.AddToClassList(SEGMENT_DIVIDER_CLASS);
+
+            return result;
         }
 
         public struct TooltipDisplayInformation

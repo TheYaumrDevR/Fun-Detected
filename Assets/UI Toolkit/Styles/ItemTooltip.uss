@@ -27,6 +27,26 @@
     padding: 0;
 }
 
+.item-tooltip-section-divider {
+    height: 3px;
+    width: 40%;
+
+    align-self: center;
+
+    background-image: url("project://database/Assets/UI%20Toolkit/Resources/Textures/ItemTooltipDivider.png");
+
+    -unity-background-scale-mode: stretch-to-fill;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.item-tooltip-text-blue {
+    color: #908bd8;
+}
+
 .item-tooltip-text-padding-left {
     padding-left: 8px;
 }
