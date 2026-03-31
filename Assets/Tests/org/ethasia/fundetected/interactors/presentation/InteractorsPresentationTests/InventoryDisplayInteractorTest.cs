@@ -380,6 +380,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             Assert.That(inventoryJewelryAffixes.Explicits[2].Name, Is.EqualTo("PlusStrengthAffix"));
         }
 
+        [Test]
+        public void TestExtractAndShowInventorySetsPotionImplicitsToEmpty()
+        {
+            string itemName = "Divine Life Potion";
+
+            PlayerCharacter playerCharacter = CreateTestPlayer();
+            RecoveryPotion potion = CreateTestRecoveryPotion(itemName);
+
+            playerCharacter.PickupPotion(potion);
+            InventoryGridPresentationContext result = CallInventoryGridExtraction(playerCharacter);
+
+            Assert.That(result.RecoveryPotionsPresentationContexts[0].ItemContext.ItemId, Is.EqualTo(itemName));
+            Assert.That(result.RecoveryPotionsPresentationContexts[0].ItemContext.Affixes.Implicits.Length, Is.EqualTo(0));
+        }
+
         private PlayerCharacter CreateTestPlayer()
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
