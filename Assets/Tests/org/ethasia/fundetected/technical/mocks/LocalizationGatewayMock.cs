@@ -16,7 +16,11 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             { "armor-tooltip-armor", "armor-tooltip-armor {0}" },
             { "armor-tooltip-movement-speed", "armor-tooltip-movement-speed {0}%" },
             { "life-potion-tooltip-heal-value", "life-potion-tooltip-heal-value {0}" },
-            { "life-potion-tooltip-usages", "life-potion-tooltip-usages {0}" }
+            { "life-potion-tooltip-usages", "life-potion-tooltip-usages {0}" },
+            { "PlusStrengthAffix", "PlusStrengthAffix {0}" },
+            { "PlusMaximumLifeAffix", "PlusMaximumLifeAffix {0}" },
+            { "PlusMinMaxLightningDamageAffix", "PlusMinMaxLightningDamageAffix {0}, {1}" },
+            { "IncMaxResAffix", "IncMaxResAffix {0}" }
         };
 
         public string GetLocalizedString(string key)

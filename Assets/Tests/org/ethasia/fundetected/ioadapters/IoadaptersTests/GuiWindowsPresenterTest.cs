@@ -184,6 +184,28 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             Assert.That(inventoryGridRenderContext.SlotRenderContexts[4, 4].ItemImageName, Is.Null);
         }
 
+        [Test]
+        public void TestOpenInventoryWindowConvertsImplicitsToEquipmentTooltips()
+        {
+            InventoryRenderContext result = ExecuteTest();
+
+            EquipmentSlotsRenderContext equipmentSlotsContext = result.EquipmentSlotsRenderContext;
+
+            Assert.That(equipmentSlotsContext.MainHand.ToolTipRenderContext.ItemImplicitLines[0][0].Text, Is.EqualTo("PlusStrengthAffix 38"));
+            Assert.That(equipmentSlotsContext.Head.ToolTipRenderContext.ItemImplicitLines[0][0].Text, Is.EqualTo("PlusMaximumLifeAffix 72"));
+        }
+
+        [Test]
+        public void TestOpenInventoryWindowConvertsImplicitsForGridItems()
+        {
+            InventoryRenderContext result = ExecuteTest();
+
+            InventoryGridRenderContext inventoryGridRenderContext = result.InventoryGridRenderContext;   
+
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[0, 4].ToolTipRenderContext.ItemImplicitLines[0][0].Text, Is.EqualTo("IncMaxResAffix 1"));
+            Assert.That(inventoryGridRenderContext.SlotRenderContexts[3, 0].ToolTipRenderContext.ItemImplicitLines[0][0].Text, Is.EqualTo("PlusMinMaxLightningDamageAffix 7, 150"));
+        }
+
         private InventoryRenderContext ExecuteTest()
         {
             GuiWindowsPresenter testCandidate = new GuiWindowsPresenter();
@@ -230,7 +252,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("helmet_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.HEAD_GEAR)
-                .WithAffixes(CreateAffixPresentationContextOne())
+                .WithAffixes(CreateAffixPresentationContextTwo())
                 .Build();
 
             ArmorPresentationContext armorPresentationContext = new ArmorPresentationContext.Builder()
@@ -463,7 +485,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("third_item_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.BODY_ARMOR)
-                .WithAffixes(CreateAffixPresentationContextOne())
+                .WithAffixes(CreateAffixPresentationContextThree())
                 .WithTopLeftCornerX(0)
                 .WithTopLeftCornerY(4)
                 .WithDimensionX(1)
@@ -505,7 +527,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                 .WithItemId("fifth_item_icon")
                 .WithCanBeEquipped(true)
                 .WithItemClass(ItemClass.BELT)
-                .WithAffixes(CreateAffixPresentationContextOne())
+                .WithAffixes(CreateAffixPresentationContextFour())
                 .WithTopLeftCornerX(3)
                 .WithTopLeftCornerY(0)
                 .WithDimensionX(2)
@@ -529,6 +551,39 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             IAffixPresentationContext[] implicits = new IAffixPresentationContext[] { implicitOne };
 
             TwoIntegerAffixPresentationContext explicitOne = new TwoIntegerAffixPresentationContext("PlusMinMaxPhysicalDamageAffix", 7, 53);
+            IAffixPresentationContext[] explicits = new IAffixPresentationContext[] { explicitOne };
+
+            return new AffixesPresentationContext(implicits, explicits);
+        }
+
+        private AffixesPresentationContext CreateAffixPresentationContextTwo()
+        {
+            OneIntegerAffixPresentationContext implicitOne = new OneIntegerAffixPresentationContext("PlusMaximumLifeAffix", 72);
+            IAffixPresentationContext[] implicits = new IAffixPresentationContext[] { implicitOne };
+
+            TwoIntegerAffixPresentationContext explicitOne = new TwoIntegerAffixPresentationContext("PlusMinMaxPhysicalDamageAffix", 7, 53);
+            IAffixPresentationContext[] explicits = new IAffixPresentationContext[] { explicitOne };
+
+            return new AffixesPresentationContext(implicits, explicits);
+        }
+
+        private AffixesPresentationContext CreateAffixPresentationContextThree()
+        {
+            OneIntegerAffixPresentationContext implicitOne = new OneIntegerAffixPresentationContext("IncMaxResAffix", 1);
+            IAffixPresentationContext[] implicits = new IAffixPresentationContext[] { implicitOne };
+
+            OneIntegerAffixPresentationContext explicitOne = new OneIntegerAffixPresentationContext("PlusMaximumLifeAffix", 60);
+            IAffixPresentationContext[] explicits = new IAffixPresentationContext[] { explicitOne };
+
+            return new AffixesPresentationContext(implicits, explicits);
+        }
+
+        private AffixesPresentationContext CreateAffixPresentationContextFour()
+        {
+            TwoIntegerAffixPresentationContext implicitOne = new TwoIntegerAffixPresentationContext("PlusMinMaxLightningDamageAffix", 7, 150);
+            IAffixPresentationContext[] implicits = new IAffixPresentationContext[] { implicitOne };
+
+            OneIntegerAffixPresentationContext explicitOne = new OneIntegerAffixPresentationContext("PlusMaximumLifeAffix", 60);
             IAffixPresentationContext[] explicits = new IAffixPresentationContext[] { explicitOne };
 
             return new AffixesPresentationContext(implicits, explicits);
