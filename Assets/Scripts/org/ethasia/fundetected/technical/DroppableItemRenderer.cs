@@ -45,10 +45,15 @@ namespace Org.Ethasia.Fundetected.Technical
 
             Sprite sprite = Resources.Load<Sprite>(renderData.RenderImageName);
 
+            Shader shader = Shader.Find("Unlit/VertexSpinSprite");
+            Material material = new Material(shader);
+            material.SetFloat("_Speed", 10.0f);
+
             SpriteRenderer spriteRenderer = droppedItem.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = sprite;
             spriteRenderer.sortingLayerName = "Sprites";
             spriteRenderer.sortingOrder = 1;
+            spriteRenderer.material = material;
 
             droppedItem.transform.position = new Vector3(renderData.PosX, renderData.PosY, 0.0f);
             droppedItem.transform.SetParent(transform);
@@ -95,6 +100,8 @@ namespace Org.Ethasia.Fundetected.Technical
                 itemLabel.transform.SetParent(transform);
 
                 renderedItemLabelById.Add(renderData.Id, itemLabel);
+
+                StopSpinning(renderData.Id);
             }
         }
 
@@ -113,6 +120,18 @@ namespace Org.Ethasia.Fundetected.Technical
                 Destroy(renderedItem);
                 dictionary.Remove(itemId);
             }
+        }
+
+        private void StopSpinning(string itemId)
+        {
+            GameObject droppedItem = renderedItemById[itemId];
+            SpriteRenderer spriteRenderer = droppedItem.GetComponent<SpriteRenderer>();
+
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+
+            spriteRenderer.GetPropertyBlock(block);
+            block.SetFloat("_Speed", 0f);
+            spriteRenderer.SetPropertyBlock(block);
         }
     }
 }
