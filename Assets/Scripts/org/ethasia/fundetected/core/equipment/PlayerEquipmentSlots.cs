@@ -1,3 +1,5 @@
+using System;
+
 using Org.Ethasia.Fundetected.Core.Items;
 
 namespace Org.Ethasia.Fundetected.Core.Equipment
@@ -65,6 +67,50 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
 
             return toEquip;
+        }
+
+        public Equipment PickUpMainHandEquipment(Equipment cursorEquipment)
+        {
+            return PickUpEquipmentFromSlot(cursorEquipment, mainHandSlot, EquipInMainHand);
+        }
+
+        public Equipment PickUpOffHandEquipment(Equipment cursorEquipment)
+        {
+            return PickUpEquipmentFromSlot(cursorEquipment, offHandSlot, EquipInOffHand);
+        }
+
+        public Equipment PickUpLeftRingEquipment(Equipment cursorEquipment)
+        {
+            return PickUpEquipmentFromSlot(cursorEquipment, leftRingSlot, EquipInLeftRing);
+        }
+
+        public Equipment PickUpRightRingEquipment(Equipment cursorEquipment)
+        {
+            return PickUpEquipmentFromSlot(cursorEquipment, rightRingSlot, EquipInRightRing);
+        }
+
+        public Equipment PickUpBeltEquipment(Equipment cursorEquipment)
+        {
+            return PickUpEquipmentFromSlot(cursorEquipment, beltSlot, EquipInBelt);
+        }
+
+        private Equipment PickUpEquipmentFromSlot(Equipment cursorEquipment, EquipmentSlot slot, Func<Equipment, Equipment> equipFunction)
+        {
+            if (cursorEquipment == null)
+            {
+                Equipment result = slot.RemoveEquipment();
+
+                if (result != null)
+                {
+                    result.OnUnequip(EquipmentStats, slot.SlotType);
+                }
+
+                return result;
+            }
+            else
+            {
+                return equipFunction(cursorEquipment);
+            }
         }
 
         public Equipment EquipInMainHand(Equipment toEquip)
