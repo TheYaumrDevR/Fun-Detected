@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 
@@ -413,6 +414,89 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Assert.That(resultExtractor.ExtractedWeapon.Name, Is.EqualTo("War Hammer"));
         }
 
+        [Test]
+        public void TestPickUpEquipmentNothingIsOnCursorNothingIsInSlotReturnsNothing()
+        {
+            Equipment result = testCandidate.PickUpLeftRingEquipment(null);
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void TestPickUpEquipmentNothingIsOnCursorEquipmentIsInSlot_PicksUpAndReducesStats()
+        {
+            Jewelry rubyRing = CreateJewelry("Ruby Ring", ItemClass.RING);
+            Jewelry ironSpikeBand = CreateRingWithImplicit("Ironspike Band");
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(rubyRing);
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(ironSpikeBand);
+
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(2));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(16));
+
+            Equipment result = testCandidate.PickUpRightRingEquipment(null);
+            Assert.That(result.Name, Is.EqualTo("Ironspike Band"));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestPickUpEquipmentEquipmentIsOnCursorEquipmentIsInSlot_SwapsAndAdjustsStats()
+        {
+            Jewelry warriorBelt = CreateBeltWithMinMaxDamImplicit("Warrior's Belt");
+            Jewelry powerBelt = CreateBeltWithStrImplicit("Power Belt");
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(warriorBelt);
+
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(4));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(35));
+
+            Equipment result = testCandidate.PickUpBeltEquipment(powerBelt);
+            Assert.That(result.Name, Is.EqualTo("Warrior's Belt"));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(0));
+
+            Assert.That(testCandidate.EquipmentStats.PlusStrength, Is.EqualTo(41));
+        }
+
+        [Test]
+        public void TestPickUpEquipmentEquipmentIsOnCursorNothingIsInSlot_AddsEquipmentToSlot()
+        {
+            Weapon cursorWeapon = CreateWeapon("Mahogany Wand", ItemClass.WAND, new DamageRange(3, 8));
+
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(0));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(0));            
+
+            Equipment result = testCandidate.PickUpMainHandEquipment(cursorWeapon);
+
+            Assert.That(result, Is.Null);
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(3));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(8));
+        }
+
+        [Test]
+        public void TestPickUpEquipmentEquipmentIsOnCursorNothingIsInSlot_DoesNotEquipWrongEquipmentType()
+        {
+            Jewelry cursorEquipment = CreateBeltWithStrImplicit("Power Belt");
+
+            Equipment result = testCandidate.PickUpOffHandEquipment(cursorEquipment);
+            Assert.That(result.Name, Is.EqualTo("Power Belt"));
+            Assert.That(testCandidate.EquipmentStats.PlusStrength, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestPickUpEquipmentEquipmentIsOnCursorEquipmentIsInSlot_DoesNotEquipWrongEquipmentType()
+        {
+            Jewelry ironSpikeBand = CreateRingWithImplicit("Ironspike Band");
+            Weapon cursorWeapon = CreateWeapon("Mahogany Wand", ItemClass.WAND, new DamageRange(3, 8));
+
+            testCandidate.EquipIntoFreeSlotBasedOnItemClass(ironSpikeBand);
+            Equipment result = testCandidate.PickUpLeftRingEquipment(cursorWeapon);
+
+            Assert.That(result.Name, Is.EqualTo("Mahogany Wand"));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MinDamage, Is.EqualTo(2));
+            Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(16));
+        }
+
         private Weapon CreateWeapon(string name, ItemClass itemClass, DamageRange damage = null)
         {
             var builder = new Weapon.Builder();
@@ -432,6 +516,72 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             builder.SetName(name)
                 .SetItemClass(itemClass);
+
+            return builder.Build();
+        }
+
+        private Jewelry CreateRingWithImplicit(string name)
+        {
+            var builder = new Jewelry.Builder();
+
+            PlusMinMaxGlobalPhysicalDamageWithAttacksAffix actualAffix = new PlusMinMaxGlobalPhysicalDamageWithAttacksAffix(2, 16);
+            IntegerIntervalMinMaxIncrementRollableEquipmentAffix implicitAffix = new IntegerIntervalMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(actualAffix)
+                .SetLowerBoundMinValue(1)
+                .SetUpperBoundMaxValue(5)
+                .SetLowerBoundIncrement(1)
+                .SetUpperBoundMinValue(10)
+                .SetUpperBoundMaxValue(150)
+                .SetUpperBoundIncrement(1)
+                .Build();
+
+            builder.SetName(name)
+                .SetItemClass(ItemClass.RING);
+
+            builder.SetFirstImplicit(implicitAffix);
+
+            return builder.Build();
+        }
+
+        private Jewelry CreateBeltWithMinMaxDamImplicit(string name)
+        {
+            var builder = new Jewelry.Builder();
+
+            PlusMinMaxGlobalPhysicalDamageWithAttacksAffix actualAffix = new PlusMinMaxGlobalPhysicalDamageWithAttacksAffix(4, 35);
+            IntegerIntervalMinMaxIncrementRollableEquipmentAffix implicitAffix = new IntegerIntervalMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(actualAffix)
+                .SetLowerBoundMinValue(1)
+                .SetUpperBoundMaxValue(5)
+                .SetLowerBoundIncrement(1)
+                .SetUpperBoundMinValue(10)
+                .SetUpperBoundMaxValue(150)
+                .SetUpperBoundIncrement(1)
+                .Build();
+
+            builder.SetName(name)
+                .SetItemClass(ItemClass.BELT);
+
+            builder.SetFirstImplicit(implicitAffix);
+
+            return builder.Build();
+        }
+
+        private Jewelry CreateBeltWithStrImplicit(string name)
+        {
+            var builder = new Jewelry.Builder();
+
+            PlusStrengthAffix actualAffix = new PlusStrengthAffix(41);
+            IntegerMinMaxIncrementRollableEquipmentAffix implicitAffix = new IntegerMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetRerolledAffix(actualAffix)
+                .SetMinValue(1)
+                .SetMaxValue(60)
+                .SetIncrement(1)
+                .Build();
+
+            builder.SetName(name)
+                .SetItemClass(ItemClass.BELT);
+
+            builder.SetFirstImplicit(implicitAffix);
 
             return builder.Build();
         }
