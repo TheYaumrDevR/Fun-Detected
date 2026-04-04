@@ -53,7 +53,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         }
 
         private PlayerEquipmentSlots allEquipment;
-        private ItemInventory inventory;
+        private ItemInventoryGrid inventoryGrid;
 
         public int EvasionRating
         {
@@ -71,7 +71,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             StatModifiers = new PlayerCharacterAdditionalStats();
             TotalStats = new PlayerCharacterTotalStats();
             allEquipment = new PlayerEquipmentSlots();
-            inventory = new ItemInventory();
+            inventoryGrid = new ItemInventoryGrid();
         }
 
         private void CreateMeleeAttack(MeleeHitArcProperties meleeHitArcProperties)
@@ -184,7 +184,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
             else
             {
-                if (!inventory.AddItemAtNextFreePosition(equipment.CreateInventoryShape()))
+                if (!inventoryGrid.AddItemAtNextFreePosition(equipment.CreateInventoryShape()))
                 {
                     return result;
                 }
@@ -195,7 +195,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Potion PickupPotion(Potion potion)
         {
-            if (!inventory.AddItemAtNextFreePosition(potion.CreateInventoryShape()))
+            if (!inventoryGrid.AddItemAtNextFreePosition(potion.CreateInventoryShape()))
             {
                 return potion;
             }
@@ -210,7 +210,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public ItemInventoryExtractionVisitor CreateInventoryItemExtractionVisitor()
         {
-            return new ItemInventoryExtractionVisitor(inventory);
+            return new ItemInventoryExtractionVisitor(inventoryGrid);
         }
 
         private void PresentDamage(int damageTaken)

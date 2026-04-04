@@ -4,7 +4,7 @@ using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Items
 {
-    public class ItemInventory
+    public class ItemInventoryGrid
     {
         private ItemInInventoryShape[,] inventoryGrid = new ItemInInventoryShape[12, 5];
         private List<ItemInInventoryShape> items = new List<ItemInInventoryShape>();

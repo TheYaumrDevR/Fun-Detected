@@ -7,7 +7,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public class ItemInventoryExtractionVisitor : ItemVisitor
     {
-        private ItemInventory inventoryToExtract;
+        private ItemInventoryGrid inventoryToExtract;
 
         private ItemInInventoryShape currentlyExtractingShape;
 
@@ -16,7 +16,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
         public List<ItemWithShape<Jewelry>> ExtractedJewelry = new List<ItemWithShape<Jewelry>>();
         public List<ItemWithShape<RecoveryPotion>> ExtractedRecoveryPotions = new List<ItemWithShape<RecoveryPotion>>();
 
-        public ItemInventoryExtractionVisitor(ItemInventory inventoryToExtract)
+        public ItemInventoryExtractionVisitor(ItemInventoryGrid inventoryToExtract)
         {
             this.inventoryToExtract = inventoryToExtract;
         }

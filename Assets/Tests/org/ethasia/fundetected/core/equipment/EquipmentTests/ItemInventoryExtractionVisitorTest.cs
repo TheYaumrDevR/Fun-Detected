@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         [Test]
         public void TestExtractItems_ExtractsAllItemTypesAndStoresThemInLists()
         {
-            ItemInventory inventory = new ItemInventory();
+            ItemInventoryGrid inventory = new ItemInventoryGrid();
 
             Weapon testWeapon1 = CreateTestWeapon("WeaponOne");
             Weapon testWeapon2 = CreateTestWeapon("WeaponTwo");

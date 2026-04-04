@@ -7,12 +7,12 @@ using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Items.Tests
 {
-    public class ItemInventoryTest
+    public class ItemInventoryGridTest
     {
         [Test]
         public void TestReplaceItemAtCanPutItemAtEmptySlot()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -25,7 +25,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestReplaceItemAtReplacesAndRemovesExistingItem()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -47,7 +47,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestReplaceItemAtDoesNotReplaceItemWhenNewItemIsPlacedOverTwoItems()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -79,7 +79,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestReplaceItemAtDoesNotPlaceItemWhenPlacedOutsideInventoryGrid()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -92,7 +92,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestReplaceItemAtDoesNotPlaceItemOrCrashWithNegativePosition()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -105,7 +105,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestReplaceItemAtDoesNotPlaceItemOrCrashWithPositionOutsideGrid()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -118,7 +118,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TwoRingsArePresentAtTopLeft_AddsBowRightOfThem()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ring1Shape = CreateRingShape();
             ItemInInventoryShape ring2Shape = CreateRingShape();
@@ -140,7 +140,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TwoRingsArePresentAtTopLeft_AddsOneHandedMaceBelowThem()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ring1Shape = CreateRingShape();
             ItemInInventoryShape ring2Shape = CreateRingShape();
@@ -159,7 +159,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TwoRingsArePresentAtTopLeft_AddsDaggerBelowThem()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ring1Shape = CreateRingShape();
             ItemInInventoryShape ring2Shape = CreateRingShape();
@@ -178,7 +178,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TwoRingsArePresentAtTopLeft_AddsBeltBelowThem()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ring1Shape = CreateRingShape();
             ItemInInventoryShape ring2Shape = CreateRingShape();
@@ -197,7 +197,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TwoRingsArePresentAtTopLeft_AddsHelmetBelowThem()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ring1Shape = CreateRingShape();
             ItemInInventoryShape ring2Shape = CreateRingShape();
@@ -216,7 +216,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TestArrangeVariousItemsCreatesCorrectArrangement()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape daggerShape = CreateDaggerShape();
             ItemInInventoryShape ringShape1 = CreateRingShape();
@@ -259,7 +259,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePosition_TestArrangeAlotVariousItemsCreatesCorrectArrangement()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ringShape1 = CreateRingShape();
             ItemInInventoryShape ringShape2 = CreateRingShape();
@@ -338,7 +338,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestRemoveItemAtRemovesItemFromInventory()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -353,7 +353,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestRemoveItemAtReturnsNullWhenNoItemAtPosition()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
@@ -368,7 +368,7 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
         [Test]
         public void TestAddItemAtNextFreePositionAddsItemsToItemList()
         {
-            ItemInventory testCandidate = new ItemInventory();
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
 
             ItemInInventoryShape ring1Shape = CreateRingShape();
             ItemInInventoryShape ring2Shape = CreateRingShape();
