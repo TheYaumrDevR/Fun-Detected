@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Interactors.Presentation
+namespace Org.Ethasia.Fundetected.Core.Equipment
 {
     public enum EquipmentSlotPositions
     {
