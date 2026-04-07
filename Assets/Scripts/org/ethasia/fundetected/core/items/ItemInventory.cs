@@ -7,7 +7,13 @@ namespace Org.Ethasia.Fundetected.Core.Items
 {
     public class ItemInventory
     {
-        private Item itemOnCursor;
+        private DropItemIntoSlotVisitor slotDropper;
+
+        public Item ItemOnCursor
+        {
+            get;
+            private set;
+        }
 
         public PlayerEquipmentSlots EquippedItems
         {
@@ -25,38 +31,46 @@ namespace Org.Ethasia.Fundetected.Core.Items
         {
             EquippedItems = new PlayerEquipmentSlots();
             InventoryGrid = new ItemInventoryGrid();
+            slotDropper = new DropItemIntoSlotVisitor(EquippedItems);
         }
 
         public void SwapCursorItemWithMainHandEquipment()
         {
-            PickUpEquipmentIfCursorEmpty(EquippedItems.PickUpMainHandEquipment);
+            SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpMainHandEquipment, EquipmentSlotPositions.MAIN_HAND);
         }
 
         public void SwapCursorItemWithOffHandEquipment()
         {
-            PickUpEquipmentIfCursorEmpty(EquippedItems.PickUpOffHandEquipment);
+            SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpOffHandEquipment, EquipmentSlotPositions.OFF_HAND);
         }
 
         public void SwapCursorItemWithLeftRingEquipment()
         {
-            PickUpEquipmentIfCursorEmpty(EquippedItems.PickUpLeftRingEquipment);
+            SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpLeftRingEquipment, EquipmentSlotPositions.LEFT_RING);
         }
 
         public void SwapCursorItemWithRightRingEquipment()
         {
-            PickUpEquipmentIfCursorEmpty(EquippedItems.PickUpRightRingEquipment);
+            SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpRightRingEquipment, EquipmentSlotPositions.RIGHT_RING);
         }
 
         public void SwapCursorItemWithBeltEquipment()
         {
-            PickUpEquipmentIfCursorEmpty(EquippedItems.PickUpBeltEquipment);
+            SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpBeltEquipment, EquipmentSlotPositions.BELT);
         }
 
-        private void PickUpEquipmentIfCursorEmpty(Func<EquipmentItem, EquipmentItem> pickupFunction)
+        private void SwapCursorItemWithEquipmentSlot(
+            Func<EquipmentItem, EquipmentItem> pickupFunction, 
+            EquipmentSlotPositions slotPosition)
         {
-            if (itemOnCursor == null)
+            if (ItemOnCursor == null)
             {
-                itemOnCursor = pickupFunction(null);
+                ItemOnCursor = pickupFunction(null);
+            }
+            else
+            {
+                slotDropper.DropItemIntoSlot(ItemOnCursor, slotPosition);
+                ItemOnCursor = slotDropper.SwappedItem;
             }
         }
     }
