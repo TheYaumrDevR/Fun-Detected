@@ -11,6 +11,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
     public class PlayerCharacter
     {
         private IRandomNumberGenerator randomNumberGenerator;
+        private double timeSinceLastMovement;  
+        private MeleeAttack meleeAttack;
+        private CharacterClasses characterClass;
 
         public string Name
         {
@@ -36,15 +39,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        private double timeSinceLastMovement;  
-
         public BoundingBox BoundingBox
         {
             get;
             private set;
         }              
-
-        private CharacterClasses characterClass;
 
         public FacingDirection FacingDirection
         {
@@ -52,8 +51,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        private PlayerEquipmentSlots allEquipment;
-        private ItemInventoryGrid inventoryGrid;
+        public ItemInventory ItemInventory
+        {
+            get;
+            private set;
+        }
 
         public int EvasionRating
         {
@@ -63,15 +65,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
-        private MeleeAttack meleeAttack;
-
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
             StatModifiers = new PlayerCharacterAdditionalStats();
             TotalStats = new PlayerCharacterTotalStats();
-            allEquipment = new PlayerEquipmentSlots();
-            inventoryGrid = new ItemInventoryGrid();
+            ItemInventory = new ItemInventory();    
         }
 
         private void CreateMeleeAttack(MeleeHitArcProperties meleeHitArcProperties)
@@ -173,18 +172,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Org.Ethasia.Fundetected.Core.Equipment.Equipment PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
         {
-            Org.Ethasia.Fundetected.Core.Equipment.Equipment result = allEquipment.EquipIntoFreeSlotBasedOnItemClass(equipment);
+            Org.Ethasia.Fundetected.Core.Equipment.Equipment result = ItemInventory.EquippedItems.EquipIntoFreeSlotBasedOnItemClass(equipment);
 
             if (result != equipment)
             {
-                TotalStats.Calculate(BaseStats, StatModifiers, allEquipment.EquipmentStats);
+                TotalStats.Calculate(BaseStats, StatModifiers, ItemInventory.EquippedItems.EquipmentStats);
                 meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
 
                 return result;
             }
             else
             {
-                if (!inventoryGrid.AddItemAtNextFreePosition(equipment.CreateInventoryShape()))
+                if (!ItemInventory.InventoryGrid.AddItemAtNextFreePosition(equipment.CreateInventoryShape()))
                 {
                     return result;
                 }
@@ -195,7 +194,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Potion PickupPotion(Potion potion)
         {
-            if (!inventoryGrid.AddItemAtNextFreePosition(potion.CreateInventoryShape()))
+            if (!ItemInventory.InventoryGrid.AddItemAtNextFreePosition(potion.CreateInventoryShape()))
             {
                 return potion;
             }
@@ -205,12 +204,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public PlayerEquipmentItemsExtractionVisitor CreateItemExtractionVisitor()
         {
-            return new PlayerEquipmentItemsExtractionVisitor(allEquipment);
+            return new PlayerEquipmentItemsExtractionVisitor(ItemInventory.EquippedItems);
         }
 
         public ItemInventoryExtractionVisitor CreateInventoryItemExtractionVisitor()
         {
-            return new ItemInventoryExtractionVisitor(inventoryGrid);
+            return new ItemInventoryExtractionVisitor(ItemInventory.InventoryGrid);
         }
 
         private void PresentDamage(int damageTaken)
@@ -326,7 +325,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.characterClass = characterClass;
 
                 result.BaseStats = playerCharacterBaseStats;
-                result.TotalStats.Calculate(playerCharacterBaseStats, result.StatModifiers, result.allEquipment.EquipmentStats);
+                result.TotalStats.Calculate(playerCharacterBaseStats, result.StatModifiers, result.ItemInventory.EquippedItems.EquipmentStats);
 
                 result.CreateMeleeAttack(meleeHitArcProperties);
 
