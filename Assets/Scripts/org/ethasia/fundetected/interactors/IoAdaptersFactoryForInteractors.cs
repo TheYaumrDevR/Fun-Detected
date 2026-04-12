@@ -35,5 +35,6 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance();
         public abstract IGuiWindowsPresenter GetGuiWindowsPresenterInstance();
         public abstract IDroppedItemPresenter GetDroppedItemPresenterInstance();
+        public abstract IInventoryPresenter GetInventoryPresenterInstance();
     }
 }

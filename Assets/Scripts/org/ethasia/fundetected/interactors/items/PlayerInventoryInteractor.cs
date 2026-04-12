@@ -1,5 +1,8 @@
+using System;
+
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
@@ -8,53 +11,96 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
     public class PlayerInventoryInteractor
     {
         private IInventoryPresenter inventoryPresenter;
+        private InventorySlotPresentationItemVisitor presentationVisitor;
 
-        private string cursorItemTypeId;
-        private EquipmentSlotPositions swappedEquipmentSlot;
+        public PlayerInventoryInteractor()
+        {
+            inventoryPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetInventoryPresenterInstance();
+
+            presentationVisitor = new InventorySlotPresentationItemVisitor.Builder()
+                .SetItemInventory(Area.ActiveArea.Player.ItemInventory)
+                .SetWeaponPresentationMethod(PresentSwappedEquippedWeapon)
+                .SetArmorPresentationMethod(PresentSwappedEquippedArmor)
+                .SetJewelryPresentationMethod(PresentSwappedEquippedJewelry)
+                .SetRecoveryPotionPresentationMethod(PresentSwappedEquippedRecoveryPotion)
+                .Build();
+        }
 
         public void SwapCursorItemWithMainHandEquipment()
         {
-            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
-
-            Item oldItemOnCursor = playerInventory.ItemOnCursor;
-            playerInventory.SwapCursorItemWithMainHandEquipment();
-            Item newItemOnCursor = playerInventory.ItemOnCursor;
-
-            if (oldItemOnCursor != newItemOnCursor)
-            {
-                cursorItemTypeId = newItemOnCursor.Name;
-                swappedEquipmentSlot = EquipmentSlotPositions.MAIN_HAND;
-                // Create a visitor to visit the item on the equipment slot which then calls PresentSwappedEquippedWeapon
-            }
+            SwapCursorItemWithEquipmentSlot(
+                () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithMainHandEquipment(),
+                (itemName) => presentationVisitor.PresentMainHand(itemName));
         }
 
         public void SwapCursorItemWithOffHandEquipment()
         {
-            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
-            playerInventory.SwapCursorItemWithOffHandEquipment();
+            SwapCursorItemWithEquipmentSlot(
+                () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithOffHandEquipment(),
+                (itemName) => presentationVisitor.PresentOffHand(itemName));
         }
 
         public void SwapCursorItemWithLeftRingEquipment()
         {
-            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
-            playerInventory.SwapCursorItemWithLeftRingEquipment();
+            SwapCursorItemWithEquipmentSlot(
+                () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithLeftRingEquipment(),
+                (itemName) => presentationVisitor.PresentLeftRing(itemName));
         }
 
         public void SwapCursorItemWithRightRingEquipment()
         {
-            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
-            playerInventory.SwapCursorItemWithRightRingEquipment();
+            SwapCursorItemWithEquipmentSlot(
+                () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithRightRingEquipment(),
+                (itemName) => presentationVisitor.PresentRightRing(itemName));
         }
 
         public void SwapCursorItemWithBeltEquipment()
         {
-            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
-            playerInventory.SwapCursorItemWithBeltEquipment();
+            SwapCursorItemWithEquipmentSlot(
+                () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithBeltEquipment(),
+                (itemName) => presentationVisitor.PresentBelt(itemName));
         }
 
-        private void PresentSwappedEquippedWeapon()
+        private void SwapCursorItemWithEquipmentSlot(Action swapAction, Action<string> presentAction)
         {
-            // call IInventoryPresenter.ShowSwappedEquippedWeapon
+            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
+
+            Item oldItemOnCursor = playerInventory.ItemOnCursor;
+            swapAction();
+            Item newItemOnCursor = playerInventory.ItemOnCursor;
+
+            if (oldItemOnCursor != newItemOnCursor)
+            {
+                presentAction(newItemOnCursor.Name);
+            }
+        }
+
+        private void PresentSwappedEquippedWeapon(InventorySlotPresentationItemVisitor presentationVisitor, Weapon weapon)
+        {
+            EquippedWeaponPresentationContext? presentationContext = ItemToPresentationContextConverter.ConvertWeaponToEquipmentContext(weapon, presentationVisitor.SlotPosition);
+
+            if (presentationContext != null)
+            {
+                inventoryPresenter.ShowSwappedEquippedWeapon(presentationVisitor.ItemIdOnCursor, presentationContext.Value);    
+            }
+        }
+
+        private void PresentSwappedEquippedArmor(InventorySlotPresentationItemVisitor presentationVisitor, Armor armor)
+        {
+        }
+
+        private void PresentSwappedEquippedJewelry(InventorySlotPresentationItemVisitor presentationVisitor, Jewelry jewelry)
+        {
+            EquippedJewelryPresentationContext? presentationContext = ItemToPresentationContextConverter.ConvertJewelryToEquipmentContext(jewelry, presentationVisitor.SlotPosition);
+
+            if (presentationContext != null)
+            {
+                inventoryPresenter.ShowSwappedEquippedJewelry(presentationVisitor.ItemIdOnCursor, presentationContext.Value);
+            }
+        }
+
+        private void PresentSwappedEquippedRecoveryPotion(InventorySlotPresentationItemVisitor presentationVisitor, RecoveryPotion recoveryPotion)
+        {
         }
     }
 }

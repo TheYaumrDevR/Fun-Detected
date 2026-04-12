@@ -83,5 +83,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new DroppedItemPresenterMock();
         }
+
+        public override IInventoryPresenter GetInventoryPresenterInstance()
+        {
+            return new InventoryPresenterMock();
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IPlayerInputOnOffSwitch playerInputOnOffSwitch;
         private IGuiWindowsPresenter guiWindowsPresenter;
         private IDroppedItemPresenter droppedItemPresenter;
+        private IInventoryPresenter inventoryPresenter;
 
         public override ICharacterClassMasterDataProvider GetCharacterClassMasterDataProviderInstance()
         {
@@ -184,6 +185,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return droppedItemPresenter;
+        }
+
+        public override IInventoryPresenter GetInventoryPresenterInstance()
+        {
+            if (null == inventoryPresenter)
+            {
+                inventoryPresenter = new InventoryPresenter();
+            }
+
+            return inventoryPresenter;
         }
     }
 }

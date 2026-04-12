@@ -50,11 +50,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var weapon in inventoryExtractor.ExtractedWeapons)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(weapon.Item, true);
-                itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(weapon.Item));
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ItemToPresentationContextConverter.ConvertItemToPresentationContext(weapon.Item, true);
+                itemPresentationContextBuilder.WithAffixes(ItemToPresentationContextConverter.ConvertItemAffixesToPresentationContext(weapon.Item));
                 ConvertShapeAndPositionToPresentationContext(weapon.ItemInInventoryShape, itemPresentationContextBuilder);
 
-                WeaponPresentationContext weaponPresentationContext = ConvertWeaponToPresentationContext(weapon.Item);
+                WeaponPresentationContext weaponPresentationContext = ItemToPresentationContextConverter.ConvertWeaponToPresentationContext(weapon.Item);
 
                 InventoryWeaponPresentationContext inventoryWeaponPresentationContext = new InventoryWeaponPresentationContext.Builder()
                     .WithWeaponContext(weaponPresentationContext)
@@ -71,8 +71,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var armor in inventoryExtractor.ExtractedArmors)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(armor.Item, true);
-                itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(armor.Item));
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ItemToPresentationContextConverter.ConvertItemToPresentationContext(armor.Item, true);
+                itemPresentationContextBuilder.WithAffixes(ItemToPresentationContextConverter.ConvertItemAffixesToPresentationContext(armor.Item));
                 ConvertShapeAndPositionToPresentationContext(armor.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 ArmorPresentationContext armorPresentationContext = ConvertArmorToPresentationContext(armor.Item);
@@ -92,8 +92,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(jewelry.Item, true);
-                itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(jewelry.Item));
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ItemToPresentationContextConverter.ConvertItemToPresentationContext(jewelry.Item, true);
+                itemPresentationContextBuilder.WithAffixes(ItemToPresentationContextConverter.ConvertItemAffixesToPresentationContext(jewelry.Item));
                 ConvertShapeAndPositionToPresentationContext(jewelry.ItemInInventoryShape, itemPresentationContextBuilder);
 
                 presentationContext.AddJewelryPresentationContext(itemPresentationContextBuilder.Build());
@@ -106,7 +106,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
             {
-                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(recoveryPotion.Item, false);
+                InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ItemToPresentationContextConverter.ConvertItemToPresentationContext(recoveryPotion.Item, false);
                 itemPresentationContextBuilder.WithAffixes(new AffixesPresentationContext(new IAffixPresentationContext[] { }, new IAffixPresentationContext[] { }));
                 ConvertShapeAndPositionToPresentationContext(recoveryPotion.ItemInInventoryShape, itemPresentationContextBuilder);
 
@@ -149,7 +149,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractMainHandEquipment();
 
-            EquippedWeaponPresentationContext? weaponContext = ExtractWeapon(extractor, EquipmentSlotPositions.MAIN_HAND);
+            EquippedWeaponPresentationContext? weaponContext = ItemToPresentationContextConverter.ConvertWeaponToEquipmentContext(extractor.ExtractedWeapon, EquipmentSlotPositions.MAIN_HAND);
             if (weaponContext != null)
             {
                 slotsBuilder.AddEquippedWeapon(weaponContext.Value);
@@ -161,7 +161,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractOffHandEquipment();
 
-            EquippedWeaponPresentationContext? offHandWeaponContext = ExtractWeapon(extractor, EquipmentSlotPositions.OFF_HAND);
+            EquippedWeaponPresentationContext? offHandWeaponContext = ItemToPresentationContextConverter.ConvertWeaponToEquipmentContext(extractor.ExtractedWeapon, EquipmentSlotPositions.OFF_HAND);
             if (offHandWeaponContext != null)
             {
                 slotsBuilder.AddEquippedWeapon(offHandWeaponContext.Value);
@@ -173,7 +173,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractLeftRingEquipment();
 
-            EquippedJewelryPresentationContext? leftRingContext = ExtractJewelry(extractor, EquipmentSlotPositions.LEFT_RING);
+            EquippedJewelryPresentationContext? leftRingContext = ItemToPresentationContextConverter.ConvertJewelryToEquipmentContext(extractor.ExtractedJewelry, EquipmentSlotPositions.LEFT_RING);
             if (leftRingContext != null)
             {
                 slotsBuilder.AddEquippedJewelry(leftRingContext.Value);
@@ -185,7 +185,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractRightRingEquipment();
 
-            EquippedJewelryPresentationContext? rightRingContext = ExtractJewelry(extractor, EquipmentSlotPositions.RIGHT_RING);
+            EquippedJewelryPresentationContext? rightRingContext = ItemToPresentationContextConverter.ConvertJewelryToEquipmentContext(extractor.ExtractedJewelry, EquipmentSlotPositions.RIGHT_RING);
             if (rightRingContext != null)
             {
                 slotsBuilder.AddEquippedJewelry(rightRingContext.Value);
@@ -197,77 +197,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             extractor.Reset();
             extractor.ExtractBeltEquipment();
 
-            EquippedJewelryPresentationContext? beltContext = ExtractJewelry(extractor, EquipmentSlotPositions.BELT);
+            EquippedJewelryPresentationContext? beltContext = ItemToPresentationContextConverter.ConvertJewelryToEquipmentContext(extractor.ExtractedJewelry, EquipmentSlotPositions.BELT);
             if (beltContext != null)
             {
                 slotsBuilder.AddEquippedJewelry(beltContext.Value);
             }
-        }
-
-        private EquippedWeaponPresentationContext? ExtractWeapon(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
-        {
-            Weapon extractedWeapon = extractor.ExtractedWeapon;
-
-            if (null != extractedWeapon)
-            {
-                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedWeapon, true)
-                    .WithAffixes(ConvertItemAffixesToPresentationContext(extractedWeapon))
-                    .Build();
-                WeaponPresentationContext weaponContext = ConvertWeaponToPresentationContext(extractedWeapon);
-
-                return new EquippedWeaponPresentationContext.Builder()
-                    .WithSlotPosition(slotPosition)
-                    .WithItemPresentationContext(itemContext)
-                    .WithWeaponPresentationContext(weaponContext)
-                    .Build();
-            }
-
-            return null;
-        }
-
-        private EquippedJewelryPresentationContext? ExtractJewelry(PlayerEquipmentItemsExtractionVisitor extractor, EquipmentSlotPositions slotPosition)
-        {
-            Jewelry extractedJewelry = extractor.ExtractedJewelry;
-
-            if (null != extractedJewelry)
-            {
-                InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(extractedJewelry, true)
-                    .WithAffixes(ConvertItemAffixesToPresentationContext(extractedJewelry))
-                    .Build();
-
-                return new EquippedJewelryPresentationContext.Builder()
-                    .WithSlotPosition(slotPosition)
-                    .WithItemPresentationContext(itemContext)
-                    .Build();
-            }
-
-            return null;
-        }
-
-        private InventoryItemPresentationContext.Builder ConvertItemToPresentationContext(Item item, bool canBeEquipped)
-        {
-            return new InventoryItemPresentationContext.Builder()
-                .WithItemId(item.Name)
-                .WithItemClass(item.ItemClass)
-                .WithCanBeEquipped(canBeEquipped);
-        }
-
-        private AffixesPresentationContext ConvertItemAffixesToPresentationContext(Equipment item)
-        {
-            AffixToPresentationContextConversionVisitor converter = new AffixToPresentationContextConversionVisitor();
-            converter.ConvertAffixesToPresentationContexts(item.FirstImplicit, item.Prefixes, item.Suffixes);
-
-            return new AffixesPresentationContext(converter.Implicits, converter.Explicits);
-        }
-
-        private WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
-        {
-            return new WeaponPresentationContext.Builder()
-                .WithMinToMaxPhysicalDamage(weapon.MinToMaxPhysicalDamage)
-                .WithMinToMaxSpellDamage(weapon.MinToMaxSpellDamage)
-                .WithSkillsPerSecond(weapon.SkillsPerSecond)
-                .WithCriticalStrikeChance(weapon.CriticalStrikeChance)
-                .Build();            
         }
 
         private ArmorPresentationContext ConvertArmorToPresentationContext(Armor armor)
