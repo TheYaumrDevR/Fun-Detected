@@ -71,7 +71,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
             if (oldItemOnCursor != newItemOnCursor)
             {
-                presentAction(newItemOnCursor.Name);
+                string cursorItemId = newItemOnCursor != null ? newItemOnCursor.Name : "";
+                presentAction(cursorItemId);
             }
         }
 
