@@ -47,7 +47,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
             Shader shader = Shader.Find("Unlit/VertexSpinSprite");
             Material material = new Material(shader);
-            material.SetFloat("_Speed", 10.0f);
+            material.SetFloat("_Speed", 15.0f);
 
             SpriteRenderer spriteRenderer = droppedItem.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = sprite;
