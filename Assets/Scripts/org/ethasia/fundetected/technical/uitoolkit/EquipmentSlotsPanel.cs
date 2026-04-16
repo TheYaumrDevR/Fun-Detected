@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
@@ -137,6 +138,58 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             if (rightMostPotionSlot != null)
             {
                 rightMostPotionSlot.RenderEquippedItem(renderContext.RightMostPotion);
+            }
+        }
+
+        public void RenderEquippedItem(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext renderContext)
+        {
+            switch (slotPosition)
+            {
+                case EquipmentSlotPositions.MAIN_HAND:
+                    mainHandSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.OFF_HAND:
+                    offHandSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.HEAD:
+                    headSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.CHEST:
+                    chestSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.HANDS:
+                    handSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.FEET:
+                    footSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.BELT:
+                    beltSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.LEFT_RING:
+                    leftRingSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.RIGHT_RING:
+                    rightRingSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.AMULET:
+                    neckSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.OUTER_LEFT_POTION:
+                    leftMostPotionSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.MIDDLE_LEFT_POTION:
+                    leftMiddlePotionSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.MIDDLE_POTION:
+                    middlePotionSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.MIDDLE_RIGHT_POTION:
+                    rightMiddlePotionSlot.RenderEquippedItem(renderContext);
+                    break;
+                case EquipmentSlotPositions.OUTER_RIGHT_POTION:
+                    rightMostPotionSlot.RenderEquippedItem(renderContext);
+                    break;
             }
         }
     }

@@ -17,6 +17,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private VisualElement overlay;
         private VisualElement itemImage;
 
+        private UiElementUtils.ItemHoverCallbacks itemHoverCallbacks;
+
         public EquipmentSlot()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/EquipmentSlot");
@@ -40,7 +42,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 itemImage.style.height = itemSprite.rect.height;
 
                 SetOverlayColor(renderContext.IsEquipped);
-                UiElementUtils.RegisterItemHoverEvents(itemImage, renderContext);
+                UnregisterOldHoverCallbacks();
+                itemHoverCallbacks = UiElementUtils.RegisterItemHoverEvents(itemImage, renderContext);
             }
             else
             {
@@ -67,6 +70,24 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
             overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
+        }
+
+        private void UnregisterOldHoverCallbacks()
+        {
+            if (itemHoverCallbacks.PointerEnterCallback != null)
+            {
+                itemImage.UnregisterCallback<PointerEnterEvent>(itemHoverCallbacks.PointerEnterCallback);
+            }
+
+            if (itemHoverCallbacks.PointerMoveCallback != null)
+            {
+                itemImage.UnregisterCallback<PointerMoveEvent>(itemHoverCallbacks.PointerMoveCallback);
+            }
+
+            if (itemHoverCallbacks.PointerLeaveCallback != null)
+            {
+                itemImage.UnregisterCallback<PointerLeaveEvent>(itemHoverCallbacks.PointerLeaveCallback);
+            }
         }
     }
 }
