@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Ioadapters;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
@@ -14,10 +15,15 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private const string BLUE_OVERLAY_CLASS_NAME = "equipment-slot-overlay-blue";
         private const string RED_OVERLAY_CLASS_NAME = "equipment-slot-overlay-red";
 
+        [UxmlAttribute]
+        public EquipmentSlotPositionTypes SlotPosition;
+
         private VisualElement overlay;
         private VisualElement itemImage;
 
         private UiElementUtils.ItemHoverCallbacks itemHoverCallbacks;
+
+        private PlayerInventoryController playerInventoryController;
 
         public EquipmentSlot()
         {
@@ -26,6 +32,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             overlay = this.Q<VisualElement>(OVERLAY_NAME);
             itemImage = this.Q<VisualElement>(ITEM_IMAGE_NAME);
+
+            RegisterCallback<PointerDownEvent>(OnPointerDown);
+            playerInventoryController = new PlayerInventoryController();
         }
 
         public void RenderEquippedItem(EquipmentSlotRenderContext renderContext)
@@ -70,6 +79,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
             overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
+        }
+
+        private void OnPointerDown(PointerDownEvent evt)
+        {
+            playerInventoryController.OnEquipmentSlotClicked(SlotPosition);
         }
 
         private void UnregisterOldHoverCallbacks()

@@ -2,20 +2,20 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/EquipmentSlotsPanel.uss?fileID=7433441132597879392&amp;guid=501c2536d66a0b14d92b146fc0eced6b&amp;type=3#EquipmentSlotsPanel" />
     
     <engine:VisualElement class="equipmentslot-container">
-        <fund:EquipmentSlot name="mainhand-slot" class="equipmentslot-mainhand" />
-        <fund:EquipmentSlot name="offhand-slot" class="equipmentslot-offhand" />
-        <fund:EquipmentSlot name="chest-slot" class="equipmentslot-chest" />
-        <fund:EquipmentSlot name="head-slot" class="equipmentslot-head" />
-        <fund:EquipmentSlot name="feet-slot" class="equipmentslot-feet" />
-        <fund:EquipmentSlot name="hands-slot" class="equipmentslot-hands" />
-        <fund:EquipmentSlot name="belt-slot" class="equipmentslot-belt" />
-        <fund:EquipmentSlot name="left-ring-slot" class="equipmentslot-left-ring" />
-        <fund:EquipmentSlot name="right-ring-slot" class="equipmentslot-right-ring" />
-        <fund:EquipmentSlot name="neck-slot" class="equipmentslot-neck" />
-        <fund:EquipmentSlot name="leftmost-potion-slot" class="equipmentslot-leftmost-potion" />
-        <fund:EquipmentSlot name="leftmiddle-potion-slot" class="equipmentslot-leftmiddle-potion" />
-        <fund:EquipmentSlot name="middle-potion-slot" class="equipmentslot-middle-potion" />
-        <fund:EquipmentSlot name="rightmiddle-potion-slot" class="equipmentslot-rightmiddle-potion" />
-        <fund:EquipmentSlot name="rightmost-potion-slot" class="equipmentslot-rightmost-potion" />
+        <fund:EquipmentSlot name="mainhand-slot" class="equipmentslot-mainhand" slot-position="MAIN_HAND"/>
+        <fund:EquipmentSlot name="offhand-slot" class="equipmentslot-offhand" slot-position="OFF_HAND"/>
+        <fund:EquipmentSlot name="chest-slot" class="equipmentslot-chest" slot-position="CHEST"/>
+        <fund:EquipmentSlot name="head-slot" class="equipmentslot-head" slot-position="HEAD"/>
+        <fund:EquipmentSlot name="feet-slot" class="equipmentslot-feet" slot-position="FEET"/>
+        <fund:EquipmentSlot name="hands-slot" class="equipmentslot-hands" slot-position="HANDS"/>
+        <fund:EquipmentSlot name="belt-slot" class="equipmentslot-belt" slot-position="BELT"/>
+        <fund:EquipmentSlot name="left-ring-slot" class="equipmentslot-left-ring" slot-position="LEFT_RING"/>
+        <fund:EquipmentSlot name="right-ring-slot" class="equipmentslot-right-ring" slot-position="RIGHT_RING"/>
+        <fund:EquipmentSlot name="neck-slot" class="equipmentslot-neck" slot-position="AMULET"/>
+        <fund:EquipmentSlot name="leftmost-potion-slot" class="equipmentslot-leftmost-potion" slot-position="OUTER_LEFT_POTION"/>
+        <fund:EquipmentSlot name="leftmiddle-potion-slot" class="equipmentslot-leftmiddle-potion" slot-position="MIDDLE_LEFT_POTION"/>
+        <fund:EquipmentSlot name="middle-potion-slot" class="equipmentslot-middle-potion" slot-position="MIDDLE_POTION"/>
+        <fund:EquipmentSlot name="rightmiddle-potion-slot" class="equipmentslot-rightmiddle-potion" slot-position="MIDDLE_RIGHT_POTION"/>
+        <fund:EquipmentSlot name="rightmost-potion-slot" class="equipmentslot-rightmost-potion" slot-position="OUTER_RIGHT_POTION"/>
     </engine:VisualElement>
 </engine:UXML>
