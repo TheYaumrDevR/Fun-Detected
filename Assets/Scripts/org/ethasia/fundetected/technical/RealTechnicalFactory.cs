@@ -1,6 +1,7 @@
 using Org.Ethasia.Fundetected.Interactors;
 using Org.Ethasia.Fundetected.Ioadapters.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
+using Org.Ethasia.Fundetected.Technical.UIToolkit;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
@@ -8,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private PortalRendererDelayedInitializationProxy portalRenderer;
         private InteractablesRendererDelayedInitializationProxy interactablesRenderer;
+        private UiRenderer uiRenderer;
 
         public override XmlFiles CreateXmlFiles()
         {
@@ -104,6 +106,16 @@ namespace Org.Ethasia.Fundetected.Technical
         public override IIconOnCursorRenderer GetIconOnCursorRendererInstance()
         {
             return IconOnCursorRenderer.GetInstance();
+        }
+
+        public override IUiRenderer GetUiRendererInstance()
+        {
+            if (uiRenderer == null)
+            {
+                uiRenderer = new UiRenderer();
+            }
+
+            return uiRenderer;
         }
     }
 }

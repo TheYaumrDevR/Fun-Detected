@@ -33,5 +33,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract ILocalizationGateway CreateLocalizationGateway();
         public abstract IEnumLocalizationGateway CreateEnumLocalizationGateway();
         public abstract IIconOnCursorRenderer GetIconOnCursorRendererInstance();
+        public abstract IUiRenderer GetUiRendererInstance();
     }
 }

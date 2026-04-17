@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UIElements;
+
+using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
@@ -41,6 +43,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             if (inventoryGridPanel != null)
             {
                 inventoryGridPanel.RenderInventoryItems(renderContext.InventoryGridRenderContext);
+            }
+        }
+
+        public void RenderEquippedItem(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext renderContext)
+        {
+            if (equipmentSlotsPanel != null)
+            {
+                equipmentSlotsPanel.RenderEquippedItem(slotPosition, renderContext);
             }
         }
 

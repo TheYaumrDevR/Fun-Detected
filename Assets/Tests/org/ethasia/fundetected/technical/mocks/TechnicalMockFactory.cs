@@ -92,5 +92,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return null;
         }
+
+        public override IUiRenderer GetUiRendererInstance()
+        {
+            return null;
+        }
     }
 }
