@@ -12,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
         private Action<InventorySlotPresentationItemVisitor, Armor> armorPresentationMethod;
         private Action<InventorySlotPresentationItemVisitor, Jewelry> jewelryPresentationMethod;
         private Action<InventorySlotPresentationItemVisitor, RecoveryPotion> recoveryPotionPresentationMethod;
+        private Action<InventorySlotPresentationItemVisitor> emptyItemPresentationMethod;
 
         public string ItemIdOnCursor
         {
@@ -80,6 +81,11 @@ namespace Org.Ethasia.Fundetected.Core.Items
             recoveryPotionPresentationMethod(this, recoveryPotion);
         }
 
+        public override void Visit()
+        {
+            emptyItemPresentationMethod(this);
+        }
+
         public class Builder
         {
             private ItemInventory itemInventory;
@@ -87,6 +93,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private Action<InventorySlotPresentationItemVisitor, Armor> armorPresentationMethod;
             private Action<InventorySlotPresentationItemVisitor, Jewelry> jewelryPresentationMethod;
             private Action<InventorySlotPresentationItemVisitor, RecoveryPotion> recoveryPotionPresentationMethod;
+            private Action<InventorySlotPresentationItemVisitor> emptyItemPresentationMethod;
 
             public Builder SetItemInventory(ItemInventory value)
             {
@@ -118,6 +125,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 return this;
             }
 
+            public Builder SetEmptyItemPresentationMethod(Action<InventorySlotPresentationItemVisitor> value)
+            {
+                emptyItemPresentationMethod = value;
+                return this;
+            }
+
             public InventorySlotPresentationItemVisitor Build()
             {
                 return new InventorySlotPresentationItemVisitor()
@@ -126,7 +139,8 @@ namespace Org.Ethasia.Fundetected.Core.Items
                     weaponPresentationMethod = this.weaponPresentationMethod,
                     armorPresentationMethod = this.armorPresentationMethod,
                     jewelryPresentationMethod = this.jewelryPresentationMethod,
-                    recoveryPotionPresentationMethod = this.recoveryPotionPresentationMethod
+                    recoveryPotionPresentationMethod = this.recoveryPotionPresentationMethod,
+                    emptyItemPresentationMethod = this.emptyItemPresentationMethod
                 };
             }
         }

@@ -38,6 +38,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             ShowItemOnCursor(itemId);
         }
 
+        public void ShowEmptySlotAfterSwap(string itemId, EquipmentSlotPositions slotPosition)
+        {
+            EquipmentSlotRenderContext equipmentRenderContext = new EquipmentSlotRenderContext.Builder()
+                .SetItemImagePath(string.Empty)
+                .Build();
+
+            PresentEquippedItem(slotPosition, equipmentRenderContext);
+            ShowItemOnCursor(itemId);
+        }
+
         private void PresentEquippedItem(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext equipmentRenderContext)
         {
             IUiRenderer uiRenderer = TechnicalFactory.GetInstance().GetUiRendererInstance();

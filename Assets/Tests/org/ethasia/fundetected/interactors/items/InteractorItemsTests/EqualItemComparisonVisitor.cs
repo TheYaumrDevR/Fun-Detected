@@ -33,6 +33,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
             extractedRecoveryPotion = recoveryPotion;
         }
 
+        public override void Visit() {}
+
         public void AssertExtractedWeaponIsEqualTo(Weapon expectedWeapon)
         {
             Assert.That(extractedWeapon, Is.Not.Null);

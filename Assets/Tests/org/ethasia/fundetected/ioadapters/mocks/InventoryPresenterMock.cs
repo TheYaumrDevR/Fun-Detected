@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
@@ -17,6 +18,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         }
 
         public void ShowSwappedEquippedRecoveryPotion(string itemId, EquippedRecoveryPotionPresentationContext context)
+        {
+        }
+
+        public void ShowEmptySlotAfterSwap(string itemId, EquipmentSlotPositions slotPosition)
         {
         }
     }

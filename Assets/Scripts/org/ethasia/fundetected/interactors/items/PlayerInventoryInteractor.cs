@@ -23,6 +23,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 .SetArmorPresentationMethod(PresentSwappedEquippedArmor)
                 .SetJewelryPresentationMethod(PresentSwappedEquippedJewelry)
                 .SetRecoveryPotionPresentationMethod(PresentSwappedEquippedRecoveryPotion)
+                .SetEmptyItemPresentationMethod(PresentEmptySlotAfterSwap)
                 .Build();
         }
 
@@ -102,6 +103,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
         private void PresentSwappedEquippedRecoveryPotion(InventorySlotPresentationItemVisitor presentationVisitor, RecoveryPotion recoveryPotion)
         {
+        }
+
+        private void PresentEmptySlotAfterSwap(InventorySlotPresentationItemVisitor presentationVisitor)
+        {
+            inventoryPresenter.ShowEmptySlotAfterSwap(presentationVisitor.ItemIdOnCursor, presentationVisitor.SlotPosition);
         }
     }
 }

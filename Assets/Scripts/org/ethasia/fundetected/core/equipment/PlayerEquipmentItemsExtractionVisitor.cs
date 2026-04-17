@@ -81,6 +81,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             ExtractedRecoveryPotion = item;
         }
 
+        public override void Visit() {}
+
         public void Reset()
         {
             ExtractedWeapon = null;

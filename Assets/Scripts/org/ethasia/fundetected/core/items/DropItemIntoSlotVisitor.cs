@@ -47,6 +47,8 @@ namespace Org.Ethasia.Fundetected.Core.Items
             // TODO: Implement once needed
         }
 
+        public override void Visit() {}
+
         private void VisitEquipment(EquipmentItem equipment)
         {
             SwappedItem = slotPosition switch

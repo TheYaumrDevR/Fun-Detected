@@ -54,6 +54,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             ExtractedRecoveryPotions.Add(new ItemWithShape<RecoveryPotion>(recoveryPotion, currentlyExtractingShape));
         }
 
+        public override void Visit() {}
+
         private void Reset()
         {
             currentlyExtractingShape = null;

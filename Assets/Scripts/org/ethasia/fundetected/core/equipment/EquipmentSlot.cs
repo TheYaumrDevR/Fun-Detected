@@ -69,6 +69,10 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 equipment.Accept(visitor);
             }
+            else
+            {
+                visitor.Visit();
+            }
         }
     }
 }

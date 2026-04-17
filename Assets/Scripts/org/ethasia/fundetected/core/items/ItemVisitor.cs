@@ -9,5 +9,6 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public abstract void Visit(Armor armour);
         public abstract void Visit(Jewelry jewelry);
         public abstract void Visit(RecoveryPotion recoveryPotion);
+        public abstract void Visit();
     }
 }
