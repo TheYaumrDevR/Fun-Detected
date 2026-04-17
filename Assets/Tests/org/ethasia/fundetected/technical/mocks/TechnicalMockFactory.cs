@@ -87,5 +87,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return new EnumLocalizationGatewayMock();
         }
+
+        public override IIconOnCursorRenderer GetIconOnCursorRendererInstance()
+        {
+            return null;
+        }
     }
 }

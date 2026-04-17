@@ -100,5 +100,10 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             return new DictionaryBasedEnumLocalizationGateway();
         }
+
+        public override IIconOnCursorRenderer GetIconOnCursorRendererInstance()
+        {
+            return IconOnCursorRenderer.GetInstance();
+        }
     }
 }
