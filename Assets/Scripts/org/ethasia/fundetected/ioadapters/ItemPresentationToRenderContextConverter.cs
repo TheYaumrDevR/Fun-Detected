@@ -51,7 +51,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }    
 
-        private static ItemTooltipRenderContext ConvertWeaponPresentationContext(WeaponPresentationContext weaponContext, InventoryItemPresentationContext itemContext)
+        public static ItemTooltipRenderContext ConvertWeaponPresentationContext(WeaponPresentationContext weaponContext, InventoryItemPresentationContext itemContext)
         {
             return new ItemTooltipRenderContext.Builder()
                 .WithItemName(itemContext.ItemId)
@@ -62,7 +62,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
-        private static ItemTooltipRenderContext ConvertArmorPresentationContext(ArmorPresentationContext armorContext, InventoryItemPresentationContext itemContext)
+        public static ItemTooltipRenderContext ConvertArmorPresentationContext(ArmorPresentationContext armorContext, InventoryItemPresentationContext itemContext)
         {
             return new ItemTooltipRenderContext.Builder()
                 .WithItemName(itemContext.ItemId)
@@ -73,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
-        private static ItemTooltipRenderContext ConvertPlainItemPresentationContextToTooltipContext(InventoryItemPresentationContext itemContext)
+        public static ItemTooltipRenderContext ConvertPlainItemPresentationContextToTooltipContext(InventoryItemPresentationContext itemContext)
         {
             return new ItemTooltipRenderContext.Builder()
                 .WithItemName(itemContext.ItemId)
@@ -84,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .Build();
         }
 
-        private static ItemTooltipRenderContext ConvertRecoveryPotionPresentationContext(RecoveryPotionPresentationContext recoveryPotionContext, InventoryItemPresentationContext itemContext)
+        public static ItemTooltipRenderContext ConvertRecoveryPotionPresentationContext(RecoveryPotionPresentationContext recoveryPotionContext, InventoryItemPresentationContext itemContext)
         {
             return new ItemTooltipRenderContext.Builder()
                 .WithItemName(itemContext.ItemId)

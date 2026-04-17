@@ -224,7 +224,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             var itemContext = inventoryWeaponContext.ItemContext;
             var weaponContext = inventoryWeaponContext.WeaponContext;
-            var tooltip = ConvertWeaponPresentationContext(weaponContext, itemContext);
+            var tooltip = ItemPresentationToRenderContextConverter.ConvertWeaponPresentationContext(weaponContext, itemContext);
 
             return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
@@ -233,7 +233,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             var itemContext = inventoryArmorContext.ItemContext;
             var armorContext = inventoryArmorContext.ArmorContext;
-            var tooltip = ConvertArmorPresentationContext(armorContext, itemContext);
+            var tooltip = ItemPresentationToRenderContextConverter.ConvertArmorPresentationContext(armorContext, itemContext);
 
             return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
@@ -242,7 +242,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             InventoryItemPresentationContext itemContext, 
             InventoryGridRenderContext inventoryGridRenderContext)
         {
-            var tooltip = ConvertPlainItemPresentationContextToTooltipContext(itemContext);
+            var tooltip = ItemPresentationToRenderContextConverter.ConvertPlainItemPresentationContextToTooltipContext(itemContext);
             return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
 
@@ -250,7 +250,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             var itemContext = inventoryRecoveryPotionContext.ItemContext;
             var recoveryPotionContext = inventoryRecoveryPotionContext.RecoveryPotionContext;
-            var tooltip = ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext);
+            var tooltip = ItemPresentationToRenderContextConverter.ConvertRecoveryPotionPresentationContext(recoveryPotionContext, itemContext);
 
             return ConvertAndAddInventoryItemRenderContext(itemContext, inventoryGridRenderContext, tooltip);
         }
@@ -287,198 +287,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return inventoryGridRenderContext;
-        }
-
-        private ItemTooltipRenderContext ConvertWeaponPresentationContext(WeaponPresentationContext weaponContext, InventoryItemPresentationContext itemContext)
-        {
-            return new ItemTooltipRenderContext.Builder()
-                .WithItemName(itemContext.ItemId)
-                .WithItemBaseTypeName(itemContext.ItemId)
-                .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(weaponContext, itemContext.ItemClass))
-                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
-                .Build();
-        }
-
-        private ItemTooltipRenderContext ConvertArmorPresentationContext(ArmorPresentationContext armorContext, InventoryItemPresentationContext itemContext)
-        {
-            return new ItemTooltipRenderContext.Builder()
-                .WithItemName(itemContext.ItemId)
-                .WithItemBaseTypeName(itemContext.ItemId)
-                .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(armorContext, itemContext.ItemClass))
-                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
-                .Build();
-        }
-
-        private ItemTooltipRenderContext ConvertPlainItemPresentationContextToTooltipContext(InventoryItemPresentationContext itemContext)
-        {
-            return new ItemTooltipRenderContext.Builder()
-                .WithItemName(itemContext.ItemId)
-                .WithItemBaseTypeName(itemContext.ItemId)
-                .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertItemClassToTooltipForJewelry(itemContext.ItemClass))
-                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
-                .Build();
-        }
-
-        private ItemTooltipRenderContext ConvertRecoveryPotionPresentationContext(RecoveryPotionPresentationContext recoveryPotionContext, InventoryItemPresentationContext itemContext)
-        {
-            return new ItemTooltipRenderContext.Builder()
-                .WithItemName(itemContext.ItemId)
-                .WithItemBaseTypeName(itemContext.ItemId)
-                .WithItemPotential(itemContext.ItemPotential)
-                .WithItemHeaderLines(ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(recoveryPotionContext, itemContext.ItemClass))
-                .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
-                .Build();
-        }
-
-        private List<List<UiTextSegment>> ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(WeaponPresentationContext weaponContext, ItemClass itemClass)
-        {
-            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
-
-            result.Add(ConvertItemClassToTextSegment(itemClass));
-
-            if (weaponContext.MinToMaxPhysicalDamage != null)
-            {
-                result.Add(ConvertWeaponPhysDamageToTextSegments(weaponContext.MinToMaxPhysicalDamage));
-            }
-            
-            if (weaponContext.MinToMaxSpellDamage != null)
-            {
-                result.Add(ConvertWeaponSpellDamageToTextSegments(weaponContext.MinToMaxSpellDamage));
-            }
-
-            result.Add(ConvertWeaponCritChanceToTextSegments(weaponContext.CriticalStrikeChance));
-            result.Add(ConvertWeaponSkillsPerSecondToTextSegments(weaponContext.SkillsPerSecond));
-
-            return result;
-        }
-
-        private List<List<UiTextSegment>> ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(ArmorPresentationContext armorContext, ItemClass itemClass)
-        {
-            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
-
-            result.Add(ConvertItemClassToTextSegment(itemClass));
-            result.Add(ConvertArmorValueToTextSegments(armorContext.ArmorValue));
-            result.Add(ConvertArmorMovementSpeedAddendToTextSegments(armorContext.MovementSpeedAddend));
-
-            return result;
-        }
-
-        private List<List<UiTextSegment>> ConvertItemClassToTooltipForJewelry(ItemClass itemClass)
-        {
-            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
-
-            result.Add(ConvertItemClassToTextSegment(itemClass));
-
-            return result;
-        }
-
-        private List<List<UiTextSegment>> ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(RecoveryPotionPresentationContext recoveryPotionContext, ItemClass itemClass)
-        {
-            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
-
-            result.Add(ConvertItemClassToTextSegment(itemClass));
-            result.Add(ConvertRecoveryPotionRecoveryAmountToTextSegments(recoveryPotionContext.RecoveryAmount));
-            result.Add(ConvertRecoveryPotionUsesToTextSegments(recoveryPotionContext.Uses));
-
-            return result;
-        }
-
-        private List<UiTextSegment> ConvertWeaponPhysDamageToTextSegments(DamageRange physMinMaxDam)
-        {
-            return ConvertDamageRangeToTextSegments("weapon-tooltip-phys-dam", physMinMaxDam);
-        }
-
-        private List<UiTextSegment> ConvertWeaponSpellDamageToTextSegments(DamageRange spellMinMaxDam)
-        {
-            return ConvertDamageRangeToTextSegments("weapon-tooltip-spell-dam", spellMinMaxDam);
-        }
-
-        private List<UiTextSegment> ConvertDamageRangeToTextSegments(string localizationKey, DamageRange damageRange)
-        {
-            string localizedString = localizationGateway.GetLocalizedString(localizationKey);
-            string formattedString = string.Format(localizedString, damageRange.MinDamage, damageRange.MaxDamage);
-            return MarkupTextParser.Parse(formattedString);
-        }
-
-        private List<UiTextSegment> ConvertWeaponCritChanceToTextSegments(int critChanceCents)
-        {
-            string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-crit-chance");
-            string formattedString = string.Format(localizedString, critChanceCents / 100.0);
-            return MarkupTextParser.Parse(formattedString);
-        }
-
-        private List<UiTextSegment> ConvertWeaponSkillsPerSecondToTextSegments(double skillsPerSecond)
-        {
-            string skillsPerSecondTwoDecimal = skillsPerSecond.ToString("F2");
-            string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-skills-per-second");
-            string formattedString = string.Format(localizedString, skillsPerSecondTwoDecimal);
-            return MarkupTextParser.Parse(formattedString);
-        }
-
-        private List<UiTextSegment> ConvertArmorValueToTextSegments(int armorValue)
-        {
-            return ConvertIntegerToTextSegments("armor-tooltip-armor", armorValue);
-        }
-
-        private List<UiTextSegment> ConvertArmorMovementSpeedAddendToTextSegments(int movementSpeedAddend)
-        {
-            return ConvertIntegerToTextSegments("armor-tooltip-movement-speed", movementSpeedAddend);
-        }
-
-        private List<UiTextSegment> ConvertRecoveryPotionUsesToTextSegments(int uses)
-        {
-            return ConvertIntegerToTextSegments("life-potion-tooltip-usages", uses);
-        }
-
-        private List<UiTextSegment> ConvertRecoveryPotionRecoveryAmountToTextSegments(int recoveryAmount)
-        {
-            return ConvertIntegerToTextSegments("life-potion-tooltip-heal-value", recoveryAmount);
-        }
-
-        private List<UiTextSegment> ConvertIntegerToTextSegments(string localizationKey, int value)
-        {
-            string localizedString = localizationGateway.GetLocalizedString(localizationKey);
-            string formattedString = string.Format(localizedString, value);
-            return MarkupTextParser.Parse(formattedString);
-        }
-
-        private List<UiTextSegment> ConvertItemClassToTextSegment(ItemClass itemClass)
-        {
-            List<UiTextSegment> result = new List<UiTextSegment>();
-            string localizedClassName = enumLocalizationGateway.GetLocalizedEnumString<ItemClass>(itemClass);
-
-            result.Add(new UiTextSegment(localizedClassName, false));
-
-            return result;
-        }
-
-        private List<List<UiTextSegment>> ConvertItemImplicitsToTextSegments(InventoryItemPresentationContext itemContext)
-        {
-            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
-            AffixesPresentationContext affixes = itemContext.Affixes;
-
-            for (int i = 0; i < affixes.Implicits.Length; i++)
-            {
-                IAffixPresentationContext affix = affixes.Implicits[i];
-                result.Add(ConvertAffixToTextSegments(affix));
-            }
-
-            return result;
-        }
-
-        private List<UiTextSegment> ConvertAffixToTextSegments(IAffixPresentationContext affix)
-        {
-            List<UiTextSegment> result = new List<UiTextSegment>();
-            string affixUiText = localizationGateway.GetLocalizedString(affix.Name);
-
-            string formattedAffixText = string.Format(affixUiText, affix.GetValues());
-
-            result.Add(new UiTextSegment(formattedAffixText, false));
-
-            return result;
         }
     }
 }
