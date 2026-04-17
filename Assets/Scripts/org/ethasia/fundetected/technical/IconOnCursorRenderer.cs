@@ -19,6 +19,8 @@ namespace Org.Ethasia.Fundetected.Technical
         public void ShowIcon(string imageName)
         {
             icon.sprite = Resources.Load<Sprite>(imageName);
+            icon.SetNativeSize();
+
             icon.enabled = true;
             icon.gameObject.SetActive(true);
         }
