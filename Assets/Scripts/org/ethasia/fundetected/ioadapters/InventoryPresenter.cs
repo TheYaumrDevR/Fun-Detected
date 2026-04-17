@@ -52,8 +52,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             {
                 iconOnCursorRenderer.HideIcon();
             }
-
-            iconOnCursorRenderer.ShowIcon(itemId);
+            else
+            {
+                iconOnCursorRenderer.ShowIcon(itemId);
+            }
         }
     }
 }
