@@ -39,6 +39,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         public void RenderEquippedItem(EquipmentSlotRenderContext renderContext)
         {
+            UnregisterOldHoverCallbacks();
+
             if (renderContext.ItemImagePath != null && renderContext.ItemImagePath.Length > 0)
             {
                 Sprite itemSprite = Resources.Load<Sprite>(renderContext.ItemImagePath);
@@ -51,7 +53,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 itemImage.style.height = itemSprite.rect.height;
 
                 SetOverlayColor(renderContext.IsEquipped);
-                UnregisterOldHoverCallbacks();
                 itemHoverCallbacks = UiElementUtils.RegisterItemHoverEvents(itemImage, renderContext);
             }
             else
@@ -102,6 +103,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             {
                 itemImage.UnregisterCallback<PointerLeaveEvent>(itemHoverCallbacks.PointerLeaveCallback);
             }
+
+            IItemTooltipPresenter itemTooltipPresenter = TechnicalFactory.GetInstance().GetItemTooltipPresenterInstance();
+            itemTooltipPresenter.HideItemTooltip();
         }
     }
 }
