@@ -9,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private static IconOnCursorRenderer instance;
 
+        public Canvas parentCanvas;
         public Image icon;
 
         public static IconOnCursorRenderer GetInstance()
@@ -19,7 +20,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public void ShowIcon(string imageName)
         {
             icon.sprite = Resources.Load<Sprite>(imageName);
-            icon.SetNativeSize();
+            ScaleIconToPixelAccurate();
 
             icon.enabled = true;
             icon.gameObject.SetActive(true);
@@ -41,7 +42,20 @@ namespace Org.Ethasia.Fundetected.Technical
         private void Awake()
         {
             instance = this;
+            icon.SetNativeSize();
             HideIcon();
+        }
+
+        private void ScaleIconToPixelAccurate()
+        {
+            float scaleFactor = parentCanvas.scaleFactor;
+            Sprite iconSprite = icon.sprite;
+
+            RectTransform iconRectTransform = icon.rectTransform;
+            iconRectTransform.sizeDelta = new Vector2(
+                iconSprite.rect.width / scaleFactor, 
+                iconSprite.rect.height / scaleFactor
+            );
         }
     }
 }

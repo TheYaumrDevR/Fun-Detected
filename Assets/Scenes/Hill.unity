@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66a4cf8949b86c4797e63b5d4978ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentCanvas: {fileID: 1767646265}
   icon: {fileID: 958456251}
 --- !u!1 &963194225
 GameObject:
