@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq; 
 
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -48,6 +49,8 @@ namespace Org.Ethasia.Fundetected.Technical
 
             SetupMapSelectionList();
             inventoryDisplayInteractor = new InventoryDisplayInteractor();
+
+            rootElement.RegisterCallback<PointerDownEvent>(OnPointerDownOutsideWindows);
         }
 
         public void OpenMapSelectionWindow(MapSelectionWindowContext windowContent)
@@ -260,6 +263,29 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 window.visible = false;
                 SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
+        }
+
+        private void OnPointerDownOutsideWindows(PointerDownEvent evt)
+        {
+            if (evt.button != (int)MouseButton.LeftMouse)
+            {
+                return;
+            }
+
+            VisualElement clickedOn = rootElement.panel.Pick(evt.position);
+
+            if (clickedOn == null || !inventoryWindow.Contains(clickedOn) && !mapSelectionWindow.Contains(clickedOn))
+            {
+                OnLeftClickedOutsideWindows();
+            }            
+        }
+
+        private void OnLeftClickedOutsideWindows()
+        {
+            if (inventoryWindow.IsOpen)
+            {
+                
             }
         }
 

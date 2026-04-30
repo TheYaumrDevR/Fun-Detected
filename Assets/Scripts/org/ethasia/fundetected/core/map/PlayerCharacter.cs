@@ -212,6 +212,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return new ItemInventoryExtractionVisitor(ItemInventory.InventoryGrid);
         }
 
+        public void DropPickedInventoryItem()
+        {
+            if (ItemInventory.ItemOnCursor != null)
+            {
+                Item droppedItem = ItemInventory.DropPickedItem();
+                // Render null item on cursor
+                // Cause item to be dropped
+                // Call this from PlayerInventoryInteractor
+            }
+        }
+
         private void PresentDamage(int damageTaken)
         {
             IPlayerDamageTakenInteractor playerDamageTakenInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDamageTakenInteractorInstance();

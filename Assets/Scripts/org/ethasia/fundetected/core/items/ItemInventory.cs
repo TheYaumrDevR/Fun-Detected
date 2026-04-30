@@ -59,6 +59,14 @@ namespace Org.Ethasia.Fundetected.Core.Items
             SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpBeltEquipment, EquipmentSlotPositions.BELT);
         }
 
+        public Item DropPickedItem()
+        {
+            Item result = ItemOnCursor;
+            ItemOnCursor = null;
+
+            return result;
+        }
+
         private void SwapCursorItemWithEquipmentSlot(
             Func<EquipmentItem, EquipmentItem> pickupFunction, 
             EquipmentSlotPositions slotPosition)
