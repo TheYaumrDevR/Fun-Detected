@@ -22,7 +22,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
             {
                 dropItemInteractorMockInstance = new DropItemInteractorMock();
             }
-            
+
             return dropItemInteractorMockInstance;
         }
     }

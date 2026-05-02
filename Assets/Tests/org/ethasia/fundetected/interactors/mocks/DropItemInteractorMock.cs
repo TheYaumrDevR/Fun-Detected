@@ -11,26 +11,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
             private set;
         }
 
-        public int DropItemFromPlayerCallCount
-        {
-            get;
-            private set;
-        }
-
         public void DropItemFromMonster(Item item, string monsterId)
         {
             DropItemFromMonsterCallCount++;
         }
 
-        public void DropItemFromPlayer(Item item)
-        {
-            DropItemFromPlayerCallCount++;
-        }
-
         public void Reset()
         {
             DropItemFromMonsterCallCount = 0;
-            DropItemFromPlayerCallCount = 0;
         }
     }
 }

@@ -7,7 +7,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class PlayerInventoryController
     {
-        // Create a Dictionary which maps a EquipmentSlotPositionTypes to the corresponding Interactor method
         private Dictionary<EquipmentSlotPositionTypes, Action> slotActionBySlotPosition;
 
         private PlayerInventoryInteractor playerInventoryInteractor;

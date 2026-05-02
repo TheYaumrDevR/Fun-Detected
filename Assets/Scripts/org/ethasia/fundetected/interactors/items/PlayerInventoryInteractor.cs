@@ -4,6 +4,7 @@ using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Interactors.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Interactors.Items
@@ -12,10 +13,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
     {
         private IInventoryPresenter inventoryPresenter;
         private InventorySlotPresentationItemVisitor presentationVisitor;
+        private DropItemInteractor dropItemInteractor;
 
         public PlayerInventoryInteractor()
         {
             inventoryPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetInventoryPresenterInstance();
+            dropItemInteractor = new DropItemInteractor();
 
             presentationVisitor = new InventorySlotPresentationItemVisitor.Builder()
                 .SetItemInventory(Area.ActiveArea.Player.ItemInventory)
@@ -60,6 +63,17 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             SwapCursorItemWithEquipmentSlot(
                 () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithBeltEquipment(),
                 (itemName) => presentationVisitor.PresentBelt(itemName));
+        }
+
+        public void DropCursorItem()
+        {
+            Item droppedItem = Area.ActiveArea.Player.DropPickedInventoryItem();
+
+            if (droppedItem != null)
+            {
+                inventoryPresenter.HideItemOnCursor();
+                dropItemInteractor.DropItemFromPlayer(droppedItem);
+            }
         }
 
         private void SwapCursorItemWithEquipmentSlot(Action swapAction, Action<string> presentAction)

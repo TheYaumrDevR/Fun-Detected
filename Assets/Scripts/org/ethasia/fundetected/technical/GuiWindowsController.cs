@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Interactors.Items;
 using Org.Ethasia.Fundetected.Interactors.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters;
@@ -28,6 +29,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private MapSelectionWindowContext model;
 
         private InventoryDisplayInteractor inventoryDisplayInteractor;
+        private PlayerInventoryInteractor playerInventoryInteractor;
 
         public static GuiWindowsController GetInstance()
         {
@@ -49,6 +51,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
             SetupMapSelectionList();
             inventoryDisplayInteractor = new InventoryDisplayInteractor();
+            playerInventoryInteractor = new PlayerInventoryInteractor();
 
             rootElement.RegisterCallback<PointerDownEvent>(OnPointerDownOutsideWindows);
         }
@@ -285,7 +288,7 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             if (inventoryWindow.IsOpen)
             {
-                
+                playerInventoryInteractor.DropCursorItem();
             }
         }
 

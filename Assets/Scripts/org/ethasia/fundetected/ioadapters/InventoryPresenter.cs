@@ -48,6 +48,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             ShowItemOnCursor(itemId);
         }
 
+        public void HideItemOnCursor()
+        {
+            ShowItemOnCursor(string.Empty);
+        }
+
         private void PresentEquippedItem(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext equipmentRenderContext)
         {
             IUiRenderer uiRenderer = TechnicalFactory.GetInstance().GetUiRendererInstance();

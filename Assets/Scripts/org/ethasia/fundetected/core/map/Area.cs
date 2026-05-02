@@ -313,6 +313,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             return MOVE_LEFT_STRATEGY.TryToMovePlayerStepUp(playerPosition);
         } 
 
+        public void SetItemPositionToPlayerPosition(Item item)
+        {
+            item.CollisionShape.Position.SetFromOtherPosition(playerPosition);
+        }
+
         private void SetEnemyHitBox(Enemy enemy)
         {
             BoundingBox enemyBoundingBox = enemy.BoundingBox;

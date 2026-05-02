@@ -9,5 +9,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         void ShowSwappedEquippedJewelry(string itemIdOnCursor, EquippedJewelryPresentationContext newEquippedJewelry);
         void ShowSwappedEquippedRecoveryPotion(string itemIdOnCursor, EquippedRecoveryPotionPresentationContext newEquippedRecoveryPotion);
         void ShowEmptySlotAfterSwap(string itemId, EquipmentSlotPositions slotPosition);
+        void HideItemOnCursor();
     }
 }
