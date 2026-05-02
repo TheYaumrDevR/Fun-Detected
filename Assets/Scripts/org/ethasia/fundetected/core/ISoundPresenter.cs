@@ -6,6 +6,7 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayPortalTransitionSound();
         void PlayHealingWellUseSound(string audioSourceId);
         void PlayItemDropSound(string audioSourceId);
+        void PlayItemDropSound();
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
     }

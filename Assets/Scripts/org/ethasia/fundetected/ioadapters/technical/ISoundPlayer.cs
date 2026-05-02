@@ -9,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void PlayUiWindowOpenSound();
         void PlayMouseClickSound();
         void PlayItemDropSound(string audioSourceId);
+        void PlayItemDropSound();
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
     }

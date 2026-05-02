@@ -23,6 +23,11 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
             playItemDropSoundCallCount++;
         }
 
+        public void PlayItemDropSound()
+        {
+            playItemDropSoundCallCount++;
+        }
+
         public int GetPlayItemDropSoundCallCount()
         {
             return playItemDropSoundCallCount;

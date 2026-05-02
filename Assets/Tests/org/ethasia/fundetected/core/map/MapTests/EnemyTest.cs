@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Mocks;
+using Org.Ethasia.Fundetected.Interactors.Mocks;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Map.Tests
@@ -38,6 +39,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
             ioAdaptersFactoryForCore.SetRngInstance(rngMock);
             IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);            
+        }
+
+        [OneTimeSetUp]
+        public void SetupMocks()
+        {
+            InteractorsFactoryForCore.SetInstance(new MockInteractorsFactoryForCore());
         }
 
         [Test]
@@ -452,12 +459,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 testCandidate.AddDropTable(dropTable);
             }
 
-            SoundPresenterMock mockedSoundPresenter = (SoundPresenterMock)IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
-            mockedSoundPresenter.ResetMock();
+            DropItemInteractorMock mockedDropItemInteractor = (DropItemInteractorMock)InteractorsFactoryForCore.GetInstance().GetDropItemInteractorInstance();
+            mockedDropItemInteractor.Reset();
 
             testCandidate.TakePhysicalHit(100);
 
-            Assert.That(mockedSoundPresenter.GetPlayItemDropSoundCallCount(), Is.EqualTo(3));
+            Assert.That(mockedDropItemInteractor.DropItemFromMonsterCallCount, Is.EqualTo(3));
         }
 
         [Test]
@@ -483,12 +490,12 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 testCandidate.AddDropTable(dropTable);
             }
 
-            SoundPresenterMock mockedSoundPresenter = (SoundPresenterMock)IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
-            mockedSoundPresenter.ResetMock();
+            DropItemInteractorMock mockedDropItemInteractor = (DropItemInteractorMock)InteractorsFactoryForCore.GetInstance().GetDropItemInteractorInstance();
+            mockedDropItemInteractor.Reset();
 
             testCandidate.TakePhysicalHit(100);
 
-            Assert.That(mockedSoundPresenter.GetPlayItemDropSoundCallCount(), Is.EqualTo(2));
+            Assert.That(mockedDropItemInteractor.DropItemFromMonsterCallCount, Is.EqualTo(2));
         }        
 
         private Enemy CreateEnemyForAiAttackTests()

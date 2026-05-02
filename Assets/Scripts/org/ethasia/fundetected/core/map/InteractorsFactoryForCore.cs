@@ -16,5 +16,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public abstract IPlayerDamageTakenInteractor GetPlayerDamageTakenInteractorInstance();
         public abstract IPortalTransitionInteractor GetPortalTransitionInteractor();
+        public abstract IDropItemInteractor GetDropItemInteractorInstance();
     }
 }

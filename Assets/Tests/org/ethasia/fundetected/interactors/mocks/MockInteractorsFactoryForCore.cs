@@ -4,6 +4,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
 {
     public class MockInteractorsFactoryForCore : InteractorsFactoryForCore
     {
+        private DropItemInteractorMock dropItemInteractorMockInstance;
+
         public override IPlayerDamageTakenInteractor GetPlayerDamageTakenInteractorInstance()
         {
             return new PlayerDamageTakenInteractorMock();
@@ -12,6 +14,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
         public override IPortalTransitionInteractor GetPortalTransitionInteractor()
         {
             return null;
+        }
+
+        public override IDropItemInteractor GetDropItemInteractorInstance()
+        {
+            if (dropItemInteractorMockInstance == null)
+            {
+                dropItemInteractorMockInstance = new DropItemInteractorMock();
+            }
+            
+            return dropItemInteractorMockInstance;
         }
     }
 }

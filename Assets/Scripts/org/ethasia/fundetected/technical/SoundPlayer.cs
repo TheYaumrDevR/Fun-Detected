@@ -103,6 +103,11 @@ namespace Org.Ethasia.Fundetected.Technical
             }
         }
 
+        public void PlayItemDropSound()
+        {
+            globalAudioSource.PlayOneShot(itemDropSound);
+        }
+
         public void PlayUiWindowOpenSound()
         {
             globalAudioSource.PlayOneShot(uiWindowOpenSound);

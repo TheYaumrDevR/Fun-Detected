@@ -8,6 +8,7 @@ namespace Org.Ethasia.Fundetected.Interactors
     {
         private IPlayerDamageTakenInteractor playerDamageTakenInteractor;
         private IPortalTransitionInteractor portalTransitionInteractor;
+        private IDropItemInteractor dropItemInteractor;
 
         public override IPlayerDamageTakenInteractor GetPlayerDamageTakenInteractorInstance()
         {
@@ -27,6 +28,16 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return portalTransitionInteractor;
+        }
+
+        public override IDropItemInteractor GetDropItemInteractorInstance()
+        {
+            if (null == dropItemInteractor)
+            {
+                dropItemInteractor = new DropItemInteractor();
+            }
+
+            return dropItemInteractor;
         }
     }
 }
