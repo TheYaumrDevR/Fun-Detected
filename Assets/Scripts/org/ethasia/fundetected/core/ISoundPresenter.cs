@@ -9,5 +9,6 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayItemDropSound();
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
+        void PlayInventoryGrabItemSound();
     }
 }

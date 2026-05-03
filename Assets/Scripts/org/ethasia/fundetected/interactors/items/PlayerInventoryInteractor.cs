@@ -1,5 +1,6 @@
 using System;
 
+using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
@@ -88,6 +89,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             {
                 string cursorItemId = newItemOnCursor != null ? newItemOnCursor.Name : "";
                 presentAction(cursorItemId);
+
+                if (newItemOnCursor != null)
+                {
+                    ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+                    soundPresenter.PlayInventoryGrabItemSound();
+                }
             }
         }
 

@@ -12,5 +12,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void PlayItemDropSound();
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
+        void PlayInventoryGrabItemSound();
     }
 }

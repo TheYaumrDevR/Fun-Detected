@@ -41,6 +41,10 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
         {
         }
 
+        public void PlayInventoryGrabItemSound()
+        {
+        }
+
         public void ResetMock()
         {
             playItemDropSoundCallCount = 0;

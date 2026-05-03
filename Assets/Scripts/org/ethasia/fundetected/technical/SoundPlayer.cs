@@ -26,6 +26,10 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip itemDropSound;
         public AudioClip normalItemDroppedSound;
         public AudioClip droppedItemPickedUpSound;
+        public AudioClip inventoryGrabItemSound;
+
+        public AudioClip metalWeaponItemMaterialSound;
+        public AudioClip leatherArmorItemMaterialSound;
 
         public static SoundPlayer GetInstance()
         {
@@ -126,6 +130,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayDroppedItemPickedUpSound()
         {
             globalAudioSource.PlayOneShot(droppedItemPickedUpSound);
+        }
+
+        public void PlayInventoryGrabItemSound()
+        {
+            globalAudioSource.PlayOneShot(inventoryGrabItemSound);
         }
 
         public void CallSoundMethodById(string soundMethodId, string audioSourceId)

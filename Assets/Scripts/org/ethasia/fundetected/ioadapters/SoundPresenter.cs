@@ -74,5 +74,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 soundPlayer.PlayDroppedItemPickedUpSound();
             }
         }
+
+        public void PlayInventoryGrabItemSound()
+        {
+            ISoundPlayer soundPlayer = TechnicalFactory.GetInstance().GetSoundPlayerInstance();
+
+            if (null != soundPlayer)
+            {
+                soundPlayer.PlayInventoryGrabItemSound();
+            }
+        }
     }
 }

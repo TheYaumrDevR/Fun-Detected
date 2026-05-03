@@ -2542,6 +2542,9 @@ MonoBehaviour:
   itemDropSound: {fileID: 8300000, guid: 6c50a973c02648e41b7e679bd3bd92f0, type: 3}
   normalItemDroppedSound: {fileID: 8300000, guid: 2ef63456753541240add9f82673c4899, type: 3}
   droppedItemPickedUpSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  inventoryGrabItemSound: {fileID: 8300000, guid: 64f52af574f856c4bbde09abfcb890c1, type: 3}
+  metalWeaponItemMaterialSound: {fileID: 8300000, guid: 5e6da4c4d049b674d84baaa8fbc74104, type: 3}
+  leatherArmorItemMaterialSound: {fileID: 8300000, guid: f39ba633644b96f44b9733f1b093fc42, type: 3}
 --- !u!1 &1677757172
 GameObject:
   m_ObjectHideFlags: 0
