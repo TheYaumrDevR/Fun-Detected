@@ -26,6 +26,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             private ItemClass itemClass;
             private int minimumItemLevel;
             private string name;
+            private ItemMaterials material;
             private int recoveryAmount;
             private int uses;
 
@@ -44,6 +45,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             public Builder SetName(string value)
             {
                 name = value;
+                return this;
+            }
+
+            public Builder SetMaterial(ItemMaterials value)
+            {
+                material = value;
                 return this;
             }
 
@@ -66,6 +73,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 result.ItemClass = itemClass;
                 result.MinimumItemLevel = minimumItemLevel;
                 result.Name = name;
+                result.Material = material;
                 result.RecoveryAmount = recoveryAmount;
                 result.Uses = uses;
 

@@ -49,6 +49,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
+            private ItemMaterials material;
             private DamageRange minToMaxPhysicalDamage;
             private DamageRange minToMaxSpellDamage;
             private double skillsPerSecond;
@@ -88,6 +89,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             public Builder SetIntelligenceRequirement(int value)
             {
                 intelligenceRequirement = value;
+                return this;
+            }
+
+            public Builder SetMaterial(ItemMaterials value)
+            {
+                material = value;
                 return this;
             }
 
@@ -131,6 +138,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 result.StrengthRequirement = strengthRequirement;
                 result.AgilityRequirement = agilityRequirement;
                 result.IntelligenceRequirement = intelligenceRequirement;
+                result.Material = material;
                 result.MinToMaxPhysicalDamage = minToMaxPhysicalDamage;
                 result.MinToMaxSpellDamage = minToMaxSpellDamage;
                 result.SkillsPerSecond = skillsPerSecond;

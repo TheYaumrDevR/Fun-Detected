@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             private int strengthRequirement;
             private int agilityRequirement;
             private int intelligenceRequirement;
+            private ItemMaterials material;
             private EquipmentAffixMasterData firstImplicit;
 
             public Builder SetItemClass(ItemClass value)
@@ -57,6 +58,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 return this;
             }
 
+            public Builder SetMaterial(ItemMaterials value)
+            {
+                material = value;
+                return this;
+            }
+
             public Builder SetFirstImplicit(EquipmentAffixMasterData value)
             {
                 firstImplicit = value;
@@ -73,6 +80,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 result.StrengthRequirement = strengthRequirement;
                 result.AgilityRequirement = agilityRequirement;
                 result.IntelligenceRequirement = intelligenceRequirement;
+                result.Material = material;
                 result.FirstImplicit = firstImplicit;
 
                 FillItemMasterDataFields(result);

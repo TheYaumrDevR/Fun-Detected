@@ -18,7 +18,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinimumItemLevel(1)
                 .SetStrengthRequirement(8)
                 .SetAgilityRequirement(8)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .SetMaterial(ItemMaterials.METAL_WEAPON);
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
@@ -39,7 +40,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinimumItemLevel(10)
                 .SetStrengthRequirement(18)
                 .SetAgilityRequirement(26)
-                .SetItemClass(ItemClass.ONE_HANDED_SWORD);
+                .SetItemClass(ItemClass.ONE_HANDED_SWORD)
+                .SetMaterial(ItemMaterials.METAL_WEAPON);
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);

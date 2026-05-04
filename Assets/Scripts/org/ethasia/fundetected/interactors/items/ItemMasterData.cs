@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
         public int CollisionShapeDistanceToRightEdgeFromCenter { get; protected set; }
         public int CollisionShapeDistanceToTopEdgeFromCenter { get; protected set; }
         public int CollisionShapeDistanceToBottomEdgeFromCenter { get; protected set; }
+        public ItemMaterials Material { get; protected set; }
 
         public abstract Item ToItem();
 

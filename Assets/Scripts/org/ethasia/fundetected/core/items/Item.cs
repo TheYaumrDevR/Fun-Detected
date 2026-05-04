@@ -34,6 +34,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private set;
         }
 
+        public ItemMaterials Material
+        {
+            get;
+            private set;
+        }
+
         public RectangleCollisionShape CollisionShape
         {
             get;
@@ -79,6 +85,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             clone.MinimumItemLevel = MinimumItemLevel;
             clone.ItemLevel = ItemLevel;
             clone.CollisionShape = CollisionShape.Clone();
+            clone.Material = Material;
         }
 
         public class Builder
@@ -87,6 +94,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private ItemClass itemClass;
             private int minimumItemLevel;
             private int itemLevel;
+            private ItemMaterials material;
             private int collisionShapeDistanceToLeftEdgeFromCenter;
             private int collisionShapeDistanceToRightEdgeFromCenter;
             private int collisionShapeDistanceToTopEdgeFromCenter;
@@ -113,6 +121,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             public Builder SetItemLevel(int value)
             {
                 this.itemLevel = value;
+                return this;
+            }
+
+            public Builder SetMaterial(ItemMaterials value)
+            {
+                this.material = value;
                 return this;
             }
 
@@ -154,6 +168,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 statlessItem.ItemClass = itemClass;
                 statlessItem.MinimumItemLevel = minimumItemLevel;
                 statlessItem.ItemLevel = itemLevel;
+                statlessItem.Material = material;
                 statlessItem.CollisionShape = collisionShape;
             }
         }

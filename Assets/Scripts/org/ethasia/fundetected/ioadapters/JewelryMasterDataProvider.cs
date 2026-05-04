@@ -20,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetName("Weapons Belt")
                 .SetItemClass(ItemClass.BELT)
                 .SetMinimumItemLevel(10)
+                .SetMaterial(ItemMaterials.LEATHER_ARMOR)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreatePlusStrengthWeaponsBelt());
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
