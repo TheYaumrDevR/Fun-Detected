@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
@@ -82,6 +83,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             if (null != soundPlayer)
             {
                 soundPlayer.PlayInventoryGrabItemSound();
+            }
+        }
+
+        public void PlayItemMaterialSound(ItemMaterials itemMaterial)
+        {
+            ISoundPlayer soundPlayer = TechnicalFactory.GetInstance().GetSoundPlayerInstance();
+
+            if (null != soundPlayer)
+            {
+                soundPlayer.PlayItemMaterialSound(itemMaterial.ToString());
             }
         }
     }

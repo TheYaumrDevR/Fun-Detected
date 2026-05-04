@@ -95,6 +95,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                     ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
                     soundPresenter.PlayInventoryGrabItemSound();
                 }
+
+                if (oldItemOnCursor != null)
+                {
+                    ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+                    soundPresenter.PlayItemMaterialSound(oldItemOnCursor.Material);
+                }
             }
         }
 

@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Items;
+
 namespace Org.Ethasia.Fundetected.Core
 {
     public interface ISoundPresenter
@@ -10,5 +12,6 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
         void PlayInventoryGrabItemSound();
+        void PlayItemMaterialSound(ItemMaterials itemMaterial);
     }
 }

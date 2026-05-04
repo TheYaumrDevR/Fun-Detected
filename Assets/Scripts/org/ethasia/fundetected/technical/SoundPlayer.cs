@@ -14,6 +14,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private Dictionary<string, AudioSource> audioSourcesById;
         private Dictionary<string, AudioSource> permanentAudioSourcesById;
         private Dictionary<string, Action<string>> soundMethodsById;
+        private Dictionary<string, AudioClip> itemMaterialSoundsByName;
 
         public AudioSource globalAudioSource;
         public AudioClip enemyHitSound;
@@ -45,6 +46,12 @@ namespace Org.Ethasia.Fundetected.Technical
         void Awake()
         {
             instance = this;
+
+            itemMaterialSoundsByName = new Dictionary<string, AudioClip>
+            {
+                { "METAL_WEAPON", metalWeaponItemMaterialSound },
+                { "LEATHER_ARMOR", leatherArmorItemMaterialSound }
+            };
         }
 
         public void AddAudioSource(string audioSourceId, AudioSource audioSource)
@@ -135,6 +142,14 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayInventoryGrabItemSound()
         {
             globalAudioSource.PlayOneShot(inventoryGrabItemSound);
+        }
+
+        public void PlayItemMaterialSound(string itemMaterialName)
+        {
+            if (itemMaterialSoundsByName.ContainsKey(itemMaterialName))
+            {
+                globalAudioSource.PlayOneShot(itemMaterialSoundsByName[itemMaterialName]);
+            }
         }
 
         public void CallSoundMethodById(string soundMethodId, string audioSourceId)

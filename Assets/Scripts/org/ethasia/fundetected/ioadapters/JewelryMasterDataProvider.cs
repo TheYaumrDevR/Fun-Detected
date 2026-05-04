@@ -37,6 +37,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetName("War Belt")
                 .SetItemClass(ItemClass.BELT)
                 .SetMinimumItemLevel(2)
+                .SetMaterial(ItemMaterials.LEATHER_ARMOR)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamagePercentWarBelt());
 
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);

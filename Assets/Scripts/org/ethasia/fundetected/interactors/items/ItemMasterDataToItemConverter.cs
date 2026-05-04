@@ -75,6 +75,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
         private static void ConvertItemFields(Item.Builder itemBuilder, ItemMasterData itemMasterData)
         {
+            itemBuilder.SetMaterial(itemMasterData.Material);
             itemBuilder.SetCollisionShapeDistanceToLeftEdgeFromCenter(itemMasterData.CollisionShapeDistanceToLeftEdgeFromCenter);
             itemBuilder.SetCollisionShapeDistanceToRightEdgeFromCenter(itemMasterData.CollisionShapeDistanceToRightEdgeFromCenter);
             itemBuilder.SetCollisionShapeDistanceToTopEdgeFromCenter(itemMasterData.CollisionShapeDistanceToTopEdgeFromCenter);

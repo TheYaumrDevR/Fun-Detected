@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core;
+using Org.Ethasia.Fundetected.Core.Items;
 
 namespace Org.Ethasia.Fundetected.Core.Mocks
 {
@@ -42,6 +43,10 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
         }
 
         public void PlayInventoryGrabItemSound()
+        {
+        }
+
+        public void PlayItemMaterialSound(ItemMaterials itemMaterial)
         {
         }
 
