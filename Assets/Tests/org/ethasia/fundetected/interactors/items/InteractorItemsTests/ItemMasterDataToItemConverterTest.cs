@@ -218,7 +218,59 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
             Assert.That(result.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter, Is.EqualTo(12));
             Assert.That(result.CollisionShape.CollisionShapeDistanceToBottomEdgeFromCenter, Is.EqualTo(13));
         }
-        
+
+        [Test]
+        public void TestConvertWeaponMasterDataToWeaponConvertsItemMaterial()
+        {
+            WeaponMasterData.Builder weaponMasterDataBuilder = new WeaponMasterData.Builder();
+            weaponMasterDataBuilder.SetMaterial(ItemMaterials.METAL_WEAPON);
+
+            WeaponMasterData testWeaponMasterData = weaponMasterDataBuilder.Build();
+
+            Weapon result = ItemMasterDataToItemConverter.ConvertWeaponMasterDataToWeapon(testWeaponMasterData);
+
+            Assert.That(result.Material, Is.EqualTo(ItemMaterials.METAL_WEAPON));
+        }
+
+        [Test]
+        public void TestConvertArmorMasterDataToArmorConvertsItemMaterial()
+        {
+            ArmorMasterData.Builder armorMasterDataBuilder = new ArmorMasterData.Builder();
+            armorMasterDataBuilder.SetMaterial(ItemMaterials.LEATHER_ARMOR);
+
+            ArmorMasterData testArmorMasterData = armorMasterDataBuilder.Build();
+
+            Armor result = ItemMasterDataToItemConverter.ConvertArmorMasterDataToArmor(testArmorMasterData);
+
+            Assert.That(result.Material, Is.EqualTo(ItemMaterials.LEATHER_ARMOR));
+        }
+
+        [Test]
+        public void TestConvertJewelryMasterDataToJewelryConvertsItemMaterial()
+        {
+            JewelryMasterData.Builder jewelryMasterDataBuilder = new JewelryMasterData.Builder();
+            jewelryMasterDataBuilder.SetMaterial(ItemMaterials.METAL_RING);
+
+            JewelryMasterData testJewelryMasterData = jewelryMasterDataBuilder.Build();
+
+            Jewelry result = ItemMasterDataToItemConverter.ConvertJewelryMasterDataToJewelry(testJewelryMasterData);
+
+            Assert.That(result.Material, Is.EqualTo(ItemMaterials.METAL_RING));
+        }
+
+        [Test]
+        public void TestConvertRecoveryPotionMasterDataToPotionConvertsItemMaterial()
+        {
+            RecoveryPotionMasterData.Builder recoveryPotionMasterDataBuilder = new RecoveryPotionMasterData.Builder();
+            recoveryPotionMasterDataBuilder.SetMaterial(ItemMaterials.STONE);
+
+            RecoveryPotionMasterData testRecoveryPotionMasterData = recoveryPotionMasterDataBuilder.Build();
+
+            RecoveryPotion result = ItemMasterDataToItemConverter.ConvertRecoveryPotionMasterDataToPotion(testRecoveryPotionMasterData);
+
+            Assert.That(result.Material, Is.EqualTo(ItemMaterials.STONE));
+        }
+
         public AffixMasterDataBaseForIntegerMinMaxAndIncrement CreateImplicitMasterDataForTest()
         {
             return new AffixMasterDataBaseForIntegerMinMaxAndIncrement.Builder()
