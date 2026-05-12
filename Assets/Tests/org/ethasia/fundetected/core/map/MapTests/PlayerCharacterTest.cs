@@ -24,10 +24,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestMoveLeftDistanceUnitsAreCalculatedCorrectly()
         {
-            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
-                .SetPlayerCharacterBaseStats(testBaseStats)
-                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();    
+            testCandidate = CreateStandardTestCandidate();
 
             int unitsMoved = testCandidate.MoveLeft(0.2);
             Assert.That(unitsMoved, Is.EqualTo(3));  
@@ -36,10 +33,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestMoveLeftMoveTimeIsBelowThreshold()
         {
-            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
-                .SetPlayerCharacterBaseStats(testBaseStats)
-                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();  
+            testCandidate = CreateStandardTestCandidate();
 
             int unitsMoved = testCandidate.MoveLeft(0.065);
             Assert.That(unitsMoved, Is.EqualTo(0));  
@@ -48,10 +42,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestMoveRightDistanceUnitsAreCalculatedCorrectly()
         {
-            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
-                .SetPlayerCharacterBaseStats(testBaseStats)
-                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();  
+            testCandidate = CreateStandardTestCandidate();
 
             int unitsMoved = testCandidate.MoveRight(0.54);
             Assert.That(unitsMoved, Is.EqualTo(8)); 
@@ -72,10 +63,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestPickupEquipmentPutsEquipmentInInventoryIfCannotBeEquipped()
         {
-            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
-                .SetPlayerCharacterBaseStats(testBaseStats)
-                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();  
+            testCandidate = CreateStandardTestCandidate();
 
             Jewelry.Builder jewelryBuilder = new Jewelry.Builder();
             jewelryBuilder.SetItemClass(ItemClass.BELT);
@@ -99,10 +87,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         [Test]
         public void TestDropPickedInventoryItemRemovesItemFromCursorAndSetsItToPlayerPosition()
         {
-            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
-                .SetPlayerCharacterBaseStats(testBaseStats)
-                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();             
+            testCandidate = CreateStandardTestCandidate();           
 
             Area testArea = new Area.Builder()
                 .SetWidthAndHeight(30, 50)
@@ -124,6 +109,14 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(droppedItem, Is.EqualTo(equippedRing));
             Assert.That(droppedItem.CollisionShape.Position.X, Is.EqualTo(testArea.GetPlayerPositionX()));
             Assert.That(droppedItem.CollisionShape.Position.Y, Is.EqualTo(testArea.GetPlayerPositionY()));
+        }
+
+        private PlayerCharacter CreateStandardTestCandidate()
+        {
+            return new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();  
         }
 
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
