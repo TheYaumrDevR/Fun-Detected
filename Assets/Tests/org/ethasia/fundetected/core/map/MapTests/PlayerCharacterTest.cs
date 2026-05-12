@@ -96,6 +96,36 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(inventoryExtractor.ExtractedJewelry[0].Item, Is.EqualTo(belt2));
         }
 
+        [Test]
+        public void TestDropPickedInventoryItemRemovesItemFromCursorAndSetsItToPlayerPosition()
+        {
+            testCandidate = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();             
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(30, 50)
+                .SetIsColliding(9, 4)
+                .SetPlayerSpawnPosition(new Position(11, 30))
+                .Build();
+
+            Area.ActiveArea = testArea;
+
+            testArea.SpawnPlayer(testCandidate);
+
+            Jewelry equippedRing = CreateTestRing();
+            testCandidate.PickupEquipment(equippedRing);
+
+            testCandidate.ItemInventory.SwapCursorItemWithLeftRingEquipment();
+
+            Item droppedItem = testCandidate.DropPickedInventoryItem();
+
+            Assert.That(droppedItem, Is.EqualTo(equippedRing));
+            Assert.That(droppedItem.CollisionShape.Position.X, Is.EqualTo(testArea.GetPlayerPositionX()));
+            Assert.That(droppedItem.CollisionShape.Position.Y, Is.EqualTo(testArea.GetPlayerPositionY()));
+        }
+
         private MeleeHitArcProperties CreateMeleeHitArcProperties()
         {
             MeleeHitArcProperties result = new MeleeHitArcProperties();
@@ -107,6 +137,16 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             result.HitArcCenterYOffset = 4;
 
             return result;
-        }                  
+        }  
+
+        private Jewelry CreateTestRing()
+        {
+            var builder = new Jewelry.Builder();
+
+            builder.SetName("Diamond Ring")
+                .SetItemClass(ItemClass.RING);
+
+            return builder.Build();
+        }                
     }
 }
