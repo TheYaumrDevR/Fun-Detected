@@ -81,7 +81,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
         {
             if (Area.ActiveArea.Player.ItemInventory.ItemOnCursor == null)
             {
-                ItemInInventoryShape pickedItem = Area.ActiveArea.Player.ItemInventory.RemoveItemAt(new PositionImmutable(posX, posY));
+                ItemInInventoryShape pickedItem = Area.ActiveArea.Player.ItemInventory.InventoryGrid.RemoveItemAt(new PositionImmutable(posX, posY));
 
                 if (pickedItem != null)
                 {
