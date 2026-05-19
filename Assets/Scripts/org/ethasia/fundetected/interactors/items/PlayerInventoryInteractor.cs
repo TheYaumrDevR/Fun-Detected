@@ -77,6 +77,20 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             }
         }
 
+        public void PickItemFromGridAtPosition(int posX, int posY)
+        {
+            if (Area.ActiveArea.Player.ItemInventory.ItemOnCursor == null)
+            {
+                ItemInInventoryShape pickedItem = Area.ActiveArea.Player.ItemInventory.RemoveItemAt(new PositionImmutable(posX, posY));
+
+                if (pickedItem != null)
+                {
+                    // render picked item on cursor
+                    // remove picked item from grid
+                }
+            }
+        }
+
         private void SwapCursorItemWithEquipmentSlot(Action swapAction, Action<string> presentAction)
         {
             ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;

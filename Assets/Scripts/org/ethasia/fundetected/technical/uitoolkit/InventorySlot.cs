@@ -14,6 +14,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         private VisualElement overlay;
 
+        private int posX;
+        private int posY;
+
         public InventorySlot()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/InventorySlot");
@@ -21,6 +24,12 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             overlay = this.Q<VisualElement>(OVERLAY_NAME);
         }     
+
+        public void SetPositionInGrid(int x, int y)
+        {
+            posX = x;
+            posY = y;
+        }
 
         public void RenderItem(InventorySlotRenderContext renderContext)
         {

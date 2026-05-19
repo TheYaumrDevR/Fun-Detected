@@ -62,6 +62,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 {
                     var cell = new InventorySlot();
 
+                    cell.SetPositionInGrid(row, col);
+
                     grid.Add(cell);
                     inventorySlots[row, col] = cell;
                 }
