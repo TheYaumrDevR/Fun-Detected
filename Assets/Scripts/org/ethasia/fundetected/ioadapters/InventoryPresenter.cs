@@ -48,6 +48,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             ShowItemOnCursor(itemId);
         }
 
+        public void ShowSwappedInventoryGridItems(InventoryItemPresentationContext itemOnCursor, InventoryItemPresentationContext newItemInGrid)
+        {
+            ShowItemOnCursor(itemOnCursor.ItemId);
+        }
+
         public void HideItemOnCursor()
         {
             ShowItemOnCursor(string.Empty);

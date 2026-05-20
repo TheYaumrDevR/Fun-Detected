@@ -85,8 +85,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
                 if (pickedItem != null)
                 {
-                    // render picked item on cursor
-                    // remove picked item from grid
+                    // use ConvertWeaponsToPresentationContextt to convert the item to a presentation context and show it on the cursor
+                    // inventoryPresenter.ShowSwappedInventoryGridItems(pickedItem, null);
                 }
             }
         }
