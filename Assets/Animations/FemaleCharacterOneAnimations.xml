@@ -12,7 +12,7 @@
 			<transition target="leftArmSwing" />
 		</transitions>
 	</entryAnimation>
-	<animation id="walk" speedMultiplier="3">
+	<animation id="walk" speedMultiplier="4">
 		<animationFrames spriteImageName="FemaleCharOneWalking" isLooping="true">
 			<animationFrame index="1"/>
 			<animationFrame index="2"/>
