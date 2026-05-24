@@ -41,6 +41,24 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return null;
         }
 
+        public static InventoryItemPresentationContext ConvertItemAndShapeToPresentationContext(Equipment item, ItemInInventoryShape itemInInventoryShape)
+        {
+            InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, true);
+            itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(item));
+            ConvertShapeAndPositionToPresentationContext(itemInInventoryShape, itemPresentationContextBuilder);  
+
+            return itemPresentationContextBuilder.Build();          
+        }
+
+        public static InventoryItemPresentationContext ConvertNoAffixItemAndShapeToPresentationContext(Item item, ItemInInventoryShape itemInInventoryShape)
+        {
+            InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, true);
+            itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(null));
+            ConvertShapeAndPositionToPresentationContext(itemInInventoryShape, itemPresentationContextBuilder);  
+
+            return itemPresentationContextBuilder.Build();          
+        }
+
         public static InventoryItemPresentationContext.Builder ConvertItemToPresentationContext(Item item, bool canBeEquipped)
         {
             return new InventoryItemPresentationContext.Builder()
@@ -51,6 +69,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
         public static AffixesPresentationContext ConvertItemAffixesToPresentationContext(Equipment item)
         {
+            if (null == item)
+            {
+                return new AffixesPresentationContext(new IAffixPresentationContext[] { }, new IAffixPresentationContext[] { });
+            }
+
             AffixToPresentationContextConversionVisitor converter = new AffixToPresentationContextConversionVisitor();
             converter.ConvertAffixesToPresentationContexts(item.FirstImplicit, item.Prefixes, item.Suffixes);
 
@@ -65,6 +88,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithSkillsPerSecond(weapon.SkillsPerSecond)
                 .WithCriticalStrikeChance(weapon.CriticalStrikeChance)
                 .Build();            
+        }
+
+        private static void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)
+        {
+            contextBuilder
+                .WithTopLeftCornerX(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.X)
+                .WithTopLeftCornerY(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.Y)
+                .WithDimensionX(itemInInventoryShape.Width)
+                .WithDimensionY(itemInInventoryShape.Height);
         }
     }
 }
