@@ -20,6 +20,16 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
         }
 
+        public void RemoveRenderedItemFromInventoryGrid(InventoryGridItemDimensions itemDimensions)
+        {
+            var inventoryWindow = GetInventoryWindow();
+
+            if (inventoryWindow != null && inventoryWindow.visible)
+            {
+                inventoryWindow.RemoveRenderedItemFromGrid(itemDimensions);
+            }
+        }
+
         private InventoryWindow GetInventoryWindow()
         {
             if (inventoryWindow == null)

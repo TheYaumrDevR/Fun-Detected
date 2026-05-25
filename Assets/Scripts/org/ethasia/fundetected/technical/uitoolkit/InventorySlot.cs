@@ -43,6 +43,12 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
         }
 
+        public void RenderNothing()
+        {
+            overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
+            overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
+        }
+
         private void RenderColorFromContext(InventorySlotRenderContext renderContext)
         {
             if (renderContext.CanBeEquipped)
@@ -65,12 +71,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
             overlay.AddToClassList(RED_OVERLAY_CLASS_NAME);
-        }
-
-        private void RenderNothing()
-        {
-            overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
-            overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
         }
     }
 }

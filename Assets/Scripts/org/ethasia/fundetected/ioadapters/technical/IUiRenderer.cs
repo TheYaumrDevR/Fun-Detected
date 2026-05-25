@@ -5,5 +5,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
     public interface IUiRenderer
     {
         void RenderEquippedItemInInventoryWindow(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext renderContext);
+        void RemoveRenderedItemFromInventoryGrid(InventoryGridItemDimensions itemDimensions);
     }
 }

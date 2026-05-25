@@ -85,8 +85,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
                 if (pickedItem != null)
                 {
-                    // use ConvertWeaponsToPresentationContextt to convert the item to a presentation context and show it on the cursor
-                    // inventoryPresenter.ShowSwappedInventoryGridItems(pickedItem, null);
+                    InventoryItemPresentationContext.Builder contextBuilder = new InventoryItemPresentationContext.Builder();
+
+                    ItemToPresentationContextConverter.ConvertShapeAndPositionToPresentationContext(pickedItem, contextBuilder);
+                    inventoryPresenter.ShowSwappedInventoryGridItems(contextBuilder.Build(), null);
                 }
             }
         }

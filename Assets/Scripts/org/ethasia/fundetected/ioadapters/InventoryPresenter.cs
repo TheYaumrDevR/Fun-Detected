@@ -48,9 +48,23 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             ShowItemOnCursor(itemId);
         }
 
-        public void ShowSwappedInventoryGridItems(InventoryItemPresentationContext itemOnCursor, InventoryItemPresentationContext newItemInGrid)
+        public void ShowSwappedInventoryGridItems(InventoryItemPresentationContext itemOnCursor, InventoryItemPresentationContext? newItemInGrid)
         {
             ShowItemOnCursor(itemOnCursor.ItemId);
+
+            if (newItemInGrid == null)
+            {
+                IUiRenderer uiRenderer = TechnicalFactory.GetInstance().GetUiRendererInstance();
+
+                InventoryGridItemDimensions itemDimensions = new InventoryGridItemDimensions.Builder()
+                    .SetTopLeftCornerX(itemOnCursor.TopLeftCornerX)
+                    .SetTopLeftCornerY(itemOnCursor.TopLeftCornerY)
+                    .SetWidth(itemOnCursor.DimensionX)
+                    .SetHeight(itemOnCursor.DimensionY)
+                    .Build();
+
+                uiRenderer.RemoveRenderedItemFromInventoryGrid(itemDimensions);
+            }
         }
 
         public void HideItemOnCursor()

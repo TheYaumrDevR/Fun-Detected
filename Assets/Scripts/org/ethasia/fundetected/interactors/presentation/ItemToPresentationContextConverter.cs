@@ -84,6 +84,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return itemPresentationContextBuilder.Build();          
         }
 
+        public static void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)
+        {
+            contextBuilder
+                .WithTopLeftCornerX(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.X)
+                .WithTopLeftCornerY(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.Y)
+                .WithDimensionX(itemInInventoryShape.Width)
+                .WithDimensionY(itemInInventoryShape.Height);
+        }
+
         private static InventoryItemPresentationContext ConvertNoAffixItemAndShapeToPresentationContext(Item item, ItemInInventoryShape itemInInventoryShape)
         {
             InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, false);
@@ -138,15 +147,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithUses(recoveryPotion.Uses)
                 .WithRecoveryAmount(recoveryPotion.RecoveryAmount)
                 .Build();
-        }
-
-        private static void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)
-        {
-            contextBuilder
-                .WithTopLeftCornerX(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.X)
-                .WithTopLeftCornerY(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.Y)
-                .WithDimensionX(itemInInventoryShape.Width)
-                .WithDimensionY(itemInInventoryShape.Height);
         }
     }
 }

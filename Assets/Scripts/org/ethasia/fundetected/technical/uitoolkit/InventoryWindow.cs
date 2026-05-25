@@ -54,6 +54,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
         }
 
+        public void RemoveRenderedItemFromGrid(InventoryGridItemDimensions itemDimensions)
+        {
+            if (inventoryGridPanel != null)
+            {
+                inventoryGridPanel.RenderNoItemAt(itemDimensions);
+            }
+        }
+
         protected override List<VisualElement> FindChildrenToMoveToContentArea()
         {
             var result = new List<VisualElement>();

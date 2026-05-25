@@ -52,6 +52,25 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
         }
 
+        public void RenderNoItemAt(InventoryGridItemDimensions itemDimensions)
+        {
+            for (int x = itemDimensions.TopLeftCornerX; x < itemDimensions.TopLeftCornerX + itemDimensions.Width; x++)
+            {
+                for (int y = itemDimensions.TopLeftCornerY; y < itemDimensions.TopLeftCornerY + itemDimensions.Height; y++)
+                {
+                    if (inventorySlots[x, y] != null)
+                    {
+                        inventorySlots[x, y].RenderNothing();
+
+                        if (alreadyRenderedItems[x, y] != null)
+                        {
+                            RemoveItemImageFromLayer(alreadyRenderedItems[x, y], x, y);
+                        }
+                    }
+                }
+            }
+        }
+
         private void CreateInventorySlots()
         {
             inventorySlots = new InventorySlot[GRID_COLUMNS, GRID_ROWS];
@@ -115,6 +134,16 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
 
             alreadyRenderedItems[posX, posY] = itemImage;            
+        }
+
+        private void RemoveItemImageFromLayer(VisualElement itemImage, int posX, int posY)
+        {
+            if (itemImagesLayer != null)
+            {
+                itemImagesLayer.Remove(itemImage);
+            }
+
+            alreadyRenderedItems[posX, posY] = null;
         }
     }
 }

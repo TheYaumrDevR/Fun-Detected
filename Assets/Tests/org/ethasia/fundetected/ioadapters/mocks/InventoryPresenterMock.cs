@@ -25,7 +25,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
         }
 
-        public void ShowSwappedInventoryGridItems(InventoryItemPresentationContext itemOnCursor, InventoryItemPresentationContext newItemInGrid)
+        public void ShowSwappedInventoryGridItems(InventoryItemPresentationContext itemOnCursor, InventoryItemPresentationContext? newItemInGrid)
         {
         }
 
