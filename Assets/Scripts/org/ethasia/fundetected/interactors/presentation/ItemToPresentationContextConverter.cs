@@ -1,5 +1,6 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Core.Items.Potions;
 
 namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
@@ -41,6 +42,39 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return null;
         }
 
+        public static InventoryWeaponPresentationContext ConvertWeaponToInventoryContext(ItemInventoryExtractionVisitor.ItemWithShape<Weapon> weapon)
+        {
+            InventoryItemPresentationContext inventoryItemPresentationContext = ConvertItemAndShapeToPresentationContext(weapon.Item, weapon.ItemInInventoryShape);
+            WeaponPresentationContext weaponPresentationContext = ConvertWeaponToPresentationContext(weapon.Item);
+
+            return new InventoryWeaponPresentationContext.Builder()
+                .WithWeaponContext(weaponPresentationContext)
+                .WithItemContext(inventoryItemPresentationContext)
+                .Build();
+        }
+
+        public static InventoryArmorPresentationContext ConvertArmorToInventoryContext(ItemInventoryExtractionVisitor.ItemWithShape<Armor> armor)
+        {
+            InventoryItemPresentationContext inventoryItemPresentationContext = ConvertItemAndShapeToPresentationContext(armor.Item, armor.ItemInInventoryShape);
+            ArmorPresentationContext armorPresentationContext = ConvertArmorToPresentationContext(armor.Item);
+
+            return new InventoryArmorPresentationContext.Builder()
+                .WithArmorContext(armorPresentationContext)
+                .WithItemContext(inventoryItemPresentationContext)
+                .Build();
+        }
+
+        public static InventoryRecoveryPotionPresentationContext ConvertRecoveryPotionToInventoryContext(ItemInventoryExtractionVisitor.ItemWithShape<RecoveryPotion> recoveryPotion)
+        {
+            InventoryItemPresentationContext inventoryItemPresentationContext = ItemToPresentationContextConverter.ConvertNoAffixItemAndShapeToPresentationContext(recoveryPotion.Item, recoveryPotion.ItemInInventoryShape);
+            RecoveryPotionPresentationContext recoveryPotionPresentationContext = ConvertRecoveryPotionToPresentationContext(recoveryPotion.Item);
+
+            return new InventoryRecoveryPotionPresentationContext.Builder()
+                .WithRecoveryPotionContext(recoveryPotionPresentationContext)
+                .WithItemContext(inventoryItemPresentationContext)
+                .Build();
+        }
+
         public static InventoryItemPresentationContext ConvertItemAndShapeToPresentationContext(Equipment item, ItemInInventoryShape itemInInventoryShape)
         {
             InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, true);
@@ -50,16 +84,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return itemPresentationContextBuilder.Build();          
         }
 
-        public static InventoryItemPresentationContext ConvertNoAffixItemAndShapeToPresentationContext(Item item, ItemInInventoryShape itemInInventoryShape)
+        private static InventoryItemPresentationContext ConvertNoAffixItemAndShapeToPresentationContext(Item item, ItemInInventoryShape itemInInventoryShape)
         {
-            InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, true);
+            InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, false);
             itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(null));
             ConvertShapeAndPositionToPresentationContext(itemInInventoryShape, itemPresentationContextBuilder);  
 
             return itemPresentationContextBuilder.Build();          
         }
 
-        public static InventoryItemPresentationContext.Builder ConvertItemToPresentationContext(Item item, bool canBeEquipped)
+        private static InventoryItemPresentationContext.Builder ConvertItemToPresentationContext(Item item, bool canBeEquipped)
         {
             return new InventoryItemPresentationContext.Builder()
                 .WithItemId(item.Name)
@@ -67,7 +101,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithCanBeEquipped(canBeEquipped);
         }
 
-        public static AffixesPresentationContext ConvertItemAffixesToPresentationContext(Equipment item)
+        private static AffixesPresentationContext ConvertItemAffixesToPresentationContext(Equipment item)
         {
             if (null == item)
             {
@@ -80,7 +114,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return new AffixesPresentationContext(converter.Implicits, converter.Explicits);
         }
 
-        public static WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
+        private static WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
         {
             return new WeaponPresentationContext.Builder()
                 .WithMinToMaxPhysicalDamage(weapon.MinToMaxPhysicalDamage)
@@ -88,6 +122,22 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithSkillsPerSecond(weapon.SkillsPerSecond)
                 .WithCriticalStrikeChance(weapon.CriticalStrikeChance)
                 .Build();            
+        }
+
+        private static ArmorPresentationContext ConvertArmorToPresentationContext(Armor armor)
+        {
+            return new ArmorPresentationContext.Builder()
+                .WithArmorValue(armor.ArmorValue)
+                .WithMovementSpeedAddend(armor.MovementSpeedAddend)
+                .Build();
+        }
+
+        private static RecoveryPotionPresentationContext ConvertRecoveryPotionToPresentationContext(RecoveryPotion recoveryPotion)
+        {
+            return new RecoveryPotionPresentationContext.Builder()
+                .WithUses(recoveryPotion.Uses)
+                .WithRecoveryAmount(recoveryPotion.RecoveryAmount)
+                .Build();
         }
 
         private static void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)

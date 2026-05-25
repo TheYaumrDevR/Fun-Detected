@@ -50,14 +50,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var weapon in inventoryExtractor.ExtractedWeapons)
             {
-                InventoryItemPresentationContext inventoryItemPresentationContext = ItemToPresentationContextConverter.ConvertItemAndShapeToPresentationContext(weapon.Item, weapon.ItemInInventoryShape);
-                WeaponPresentationContext weaponPresentationContext = ItemToPresentationContextConverter.ConvertWeaponToPresentationContext(weapon.Item);
-
-                InventoryWeaponPresentationContext inventoryWeaponPresentationContext = new InventoryWeaponPresentationContext.Builder()
-                    .WithWeaponContext(weaponPresentationContext)
-                    .WithItemContext(inventoryItemPresentationContext)
-                    .Build();
-
+                InventoryWeaponPresentationContext inventoryWeaponPresentationContext = ItemToPresentationContextConverter.ConvertWeaponToInventoryContext(weapon);
                 presentationContext.AddWeaponPresentationContext(inventoryWeaponPresentationContext);
             }
 
@@ -68,14 +61,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var armor in inventoryExtractor.ExtractedArmors)
             {
-                InventoryItemPresentationContext inventoryItemPresentationContext = ItemToPresentationContextConverter.ConvertItemAndShapeToPresentationContext(armor.Item, armor.ItemInInventoryShape);
-                ArmorPresentationContext armorPresentationContext = ConvertArmorToPresentationContext(armor.Item);
-
-                InventoryArmorPresentationContext inventoryArmorPresentationContext = new InventoryArmorPresentationContext.Builder()
-                    .WithArmorContext(armorPresentationContext)
-                    .WithItemContext(inventoryItemPresentationContext)
-                    .Build();
-
+                InventoryArmorPresentationContext inventoryArmorPresentationContext = ItemToPresentationContextConverter.ConvertArmorToInventoryContext(armor);
                 presentationContext.AddArmorPresentationContext(inventoryArmorPresentationContext);
             }
 
@@ -87,7 +73,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
             {
                 InventoryItemPresentationContext inventoryItemPresentationContext = ItemToPresentationContextConverter.ConvertItemAndShapeToPresentationContext(jewelry.Item, jewelry.ItemInInventoryShape);
-
                 presentationContext.AddJewelryPresentationContext(inventoryItemPresentationContext);
             }
 
@@ -98,13 +83,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
             {
-                InventoryItemPresentationContext inventoryItemPresentationContext = ItemToPresentationContextConverter.ConvertNoAffixItemAndShapeToPresentationContext(recoveryPotion.Item, recoveryPotion.ItemInInventoryShape);
-                RecoveryPotionPresentationContext recoveryPotionPresentationContext = ConvertRecoveryPotionToPresentationContext(recoveryPotion.Item);
-
-                InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionPresentationContext = new InventoryRecoveryPotionPresentationContext.Builder()
-                    .WithRecoveryPotionContext(recoveryPotionPresentationContext)
-                    .WithItemContext(inventoryItemPresentationContext)
-                    .Build();
+                InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionPresentationContext = ItemToPresentationContextConverter.ConvertRecoveryPotionToInventoryContext(recoveryPotion);
                 presentationContext.AddRecoveryPotionPresentationContext(inventoryRecoveryPotionPresentationContext);
             }
 
