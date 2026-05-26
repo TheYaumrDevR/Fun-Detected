@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Interactors.Items;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
@@ -17,12 +18,18 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private int posX;
         private int posY;
 
+        private PlayerInventoryInteractor playerInventoryInteractor;
+
         public InventorySlot()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/InventorySlot");
             visualTree.CloneTree(this);
 
             overlay = this.Q<VisualElement>(OVERLAY_NAME);
+
+            RegisterCallback<PointerDownEvent>(OnPointerDown);
+
+            playerInventoryInteractor = new PlayerInventoryInteractor();
         }     
 
         public void SetPositionInGrid(int x, int y)
@@ -47,6 +54,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
             overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
+        }
+
+        public void OnPointerDown(PointerDownEvent evt)
+        {
+            playerInventoryInteractor.PickItemFromGridAtPosition(posX, posY);
         }
 
         private void RenderColorFromContext(InventorySlotRenderContext renderContext)
