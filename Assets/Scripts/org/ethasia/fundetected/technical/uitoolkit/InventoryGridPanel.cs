@@ -124,6 +124,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             itemImage.style.width = itemSprite.rect.width;
             itemImage.style.height = itemSprite.rect.height;
+
+            itemImage.pickingMode = PickingMode.Ignore;
         }
 
         private void AddItemImageToLayer(VisualElement itemImage, int posX, int posY)

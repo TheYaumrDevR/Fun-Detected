@@ -90,15 +90,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             return presentationContext;
         }
 
-        private void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)
-        {
-            contextBuilder
-                .WithTopLeftCornerX(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.X)
-                .WithTopLeftCornerY(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.Y)
-                .WithDimensionX(itemInInventoryShape.Width)
-                .WithDimensionY(itemInInventoryShape.Height);
-        }
-
         private EquipmentSlotsPresentationContext CreateEquipmentSlotsPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor)
         {
             EquipmentSlotsPresentationContext.Builder builder = new EquipmentSlotsPresentationContext.Builder();

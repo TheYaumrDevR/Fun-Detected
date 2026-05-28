@@ -41,7 +41,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             }
 
             PutItemInGrid(new ItemInventoryShapeWithPosition(item, position));
-            lastItemInGrid?.RemoveFromItemGrid();
+            RemoveItemFromGrid(lastItemInGrid);
 
             return lastItemInGrid;
         }
@@ -80,7 +80,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public ItemInInventoryShape RemoveItemAt(PositionImmutable position)
         {
             ItemInInventoryShape result = inventoryGrid[position.X, position.Y];
-            result?.RemoveFromItemGrid();
+            RemoveItemFromGrid(result);
             
             return result;
         }
@@ -153,6 +153,27 @@ namespace Org.Ethasia.Fundetected.Core.Items
             }
 
             item.AddToItemGridAtPosition(position);
+        }
+
+        private void RemoveItemFromGrid(ItemInInventoryShape itemWithPosition)
+        {
+            if (itemWithPosition != null)
+            {
+                Item item = itemWithPosition.Item;
+                PositionImmutable position = itemWithPosition.LastTopLeftCornerPosInItemGrid.Value;
+
+                items.Remove(itemWithPosition);
+
+                for (int x = 0; x < itemWithPosition.Width; x++)
+                {
+                    for (int y = 0; y < itemWithPosition.Height; y++)
+                    {
+                        inventoryGrid[position.X + x, position.Y + y] = null;
+                    }
+                }
+
+                itemWithPosition.RemoveFromItemGrid();                
+            }
         }
 
         private class ItemInventoryShapeWithPosition

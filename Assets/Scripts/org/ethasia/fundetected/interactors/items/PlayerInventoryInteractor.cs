@@ -81,13 +81,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
         {
             if (Area.ActiveArea.Player.ItemInventory.ItemOnCursor == null)
             {
-                ItemInInventoryShape pickedItem = Area.ActiveArea.Player.ItemInventory.InventoryGrid.RemoveItemAt(new PositionImmutable(posX, posY));
+                ItemInInventoryShape pickedItem = Area.ActiveArea.Player.ItemInventory.RemoveItemAtFromGrid(new PositionImmutable(posX, posY));
 
                 if (pickedItem != null)
                 {
                     InventoryItemPresentationContext.Builder contextBuilder = new InventoryItemPresentationContext.Builder();
 
                     ItemToPresentationContextConverter.ConvertShapeAndPositionToPresentationContext(pickedItem, contextBuilder);
+                    contextBuilder.WithItemId(pickedItem.Item.Name);
                     inventoryPresenter.ShowSwappedInventoryGridItems(contextBuilder.Build(), null);
                 }
             }

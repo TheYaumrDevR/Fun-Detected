@@ -87,8 +87,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         public static void ConvertShapeAndPositionToPresentationContext(ItemInInventoryShape itemInInventoryShape, InventoryItemPresentationContext.Builder contextBuilder)
         {
             contextBuilder
-                .WithTopLeftCornerX(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.X)
-                .WithTopLeftCornerY(itemInInventoryShape.TopLeftCornerPosInItemGrid.Value.Y)
+                .WithTopLeftCornerX(itemInInventoryShape.LastTopLeftCornerPosInItemGrid.Value.X)
+                .WithTopLeftCornerY(itemInInventoryShape.LastTopLeftCornerPosInItemGrid.Value.Y)
                 .WithDimensionX(itemInInventoryShape.Width)
                 .WithDimensionY(itemInInventoryShape.Height);
         }

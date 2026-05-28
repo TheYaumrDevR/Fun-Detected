@@ -2,6 +2,7 @@ using System;
 
 using EquipmentItem = Org.Ethasia.Fundetected.Core.Equipment.Equipment;
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Items
 {
@@ -57,6 +58,18 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public void SwapCursorItemWithBeltEquipment()
         {
             SwapCursorItemWithEquipmentSlot(EquippedItems.PickUpBeltEquipment, EquipmentSlotPositions.BELT);
+        }
+
+        public ItemInInventoryShape RemoveItemAtFromGrid(PositionImmutable position)
+        {
+            ItemInInventoryShape result = InventoryGrid.RemoveItemAt(position);
+
+            if (result != null)
+            {
+                ItemOnCursor = result.Item;
+            }
+
+            return result;
         }
 
         public Item DropPickedItem()

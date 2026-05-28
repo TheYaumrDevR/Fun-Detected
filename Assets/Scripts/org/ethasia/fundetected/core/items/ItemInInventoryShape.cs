@@ -16,6 +16,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private set;
         }
 
+        public PositionImmutable? LastTopLeftCornerPosInItemGrid
+        {
+            get;
+            private set;
+        }
+
         public int Width
         {
             get;
@@ -102,6 +108,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
         public void AddToItemGridAtPosition(PositionImmutable position)
         {
             this.TopLeftCornerPosInItemGrid = position;
+            this.LastTopLeftCornerPosInItemGrid = position;
         }
 
         public void RemoveFromItemGrid()

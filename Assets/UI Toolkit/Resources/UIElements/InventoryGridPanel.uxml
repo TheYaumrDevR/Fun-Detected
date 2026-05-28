@@ -6,7 +6,7 @@
             <engine:VisualElement class="inventory-grid-border3">
                 <engine:VisualElement class="inventory-grid-root">
                     <engine:VisualElement name="grid-cells" class="inventory-grid-cells"/>
-                    <engine:VisualElement name="item-images" class="inventory-grid-item-images"/>
+                    <engine:VisualElement name="item-images" class="inventory-grid-item-images" picking-mode="Ignore"/>
                 </engine:VisualElement>
             </engine:VisualElement>
         </engine:VisualElement>
