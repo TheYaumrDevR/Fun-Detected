@@ -262,6 +262,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 for (int y = 0; y < itemContext.DimensionY; y++)
                 {
                     InventorySlotRenderContext.Builder builder = new InventorySlotRenderContext.Builder()
+                        .WithItemBaseTypeName(itemContext.ItemId)
                         .ShouldRenderSomething(true)
                         .WithCanBeEquipped(itemContext.CanBeEquipped);
 

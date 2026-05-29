@@ -14,6 +14,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }
 
+        public string ItemBaseTypeName
+        {
+            get;
+            private set;
+        }
+
         public bool CanBeEquipped
         {
             get;
@@ -30,6 +36,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         {
             private bool shouldRenderSomething;
             private string itemImageName;
+            private string itemBaseTypeName;
             private bool canBeEquipped;
             private ItemTooltipRenderContext toolTipRenderContext;
 
@@ -42,6 +49,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             public Builder WithItemImageName(string value)
             {
                 itemImageName = value;
+                return this;
+            }
+
+            public Builder WithItemBaseTypeName(string value)
+            {
+                itemBaseTypeName = value;
                 return this;
             }
 
@@ -63,6 +76,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 {
                     ShouldRenderSomething = shouldRenderSomething,
                     ItemImageName = itemImageName,
+                    ItemBaseTypeName = itemBaseTypeName,
                     CanBeEquipped = canBeEquipped,
                     ToolTipRenderContext = toolTipRenderContext
                 };

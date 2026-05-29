@@ -18,6 +18,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private int posX;
         private int posY;
 
+        private UiElementUtils.ItemHoverCallbacks itemHoverCallbacks;
+
         private PlayerInventoryInteractor playerInventoryInteractor;
 
         public InventorySlot()
@@ -43,6 +45,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             if (renderContext.ShouldRenderSomething)
             {
                 RenderColorFromContext(renderContext);
+                itemHoverCallbacks = UiElementUtils.RegisterItemHoverEvents(this, renderContext);
             }
             else
             {
@@ -54,6 +57,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
             overlay.RemoveFromClassList(RED_OVERLAY_CLASS_NAME);
+
+            UnregisterOldHoverCallbacks();
         }
 
         public void OnPointerDown(PointerDownEvent evt)
@@ -83,6 +88,27 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             overlay.RemoveFromClassList(BLUE_OVERLAY_CLASS_NAME);
             overlay.AddToClassList(RED_OVERLAY_CLASS_NAME);
+        }
+
+        private void UnregisterOldHoverCallbacks()
+        {
+            if (itemHoverCallbacks.PointerEnterCallback != null)
+            {
+                this.UnregisterCallback<PointerEnterEvent>(itemHoverCallbacks.PointerEnterCallback);
+            }
+
+            if (itemHoverCallbacks.PointerMoveCallback != null)
+            {
+                this.UnregisterCallback<PointerMoveEvent>(itemHoverCallbacks.PointerMoveCallback);
+            }
+
+            if (itemHoverCallbacks.PointerLeaveCallback != null)
+            {
+                this.UnregisterCallback<PointerLeaveEvent>(itemHoverCallbacks.PointerLeaveCallback);
+            }
+
+            IItemTooltipPresenter itemTooltipPresenter = TechnicalFactory.GetInstance().GetItemTooltipPresenterInstance();
+            itemTooltipPresenter.HideItemTooltip();
         }
     }
 }

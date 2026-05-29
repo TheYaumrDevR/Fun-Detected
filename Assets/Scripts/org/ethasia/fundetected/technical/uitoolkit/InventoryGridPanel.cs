@@ -62,10 +62,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     {
                         inventorySlots[x, y].RenderNothing();
 
-                        if (alreadyRenderedItems[x, y] != null)
-                        {
-                            RemoveItemImageFromLayer(alreadyRenderedItems[x, y], x, y);
-                        }
+                        UnrenderItem(x, y);
                     }
                 }
             }
@@ -98,7 +95,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     Sprite itemSprite = Resources.Load<Sprite>(slotRenderContext.ItemImageName);
 
                     var itemImage = CreateItemImage(itemSprite);
-                    UiElementUtils.RegisterItemHoverEvents(itemImage, slotRenderContext);
                     StyleItemImage(itemImage, itemSprite, posX, posY);  
                     AddItemImageToLayer(itemImage, posX, posY);
                 }
@@ -136,6 +132,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
 
             alreadyRenderedItems[posX, posY] = itemImage;            
+        }
+
+        private void UnrenderItem(int posX, int posY)
+        {
+            if (alreadyRenderedItems[posX, posY] != null)
+            {
+                RemoveItemImageFromLayer(alreadyRenderedItems[posX, posY], posX, posY);
+            }
         }
 
         private void RemoveItemImageFromLayer(VisualElement itemImage, int posX, int posY)

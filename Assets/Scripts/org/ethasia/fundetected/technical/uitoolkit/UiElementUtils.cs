@@ -9,7 +9,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         public static ItemHoverCallbacks RegisterItemHoverEvents(VisualElement itemImage, InventorySlotRenderContext context)
         {
             NormalItemTooltip.TooltipDisplayInformation.Builder tooltipContentBuilder = new NormalItemTooltip.TooltipDisplayInformation.Builder()
-                .SetItemName(context.ItemImageName)
+                .SetItemName(context.ItemBaseTypeName)
                 .SetTooltipRenderContext(context.ToolTipRenderContext);
 
             return RegisterItemHoverEvents(itemImage, tooltipContentBuilder);
