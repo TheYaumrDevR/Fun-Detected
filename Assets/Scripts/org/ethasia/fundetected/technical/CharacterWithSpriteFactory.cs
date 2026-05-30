@@ -22,6 +22,7 @@ namespace Org.Ethasia.Fundetected.Technical
             animatedCharacter.transform.SetParent(transform);
 
             AudioSource audioSource = animatedCharacter.AddComponent<AudioSource>();
+            audioSource.volume = 0.3f;
 
             CharacterWithSpriteFactoryProduct result = new CharacterWithSpriteFactoryProduct();
 
