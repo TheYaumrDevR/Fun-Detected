@@ -90,6 +90,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                     ItemToPresentationContextConverter.ConvertShapeAndPositionToPresentationContext(pickedItem, contextBuilder);
                     contextBuilder.WithItemId(pickedItem.Item.Name);
                     inventoryPresenter.ShowSwappedInventoryGridItems(contextBuilder.Build(), null);
+
+                    ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+                    soundPresenter.PlayInventoryGrabItemSound();
                 }
             }
         }
