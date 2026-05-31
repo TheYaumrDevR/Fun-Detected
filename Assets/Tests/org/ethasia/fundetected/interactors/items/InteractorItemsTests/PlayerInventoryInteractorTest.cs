@@ -75,6 +75,46 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
             Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
         }
 
+        [Test]
+        public void TestPickItemFromGridAtPositionAddsItemToCursor()
+        {
+            Weapon lootedWeaponOne = TestWeaponsProvider.CreateOneHandedStabbingSword();
+            Weapon lootedWeaponTwo = TestWeaponsProvider.CreateOneHandedStabbingSword();
+            Weapon lootedWeaponThree = TestWeaponsProvider.CreateOneHandedStabbingSword();
+            Weapon lootedWeaponFour = TestWeaponsProvider.CreateOneHandedStabbingSword();
+
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponOne);
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponTwo);
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponThree);
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponFour);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+
+            testCandidate.PickItemFromGridAtPosition(1, 1);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.EqualTo(lootedWeaponFour));
+        }
+
+        [Test]
+        public void TestPickItemFromGridAtPositionDoesNotExist()
+        {
+            Weapon lootedWeaponOne = TestWeaponsProvider.CreateOneHandedStabbingSword();
+            Weapon lootedWeaponTwo = TestWeaponsProvider.CreateOneHandedStabbingSword();
+            Weapon lootedWeaponThree = TestWeaponsProvider.CreateOneHandedStabbingSword();
+            Weapon lootedWeaponFour = TestWeaponsProvider.CreateOneHandedStabbingSword();
+
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponOne);
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponTwo);
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponThree);
+            Area.ActiveArea.Player.PickupEquipment(lootedWeaponFour);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+
+            testCandidate.PickItemFromGridAtPosition(2, 0);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+        }
+
         private void SetupMapAndPlayer()
         {
             Area testArea = new Area.Builder()
