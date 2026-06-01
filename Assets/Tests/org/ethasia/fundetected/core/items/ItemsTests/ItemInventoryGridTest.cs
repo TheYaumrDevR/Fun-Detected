@@ -389,6 +389,37 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
             Assert.That(result, Has.Member(helmShape));
         }
 
+        [Test]
+        public void TestRemoveItemAtItemGetsRemovedFromGrid()
+        {
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
+
+            ItemInInventoryShape oneHandedMaceShape = CreateOneHandedMaceShape();
+            ItemInInventoryShape helmetShape = CreateHelmetShape();
+
+            testCandidate.AddItemAtNextFreePosition(oneHandedMaceShape);
+
+            List<ItemInInventoryShape> result = testCandidate.GetItems();
+
+            Assert.That(result, Has.Count.EqualTo(1));
+            Assert.That(result, Has.Member(oneHandedMaceShape));
+            Assert.That(oneHandedMaceShape.IsAtPosition(new PositionImmutable(0, 0)), Is.True);
+
+            ItemInInventoryShape removedItem = testCandidate.RemoveItemAt(new PositionImmutable(1, 1));
+            result = testCandidate.GetItems();
+            
+            Assert.That(removedItem, Is.EqualTo(oneHandedMaceShape));
+            Assert.That(oneHandedMaceShape.TopLeftCornerPosInItemGrid, Is.Null);
+            Assert.That(result, Has.Count.EqualTo(0));
+
+            testCandidate.AddItemAtNextFreePosition(helmetShape);
+
+            result = testCandidate.GetItems();
+            Assert.That(result, Has.Count.EqualTo(1));
+            Assert.That(result, Has.Member(helmetShape));
+            Assert.That(helmetShape.IsAtPosition(new PositionImmutable(0, 0)), Is.True);
+        }
+
         private ItemInInventoryShape CreateBowShape()
         {
             Weapon.Builder bowBuilder = new Weapon.Builder();
