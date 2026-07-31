@@ -26,6 +26,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             renderMethodByTileLayerName.Add("foliageBack", tileMapRenderer.RenderFoliageBackTileAtPosition);
             renderMethodByTileLayerName.Add("foliageFront", tileMapRenderer.RenderFoliageFrontTileAtPosition);
             renderMethodByTileLayerName.Add("terrain", tileMapRenderer.RenderTerrainTileAtPosition);
+            renderMethodByTileLayerName.Add("foliageOnGround", tileMapRenderer.RenderFoliageOnGroundTileAtPosition);
         }
 
         public void PresentTiles(List<ITile> tilesWithAbsolutePositions, string tileMapName)

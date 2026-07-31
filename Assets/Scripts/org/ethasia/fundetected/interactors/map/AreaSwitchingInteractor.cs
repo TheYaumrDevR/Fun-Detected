@@ -105,6 +105,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             List<ITile> foliageBackTiles = new List<ITile>();
             List<ITile> foliageFrontTiles = new List<ITile>();
             List<ITile> groundTiles = new List<ITile>();
+            List<ITile> foliageOnGroundTiles = new List<ITile>();
 
             foreach (Chunk chunk in mapDefinition.Chunks)
             {
@@ -114,6 +115,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                     CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(foliageBackTiles, chunk.PropertiesOfPossibleChunks[0].FoliageBackTiles, chunk);
                     CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(foliageFrontTiles, chunk.PropertiesOfPossibleChunks[0].FoliageFrontTiles, chunk);
                     CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(groundTiles, chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk); 
+                    CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(foliageOnGroundTiles, chunk.PropertiesOfPossibleChunks[0].FoliageOnGroundTiles, chunk);
                 }
             }
 
@@ -121,6 +123,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             mapPresenter.PresentTiles(foliageBackTiles, "foliageBack");
             mapPresenter.PresentTiles(foliageFrontTiles, "foliageFront");
             mapPresenter.PresentTiles(groundTiles, "ground");
+            mapPresenter.PresentTiles(foliageOnGroundTiles, "foliageOnGround");
         }
 
         private void PresentTiles(ReloadableTileMap tileMap)
@@ -129,6 +132,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             mapPresenter.PresentTiles(tileMap.FoliageBackTiles, "foliageBack");
             mapPresenter.PresentTiles(tileMap.FoliageFrontTiles, "foliageFront");
             mapPresenter.PresentTiles(tileMap.GroundTiles, "ground");
+            mapPresenter.PresentTiles(tileMap.FoliageOnGroundTiles, "foliageOnGround");
         }
 
         private void CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(List<ITile> resultTiles, List<ITile> sourceTiles, Chunk chunk)

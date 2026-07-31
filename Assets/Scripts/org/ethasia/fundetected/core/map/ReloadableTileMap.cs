@@ -24,12 +24,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             get;
         }
 
+        public List<ITile> FoliageOnGroundTiles
+        {
+            get;
+        }
+
         public ReloadableTileMap()
         {
             TerrainTiles = new List<ITile>();
             GroundTiles = new List<ITile>();
             FoliageBackTiles = new List<ITile>();
             FoliageFrontTiles = new List<ITile>();
+            FoliageOnGroundTiles = new List<ITile>();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public Tilemap FoliageBack;
         public Tilemap FoliageFront;
         public Tilemap Terrain;
+        public Tilemap FoliageOnGround;
 
         public static TileMapRenderer GetInstance()
         {
@@ -50,6 +51,7 @@ namespace Org.Ethasia.Fundetected.Technical
             FoliageBack.ClearAllTiles();
             FoliageFront.ClearAllTiles();
             Terrain.ClearAllTiles();
+            FoliageOnGround.ClearAllTiles();
         }
 
         public void RenderGroundTileAtPosition(TileRenderContext tileRenderContext)
@@ -71,6 +73,11 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             RenderTileAtPosition(Terrain, tileRenderContext);
         }    
+
+        public void RenderFoliageOnGroundTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            RenderTileAtPosition(FoliageOnGround, tileRenderContext);
+        }
 
         private void RenderTileAtPosition(Tilemap tilemap, TileRenderContext tileRenderContext)
         {

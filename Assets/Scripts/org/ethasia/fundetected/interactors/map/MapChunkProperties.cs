@@ -48,6 +48,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             get;
         }
 
+        public List<ITile> FoliageOnGroundTiles
+        {
+            get;
+        }
+
         public List<Collision> CollisionProperties
         {
             get;
@@ -69,6 +74,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             GroundTiles = new List<ITile>();
             FoliageBackTiles = new List<ITile>();
             FoliageFrontTiles = new List<ITile>();
+            FoliageOnGroundTiles = new List<ITile>();
             CollisionProperties = new List<Collision>();
             Spawners = new List<Spawner>();
         }

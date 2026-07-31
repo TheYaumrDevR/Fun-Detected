@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -50,6 +50,9 @@ TagManager:
   - name: Ground
     uniqueID: 1826601427
     locked: 0
+  - name: FoliageOnGround
+    uniqueID: 2072033585
+    locked: 0
   - name: Sprites
     uniqueID: 4013011653
     locked: 0
@@ -62,3 +65,5 @@ TagManager:
   - name: CombatText
     uniqueID: 1128861993
     locked: 0
+  m_RenderingLayers:
+  - Default

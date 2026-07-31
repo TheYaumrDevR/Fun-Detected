@@ -28,5 +28,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             
         }
+
+        public void RenderFoliageOnGroundTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            
+        }
     }
 }

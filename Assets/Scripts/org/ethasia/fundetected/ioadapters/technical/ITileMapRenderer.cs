@@ -7,5 +7,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void RenderFoliageBackTileAtPosition(TileRenderContext tileRenderContext);
         void RenderFoliageFrontTileAtPosition(TileRenderContext tileRenderContext);
         void RenderTerrainTileAtPosition(TileRenderContext tileRenderContext);
+        void RenderFoliageOnGroundTileAtPosition(TileRenderContext tileRenderContext);
     }
 }

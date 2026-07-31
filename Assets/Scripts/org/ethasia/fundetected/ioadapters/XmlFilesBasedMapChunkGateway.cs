@@ -44,11 +44,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 XmlElement foliageBackTiles = tilesParent["foliageBack"];
                 XmlElement foliageFrontTiles = tilesParent["foliageFront"];
                 XmlElement terrainTiles = tilesParent["terrain"];
+                XmlElement foliageOnGroundTiles = tilesParent["foliageOnGround"];
 
                 SetupGroundTiles(groundTiles, result);
                 SetupFoliageBackTiles(foliageBackTiles, result);
                 SetupFoliageFrontTiles(foliageFrontTiles, result);
                 SetupTerrainTiles(terrainTiles, result);
+                SetupFoliageOnGroundTiles(foliageOnGroundTiles, result);
             }
         }
 
@@ -71,6 +73,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             ConvertTiles(terrainTiles, result.TerrainTiles);
         }   
+
+        private void SetupFoliageOnGroundTiles(XmlElement foliageOnGroundTiles, MapChunkProperties result)
+        {
+            ConvertTiles(foliageOnGroundTiles, result.FoliageOnGroundTiles);
+        }
 
         private void ConvertTiles(XmlElement tilesRoot, List<ITile> target)
         {

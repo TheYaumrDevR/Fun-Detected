@@ -112,11 +112,13 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 List<ITile> foliageBackTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageBackTiles, chunk);
                 List<ITile> foliageFrontTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageFrontTiles, chunk);
                 List<ITile> groundTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].GroundTiles, chunk);       
+                List<ITile> foliageOnGroundTiles = CreateTilesWithAbsolutePositionFromTilesWithChunkPositions(chunk.PropertiesOfPossibleChunks[0].FoliageOnGroundTiles, chunk);
 
                 result.TerrainTiles.AddRange(terrainTiles);
                 result.FoliageBackTiles.AddRange(foliageBackTiles);
                 result.FoliageFrontTiles.AddRange(foliageFrontTiles);
-                result.GroundTiles.AddRange(groundTiles);      
+                result.GroundTiles.AddRange(groundTiles);
+                result.FoliageOnGroundTiles.AddRange(foliageOnGroundTiles);
             }
         }
 

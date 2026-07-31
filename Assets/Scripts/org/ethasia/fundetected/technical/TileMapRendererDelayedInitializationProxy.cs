@@ -30,6 +30,7 @@ namespace Org.Ethasia.Fundetected.Technical
             storedCallParametersByRenderLayerName.Add("foliageBack", new List<TileRenderContext>());
             storedCallParametersByRenderLayerName.Add("foliageFront", new List<TileRenderContext>());
             storedCallParametersByRenderLayerName.Add("terrain", new List<TileRenderContext>());
+            storedCallParametersByRenderLayerName.Add("foliageOnGround", new List<TileRenderContext>());
         }
 
         public void ClearAllTiles()
@@ -101,7 +102,21 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 storedCallParametersByRenderLayerName["terrain"].Add(tileRenderContext);
             }
-        }         
+        }       
+
+        public void RenderFoliageOnGroundTileAtPosition(TileRenderContext tileRenderContext)
+        {
+            proxiedRenderer = TileMapRenderer.GetInstance();
+
+            if (null != proxiedRenderer)
+            {
+                proxiedRenderer.RenderFoliageOnGroundTileAtPosition(tileRenderContext);
+            }
+            else
+            {
+                storedCallParametersByRenderLayerName["foliageOnGround"].Add(tileRenderContext);
+            }
+        }
 
         public void NotifyInitializationCompleted()
         {
