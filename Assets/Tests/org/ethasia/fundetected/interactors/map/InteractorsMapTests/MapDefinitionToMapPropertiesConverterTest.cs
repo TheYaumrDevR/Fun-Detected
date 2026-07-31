@@ -130,6 +130,13 @@ namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
             Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].StartY, Is.EqualTo(-13));
             Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].Width, Is.EqualTo(1));
             Assert.That(result.ReloadableTileMap.FoliageFrontTiles[0].Height, Is.EqualTo(1));
+
+            Assert.That(result.ReloadableTileMap.FoliageOnGroundTiles.Count, Is.EqualTo(1));
+            Assert.That(result.ReloadableTileMap.FoliageOnGroundTiles[0].Id, Is.EqualTo("Bush"));
+            Assert.That(result.ReloadableTileMap.FoliageOnGroundTiles[0].StartX, Is.EqualTo(-4));
+            Assert.That(result.ReloadableTileMap.FoliageOnGroundTiles[0].StartY, Is.EqualTo(-14));
+            Assert.That(result.ReloadableTileMap.FoliageOnGroundTiles[0].Width, Is.EqualTo(3));
+            Assert.That(result.ReloadableTileMap.FoliageOnGroundTiles[0].Height, Is.EqualTo(3));
         }
 
         [Test]
@@ -282,10 +289,19 @@ namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
                 .SetHeight(2)
                 .Build(); 
 
+            Tile foliageOnGroundTile = new Tile.Builder()
+                .SetId("Bush")
+                .SetStartX(4)
+                .SetStartY(2)
+                .SetWidth(3)
+                .SetHeight(3)
+                .Build();
+
             chunkProperties.GroundTiles.Add(groundTile);
             chunkProperties.FoliageBackTiles.Add(foliageBackTile);
             chunkProperties.FoliageFrontTiles.Add(foliageFrontTile);
             chunkProperties.TerrainTiles.Add(terrainTile); 
+            chunkProperties.FoliageOnGroundTiles.Add(foliageOnGroundTile); 
         }      
     }
 }
