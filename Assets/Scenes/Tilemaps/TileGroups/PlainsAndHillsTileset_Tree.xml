@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileGroup id="PlainsAndHillsTileset_Tree" referenceTile="PlainsAndHillsTileset_TreeTrunkLeft">
+    <tile id="PlainsAndHillsTileset_TreeRootLeft" offsetX="0" offsetY="-1" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeRootRight" offsetX="1" offsetY="-1" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeTrunkLeft" offsetX="0" offsetY="0" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeTrunkRight" offsetX="1" offsetY="0" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeTopTrunkOuterLeft" offsetX="-1" offsetY="1" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeTopTrunkLeft" offsetX="0" offsetY="1" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeTopTrunkRight" offsetX="1" offsetY="1" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeTopTrunkOuterRight" offsetX="2" offsetY="1" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesBottomLeftBorder" offsetX="-2" offsetY="2" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesLowerOuterLeft" offsetX="-1" offsetY="2" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesLowerLeft" offsetX="0" offsetY="2" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesLowerRight" offsetX="1" offsetY="2" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesLowerOuterRight" offsetX="2" offsetY="2" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesMiddleLeftBorder" offsetX="-2" offsetY="3" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesMiddleOuterLeft" offsetX="-1" offsetY="3" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesMiddleLeft" offsetX="0" offsetY="3" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesMiddleRight" offsetX="1" offsetY="3" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesMiddleOuterRight" offsetX="2" offsetY="3" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesTopOuterLeft" offsetX="-1" offsetY="4" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesTopLeft" offsetX="0" offsetY="4" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesTopRight" offsetX="1" offsetY="4" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesTopOuterRight" offsetX="2" offsetY="4" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesAboveTopOuterLeft" offsetX="-1" offsetY="5" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesAboveTopLeft" offsetX="0" offsetY="5" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_TreeLeavesAboveTopRight" offsetX="1" offsetY="5" width="1" height="1"/>
+</tileGroup>
