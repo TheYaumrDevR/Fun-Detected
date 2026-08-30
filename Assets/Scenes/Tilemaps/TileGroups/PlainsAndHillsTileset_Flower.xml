@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileGroup id="PlainsAndHillsTileset_Flower" referenceTile="PlainsAndHillsTileset_FlowerLower">
+    <tile id="PlainsAndHillsTileset_FlowerLower" offsetX="0" offsetY="0" width="1" height="1"/>
+    <tile id="PlainsAndHillsTileset_FlowerUpper" offsetX="0" offsetY="1" width="1" height="1"/>
+</tileGroup>
