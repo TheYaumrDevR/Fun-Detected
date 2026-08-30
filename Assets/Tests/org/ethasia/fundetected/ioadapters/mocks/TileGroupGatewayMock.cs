@@ -12,14 +12,5 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return new List<TileGroupTileDefinition>();
         }
-
-        public List<ITile> ResolveTileGroup(string groupId, int startX, int startY)
-        {
-            return new List<ITile>();
-        }
-
-        public void ConvertTileGroupRefs(XmlElement tilesRoot, List<ITile> target)
-        {
-        }
     }
 }

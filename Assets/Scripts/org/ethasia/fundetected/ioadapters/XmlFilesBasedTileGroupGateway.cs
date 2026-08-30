@@ -17,58 +17,17 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             xmlFiles = TechnicalFactory.GetInstance().CreateXmlFiles();
             loadedTileGroupsByGroupId = new Dictionary<string, List<TileGroupTileDefinition>>();
-        }
+        }       
 
-        public void ConvertTileGroupRefs(XmlElement tilesRoot, List<ITile> target)
+        public List<TileGroupTileDefinition> LoadTileGroup(string groupName)
         {
-            XmlNodeList tileGroupRefList = tilesRoot.GetElementsByTagName("tileGroupRef");
-
-            foreach (XmlElement tileGroupRefDefinition in tileGroupRefList)
+            if (loadedTileGroupsByGroupId.ContainsKey(groupName))
             {
-                string groupId = tileGroupRefDefinition.GetAttribute("groupId");
-                string startXText = tileGroupRefDefinition.GetAttribute("startX");
-                string startYText = tileGroupRefDefinition.GetAttribute("startY");
-
-                if (int.TryParse(startXText, out int startX))
-                {
-                    if (int.TryParse(startYText, out int startY))
-                    {
-                        target.AddRange(ResolveTileGroup(groupId, startX, startY));
-                    }
-                }
-            }
-        }
-
-        private List<ITile> ResolveTileGroup(string groupId, int startX, int startY)
-        {
-            List<ITile> result = new List<ITile>();
-            List<TileGroupTileDefinition> tileGroupDefinition = LoadTileGroup(groupId);
-
-            foreach (TileGroupTileDefinition tileDefinition in tileGroupDefinition)
-            {
-                Tile convertedTile = new Tile.Builder()
-                    .SetId(tileDefinition.Id)
-                    .SetStartX(startX + tileDefinition.OffsetX)
-                    .SetStartY(startY + tileDefinition.OffsetY)
-                    .SetWidth(tileDefinition.Width)
-                    .SetHeight(tileDefinition.Height)
-                    .Build();
-
-                result.Add(convertedTile);
-            }
-
-            return result;
-        }        
-
-        private List<TileGroupTileDefinition> LoadTileGroup(string groupId)
-        {
-            if (loadedTileGroupsByGroupId.ContainsKey(groupId))
-            {
-                return loadedTileGroupsByGroupId[groupId];
+                return loadedTileGroupsByGroupId[groupName];
             }
 
             List<TileGroupTileDefinition> result = new List<TileGroupTileDefinition>();
-            XmlElement tileGroupRoot = xmlFiles.TryToLoadXmlRoot("/Scenes/Tilemaps/TileGroups/" + groupId + ".xml");
+            XmlElement tileGroupRoot = xmlFiles.TryToLoadXmlRoot("/Scenes/Tilemaps/TileGroups/" + groupName + ".xml");
 
             if (null != tileGroupRoot)
             {
@@ -108,7 +67,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 }
             }
 
-            loadedTileGroupsByGroupId[groupId] = result;
+            loadedTileGroupsByGroupId[groupName] = result;
 
             return result;
         }

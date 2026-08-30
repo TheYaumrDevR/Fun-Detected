@@ -7,6 +7,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
 {
     public interface ITileGroupGateway
     {
-        void ConvertTileGroupRefs(XmlElement tilesRoot, List<ITile> target);
+        List<TileGroupTileDefinition> LoadTileGroup(string groupName);
     }
 }

@@ -119,10 +119,52 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     }                                  
                 }
 
-                ITileGroupGateway tileGroupGateway = IoAdaptersFactoryForInteractors.GetInstance().GetTileGroupGatewayInstance();
-                tileGroupGateway.ConvertTileGroupRefs(tilesRoot, target);
+                ConvertTileGroupRefs(tilesRoot, target);
             }
         }
+
+        private void ConvertTileGroupRefs(XmlElement tilesRoot, List<ITile> target)
+        {
+            XmlNodeList tileGroupRefs = tilesRoot.GetElementsByTagName("tileGroupRef");
+
+            foreach (XmlElement tileGroupRefDefinition in tileGroupRefs)
+            {
+                string groupId = tileGroupRefDefinition.GetAttribute("groupId");
+                string startXText = tileGroupRefDefinition.GetAttribute("startX");
+                string startYText = tileGroupRefDefinition.GetAttribute("startY");
+
+                if (int.TryParse(startXText, out int startX))
+                {
+                    if (int.TryParse(startYText, out int startY))
+                    {
+                        target.AddRange(LoadTilesFromTileGroup(groupId, startX, startY));
+                    }
+                }
+            }
+        }
+
+        private List<ITile> LoadTilesFromTileGroup(string groupName, int startX, int startY)
+        {
+            ITileGroupGateway tileGroupGateway = IoAdaptersFactoryForInteractors.GetInstance().GetTileGroupGatewayInstance();
+
+            List<ITile> result = new List<ITile>();
+            List<TileGroupTileDefinition> tileGroupTiles= tileGroupGateway.LoadTileGroup(groupName);
+
+            foreach (TileGroupTileDefinition tileDefinition in tileGroupTiles)
+            {
+                Tile convertedTile = new Tile.Builder()
+                    .SetId(tileDefinition.Id)
+                    .SetStartX(startX + tileDefinition.OffsetX)
+                    .SetStartY(startY + tileDefinition.OffsetY)
+                    .SetWidth(tileDefinition.Width)
+                    .SetHeight(tileDefinition.Height)
+                    .Build();
+
+                result.Add(convertedTile);
+            }
+
+            return result;
+        } 
 
         private MapChunkProperties SetupTileProperties(XmlElement mapChunkProperties, string chunkName)
         {
