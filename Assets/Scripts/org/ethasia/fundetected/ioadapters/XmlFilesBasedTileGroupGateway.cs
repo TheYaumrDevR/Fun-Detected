@@ -19,7 +19,48 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             loadedTileGroupsByGroupId = new Dictionary<string, List<TileGroupTileDefinition>>();
         }
 
-        public List<TileGroupTileDefinition> LoadTileGroup(string groupId)
+        public void ConvertTileGroupRefs(XmlElement tilesRoot, List<ITile> target)
+        {
+            XmlNodeList tileGroupRefList = tilesRoot.GetElementsByTagName("tileGroupRef");
+
+            foreach (XmlElement tileGroupRefDefinition in tileGroupRefList)
+            {
+                string groupId = tileGroupRefDefinition.GetAttribute("groupId");
+                string startXText = tileGroupRefDefinition.GetAttribute("startX");
+                string startYText = tileGroupRefDefinition.GetAttribute("startY");
+
+                if (int.TryParse(startXText, out int startX))
+                {
+                    if (int.TryParse(startYText, out int startY))
+                    {
+                        target.AddRange(ResolveTileGroup(groupId, startX, startY));
+                    }
+                }
+            }
+        }
+
+        private List<ITile> ResolveTileGroup(string groupId, int startX, int startY)
+        {
+            List<ITile> result = new List<ITile>();
+            List<TileGroupTileDefinition> tileGroupDefinition = LoadTileGroup(groupId);
+
+            foreach (TileGroupTileDefinition tileDefinition in tileGroupDefinition)
+            {
+                Tile convertedTile = new Tile.Builder()
+                    .SetId(tileDefinition.Id)
+                    .SetStartX(startX + tileDefinition.OffsetX)
+                    .SetStartY(startY + tileDefinition.OffsetY)
+                    .SetWidth(tileDefinition.Width)
+                    .SetHeight(tileDefinition.Height)
+                    .Build();
+
+                result.Add(convertedTile);
+            }
+
+            return result;
+        }        
+
+        private List<TileGroupTileDefinition> LoadTileGroup(string groupId)
         {
             if (loadedTileGroupsByGroupId.ContainsKey(groupId))
             {
@@ -68,27 +109,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             loadedTileGroupsByGroupId[groupId] = result;
-
-            return result;
-        }
-
-        public List<ITile> ResolveTileGroup(string groupId, int startX, int startY)
-        {
-            List<ITile> result = new List<ITile>();
-            List<TileGroupTileDefinition> tileGroupDefinition = LoadTileGroup(groupId);
-
-            foreach (TileGroupTileDefinition tileDefinition in tileGroupDefinition)
-            {
-                Tile convertedTile = new Tile.Builder()
-                    .SetId(tileDefinition.Id)
-                    .SetStartX(startX + tileDefinition.OffsetX)
-                    .SetStartY(startY + tileDefinition.OffsetY)
-                    .SetWidth(tileDefinition.Width)
-                    .SetHeight(tileDefinition.Height)
-                    .Build();
-
-                result.Add(convertedTile);
-            }
 
             return result;
         }

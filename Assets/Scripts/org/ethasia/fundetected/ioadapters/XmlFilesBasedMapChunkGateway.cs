@@ -119,28 +119,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     }                                  
                 }
 
-                ConvertTileGroupRefs(tilesRoot, target);
-            }
-        }
-
-        private void ConvertTileGroupRefs(XmlElement tilesRoot, List<ITile> target)
-        {
-            XmlNodeList tileGroupRefList = tilesRoot.GetElementsByTagName("tileGroupRef");
-
-            foreach (XmlElement tileGroupRefDefinition in tileGroupRefList)
-            {
-                string groupId = tileGroupRefDefinition.GetAttribute("groupId");
-                string startXText = tileGroupRefDefinition.GetAttribute("startX");
-                string startYText = tileGroupRefDefinition.GetAttribute("startY");
-
-                if (int.TryParse(startXText, out int startX))
-                {
-                    if (int.TryParse(startYText, out int startY))
-                    {
-                        ITileGroupGateway tileGroupGateway = IoAdaptersFactoryForInteractors.GetInstance().GetTileGroupGatewayInstance();
-                        target.AddRange(tileGroupGateway.ResolveTileGroup(groupId, startX, startY));
-                    }
-                }
+                ITileGroupGateway tileGroupGateway = IoAdaptersFactoryForInteractors.GetInstance().GetTileGroupGatewayInstance();
+                tileGroupGateway.ConvertTileGroupRefs(tilesRoot, target);
             }
         }
 
