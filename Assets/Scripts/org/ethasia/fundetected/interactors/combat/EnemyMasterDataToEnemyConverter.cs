@@ -21,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
                 .SetTypeId(enemyCreationContext.EnemyMasterData.Id)
                 .SetName(enemyCreationContext.EnemyMasterData.Name)
                 .SetIsAggressiveOnSight(enemyCreationContext.EnemyMasterData.IsAggressiveOnSight)
+                .SetExperiencePointsGivenOnDeath(enemyCreationContext.EnemyMasterData.ScalableMasterData.ExperiencePointsGiven)
                 .SetDropChance(enemyCreationContext.EnemyMasterData.DropChance)
                 .SetDropLevelOfItems(enemyCreationContext.EnemyLevel)
                 .SetAttacksPerSecond(enemyCreationContext.EnemyMasterData.AttacksPerSecond)

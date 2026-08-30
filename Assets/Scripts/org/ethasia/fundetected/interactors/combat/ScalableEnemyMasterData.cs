@@ -12,5 +12,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
         public int MaxPhysicalDamage;
         public int AccuracyRating;
         public int EvasionRating;
+        public int ExperiencePointsGiven;
     }
 }

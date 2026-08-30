@@ -72,6 +72,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             result.ScalableMasterData.Armor = 3;
             result.ScalableMasterData.EvasionRating = 98;
             result.ScalableMasterData.AccuracyRating = 8;
+            result.ScalableMasterData.ExperiencePointsGiven = 21;
             result.AttacksPerSecond = 1.2f;
             result.UnarmedStrikeRange = 12;
             result.CorpseMass = 4;
@@ -121,7 +122,8 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     MinPhysicalDamage = 1,
                     MaxPhysicalDamage = 2,
                     AccuracyRating = 1,
-                    EvasionRating = 9
+                    EvasionRating = 9,
+                    ExperiencePointsGiven = 21
                 }
             }; 
 

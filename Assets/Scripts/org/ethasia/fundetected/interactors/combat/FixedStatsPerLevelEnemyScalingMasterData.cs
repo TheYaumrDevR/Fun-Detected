@@ -25,6 +25,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
                 masterData.ScalableMasterData.MaxPhysicalDamage += AdditionsPerLevel.MaxPhysicalDamage * levelDifference;
                 masterData.ScalableMasterData.AccuracyRating += AdditionsPerLevel.AccuracyRating * levelDifference;
                 masterData.ScalableMasterData.EvasionRating += AdditionsPerLevel.EvasionRating * levelDifference;
+                masterData.ScalableMasterData.ExperiencePointsGiven += AdditionsPerLevel.ExperiencePointsGiven * levelDifference;
             }
 
             return masterData;

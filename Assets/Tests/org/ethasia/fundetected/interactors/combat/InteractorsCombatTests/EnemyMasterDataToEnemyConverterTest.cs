@@ -149,6 +149,27 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             Assert.That(testableResult.DropLevelOfItems, Is.EqualTo(23));        
         }
 
+        [Test]
+        public void TestCreateEnemyFromMasterDataConvertsExperiencePointsGiven()
+        {
+            EnemySpawnLocation spawnLocationData = new EnemySpawnLocation.Builder()
+                .SetMapLocation(new Position(7, 23))
+                .SetSpawnerActivationChance(1.0f)
+                .SetSpawnedEnemyLevel(2)
+                .Build();
+
+            EnemyMasterDataToEnemyConverter.EnemyCreationContext enemyCreationContext = new EnemyMasterDataToEnemyConverter.EnemyCreationContext
+            {
+                EnemyMasterData = CreateMasterDataForTest(),
+                SpawnLocation = spawnLocationData,
+                SpawnId = 1
+            };
+
+            Enemy result = EnemyMasterDataToEnemyConverter.CreateEnemyFromMasterData(enemyCreationContext);
+
+            Assert.That(result.ExperiencePointsGivenOnDeath, Is.EqualTo(45));
+        }
+
         private EnemyMasterData CreateMasterDataForTest()
         {
             EnemyMasterData result = new EnemyMasterData();
@@ -166,6 +187,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             result.CorpseMass = 2;
             result.ScalableMasterData.MinPhysicalDamage = 1;
             result.ScalableMasterData.MaxPhysicalDamage = 3;
+            result.ScalableMasterData.ExperiencePointsGiven = 45;
             result.DistanceToLeftEdge = 7;
             result.DistanceToRightEdge = 7;
             result.DistanceToBottomEdge = 7;
