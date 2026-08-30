@@ -31,6 +31,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IResourceBarPresenter GetResourceBarPresenterInstance();
         public abstract IMapChunkGateway GetMapChunkGatewayInstance();
         public abstract IMapDefinitionGateway GetMapDefinitionGatewayInstance();
+        public abstract ITileGroupGateway GetTileGroupGatewayInstance();
         public abstract IMapPresenter GetMapPresenterInstance();
         public abstract IPlayerInputOnOffSwitch GetPlayerInputOnOffSwitchInstance();
         public abstract IGuiWindowsPresenter GetGuiWindowsPresenterInstance();

@@ -64,6 +64,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return new MapDefinitionGatewayMock();
         }
 
+        public override ITileGroupGateway GetTileGroupGatewayInstance()
+        {
+            return new TileGroupGatewayMock();
+        }
+
         public override IMapPresenter GetMapPresenterInstance()
         {
             return new MapPresenterMock();

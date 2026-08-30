@@ -21,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IResourceBarPresenter resourceBarPresenter;
         private IMapChunkGateway mapChunkGateway;
         private IMapDefinitionGateway mapDefinitionGateway;
+        private ITileGroupGateway tileGroupGateway;
         private IMapPresenter mapPresenter;
         private IPlayerInputOnOffSwitch playerInputOnOffSwitch;
         private IGuiWindowsPresenter guiWindowsPresenter;
@@ -145,6 +146,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return mapDefinitionGateway;
+        }
+
+        public override ITileGroupGateway GetTileGroupGatewayInstance()
+        {
+            if (null == tileGroupGateway)
+            {
+                tileGroupGateway = new XmlFilesBasedTileGroupGateway();
+            }
+
+            return tileGroupGateway;
         }
 
         public override IMapPresenter GetMapPresenterInstance()

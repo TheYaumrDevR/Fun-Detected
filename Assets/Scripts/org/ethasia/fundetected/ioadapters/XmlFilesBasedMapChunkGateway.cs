@@ -10,23 +10,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class XmlFilesBasedMapChunkGateway : IMapChunkGateway
     {
-        private struct TileGroupTileDefinition
-        {
-            public string Id;
-            public int OffsetX;
-            public int OffsetY;
-            public int Width;
-            public int Height;
-        }
-
         private XmlFiles xmlFiles;
-
-        private Dictionary<string, List<TileGroupTileDefinition>> loadedTileGroupsByGroupId;
 
         public XmlFilesBasedMapChunkGateway()
         {
             xmlFiles = TechnicalFactory.GetInstance().CreateXmlFiles();
-            loadedTileGroupsByGroupId = new Dictionary<string, List<TileGroupTileDefinition>>();
         }
 
         public MapChunkProperties LoadChunkProperties(string chunkName)
@@ -149,76 +137,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 {
                     if (int.TryParse(startYText, out int startY))
                     {
-                        List<TileGroupTileDefinition> tileGroupDefinition = LoadTileGroupDefinition(groupId);
-
-                        foreach (TileGroupTileDefinition tileDefinition in tileGroupDefinition)
-                        {
-                            Tile convertedTile = new Tile.Builder()
-                                .SetId(tileDefinition.Id)
-                                .SetStartX(startX + tileDefinition.OffsetX)
-                                .SetStartY(startY + tileDefinition.OffsetY)
-                                .SetWidth(tileDefinition.Width)
-                                .SetHeight(tileDefinition.Height)
-                                .Build();
-
-                            target.Add(convertedTile);
-                        }
+                        ITileGroupGateway tileGroupGateway = IoAdaptersFactoryForInteractors.GetInstance().GetTileGroupGatewayInstance();
+                        target.AddRange(tileGroupGateway.ResolveTileGroup(groupId, startX, startY));
                     }
                 }
             }
-        }
-
-        private List<TileGroupTileDefinition> LoadTileGroupDefinition(string groupId)
-        {
-            if (loadedTileGroupsByGroupId.ContainsKey(groupId))
-            {
-                return loadedTileGroupsByGroupId[groupId];
-            }
-
-            List<TileGroupTileDefinition> result = new List<TileGroupTileDefinition>();
-            XmlElement tileGroupRoot = xmlFiles.TryToLoadXmlRoot("/Scenes/Tilemaps/TileGroups/" + groupId + ".xml");
-
-            if (null != tileGroupRoot)
-            {
-                XmlNodeList tileDefinitions = tileGroupRoot.GetElementsByTagName("tile");
-
-                foreach (XmlElement tileDefinition in tileDefinitions)
-                {
-                    string id = tileDefinition.GetAttribute("id");
-                    string offsetXText = tileDefinition.GetAttribute("offsetX");
-                    string offsetYText = tileDefinition.GetAttribute("offsetY");
-                    string widthText = tileDefinition.GetAttribute("width");
-                    string heightText = tileDefinition.GetAttribute("height");
-
-                    if (int.TryParse(offsetXText, out int offsetX))
-                    {
-                        if (int.TryParse(offsetYText, out int offsetY))
-                        {
-                            if (int.TryParse(widthText, out int width))
-                            {
-                                if (int.TryParse(heightText, out int height))
-                                {
-                                    if (width > 0 && height > 0)
-                                    {
-                                        result.Add(new TileGroupTileDefinition
-                                        {
-                                            Id = id,
-                                            OffsetX = offsetX,
-                                            OffsetY = offsetY,
-                                            Width = width,
-                                            Height = height
-                                        });
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            loadedTileGroupsByGroupId[groupId] = result;
-
-            return result;
         }
 
         private MapChunkProperties SetupTileProperties(XmlElement mapChunkProperties, string chunkName)
