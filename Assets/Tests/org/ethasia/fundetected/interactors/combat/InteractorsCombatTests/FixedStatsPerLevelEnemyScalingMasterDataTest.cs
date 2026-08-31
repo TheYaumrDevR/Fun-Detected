@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             Assert.That(result.ScalableMasterData.MaxPhysicalDamage, Is.EqualTo(144));
             Assert.That(result.ScalableMasterData.AccuracyRating, Is.EqualTo(72));
             Assert.That(result.ScalableMasterData.EvasionRating, Is.EqualTo(72));
+            Assert.That(result.ScalableMasterData.ExperiencePointsGiven, Is.EqualTo(108));
         }
 
         [Test]
@@ -35,7 +36,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             Assert.That(result.ScalableMasterData.MinPhysicalDamage, Is.EqualTo(218));
             Assert.That(result.ScalableMasterData.MaxPhysicalDamage, Is.EqualTo(436));
             Assert.That(result.ScalableMasterData.AccuracyRating, Is.EqualTo(218));
-            Assert.That(result.ScalableMasterData.EvasionRating, Is.EqualTo(218));                          
+            Assert.That(result.ScalableMasterData.EvasionRating, Is.EqualTo(218));
+            Assert.That(result.ScalableMasterData.ExperiencePointsGiven, Is.EqualTo(327));
         }
 
         [Test]
@@ -52,7 +54,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             Assert.That(result.ScalableMasterData.MinPhysicalDamage, Is.EqualTo(20));
             Assert.That(result.ScalableMasterData.MaxPhysicalDamage, Is.EqualTo(40));
             Assert.That(result.ScalableMasterData.AccuracyRating, Is.EqualTo(20));
-            Assert.That(result.ScalableMasterData.EvasionRating, Is.EqualTo(20));                          
+            Assert.That(result.ScalableMasterData.EvasionRating, Is.EqualTo(20));
+            Assert.That(result.ScalableMasterData.ExperiencePointsGiven, Is.EqualTo(30));
         }        
 
         private EnemyMasterData ExecuteStandardTest(int targetLevel)
@@ -68,6 +71,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             additionsPerLevel.MaxPhysicalDamage = 4;
             additionsPerLevel.AccuracyRating = 2;
             additionsPerLevel.EvasionRating = 2;        
+            additionsPerLevel.ExperiencePointsGiven = 3;
 
             FixedStatsPerLevelEnemyScalingMasterData testCandidate = new FixedStatsPerLevelEnemyScalingMasterData();
             testCandidate.AdditionsPerLevel = additionsPerLevel;
@@ -84,6 +88,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat.Tests
             scalableMasterData.MaxPhysicalDamage = 40;
             scalableMasterData.AccuracyRating = 20;
             scalableMasterData.EvasionRating = 20;
+            scalableMasterData.ExperiencePointsGiven = 30;
             testData.ScalableMasterData = scalableMasterData;
             testData.MinimumSpawnLevel = 1;
 
