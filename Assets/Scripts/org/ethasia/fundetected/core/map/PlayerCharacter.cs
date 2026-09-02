@@ -254,6 +254,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                         int damage = randomNumberGenerator.GenerateIntegerBetweenAnd(damageRange.MinDamage, damageRange.MaxDamage);
 
                         int damageTaken = target.TakePhysicalHit(damage);
+                        GainExperienceMaybeLevelUp(target);
 
                         battleActionResults.Add(new PlayerAbilityActionResult.Builder()
                             .SetTarget(target)
@@ -273,6 +274,22 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
 
             battleActionResponse.SetResponseObject(battleActionResults);
+        }
+
+        private void GainExperienceMaybeLevelUp(Enemy target)
+        {
+            if (0 == target.CurrentLife)
+            {
+                int currentLevel = BaseStats.LevelingSystem.Level;
+                BaseStats.LevelingSystem.AddExperiencePoints(target.ExperiencePointsGivenOnDeath);
+
+                int newLevel = BaseStats.LevelingSystem.Level;
+                if (newLevel > currentLevel)
+                {
+                    BaseStats.LevelUp(newLevel - currentLevel);
+                    TotalStats.Calculate(BaseStats, StatModifiers, ItemInventory.EquippedItems.EquipmentStats);
+                }
+            }            
         }
 
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()

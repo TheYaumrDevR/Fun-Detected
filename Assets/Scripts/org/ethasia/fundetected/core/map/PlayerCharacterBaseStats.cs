@@ -4,9 +4,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
     // Stats derived from level up values and class base stats
     public class PlayerCharacterBaseStats
     {
-        private const int MAXIMUM_LEVEL = 5;
-
-        public int Level
+        public PlayerLevelingSystem LevelingSystem
         {
             get;
             private set;
@@ -84,21 +82,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
             LeftHandPhysicalDamageWithMeleeAttacks = new DamageRange(1, 1);
         }
 
-        public void LevelUp()
+        public void LevelUp(int amount)
         {
-            if (Level < MAXIMUM_LEVEL)
-            {
-                Level = Level + 1;
-
-                MaximumLife += 12;
-                MaximumMana += 6;
-                AccuracyRating += 2;
-            }
+            MaximumLife += 12 * amount;
+            MaximumMana += 6 * amount;
+            AccuracyRating += 2 * amount;
         }  
 
         public class PlayerCharacterBaseStatsBuilder
         {
-            private int level;
+            private PlayerLevelingSystem levelingSystem;
             private int intelligence;
             private int agility;
             private int strength;
@@ -118,7 +111,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             public PlayerCharacterBaseStatsBuilder SetLevel(int value)
             {
-                level = value;
+                levelingSystem = new PlayerLevelingSystem(value, 0);
                 return this;
             }
 
@@ -192,7 +185,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             {
                 PlayerCharacterBaseStats result = new PlayerCharacterBaseStats();
 
-                result.Level = level;
+                result.LevelingSystem = levelingSystem;
                 result.Intelligence = intelligence;
                 result.Agility = agility;
                 result.Strength = strength;
