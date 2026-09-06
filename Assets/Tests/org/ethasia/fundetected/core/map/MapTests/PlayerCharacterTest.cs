@@ -3,6 +3,8 @@ using NUnit.Framework;
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
+using Org.Ethasia.Fundetected.Interactors;
+using Org.Ethasia.Fundetected.Interactors.Mocks;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
 namespace Org.Ethasia.Fundetected.Core.Map.Tests
@@ -10,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
     public class PlayerCharacterTest
     {
+        private RandomNumberGeneratorMock rngMock;
         private PlayerCharacter testCandidate;
         private PlayerCharacterBaseStats testBaseStats;
 
@@ -19,6 +22,21 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             IoAdaptersFactoryForCore.SetInstance(new MockedIoAdaptersFactoryForCore());
 
             testBaseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder().SetMovementSpeed(150).Build();           
+        }
+
+        [SetUp]
+        public void ResetStates()
+        {
+            int[] randomNumbersToGenerate = {1};
+            float[] randomFloatsToGenerate = {};   
+            double[] randomDoublesToGenerate = {};    
+
+            rngMock = new RandomNumberGeneratorMock(randomNumbersToGenerate, randomFloatsToGenerate, randomDoublesToGenerate);
+            MockedIoAdaptersFactoryForCore ioAdaptersFactoryForCore = new MockedIoAdaptersFactoryForCore();
+            ioAdaptersFactoryForCore.SetRngInstance(rngMock);
+
+            InternalInteractorsFactory.SetInstance(new InternalInteractorsFactoryMock());
+            IoAdaptersFactoryForCore.SetInstance(ioAdaptersFactoryForCore);
         }
 
         [Test]
@@ -111,10 +129,70 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(droppedItem.CollisionShape.Position.Y, Is.EqualTo(testArea.GetPlayerPositionY()));
         }
 
+        [Test]
+        public void TestTotalStatsIncreaseWhenPlayerCharacterLevelsUp()
+        {
+            PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats
+                .PlayerCharacterBaseStatsBuilder()
+                .SetLevel(1)
+                .SetMaxLife(66)
+                .SetMaxMana(33)
+                .SetAccuracyRating(1000)
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            testCandidate = CreateStandardTestCandidate(playerCharacterBaseStats);
+            testCandidate.TotalStats.FullHeal();
+
+            BoundingBox enemyBoundingBox = new BoundingBox.Builder()
+                .SetDistanceToLeftEdge(5)
+                .SetDistanceToRightEdge(5)
+                .SetDistanceToTopEdge(5)
+                .SetDistanceToBottomEdge(5)
+                .Build();
+
+            Enemy testEnemy = new Enemy
+                .Builder()
+                .SetPosition(new Position(16, 20))
+                .SetBoundingBox(enemyBoundingBox)
+                .SetLife(1)
+                .SetExperiencePointsGivenOnDeath(500)
+                .Build();
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(15, 20))
+                .Build();
+
+            Area.ActiveArea = testArea; 
+            testArea.SpawnPlayer(testCandidate);
+            testArea.AddEnemy(testEnemy);
+
+            testCandidate.AutoAttack();
+            Area.ActiveArea.Player.Tick(1.5);
+
+            int maximumLifeAfterLevelUp = testCandidate.TotalStats.MaximumLife;
+            int maximumManaAfterLevelUp = testCandidate.TotalStats.MaximumMana;
+            int accuracyRatingAfterLevelUp = testCandidate.TotalStats.AccuracyRating;
+
+            Assert.That(playerCharacterBaseStats.LevelingSystem.Level, Is.EqualTo(2));
+            Assert.That(maximumLifeAfterLevelUp, Is.EqualTo(78));
+            Assert.That(maximumManaAfterLevelUp, Is.EqualTo(39));
+            Assert.That(accuracyRatingAfterLevelUp, Is.EqualTo(1002));
+        }
+
         private PlayerCharacter CreateStandardTestCandidate()
         {
             return new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();  
+        }
+
+        private PlayerCharacter CreateStandardTestCandidate(PlayerCharacterBaseStats playerCharacterBaseStats)
+        {
+            return new PlayerCharacter.PlayerCharacterBuilder()
+                .SetPlayerCharacterBaseStats(playerCharacterBaseStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
         }
