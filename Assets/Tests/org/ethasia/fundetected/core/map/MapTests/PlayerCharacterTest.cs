@@ -159,6 +159,21 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(accuracyRatingAfterLevelUps, Is.EqualTo(1006)); // 1000 + 3*2
         }
 
+        [Test]
+        public void TestTotalStatsDoNotIncreaseWhenExperiencePointsAreGainedButNoLevelUpOccurs()
+        {
+            PlayerCharacter testCandidate = RunLevelUpScenario(10);
+
+            int maximumLifeAfterKill = testCandidate.TotalStats.MaximumLife;
+            int maximumManaAfterKill = testCandidate.TotalStats.MaximumMana;
+            int accuracyRatingAfterKill = testCandidate.TotalStats.AccuracyRating;
+
+            Assert.That(testCandidate.BaseStats.LevelingSystem.Level, Is.EqualTo(1));
+            Assert.That(maximumLifeAfterKill, Is.EqualTo(66));
+            Assert.That(maximumManaAfterKill, Is.EqualTo(33));
+            Assert.That(accuracyRatingAfterKill, Is.EqualTo(1000));
+        }
+
         private PlayerCharacter RunLevelUpScenario(int experiencePointsFromEnemy)
         {
             PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats
