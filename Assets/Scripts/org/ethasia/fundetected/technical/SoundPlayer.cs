@@ -28,6 +28,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip normalItemDroppedSound;
         public AudioClip droppedItemPickedUpSound;
         public AudioClip inventoryGrabItemSound;
+        public AudioClip levelUpSound;
 
         public AudioClip metalWeaponItemMaterialSound;
         public AudioClip leatherArmorItemMaterialSound;
@@ -142,6 +143,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayInventoryGrabItemSound()
         {
             globalAudioSource.PlayOneShot(inventoryGrabItemSound);
+        }
+
+        public void PlayLevelUpSound()
+        {
+            globalAudioSource.PlayOneShot(levelUpSound);
         }
 
         public void PlayItemMaterialSound(string itemMaterialName)

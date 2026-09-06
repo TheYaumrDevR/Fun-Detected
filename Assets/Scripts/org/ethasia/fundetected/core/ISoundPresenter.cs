@@ -12,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
         void PlayInventoryGrabItemSound();
+        void PlayLevelUpSound();
         void PlayItemMaterialSound(ItemMaterials itemMaterial);
     }
 }

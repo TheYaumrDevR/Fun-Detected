@@ -286,10 +286,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 int newLevel = BaseStats.LevelingSystem.Level;
                 if (newLevel > currentLevel)
                 {
+                    PlayLevelUpSound();
                     BaseStats.LevelUp(newLevel - currentLevel);
                     TotalStats.Calculate(BaseStats, StatModifiers, ItemInventory.EquippedItems.EquipmentStats);
                 }
             }            
+        }
+
+        private void PlayLevelUpSound()
+        {
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            soundPresenter.PlayLevelUpSound();
         }
 
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()

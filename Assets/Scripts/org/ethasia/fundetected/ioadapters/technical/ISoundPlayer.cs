@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void PlayNormalItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
         void PlayInventoryGrabItemSound();
+        void PlayLevelUpSound();
         void PlayItemMaterialSound(string itemMaterialName);
     }
 }

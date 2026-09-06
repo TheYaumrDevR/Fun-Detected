@@ -46,6 +46,10 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
         {
         }
 
+        public void PlayLevelUpSound()
+        {
+        }
+
         public void PlayItemMaterialSound(ItemMaterials itemMaterial)
         {
         }
