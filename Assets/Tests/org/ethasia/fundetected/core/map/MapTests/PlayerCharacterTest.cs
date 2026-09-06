@@ -181,6 +181,58 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(accuracyRatingAfterLevelUp, Is.EqualTo(1002));
         }
 
+        [Test]
+        public void TestTotalStatsIncreaseWhenPlayerCharacterLevelsUpThreeTimes()
+        {
+            PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats
+                .PlayerCharacterBaseStatsBuilder()
+                .SetLevel(1)
+                .SetMaxLife(66)
+                .SetMaxMana(33)
+                .SetAccuracyRating(1000)
+                .SetAttacksPerSecond(1.0)
+                .Build();
+
+            testCandidate = CreateStandardTestCandidate(playerCharacterBaseStats);
+            testCandidate.TotalStats.FullHeal();
+
+            BoundingBox enemyBoundingBox = new BoundingBox.Builder()
+                .SetDistanceToLeftEdge(5)
+                .SetDistanceToRightEdge(5)
+                .SetDistanceToTopEdge(5)
+                .SetDistanceToBottomEdge(5)
+                .Build();
+
+            Enemy testEnemy = new Enemy
+                .Builder()
+                .SetPosition(new Position(16, 20))
+                .SetBoundingBox(enemyBoundingBox)
+                .SetLife(1)
+                .SetExperiencePointsGivenOnDeath(4000)
+                .Build();
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(15, 20))
+                .Build();
+
+            Area.ActiveArea = testArea;
+            testArea.SpawnPlayer(testCandidate);
+            testArea.AddEnemy(testEnemy);
+
+            testCandidate.AutoAttack();
+            Area.ActiveArea.Player.Tick(1.5);
+
+            int maximumLifeAfterLevelUps = testCandidate.TotalStats.MaximumLife;
+            int maximumManaAfterLevelUps = testCandidate.TotalStats.MaximumMana;
+            int accuracyRatingAfterLevelUps = testCandidate.TotalStats.AccuracyRating;
+
+            Assert.That(playerCharacterBaseStats.LevelingSystem.Level, Is.EqualTo(4));
+            Assert.That(maximumLifeAfterLevelUps, Is.EqualTo(102));   // 66 + 3*12
+            Assert.That(maximumManaAfterLevelUps, Is.EqualTo(51));    // 33 + 3*6
+            Assert.That(accuracyRatingAfterLevelUps, Is.EqualTo(1006)); // 1000 + 3*2
+        }
+
         private PlayerCharacter CreateStandardTestCandidate()
         {
             return new PlayerCharacter.PlayerCharacterBuilder()
