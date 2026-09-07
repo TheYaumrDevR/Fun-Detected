@@ -34,13 +34,23 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
                 }
             }
 
+            int oldPlayerLevel = playerCharacter.BaseStats.LevelingSystem.Level;
+
             AsyncResponse<List<IBattleActionResult>> battleLogActions = playerCharacter.AutoAttack();
             battleLogActions.OnResponseReceived((battleLogActions) => 
             {
+                int newPlayerLevel = playerCharacter.BaseStats.LevelingSystem.Level;
+                
                 foreach (IBattleActionResult battleLogAction in battleLogActions)
                 {
                     battleLogPrinter.PrintBattleLogEntry(battleLogAction);  
                     battleLogAction.PresentToPlayer();             
+                }
+
+                if (newPlayerLevel > oldPlayerLevel)
+                {
+                    PlayLevelUpSound();
+                    UpdateResourceBars(playerCharacter);
                 }
             });
         }
@@ -49,6 +59,19 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
         {
             Area activeArea = Area.ActiveArea;
             return activeArea.Player.IsAttacking();
+        }
+
+        private void PlayLevelUpSound()
+        {
+            ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+            soundPresenter.PlayLevelUpSound();
+        }
+
+        private void UpdateResourceBars(PlayerCharacter playerCharacter)
+        {
+            IResourceBarPresenter resourceBarPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetResourceBarPresenterInstance();
+            resourceBarPresenter.PresentHealthBarBasedOnCurrentAndMaximumHealth(playerCharacter.TotalStats.CurrentLife, playerCharacter.TotalStats.MaximumLife);
+            resourceBarPresenter.PresentManaBarBasedOnCurrentAndMaximumMana(playerCharacter.TotalStats.CurrentMana, playerCharacter.TotalStats.MaximumMana);
         }
     }
 }
