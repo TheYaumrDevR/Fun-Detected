@@ -54,6 +54,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return new ResourceBarPresenterMock();
         }
 
+        public override IExperienceBarPresenter GetExperienceBarPresenterInstance()
+        {
+            return new ExperienceBarPresenterMock();
+        }
+
         public override IMapChunkGateway GetMapChunkGatewayInstance()
         {
             return new MapChunkGatewayMock();

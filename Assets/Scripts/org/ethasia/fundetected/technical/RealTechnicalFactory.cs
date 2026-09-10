@@ -46,6 +46,11 @@ namespace Org.Ethasia.Fundetected.Technical
             return ResourceBarRenderer.GetInstance();
         }
 
+        public override IExperienceBarRenderer GetExperienceBarRendererInstance()
+        {
+            return ExperienceBarRenderer.GetInstance();
+        }
+
         public override ITileMapRenderer GetTileMapRendererInstance()
         {
             TileMapRenderer result = TileMapRenderer.GetInstance();

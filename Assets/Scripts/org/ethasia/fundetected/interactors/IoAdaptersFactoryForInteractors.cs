@@ -29,6 +29,7 @@ namespace Org.Ethasia.Fundetected.Interactors
         public abstract IEnemyPresenter GetEnemyPresenterInstance();
         public abstract IPlayerCharacterPresenter GetPlayerCharacterPresenterInstance();
         public abstract IResourceBarPresenter GetResourceBarPresenterInstance();
+        public abstract IExperienceBarPresenter GetExperienceBarPresenterInstance();
         public abstract IMapChunkGateway GetMapChunkGatewayInstance();
         public abstract IMapDefinitionGateway GetMapDefinitionGatewayInstance();
         public abstract ITileGroupGateway GetTileGroupGatewayInstance();

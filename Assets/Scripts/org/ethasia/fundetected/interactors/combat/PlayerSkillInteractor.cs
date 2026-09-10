@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Core.Maths;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Interactors.Combat
@@ -47,6 +48,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
                     battleLogAction.PresentToPlayer();             
                 }
 
+                UpdateExperienceBar(playerCharacter);
+
                 if (newPlayerLevel > oldPlayerLevel)
                 {
                     PlayLevelUpSound();
@@ -60,6 +63,19 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
             Area activeArea = Area.ActiveArea;
             return activeArea.Player.IsAttacking();
         }
+
+        private void UpdateExperienceBar(PlayerCharacter playerCharacter)
+        {
+            IExperienceBarPresenter experienceBarPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetExperienceBarPresenterInstance();
+            PlayerLevelingSystem levelingSystem = playerCharacter.BaseStats.LevelingSystem;
+
+            experienceBarPresenter.PresentExperienceBar(new ExperienceBarPresentationContext
+            {
+                CurrentExperience = levelingSystem.ExperiencePoints,
+                RequiredExperience = Formulas.GetExperiencePointsForNextLevel(levelingSystem.Level + 1),
+                CurrentLevel = levelingSystem.Level
+            });
+        }        
 
         private void PlayLevelUpSound()
         {

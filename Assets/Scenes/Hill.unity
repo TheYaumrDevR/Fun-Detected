@@ -1920,6 +1920,7 @@ GameObject:
   - component: {fileID: 1388233959}
   - component: {fileID: 1388233963}
   - component: {fileID: 1388233964}
+  - component: {fileID: 1388233965}
   m_Layer: 5
   m_Name: GUI
   m_TagString: Untagged
@@ -2040,6 +2041,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5596cf576e3cea4ca92d368c1a114cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1388233965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388233958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5fcad75910a174bab253fbfb02df3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceBarFillRect: {fileID: 1435379572}
+  experienceBarFullWidthReference: {fileID: 1947517902}
+  levelText: {fileID: 0}
 --- !u!1 &1391524992
 GameObject:
   m_ObjectHideFlags: 0

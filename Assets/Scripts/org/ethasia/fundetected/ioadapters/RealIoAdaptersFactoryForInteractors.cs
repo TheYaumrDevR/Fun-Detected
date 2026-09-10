@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IEnemyPresenter enemyPresenter;
         private IPlayerCharacterPresenter playerCharacterPresenter;
         private IResourceBarPresenter resourceBarPresenter;
+        private IExperienceBarPresenter experienceBarPresenter;
         private IMapChunkGateway mapChunkGateway;
         private IMapDefinitionGateway mapDefinitionGateway;
         private ITileGroupGateway tileGroupGateway;
@@ -126,6 +127,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return resourceBarPresenter;
+        }
+
+        public override IExperienceBarPresenter GetExperienceBarPresenterInstance()
+        {
+            if (null == experienceBarPresenter)
+            {
+                experienceBarPresenter = new ExperienceBarPresenter();
+            }
+
+            return experienceBarPresenter;
         }
 
         public override IMapChunkGateway GetMapChunkGatewayInstance()

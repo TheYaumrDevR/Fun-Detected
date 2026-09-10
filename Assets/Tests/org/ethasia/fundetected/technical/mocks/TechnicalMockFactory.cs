@@ -48,6 +48,11 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             return null;
         }
 
+        public override IExperienceBarRenderer GetExperienceBarRendererInstance()
+        {
+            return null;
+        }
+
         public override ITileMapRenderer GetTileMapRendererInstance()
         {
             return new TileMapRendererMock();

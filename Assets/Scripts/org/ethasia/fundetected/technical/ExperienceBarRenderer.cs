@@ -9,17 +9,14 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private static ExperienceBarRenderer instance;
 
+        private float leftInset = 4f;
+        private float rightInset = 5f;
+
         [SerializeField]
         private RectTransform experienceBarFillRect;
 
         [SerializeField]
         private RectTransform experienceBarFullWidthReference;
-
-        [SerializeField]
-        private float leftInset = 4f;
-
-        [SerializeField]
-        private float rightInset = 5f;
 
         [SerializeField]
         private TextMeshProUGUI levelText;
@@ -44,7 +41,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void UpdateLevelText(int currentLevel)
         {
-            levelText.text = currentLevel.ToString();
+            // levelText.text = currentLevel.ToString();
         }
     }
 }
