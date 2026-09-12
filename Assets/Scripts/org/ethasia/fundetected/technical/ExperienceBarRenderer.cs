@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private static ExperienceBarRenderer instance;
 
         private float leftInset = 4f;
-        private float rightInset = 5f;
+        private float rightInset = 32f;
 
         [SerializeField]
         private RectTransform experienceBarFillRect;
