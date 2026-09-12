@@ -41,7 +41,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
         public void UpdateLevelText(int currentLevel)
         {
-            // levelText.text = currentLevel.ToString();
+            levelText.text = currentLevel.ToString();
         }
     }
 }
