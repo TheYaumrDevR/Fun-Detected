@@ -119,16 +119,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                 ItemToPresentationContextConverter.ConvertShapeAndPositionToPresentationContext(placedItemShape, placedItemContextBuilder);
                 placedItemContextBuilder.WithItemId(oldItemOnCursor.Name);
 
-                InventoryItemPresentationContext? swappedItemContext = null;
-
-                if (newItemOnCursor != null)
-                {
-                    swappedItemContext = new InventoryItemPresentationContext.Builder()
-                        .WithItemId(newItemOnCursor.Name)
+                InventoryItemPresentationContext swappedItemContext = new InventoryItemPresentationContext.Builder()
+                        .WithItemId(newItemOnCursor != null ? newItemOnCursor.Name : null)
                         .Build();
-                }
 
-                inventoryPresenter.ShowSwappedInventoryGridItems(placedItemContextBuilder.Build(), swappedItemContext);
+                inventoryPresenter.ShowSwappedInventoryGridItems(swappedItemContext, placedItemContextBuilder.Build());
             }
         }
 
