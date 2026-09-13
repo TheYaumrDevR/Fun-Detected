@@ -14,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return items;
         }
 
-        public ItemInInventoryShape ReplaceItemAt(ItemInInventoryShape item, PositionImmutable position)
+        public ItemReplacementResult ReplaceItemAt(ItemInInventoryShape item, PositionImmutable position)
         {
             ItemInInventoryShape lastItemInGrid = null;
             for (int x = 0; x < item.Width; x++)
@@ -24,7 +24,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
                     PositionImmutable gridCellPos = new PositionImmutable(position.X + x, position.Y + y);
                     if (GridPositionIsOutsideGrid(gridCellPos))
                     {
-                        return null;
+                        return ItemReplacementResult.Failed();
                     }
 
                     ItemInInventoryShape currentItemInGrid = inventoryGrid[gridCellPos.X, gridCellPos.Y];
@@ -32,7 +32,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
                     {
                         if (lastItemInGrid != null && !currentItemInGrid.IsSameItemInstanceAs(lastItemInGrid))
                         {
-                            return null; // positions occupied by at least two different items, cannot replace
+                            return ItemReplacementResult.Failed(); // positions occupied by at least two different items, cannot replace
                         }
 
                         lastItemInGrid = currentItemInGrid;
@@ -43,7 +43,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             PutItemInGrid(new ItemInventoryShapeWithPosition(item, position));
             RemoveItemFromGrid(lastItemInGrid);
 
-            return lastItemInGrid;
+            return ItemReplacementResult.Succeeded(lastItemInGrid);
         }
 
         public bool AddItemAtNextFreePosition(ItemInInventoryShape item)
@@ -84,6 +84,16 @@ namespace Org.Ethasia.Fundetected.Core.Items
             
             return result;
         }
+
+        public ItemInInventoryShape GetItemAt(PositionImmutable position)
+        {
+            if (GridPositionIsOutsideGrid(position))
+            {
+                return null;
+            }
+
+            return inventoryGrid[position.X, position.Y];
+        }        
 
         private bool GridPositionIsOutsideGrid(PositionImmutable position)
         {
@@ -173,6 +183,37 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 }
 
                 itemWithPosition.RemoveFromItemGrid();                
+            }
+        }
+
+        public struct ItemReplacementResult
+        {
+            public bool Success
+            {
+                get;
+                private set;
+            }
+
+            public ItemInInventoryShape ReplacedItem
+            {
+                get;
+                private set;
+            }
+
+            private ItemReplacementResult(bool success, ItemInInventoryShape replacedItem)
+            {
+                Success = success;
+                ReplacedItem = replacedItem;
+            }
+
+            public static ItemReplacementResult Failed()
+            {
+                return new ItemReplacementResult(false, null);
+            }
+
+            public static ItemReplacementResult Succeeded(ItemInInventoryShape replacedItem)
+            {
+                return new ItemReplacementResult(true, replacedItem);
             }
         }
 

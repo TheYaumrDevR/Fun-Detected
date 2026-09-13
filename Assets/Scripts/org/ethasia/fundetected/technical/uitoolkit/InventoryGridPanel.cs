@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Interactors.Items;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical.UIToolkit
@@ -21,6 +22,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private VisualElement grid;
         private VisualElement itemImagesLayer;
 
+        private PlayerInventoryInteractor playerInventoryInteractor = new PlayerInventoryInteractor();
+
         public InventoryGridPanel()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/InventoryGridPanel");
@@ -32,6 +35,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             alreadyRenderedItems = new VisualElement[GRID_COLUMNS, GRID_ROWS];
 
             CreateInventorySlots();
+
+            RegisterCallback<ClickEvent>(OnGridClicked);
         }
 
         public void RenderInventoryItems(InventoryGridRenderContext renderContext)
@@ -84,6 +89,63 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     inventorySlots[row, col] = cell;
                 }
             }            
+        }
+
+        private void OnGridClicked(ClickEvent clickEvent)
+        {
+            IIconOnCursorRenderer iconOnCursorRenderer = TechnicalFactory.GetInstance().GetIconOnCursorRendererInstance();
+
+            Vector2 localClickPosition = this.WorldToLocal(clickEvent.position);
+
+            if (!iconOnCursorRenderer.HasItemOnCursor())
+            {
+                int cellX = Mathf.FloorToInt(localClickPosition.x / CELL_SIZE);
+                int cellY = Mathf.FloorToInt(localClickPosition.y / CELL_SIZE);
+
+                inventorySlots[cellX, cellY]?.OnPointerDown(null);
+
+                return;
+            }
+
+            (int itemWidth, int itemHeight) = playerInventoryInteractor.GetItemOnCursorDimensions();
+
+            InventoryGridItemDimensions targetDimensions = CalculateTargetDropDimensions(localClickPosition, itemWidth, itemHeight);
+
+            if (targetDimensions.Width > 0 && targetDimensions.Height > 0)
+            {
+                DropItemIntoBackendGrid(targetDimensions);
+            }
+        }
+
+        private InventoryGridItemDimensions CalculateTargetDropDimensions(Vector2 localClickPosition, int itemWidth, int itemHeight)
+        {
+            int cellX = Mathf.FloorToInt(localClickPosition.x / CELL_SIZE);
+            int cellY = Mathf.FloorToInt(localClickPosition.y / CELL_SIZE);
+
+            if (cellX < 0 || cellY < 0 || cellX >= GRID_COLUMNS || cellY >= GRID_ROWS)
+            {
+                return new InventoryGridItemDimensions.Builder()
+                    .SetTopLeftCornerX(0)
+                    .SetTopLeftCornerY(0)
+                    .SetWidth(0)
+                    .SetHeight(0)
+                    .Build();
+            }
+
+            cellX = Mathf.Clamp(cellX, 0, GRID_COLUMNS - itemWidth);
+            cellY = Mathf.Clamp(cellY, 0, GRID_ROWS - itemHeight);
+
+            return new InventoryGridItemDimensions.Builder()
+                .SetTopLeftCornerX(cellX)
+                .SetTopLeftCornerY(cellY)
+                .SetWidth(itemWidth)
+                .SetHeight(itemHeight)
+                .Build();
+        }
+
+        private void DropItemIntoBackendGrid(InventoryGridItemDimensions targetDimensions)
+        {
+            playerInventoryInteractor.TryDropItemOnCursorIntoGridAt(targetDimensions.TopLeftCornerX, targetDimensions.TopLeftCornerY);
         }
 
         private void RenderItemImage(InventorySlotRenderContext slotRenderContext, int posX, int posY)

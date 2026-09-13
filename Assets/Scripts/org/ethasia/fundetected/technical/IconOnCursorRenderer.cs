@@ -41,6 +41,11 @@ namespace Org.Ethasia.Fundetected.Technical
             Cursor.visible = true;
         }
 
+        public bool HasItemOnCursor()
+        {
+            return icon.gameObject.activeSelf;
+        }
+
         private void Awake()
         {
             instance = this;

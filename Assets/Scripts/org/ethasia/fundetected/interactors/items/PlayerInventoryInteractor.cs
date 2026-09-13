@@ -97,6 +97,60 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             }
         }
 
+        public void TryDropItemOnCursorIntoGridAt(int x, int y)
+        {
+            ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
+            Item oldItemOnCursor = playerInventory.ItemOnCursor;
+
+            if (null == oldItemOnCursor)
+            {
+                return;
+            }
+
+            PositionImmutable targetPosition = new PositionImmutable(x, y);
+            bool itemWasPlaced = Area.ActiveArea.Player.ItemInventory.PlaceCursorItemIntoGrid(targetPosition);
+            
+            if (itemWasPlaced)
+            {
+                Item newItemOnCursor = playerInventory.ItemOnCursor;
+
+                InventoryItemPresentationContext.Builder placedItemContextBuilder = new InventoryItemPresentationContext.Builder();
+                ItemInInventoryShape placedItemShape = playerInventory.InventoryGrid.GetItemAt(targetPosition);
+                ItemToPresentationContextConverter.ConvertShapeAndPositionToPresentationContext(placedItemShape, placedItemContextBuilder);
+                placedItemContextBuilder.WithItemId(oldItemOnCursor.Name);
+
+                InventoryItemPresentationContext? swappedItemContext = null;
+
+                if (newItemOnCursor != null)
+                {
+                    swappedItemContext = new InventoryItemPresentationContext.Builder()
+                        .WithItemId(newItemOnCursor.Name)
+                        .Build();
+                }
+
+                inventoryPresenter.ShowSwappedInventoryGridItems(placedItemContextBuilder.Build(), swappedItemContext);
+            }
+        }
+
+        public (int Width, int Height) GetItemOnCursorDimensions()
+        {
+            Item itemOnCursor = GetCurrentItemOnCursor();
+
+            if (null == itemOnCursor)
+            {
+                return (0, 0);
+            }
+
+            ItemInInventoryShape shape = itemOnCursor.CreateInventoryShape();
+
+            return (shape.Width, shape.Height);
+        }
+
+        private Item GetCurrentItemOnCursor()
+        {
+            return Area.ActiveArea.Player.ItemInventory.ItemOnCursor;
+        }
+
         private void SwapCursorItemWithEquipmentSlot(Action swapAction, Action<string> presentAction)
         {
             ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;

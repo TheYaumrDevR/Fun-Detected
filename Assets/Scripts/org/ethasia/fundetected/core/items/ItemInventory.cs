@@ -72,6 +72,26 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return result;
         }
 
+        public bool PlaceCursorItemIntoGrid(PositionImmutable position)
+        {
+            if (ItemOnCursor == null)
+            {
+                return false;
+            }
+
+            ItemInInventoryShape shapeOnCursor = ItemOnCursor.CreateInventoryShape();
+            ItemInventoryGrid.ItemReplacementResult replacementResult = InventoryGrid.ReplaceItemAt(shapeOnCursor, position);
+
+            if (replacementResult.Success)
+            {
+                ItemOnCursor = replacementResult.ReplacedItem != null
+                    ? replacementResult.ReplacedItem.Item
+                    : null;
+            }
+
+            return replacementResult.Success;
+        }        
+
         public Item DropPickedItem()
         {
             Item result = ItemOnCursor;

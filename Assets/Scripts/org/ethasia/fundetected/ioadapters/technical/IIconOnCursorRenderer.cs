@@ -4,5 +4,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
     {
         void ShowIcon(string imageName);
         void HideIcon();
+        bool HasItemOnCursor();
     }
 }

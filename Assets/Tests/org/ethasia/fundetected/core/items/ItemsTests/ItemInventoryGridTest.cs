@@ -16,9 +16,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
-            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(10, 1));
+            ItemInventoryGrid.ItemReplacementResult result = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(10, 1));
 
-            Assert.That(oldItem, Is.Null);
+            Assert.That(result.Success, Is.True);
+            Assert.That(result.ReplacedItem, Is.Null);
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(10, 1)), Is.True);
         }
 
@@ -37,9 +38,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
             ItemInInventoryShape foilShape = foil.CreateInventoryShape();
 
             testCandidate.ReplaceItemAt(foilShape, new PositionImmutable(10, 1));
-            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(10, 1));
+            ItemInventoryGrid.ItemReplacementResult result = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(10, 1));
 
-            Assert.That(oldItem, Is.EqualTo(foilShape));
+            Assert.That(result.Success, Is.True);
+            Assert.That(result.ReplacedItem, Is.EqualTo(foilShape));
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(10, 1)), Is.True);
             Assert.That(foilShape.IsAtPosition(new PositionImmutable(10, 1)), Is.False);
         }
@@ -68,9 +70,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
             testCandidate.ReplaceItemAt(belt1Shape, new PositionImmutable(7, 0));
             testCandidate.ReplaceItemAt(belt2Shape, new PositionImmutable(6, 3));
 
-            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(6, 0));
+            ItemInventoryGrid.ItemReplacementResult result = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(6, 0));
 
-            Assert.That(oldItem, Is.Null);
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.ReplacedItem, Is.Null);
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(6, 0)), Is.False);
             Assert.That(belt1Shape.IsAtPosition(new PositionImmutable(7, 0)), Is.True);
             Assert.That(belt2Shape.IsAtPosition(new PositionImmutable(6, 3)), Is.True);
@@ -83,9 +86,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
-            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(11, 1));
+            ItemInventoryGrid.ItemReplacementResult result = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(11, 1));
 
-            Assert.That(oldItem, Is.Null);
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.ReplacedItem, Is.Null);
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(11, 1)), Is.False);
         }
 
@@ -96,9 +100,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
-            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(-1, -1));
+            ItemInventoryGrid.ItemReplacementResult result = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(-1, -1));
 
-            Assert.That(oldItem, Is.Null);
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.ReplacedItem, Is.Null);
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(-1, -1)), Is.False);
         }
 
@@ -109,9 +114,10 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
 
             ItemInInventoryShape bowShape = CreateBowShape();
 
-            ItemInInventoryShape oldItem = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(12, 5));
+            ItemInventoryGrid.ItemReplacementResult result = testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(12, 5));
 
-            Assert.That(oldItem, Is.Null);
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.ReplacedItem, Is.Null);
             Assert.That(bowShape.IsAtPosition(new PositionImmutable(12, 5)), Is.False);
         }
 
