@@ -29,8 +29,6 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             overlay = this.Q<VisualElement>(OVERLAY_NAME);
 
-            RegisterCallback<PointerDownEvent>(OnPointerDown);
-
             playerInventoryInteractor = new PlayerInventoryInteractor();
         }     
 
