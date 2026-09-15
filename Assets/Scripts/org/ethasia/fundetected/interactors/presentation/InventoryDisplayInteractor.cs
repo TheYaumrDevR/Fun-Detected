@@ -30,64 +30,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
         protected InventoryPresentationContext CreateInventoryPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor, ItemInventoryExtractionVisitor inventoryExtractor)
         {
-            return new InventoryPresentationContext(CreateEquipmentSlotsPresentationContext(extractor), CreateInventoryGridPresentationContext(inventoryExtractor));
-        }
-
-        private InventoryGridPresentationContext CreateInventoryGridPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor)
-        {
-            InventoryGridPresentationContext result = new InventoryGridPresentationContext();
-            inventoryExtractor.ExtractItems();
-
-            result = ConvertWeaponsToPresentationContext(inventoryExtractor, result);
-            result = ConvertArmorsToPresentationContext(inventoryExtractor, result);
-            result = ConvertJewelryToPresentationContext(inventoryExtractor, result);
-            result = ConvertRecoveryPotionsToPresentationContext(inventoryExtractor, result);
-
-            return result;
-        }
-
-        private InventoryGridPresentationContext ConvertWeaponsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
-        {
-            foreach (var weapon in inventoryExtractor.ExtractedWeapons)
-            {
-                InventoryWeaponPresentationContext inventoryWeaponPresentationContext = ItemToPresentationContextConverter.ConvertWeaponToInventoryContext(weapon);
-                presentationContext.AddWeaponPresentationContext(inventoryWeaponPresentationContext);
-            }
-
-            return presentationContext;
-        }
-
-        private InventoryGridPresentationContext ConvertArmorsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
-        {
-            foreach (var armor in inventoryExtractor.ExtractedArmors)
-            {
-                InventoryArmorPresentationContext inventoryArmorPresentationContext = ItemToPresentationContextConverter.ConvertArmorToInventoryContext(armor);
-                presentationContext.AddArmorPresentationContext(inventoryArmorPresentationContext);
-            }
-
-            return presentationContext;
-        }
-
-        private InventoryGridPresentationContext ConvertJewelryToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
-        {
-            foreach (var jewelry in inventoryExtractor.ExtractedJewelry)
-            {
-                InventoryItemPresentationContext inventoryItemPresentationContext = ItemToPresentationContextConverter.ConvertItemAndShapeToPresentationContext(jewelry.Item, jewelry.ItemInInventoryShape);
-                presentationContext.AddJewelryPresentationContext(inventoryItemPresentationContext);
-            }
-
-            return presentationContext;
-        }
-
-        private InventoryGridPresentationContext ConvertRecoveryPotionsToPresentationContext(ItemInventoryExtractionVisitor inventoryExtractor, InventoryGridPresentationContext presentationContext)
-        {
-            foreach (var recoveryPotion in inventoryExtractor.ExtractedRecoveryPotions)
-            {
-                InventoryRecoveryPotionPresentationContext inventoryRecoveryPotionPresentationContext = ItemToPresentationContextConverter.ConvertRecoveryPotionToInventoryContext(recoveryPotion);
-                presentationContext.AddRecoveryPotionPresentationContext(inventoryRecoveryPotionPresentationContext);
-            }
-
-            return presentationContext;
+            return new InventoryPresentationContext(CreateEquipmentSlotsPresentationContext(extractor), InventoryToPresentationContextConverter.Convert(inventoryExtractor));
         }
 
         private EquipmentSlotsPresentationContext CreateEquipmentSlotsPresentationContext(PlayerEquipmentItemsExtractionVisitor extractor)
@@ -161,22 +104,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             {
                 slotsBuilder.AddEquippedJewelry(beltContext.Value);
             }
-        }
-
-        private ArmorPresentationContext ConvertArmorToPresentationContext(Armor armor)
-        {
-            return new ArmorPresentationContext.Builder()
-                .WithArmorValue(armor.ArmorValue)
-                .WithMovementSpeedAddend(armor.MovementSpeedAddend)
-                .Build();
-        }
-
-        private RecoveryPotionPresentationContext ConvertRecoveryPotionToPresentationContext(RecoveryPotion recoveryPotion)
-        {
-            return new RecoveryPotionPresentationContext.Builder()
-                .WithUses(recoveryPotion.Uses)
-                .WithRecoveryAmount(recoveryPotion.RecoveryAmount)
-                .Build();
         }
     }
 }

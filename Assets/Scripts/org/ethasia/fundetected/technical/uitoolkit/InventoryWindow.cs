@@ -46,6 +46,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
         }
 
+        public void RefreshGrid(InventoryGridRenderContext context)
+        {
+            if (inventoryGridPanel != null)
+            {
+                inventoryGridPanel.RenderInventoryItems(context);
+            }
+        }
+
         public void RenderEquippedItem(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext renderContext)
         {
             if (equipmentSlotsPanel != null)

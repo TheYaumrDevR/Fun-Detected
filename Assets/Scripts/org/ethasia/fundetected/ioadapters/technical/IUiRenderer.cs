@@ -6,5 +6,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
     {
         void RenderEquippedItemInInventoryWindow(EquipmentSlotPositions slotPosition, EquipmentSlotRenderContext renderContext);
         void RemoveRenderedItemFromInventoryGrid(InventoryGridItemDimensions itemDimensions);
+        void RefreshInventoryGrid(InventoryGridRenderContext renderContext);
     }
 }

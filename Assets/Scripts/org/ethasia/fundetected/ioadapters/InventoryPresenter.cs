@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -50,12 +51,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void ShowSwappedInventoryGridItems(InventoryItemPresentationContext itemOnCursor, InventoryItemPresentationContext? newItemInGrid)
         {
+            IUiRenderer uiRenderer = TechnicalFactory.GetInstance().GetUiRendererInstance();
             ShowItemOnCursor(itemOnCursor.ItemId);
 
             if (newItemInGrid == null)
             {
-                IUiRenderer uiRenderer = TechnicalFactory.GetInstance().GetUiRendererInstance();
-
                 InventoryGridItemDimensions itemDimensions = new InventoryGridItemDimensions.Builder()
                     .SetTopLeftCornerX(itemOnCursor.TopLeftCornerX)
                     .SetTopLeftCornerY(itemOnCursor.TopLeftCornerY)
@@ -64,6 +64,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     .Build();
 
                 uiRenderer.RemoveRenderedItemFromInventoryGrid(itemDimensions);
+            }
+            else
+            {
+                PlayerCharacter player = Area.ActiveArea.Player;
+                ItemInventoryExtractionVisitor inventoryExtractionVisitor = player.CreateInventoryItemExtractionVisitor();
+
+                InventoryGridPresentationContext inventoryGridPresentationContext = InventoryToPresentationContextConverter.Convert(inventoryExtractionVisitor);
+                InventoryGridRenderContext inventoryGridRenderContext = InventoryPresentationToRenderContextConverter.Convert(inventoryGridPresentationContext);
+                
+                uiRenderer.RefreshInventoryGrid(inventoryGridRenderContext);
             }
         }
 

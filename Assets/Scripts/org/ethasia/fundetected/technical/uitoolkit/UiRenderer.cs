@@ -30,6 +30,16 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
         }
 
+        public void RefreshInventoryGrid(InventoryGridRenderContext renderContext)
+        {
+            var inventoryWindow = GetInventoryWindow();
+
+            if (inventoryWindow != null && inventoryWindow.visible)
+            {
+                inventoryWindow.RefreshGrid(renderContext);
+            }
+        }
+
         private InventoryWindow GetInventoryWindow()
         {
             if (inventoryWindow == null)
