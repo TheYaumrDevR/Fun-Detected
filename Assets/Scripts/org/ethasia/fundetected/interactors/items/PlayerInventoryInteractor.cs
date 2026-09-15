@@ -123,6 +123,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
                         .WithItemId(newItemOnCursor != null ? newItemOnCursor.Name : null)
                         .Build();
 
+                ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
+                soundPresenter.PlayItemMaterialSound(oldItemOnCursor.Material);
+
                 inventoryPresenter.ShowSwappedInventoryGridItems(swappedItemContext, placedItemContextBuilder.Build());
             }
         }
