@@ -40,8 +40,8 @@ namespace Org.Ethasia.Fundetected.Core.Items
                 }
             }
 
-            PutItemInGrid(new ItemInventoryShapeWithPosition(item, position));
             RemoveItemFromGrid(lastItemInGrid);
+            PutItemInGrid(new ItemInventoryShapeWithPosition(item, position));
 
             return ItemReplacementResult.Succeeded(lastItemInGrid);
         }
