@@ -49,9 +49,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
                     if (inventorySlots[i, j] != null)
                     {
+                        inventorySlots[i, j].RenderNothing();
                         inventorySlots[i, j].RenderItem(slotRenderContext);
                     }
 
+                    UnrenderItemImage(i, j);
                     RenderItemImage(slotRenderContext, i, j);
                 }
             }
@@ -66,8 +68,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                     if (inventorySlots[x, y] != null)
                     {
                         inventorySlots[x, y].RenderNothing();
-
-                        UnrenderItem(x, y);
+                        UnrenderItemImage(x, y);
                     }
                 }
             }
@@ -196,7 +197,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             alreadyRenderedItems[posX, posY] = itemImage;            
         }
 
-        private void UnrenderItem(int posX, int posY)
+        private void UnrenderItemImage(int posX, int posY)
         {
             if (alreadyRenderedItems[posX, posY] != null)
             {
