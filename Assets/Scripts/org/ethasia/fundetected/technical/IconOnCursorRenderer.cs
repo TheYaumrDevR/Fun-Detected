@@ -24,7 +24,6 @@ namespace Org.Ethasia.Fundetected.Technical
 
             icon.enabled = true;
             icon.gameObject.SetActive(true);
-            Cursor.visible = false;
         }
 
         void Update()
@@ -38,7 +37,6 @@ namespace Org.Ethasia.Fundetected.Technical
         public void HideIcon()
         {
             icon.gameObject.SetActive(false);
-            Cursor.visible = true;
         }
 
         public bool HasItemOnCursor()
