@@ -120,10 +120,13 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         private InventoryGridItemDimensions CalculateTargetDropDimensions(Vector2 localClickPosition, int itemWidth, int itemHeight)
         {
-            int cellX = Mathf.FloorToInt(localClickPosition.x / CELL_SIZE);
-            int cellY = Mathf.FloorToInt(localClickPosition.y / CELL_SIZE);
+            float itemTopLeftX = localClickPosition.x - (itemWidth * CELL_SIZE) / 2f + CELL_SIZE / 2f;
+            float itemTopLeftY = localClickPosition.y - (itemHeight * CELL_SIZE) / 2f + CELL_SIZE / 2f;
 
-            if (cellX < 0 || cellY < 0 || cellX >= GRID_COLUMNS || cellY >= GRID_ROWS)
+            int cellX = Mathf.FloorToInt(itemTopLeftX / CELL_SIZE);
+            int cellY = Mathf.FloorToInt(itemTopLeftY / CELL_SIZE);
+
+            if (cellX + itemWidth <= 0 || cellY + itemHeight <= 0 || cellX >= GRID_COLUMNS || cellY >= GRID_ROWS)
             {
                 return new InventoryGridItemDimensions.Builder()
                     .SetTopLeftCornerX(0)
