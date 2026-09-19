@@ -151,11 +151,14 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
         private void SwapCursorItemWithEquipmentSlot(Action swapAction, Action<string> presentAction)
         {
+            PlayerCharacter player = Area.ActiveArea.Player;
             ItemInventory playerInventory = Area.ActiveArea.Player.ItemInventory;
 
             Item oldItemOnCursor = playerInventory.ItemOnCursor;
             swapAction();
             Item newItemOnCursor = playerInventory.ItemOnCursor;
+
+            player.RecalculateTotalStats();
 
             if (oldItemOnCursor != newItemOnCursor)
             {

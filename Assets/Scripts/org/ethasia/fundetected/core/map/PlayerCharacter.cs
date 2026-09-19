@@ -176,9 +176,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             if (result != equipment)
             {
-                TotalStats.Calculate(BaseStats, StatModifiers, ItemInventory.EquippedItems.EquipmentStats);
-                meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
-
+                RecalculateTotalStats();
                 return result;
             }
             else
@@ -223,6 +221,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
 
             return null;
+        }
+
+        public void RecalculateTotalStats()
+        {
+            TotalStats.Calculate(BaseStats, StatModifiers, ItemInventory.EquippedItems.EquipmentStats);
+            meleeAttack.SetAdditionalAttackRange(TotalStats.RightHandAbilityRange);
         }
 
         private void PresentDamage(int damageTaken)
@@ -287,7 +291,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 if (newLevel > currentLevel)
                 {
                     BaseStats.LevelUp(newLevel - currentLevel);
-                    TotalStats.Calculate(BaseStats, StatModifiers, ItemInventory.EquippedItems.EquipmentStats);
+                    RecalculateTotalStats();
                     TotalStats.FullHeal();
                 }
             }            
