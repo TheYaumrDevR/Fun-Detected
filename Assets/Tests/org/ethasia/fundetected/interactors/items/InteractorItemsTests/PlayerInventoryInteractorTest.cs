@@ -3,6 +3,7 @@ using System;
 
 using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Equipment;
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Ioadapters.Mocks;
 
@@ -78,15 +79,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
         [Test]
         public void TestPickItemFromGridAtPositionAddsItemToCursor()
         {
-            Weapon lootedWeaponOne = TestWeaponsProvider.CreateOneHandedStabbingSword();
-            Weapon lootedWeaponTwo = TestWeaponsProvider.CreateOneHandedStabbingSword();
-            Weapon lootedWeaponThree = TestWeaponsProvider.CreateOneHandedStabbingSword();
-            Weapon lootedWeaponFour = TestWeaponsProvider.CreateOneHandedStabbingSword();
-
-            Area.ActiveArea.Player.PickupEquipment(lootedWeaponOne);
-            Area.ActiveArea.Player.PickupEquipment(lootedWeaponTwo);
-            Area.ActiveArea.Player.PickupEquipment(lootedWeaponThree);
-            Area.ActiveArea.Player.PickupEquipment(lootedWeaponFour);
+            Weapon lootedWeaponFour = FillMainHandAndThreeGridSlotsWithStabbingSwords();
 
             Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
 
@@ -98,6 +91,79 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
         [Test]
         public void TestPickItemFromGridAtPositionDoesNotExist()
         {
+            FillMainHandAndThreeGridSlotsWithStabbingSwords();
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+
+            testCandidate.PickItemFromGridAtPosition(2, 0);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+        }
+
+        [Test]
+        public void TestTryDropItemOnCursorIntoGridAtPlacesItemAtTargetPosition()
+        {
+            Weapon lootedWeapon = TestWeaponsProvider.CreateOneHandedStabbingSword();
+
+            PutWeaponOnCursorViaMainHand(lootedWeapon);
+
+            testCandidate.TryDropItemOnCursorIntoGridAt(3, 0);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+
+            ItemInInventoryShape placedShape = Area.ActiveArea.Player.ItemInventory.InventoryGrid.GetItemAt(new PositionImmutable(3, 0));
+            Assert.That(placedShape, Is.Not.Null);
+            Assert.That(placedShape.Item, Is.EqualTo(lootedWeapon));
+        }
+
+        [Test]
+        public void TestTryDropItemOnCursorIntoGridAtSwapsWithExistingItemInGrid()
+        {
+            Weapon initiallyPlacedWeapon = TestWeaponsProvider.CreateOneHandedSword();
+            ItemInInventoryShape initiallyPlacedWeaponShape = initiallyPlacedWeapon.CreateInventoryShape();
+            Area.ActiveArea.Player.ItemInventory.InventoryGrid.ReplaceItemAt(initiallyPlacedWeaponShape, new PositionImmutable(3, 2));
+
+            Weapon secondWeapon = TestWeaponsProvider.CreateOneHandedStabbingSword();
+
+            PutWeaponOnCursorViaMainHand(secondWeapon);
+
+            testCandidate.TryDropItemOnCursorIntoGridAt(3, 0);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.EqualTo(initiallyPlacedWeapon));
+
+            ItemInInventoryShape placedShape = Area.ActiveArea.Player.ItemInventory.InventoryGrid.GetItemAt(new PositionImmutable(3, 0));
+            Assert.That(placedShape, Is.Not.Null);
+            Assert.That(placedShape.Item, Is.EqualTo(secondWeapon));
+        }
+
+        [Test]
+        public void TestTryDropItemOnCursorIntoGridAtDoesNotPlaceItemWhenTargetOverlapsTwoDifferentItems()
+        {
+            Jewelry firstOverlappedItem = TestJewelryProvider.CreateRing();
+            Jewelry secondOverlappedItem = TestJewelryProvider.CreateBelt();
+
+            Area.ActiveArea.Player.ItemInventory.InventoryGrid.ReplaceItemAt(firstOverlappedItem.CreateInventoryShape(), new PositionImmutable(3, 2));
+            Area.ActiveArea.Player.ItemInventory.InventoryGrid.ReplaceItemAt(secondOverlappedItem.CreateInventoryShape(), new PositionImmutable(4, 2));
+
+            Weapon itemToBePlaced = TestWeaponsProvider.CreateTwoHandedSword();
+
+            PutWeaponOnCursorViaMainHand(itemToBePlaced);
+
+            testCandidate.TryDropItemOnCursorIntoGridAt(3, 2);
+
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.EqualTo(itemToBePlaced));
+
+            ItemInInventoryShape firstItemShape = Area.ActiveArea.Player.ItemInventory.InventoryGrid.GetItemAt(new PositionImmutable(3, 2));
+            Assert.That(firstItemShape, Is.Not.Null);
+            Assert.That(firstItemShape.Item, Is.EqualTo(firstOverlappedItem));
+
+            ItemInInventoryShape secondItemShape = Area.ActiveArea.Player.ItemInventory.InventoryGrid.GetItemAt(new PositionImmutable(4, 2));
+            Assert.That(secondItemShape, Is.Not.Null);
+            Assert.That(secondItemShape.Item, Is.EqualTo(secondOverlappedItem));
+        }
+
+        private Weapon FillMainHandAndThreeGridSlotsWithStabbingSwords()
+        {
             Weapon lootedWeaponOne = TestWeaponsProvider.CreateOneHandedStabbingSword();
             Weapon lootedWeaponTwo = TestWeaponsProvider.CreateOneHandedStabbingSword();
             Weapon lootedWeaponThree = TestWeaponsProvider.CreateOneHandedStabbingSword();
@@ -106,13 +172,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
             Area.ActiveArea.Player.PickupEquipment(lootedWeaponOne);
             Area.ActiveArea.Player.PickupEquipment(lootedWeaponTwo);
             Area.ActiveArea.Player.PickupEquipment(lootedWeaponThree);
+
             Area.ActiveArea.Player.PickupEquipment(lootedWeaponFour);
+            return lootedWeaponFour;
+        }
 
-            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+        private Weapon PutWeaponOnCursorViaMainHand(Weapon weapon)
+        {
+            Area.ActiveArea.Player.PickupEquipment(weapon);
+            testCandidate.SwapCursorItemWithMainHandEquipment();
+            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.EqualTo(weapon));
 
-            testCandidate.PickItemFromGridAtPosition(2, 0);
-
-            Assert.That(Area.ActiveArea.Player.ItemInventory.ItemOnCursor, Is.Null);
+            return weapon;
         }
 
         private void SetupMapAndPlayer()
