@@ -426,6 +426,36 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
             Assert.That(helmetShape.IsAtPosition(new PositionImmutable(0, 0)), Is.True);
         }
 
+        [TestCase(-1, 0)]
+        [TestCase(0, -1)]
+        [TestCase(12, 0)]
+        [TestCase(0, 5)]
+        [TestCase(-1, -1)]
+        [TestCase(12, 5)]
+        public void GetItemAt_WhenPositionIsOutsideGrid_ReturnsNull(int x, int y)
+        {
+            ItemInventoryGrid inventoryGrid = new ItemInventoryGrid();
+            PositionImmutable outsidePosition = new PositionImmutable(x, y);
+
+            ItemInInventoryShape result = inventoryGrid.GetItemAt(outsidePosition);
+
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        public void GetItemAt_WhenItemWasPlacedAtPosition_ReturnsThatItem()
+        {
+            ItemInventoryGrid testCandidate = new ItemInventoryGrid();
+
+            ItemInInventoryShape bowShape = CreateBowShape();
+
+            testCandidate.ReplaceItemAt(bowShape, new PositionImmutable(10, 1));
+
+            ItemInInventoryShape result = testCandidate.GetItemAt(new PositionImmutable(11, 3));
+
+            Assert.That(result, Is.EqualTo(bowShape));
+        }
+
         private ItemInInventoryShape CreateBowShape()
         {
             Weapon.Builder bowBuilder = new Weapon.Builder();
