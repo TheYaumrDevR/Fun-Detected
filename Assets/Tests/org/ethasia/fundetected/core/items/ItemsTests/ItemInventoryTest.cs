@@ -99,6 +99,67 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
                 inv => inv.SwapCursorItemWithMainHandEquipment());
         }
 
+        [Test]
+        public void TestPlaceCursorItemIntoGrid_WhenItemOnCursorIsNull_ReturnsFalse()
+        {
+            ItemInventory itemInventory = new ItemInventory();
+            PositionImmutable targetPosition = new PositionImmutable(0, 0);
+
+            bool result = itemInventory.PlaceCursorItemIntoGrid(targetPosition);
+
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void TestPlaceCursorItemIntoGrid_WhenGridPositionIsEmpty_PlacesItemAndClearsCursor()
+        {
+            ItemInventory itemInventory = new ItemInventory();
+            PositionImmutable existingItemPosition = new PositionImmutable(6, 0);
+            PositionImmutable targetPosition = new PositionImmutable(0, 0);
+
+            Item itemToPlace = CreateWeapon("Test Sword", ItemClass.ONE_HANDED_SWORD, new DamageRange(3, 5));
+
+            PutItemOnCursor(itemInventory, itemToPlace, existingItemPosition);
+
+            bool result = itemInventory.PlaceCursorItemIntoGrid(targetPosition);
+
+            Assert.IsTrue(result);
+            Assert.IsNull(itemInventory.ItemOnCursor);
+
+            ItemInInventoryShape placedShape = itemInventory.InventoryGrid.GetItemAt(targetPosition);
+            Assert.IsNotNull(placedShape);
+            Assert.AreEqual(itemToPlace, placedShape.Item);
+        }
+
+        [Test]
+        public void TestPlaceCursorItemIntoGrid_WhenGridPositionIsOccupied_SwapsItemsAndPutsReplacedItemOnCursor()
+        {
+            ItemInventory itemInventory = new ItemInventory();
+            PositionImmutable stagingPosition = new PositionImmutable(6, 0);
+            PositionImmutable targetPosition = new PositionImmutable(0, 0);
+
+            Item existingItem = CreateWeapon("Existing Sword", ItemClass.ONE_HANDED_SWORD, new DamageRange(3, 5));
+            Item placedItem = CreateWeapon("Placed Sword", ItemClass.ONE_HANDED_SWORD, new DamageRange(4, 8));
+
+            // Place the existing item directly into the target position.
+            ItemInInventoryShape existingItemShape = existingItem.CreateInventoryShape();
+            itemInventory.InventoryGrid.ReplaceItemAt(existingItemShape, targetPosition);
+
+            // Stage the cursor item elsewhere, then pick it up onto the cursor.
+            PutItemOnCursor(itemInventory, placedItem, stagingPosition);
+
+            Assert.AreEqual(placedItem, itemInventory.ItemOnCursor);
+
+            bool result = itemInventory.PlaceCursorItemIntoGrid(targetPosition);
+
+            Assert.IsTrue(result);
+            Assert.AreEqual(existingItem, itemInventory.ItemOnCursor);
+
+            ItemInInventoryShape placedShape = itemInventory.InventoryGrid.GetItemAt(targetPosition);
+            Assert.IsNotNull(placedShape);
+            Assert.AreEqual(placedItem, placedShape.Item);
+        }
+
         private void TestIncompatibleEquipmentSwap(string compatibleSlot, 
             Action<ItemInventory> targetSlotAction,
             Action<ItemInventory> incompatibleSlotAction)
@@ -156,6 +217,13 @@ namespace Org.Ethasia.Fundetected.Core.Items.Tests
                 "Belt" => CreateWeapon("Five Finger Claw", ItemClass.FIST_WEAPON, new DamageRange(7, 54)),
                 _ => CreateRingWithImplicit("Default Incompatible")
             };
+        }
+
+        private void PutItemOnCursor(ItemInventory itemInventory, Item item, PositionImmutable stagingPosition)
+        {
+            ItemInInventoryShape shape = item.CreateInventoryShape();
+            itemInventory.InventoryGrid.ReplaceItemAt(shape, stagingPosition);
+            itemInventory.RemoveItemAtFromGrid(stagingPosition);
         }
 
         private Weapon CreateWeapon(string name, ItemClass itemClass, DamageRange damage = null)
