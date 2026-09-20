@@ -23,6 +23,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private VisualElement itemImagesLayer;
 
         private PlayerInventoryInteractor playerInventoryInteractor = new PlayerInventoryInteractor();
+        private InventoryGridDropPositionCalculator dropPositionCalculator = new InventoryGridDropPositionCalculator(GRID_COLUMNS, GRID_ROWS, CELL_SIZE);
 
         public InventoryGridPanel()
         {
@@ -110,41 +111,12 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
             (int itemWidth, int itemHeight) = playerInventoryInteractor.GetItemOnCursorDimensions();
 
-            InventoryGridItemDimensions targetDimensions = CalculateTargetDropDimensions(localClickPosition, itemWidth, itemHeight);
+            InventoryGridItemDimensions targetDimensions = dropPositionCalculator.CalculateTargetDropDimensions(localClickPosition, itemWidth, itemHeight);
 
             if (targetDimensions.Width > 0 && targetDimensions.Height > 0)
             {
                 DropItemIntoBackendGrid(targetDimensions);
             }
-        }
-
-        private InventoryGridItemDimensions CalculateTargetDropDimensions(Vector2 localClickPosition, int itemWidth, int itemHeight)
-        {
-            float itemTopLeftX = localClickPosition.x - (itemWidth * CELL_SIZE) / 2f + CELL_SIZE / 2f;
-            float itemTopLeftY = localClickPosition.y - (itemHeight * CELL_SIZE) / 2f + CELL_SIZE / 2f;
-
-            int cellX = Mathf.FloorToInt(itemTopLeftX / CELL_SIZE);
-            int cellY = Mathf.FloorToInt(itemTopLeftY / CELL_SIZE);
-
-            if (cellX + itemWidth <= 0 || cellY + itemHeight <= 0 || cellX >= GRID_COLUMNS || cellY >= GRID_ROWS)
-            {
-                return new InventoryGridItemDimensions.Builder()
-                    .SetTopLeftCornerX(0)
-                    .SetTopLeftCornerY(0)
-                    .SetWidth(0)
-                    .SetHeight(0)
-                    .Build();
-            }
-
-            cellX = Mathf.Clamp(cellX, 0, GRID_COLUMNS - itemWidth);
-            cellY = Mathf.Clamp(cellY, 0, GRID_ROWS - itemHeight);
-
-            return new InventoryGridItemDimensions.Builder()
-                .SetTopLeftCornerX(cellX)
-                .SetTopLeftCornerY(cellY)
-                .SetWidth(itemWidth)
-                .SetHeight(itemHeight)
-                .Build();
         }
 
         private void DropItemIntoBackendGrid(InventoryGridItemDimensions targetDimensions)
@@ -216,6 +188,49 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             }
 
             alreadyRenderedItems[posX, posY] = null;
+        }
+
+        public class InventoryGridDropPositionCalculator
+        {
+            private readonly int gridColumns;
+            private readonly int gridRows;
+            private readonly int cellSize;
+
+            public InventoryGridDropPositionCalculator(int gridColumns, int gridRows, int cellSize)
+            {
+                this.gridColumns = gridColumns;
+                this.gridRows = gridRows;
+                this.cellSize = cellSize;
+            }
+
+            public InventoryGridItemDimensions CalculateTargetDropDimensions(Vector2 localClickPosition, int itemWidth, int itemHeight)
+            {
+                float itemTopLeftX = localClickPosition.x - itemWidth * cellSize / 2f + cellSize / 2f;
+                float itemTopLeftY = localClickPosition.y - itemHeight * cellSize / 2f + cellSize / 2f;
+
+                int cellX = Mathf.FloorToInt(itemTopLeftX / cellSize);
+                int cellY = Mathf.FloorToInt(itemTopLeftY / cellSize);
+
+                if (cellX + itemWidth <= 0 || cellY + itemHeight <= 0 || cellX >= gridColumns || cellY >= gridRows)
+                {
+                    return new InventoryGridItemDimensions.Builder()
+                        .SetTopLeftCornerX(0)
+                        .SetTopLeftCornerY(0)
+                        .SetWidth(0)
+                        .SetHeight(0)
+                        .Build();
+                }
+
+                cellX = Mathf.Clamp(cellX, 0, gridColumns - itemWidth);
+                cellY = Mathf.Clamp(cellY, 0, gridRows - itemHeight);
+
+                return new InventoryGridItemDimensions.Builder()
+                    .SetTopLeftCornerX(cellX)
+                    .SetTopLeftCornerY(cellY)
+                    .SetWidth(itemWidth)
+                    .SetHeight(itemHeight)
+                    .Build();
+            }
         }
     }
 }
