@@ -164,7 +164,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return;
             }
 
-            int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, 0);
+            int finalDamage = Formulas.CalculatePhysicalDamageAfterReduction(incomingDamage, TotalStats.Armor);
             TotalStats.ReduceCurrentLifeBy(finalDamage);
 
             PresentDamage(finalDamage);

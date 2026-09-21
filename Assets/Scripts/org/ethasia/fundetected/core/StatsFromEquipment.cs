@@ -178,6 +178,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int PlusArmor
+        {
+            get;
+            private set;
+        }
+
         public StatsFromEquipment()
         {
             PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks = new DamageRange(0, 0);
@@ -344,6 +350,11 @@ namespace Org.Ethasia.Fundetected.Core
             PlusLeftHandWeaponRange += value;
         }
 
+        public void IncreasePlusArmorBy(int value)
+        {
+            PlusArmor += value;
+        }
+
         public void DecreasePlusIntelligenceBy(int value)
         {
             PlusIntelligence -= value;
@@ -500,6 +511,11 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusLeftHandWeaponRange(int value)
         {
             PlusLeftHandWeaponRange -= value;
+        }
+
+        public void DecreasePlusArmorBy(int value)
+        {
+            PlusArmor -= value;
         }
     }
 }

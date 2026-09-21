@@ -110,6 +110,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public int Armor
+        {
+            get;
+            private set;
+        }
+
         public PlayerCharacterTotalStats()
         {
             PhysicalDamageWithRightHandMeleeAttacks = new DamageRange(0, 0);
@@ -362,6 +368,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 .Build();
 
             LeftHandAbilityRange = CalculateTotal(context);
+        }
+
+        private void CalculateArmor(PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
+        {
+            TotalStatValueCalculationContext context = new TotalStatValueCalculationContext.Builder()
+                .SetBaseStat(0)
+                .SetAddend(equipmentStats.PlusArmor)
+                .SetIncrease(1.0f)
+                .SetMultiplier(1.0f)
+                .Build();
+
+            Armor = CalculateTotal(context);
         }
 
         private int CalculateTotal(TotalStatValueCalculationContext context)
