@@ -5,6 +5,7 @@ using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Combat;
 using Org.Ethasia.Fundetected.Interactors.Map;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Interactors.Initialization
 {
@@ -33,7 +34,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Initialization
 
             Position playerPosition = new Position(Area.ActiveArea.GetPlayerPositionX(), Area.ActiveArea.GetPlayerPositionY());
 
-            IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer(playerName, playerPosition);
+            AnimationPresentationContext animationContext = new AnimationPresentationContext
+            {
+                AnimationSpeedMultiplierStatProvider = binding => GetPlayerStatValueForAnimationSpeedBinding(playerCharacter, binding)
+            };
+
+            IoAdaptersFactoryForInteractors.GetInstance().GetPlayerCharacterPresenterInstance().PresentPlayer(playerName, playerPosition, animationContext);
         }
 
         private CharacterCreationMasterData CreateCharacterCreationMasterDataFromSelectedCharacterTraits(CharacterClasses characterClass)
@@ -136,6 +142,21 @@ namespace Org.Ethasia.Fundetected.Interactors.Initialization
                 .SetDistanceToTopEdge(boundingBoxMasterData.DistanceToTopEdge)
                 .SetDistanceToBottomEdge(boundingBoxMasterData.DistanceToBottomEdge)
                 .Build();
+        }
+
+        private float GetPlayerStatValueForAnimationSpeedBinding(PlayerCharacter playerCharacter, AnimationSpeedStatBindings binding)
+        {
+            var totalStats = playerCharacter.TotalStats;
+
+            switch (binding)
+            {
+                case AnimationSpeedStatBindings.ATTACK_SPEED:
+                    return (float)totalStats.AttacksPerSecond;
+                case AnimationSpeedStatBindings.CAST_SPEED:
+                    return (float)totalStats.AttacksPerSecond;
+                default:
+                    return 1f;
+            }
         }
     }
 }

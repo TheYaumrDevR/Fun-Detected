@@ -12,7 +12,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return playerWasPresented;
         }
 
-        public void PresentPlayer(string playerName, Position playerPosition)
+        public void PresentPlayer(string playerName, Position playerPosition, AnimationPresentationContext animationContext)
         {
             playerWasPresented = true;
         }

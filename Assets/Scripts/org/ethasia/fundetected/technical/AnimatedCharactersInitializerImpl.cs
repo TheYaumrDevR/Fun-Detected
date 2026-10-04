@@ -39,6 +39,7 @@ namespace Org.Ethasia.Fundetected.Technical
             stateMachineConversionContext.SpriteRenderer = createdCharacterEngineObjects.CharacterSpriteRenderer;
             stateMachineConversionContext.Sprite2dAnimatorContainer = createdCharacterEngineObjects.CharacterAnimatorBehavior;
             stateMachineConversionContext.AnimatedObjectId = animatedCharacterProxy.IndividualId;
+            stateMachineConversionContext.AnimationSpeedMultiplierFromStatBindingProvider = animatedCharacterProxy.AnimationSpeedMultiplierFromStatProvider;
 
             StateMachine animationStateMachine = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(stateMachineConversionContext);
                         

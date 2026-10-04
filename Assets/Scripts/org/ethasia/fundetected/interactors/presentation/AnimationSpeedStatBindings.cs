@@ -1,4 +1,4 @@
-namespace Org.Ethasia.Fundetected.Ioadapters.Animation
+namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
     public enum AnimationSpeedStatBindings
     {

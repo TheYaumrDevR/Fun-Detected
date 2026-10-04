@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Org.Ethasia.Fundetected.Core.Maths;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Animation;
 
 namespace Org.Ethasia.Fundetected.Technical.Animation
@@ -123,7 +124,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 .SetAnimator(sprite2dAnimator)
                 .SetAnimation(animation)
                 .SetAnimationSpeedMultiplierProvider(() => baseSpeedMultiplier * ResolveBoundAnimationSpeedStatMultiplier(speedBinding, animationSpeedMultiplierFromStatProvider))
-                .Build();            
+                .Build();       
 
             StateMachineNodeWithTransitions stateMachineNode = new StateMachineNodeWithTransitions.Builder()
                 .SetStateEntryCommand(stateEntryCommand)

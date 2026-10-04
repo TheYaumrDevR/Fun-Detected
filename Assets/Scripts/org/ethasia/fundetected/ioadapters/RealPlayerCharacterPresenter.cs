@@ -10,7 +10,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private const string PLAYER_CHARACTER_ID_PREFIX = "PlayerCharacter ";
         private IAnimatedCharactersInitializer playerCharacterInitializer;
 
-        public void PresentPlayer(string playerName, Position playerPosition)
+        public void PresentPlayer(string playerName, Position playerPosition, AnimationPresentationContext animationContext)
         {
             playerCharacterInitializer = TechnicalFactory.GetInstance().GetPlayerCharacterInitializerInstance();
 
@@ -27,6 +27,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetScaleX(2.936439f)
                 .SetScaleY(3.046849f)
                 .SetAnimationProperties(animation2dData)
+                .SetAnimationSpeedMultiplierFromStatProvider(animationContext.AnimationSpeedMultiplierStatProvider)
                 .Build();
 
             playerCharacterInitializer.InitializeAnimatedCharacter(gameObjectProxy);
