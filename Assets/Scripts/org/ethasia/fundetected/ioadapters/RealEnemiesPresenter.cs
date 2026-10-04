@@ -25,6 +25,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     .SetScaleX(enemyRenderData.WidthX / 10.0f)
                     .SetScaleY(enemyRenderData.WidthY  / 10.0f)
                     .SetAnimationProperties(animation2dData)
+                    .SetAnimationSpeedMultiplierFromStatProvider(enemyRenderData.AnimationContext.AnimationSpeedMultiplierStatProvider)
                     .SetAnimationStateMachineAssignmentFunction(enemyRenderData.AnimationStateMachineAssignmentFunction)
                     .Build();
 

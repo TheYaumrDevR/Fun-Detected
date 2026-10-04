@@ -11,6 +11,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         public string TypeId;
         public string IndividualId;
 
+        public AnimationPresentationContext AnimationContext { get; set; }
+
         public IAnimationStateMachineAssignmentFunction AnimationStateMachineAssignmentFunction;
     }
 }

@@ -234,12 +234,29 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 enemyRenderData.WidthY = renderingMasterData.DistanceToBottomRenderEdge + renderingMasterData.DistanceToTopRenderEdge + 1;
 
                 enemyRenderData.AnimationStateMachineAssignmentFunction = animationStateMachineAssignmentFunction;
+                enemyRenderData.AnimationContext = new AnimationPresentationContext
+                {
+                    AnimationSpeedMultiplierStatProvider = binding => GetEnemyStatValueForAnimationSpeedBinding(spawnedEnemy, binding)
+                };
 
                 enemiesToShow.Add(enemyRenderData);
             }
 
             enemyPresenter.PresentEnemies(enemiesToShow);
         } 
+
+        private float GetEnemyStatValueForAnimationSpeedBinding(Enemy enemy, AnimationSpeedStatBindings binding)
+        {
+            switch (binding)
+            {
+                case AnimationSpeedStatBindings.ATTACK_SPEED:
+                    return (float)enemy.AttacksPerSecond;
+                case AnimationSpeedStatBindings.CAST_SPEED:
+                    return (float)enemy.AttacksPerSecond;
+                default:
+                    return 1f;
+            }
+        }
 
         private void ShowDroppedItems(Area map)
         {
