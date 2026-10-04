@@ -6,6 +6,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
     {
         public string Name;
         public float AnimationSpeedMultiplier;
+        public AnimationSpeedStatBindings AnimationSpeedMultiplierBinding;
         public Animation2dProperties Animation;
 
         public bool IsRootNode
@@ -25,6 +26,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             Name = "";
             IsRootNode = isRootNode;
             AnimationSpeedMultiplier = 1.0f;
+            AnimationSpeedMultiplierBinding = AnimationSpeedStatBindings.NONE;
             Animation = new Animation2dProperties("", false);
             Transitions = new Dictionary<string, Animation2dGraphNodeProperties>();
         }

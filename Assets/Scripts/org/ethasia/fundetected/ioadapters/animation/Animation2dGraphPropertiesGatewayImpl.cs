@@ -81,6 +81,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
         private void CreateAnimationGraphNode(Dictionary<string, Animation2dGraphNodeProperties> animationGraphNodesById, XmlElement animationXml)
         {
             string speedMultiplierText = animationXml.GetAttribute("speedMultiplier");
+            string speedMultiplierBindingText = animationXml.GetAttribute("speedMultiplierBinding");
             string nodeId = animationXml.GetAttribute("id");
 
             Animation2dGraphNodeProperties animationNode = new Animation2dGraphNodeProperties(false);
@@ -89,7 +90,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
             if (Single.TryParse(speedMultiplierText, NumberStyles.Float, CultureInfo.InvariantCulture, out float speedMultiplier))
             {
                 animationNode.AnimationSpeedMultiplier = speedMultiplier;
-            }                
+            }    
+
+            if (!string.IsNullOrEmpty(speedMultiplierBindingText)
+                && Enum.TryParse(speedMultiplierBindingText, out AnimationSpeedStatBindings speedMultiplierBinding))
+            {
+                animationNode.AnimationSpeedMultiplierBinding = speedMultiplierBinding;
+            }            
 
             Animation2dProperties animation = CreateAnimation2dProperties(animationXml);
             animationNode.Animation = animation;

@@ -1,3 +1,5 @@
+using System;
+
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Technical.Animation
@@ -6,20 +8,22 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
     {
         private Sprite2dAnimator animator;
         private Sprite2dAnimation animation;
-        private float animationSpeedMultiplier;
+        private Func<float> animationSpeedMultiplierProvider;
 
         public void Execute()
         {
             animation.Reset();
             animator.Animation = animation;
-            animator.SpeedMultiplier = animationSpeedMultiplier;
+            animator.SpeedMultiplier = null != animationSpeedMultiplierProvider
+                ? animationSpeedMultiplierProvider()
+                : 1f;
         }
 
         public class Builder
         {
             private Sprite2dAnimator animator;
             private Sprite2dAnimation animation;
-            private float animationSpeedMultiplier;           
+            private Func<float> animationSpeedMultiplierProvider;        
 
             public Builder SetAnimator(Sprite2dAnimator value)
             {
@@ -35,9 +39,15 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
             public Builder SetAnimationSpeedMultiplier(float value)
             {
-                animationSpeedMultiplier = value;
+                animationSpeedMultiplierProvider = () => value;
                 return this;
-            }     
+            }   
+
+            public Builder SetAnimationSpeedMultiplierProvider(Func<float> value)
+            {
+                animationSpeedMultiplierProvider = value;
+                return this;
+            }  
 
             public Sprite2dAnimatorStateChangeCommand Build()
             {
@@ -45,7 +55,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
 
                 result.animator = animator;
                 result.animation = animation;
-                result.animationSpeedMultiplier = animationSpeedMultiplier;
+                result.animationSpeedMultiplierProvider = animationSpeedMultiplierProvider;
 
                 return result;
             }                  

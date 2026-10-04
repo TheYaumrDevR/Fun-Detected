@@ -1,3 +1,5 @@
+using System;
+
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Animation;
 
@@ -41,6 +43,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }  
 
+        public Func<AnimationSpeedStatBindings, float> AnimationSpeedMultiplierFromStatProvider
+        {
+            get;
+            private set;
+        }
+
         public Animation2dGraphNodeProperties Animation2DGraphNodeProperties
         {
             get;
@@ -61,6 +69,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private float posY; 
             private float scaleX; 
             private float scaleY;  
+            private Func<AnimationSpeedStatBindings, float> animationSpeedMultiplierFromStatProvider;
             private Animation2dGraphNodeProperties animationProperties;    
             private IAnimationStateMachineAssignmentFunction animationStateMachineAssignmentFunction;
 
@@ -100,6 +109,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 return this;
             }  
 
+            public Builder SetAnimationSpeedMultiplierFromStatProvider(Func<AnimationSpeedStatBindings, float> value)
+            {
+                animationSpeedMultiplierFromStatProvider = value;
+                return this;
+            }
+
             public Builder SetAnimationProperties(Animation2dGraphNodeProperties value)
             {
                 animationProperties = value;
@@ -122,6 +137,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
                 result.PosY = posY;
                 result.ScaleX = scaleX;
                 result.ScaleY = scaleY;
+                result.AnimationSpeedMultiplierFromStatProvider = animationSpeedMultiplierFromStatProvider;
                 result.Animation2DGraphNodeProperties = animationProperties;
                 result.AnimationStateMachineAssignmentFunction = animationStateMachineAssignmentFunction;
 

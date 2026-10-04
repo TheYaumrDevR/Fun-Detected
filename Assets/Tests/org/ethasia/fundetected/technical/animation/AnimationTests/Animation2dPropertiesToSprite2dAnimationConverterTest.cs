@@ -13,29 +13,9 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
         public void TestConvertAnimation2dGraphToStateMachineNodesCreatesAllNodes()
         {
             // Arrange
-            var idleNode = new Animation2dGraphNodeProperties(true);
-            idleNode.Name = "idle";
-            idleNode.Animation = new Animation2dProperties("EnemyIdle", true);
-            idleNode.AnimationSpeedMultiplier = 1.0f;
-            idleNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(0, false));
-            idleNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(1, false));
-            idleNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(2, false));
-
-            var walkNode = new Animation2dGraphNodeProperties(false);
-            walkNode.Name = "walk";
-            walkNode.Animation = new Animation2dProperties("EnemyWalk", true);
-            walkNode.AnimationSpeedMultiplier = 1.0f;  
-            walkNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(0, false));
-            walkNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(1, false));
-            walkNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(2, false));
-
-            var jumpNode = new Animation2dGraphNodeProperties(false);
-            jumpNode.Name = "jump";
-            jumpNode.Animation = new Animation2dProperties("EnemyJump", false);
-            jumpNode.AnimationSpeedMultiplier = 1.0f;  
-            jumpNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(0, false));
-            jumpNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(1, false));
-            jumpNode.Animation.AnimationFrames.Add(new Animation2dFrameProperties(2, false));
+            var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 3);
+            var walkNode = CreateNode("walk", false, "EnemyWalk", true, 1.0f, 3);
+            var jumpNode = CreateNode("jump", false, "EnemyJump", false, 1.0f, 3);
 
             idleNode.Transitions.Add("walk", walkNode);
             idleNode.Transitions.Add("jump", jumpNode);      
@@ -70,6 +50,89 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             Assert.That(result.CanExecuteAction("walk"), Is.True);
 
             result.ExecuteAction("idle");
+        }
+
+        [Test]
+        public void TestConvertAnimation2dGraphNodePropertiesToStateMachineAppliesAttackSpeedBinding()
+        {
+            // Arrange
+            var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 1);
+            var attackNode = CreateNode("attack", false, "EnemyAttack", false, 2.0f, 1);
+            attackNode.AnimationSpeedMultiplierBinding = AnimationSpeedStatBindings.ATTACK_SPEED;
+
+            idleNode.Transitions.Add("attack", attackNode);
+            attackNode.Transitions.Add("idle", idleNode);
+
+            var spriteRenderer = new SpriteRenderer();
+            var animatorContainer = new Sprite2dAnimatorBehavior();
+
+            Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
+            stateMachineConversionContext.ToConvert = idleNode;
+            stateMachineConversionContext.SpriteRenderer = spriteRenderer;
+            stateMachineConversionContext.Sprite2dAnimatorContainer = animatorContainer;
+            stateMachineConversionContext.AnimatedObjectId = "";
+            stateMachineConversionContext.AnimationSpeedMultiplierFromStatBindingProvider = (binding) =>
+            {
+                if (binding == AnimationSpeedStatBindings.ATTACK_SPEED)
+                {
+                    return 3.0f;
+                }
+
+                return 1.0f;
+            };
+
+            // Act
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(stateMachineConversionContext);
+            result.ExecuteAction("attack");
+
+            // Assert
+            Assert.That(animatorContainer.AnimatorHasSpeedMultiplier(6.0f), Is.True);
+        }
+
+        [Test]
+        public void TestConvertAnimation2dGraphNodePropertiesToStateMachineDefaultsToMultiplierOfOneWhenNoStatBindingSet()
+        {
+            // Arrange
+            var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 1);
+            var attackNode = CreateNode("attack", false, "EnemyAttack", false, 2.0f, 1);
+
+            idleNode.Transitions.Add("attack", attackNode);
+            attackNode.Transitions.Add("idle", idleNode);
+
+            var spriteRenderer = new SpriteRenderer();
+            var animatorContainer = new Sprite2dAnimatorBehavior();
+
+            Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
+            stateMachineConversionContext.ToConvert = idleNode;
+            stateMachineConversionContext.SpriteRenderer = spriteRenderer;
+            stateMachineConversionContext.Sprite2dAnimatorContainer = animatorContainer;
+            stateMachineConversionContext.AnimatedObjectId = "";
+            stateMachineConversionContext.AnimationSpeedMultiplierFromStatBindingProvider = (binding) =>
+            {
+                return 5.0f;
+            };
+
+            // Act
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(stateMachineConversionContext);
+            result.ExecuteAction("attack");
+
+            // Assert
+            Assert.That(animatorContainer.AnimatorHasSpeedMultiplier(2.0f), Is.True);
+        }
+
+        private static Animation2dGraphNodeProperties CreateNode(string animationName, bool isDefault, string spriteImageName, bool loops, float animationSpeedMultiplier, int frameCount)
+        {
+            var node = new Animation2dGraphNodeProperties(isDefault);
+            node.Name = animationName;
+            node.Animation = new Animation2dProperties(spriteImageName, loops);
+            node.AnimationSpeedMultiplier = animationSpeedMultiplier;
+
+            for (int i = 0; i < frameCount; i++)
+            {
+                node.Animation.AnimationFrames.Add(new Animation2dFrameProperties(i, false));
+            }
+
+            return node;
         }
     }
 }

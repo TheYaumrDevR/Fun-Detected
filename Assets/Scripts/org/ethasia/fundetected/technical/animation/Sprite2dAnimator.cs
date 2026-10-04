@@ -27,5 +27,10 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 Animation.Update(deltaTime * SpeedMultiplier);
             }
         }
+
+        public bool HasSpeedMultiplier(float expected)
+        {
+            return SpeedMultiplier == expected;
+        }
     }
 }
