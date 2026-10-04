@@ -51,11 +51,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
                 statsFromEquipment.IncreasePlusRightHandWeaponRange(WeaponRange);
+                statsFromEquipment.SetRightHandWeaponSkillsPerSecond(SkillsPerSecond);
             }
             else if (slotType == EquipmentSlotTypes.OFF_HAND)
             {
                 statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
                 statsFromEquipment.IncreasePlusLeftHandWeaponRange(WeaponRange);
+                statsFromEquipment.SetLeftHandWeaponSkillsPerSecond(SkillsPerSecond);
             }
         }
 
@@ -67,11 +69,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
                 statsFromEquipment.DecreasePlusRightHandWeaponRange(WeaponRange);
+                statsFromEquipment.ClearRightHandWeaponSkillsPerSecond();
             }
             else if (slotType == EquipmentSlotTypes.OFF_HAND)
             {
                 statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
                 statsFromEquipment.DecreasePlusLeftHandWeaponRange(WeaponRange);
+                statsFromEquipment.ClearLeftHandWeaponSkillsPerSecond();
             }
         }
 

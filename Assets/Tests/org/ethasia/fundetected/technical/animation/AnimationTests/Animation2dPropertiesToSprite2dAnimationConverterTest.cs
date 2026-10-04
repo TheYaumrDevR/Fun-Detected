@@ -59,7 +59,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             // Arrange
             var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 1);
             var attackNode = CreateNode("attack", false, "EnemyAttack", false, 2.0f, 1);
-            attackNode.AnimationSpeedMultiplierBinding = AnimationSpeedStatBindings.ATTACK_SPEED;
+            attackNode.AnimationSpeedMultiplierBinding = AnimationSpeedStatBindings.ATTACK_SPEED_RIGHT;
 
             idleNode.Transitions.Add("attack", attackNode);
             attackNode.Transitions.Add("idle", idleNode);
@@ -74,7 +74,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             stateMachineConversionContext.AnimatedObjectId = "";
             stateMachineConversionContext.AnimationSpeedMultiplierFromStatBindingProvider = (binding) =>
             {
-                if (binding == AnimationSpeedStatBindings.ATTACK_SPEED)
+                if (binding == AnimationSpeedStatBindings.ATTACK_SPEED_RIGHT)
                 {
                     return 3.0f;
                 }

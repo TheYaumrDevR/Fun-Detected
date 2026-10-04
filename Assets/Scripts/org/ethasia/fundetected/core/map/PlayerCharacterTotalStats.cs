@@ -80,7 +80,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
-        public double AttacksPerSecond
+        public double RightHandAttacksPerSecond
+        {
+            get;
+            private set;
+        }
+
+        public double LeftHandAttacksPerSecond
         {
             get;
             private set;
@@ -325,11 +331,20 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CalculateAttacksPerSecond(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
         {
-            double result = baseStats.AttacksPerSecond;
-            result *= 1.0f + modifiers.AttacksPerSecondIncrease;
-            result *= modifiers.AttacksPerSecondMultiplier;
+            double unarmedSpeed = baseStats.AttacksPerSecond;
 
-            AttacksPerSecond = result;
+            double rightHandBaseSpeed = equipmentStats.RightHandWeaponSkillsPerSecond > 0
+                ? equipmentStats.RightHandWeaponSkillsPerSecond
+                : unarmedSpeed;
+
+            double leftHandBaseSpeed = equipmentStats.LeftHandWeaponSkillsPerSecond > 0
+                ? equipmentStats.LeftHandWeaponSkillsPerSecond
+                : unarmedSpeed;
+
+            double multiplier = (1.0 + modifiers.AttacksPerSecondIncrease) * modifiers.AttacksPerSecondMultiplier;
+
+            RightHandAttacksPerSecond = rightHandBaseSpeed * multiplier;
+            LeftHandAttacksPerSecond = leftHandBaseSpeed * multiplier;
         }
 
         private void CalculateMovementSpeed(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)

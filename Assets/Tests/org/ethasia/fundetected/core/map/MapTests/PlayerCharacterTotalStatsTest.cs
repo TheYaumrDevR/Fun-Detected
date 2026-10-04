@@ -282,7 +282,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
-            Assert.That(testCandidate.AttacksPerSecond, Is.EqualTo(3.0576001495361336)); 
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(3.0576001495361336)); 
         }
 
         [Test]
@@ -336,7 +336,7 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(testCandidate.PhysicalDamageWithSpells.MaxDamage, Is.EqualTo(160));
             Assert.That(testCandidate.AccuracyRating, Is.EqualTo(642));
             Assert.That(testCandidate.EvasionRating, Is.EqualTo(726));
-            Assert.That(testCandidate.AttacksPerSecond, Is.EqualTo(3.0576001495361336));
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(3.0576001495361336));
             Assert.That(testCandidate.MovementSpeed, Is.EqualTo(423));
         }
 
@@ -592,6 +592,149 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
 
             Assert.That(testCandidate.AccuracyRating, Is.EqualTo(369)); 
+        }
+
+        [Test]
+        public void TestCalculateAttacksPerSecondUsesBaseAttacksPerSecondWhenNoWeaponsEquipped()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            statModifiers.AddAttacksPerSecondIncrease(0.1f);
+            statModifiers.AddAttacksPerSecondIncrease(0.2f);
+
+            statModifiers.AddAttacksPerSecondMultiplier(1.2f);
+            statModifiers.AddAttacksPerSecondMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(3.0576001495361336).Within(0.0000001));
+            Assert.That(testCandidate.LeftHandAttacksPerSecond, Is.EqualTo(3.0576001495361336).Within(0.0000001));
+        }
+
+        [Test]
+        public void TestCalculateAttacksPerSecondUsesRightHandWeaponSpeedWhenEquippedInRightHand()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.SetRightHandWeaponSkillsPerSecond(2.0);
+
+            statModifiers.AddAttacksPerSecondIncrease(0.1f);
+            statModifiers.AddAttacksPerSecondIncrease(0.2f);
+
+            statModifiers.AddAttacksPerSecondMultiplier(1.2f);
+            statModifiers.AddAttacksPerSecondMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            double expectedMultiplier = (1.0 + 0.1 + 0.2) * 1.2 * 1.4;
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(2.0 * expectedMultiplier).Within(0.000001));
+            Assert.That(testCandidate.LeftHandAttacksPerSecond, Is.EqualTo(1.4 * expectedMultiplier).Within(0.000001));
+        }
+
+        [Test]
+        public void TestCalculateAttacksPerSecondUsesLeftHandWeaponSpeedWhenEquippedInLeftHand()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.SetLeftHandWeaponSkillsPerSecond(3.0);
+
+            statModifiers.AddAttacksPerSecondIncrease(0.1f);
+            statModifiers.AddAttacksPerSecondIncrease(0.2f);
+
+            statModifiers.AddAttacksPerSecondMultiplier(1.2f);
+            statModifiers.AddAttacksPerSecondMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            double expectedMultiplier = (1.0 + 0.1 + 0.2) * 1.2 * 1.4;
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(1.4 * expectedMultiplier).Within(0.000001));
+            Assert.That(testCandidate.LeftHandAttacksPerSecond, Is.EqualTo(3.0 * expectedMultiplier).Within(0.000001));
+        }
+
+        [Test]
+        public void TestCalculateAttacksPerSecondUsesDifferentWeaponSpeedsForEachHandWhenDualWielding()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.SetRightHandWeaponSkillsPerSecond(1.8);
+            equipmentStats.SetLeftHandWeaponSkillsPerSecond(2.5);
+
+            statModifiers.AddAttacksPerSecondIncrease(0.1f);
+            statModifiers.AddAttacksPerSecondIncrease(0.2f);
+
+            statModifiers.AddAttacksPerSecondMultiplier(1.2f);
+            statModifiers.AddAttacksPerSecondMultiplier(1.4f);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            double expectedMultiplier = (1.0 + 0.1 + 0.2) * 1.2 * 1.4;
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(1.8 * expectedMultiplier).Within(0.000001));
+            Assert.That(testCandidate.LeftHandAttacksPerSecond, Is.EqualTo(2.5 * expectedMultiplier).Within(0.000001));
+        }
+
+        [Test]
+        public void TestCalculateAttacksPerSecondFallsBackToUnarmedWhenWeaponSkillsPerSecondIsZeroOrNegative()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.SetRightHandWeaponSkillsPerSecond(0);
+            equipmentStats.SetLeftHandWeaponSkillsPerSecond(-1);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(baseStats.AttacksPerSecond).Within(0.0000001));
+            Assert.That(testCandidate.LeftHandAttacksPerSecond, Is.EqualTo(baseStats.AttacksPerSecond).Within(0.0000001));
+        }
+
+        [Test]
+        public void TestCalculateAttacksPerSecondRecalculatesCorrectlyAfterUnequippingWeapon()
+        {
+            PlayerCharacterAdditionalStats statModifiers = new PlayerCharacterAdditionalStats();
+            StatsFromEquipment equipmentStats = new StatsFromEquipment();
+
+            equipmentStats.SetRightHandWeaponSkillsPerSecond(2.2);
+
+            PlayerCharacterBaseStats baseStats = CreateBaseStats();
+
+            PlayerCharacterTotalStats testCandidate = new PlayerCharacterTotalStats();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(2.2).Within(0.0000001));
+
+            equipmentStats.ClearRightHandWeaponSkillsPerSecond();
+
+            testCandidate.Calculate(baseStats, statModifiers, equipmentStats);
+
+            Assert.That(testCandidate.RightHandAttacksPerSecond, Is.EqualTo(baseStats.AttacksPerSecond).Within(0.0000001));
         }
 
         private PlayerCharacterAdditionalStats CreateAdditionalStats()

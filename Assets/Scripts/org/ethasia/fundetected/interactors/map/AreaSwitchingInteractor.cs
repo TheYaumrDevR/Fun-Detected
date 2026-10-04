@@ -249,7 +249,9 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
         {
             switch (binding)
             {
-                case AnimationSpeedStatBindings.ATTACK_SPEED:
+                case AnimationSpeedStatBindings.ATTACK_SPEED_RIGHT:
+                    return (float)enemy.AttacksPerSecond;
+                case AnimationSpeedStatBindings.ATTACK_SPEED_LEFT:
                     return (float)enemy.AttacksPerSecond;
                 case AnimationSpeedStatBindings.CAST_SPEED:
                     return (float)enemy.AttacksPerSecond;

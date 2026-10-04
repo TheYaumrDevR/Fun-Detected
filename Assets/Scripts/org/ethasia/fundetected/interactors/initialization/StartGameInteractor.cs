@@ -150,10 +150,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Initialization
 
             switch (binding)
             {
-                case AnimationSpeedStatBindings.ATTACK_SPEED:
-                    return (float)totalStats.AttacksPerSecond;
+                case AnimationSpeedStatBindings.ATTACK_SPEED_RIGHT:
+                    return (float)totalStats.RightHandAttacksPerSecond;
+                case AnimationSpeedStatBindings.ATTACK_SPEED_LEFT:
+                    return (float)totalStats.LeftHandAttacksPerSecond;
                 case AnimationSpeedStatBindings.CAST_SPEED:
-                    return (float)totalStats.AttacksPerSecond;
+                    return (float)totalStats.RightHandAttacksPerSecond;
                 default:
                     return 1f;
             }

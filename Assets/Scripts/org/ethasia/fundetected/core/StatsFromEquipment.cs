@@ -184,6 +184,18 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public double RightHandWeaponSkillsPerSecond
+        {
+            get;
+            private set;
+        }
+
+        public double LeftHandWeaponSkillsPerSecond
+        {
+            get;
+            private set;
+        }
+
         public StatsFromEquipment()
         {
             PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks = new DamageRange(0, 0);
@@ -516,6 +528,26 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreasePlusArmorBy(int value)
         {
             PlusArmor -= value;
+        }
+
+        public void SetRightHandWeaponSkillsPerSecond(double value)
+        {
+            RightHandWeaponSkillsPerSecond = value;
+        }
+
+        public void SetLeftHandWeaponSkillsPerSecond(double value)
+        {
+            LeftHandWeaponSkillsPerSecond = value;
+        }
+
+        public void ClearRightHandWeaponSkillsPerSecond()
+        {
+            RightHandWeaponSkillsPerSecond = 0;
+        }
+
+        public void ClearLeftHandWeaponSkillsPerSecond()
+        {
+            LeftHandWeaponSkillsPerSecond = 0;
         }
     }
 }

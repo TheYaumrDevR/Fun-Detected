@@ -25,7 +25,7 @@
 			<transition target="leftArmSwing" />			
 		</transitions>
 	</animation>
-	<animation id="rightArmSwing" speedMultiplier="2" speedMultiplierBinding="ATTACK_SPEED">
+	<animation id="rightArmSwing" speedMultiplier="2" speedMultiplierBinding="ATTACK_SPEED_RIGHT">
 		<animationFrames spriteImageName="FemaleCharOneRightArmSwing" isLooping="false">
 			<animationFrame index="0"/>
 			<animationFrame index="1" soundMethodId="PlayRandomSwingSound"/>
@@ -37,7 +37,7 @@
 			<transition target="leftArmSwing" />		
 		</transitions>
 	</animation>	
-	<animation id="leftArmSwing" speedMultiplier="2" speedMultiplierBinding="ATTACK_SPEED">
+	<animation id="leftArmSwing" speedMultiplier="2" speedMultiplierBinding="ATTACK_SPEED_LEFT">
 		<animationFrames spriteImageName="FemaleCharOneLeftArmSwing" isLooping="false">
 			<animationFrame index="0"/>
 			<animationFrame index="1" soundMethodId="PlayRandomSwingSound"/>

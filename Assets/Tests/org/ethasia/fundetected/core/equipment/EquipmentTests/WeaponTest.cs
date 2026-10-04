@@ -123,6 +123,93 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Assert.That(statsFromEquipment.PlusLeftHandWeaponRange, Is.EqualTo(0));
         }
 
+        [Test]
+        public void TestOnEquip_SetsRightHandWeaponSkillsPerSecond_WhenEquippedInMainHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(testCandidate.SkillsPerSecond));
+        }
+
+        [Test]
+        public void TestOnEquip_SetsLeftHandWeaponSkillsPerSecond_WhenEquippedInOffHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(testCandidate.SkillsPerSecond));
+        }
+
+        [Test]
+        public void TestOnEquip_DoesNotAffectLeftHandWeaponSkillsPerSecond_WhenEquippedInMainHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestOnEquip_DoesNotAffectRightHandWeaponSkillsPerSecond_WhenEquippedInOffHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestOnUnequip_ClearsRightHandWeaponSkillsPerSecond_WhenUnequippedFromMainHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+            testCandidate.OnUnequip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestOnUnequip_ClearsLeftHandWeaponSkillsPerSecond_WhenUnequippedFromOffHand()
+        {
+            Weapon testCandidate = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+            testCandidate.OnUnequip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestOnEquip_SettingBothHandsIndependently_KeepsSeparateValues()
+        {
+            Weapon mainHandWeapon = CreateTestWeapon();
+            Weapon offHandWeapon = CreateTestWeapon();
+            StatsFromEquipment statsFromEquipment = new StatsFromEquipment();
+
+            mainHandWeapon.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+            offHandWeapon.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
+
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(mainHandWeapon.SkillsPerSecond));
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(offHandWeapon.SkillsPerSecond));
+
+            mainHandWeapon.OnUnequip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
+
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(0));
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(offHandWeapon.SkillsPerSecond));
+        }
+
         private Weapon CreateTestWeapon()
         {
             DamageRange minToMaxPhysicalDamage = new DamageRange(52, 98);

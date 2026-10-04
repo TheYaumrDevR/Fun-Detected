@@ -76,7 +76,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private void CreateMeleeAttack(MeleeHitArcProperties meleeHitArcProperties)
         {
             meleeAttack = new MeleeAttack.MeleeAttackBuilder()
-                .SetTimeToHitFromStartOfAttack((1.0 / TotalStats.AttacksPerSecond) / 2.0)
+                .SetTimeToHitFromStartOfAttack((1.0 / TotalStats.RightHandAttacksPerSecond) / 2.0)
                 .SetPositionOffsetRightSwingToPlayerCharacterCenter(new Position(meleeHitArcProperties.HitArcCenterXOffset, meleeHitArcProperties.HitArcCenterYOffset))
                 .SetOriginalAttackRange(meleeHitArcProperties.HitArcRadius)
                 .SetHitArcStartAngle(meleeHitArcProperties.HitArcStartAngle)
@@ -101,7 +101,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             if (TotalStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
-                AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(TotalStats.AttacksPerSecond);
+                AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(TotalStats.RightHandAttacksPerSecond);
 
                 enemiesHit.OnResponseReceived((enemies) => DealDamageToHitEnemies(enemies, result));
             }
@@ -299,7 +299,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
-            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(TotalStats.AttacksPerSecond);
+            return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(TotalStats.RightHandAttacksPerSecond);
         }
 
         public class PlayerCharacterBuilder
