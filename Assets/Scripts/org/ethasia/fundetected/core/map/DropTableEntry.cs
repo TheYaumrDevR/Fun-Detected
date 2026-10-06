@@ -25,6 +25,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public Item DropItem()
         {
             Item result = Item.Clone();
+            // TODO: give item a "roll random magic affixes" method which determines random affixes for a magic item. 
+            // The item should have a 20% chance to drop as magic
             result.RerollEntireItem();
 
             return result;
