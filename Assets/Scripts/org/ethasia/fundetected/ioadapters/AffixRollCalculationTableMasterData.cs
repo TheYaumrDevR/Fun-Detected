@@ -4,22 +4,22 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public struct AffixRollCalculationTableMasterData
     {
-        public List<AffixRollCalculationTableEntryMasterData> Tiers { get; private set; }
+        public List<AffixRollCalculationTableEntryMasterData> RollableAffixes { get; private set; }
 
         public class Builder
         {
-            private List<AffixRollCalculationTableEntryMasterData> tiers = new List<AffixRollCalculationTableEntryMasterData>();
+            private List<AffixRollCalculationTableEntryMasterData> rollableAffixes = new List<AffixRollCalculationTableEntryMasterData>();
 
-            public Builder AddTier(AffixRollCalculationTableEntryMasterData value)
+            public Builder AddRollableAffix(AffixRollCalculationTableEntryMasterData value)
             {
-                tiers.Add(value);
+                rollableAffixes.Add(value);
                 return this;
             }
 
             public AffixRollCalculationTableMasterData Build()
             {
                 AffixRollCalculationTableMasterData result = new AffixRollCalculationTableMasterData();
-                result.Tiers = tiers;
+                result.RollableAffixes = rollableAffixes;
 
                 return result;
             }
