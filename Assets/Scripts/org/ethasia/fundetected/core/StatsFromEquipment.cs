@@ -178,6 +178,12 @@ namespace Org.Ethasia.Fundetected.Core
             private set;
         }
 
+        public int IncreasedAttackSpeedInPercent
+        {
+            get;
+            private set;
+        }
+
         public int PlusArmor
         {
             get;
@@ -352,6 +358,11 @@ namespace Org.Ethasia.Fundetected.Core
             IncreasedArmourInPercent += value;
         }
 
+        public void IncreaseIncreasedAttackSpeedInPercentBy(int value)
+        {
+            IncreasedAttackSpeedInPercent += value;
+        }
+
         public void IncreasePlusRightHandWeaponRange(int value)
         {
             PlusRightHandWeaponRange += value;
@@ -508,6 +519,11 @@ namespace Org.Ethasia.Fundetected.Core
         public void DecreaseIncreasedArmourInPercentBy(int value)
         {
             IncreasedArmourInPercent -= value;
+        }
+
+        public void DecreaseIncreasedAttackSpeedInPercentBy(int value)
+        {
+            IncreasedAttackSpeedInPercent -= value;
         }
         
         public void DecreaseIncreasedPhysicalDamageWithAttacksInPercentBy(int value)
