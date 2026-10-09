@@ -341,7 +341,9 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 ? equipmentStats.LeftHandWeaponSkillsPerSecond
                 : unarmedSpeed;
 
-            double multiplier = (1.0 + modifiers.AttacksPerSecondIncrease) * modifiers.AttacksPerSecondMultiplier;
+            double increasedAttackSpeedFromEquipment = equipmentStats.IncreasedAttackSpeedInPercent / 100.0;
+
+            double multiplier = (1.0 + modifiers.AttacksPerSecondIncrease + increasedAttackSpeedFromEquipment) * modifiers.AttacksPerSecondMultiplier;
 
             RightHandAttacksPerSecond = rightHandBaseSpeed * multiplier;
             LeftHandAttacksPerSecond = leftHandBaseSpeed * multiplier;
