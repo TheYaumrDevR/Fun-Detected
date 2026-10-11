@@ -67,7 +67,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             return soundPresenterInstance;
         }
 
-        public override IRollableAffixesPerItemGroupMasterDataProvider CreateRollableAffixesPerItemGroupMasterDataProvider()
+        public override IRollableAffixesPerItemGroupMasterDataProvider GetRollableAffixesPerItemGroupMasterDataProviderInstance()
         {
             return null;
         } 

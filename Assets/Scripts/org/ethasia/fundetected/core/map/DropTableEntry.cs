@@ -58,7 +58,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CreateWeaponAffixesBasedOnItemClass(Weapon weapon)
         {
-            var rollableAffixesProvider = IoAdaptersFactoryForCore.GetInstance().CreateRollableAffixesPerItemGroupMasterDataProvider();
+            var rollableAffixesProvider = IoAdaptersFactoryForCore.GetInstance().GetRollableAffixesPerItemGroupMasterDataProviderInstance();
             var affixRoller = new MagicAffixRoller();
 
             switch (weapon.ItemClass)
@@ -76,7 +76,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void CreateJewelryAffixesBasedOnItemClass(Jewelry jewelry)
         {
-            var rollableAffixesProvider = IoAdaptersFactoryForCore.GetInstance().CreateRollableAffixesPerItemGroupMasterDataProvider();
+            var rollableAffixesProvider = IoAdaptersFactoryForCore.GetInstance().GetRollableAffixesPerItemGroupMasterDataProviderInstance();
             var affixRoller = new MagicAffixRoller();
 
             switch (jewelry.ItemClass)

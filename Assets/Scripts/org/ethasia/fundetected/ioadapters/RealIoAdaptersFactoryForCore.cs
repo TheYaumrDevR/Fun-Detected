@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private HitboxPresenter hitboxPresenter;
         private EnemyAnimationPresenter enemyAnimationPresenter;
         private SoundPresenter soundPresenter;
+        private IRollableAffixesPerItemGroupMasterDataProvider rollableAffixesProvider;
 
         public override IRandomNumberGenerator GetRandomNumberGeneratorInstance()
         {
@@ -74,9 +75,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return soundPresenter;
         }  
 
-        public override IRollableAffixesPerItemGroupMasterDataProvider CreateRollableAffixesPerItemGroupMasterDataProvider()
+        public override IRollableAffixesPerItemGroupMasterDataProvider GetRollableAffixesPerItemGroupMasterDataProviderInstance()
         {
-            return new RollableAffixesPerItemGroupMasterDataProvider();
+            if (null == rollableAffixesProvider)
+            {
+                rollableAffixesProvider = new CachingRollableAffixesPerItemGroupMasterDataProvider(
+                    new RollableAffixesPerItemGroupMasterDataProvider());
+            }
+
+            return rollableAffixesProvider;
         }          
     }
 }

@@ -25,6 +25,6 @@ namespace Org.Ethasia.Fundetected.Core
         public abstract IHitboxPresenter GetHitboxPresenterInstance();
         public abstract IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance();
         public abstract ISoundPresenter GetSoundPresenterInstance();
-        public abstract IRollableAffixesPerItemGroupMasterDataProvider CreateRollableAffixesPerItemGroupMasterDataProvider();
+        public abstract IRollableAffixesPerItemGroupMasterDataProvider GetRollableAffixesPerItemGroupMasterDataProviderInstance();
     }
 }
