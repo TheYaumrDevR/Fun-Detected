@@ -1,5 +1,6 @@
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Core.Mocks;
 
@@ -65,5 +66,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
 
             return soundPresenterInstance;
         }
+
+        public override IRollableAffixesPerItemGroupMasterDataProvider CreateRollableAffixesPerItemGroupMasterDataProvider()
+        {
+            return null;
+        } 
     }
 }

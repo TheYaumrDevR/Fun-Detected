@@ -2,7 +2,7 @@ using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
-    public class RollableAffixesPerItemGroupMasterDataProvider
+    public class RollableAffixesPerItemGroupMasterDataProvider : IRollableAffixesPerItemGroupMasterDataProvider
     {
         public AffixRollCalculationTableMasterData CreateRollablePrefixesForOneHandedSwords()
         {
@@ -1103,7 +1103,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return affixRollCalculationTableMasterDataBuilder.Build();          
         }
 
-        public AffixRollCalculationTableMasterData CreateRollablePrefixesForBelt()
+        public AffixRollCalculationTableMasterData CreateRollablePrefixesForBelts()
         {
             EquipmentAffix maximumLifeBaseAffix = new PlusMaximumLifeAffix(0);
 
@@ -1439,7 +1439,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             return affixRollCalculationTableMasterDataBuilder.Build();
         }
 
-        public AffixRollCalculationTableMasterData CreateRollableSuffixesForBelt()
+        public AffixRollCalculationTableMasterData CreateRollableSuffixesForBelts()
         {
             EquipmentAffix strengthBaseAffix = new PlusStrengthAffix(0);
 

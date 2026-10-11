@@ -1,6 +1,4 @@
-using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
-
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
     public struct AffixRollCalculationTableEntryMasterData
     {

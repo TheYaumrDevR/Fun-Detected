@@ -38,6 +38,21 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }  
 
+        public bool TryAddAffix(EquipmentAffix affix)
+        {
+            List<EquipmentAffix> targetAffixes = affix.AffixType == AffixTypes.PREFIX ? prefixes : suffixes;
+
+            if (targetAffixes.Count >= 3)
+            {
+                return false;
+            }
+
+            targetAffixes.Add(affix);
+            ApplyLocalAffixes();
+
+            return true;
+        }
+
         public virtual void OnEquip(StatsFromEquipment statsFromEquipment, EquipmentSlotTypes slotType)
         {
             foreach (EquipmentAffix prefix in prefixes)

@@ -1,5 +1,6 @@
 using Org.Ethasia.Fundetected.Core;
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
@@ -71,6 +72,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return soundPresenter;
-        }            
+        }  
+
+        public override IRollableAffixesPerItemGroupMasterDataProvider CreateRollableAffixesPerItemGroupMasterDataProvider()
+        {
+            return new RollableAffixesPerItemGroupMasterDataProvider();
+        }          
     }
 }

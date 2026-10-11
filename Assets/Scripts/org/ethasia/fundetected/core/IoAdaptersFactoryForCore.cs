@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Combat;
+using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core
@@ -24,5 +25,6 @@ namespace Org.Ethasia.Fundetected.Core
         public abstract IHitboxPresenter GetHitboxPresenterInstance();
         public abstract IEnemyAnimationPresenter GetEnemyAnimationPresenterInstance();
         public abstract ISoundPresenter GetSoundPresenterInstance();
+        public abstract IRollableAffixesPerItemGroupMasterDataProvider CreateRollableAffixesPerItemGroupMasterDataProvider();
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Org.Ethasia.Fundetected.Ioadapters
+namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
     public struct AffixRollCalculationTableMasterData
     {
