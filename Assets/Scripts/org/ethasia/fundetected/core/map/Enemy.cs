@@ -331,7 +331,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             if (dropTableEntry.HasValue)
             {
-                Item item = dropTableEntry.Value.DropItem();
+                Item item = dropTableEntry.Value.DropItem(dropLevelOfItems);
                 item.CollisionShape.Position.SetFromOtherPosition(Position);
 
                 InteractorsFactoryForCore.GetInstance().GetDropItemInteractorInstance().DropItemFromMonster(item, IndividualId);

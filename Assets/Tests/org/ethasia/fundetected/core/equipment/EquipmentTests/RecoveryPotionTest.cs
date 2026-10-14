@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesAreDifferent()
         {
             RecoveryPotion testCandidate = CreateTestRecoveryPotion();
-            RecoveryPotion clone = testCandidate.Clone() as RecoveryPotion;
+            RecoveryPotion clone = testCandidate.Clone(1) as RecoveryPotion;
 
             Assert.AreNotSame(testCandidate, clone);
             Assert.AreNotSame(testCandidate.CollisionShape, clone.CollisionShape);
@@ -21,7 +21,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesHaveSameValues()
         {
             RecoveryPotion testCandidate = CreateTestRecoveryPotion();
-            RecoveryPotion clone = testCandidate.Clone() as RecoveryPotion;
+            RecoveryPotion clone = testCandidate.Clone(1) as RecoveryPotion;
 
             Assert.That(clone.RecoveryAmount, Is.EqualTo(testCandidate.RecoveryAmount));
             Assert.That(clone.Uses, Is.EqualTo(testCandidate.Uses));

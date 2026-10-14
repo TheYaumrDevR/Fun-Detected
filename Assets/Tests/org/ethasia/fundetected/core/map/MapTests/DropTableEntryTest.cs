@@ -17,9 +17,9 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Armor testItem = CreateTestArmor();
             DropTableEntry testCandidate = new DropTableEntry(1.0f, testItem);
 
-            Armor droppedItem = (Armor)testCandidate.DropItem();
-            Armor droppedItem2 = (Armor)testCandidate.DropItem();
-            Armor droppedItem3 = (Armor)testCandidate.DropItem();
+            Armor droppedItem = (Armor)testCandidate.DropItem(1);
+            Armor droppedItem2 = (Armor)testCandidate.DropItem(1);
+            Armor droppedItem3 = (Armor)testCandidate.DropItem(1);
 
             TestablePlusAllElementalResistancesAffix result = (TestablePlusAllElementalResistancesAffix)droppedItem.FirstImplicit.RerolledAffix;
             TestablePlusAllElementalResistancesAffix result2 = (TestablePlusAllElementalResistancesAffix)droppedItem2.FirstImplicit.RerolledAffix;

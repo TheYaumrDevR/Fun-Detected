@@ -59,6 +59,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertWeaponPresentationContextBaseStatsToTooltipTextSegments(weaponContext, itemContext.ItemClass))
                 .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
+                .WithItemExplicitLines(ConvertItemExplicitsToTextSegments(itemContext))                
                 .Build();
         }
 
@@ -70,6 +71,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(armorContext, itemContext.ItemClass))
                 .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
+                .WithItemExplicitLines(ConvertItemExplicitsToTextSegments(itemContext))
                 .Build();
         }
 
@@ -81,6 +83,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertItemClassToTooltipForJewelry(itemContext.ItemClass))
                 .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
+                .WithItemExplicitLines(ConvertItemExplicitsToTextSegments(itemContext))
                 .Build();
         }
 
@@ -92,6 +95,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .WithItemPotential(itemContext.ItemPotential)
                 .WithItemHeaderLines(ConvertRecoveryPotionPresentationContextBaseStatsToTooltipTextSegments(recoveryPotionContext, itemContext.ItemClass))
                 .WithItemImplicitLines(ConvertItemImplicitsToTextSegments(itemContext))
+                .WithItemExplicitLines(ConvertItemExplicitsToTextSegments(itemContext))
                 .Build();
         }   
 
@@ -162,6 +166,24 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return result;
         }
+
+        private static List<List<UiTextSegment>> ConvertItemExplicitsToTextSegments(InventoryItemPresentationContext itemContext)
+        {
+            List<List<UiTextSegment>> result = new List<List<UiTextSegment>>();
+            IAffixPresentationContext[] explicits = itemContext.Affixes.Explicits;
+
+            if (explicits == null)
+            {
+                return result;
+            }
+
+            for (int i = 0; i < explicits.Length; i++)
+            {
+                result.Add(ConvertAffixToTextSegments(explicits[i]));
+            }
+
+            return result;
+        }        
 
         private static List<List<UiTextSegment>> ConvertArmorPresentationContextBaseStatsToTooltipTextSegments(ArmorPresentationContext armorContext, ItemClass itemClass)
         {

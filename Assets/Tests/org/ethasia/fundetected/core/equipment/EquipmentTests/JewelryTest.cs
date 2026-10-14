@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesAreDifferent()
         {
             Jewelry testCandidate = CreateTestJewelry();
-            Jewelry clone = testCandidate.Clone() as Jewelry;
+            Jewelry clone = testCandidate.Clone(1) as Jewelry;
 
             Assert.AreNotSame(testCandidate, clone);
             Assert.AreNotSame(testCandidate.FirstImplicit, clone.FirstImplicit);
@@ -32,7 +32,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesHaveSameValues()
         {
             Jewelry testCandidate = CreateTestJewelry();
-            Jewelry clone = testCandidate.Clone() as Jewelry;
+            Jewelry clone = testCandidate.Clone(1) as Jewelry;
 
             Assert.That(clone.StrengthRequirement, Is.EqualTo(testCandidate.StrengthRequirement));
             Assert.That(clone.AgilityRequirement, Is.EqualTo(testCandidate.AgilityRequirement));

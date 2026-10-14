@@ -24,14 +24,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
             Item = item;
         }
 
-        public Item DropItem()
+        public Item DropItem(int itemLevel)
         {
-            Item result = Item.Clone();
+            Item result = Item.Clone(itemLevel);
             result.RerollEntireItem();
 
             var rng = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
 
-            if (!rng.CheckProbabilityIsHit(0.2))
+            if (!rng.CheckProbabilityIsHit(0.2f))
             {
                 return result;
             }

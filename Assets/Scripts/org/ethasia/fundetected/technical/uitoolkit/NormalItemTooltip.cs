@@ -50,6 +50,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 contentArea.Clear();
                 SetupToolTipContentAreaHeader(displayInformation.TooltipRenderContext.ItemHeaderLines);
                 SetupToolTipContentAreaImplicits(displayInformation.TooltipRenderContext.ItemImplicitLines);
+                SetupToolTipContentAreaExplicits(displayInformation.TooltipRenderContext.ItemExplicitLines);
             }
         }
 
@@ -132,6 +133,23 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 }
 
                 foreach (var textSegments in implicitsLines)
+                {
+                    var labelRow = ConvertTextSegmentsToVisualElement(textSegments, new string[] { TEXT_BLUE_CLASS });
+                    contentArea.Add(labelRow);
+                }
+            }
+        }
+
+        private void SetupToolTipContentAreaExplicits(List<List<UiTextSegment>> explicitLines)
+        {
+            if (explicitLines != null)
+            {
+                if (explicitLines.Count > 0)
+                {
+                    contentArea.Add(CreateTooltipSegmentDivider());
+                }
+
+                foreach (var textSegments in explicitLines)
                 {
                     var labelRow = ConvertTextSegmentsToVisualElement(textSegments, new string[] { TEXT_BLUE_CLASS });
                     contentArea.Add(labelRow);

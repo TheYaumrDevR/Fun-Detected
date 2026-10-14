@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesAreDifferent()
         {
             Armor testCandidate = CreateTestArmor();
-            Armor clone = testCandidate.Clone() as Armor;
+            Armor clone = testCandidate.Clone(1) as Armor;
 
             Assert.AreNotSame(testCandidate, clone);
             Assert.AreNotSame(testCandidate.LocalModifiers, clone.LocalModifiers);
@@ -33,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesHaveSameValues()
         {
             Armor testCandidate = CreateTestArmor();
-            Armor clone = testCandidate.Clone() as Armor;
+            Armor clone = testCandidate.Clone(1) as Armor;
 
             Assert.That(clone.ArmorValue, Is.EqualTo(testCandidate.ArmorValue));
             Assert.That(clone.MovementSpeedAddend, Is.EqualTo(testCandidate.MovementSpeedAddend));

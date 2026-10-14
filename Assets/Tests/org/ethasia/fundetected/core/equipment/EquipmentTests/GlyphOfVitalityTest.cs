@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesAreDifferent()
         {
             GlyphOfVitality testCandidate = CreateTestGlyphOfVitality();
-            GlyphOfVitality clone = testCandidate.Clone() as GlyphOfVitality;
+            GlyphOfVitality clone = testCandidate.Clone(1) as GlyphOfVitality;
 
             Assert.AreNotSame(testCandidate, clone);
             Assert.AreNotSame(testCandidate.CollisionShape, clone.CollisionShape);
@@ -21,7 +21,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesHaveSameValues()
         {
             GlyphOfVitality testCandidate = CreateTestGlyphOfVitality();
-            GlyphOfVitality clone = testCandidate.Clone() as GlyphOfVitality;
+            GlyphOfVitality clone = testCandidate.Clone(1) as GlyphOfVitality;
 
             Assert.That(clone.StackSize, Is.EqualTo(testCandidate.StackSize));
             Assert.That(clone.Name, Is.EqualTo(testCandidate.Name));

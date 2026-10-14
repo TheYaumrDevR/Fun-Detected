@@ -20,10 +20,21 @@ namespace Org.Ethasia.Fundetected.Technical
             { "life-potion-tooltip-usages", "Maximum Usages: <b>{0}</b>" },
 
             { "PlusStrengthAffix", "+{0} to Strength" },
+            { "PlusAgilityAffix", "+{0} to Agility" },
+            { "PlusIntelligenceAffix", "+{0} to Intelligence" },
             { "IncreasedGlobalPhysicalDamageAffix", "+{0}% to Global Physical Damage Increase" },
             { "IncreasedPhysicalDamageWithAttacksAffix", "+{0}% to Global Physical Damage with Attacks Increase" },
             { "IncreasedGlobalArmourAffix", "+{0}% to Global Armour Increase" },
-            { "PlusMinMaxGlobalPhysicalDamageWithAttacksAffix", "+{0} to {1} to Global Physical Damage with Attacks" }
+            { "PlusMinMaxGlobalPhysicalDamageWithAttacksAffix", "+{0} to {1} to Global Physical Damage with Attacks" },
+            { "IncreasedAttackSpeedAffix", "+{0}% to Local Attack Speed Increase" },
+            { "IncreasedGlobalAttackSpeedAffix", "+{0}% to Global Attack Speed Increase" },
+            { "IncreasedLocalArmourAffix", "+{0}% to Local Armour Increase" },
+            { "IncreasedLocalPhysicalDamageAffix", "+{0}% to Local Physical Damage Increase" },
+            { "IncreasedMaximumLifeAffix", "+{0}% to Maximum Life Increase" },
+            { "PlusGlobalArmorAffix", "+{0} to Global Armor" },
+            { "PlusMaximumLifeAffix", "+{0} to Maximum Life" },
+            { "PlusMaximumManaAffix", "+{0} to Maximum Mana" },
+            { "PlusMinMaxPhysicalDamageAffix", "+{0} to {1} Local Physical Damage" }
         };
 
         public string GetLocalizedString(string key)
