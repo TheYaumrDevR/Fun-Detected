@@ -36,6 +36,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             SwapCursorItemWithEquipmentSlot(
                 () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithMainHandEquipment(),
                 (itemName) => presentationVisitor.PresentMainHand(itemName));
+                UpdateResourceBars();
         }
 
         public void SwapCursorItemWithOffHandEquipment()
@@ -43,6 +44,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             SwapCursorItemWithEquipmentSlot(
                 () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithOffHandEquipment(),
                 (itemName) => presentationVisitor.PresentOffHand(itemName));
+                UpdateResourceBars();
         }
 
         public void SwapCursorItemWithLeftRingEquipment()
@@ -50,6 +52,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             SwapCursorItemWithEquipmentSlot(
                 () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithLeftRingEquipment(),
                 (itemName) => presentationVisitor.PresentLeftRing(itemName));
+                UpdateResourceBars();
         }
 
         public void SwapCursorItemWithRightRingEquipment()
@@ -57,6 +60,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             SwapCursorItemWithEquipmentSlot(
                 () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithRightRingEquipment(),
                 (itemName) => presentationVisitor.PresentRightRing(itemName));
+                UpdateResourceBars();
         }
 
         public void SwapCursorItemWithBeltEquipment()
@@ -64,6 +68,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
             SwapCursorItemWithEquipmentSlot(
                 () => Area.ActiveArea.Player.ItemInventory.SwapCursorItemWithBeltEquipment(),
                 (itemName) => presentationVisitor.PresentBelt(itemName));
+                UpdateResourceBars();
         }
 
         public void DropCursorItem()
@@ -211,5 +216,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
         {
             inventoryPresenter.ShowEmptySlotAfterSwap(presentationVisitor.ItemIdOnCursor, presentationVisitor.SlotPosition);
         }
+
+        private void UpdateResourceBars()
+        {
+            Area activeArea = Area.ActiveArea;
+            PlayerCharacter playerCharacter = activeArea.Player;
+
+            IResourceBarPresenter resourceBarPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetResourceBarPresenterInstance();
+            resourceBarPresenter.PresentHealthBarBasedOnCurrentAndMaximumHealth(playerCharacter.TotalStats.CurrentLife, playerCharacter.TotalStats.MaximumLife);
+            resourceBarPresenter.PresentManaBarBasedOnCurrentAndMaximumMana(playerCharacter.TotalStats.CurrentMana, playerCharacter.TotalStats.MaximumMana);
+        }         
     }
 }
