@@ -30,6 +30,20 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(result3.GetValueForTesting(), Is.EqualTo(7));
         }
 
+        [Test]
+        public void TestDropItemSetsPassedItemLevel()
+        {
+            CreateMockIoAdaptersFactoryWithRngMock();
+
+            Armor templateItem = CreateTestArmor();
+            DropTableEntry testCandidate = new DropTableEntry(1.0f, templateItem);
+
+            Item droppedItem = testCandidate.DropItem(42);
+
+            Assert.That(droppedItem.ItemLevel, Is.EqualTo(42));
+            Assert.That(templateItem.ItemLevel, Is.EqualTo(73));
+        }        
+
         private Armor CreateTestArmor()
         {
             Armor.Builder builder = new Armor.Builder();
