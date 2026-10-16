@@ -21,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 {
                     ISoundPresenter soundPresenter = IoAdaptersFactoryForCore.GetInstance().GetSoundPresenterInstance();
                     soundPresenter.PlayDroppedItemPickedUpSound();
+                    PresentHealthAndManaBarState();
                     
                     return true;
                 }
