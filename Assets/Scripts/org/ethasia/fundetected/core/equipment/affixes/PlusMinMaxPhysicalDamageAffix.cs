@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Map;
+
 namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
     public class PlusMinMaxPhysicalDamageAffix : EquipmentAffix, IAffixWithTwoIntegers
@@ -19,7 +21,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 
         }
 
-        public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy) {}
+        public override void RerollValue(IntegerIntervalMinMaxIncrementRollableEquipmentAffix rerollStrategy)
+        {
+            DamageRange newRange = rerollStrategy.RerollValue();
+
+            plusMinPhysicalDamageValue = newRange.MinDamage;
+            plusMaxPhysicalDamageValue = newRange.MaxDamage;            
+        }
 
         public override void ApplyEffects(StatsFromEquipment statsFromEquipment)
         {
