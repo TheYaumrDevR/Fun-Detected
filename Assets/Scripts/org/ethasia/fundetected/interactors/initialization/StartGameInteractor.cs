@@ -30,7 +30,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Initialization
             PlayerCharacter playerCharacter = CreatePlayerCharacterFromStartingStats(playerName, characterClass, playerCharacterBaseStats);
 
             AreaSwitchingInteractor areaSwitchingInteractor = new AreaSwitchingInteractor();
-            areaSwitchingInteractor.SpawnPlayerIntoNewMap("Hill", playerCharacter);
+            areaSwitchingInteractor.SpawnPlayerIntoNewMap("Hills West of Sventara", playerCharacter);
 
             Position playerPosition = new Position(Area.ActiveArea.GetPlayerPositionX(), Area.ActiveArea.GetPlayerPositionY());
 
