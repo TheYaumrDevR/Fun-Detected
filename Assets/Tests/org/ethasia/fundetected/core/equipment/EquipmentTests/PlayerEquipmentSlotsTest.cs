@@ -497,6 +497,35 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             Assert.That(testCandidate.EquipmentStats.PlusMinMaxPhysicalDamageWithRightHandMeleeAttacks.MaxDamage, Is.EqualTo(16));
         }
 
+        [Test]
+        public void TestPickUpMainHandEquipmentWithOccupiedMainHandKeepsAttackSpeedOfNewWeapon()
+        {
+            Weapon mainHandWeapon = CreateWeaponWithSkillsPerSecond("Slow Dagger", ItemClass.DAGGER, 1.2);
+            Weapon fastWeapon = CreateWeaponWithSkillsPerSecond("Fast Dagger", ItemClass.DAGGER, 1.55);
+
+            testCandidate.EquipInMainHand(mainHandWeapon);
+            Equipment swapped = testCandidate.PickUpMainHandEquipment(fastWeapon);
+
+            Assert.That(swapped.Name, Is.EqualTo("Slow Dagger"));
+            Assert.That(testCandidate.EquipmentStats.RightHandWeaponSkillsPerSecond, Is.EqualTo(1.55).Within(0.0001));
+        }
+
+        [Test]
+        public void TestMovingWeaponFromOffHandToOccupiedMainHandKeepsAttackSpeed()
+        {
+            Weapon mainHandWeapon = CreateWeaponWithSkillsPerSecond("Slow Dagger", ItemClass.DAGGER, 1.2);
+            Weapon offHandWeapon = CreateWeaponWithSkillsPerSecond("Fast Dagger", ItemClass.DAGGER, 1.55);
+
+            testCandidate.EquipInMainHand(mainHandWeapon);
+            testCandidate.EquipInOffHand(offHandWeapon);
+
+            Equipment pickedUp = testCandidate.PickUpOffHandEquipment(null);
+            Equipment swapped = testCandidate.PickUpMainHandEquipment(pickedUp);
+
+            Assert.That(swapped.Name, Is.EqualTo("Slow Dagger"));
+            Assert.That(testCandidate.EquipmentStats.RightHandWeaponSkillsPerSecond, Is.EqualTo(1.55).Within(0.0001));
+        }
+
         private Weapon CreateWeapon(string name, ItemClass itemClass, DamageRange damage = null)
         {
             var builder = new Weapon.Builder();
@@ -604,6 +633,19 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             slotsExtractAction(extractor);
 
             return extractor;
+        }
+
+        private Weapon CreateWeaponWithSkillsPerSecond(string name, ItemClass itemClass, double skillsPerSecond)
+        {
+            Weapon.Builder weaponBuilder = new Weapon.Builder();
+
+            weaponBuilder.SetMinToMaxPhysicalDamage(new DamageRange(1, 1))
+                .SetSkillsPerSecond(skillsPerSecond);
+
+            weaponBuilder.SetName(name)
+                .SetItemClass(itemClass);
+
+            return weaponBuilder.Build();
         }
     }
 }

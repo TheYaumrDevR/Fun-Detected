@@ -230,14 +230,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         private Equipment SwapEquippedEquipment(EquipmentSlot slot, Equipment toEquip)
         {
-            toEquip.OnEquip(EquipmentStats, slot.SlotType);
-
             Equipment oldEquipment = slot.InsertEquipment(toEquip);
 
             if (null != oldEquipment)
             {
                 oldEquipment.OnUnequip(EquipmentStats, slot.SlotType);
             }
+
+            toEquip.OnEquip(EquipmentStats, slot.SlotType);
 
             return oldEquipment;
         }        
