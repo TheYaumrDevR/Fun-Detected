@@ -63,11 +63,19 @@ namespace Org.Ethasia.Fundetected.Core.Items
             return ItemClass.CreateInventoryShape(this);
         }
 
-        public Item Clone(int itemLevel)
+        public Item CloneWithItemLevel(int itemLevel)
+        {
+            Item result = Clone();
+            result.ItemLevel = itemLevel;
+            
+            return result;
+        }
+
+        public Item Clone()
         {
             Item result = CloneActual();
             result.UniqueId = Name + System.Guid.NewGuid().ToString();
-            result.ItemLevel = itemLevel;
+            result.ItemLevel = ItemLevel;
             return result;
         }
 

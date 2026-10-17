@@ -26,7 +26,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Item DropItem(int itemLevel)
         {
-            Item result = Item.Clone(itemLevel);
+            Item result = Item.CloneWithItemLevel(itemLevel);
             result.RerollEntireItem();
 
             var rng = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();

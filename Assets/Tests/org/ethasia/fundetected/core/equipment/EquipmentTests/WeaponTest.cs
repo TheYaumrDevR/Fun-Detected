@@ -12,7 +12,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesAreDifferent()
         {
             Weapon testCandidate = CreateTestWeapon();
-            Weapon clone = testCandidate.Clone(1) as Weapon;
+            Weapon clone = testCandidate.Clone() as Weapon;
 
             Assert.AreNotSame(testCandidate, clone);
             Assert.AreNotSame(testCandidate.MinToMaxPhysicalDamage, clone.MinToMaxPhysicalDamage);
@@ -36,7 +36,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
         public void TestCloneInstancesHaveSameValues()
         {
             Weapon testCandidate = CreateTestWeapon();
-            Weapon clone = testCandidate.Clone(1) as Weapon;
+            Weapon clone = testCandidate.Clone() as Weapon;
 
             Assert.That(clone.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(testCandidate.MinToMaxPhysicalDamage.MinDamage));
             Assert.That(clone.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(testCandidate.MinToMaxPhysicalDamage.MaxDamage));
