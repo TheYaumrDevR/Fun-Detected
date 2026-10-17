@@ -1,6 +1,7 @@
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
+using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors.Presentation
 {
@@ -125,11 +126,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
 
         private static WeaponPresentationContext ConvertWeaponToPresentationContext(Weapon weapon)
         {
+            DamageRange minToMaxSpellDamage = weapon.TotalStats.SpellDamage.MinDamage != 0 && weapon.TotalStats.SpellDamage.MaxDamage != 0
+                ? weapon.TotalStats.SpellDamage
+                : null;
+
             return new WeaponPresentationContext.Builder()
-                .WithMinToMaxPhysicalDamage(weapon.MinToMaxPhysicalDamage)
-                .WithMinToMaxSpellDamage(weapon.MinToMaxSpellDamage)
-                .WithSkillsPerSecond(weapon.SkillsPerSecond)
-                .WithCriticalStrikeChance(weapon.CriticalStrikeChance)
+                .WithMinToMaxPhysicalDamage(weapon.TotalStats.PhysicalDamage)
+                .WithMinToMaxSpellDamage(minToMaxSpellDamage)
+                .WithSkillsPerSecond(weapon.TotalStats.SkillsPerSecond)
+                .WithCriticalStrikeChance(weapon.TotalStats.CriticalStrikeChance)
                 .Build();            
         }
 

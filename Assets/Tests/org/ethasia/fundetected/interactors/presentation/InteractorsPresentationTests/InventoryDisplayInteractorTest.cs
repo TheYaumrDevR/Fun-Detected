@@ -262,8 +262,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
             playerCharacter.PickupEquipment(mainHandWeapon);
             EquipmentSlotsPresentationContext equipmentSlotsPresentationContext = CallEquipmentExtraction(playerCharacter);
 
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(5));
-            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(10));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(12));
+            Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(23));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxSpellDamage.MinDamage, Is.EqualTo(3));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.MinToMaxSpellDamage.MaxDamage, Is.EqualTo(8));
             Assert.That(equipmentSlotsPresentationContext.EquippedWeapons[0].WeaponPresentationContext.SkillsPerSecond, Is.EqualTo(1.0));   
@@ -284,8 +284,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
 
             InventoryGridPresentationContext result = CallInventoryGridExtraction(playerCharacter);
 
-            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(5));
-            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(10));
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxPhysicalDamage.MinDamage, Is.EqualTo(12));
+            Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxPhysicalDamage.MaxDamage, Is.EqualTo(23));
             Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxSpellDamage.MinDamage, Is.EqualTo(3));
             Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.MinToMaxSpellDamage.MaxDamage, Is.EqualTo(8));
             Assert.That(result.WeaponsPresentationContexts[0].WeaponContext.SkillsPerSecond, Is.EqualTo(1.0));   
