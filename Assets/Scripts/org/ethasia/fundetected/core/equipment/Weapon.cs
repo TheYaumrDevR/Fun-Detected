@@ -43,21 +43,27 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }
 
+        public TotalLocalWeaponStats TotalStats
+        {
+            get;
+            private set;
+        }
+
         public override void OnEquip(StatsFromEquipment statsFromEquipment, EquipmentSlotTypes slotType)
         {
             base.OnEquip(statsFromEquipment, slotType);
 
             if (slotType == EquipmentSlotTypes.MAIN_HAND)
             {
-                statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+                statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(TotalStats.PhysicalDamage.MinDamage, TotalStats.PhysicalDamage.MaxDamage);
                 statsFromEquipment.IncreasePlusRightHandWeaponRange(WeaponRange);
-                statsFromEquipment.SetRightHandWeaponSkillsPerSecond(SkillsPerSecond);
+                statsFromEquipment.SetRightHandWeaponSkillsPerSecond(TotalStats.SkillsPerSecond);
             }
             else if (slotType == EquipmentSlotTypes.OFF_HAND)
             {
-                statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+                statsFromEquipment.IncreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(TotalStats.PhysicalDamage.MinDamage, TotalStats.PhysicalDamage.MaxDamage);
                 statsFromEquipment.IncreasePlusLeftHandWeaponRange(WeaponRange);
-                statsFromEquipment.SetLeftHandWeaponSkillsPerSecond(SkillsPerSecond);
+                statsFromEquipment.SetLeftHandWeaponSkillsPerSecond(TotalStats.SkillsPerSecond);
             }
         }
 
@@ -67,13 +73,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             if (slotType == EquipmentSlotTypes.MAIN_HAND)
             {
-                statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+                statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithRightHandMeleeAttacksBy(TotalStats.PhysicalDamage.MinDamage, TotalStats.PhysicalDamage.MaxDamage);
                 statsFromEquipment.DecreasePlusRightHandWeaponRange(WeaponRange);
                 statsFromEquipment.ClearRightHandWeaponSkillsPerSecond();
             }
             else if (slotType == EquipmentSlotTypes.OFF_HAND)
             {
-                statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(MinToMaxPhysicalDamage.MinDamage, MinToMaxPhysicalDamage.MaxDamage);
+                statsFromEquipment.DecreasePlusMinMaxPhysicalDamageWithLeftHandMeleeAttacksBy(TotalStats.PhysicalDamage.MinDamage, TotalStats.PhysicalDamage.MaxDamage);
                 statsFromEquipment.DecreasePlusLeftHandWeaponRange(WeaponRange);
                 statsFromEquipment.ClearLeftHandWeaponSkillsPerSecond();
             }
@@ -81,6 +87,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
         protected override void ApplyLocalAffixes()
         {
+            LocalModifiers.Reset();
+
             foreach (EquipmentAffix prefix in prefixes)
             {
                 prefix.ApplyLocalWeaponEffects(LocalModifiers);
@@ -90,6 +98,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             {
                 suffix.ApplyLocalWeaponEffects(LocalModifiers);
             }
+
+            RecalculateTotalStats();
         }
 
         public override void Accept(ItemVisitor visitor)
@@ -109,7 +119,14 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
 
             Clone(result);
 
+            result.RecalculateTotalStats();
+
             return result;
+        }
+
+        private void RecalculateTotalStats()
+        {
+            TotalStats = TotalLocalWeaponStats.CalculateFrom(this);
         }
 
         new public class Builder : Equipment.Builder
@@ -160,6 +177,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 result.SkillsPerSecond = skillsPerSecond;
                 result.WeaponRange = weaponRange;
                 result.LocalModifiers = new LocalWeaponModifiers();
+                result.RecalculateTotalStats();
 
                 FillEquipmentFields(result);
 

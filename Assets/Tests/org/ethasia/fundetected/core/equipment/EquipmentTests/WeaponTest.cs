@@ -131,7 +131,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
 
-            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(testCandidate.SkillsPerSecond));
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(testCandidate.TotalStats.SkillsPerSecond));
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
 
             testCandidate.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
 
-            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(testCandidate.SkillsPerSecond));
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(testCandidate.TotalStats.SkillsPerSecond));
         }
 
         [Test]
@@ -201,13 +201,13 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Tests
             mainHandWeapon.OnEquip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
             offHandWeapon.OnEquip(statsFromEquipment, EquipmentSlotTypes.OFF_HAND);
 
-            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(mainHandWeapon.SkillsPerSecond));
-            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(offHandWeapon.SkillsPerSecond));
+            Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(mainHandWeapon.TotalStats.SkillsPerSecond));
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(offHandWeapon.TotalStats.SkillsPerSecond));
 
             mainHandWeapon.OnUnequip(statsFromEquipment, EquipmentSlotTypes.MAIN_HAND);
 
             Assert.That(statsFromEquipment.RightHandWeaponSkillsPerSecond, Is.EqualTo(0));
-            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(offHandWeapon.SkillsPerSecond));
+            Assert.That(statsFromEquipment.LeftHandWeaponSkillsPerSecond, Is.EqualTo(offHandWeapon.TotalStats.SkillsPerSecond));
         }
 
         private Weapon CreateTestWeapon()
