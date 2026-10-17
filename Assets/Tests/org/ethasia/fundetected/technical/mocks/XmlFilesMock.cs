@@ -16,7 +16,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             xmlFileContentProvidersByFileName.Add("/Scenes/Maps/Town.xml", GetXmlFileContentForTown);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CobblestonePlateauWestPortal.xml", GetXmlFileContentForCobblestonePlateauWestPortal);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/CobblestonePlateauEastPortal.xml", GetXmlFileContentForCobblestonePlateauEastPortal);
-            xmlFileContentProvidersByFileName.Add("/Scenes/Maps/Hill.xml", GetXmlFileContentForHill);
+            xmlFileContentProvidersByFileName.Add("/Scenes/Maps/Hills West of Sventara.xml", GetXmlFileContentForHillsWestOfSventara);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassLoweringPlateau.xml", GetXmlFileContentForEarthGrassLoweringPlateau);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassPlateau.xml", GetXmlFileContentForEarthGrassPlateau);
             xmlFileContentProvidersByFileName.Add("/Scenes/Tilemaps/EarthGrassRisingHill.xml", GetXmlFileContentForEarthGrassRisingHill);
@@ -45,7 +45,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                             <chunks>
                                 <chunk x=""-2"" y=""-1"" id=""westPortal"">
                                     <portalTo>
-                                        <map id=""Hill""/>
+                                        <map id=""Hills West of Sventara""/>
                                         <portal id=""eastPortal""/>
                                     </portalTo>        
                                     <definitions>   
@@ -222,7 +222,7 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
                     </tileChunk>";
         }
 
-        private string GetXmlFileContentForHill()
+        private string GetXmlFileContentForHillsWestOfSventara()
         {
             return @"<?xml version=""1.0"" encoding=""UTF-8""?>
                     <mapDefinition maximumMonsters=""10"" areaLevel=""68"">

@@ -21,7 +21,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");
 
             Assert.That(result.MaximumMonsters, Is.EqualTo(10));
             Assert.That(result.Chunks.Count, Is.EqualTo(8));
@@ -33,7 +33,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");
 
             Assert.That(result.Chunks[0].X, Is.EqualTo(-2));
             Assert.That(result.Chunks[0].Y, Is.EqualTo(-1));
@@ -74,7 +74,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");
 
             Assert.That(result.SpawnableMonsters[0].Name, Is.EqualTo("Animated Thornbush"));
             Assert.That(result.SpawnableMonsters[0].SpawnChanceMillis, Is.EqualTo(1000));                                                                            
@@ -85,7 +85,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");     
         
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].Id, Is.EqualTo("PlainsAndHillsTileset_Earth")); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].TerrainTiles[0].StartX, Is.EqualTo(0));
@@ -129,7 +129,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");  
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");  
 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].CollisionProperties[0].StartX, Is.EqualTo(0)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].CollisionProperties[0].StartY, Is.EqualTo(26)); 
@@ -162,7 +162,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");  
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");  
 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].Spawners[0].X, Is.EqualTo(5)); 
             Assert.That(result.Chunks[0].PropertiesOfPossibleChunks[0].Spawners[0].Y, Is.EqualTo(28)); 
@@ -194,7 +194,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");     
 
             Assert.That(result.Chunks[0].Spawn, Is.True);         
         }      
@@ -204,7 +204,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");     
 
             Assert.That(result.Chunks[3].PortalTo.Value.MapId, Is.EqualTo("Town"));             
             Assert.That(result.Chunks[3].PortalTo.Value.PortalId, Is.EqualTo("westPortal"));                                                               
@@ -215,7 +215,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");     
 
             Assert.That(result.Chunks[3].Id, Is.EqualTo("eastPortal"));         
         }       
@@ -225,7 +225,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");     
 
             Assert.That(result.AreaLevel, Is.EqualTo(68));         
         }       
@@ -235,7 +235,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
 
-            MapDefinition result = testCandidate.LoadMapDefinition("Hill");     
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");     
 
             Assert.That(result.IsSingleton, Is.False);         
         }   
