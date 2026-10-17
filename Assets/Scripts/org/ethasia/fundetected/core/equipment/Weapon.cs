@@ -85,6 +85,11 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
         }
 
+        public override void Accept(ItemVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
         protected override void ApplyLocalAffixes()
         {
             LocalModifiers.Reset();
@@ -100,11 +105,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
 
             RecalculateTotalStats();
-        }
-
-        public override void Accept(ItemVisitor visitor)
-        {
-            visitor.Visit(this);
         }
 
         protected override Item CloneActual()
