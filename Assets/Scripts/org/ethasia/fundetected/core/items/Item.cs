@@ -34,6 +34,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private set;
         }
 
+        public ItemPotential Potential
+        {
+            get;
+            protected set;
+        }
+
         public ItemMaterials Material
         {
             get;
@@ -54,7 +60,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
         protected Item()
         {
-            PhysicsBody.RegisterStopFallingEventObserver(new PhysicsBodyDropSoundPlayingEventObserver());
+            PhysicsBody.RegisterStopFallingEventObserver(new PhysicsBodyDropSoundPlayingEventObserver(this));
             PhysicsBody.RegisterStopFallingEventObserver(new ItemPresentationUpdateEventObserver(this));
         }
 
@@ -93,6 +99,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
             clone.ItemClass = ItemClass;
             clone.MinimumItemLevel = MinimumItemLevel;
             clone.ItemLevel = ItemLevel;
+            clone.Potential = Potential;
             clone.CollisionShape = CollisionShape.Clone();
             clone.Material = Material;
         }

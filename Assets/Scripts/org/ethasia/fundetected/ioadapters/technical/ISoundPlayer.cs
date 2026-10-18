@@ -11,6 +11,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void PlayItemDropSound(string audioSourceId);
         void PlayItemDropSound();
         void PlayNormalItemDroppedSound();
+        void PlayLatentItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
         void PlayInventoryGrabItemSound();
         void PlayLevelUpSound();

@@ -26,6 +26,7 @@ namespace Org.Ethasia.Fundetected.Technical
         public AudioClip mouseClickSound;
         public AudioClip itemDropSound;
         public AudioClip normalItemDroppedSound;
+        public AudioClip latentItemDroppedSound;
         public AudioClip droppedItemPickedUpSound;
         public AudioClip inventoryGrabItemSound;
         public AudioClip levelUpSound;
@@ -133,6 +134,11 @@ namespace Org.Ethasia.Fundetected.Technical
         public void PlayNormalItemDroppedSound()
         {
             globalAudioSource.PlayOneShot(normalItemDroppedSound);
+        }
+
+        public void PlayLatentItemDroppedSound()
+        {
+            globalAudioSource.PlayOneShot(latentItemDroppedSound);
         }
 
         public void PlayDroppedItemPickedUpSound()

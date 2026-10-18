@@ -38,6 +38,10 @@ namespace Org.Ethasia.Fundetected.Core.Mocks
         {
         }
 
+        public void PlayLatentItemDroppedSound()
+        {
+        }
+
         public void PlayDroppedItemPickedUpSound()
         {
         }

@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Core
         void PlayItemDropSound(string audioSourceId);
         void PlayItemDropSound();
         void PlayNormalItemDroppedSound();
+        void PlayLatentItemDroppedSound();
         void PlayDroppedItemPickedUpSound();
         void PlayInventoryGrabItemSound();
         void PlayLevelUpSound();

@@ -2969,6 +2969,7 @@ MonoBehaviour:
   mouseClickSound: {fileID: 8300000, guid: e1b0b8c255d58f844b0cb769f7b7c1ce, type: 3}
   itemDropSound: {fileID: 8300000, guid: 6c50a973c02648e41b7e679bd3bd92f0, type: 3}
   normalItemDroppedSound: {fileID: 8300000, guid: 2ef63456753541240add9f82673c4899, type: 3}
+  latentItemDroppedSound: {fileID: 8300000, guid: 07703d7dbc02d9448a4e76e92dc58cf1, type: 3}
   droppedItemPickedUpSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
   inventoryGrabItemSound: {fileID: 8300000, guid: 64f52af574f856c4bbde09abfcb890c1, type: 3}
   levelUpSound: {fileID: 8300000, guid: 98acf98989d3b6e42b990b6202c32482, type: 3}

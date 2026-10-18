@@ -38,12 +38,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }  
 
-        public ItemPotential Potential
-        {
-            get;
-            private set;
-        }
-
         public bool TryAddAffix(EquipmentAffix affix)
         {
             List<EquipmentAffix> targetAffixes = affix.AffixType == AffixTypes.PREFIX ? prefixes : suffixes;
@@ -144,7 +138,6 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             CloneSuffixes(clone);
 
             clone.FirstImplicit = null == FirstImplicit ? null : FirstImplicit.Clone();
-            clone.Potential = Potential;
 
             CloneItemFields(clone);
         }
