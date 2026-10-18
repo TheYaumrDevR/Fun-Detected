@@ -1,31 +1,63 @@
-.tooltip-header-normal-border1 {
+/* Base styles: layout only */
+.tooltip-header-base-border1 {
     height: 29px;
     border-width: 1px;
-    border-color: #554a41;
 }
 
-.tooltip-header-normal-border2 {
+.tooltip-header-base-border2 {
     height: 27px;
     border-width: 1px;
-    border-color: #4b4745;
 }
 
-.tooltip-header-normal-border3 {
+.tooltip-header-base-border3 {
     height: 25px;
     border-width: 1px;
-    border-color: #807673;
     justify-content: center;
     padding-left: 8px;
     padding-right: 8px;
-    background-color: #343333;
     flex-direction: row;
     align-items: center;
 }
 
-.tooltip-header-normal-title {
-    color: #e7e8e8;
+.tooltip-header-base-title {
     font-size: 16px;
-    white-space: nowrap; 
+    white-space: nowrap;
     -unity-text-align: middle-center;
     -unity-font-style: bold;
+}
+
+/* Normal variant: colors only */
+.tooltip-header-normal-border1 {
+    border-color: #554a41;
+}
+
+.tooltip-header-normal-border2 {
+    border-color: #4b4745;
+}
+
+.tooltip-header-normal-border3 {
+    border-color: #807673;
+    background-color: #343333;
+}
+
+.tooltip-header-normal-title {
+    color: #e7e8e8;
+}
+
+/* Latent variant: colors only */
+.tooltip-header-latent-border1 {
+    border-color: #302558;
+}
+
+.tooltip-header-latent-border2 {
+    border-color: #251a3c;
+}
+
+.tooltip-header-latent-border3 {
+    border-color: #3f4566;
+    background-color: #1a192b;
+}
+
+.tooltip-header-latent-title {
+    color: #9595fc;
 }
