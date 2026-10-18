@@ -28,6 +28,30 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             private set;
         }
 
+        public bool IsPhysicalDamageModified
+        {
+            get;
+            private set;
+        }
+
+        public bool IsSpellDamageModified
+        {
+            get;
+            private set;
+        }
+
+        public bool IsSkillsPerSecondModified
+        {
+            get;
+            private set;
+        }
+
+        public bool IsCriticalStrikeChanceModified
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private WeaponPresentationContext result;
@@ -53,6 +77,30 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             public Builder WithCriticalStrikeChance(int value)
             {
                 result.CriticalStrikeChance = value;
+                return this;
+            }
+
+            public Builder WithIsPhysicalDamageModified(bool value)
+            {
+                result.IsPhysicalDamageModified = value;
+                return this;
+            }
+
+            public Builder WithIsSpellDamageModified(bool value)
+            {
+                result.IsSpellDamageModified = value;
+                return this;
+            }
+
+            public Builder WithIsSkillsPerSecondModified(bool value)
+            {
+                result.IsSkillsPerSecondModified = value;
+                return this;
+            }
+
+            public Builder WithIsCriticalStrikeChanceModified(bool value)
+            {
+                result.IsCriticalStrikeChanceModified = value;
                 return this;
             }
 

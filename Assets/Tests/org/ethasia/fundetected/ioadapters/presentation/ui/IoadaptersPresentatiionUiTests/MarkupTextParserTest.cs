@@ -32,11 +32,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Presentation.UI.Tests
             var input = "This is <b>bold</b> text with <b>another bold</b> segment.";
             var expected = new List<UiTextSegment>
             {
-                new UiTextSegment("This is ", false),
-                new UiTextSegment("bold", true),
-                new UiTextSegment(" text with ", false),
-                new UiTextSegment("another bold", true),
-                new UiTextSegment(" segment.", false)
+                new UiTextSegment("This is ", false, UiDefaultColors.UNCOLORED),
+                new UiTextSegment("bold", true, UiDefaultColors.UNCOLORED),
+                new UiTextSegment(" text with ", false, UiDefaultColors.UNCOLORED),
+                new UiTextSegment("another bold", true, UiDefaultColors.UNCOLORED),
+                new UiTextSegment(" segment.", false, UiDefaultColors.UNCOLORED)
             };
 
             // Act
@@ -79,6 +79,42 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Presentation.UI.Tests
             Assert.That(result, Has.Count.EqualTo(1));
             Assert.That(result[0].Text, Is.EqualTo("This is bold text."));
             Assert.That(result[0].IsBold, Is.True);
+        }
+
+        [Test]
+        public void TestParseColorsBoldSegmentsWithPassedColor()
+        {
+            // Arrange
+            var input = "This is <b>bold</b> text with <b>another bold</b> segment.";
+
+            // Act
+            var result = MarkupTextParser.Parse(input, UiDefaultColors.TEXT_BLUE);
+
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(5));
+            Assert.That(result[1].IsBold, Is.True);
+            Assert.That(result[1].Color, Is.EqualTo(UiDefaultColors.TEXT_BLUE));
+            Assert.That(result[3].IsBold, Is.True);
+            Assert.That(result[3].Color, Is.EqualTo(UiDefaultColors.TEXT_BLUE));
+        }
+
+        [Test]
+        public void TestParseKeepsNonBoldSegmentsUncoloredWhenBoldColorIsPassed()
+        {
+            // Arrange
+            var input = "This is <b>bold</b> text with <b>another bold</b> segment.";
+
+            // Act
+            var result = MarkupTextParser.Parse(input, UiDefaultColors.TEXT_BLUE);
+
+            // Assert
+            Assert.That(result, Has.Count.EqualTo(5));
+            Assert.That(result[0].IsBold, Is.False);
+            Assert.That(result[0].Color, Is.EqualTo(UiDefaultColors.UNCOLORED));
+            Assert.That(result[2].IsBold, Is.False);
+            Assert.That(result[2].Color, Is.EqualTo(UiDefaultColors.UNCOLORED));
+            Assert.That(result[4].IsBold, Is.False);
+            Assert.That(result[4].Color, Is.EqualTo(UiDefaultColors.UNCOLORED));
         }
     }
 }

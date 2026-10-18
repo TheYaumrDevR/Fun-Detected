@@ -1,3 +1,5 @@
+using System;
+
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Items.Potions;
@@ -135,6 +137,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithMinToMaxSpellDamage(minToMaxSpellDamage)
                 .WithSkillsPerSecond(weapon.TotalStats.SkillsPerSecond)
                 .WithCriticalStrikeChance(weapon.TotalStats.CriticalStrikeChance)
+                .WithIsPhysicalDamageModified(IsWeaponPhysicalDamageModified(weapon))
+                .WithIsSpellDamageModified(IsWeaponSpellDamageModified(weapon))
+                .WithIsSkillsPerSecondModified(Math.Abs(weapon.TotalStats.SkillsPerSecond - weapon.SkillsPerSecond) > 0.0001)
+                .WithIsCriticalStrikeChanceModified(weapon.TotalStats.CriticalStrikeChance != weapon.CriticalStrikeChance)
                 .Build();            
         }
 
@@ -152,6 +158,25 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
                 .WithUses(recoveryPotion.Uses)
                 .WithRecoveryAmount(recoveryPotion.RecoveryAmount)
                 .Build();
+        }
+
+        private static bool IsWeaponPhysicalDamageModified(Weapon weapon)
+        {
+            return IsDamageRangeModified(weapon.MinToMaxPhysicalDamage, weapon.TotalStats.PhysicalDamage);
+        }
+
+        private static bool IsWeaponSpellDamageModified(Weapon weapon)
+        {
+            return IsDamageRangeModified(weapon.MinToMaxSpellDamage, weapon.TotalStats.SpellDamage);
+        }
+
+        private static bool IsDamageRangeModified(DamageRange baseDamage, DamageRange totalDamage)
+        {
+            int baseMin = baseDamage != null ? baseDamage.MinDamage : 0;
+            int baseMax = baseDamage != null ? baseDamage.MaxDamage : 0;
+
+            return totalDamage.MinDamage != baseMin
+                || totalDamage.MaxDamage != baseMax;
         }
     }
 }

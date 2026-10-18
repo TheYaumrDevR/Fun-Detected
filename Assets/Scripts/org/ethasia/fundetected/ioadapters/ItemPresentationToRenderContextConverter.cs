@@ -107,50 +107,63 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             if (weaponContext.MinToMaxPhysicalDamage != null)
             {
-                result.Add(ConvertWeaponPhysDamageToTextSegments(weaponContext.MinToMaxPhysicalDamage));
-            }
-            
-            if (weaponContext.MinToMaxSpellDamage != null)
-            {
-                result.Add(ConvertWeaponSpellDamageToTextSegments(weaponContext.MinToMaxSpellDamage));
+                result.Add(ConvertWeaponPhysDamageToTextSegments(
+                    weaponContext.MinToMaxPhysicalDamage,
+                    ResolveModifiedTextColor(weaponContext.IsPhysicalDamageModified)));
             }
 
-            result.Add(ConvertWeaponCritChanceToTextSegments(weaponContext.CriticalStrikeChance));
-            result.Add(ConvertWeaponSkillsPerSecondToTextSegments(weaponContext.SkillsPerSecond));
+            if (weaponContext.MinToMaxSpellDamage != null)
+            {
+                result.Add(ConvertWeaponSpellDamageToTextSegments(
+                    weaponContext.MinToMaxSpellDamage,
+                    ResolveModifiedTextColor(weaponContext.IsSpellDamageModified)));
+            }
+
+            result.Add(ConvertWeaponCritChanceToTextSegments(
+                weaponContext.CriticalStrikeChance,
+                ResolveModifiedTextColor(weaponContext.IsCriticalStrikeChanceModified)));
+            result.Add(ConvertWeaponSkillsPerSecondToTextSegments(
+                weaponContext.SkillsPerSecond,
+                ResolveModifiedTextColor(weaponContext.IsSkillsPerSecondModified)));
 
             return result;
         }
 
-        private static List<UiTextSegment> ConvertWeaponPhysDamageToTextSegments(DamageRange physMinMaxDam)
+        private static UiDefaultColors ResolveModifiedTextColor(bool isModified)
         {
-            return ConvertDamageRangeToTextSegments("weapon-tooltip-phys-dam", physMinMaxDam);
+            return isModified ? UiDefaultColors.TEXT_BLUE : UiDefaultColors.UNCOLORED;
         }
 
-        private static List<UiTextSegment> ConvertWeaponSpellDamageToTextSegments(DamageRange spellMinMaxDam)
+        private static List<UiTextSegment> ConvertWeaponPhysDamageToTextSegments(DamageRange physMinMaxDam, UiDefaultColors boldColor)
         {
-            return ConvertDamageRangeToTextSegments("weapon-tooltip-spell-dam", spellMinMaxDam);
+            return ConvertDamageRangeToTextSegments("weapon-tooltip-phys-dam", physMinMaxDam, boldColor);
         }
 
-        private static List<UiTextSegment> ConvertDamageRangeToTextSegments(string localizationKey, DamageRange damageRange)
+        private static List<UiTextSegment> ConvertWeaponSpellDamageToTextSegments(DamageRange spellMinMaxDam, UiDefaultColors boldColor)
+        {
+            return ConvertDamageRangeToTextSegments("weapon-tooltip-spell-dam", spellMinMaxDam, boldColor);
+        }
+
+        private static List<UiTextSegment> ConvertDamageRangeToTextSegments(string localizationKey, DamageRange damageRange, UiDefaultColors boldColor)
         {
             string localizedString = localizationGateway.GetLocalizedString(localizationKey);
             string formattedString = string.Format(localizedString, damageRange.MinDamage, damageRange.MaxDamage);
-            return MarkupTextParser.Parse(formattedString);
+            return MarkupTextParser.Parse(formattedString, boldColor);
         }
 
-        private static List<UiTextSegment> ConvertWeaponCritChanceToTextSegments(int critChanceCents)
+        private static List<UiTextSegment> ConvertWeaponCritChanceToTextSegments(int critChanceCents, UiDefaultColors boldColor)
         {
             string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-crit-chance");
             string formattedString = string.Format(localizedString, critChanceCents / 100.0);
-            return MarkupTextParser.Parse(formattedString);
+            return MarkupTextParser.Parse(formattedString, boldColor);
         }
 
-        private static List<UiTextSegment> ConvertWeaponSkillsPerSecondToTextSegments(double skillsPerSecond)
+        private static List<UiTextSegment> ConvertWeaponSkillsPerSecondToTextSegments(double skillsPerSecond, UiDefaultColors boldColor)
         {
             string skillsPerSecondTwoDecimal = skillsPerSecond.ToString("F2");
             string localizedString = localizationGateway.GetLocalizedString("weapon-tooltip-skills-per-second");
             string formattedString = string.Format(localizedString, skillsPerSecondTwoDecimal);
-            return MarkupTextParser.Parse(formattedString);
+            return MarkupTextParser.Parse(formattedString, boldColor);
         }
 
         private static List<List<UiTextSegment>> ConvertItemImplicitsToTextSegments(InventoryItemPresentationContext itemContext)
@@ -221,7 +234,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             List<UiTextSegment> result = new List<UiTextSegment>();
             string localizedClassName = enumLocalizationGateway.GetLocalizedEnumString<ItemClass>(itemClass);
 
-            result.Add(new UiTextSegment(localizedClassName, false));
+            result.Add(new UiTextSegment(localizedClassName, false, UiDefaultColors.UNCOLORED));
 
             return result;
         }
@@ -260,7 +273,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             string formattedAffixText = string.Format(affixUiText, affix.GetValues());
 
-            result.Add(new UiTextSegment(formattedAffixText, false));
+            result.Add(new UiTextSegment(formattedAffixText, false, UiDefaultColors.UNCOLORED));
 
             return result;
         }

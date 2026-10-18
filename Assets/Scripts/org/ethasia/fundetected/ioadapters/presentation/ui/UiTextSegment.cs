@@ -4,11 +4,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Presentation.UI
     {
         public string Text { get; }
         public bool IsBold { get; }
+        public UiDefaultColors Color { get; }
 
-        public UiTextSegment(string text, bool isBold)
+        public UiTextSegment(string text, bool isBold, UiDefaultColors color)
         {
             Text = text;
             IsBold = isBold;
+            Color = color;
         }
     }
 }

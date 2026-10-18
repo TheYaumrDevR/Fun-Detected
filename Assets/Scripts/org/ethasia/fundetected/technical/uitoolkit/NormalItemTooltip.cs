@@ -100,6 +100,11 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 string labelClass = textSegment.IsBold ? TEXT_VALUE_CLASS : TEXT_LABEL_CLASS;
                 label.AddToClassList(labelClass);
 
+                if (textSegment.Color == UiDefaultColors.TEXT_BLUE)
+                {
+                    label.AddToClassList(TEXT_BLUE_CLASS);
+                }
+
                 if (i == 0)
                 {
                     label.AddToClassList(TEXT_PADDING_LEFT_CLASS);
