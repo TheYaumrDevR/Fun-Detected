@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Ioadapters.Presentation.UI;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -39,7 +40,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         {
             if (null != tooltipHeader)
             {
-                tooltipHeader.SetItemName(displayInformation.ItemName);
+                if (displayInformation.TooltipRenderContext.ItemPotential == ItemPotential.LATENT)
+                {
+                    tooltipHeader.SetLatentItemName(displayInformation.ItemName);
+                }
+                else
+                {
+                    tooltipHeader.SetItemName(displayInformation.ItemName);
+                }
 
                 style.visibility = Visibility.Visible;
                 CorrectPositionBasedOnWindowBounds(displayInformation.PosX, displayInformation.PosY);

@@ -15,6 +15,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             {
                 InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(weapon, true)
                     .WithAffixes(ConvertItemAffixesToPresentationContext(weapon))
+                    .WithItemPotential(weapon.Potential)
                     .Build();
                 WeaponPresentationContext weaponContext = ConvertWeaponToPresentationContext(weapon);
 
@@ -34,6 +35,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
             {
                 InventoryItemPresentationContext itemContext = ConvertItemToPresentationContext(jewelry, true)
                     .WithAffixes(ConvertItemAffixesToPresentationContext(jewelry))
+                    .WithItemPotential(jewelry.Potential)
                     .Build();
 
                 return new EquippedJewelryPresentationContext.Builder()
@@ -82,6 +84,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         {
             InventoryItemPresentationContext.Builder itemPresentationContextBuilder = ConvertItemToPresentationContext(item, true);
             itemPresentationContextBuilder.WithAffixes(ConvertItemAffixesToPresentationContext(item));
+            itemPresentationContextBuilder.WithItemPotential(item.Potential);
             ConvertShapeAndPositionToPresentationContext(itemInInventoryShape, itemPresentationContextBuilder);  
 
             return itemPresentationContextBuilder.Build();          
