@@ -38,6 +38,12 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             private set;
         }  
 
+        public ItemPotential Potential
+        {
+            get;
+            private set;
+        }
+
         public bool TryAddAffix(EquipmentAffix affix)
         {
             List<EquipmentAffix> targetAffixes = affix.AffixType == AffixTypes.PREFIX ? prefixes : suffixes;
@@ -48,6 +54,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             }
 
             targetAffixes.Add(affix);
+            UpdatePotential();
             ApplyLocalAffixes();
 
             return true;
@@ -102,6 +109,31 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             return player.PickupEquipment(this);
         }
 
+        protected void UpdatePotential()
+        {
+            if (Potential == ItemPotential.UNIQUE)
+            {
+                return;
+            }
+
+            int prefixCount = prefixes.Count;
+            int suffixCount = suffixes.Count;
+            int totalCount = prefixCount + suffixCount;
+
+            if (totalCount == 0)
+            {
+                Potential = ItemPotential.NORMAL;
+            }
+            else if (totalCount > 2 || prefixCount > 1 || suffixCount > 1)
+            {
+                Potential = ItemPotential.AWAKENED;
+            }
+            else
+            {
+                Potential = ItemPotential.LATENT;
+            }
+        }
+
         protected void Clone(Equipment clone)
         {
             clone.StrengthRequirement = StrengthRequirement;
@@ -112,7 +144,8 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
             CloneSuffixes(clone);
 
             clone.FirstImplicit = null == FirstImplicit ? null : FirstImplicit.Clone();
-            
+            clone.Potential = Potential;
+
             CloneItemFields(clone);
         }
 
@@ -209,6 +242,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment
                 statlessEquipment.FirstImplicit = firstImplicit;
                 statlessEquipment.prefixes.AddRange(prefixes);
                 statlessEquipment.suffixes.AddRange(suffixes);
+                statlessEquipment.UpdatePotential();
                 statlessEquipment.ApplyLocalAffixes();
 
                 FillItemFields(statlessEquipment);
