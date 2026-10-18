@@ -27,6 +27,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             ItemDropPresentationInformation itemDropInfo = new ItemDropPresentationInformation();
             itemDropInfo.UniqueId = item.UniqueId;
             itemDropInfo.BaseTypeOrUniqueName = item.Name;
+            itemDropInfo.Potential = item.Potential;
             itemDropInfo.PositionX = item.CollisionShape.Position.X;
             itemDropInfo.PositionY = item.CollisionShape.Position.Y;
 

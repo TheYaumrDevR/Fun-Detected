@@ -20,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             itemDropInfo.UniqueId = item.UniqueId;
             itemDropInfo.BaseTypeOrUniqueName = item.Name;
             itemDropInfo.PositionY = item.CollisionShape.Position.Y + item.CollisionShape.CollisionShapeDistanceToTopEdgeFromCenter;
+            itemDropInfo.Potential = item.Potential;
 
             droppedItemPresenter.UpdateItemPresentationWhenRestingOnGround(itemDropInfo);
         }

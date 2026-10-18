@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -56,13 +57,23 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             float posX = ConvertMapPositionToScreenPosition(itemDropInfo.PositionX);
             float posY = ConvertMapPositionToScreenPosition(itemDropInfo.PositionY);
 
-            return new DroppedItemRenderProxy.Builder()
+            DroppedItemRenderProxy.Builder resultBuilder = new DroppedItemRenderProxy.Builder()
                 .SetId(itemDropInfo.UniqueId)
                 .SetItemName(itemDropInfo.BaseTypeOrUniqueName)
                 .SetRenderImageName(itemDropInfo.BaseTypeOrUniqueName)
                 .SetPosX(posX)
-                .SetPosY(posY)
-                .Build();
+                .SetPosY(posY);
+
+            if (itemDropInfo.Potential == ItemPotential.LATENT)
+            {
+                resultBuilder
+                    .SetItemLabelTextColor("#9595fc")
+                    .SetItemLabelBorderColor("#000000")
+                    .SetItemLabelBackgroundColor("#1a192b")
+                    .SetItemLabelFontSize(30);
+            }
+
+            return resultBuilder.Build();
         }
     }
 }

@@ -32,6 +32,30 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }
 
+        public string ItemLabelBorderColor
+        {
+            get;
+            private set;
+        }
+
+        public string ItemLabelBackgroundColor
+        {
+            get;
+            private set;
+        }
+
+        public string ItemLabelTextColor
+        {
+            get;
+            private set;
+        }
+
+        public int ItemLabelFontSize
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private DroppedItemRenderProxy result;
@@ -68,6 +92,30 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             public Builder SetPosY(float value)
             {
                 result.PosY = value;
+                return this;
+            }
+
+            public Builder SetItemLabelBorderColor(string value)
+            {
+                result.ItemLabelBorderColor = value;
+                return this;
+            }
+
+            public Builder SetItemLabelBackgroundColor(string value)
+            {
+                result.ItemLabelBackgroundColor = value;
+                return this;
+            }
+
+            public Builder SetItemLabelTextColor(string value)
+            {
+                result.ItemLabelTextColor = value;
+                return this;
+            }
+
+            public Builder SetItemLabelFontSize(int value)
+            {
+                result.ItemLabelFontSize = value;
                 return this;
             }
 
