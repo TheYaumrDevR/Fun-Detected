@@ -25,6 +25,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private SingleLineItemTooltipHeader tooltipHeader;
         private VisualElement contentArea;
 
+        private float requestedPosX;
+        private float requestedPosY;
+
         public NormalItemTooltip()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/NormalItemTooltip");
@@ -33,7 +36,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             tooltipHeader = this.Q<SingleLineItemTooltipHeader>(HEADER_NAME);
             contentArea = this.Q<VisualElement>(CONTENT_AREA_NAME);
 
-            this.pickingMode = PickingMode.Ignore;
+            SetPickingModeIgnoreRecursively(this);
+            RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         }
 
         public void Show(TooltipDisplayInformation displayInformation)
@@ -50,7 +54,9 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 }
 
                 style.visibility = Visibility.Visible;
-                CorrectPositionBasedOnWindowBounds(displayInformation.PosX, displayInformation.PosY);
+                requestedPosX = displayInformation.PosX;
+                requestedPosY = displayInformation.PosY;
+                CorrectPositionBasedOnWindowBounds(requestedPosX, requestedPosY);
             }
 
             if (null != contentArea)
@@ -64,6 +70,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         public void Reposition(float posX, float posY)
         {
+            requestedPosX = posX;
+            requestedPosY = posY;
             CorrectPositionBasedOnWindowBounds(posX, posY);
         }
 
@@ -72,16 +80,51 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             style.visibility = Visibility.Hidden;
         }
 
+        private static void SetPickingModeIgnoreRecursively(VisualElement element)
+        {
+            element.pickingMode = PickingMode.Ignore;
+
+            foreach (VisualElement child in element.Children())
+            {
+                SetPickingModeIgnoreRecursively(child);
+            }
+        }
+
+        private void OnGeometryChanged(GeometryChangedEvent evt)
+        {
+            if (style.visibility == Visibility.Visible)
+            {
+                CorrectPositionBasedOnWindowBounds(requestedPosX, requestedPosY);
+            }
+        }
+
         private void CorrectPositionBasedOnWindowBounds(float posX, float posY)
         {
-            float maxX = Screen.width - resolvedStyle.width;
-            float maxY = Screen.height - resolvedStyle.height;
+            float width = resolvedStyle.width;
+            float height = resolvedStyle.height;
 
-            posX = Mathf.Min(posX, maxX);
-            posY = Mathf.Min(posY, maxY);
+            if (float.IsNaN(width) || float.IsNaN(height))
+            {
+                width = 0f;
+                height = 0f;
+            }
 
-            style.left = posX;
-            style.top = posY;
+            float maxX = Mathf.Max(0f, Screen.width - width);
+            float maxY = Mathf.Max(0f, Screen.height - height);
+
+            float newLeft = Mathf.Min(posX, maxX);
+            float newTop = Mathf.Min(posY, maxY);
+
+            // Avoid re-triggering layout when nothing changed
+            if (!Mathf.Approximately(style.left.value.value, newLeft))
+            {
+                style.left = newLeft;
+            }
+
+            if (!Mathf.Approximately(style.top.value.value, newTop))
+            {
+                style.top = newTop;
+            }
         }
 
         private void SetupToolTipContentAreaHeader(List<List<UiTextSegment>> tooltipContext)
@@ -99,12 +142,15 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private VisualElement ConvertTextSegmentsToVisualElement(List<UiTextSegment> textSegments, string[] additionalLabelClasses)
         {
             var row = new VisualElement();
+            row.pickingMode = PickingMode.Ignore;
             row.AddToClassList(TEXT_ROW_CLASS);
 
             var i = 0;
             foreach (var textSegment in textSegments)
             {
                 var label = new Label(textSegment.Text);
+                label.pickingMode = PickingMode.Ignore;
+
                 string labelClass = textSegment.IsBold ? TEXT_VALUE_CLASS : TEXT_LABEL_CLASS;
                 label.AddToClassList(labelClass);
 
@@ -173,6 +219,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private VisualElement CreateTooltipSegmentDivider()
         {
             var result = new VisualElement();
+
+            result.pickingMode = PickingMode.Ignore;
             result.AddToClassList(SEGMENT_DIVIDER_CLASS);
 
             return result;
