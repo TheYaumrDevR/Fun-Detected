@@ -56,6 +56,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             private set;
         }
 
+        public bool RenderBeam
+        {
+            get;
+            private set;
+        }
+
+        public string BeamColor
+        {
+            get;
+            private set;
+        }
+
         public class Builder
         {
             private DroppedItemRenderProxy result;
@@ -116,6 +128,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
             public Builder SetItemLabelFontSize(int value)
             {
                 result.ItemLabelFontSize = value;
+                return this;
+            }
+
+            public Builder SetRenderBeam(bool value)
+            {
+                result.RenderBeam = value;
+                return this;
+            }
+
+            public Builder SetBeamColor(string value)
+            {
+                result.BeamColor = value;
                 return this;
             }
 

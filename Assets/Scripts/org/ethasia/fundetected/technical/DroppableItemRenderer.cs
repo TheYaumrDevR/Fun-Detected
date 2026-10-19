@@ -9,8 +9,11 @@ namespace Org.Ethasia.Fundetected.Technical
     {
         private static DroppableItemRenderer instance;
 
+        private const string ITEM_BEAM_RESOURCE_PATH = "Images/Items/ItemBeam";
+
         private Dictionary<string, GameObject> renderedItemById = new Dictionary<string, GameObject>();
         private Dictionary<string, GameObject> renderedItemLabelById = new Dictionary<string, GameObject>();
+        private Dictionary<string, GameObject> renderedItemBeamById = new Dictionary<string, GameObject>();
 
         public static DroppableItemRenderer GetInstance()
         {
@@ -21,6 +24,7 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             renderedItemById = new Dictionary<string, GameObject>();
             renderedItemLabelById = new Dictionary<string, GameObject>();
+            renderedItemBeamById = new Dictionary<string, GameObject>();
         }
 
         void Awake()
@@ -37,6 +41,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
             renderedItemById.Clear();
             renderedItemLabelById.Clear();
+            renderedItemBeamById.Clear();
         }
 
         public void RenderDroppedItem(DroppedItemRenderProxy renderData)
@@ -101,6 +106,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
                 renderedItemLabelById.Add(renderData.Id, itemLabel);
 
+                RenderItemBeam(renderData, droppedItem);
                 StopSpinning(renderData.Id);
             }
         }
@@ -109,6 +115,49 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             ClearRenderedItemFromDictionary(itemId, renderedItemById);
             ClearRenderedItemFromDictionary(itemId, renderedItemLabelById);
+            ClearRenderedItemFromDictionary(itemId, renderedItemBeamById);
+        }
+
+        private void RenderItemBeam(DroppedItemRenderProxy renderData, GameObject droppedItem)
+        {
+            if (!renderData.RenderBeam || renderedItemBeamById.ContainsKey(renderData.Id))
+            {
+                return;
+            }
+
+            Sprite beamSprite = Resources.Load<Sprite>(ITEM_BEAM_RESOURCE_PATH);
+
+            if (null == beamSprite)
+            {
+                return;
+            }
+
+            GameObject beam = new GameObject("ItemBeam " + renderData.Id);
+
+            SpriteRenderer beamRenderer = beam.AddComponent<SpriteRenderer>();
+            beamRenderer.sprite = beamSprite;
+            beamRenderer.sortingLayerName = "Sprites";
+            beamRenderer.sortingOrder = 0;
+
+            if (!string.IsNullOrEmpty(renderData.BeamColor) && ColorUtility.TryParseHtmlString(renderData.BeamColor, out Color beamColor))
+            {
+                beamRenderer.color = beamColor;
+            }
+
+            beam.transform.SetParent(transform);
+            beam.transform.position = droppedItem.transform.position;
+
+            AlignBeamBottomWithItemBottom(beamRenderer, droppedItem.GetComponent<SpriteRenderer>());
+
+            renderedItemBeamById.Add(renderData.Id, beam);
+        }
+
+        private static void AlignBeamBottomWithItemBottom(SpriteRenderer beamRenderer, SpriteRenderer itemRenderer)
+        {
+            float itemBottom = itemRenderer.bounds.min.y;
+            float beamBottom = beamRenderer.bounds.min.y;
+
+            beamRenderer.transform.Translate(0f, itemBottom - beamBottom, 0f, Space.World);
         }
 
         private void ClearRenderedItemFromDictionary(string itemId, Dictionary<string, GameObject> dictionary)

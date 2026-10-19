@@ -70,7 +70,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     .SetItemLabelTextColor("#9595fc")
                     .SetItemLabelBorderColor("#000000")
                     .SetItemLabelBackgroundColor("#1a192b")
-                    .SetItemLabelFontSize(30);
+                    .SetItemLabelFontSize(30)
+                    .SetRenderBeam(true)
+                    .SetBeamColor("#9595fc");
             }
 
             return resultBuilder.Build();
