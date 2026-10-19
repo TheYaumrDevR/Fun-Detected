@@ -10,6 +10,12 @@ namespace Org.Ethasia.Fundetected.Technical
         private static DroppableItemRenderer instance;
 
         private const string ITEM_BEAM_RESOURCE_PATH = "Images/Items/ItemBeam";
+        private const string ITEM_BEAM_MATERIAL_RESOURCE_PATH = "Materials/ItemBeamPulse";
+
+        private static readonly int itemBeamPulsePhaseId = Shader.PropertyToID("_PulsePhase");
+
+        private Material itemBeamMaterial;
+        private MaterialPropertyBlock itemBeamPropertyBlock;
 
         private Dictionary<string, GameObject> renderedItemById = new Dictionary<string, GameObject>();
         private Dictionary<string, GameObject> renderedItemLabelById = new Dictionary<string, GameObject>();
@@ -139,6 +145,8 @@ namespace Org.Ethasia.Fundetected.Technical
             beamRenderer.sortingLayerName = "Sprites";
             beamRenderer.sortingOrder = 0;
 
+            SetupBeamShader(beamRenderer);
+
             if (!string.IsNullOrEmpty(renderData.BeamColor) && ColorUtility.TryParseHtmlString(renderData.BeamColor, out Color beamColor))
             {
                 beamRenderer.color = beamColor;
@@ -150,6 +158,28 @@ namespace Org.Ethasia.Fundetected.Technical
             AlignBeamBottomWithItemBottom(beamRenderer, droppedItem.GetComponent<SpriteRenderer>());
 
             renderedItemBeamById.Add(renderData.Id, beam);
+        }
+
+        private void SetupBeamShader(SpriteRenderer beamRenderer)
+        {
+            if (null == itemBeamMaterial)
+            {
+                itemBeamMaterial = Resources.Load<Material>(ITEM_BEAM_MATERIAL_RESOURCE_PATH);
+            }           
+
+            if (null != itemBeamMaterial)
+            {
+                beamRenderer.sharedMaterial = itemBeamMaterial;
+
+                if (null == itemBeamPropertyBlock)
+                {
+                    itemBeamPropertyBlock = new MaterialPropertyBlock();
+                }
+
+                beamRenderer.GetPropertyBlock(itemBeamPropertyBlock);
+                itemBeamPropertyBlock.SetFloat(itemBeamPulsePhaseId, Random.value);
+                beamRenderer.SetPropertyBlock(itemBeamPropertyBlock);
+            }  
         }
 
         private static void AlignBeamBottomWithItemBottom(SpriteRenderer beamRenderer, SpriteRenderer itemRenderer)
