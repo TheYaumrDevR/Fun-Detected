@@ -167,6 +167,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             CalculateMovementSpeed(baseStats, modifiers, equipmentStats);
             CalculateRightHandAbilityRange(modifiers, equipmentStats);
             CalculateLeftHandAbilityRange(modifiers, equipmentStats);
+            CalculateArmor(modifiers, equipmentStats);
         }
 
         private void CalculateTotalIntelligence(PlayerCharacterBaseStats baseStats, PlayerCharacterAdditionalStats modifiers, StatsFromEquipment equipmentStats)
