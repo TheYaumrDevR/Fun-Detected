@@ -10,6 +10,9 @@ namespace Org.Ethasia.Fundetected.Technical
         private Dictionary<string, string> localizedStrings = new Dictionary<string, string>
         {
             { "inventory-window-title", "Inventory" },
+            { "death-screen-title", "You have died" },
+            { "death-screen-continue-hint", "Press Esc to continue" },
+            { "death-screen-loss-hint", "Death takes its toll of {0} experience points" },
             { "weapon-tooltip-phys-dam", "Physical Damage: <b>{0}-{1}</b>" },
             { "weapon-tooltip-spell-dam", "Spell Damage: <b>{0}-{1}</b>" },
             { "weapon-tooltip-crit-chance", "Critical Strike Chance: <b>{0}%</b>" },
