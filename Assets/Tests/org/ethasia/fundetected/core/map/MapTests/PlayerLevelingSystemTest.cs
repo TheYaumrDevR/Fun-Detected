@@ -1,5 +1,7 @@
 using NUnit.Framework;
 
+using Org.Ethasia.Fundetected.Core.Maths;
+
 namespace Org.Ethasia.Fundetected.Core.Map.Tests
 {
     public class PlayerLevelingSystemTest
@@ -62,6 +64,28 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             levelingSystem.AddExperiencePoints(800000000);
 
             Assert.That(levelingSystem.Level, Is.EqualTo(100));              
+        }
+
+        [Test]
+        public void TestApplyDeathPenaltyDoesNotReduceExperiencePointsBelowZero()
+        {
+            PlayerLevelingSystem levelingSystem = new PlayerLevelingSystem(23, 100);
+
+            levelingSystem.ApplyDeathPenalty();
+
+            Assert.That(levelingSystem.ExperiencePoints, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void TestApplyDeathPenaltyReducesTenPercentOfNextLevelRequirementWhenLevelGreaterThanOne()
+        {
+            PlayerLevelingSystem levelingSystem = new PlayerLevelingSystem(23, 100000);
+            int expectedPenalty = Formulas.GetExperiencePointsForNextLevel(24) * 10 / 100;
+
+            int lostExperiencePoints = levelingSystem.ApplyDeathPenalty();
+
+            Assert.That(lostExperiencePoints, Is.EqualTo(expectedPenalty));
+            Assert.That(levelingSystem.ExperiencePoints, Is.EqualTo(100000 - expectedPenalty));
         }
     }
 }

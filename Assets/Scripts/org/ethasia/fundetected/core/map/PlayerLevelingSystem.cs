@@ -5,6 +5,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
     public class PlayerLevelingSystem
     {
         private const int MAX_LEVEL = 100;
+        private const int DEATH_PENALTY_EXPERIENCE_PERCENT = 10;
 
         public int Level
         {
@@ -35,6 +36,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
                     LevelUp();
                 }
             }
+        }
+
+        public int ApplyDeathPenalty()
+        {
+            int penalty = GetExperiencePointsForNextLevel() * DEATH_PENALTY_EXPERIENCE_PERCENT / 100;
+            int lostExperiencePoints = penalty > ExperiencePoints ? ExperiencePoints : penalty;
+
+            ExperiencePoints -= lostExperiencePoints;
+
+            return lostExperiencePoints;
         }
 
         private int GetExperiencePointsForNextLevel()
