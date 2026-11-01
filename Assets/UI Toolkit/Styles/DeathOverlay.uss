@@ -1,0 +1,26 @@
+.death-screen-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+}
+
+.death-screen-overlay--visible {
+    display: flex;
+}
+
+.death-screen-title {
+    font-size: 48px;
+    color: #581111;
+}
+
+.death-screen-text {
+    font-size: 22px;
+    color: #581111;
+    margin-top: 16px;
+}

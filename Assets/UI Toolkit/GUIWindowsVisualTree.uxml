@@ -18,4 +18,5 @@
     </ui:VisualElement>
     <fund:InventoryWindow name="InventoryWindow" style="position: absolute; top: 0; right: 0;" />
     <fund:NormalItemTooltip name="item-tooltip" class="floating-tooltip" />
+    <fund:DeathScreenOverlay name="death-screen-overlay" />
 </ui:UXML>
