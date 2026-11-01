@@ -1,3 +1,5 @@
+using Org.Ethasia.Fundetected.Core.Combat;
+
 namespace Org.Ethasia.Fundetected.Core.Map
 {
     public abstract class InteractorsFactoryForCore
@@ -17,5 +19,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public abstract IPlayerDamageTakenInteractor GetPlayerDamageTakenInteractorInstance();
         public abstract IPortalTransitionInteractor GetPortalTransitionInteractor();
         public abstract IDropItemInteractor GetDropItemInteractorInstance();
+        public abstract IPlayerLevelUpInteractor GetPlayerLevelUpInteractorInstance();
+        public abstract IPlayerDeathInteractor GetPlayerDeathInteractorInstance();
     }
 }

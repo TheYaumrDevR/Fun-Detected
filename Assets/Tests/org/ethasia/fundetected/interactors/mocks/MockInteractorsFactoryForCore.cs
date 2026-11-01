@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Interactors.Mocks
@@ -24,6 +25,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
             }
 
             return dropItemInteractorMockInstance;
+        }
+
+        public override IPlayerLevelUpInteractor GetPlayerLevelUpInteractorInstance()
+        {
+            return new PlayerLevelUpInteractorMock();
+        }
+
+        public override IPlayerDeathInteractor GetPlayerDeathInteractorInstance()
+        {
+            return new PlayerDeathInteractorMock();
         }
     }
 }

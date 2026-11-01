@@ -28,6 +28,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
         }
 
+        public void ShowDeathOverlay(int lostExperiencePoints)
+        {
+        }
+
         public void ShowItemTooltip(NormalItemTooltip.TooltipDisplayInformation displayInformation)
         {
         }

@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Map;
 using Org.Ethasia.Fundetected.Interactors.Combat;
 using Org.Ethasia.Fundetected.Interactors.Map;
@@ -9,6 +10,8 @@ namespace Org.Ethasia.Fundetected.Interactors
         private IPlayerDamageTakenInteractor playerDamageTakenInteractor;
         private IPortalTransitionInteractor portalTransitionInteractor;
         private IDropItemInteractor dropItemInteractor;
+        private IPlayerLevelUpInteractor playerLevelUpInteractor;
+        private IPlayerDeathInteractor playerDeathInteractor;
 
         public override IPlayerDamageTakenInteractor GetPlayerDamageTakenInteractorInstance()
         {
@@ -38,6 +41,26 @@ namespace Org.Ethasia.Fundetected.Interactors
             }
 
             return dropItemInteractor;
+        }
+
+        public override IPlayerLevelUpInteractor GetPlayerLevelUpInteractorInstance()
+        {
+            if (null == playerLevelUpInteractor)
+            {
+                playerLevelUpInteractor = new PlayerLevelInformationInteractor();
+            }
+
+            return playerLevelUpInteractor;
+        }
+
+        public override IPlayerDeathInteractor GetPlayerDeathInteractorInstance()
+        {
+            if (null == playerDeathInteractor)
+            {
+                playerDeathInteractor = new PlayerDeathInteractor();
+            }
+
+            return playerDeathInteractor;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Org.Ethasia.Fundetected.Core.Combat;
 using Org.Ethasia.Fundetected.Core.Maths;
 
 namespace Org.Ethasia.Fundetected.Core.Map
@@ -29,12 +30,16 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             if (Level < MAX_LEVEL)
             {
+                int oldLevel = Level;
+
                 ExperiencePoints += experiencePointsToAdd;
 
                 while (ExperiencePoints >= GetExperiencePointsForNextLevel() && Level < MAX_LEVEL)
                 {
                     LevelUp();
                 }
+
+                NotifyLevelInformationChanged(Level > oldLevel);
             }
         }
 
@@ -45,7 +50,21 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             ExperiencePoints -= lostExperiencePoints;
 
+            NotifyLevelInformationChanged(false);
+
             return lostExperiencePoints;
+        }
+
+        private void NotifyLevelInformationChanged(bool hasLeveledUp)
+        {
+            IPlayerLevelUpInteractor interactor = InteractorsFactoryForCore.GetInstance().GetPlayerLevelUpInteractorInstance();
+
+            interactor.NotifyPlayerLevelInformationChanged(new IPlayerLevelUpInteractor.PlayerLevelContext
+            {
+                CurrentLevel = Level,
+                CurrentExperience = ExperiencePoints,
+                HasLeveledUp = hasLeveledUp
+            });
         }
 
         private int GetExperiencePointsForNextLevel()

@@ -49,6 +49,12 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             guiWindowsController.OpenInventoryWindow(inventoryRenderContext);
         }
 
+        public void ShowDeathOverlay(int lostExperiencePoints)
+        {
+            IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
+            guiWindowsController.ShowDeathOverlay(lostExperiencePoints);
+        }
+
         private InventoryRenderContext ConvertInventoryPresentationContext(InventoryPresentationContext context)
         {
             EquipmentSlotsRenderContext equipmentSlotsRenderContext = ConvertEquipmentSlotsPresentationContext(context.EquipmentSlotsPresentationContext);

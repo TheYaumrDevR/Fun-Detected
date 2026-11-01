@@ -9,5 +9,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public void ShowMapSelectionWindowForSingletonMap(string mapName, string destinationPortalId, string mapInstanceId) {}
         public void ShowMapSelectionWindow(string mapName, string destinationPortalId, List<string> mapInstanceIds) {}
         public void OpenInventoryWindow(InventoryPresentationContext context) {}
+        public void ShowDeathOverlay(int lostExperiencePoints) {}
     }
 }

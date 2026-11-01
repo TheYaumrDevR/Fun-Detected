@@ -21,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private VisualElement rootElement;
         private VisualElement mapSelectionWindow;     
         private InventoryWindow inventoryWindow;
+        private DeathScreenOverlay deathScreenOverlay;
         private NormalItemTooltip itemTooltip;
         private Button mapSelectionWindowCloseButton;
         private Label mapSelectionUsageHint;
@@ -93,6 +94,15 @@ namespace Org.Ethasia.Fundetected.Technical
             SoundPlayer.GetInstance().PlayUiWindowOpenSound();
         }
 
+        public void ShowDeathOverlay(int lostExperiencePoints)
+        {
+            if (deathScreenOverlay != null)
+            {
+                deathScreenOverlay.Show(lostExperiencePoints);
+                PlayerInputHandler.GetInstance().DisableInput();
+            }
+        }
+
         public void ShowItemTooltip(NormalItemTooltip.TooltipDisplayInformation displayInformation)
         {
             if (itemTooltip != null)
@@ -135,6 +145,7 @@ namespace Org.Ethasia.Fundetected.Technical
             mapSelectionWindowCloseButton = rootElement.Q<Button>("MapSelectionWindowCloseButton");
             mapSelectionUsageHint = rootElement.Q<Label>("MapSelectionUsageHint");
             mapSelectionList = rootElement.Q<MultiColumnListView>("MapSelectionList");
+            deathScreenOverlay = rootElement.Q<DeathScreenOverlay>();
 
             inventoryWindow = rootElement.Q<InventoryWindow>("InventoryWindow");
             itemTooltip = rootElement.Q<NormalItemTooltip>("item-tooltip");

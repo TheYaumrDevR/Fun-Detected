@@ -168,6 +168,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
             TotalStats.ReduceCurrentLifeBy(finalDamage);
 
             PresentDamage(finalDamage);
+
+            if (TotalStats.CurrentLife <= 0)
+            {
+                OnDeath();
+            }
         }    
 
         public Org.Ethasia.Fundetected.Core.Equipment.Equipment PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
@@ -300,6 +305,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private bool EnoughTimePassedForTheNextAttackToBeExecuted()
         {
             return meleeAttack.EnoughTimePassedForTheNextAttackToBeExecuted(TotalStats.RightHandAttacksPerSecond);
+        }
+
+        private void OnDeath()
+        {
+            int lostExperiencePoints = BaseStats.LevelingSystem.ApplyDeathPenalty();
+
+            IPlayerDeathInteractor playerDeathInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDeathInteractorInstance();
+            playerDeathInteractor.NotifyPlayerDied(lostExperiencePoints);
         }
 
         public class PlayerCharacterBuilder

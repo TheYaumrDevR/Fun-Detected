@@ -6,5 +6,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void OpenInventoryWindow(InventoryRenderContext context);
         void CloseCurrentlyOpenWindow();      
         void ToggleInventoryWindow();
+        void ShowDeathOverlay(int lostExperiencePoints);
     }
 }
