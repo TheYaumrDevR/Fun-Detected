@@ -32,6 +32,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/DeathScreenOverlay");
             visualTree.CloneTree(this);
 
+            pickingMode = PickingMode.Ignore;
+
             overlay = this.Q<VisualElement>(OVERLAY_NAME);
             titleLabel = this.Q<Label>(TITLE_LABEL_NAME);
             continueHintLabel = this.Q<Label>(CONTINUE_HINT_LABEL_NAME);
@@ -42,6 +44,8 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         public void Show(int lostExperiencePoints)
         {
+            pickingMode = PickingMode.Position;
+
             if (null != lossHintLabel)
             {
                 string lossHintTemplate = localizationGateway.GetLocalizedString(LOSS_HINT_KEY);
@@ -53,6 +57,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
 
         public void Hide()
         {
+            pickingMode = PickingMode.Ignore;
             overlay?.RemoveFromClassList(OVERLAY_VISIBLE_CLASS);
         }
 
