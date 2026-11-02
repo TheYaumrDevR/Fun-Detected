@@ -65,6 +65,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
             }
         }
 
+        public bool IsDead
+        {
+            get
+            {
+                return TotalStats.CurrentLife <= 0;
+            }
+        }
+
         private PlayerCharacter()
         {
             randomNumberGenerator = IoAdaptersFactoryForCore.GetInstance().GetRandomNumberGeneratorInstance();
@@ -91,7 +99,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public bool CanAutoAttack()
         {
-            return TotalStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted();
+            return !IsDead && EnoughTimePassedForTheNextAttackToBeExecuted();
         }
 
         public AsyncResponse<List<IBattleActionResult>> AutoAttack()
@@ -99,7 +107,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             AsyncResponse<List<IBattleActionResult>> result = new AsyncResponse<List<IBattleActionResult>>();
             List<IBattleActionResult> battleActionResults = new List<IBattleActionResult>();
 
-            if (TotalStats.CurrentLife > 0 && EnoughTimePassedForTheNextAttackToBeExecuted())
+            if (!IsDead && EnoughTimePassedForTheNextAttackToBeExecuted())
             {
                 AsyncResponse<HashSet<Enemy>> enemiesHit = meleeAttack.Start(TotalStats.RightHandAttacksPerSecond);
 
@@ -159,7 +167,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public void TakePhysicalDamage(int incomingDamage)
         {
-            if (TotalStats.CurrentLife <= 0)
+            if (IsDead)
             {
                 return;
             }
@@ -169,7 +177,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             PresentDamage(finalDamage);
 
-            if (TotalStats.CurrentLife <= 0)
+            if (IsDead)
             {
                 OnDeath();
             }

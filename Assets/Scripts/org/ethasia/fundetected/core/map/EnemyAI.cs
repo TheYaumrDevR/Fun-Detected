@@ -35,7 +35,15 @@ namespace Org.Ethasia.Fundetected.Core.Map
             if (isAggressive && !ManagedEnemy.IsDead())
             {
                 PlayerCharacter enemyPlayer = Area.ActiveArea.Player;
-                StrikePlayerIfInRangeOrIdle(enemyPlayer, map);
+
+                if (!enemyPlayer.IsDead)
+                {
+                    StrikePlayerIfInRangeOrIdle(enemyPlayer, map);
+                }
+                else
+                {
+                    ManagedEnemy.StartIdling();
+                }
             }
         }
 
