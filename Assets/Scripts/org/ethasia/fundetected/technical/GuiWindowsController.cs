@@ -99,7 +99,7 @@ namespace Org.Ethasia.Fundetected.Technical
             if (deathScreenOverlay != null)
             {
                 deathScreenOverlay.Show(lostExperiencePoints);
-                PlayerInputHandler.GetInstance().DisableInput();
+                PlayerInputHandler.GetInstance().MakePlayerNotControllable();
             }
         }
 

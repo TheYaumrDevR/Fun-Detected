@@ -24,6 +24,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private bool rightMoveButtonIsHeld;
 
         private bool isInputEnabled;
+        private bool isPlayerNotControllable;
 
         public static PlayerInputHandler GetInstance()
         {
@@ -37,6 +38,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             playerMovementInteractor = new PlayerMovementInteractor();
             internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
             isInputEnabled = true;
+        }
+
+        public void MakePlayerNotControllable()
+        {
+            isPlayerNotControllable = true;
+        }
+
+        public void MakePlayerControllable()
+        {
+            isPlayerNotControllable = false;
         }
 
         public void DisableInput()
@@ -56,7 +67,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
         public void Update()
         {
-            if (isInputEnabled)
+            if (isInputEnabled && !isPlayerNotControllable)
             {
                 if (leftMoveButtonIsHeld && !rightMoveButtonIsHeld)
                 {
@@ -69,7 +80,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 }
             }
 
-            if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction() || !isInputEnabled)
+            if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction() || !isInputEnabled || isPlayerNotControllable)
             {
                 IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
                 playerAnimationPresenter.StartIdleAnimation();
@@ -83,7 +94,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return;
             }
 
-            if (isInputEnabled)
+            if (isInputEnabled && !isPlayerNotControllable)
             {
                 Tuple<int, int> mousePosition = GetMousePositionInWorldCoordinates();
 
@@ -101,7 +112,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 return;
             }
 
-            if (isInputEnabled)
+            if (isInputEnabled && !isPlayerNotControllable)
             {
                 Tuple<int, int> mousePosition = GetMousePositionInWorldCoordinates();
                 environmentInteractionInteractor.SecondaryInteractWithEnvironment(mousePosition.Item1, mousePosition.Item2);
