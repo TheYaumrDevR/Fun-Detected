@@ -129,18 +129,28 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public int MoveLeft(double actionTime)
         {
-            meleeAttack.Cancel();
-            FacingDirection = FacingDirection.LEFT;
-            timeSinceLastMovement += actionTime;
-            return CalculateMovementDistance();
+            if (!IsDead)
+            {
+                meleeAttack.Cancel();
+                FacingDirection = FacingDirection.LEFT;
+                timeSinceLastMovement += actionTime;
+                return CalculateMovementDistance();                
+            }
+
+            return 0;
         }
 
         public int MoveRight(double actionTime)
         {
-            meleeAttack.Cancel();
-            FacingDirection = FacingDirection.RIGHT;
-            timeSinceLastMovement += actionTime;
-            return CalculateMovementDistance();
+            if (!IsDead)
+            {
+                meleeAttack.Cancel();
+                FacingDirection = FacingDirection.RIGHT;
+                timeSinceLastMovement += actionTime;
+                return CalculateMovementDistance();
+            }
+
+            return 0;
         }
 
         public int CalculateMovementDistance()
@@ -185,6 +195,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Org.Ethasia.Fundetected.Core.Equipment.Equipment PickupEquipment(Org.Ethasia.Fundetected.Core.Equipment.Equipment equipment)
         {
+            if (IsDead)
+            {
+                return null;
+            }
+
             Org.Ethasia.Fundetected.Core.Equipment.Equipment result = ItemInventory.EquippedItems.EquipIntoFreeSlotBasedOnItemClass(equipment);
 
             if (result != equipment)
@@ -205,6 +220,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Potion PickupPotion(Potion potion)
         {
+            if (IsDead)
+            {
+                return null;
+            }
+
             if (!ItemInventory.InventoryGrid.AddItemAtNextFreePosition(potion.CreateInventoryShape()))
             {
                 return potion;
@@ -225,6 +245,11 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Item DropPickedInventoryItem()
         {
+            if (IsDead)
+            {
+                return null;
+            }
+
             if (ItemInventory.ItemOnCursor != null)
             {
                 Item droppedItem = ItemInventory.DropPickedItem();
