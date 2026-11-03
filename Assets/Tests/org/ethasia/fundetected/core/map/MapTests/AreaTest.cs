@@ -463,11 +463,14 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
                 .SetAttacksPerSecond(1.0)
+                .SetMaxLife(1)
                 .Build();
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
+
+            playerCharacter.FullyHealHp();
 
             testArea.SpawnPlayer(playerCharacter);
 
@@ -505,11 +508,14 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Area.ActiveArea = testArea;
 
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetMaxLife(1)
                 .Build();
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
                 .Build();  
+
+            playerCharacter.FullyHealHp();
 
             testArea.SpawnPlayer(playerCharacter);
 

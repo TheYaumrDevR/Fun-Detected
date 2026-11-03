@@ -399,11 +399,16 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation.Tests
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
                 .SetAttacksPerSecond(1.0)
+                .SetMaxLife(1)
                 .Build();
 
-            return new PlayerCharacter.PlayerCharacterBuilder()
+            PlayerCharacter result = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
                 .Build(); 
+
+            result.FullyHealHp();
+            
+            return result;
         }
 
         private Weapon CreateTestWeapon(string itemId, ItemClass weaponClass)

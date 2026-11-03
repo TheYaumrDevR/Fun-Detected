@@ -563,12 +563,20 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 HitArcCenterYOffset = 0
             };
 
-            return new PlayerCharacter
+            PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetMaxLife(1)
+                .Build();
+
+            PlayerCharacter result = new PlayerCharacter
                 .PlayerCharacterBuilder()
-                .SetPlayerCharacterBaseStats(new PlayerCharacterBaseStats())
+                .SetPlayerCharacterBaseStats(playerCharacterBaseStats)
                 .SetBoundingBox(playerBoundingBox)
                 .SetMeleeHitArcProperties(meleeHitArcProperties)
-                .Build();            
+                .Build();   
+
+            result.FullyHealHp();
+
+            return result;         
         }    
 
         private EnemyStrikeAttackWithAsymmetricLeftRight CreateEnemyAssymmetricLeftRightStrikeAttack(Enemy enemy, HitboxTilePosition hitBoxTilePosition)

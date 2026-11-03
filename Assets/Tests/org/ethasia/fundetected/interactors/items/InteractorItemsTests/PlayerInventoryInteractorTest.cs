@@ -198,12 +198,15 @@ namespace Org.Ethasia.Fundetected.Interactors.Items.Tests
 
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
                 .SetAttacksPerSecond(1.0)
+                .SetMaxLife(1)
                 .Build();
 
             PlayerCharacter playerCharacter = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(baseStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
+
+            playerCharacter.FullyHealHp();
 
             testArea.SpawnPlayer(playerCharacter);            
         }

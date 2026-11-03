@@ -21,7 +21,10 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
         {
             IoAdaptersFactoryForCore.SetInstance(new MockedIoAdaptersFactoryForCore());
 
-            testBaseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder().SetMovementSpeed(150).Build();           
+            testBaseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
+                .SetMovementSpeed(150)
+                .SetMaxLife(1)
+                .Build();           
         }
 
         [SetUp]
@@ -73,6 +76,8 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
                 .SetPlayerCharacterBaseStats(testBaseStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
                 .Build();  
+
+            testCandidate.FullyHealHp();
 
             int unitsMoved = testCandidate.MoveRight(0.065);
             Assert.That(unitsMoved, Is.EqualTo(0)); 
@@ -220,10 +225,14 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
 
         private PlayerCharacter CreateStandardTestCandidate()
         {
-            return new PlayerCharacter.PlayerCharacterBuilder()
+            PlayerCharacter result = new PlayerCharacter.PlayerCharacterBuilder()
                 .SetPlayerCharacterBaseStats(testBaseStats)
                 .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
-                .Build();  
+                .Build();
+
+            result.FullyHealHp();
+
+            return result;
         }
 
         private PlayerCharacter CreateStandardTestCandidate(PlayerCharacterBaseStats playerCharacterBaseStats)
