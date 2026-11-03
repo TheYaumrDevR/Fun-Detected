@@ -184,6 +184,22 @@ namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
             Assert.That(result.IsSingleton, Is.True);
         }
 
+        [Test]
+        public void TestConvertMapDefinitionToMapPropertiesConvertsNearestTownMapIdAndPortalId()
+        {
+            MapDefinition mapDefinition = new MapDefinition.Builder()
+                .SetMapName("Hills West of Sventara")
+                .SetMaximumMonsters(10)
+                .SetNearestTownMapId("Town")
+                .SetNearestTownPortalId("westPortal")
+                .Build();
+
+            MapProperties result = MapDefinitionToMapPropertiesConverter.ConvertMapDefinitionToMapProperties(mapDefinition);
+
+            Assert.That(result.NearestTownMapId, Is.EqualTo("Town"));
+            Assert.That(result.NearestTownPortalId, Is.EqualTo("westPortal"));
+        }
+
         private void CreateTestChunks(MapDefinition mapDefinition)
         {
             Chunk chunk2 = new Chunk(-1, -2);

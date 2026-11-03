@@ -249,5 +249,27 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
 
             Assert.That(result.IsSingleton, Is.True);         
         }
+
+        [Test]
+        public void TestLoadMapDefinitionLoadsNearestTownMapIdAndPortalId()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("Hills West of Sventara");
+
+            Assert.That(result.NearestTownMapId, Is.EqualTo("Town"));
+            Assert.That(result.NearestTownPortalId, Is.EqualTo("westPortal"));
+        }
+
+        [Test]
+        public void TestLoadMapDefinitionMissingNearestTownAttributesAreEmpty()
+        {
+            XmlFilesBasedMapDefinitionGateway testCandidate = new XmlFilesBasedMapDefinitionGateway();
+
+            MapDefinition result = testCandidate.LoadMapDefinition("Town");
+
+            Assert.That(result.NearestTownMapId, Is.EqualTo(""));
+            Assert.That(result.NearestTownPortalId, Is.EqualTo(""));
+        }
     }
 }

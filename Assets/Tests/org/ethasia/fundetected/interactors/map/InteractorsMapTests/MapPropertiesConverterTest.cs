@@ -176,5 +176,23 @@ namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
 
             Assert.That(result.IsSingleton, Is.True);  
         }
+
+        [Test]
+        public void TestConvertMapPropertiesConvertsNearestTownMapIdAndPortalId()
+        {
+            MapProperties mapProperties = new MapProperties.Builder()
+                .SetWidth(320)
+                .SetHeight(70)
+                .SetLowestScreenX(-100)
+                .SetLowestScreenY(-25)
+                .SetNearestTownMapId("Town")
+                .SetNearestTownPortalId("westPortal")
+                .Build();
+
+            Area result = MapPropertiesConverter.ConvertMapPropertiesToArea(mapProperties);
+
+            Assert.That(result.NearestTownMapId, Is.EqualTo("Town"));
+            Assert.That(result.NearestTownPortalId, Is.EqualTo("westPortal"));
+        }
     }
 }
