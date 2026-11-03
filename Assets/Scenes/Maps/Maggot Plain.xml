@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapDefinition maximumMonsters="40" areaLevel="2">
+<mapDefinition maximumMonsters="40" areaLevel="2" nearestTownMapId="Town" nearestTownPortalId="westPortal">
     <chunks>      
         <chunk x="-4" y="0" id="westPortal">
             <portalTo>
