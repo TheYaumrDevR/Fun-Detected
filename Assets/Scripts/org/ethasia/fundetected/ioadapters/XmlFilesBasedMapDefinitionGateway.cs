@@ -40,7 +40,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             string areaLevelText = mapDefinitionProperties.GetAttribute("areaLevel");
             string isSingletonText = mapDefinitionProperties.GetAttribute("isSingleton");
 
-            MapDefinition.Builder mapDefinitionBuilder = new MapDefinition.Builder();
+            MapDefinition.Builder mapDefinitionBuilder = new MapDefinition.Builder()
+                .SetNearestTownMapId(mapDefinitionProperties.GetAttribute("nearestTownMapId"))
+                .SetNearestTownPortalId(mapDefinitionProperties.GetAttribute("nearestTownPortalId"));
 
             if (int.TryParse(areaLevelText, out int areaLevel))
             {

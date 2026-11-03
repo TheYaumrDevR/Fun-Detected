@@ -49,6 +49,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 .SetMapName(mapDefinition.MapName)
                 .SetAreaLevel(mapDefinition.AreaLevel)
                 .SetIsSingleton(mapDefinition.IsSingleton)
+                .SetNearestTownMapId(mapDefinition.NearestTownMapId)
+                .SetNearestTownPortalId(mapDefinition.NearestTownPortalId)
                 .SetMaximumMonsters(mapDefinition.MaximumMonsters)
                 .SetLowestScreenX(screenDimensionProperties.LowestScreenX)
                 .SetLowestScreenY(screenDimensionProperties.LowestScreenY)

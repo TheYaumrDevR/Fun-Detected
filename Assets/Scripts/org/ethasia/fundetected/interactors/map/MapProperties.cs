@@ -25,6 +25,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             private set;
         }
 
+        public string NearestTownMapId
+        {
+            get;
+            private set;
+        }
+
+        public string NearestTownPortalId
+        {
+            get;
+            private set;
+        }
+
         public int Width
         {
             get;
@@ -105,6 +117,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             MapName = "";
             AreaLevel = 1;
             IsSingleton = false;
+            NearestTownMapId = "";
+            NearestTownPortalId = "";
             Width = width;
             Height = height;
             MaximumMonsters = 0;
@@ -140,6 +154,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             private string mapName;
             private int areaLevel;
             private bool isSingleton;
+            private string nearestTownMapId = "";
+            private string nearestTownPortalId = "";
             private int width;
             private int height;
             private int lowestScreenX;
@@ -164,6 +180,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             public Builder SetIsSingleton(bool value)
             {
                 isSingleton = value;
+                return this;
+            }
+
+            public Builder SetNearestTownMapId(string value)
+            {
+                nearestTownMapId = value;
+                return this;
+            }
+
+            public Builder SetNearestTownPortalId(string value)
+            {
+                nearestTownPortalId = value;
                 return this;
             }
 
@@ -222,6 +250,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 result.MapName = mapName;
                 result.AreaLevel = areaLevel;
                 result.IsSingleton = isSingleton;
+                result.NearestTownMapId = nearestTownMapId;
+                result.NearestTownPortalId = nearestTownPortalId;
                 result.LowestScreenX = lowestScreenX;
                 result.LowestScreenY = lowestScreenY;
                 result.MaximumMonsters = maximumMonsters;

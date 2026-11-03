@@ -25,6 +25,18 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             private set;
         }
 
+        public string NearestTownMapId
+        {
+            get;
+            private set;
+        }
+
+        public string NearestTownPortalId
+        {
+            get;
+            private set;
+        }
+
         public int MaximumMonsters
         {
             get;
@@ -49,6 +61,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             MapName = mapName;
             AreaLevel = 1;
             IsSingleton = false;
+            NearestTownMapId = "";
+            NearestTownPortalId = "";
             
             Chunks = new List<Chunk>();
             SpawnableMonsters = new List<SpawnableMonster>();
@@ -88,6 +102,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             private int maximumMonsters;
             private int areaLevel;
             private bool isSingleton;
+            private string nearestTownMapId = "";
+            private string nearestTownPortalId = "";
 
             public Builder SetMapName(string value)
             {
@@ -113,10 +129,24 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 return this;
             }
 
+            public Builder SetNearestTownMapId(string value)
+            {
+                nearestTownMapId = value;
+                return this;
+            }
+
+            public Builder SetNearestTownPortalId(string value)
+            {
+                nearestTownPortalId = value;
+                return this;
+            }
+
             public MapDefinition Build()
             {
                 MapDefinition result = new MapDefinition(maximumMonsters, mapName);
                 result.AreaLevel = areaLevel;
+                result.NearestTownMapId = nearestTownMapId;
+                result.NearestTownPortalId = nearestTownPortalId;
                 result.IsSingleton = isSingleton;
 
                 return result;

@@ -35,6 +35,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public string NearestTownMapId
+        {
+            get;
+            private set;
+        }
+
+        public string NearestTownPortalId
+        {
+            get;
+            private set;
+        }
+
         private AreaDimensions areaDimensions;
 
         private Dictionary<PositionImmutable, bool> isCollisionTile;
@@ -364,6 +376,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private string name;
             private int areaLevel;
             private bool isSingleton;
+            private string nearestTownMapId = "";
+            private string nearestTownPortalId = "";
             private int width;
             private int height;
             private int lowestScreenX;
@@ -394,6 +408,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
             public Builder SetIsSingleton(bool value)
             {
                 isSingleton = value;
+                return this;
+            }
+
+            public Builder SetNearestTownMapId(string value)
+            {
+                nearestTownMapId = value;
+                return this;
+            }
+
+            public Builder SetNearestTownPortalId(string value)
+            {
+                nearestTownPortalId = value;
                 return this;
             }
 
@@ -462,6 +488,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 result.Name = name;
                 result.AreaLevel = areaLevel;
                 result.IsSingleton = isSingleton;
+                result.NearestTownMapId = nearestTownMapId;
+                result.NearestTownPortalId = nearestTownPortalId;
                 result.playerSpawnPosition = playerSpawnPosition;
                 result.playerSpawnPositionBySpawnerId = playerSpawnPositionBySpawnerId;
                 result.enemySpawner = enemySpawner;

@@ -13,6 +13,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
                 .SetName(mapProperties.MapName)
                 .SetAreaLevel(mapProperties.AreaLevel)
                 .SetIsSingleton(mapProperties.IsSingleton)
+                .SetNearestTownMapId(mapProperties.NearestTownMapId)
+                .SetNearestTownPortalId(mapProperties.NearestTownPortalId)
                 .SetWidthAndHeight(mapProperties.Width, mapProperties.Height)
                 .SetLowestScreenX(mapProperties.LowestScreenX)
                 .SetLowestScreenY(mapProperties.LowestScreenY)
