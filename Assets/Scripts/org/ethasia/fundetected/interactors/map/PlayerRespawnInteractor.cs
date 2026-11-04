@@ -1,4 +1,5 @@
 using Org.Ethasia.Fundetected.Core.Map;
+using Org.Ethasia.Fundetected.Interactors.Presentation;
 
 namespace Org.Ethasia.Fundetected.Interactors.Map
 {
@@ -20,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             string townPortalId = activeArea.NearestTownPortalId;
 
             player.FullyHealHpAndMp();
+            UpdateHealthBar(player.TotalStats.CurrentLife, player.TotalStats.MaximumLife);
 
             if (string.IsNullOrEmpty(townMapId))
             {
@@ -29,5 +31,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             IPortalTransitionInteractor portalTransitionInteractor = InteractorsFactoryForCore.GetInstance().GetPortalTransitionInteractor();
             portalTransitionInteractor.TransitionToOtherMap(townMapId, townPortalId);
         }
+
+        private void UpdateHealthBar(int currentHealth, int maximumHealth)
+        {
+            IResourceBarPresenter resourceBarPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetResourceBarPresenterInstance();
+            resourceBarPresenter.PresentHealthBarBasedOnCurrentAndMaximumHealth(currentHealth, maximumHealth);
+        } 
     }
 }
