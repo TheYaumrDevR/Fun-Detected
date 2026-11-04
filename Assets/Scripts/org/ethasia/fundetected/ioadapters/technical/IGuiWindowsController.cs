@@ -7,5 +7,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         void CloseCurrentlyOpenWindow();      
         void ToggleInventoryWindow();
         void ShowDeathOverlay(int lostExperiencePoints);
+        void HideDeathOverlay();
+        bool IsDeathOverlayVisible();
     }
 }

@@ -103,6 +103,19 @@ namespace Org.Ethasia.Fundetected.Technical
             }
         }
 
+        public void HideDeathOverlay()
+        {
+            if (deathScreenOverlay != null)
+            {
+                deathScreenOverlay.Hide();
+            }
+        }
+
+        public bool IsDeathOverlayVisible()
+        {
+            return deathScreenOverlay != null && deathScreenOverlay.IsShown;
+        }
+
         public void ShowItemTooltip(NormalItemTooltip.TooltipDisplayInformation displayInformation)
         {
             if (itemTooltip != null)

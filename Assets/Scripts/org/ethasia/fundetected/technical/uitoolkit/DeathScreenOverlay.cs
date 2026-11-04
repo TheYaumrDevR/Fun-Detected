@@ -27,6 +27,14 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private Label continueHintLabel;
         private Label lossHintLabel;
 
+        public bool IsShown
+        {
+            get
+            {
+                return overlay != null && overlay.ClassListContains(OVERLAY_VISIBLE_CLASS);
+            }
+        }
+
         public DeathScreenOverlay()
         {
             var visualTree = Resources.Load<VisualTreeAsset>("UIElements/DeathScreenOverlay");

@@ -32,6 +32,15 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
         }
 
+        public void HideDeathOverlay()
+        {
+        }
+
+        public bool IsDeathOverlayVisible()
+        {
+            return false;
+        }
+
         public void ShowItemTooltip(NormalItemTooltip.TooltipDisplayInformation displayInformation)
         {
         }

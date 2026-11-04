@@ -19,6 +19,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private PlayerSkillInteractor playerSkillInteractor;
         private EnvironmentInteractionInteractor environmentInteractionInteractor;
         private PlayerMovementInteractor playerMovementInteractor;
+        private PlayerRespawnInteractor playerRespawnInteractor;
 
         private bool leftMoveButtonIsHeld;
         private bool rightMoveButtonIsHeld;
@@ -36,6 +37,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             playerSkillInteractor = new PlayerSkillInteractor();
             environmentInteractionInteractor = new EnvironmentInteractionInteractor();
             playerMovementInteractor = new PlayerMovementInteractor();
+            playerRespawnInteractor = new PlayerRespawnInteractor();
             internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
             isInputEnabled = true;
         }
@@ -148,6 +150,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             if (callBackContext.performed)
             {
                 IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
+                
+                if (guiWindowsController.IsDeathOverlayVisible() && playerRespawnInteractor.IsPlayerDead())
+                {
+                    RespawnAfterDeath(guiWindowsController);
+                    return;
+                }
+                
                 guiWindowsController.CloseCurrentlyOpenWindow();
                 EnableInput();
             }
@@ -165,7 +174,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private bool PlayerIsStill()
         {
             return leftMoveButtonIsHeld && rightMoveButtonIsHeld || !leftMoveButtonIsHeld && !rightMoveButtonIsHeld;
-        }      
+        }   
+
+        private void RespawnAfterDeath(IGuiWindowsController guiWindowsController)
+        {
+            guiWindowsController.HideDeathOverlay();
+            playerRespawnInteractor.RespawnInNearestTown();
+
+            MakePlayerControllable();
+            EnableInput();
+        }   
 
         private Tuple<int, int> GetMousePositionInWorldCoordinates()
         {
