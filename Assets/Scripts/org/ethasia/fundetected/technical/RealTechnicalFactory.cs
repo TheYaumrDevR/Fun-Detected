@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private PortalRendererDelayedInitializationProxy portalRenderer;
         private InteractablesRendererDelayedInitializationProxy interactablesRenderer;
         private UiRenderer uiRenderer;
+        private StaticPlaceablesRendererDelayedInitializationProxy staticPlaceablesRenderer;
 
         public override XmlFiles CreateXmlFiles()
         {
@@ -121,6 +122,16 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             return uiRenderer;
+        }
+
+        public override IStaticPlaceablesRenderer GetStaticPlaceablesRendererInstance()
+        {
+            if (null == staticPlaceablesRenderer)
+            {
+                staticPlaceablesRenderer = new StaticPlaceablesRendererDelayedInitializationProxy();
+            }
+
+            return staticPlaceablesRenderer;
         }
     }
 }

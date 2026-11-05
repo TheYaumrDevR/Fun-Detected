@@ -22,6 +22,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
             
         }
 
+        public void PresentTombstone(int positionX, int positionY)
+        {
+
+        }
+
         public void PresentEmpty()
         {
             

@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private IPortalRenderer portalRenderer;
         private IInteractablesRenderer interactablesRenderer;
         private IDroppableItemRenderer droppableItemRenderer;
+        private IStaticPlaceablesRenderer staticPlaceablesRenderer;
         private Dictionary<string, Action<TileRenderContext>> renderMethodByTileLayerName;
 
         public MapPresenterImpl()
@@ -107,12 +108,18 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             interactablesRenderer.RenderInteractable(healingWellRenderProxy);
         }
 
+        public void PresentTombstone(int positionX, int positionY)
+        {
+            GetStaticPlaceablesRenderer().RenderTombstone(positionX * 0.1f, positionY * 0.1f);
+        }
+
         public void PresentEmpty()
         {
             portalRenderer.ClearRenderedPortals();
             interactablesRenderer.ClearRenderedInteractables();
             tileMapRenderer.ClearAllTiles();
             GetDroppableItemRenderer().ClearRenderedDroppedItems();
+            GetStaticPlaceablesRenderer()?.ClearRenderedStaticPlaceables();
         }
 
         private IDroppableItemRenderer GetDroppableItemRenderer()
@@ -123,6 +130,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
             
             return droppableItemRenderer;
+        }
+
+        private IStaticPlaceablesRenderer GetStaticPlaceablesRenderer()
+        {
+            if (null == staticPlaceablesRenderer)
+            {
+                staticPlaceablesRenderer = TechnicalFactory.GetInstance().GetStaticPlaceablesRendererInstance();
+            }
+
+            return staticPlaceablesRenderer;
         }
     }
 }
