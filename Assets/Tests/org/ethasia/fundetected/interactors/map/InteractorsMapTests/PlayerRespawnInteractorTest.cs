@@ -56,6 +56,29 @@ namespace Org.Ethasia.Fundetected.Interactors.Map.Tests
             Assert.That(player.TotalStats.CurrentMana, Is.EqualTo(player.TotalStats.MaximumMana));
         }
 
+        [Test]
+        public void TestRespawnInNearestTownRemovesAllTombstones()
+        {
+            PlayerCharacter player = CreatePlayerCharacter();
+            Area area = new Area.Builder()
+                .SetName("Hills West of Sventara")
+                .SetWidthAndHeight(100, 100)
+                .SetPlayerSpawnPosition(new Position(15, 20))
+                .Build();
+
+            area.SpawnPlayer(player);
+            Area.ActiveArea = area;
+
+            player.TakePhysicalDamage(int.MaxValue / 2);
+            Assert.That(area.Tombstones.Count, Is.EqualTo(1));
+
+            PlayerRespawnInteractor testCandidate = new PlayerRespawnInteractor();
+
+            testCandidate.RespawnInNearestTown();
+
+            Assert.That(area.Tombstones, Is.Empty);
+        }
+
         private PlayerCharacter CreatePlayerCharacter()
         {
             PlayerCharacterBaseStats baseStats = new PlayerCharacterBaseStats.PlayerCharacterBaseStatsBuilder()
