@@ -4,5 +4,6 @@ namespace Org.Ethasia.Fundetected.Core.Map
     {
         void PresentTombstone(string id, int positionX, int positionY);
         void MovePresentedTombstoneVertically(string id, int units);
+        void ClearPresentedTombstones();
     }
 }

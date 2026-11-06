@@ -23,6 +23,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
             player.FullyHealHpAndMp();
             UpdateHealthBar(player.TotalStats.CurrentLife, player.TotalStats.MaximumLife);
 
+            activeArea.ClearTombstones();
+            
             if (string.IsNullOrEmpty(townMapId))
             {
                 return;

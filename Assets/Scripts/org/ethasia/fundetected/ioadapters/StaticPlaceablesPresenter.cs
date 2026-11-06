@@ -14,5 +14,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         {
             TechnicalFactory.GetInstance().GetStaticPlaceablesRendererInstance().MoveTombstoneVertically(id, units * 0.1f);
         }
+
+        public void ClearPresentedTombstones()
+        {
+            TechnicalFactory.GetInstance().GetStaticPlaceablesRendererInstance().ClearRenderedStaticPlaceables();
+        }
     }
 }

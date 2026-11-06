@@ -11,5 +11,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         public void MovePresentedTombstoneVertically(string id, int units)
         {
         }
+
+        public void ClearPresentedTombstones()
+        {
+        }
     }
 }

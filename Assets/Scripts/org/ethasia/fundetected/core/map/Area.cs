@@ -237,6 +237,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
             tombstone.PhysicsBody.StartFalling(tombstone.CollisionShape.Position.Y);
         }
 
+        public void ClearTombstones()
+        {
+            Tombstones.Clear();
+
+            IStaticPlaceablesPresenter tombstonePresenter = IoAdaptersFactoryForCore.GetInstance().GetStaticPlaceablesPresenterInstance();
+            tombstonePresenter.ClearPresentedTombstones();
+        }
+
         public void AddItem(Item item)
         {
             DroppedItems.Add(item);
