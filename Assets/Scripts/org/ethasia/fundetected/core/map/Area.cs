@@ -226,11 +226,13 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public void AddTombstoneAtPlayerPosition()
         {
-            Tombstone tombstone = new Tombstone(playerPosition.X, playerPosition.Y);
+            int spawnOffsetY = 15;
+
+            Tombstone tombstone = new Tombstone(playerPosition.X, playerPosition.Y + spawnOffsetY);
             Tombstones.Add(tombstone);
 
             IStaticPlaceablesPresenter tombStonePresenter = IoAdaptersFactoryForCore.GetInstance().GetStaticPlaceablesPresenterInstance();
-            tombStonePresenter.PresentTombstone(tombstone.UniqueId, playerPosition.X, playerPosition.Y);
+            tombStonePresenter.PresentTombstone(tombstone.UniqueId, playerPosition.X, playerPosition.Y + spawnOffsetY);
 
             tombstone.PhysicsBody.StartFalling(tombstone.CollisionShape.Position.Y);
         }

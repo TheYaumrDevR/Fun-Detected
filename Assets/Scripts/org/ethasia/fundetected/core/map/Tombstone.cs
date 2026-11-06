@@ -8,10 +8,10 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             CollisionShape = new RectangleCollisionShape.Builder()
                 .SetPosition(new Position(posX, posY))
-                .SetCollisionShapeDistanceToLeftEdgeFromCenter(4)
-                .SetCollisionShapeDistanceToRightEdgeFromCenter(4)
-                .SetCollisionShapeDistanceToTopEdgeFromCenter(8)
-                .SetCollisionShapeDistanceToBottomEdgeFromCenter(8)
+                .SetCollisionShapeDistanceToLeftEdgeFromCenter(5)
+                .SetCollisionShapeDistanceToRightEdgeFromCenter(5)
+                .SetCollisionShapeDistanceToTopEdgeFromCenter(9)
+                .SetCollisionShapeDistanceToBottomEdgeFromCenter(9)
                 .Build();
         }
     }
