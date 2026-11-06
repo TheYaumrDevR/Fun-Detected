@@ -2,14 +2,8 @@ using Org.Ethasia.Fundetected.Core.Map;
 
 namespace Org.Ethasia.Fundetected.Core.Items
 {
-    public abstract class Item
+    public abstract class Item : PhysicsObject
     {
-        public string UniqueId
-        {
-            get;
-            private set;
-        }
-
         public string Name
         {
             get;
@@ -45,18 +39,6 @@ namespace Org.Ethasia.Fundetected.Core.Items
             get;
             private set;
         }
-
-        public RectangleCollisionShape CollisionShape
-        {
-            get;
-            private set;
-        }
-
-        public PhysicsBody PhysicsBody
-        {
-            get;
-            private set;
-        } = new PhysicsBody();
 
         protected Item()
         {

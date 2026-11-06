@@ -71,5 +71,10 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Mocks
         {
             return null;
         } 
+
+        public override IStaticPlaceablesPresenter GetStaticPlaceablesPresenterInstance()
+        {
+            return new StaticPlaceablesPresenterMock();
+        }
     }
 }

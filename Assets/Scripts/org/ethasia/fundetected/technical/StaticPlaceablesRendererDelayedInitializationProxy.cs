@@ -32,15 +32,26 @@ namespace Org.Ethasia.Fundetected.Technical
             pendingActions.Clear();
         }
 
-        public void RenderTombstone(float posX, float posY)
+        public void RenderTombstone(string id, float posX, float posY)
         {
             if (null != renderer)
             {
-                renderer.RenderTombstone(posX, posY);
+                renderer.RenderTombstone(id, posX, posY);
                 return;
             }
 
-            pendingActions.Add(renderer => renderer.RenderTombstone(posX, posY));
+            pendingActions.Add(r => r.RenderTombstone(id, posX, posY));
+        }
+
+        public void MoveTombstoneVertically(string id, float units)
+        {
+            if (null != renderer)
+            {
+                renderer.MoveTombstoneVertically(id, units);
+                return;
+            }
+
+            pendingActions.Add(r => r.MoveTombstoneVertically(id, units));
         }
 
         public void ClearRenderedStaticPlaceables()

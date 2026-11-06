@@ -342,6 +342,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void OnDeath()
         {
+            Area.ActiveArea.AddTombstoneAtPlayerPosition();
+
             int lostExperiencePoints = BaseStats.LevelingSystem.ApplyDeathPenalty();
 
             IPlayerDeathInteractor playerDeathInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDeathInteractorInstance();

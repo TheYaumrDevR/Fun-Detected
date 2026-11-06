@@ -85,6 +85,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
             private set;
         }
 
+        public List<Tombstone> Tombstones
+        {
+            get;
+            private set;
+        }
+
         public List<InteractableEnvironmentObject> InteractableEnvironmentObjects
         {
             get;
@@ -122,6 +128,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             HealingWells = new List<HealingWell>();
             InteractableEnvironmentObjects = new List<InteractableEnvironmentObject>();
             DroppedItems = new List<Item>();
+            Tombstones = new List<Tombstone>();
             this.isCollisionTile = isCollisionTile;
             playerPosition = new Position(0, 0);
             enemyHitTiles = new Dictionary<HitboxTilePosition, List<Enemy>>();
@@ -134,11 +141,18 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 if (item.PhysicsBody.IsFalling)
                 {
                     IDroppedItemPresenter droppedItemPresenter = IoAdaptersFactoryForCore.GetInstance().GetDroppedItemPresenterInstance();
-
-                    item.PhysicsBody.InitialVerticalVelocityUnitsPerSecond = 40;
-                    item.PhysicsBody.Fall(deltaTime);
-                    int unitsFallen = MakeRectangleCollisionShapeFall(item.CollisionShape, item.PhysicsBody);
+                    int unitsFallen = MakePhysicsObjectFall(item, deltaTime, 40);
                     droppedItemPresenter.MovePresentedItemVertically(item.UniqueId, unitsFallen);
+                }
+            }
+
+            foreach (Tombstone tombstone in Tombstones)
+            {
+                if (tombstone.PhysicsBody.IsFalling)
+                {
+                    IStaticPlaceablesPresenter presenter = IoAdaptersFactoryForCore.GetInstance().GetStaticPlaceablesPresenterInstance();
+                    int unitsFallen = MakePhysicsObjectFall(tombstone, deltaTime, 0);
+                    presenter.MovePresentedTombstoneVertically(tombstone.UniqueId, unitsFallen);
                 }
             }
         }
@@ -208,6 +222,17 @@ namespace Org.Ethasia.Fundetected.Core.Map
         {
             HealingWells.Add(healingWell);
             InteractableEnvironmentObjects.Add(healingWell);
+        }
+
+        public void AddTombstoneAtPlayerPosition()
+        {
+            Tombstone tombstone = new Tombstone(playerPosition.X, playerPosition.Y);
+            Tombstones.Add(tombstone);
+
+            IStaticPlaceablesPresenter tombStonePresenter = IoAdaptersFactoryForCore.GetInstance().GetStaticPlaceablesPresenterInstance();
+            tombStonePresenter.PresentTombstone(tombstone.UniqueId, playerPosition.X, playerPosition.Y);
+
+            tombstone.PhysicsBody.StartFalling(tombstone.CollisionShape.Position.Y);
         }
 
         public void AddItem(Item item)
@@ -303,6 +328,14 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             return PhysicsCalculator.CalculateFalling(playerCollisionShape, areaDimensions);
         } 
+
+        private int MakePhysicsObjectFall(PhysicsObject physicsObject, double deltaTime, int initialVerticalVelocity)
+        {
+            physicsObject.PhysicsBody.InitialVerticalVelocityUnitsPerSecond = initialVerticalVelocity;
+            physicsObject.PhysicsBody.Fall(deltaTime);
+
+            return MakeRectangleCollisionShapeFall(physicsObject.CollisionShape, physicsObject.PhysicsBody);
+        }
 
         private int MakeRectangleCollisionShapeFall(RectangleCollisionShape rectangleCollisionShape, PhysicsBody physicsBody)
         {

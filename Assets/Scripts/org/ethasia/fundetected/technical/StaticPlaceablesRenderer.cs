@@ -12,6 +12,8 @@ namespace Org.Ethasia.Fundetected.Technical
         private static List<StaticPlaceablesRendererDelayedInitializationProxy> proxies = new List<StaticPlaceablesRendererDelayedInitializationProxy>();
         private static StaticPlaceablesRenderer instance;
 
+        private Dictionary<string, GameObject> renderedTombstoneById = new Dictionary<string, GameObject>();
+
         public static StaticPlaceablesRenderer GetInstance()
         {
             return instance;
@@ -32,11 +34,11 @@ namespace Org.Ethasia.Fundetected.Technical
             }
         }
 
-        public void RenderTombstone(float posX, float posY)
+        public void RenderTombstone(string id, float posX, float posY)
         {
             Sprite sprite = Resources.Load<Sprite>(TOMBSTONE_RESOURCE_PATH);
 
-            GameObject tombstone = new GameObject("Tombstone");
+            GameObject tombstone = new GameObject("Tombstone " + id);
 
             SpriteRenderer spriteRenderer = tombstone.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = sprite;
@@ -44,6 +46,16 @@ namespace Org.Ethasia.Fundetected.Technical
 
             tombstone.transform.position = new Vector3(posX, posY, 0.0f);
             tombstone.transform.SetParent(transform);
+
+            renderedTombstoneById[id] = tombstone;
+        }
+
+        public void MoveTombstoneVertically(string id, float units)
+        {
+            if (renderedTombstoneById.TryGetValue(id, out GameObject tombstone))
+            {
+                tombstone.transform.Translate(0f, units, 0f);
+            }
         }
 
         public void ClearRenderedStaticPlaceables()
@@ -52,6 +64,8 @@ namespace Org.Ethasia.Fundetected.Technical
             {
                 Destroy(child.gameObject);
             }
+
+            renderedTombstoneById.Clear();
         }
     }
 }

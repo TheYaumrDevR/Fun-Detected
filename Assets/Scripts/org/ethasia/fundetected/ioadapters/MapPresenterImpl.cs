@@ -108,11 +108,6 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             interactablesRenderer.RenderInteractable(healingWellRenderProxy);
         }
 
-        public void PresentTombstone(int positionX, int positionY)
-        {
-            GetStaticPlaceablesRenderer().RenderTombstone(positionX * 0.1f, positionY * 0.1f);
-        }
-
         public void PresentEmpty()
         {
             portalRenderer.ClearRenderedPortals();

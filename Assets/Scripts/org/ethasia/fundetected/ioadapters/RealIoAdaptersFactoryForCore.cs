@@ -14,6 +14,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private EnemyAnimationPresenter enemyAnimationPresenter;
         private SoundPresenter soundPresenter;
         private IRollableAffixesPerItemGroupMasterDataProvider rollableAffixesProvider;
+        private IStaticPlaceablesPresenter staticPlaceablesPresenter;
 
         public override IRandomNumberGenerator GetRandomNumberGeneratorInstance()
         {
@@ -84,6 +85,16 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             }
 
             return rollableAffixesProvider;
-        }          
+        }
+
+        public override IStaticPlaceablesPresenter GetStaticPlaceablesPresenterInstance()
+        {
+            if (null == staticPlaceablesPresenter)
+            {
+                staticPlaceablesPresenter = new StaticPlaceablesPresenter();
+            }
+
+            return staticPlaceablesPresenter;
+        }
     }
 }
