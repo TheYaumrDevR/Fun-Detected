@@ -342,12 +342,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         private void OnDeath()
         {
-            InteractorsFactoryForCore.GetInstance().GetPlayerDeathInteractorInstance().NotifyPlayerDied();
-
             int lostExperiencePoints = BaseStats.LevelingSystem.ApplyDeathPenalty();
-
-            Tombstone tombstone = Area.ActiveArea.AddTombstoneAtPlayerPosition();
-            tombstone.PhysicsBody.RegisterStopFallingEventObserver(new TombstoneLandedDeathNotificationObserver(lostExperiencePoints));
+            InteractorsFactoryForCore.GetInstance().GetPlayerDeathInteractorInstance().NotifyPlayerDied(lostExperiencePoints);
         }
 
         public class PlayerCharacterBuilder

@@ -6,9 +6,12 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
 {
     public class PlayerDeathInteractor : IPlayerDeathInteractor
     {
-        public void NotifyPlayerDied()
+        public void NotifyPlayerDied(int lostExperiencePoints)
         {
             InternalInteractorsFactory.GetInstance().GetPlayerAnimationPresenterInstance().StartDeadAnimation();
+
+            Tombstone tombstone = Area.ActiveArea.AddTombstoneAtPlayerPosition();
+            tombstone.PhysicsBody.RegisterStopFallingEventObserver(new TombstoneLandedDeathNotificationObserver(lostExperiencePoints));
         }
 
         public void NotifyPlayerTombstoneLanded(int lostExperiencePoints)
