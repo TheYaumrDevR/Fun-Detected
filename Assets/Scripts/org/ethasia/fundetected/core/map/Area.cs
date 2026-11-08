@@ -224,7 +224,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
             InteractableEnvironmentObjects.Add(healingWell);
         }
 
-        public void AddTombstoneAtPlayerPosition()
+        public Tombstone AddTombstoneAtPlayerPosition()
         {
             int spawnOffsetY = 15;
 
@@ -235,6 +235,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             tombStonePresenter.PresentTombstone(tombstone.UniqueId, playerPosition.X, playerPosition.Y + spawnOffsetY);
 
             tombstone.PhysicsBody.StartFalling(tombstone.CollisionShape.Position.Y);
+
+            return tombstone;
         }
 
         public void ClearTombstones()

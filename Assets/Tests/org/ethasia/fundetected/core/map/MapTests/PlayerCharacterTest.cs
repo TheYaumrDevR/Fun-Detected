@@ -179,6 +179,33 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(accuracyRatingAfterKill, Is.EqualTo(1000));
         }
 
+        [Test]
+        public void TestDeathPenaltyIsAppliedToExperiencePointsWhenPlayerDies()
+        {
+            PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats
+                .PlayerCharacterBaseStatsBuilder()
+                .SetLevelAndExpPoints(2, 400)
+                .SetMaxLife(10)
+                .Build();
+
+            testCandidate = CreateStandardTestCandidate(playerCharacterBaseStats);
+            testCandidate.TotalStats.FullHeal();
+
+            Area testArea = new Area.Builder()
+                .SetWidthAndHeight(50, 50)
+                .SetPlayerSpawnPosition(new Position(15, 20))
+                .Build();
+
+            Area.ActiveArea = testArea;
+            testArea.SpawnPlayer(testCandidate);
+
+            testCandidate.TakePhysicalDamage(1000);
+
+            Assert.That(testCandidate.IsDead, Is.True);
+            Assert.That(testCandidate.BaseStats.LevelingSystem.Level, Is.EqualTo(2));
+            Assert.That(testCandidate.BaseStats.LevelingSystem.ExperiencePoints, Is.EqualTo(300));
+        }
+
         private PlayerCharacter RunLevelUpScenario(int experiencePointsFromEnemy)
         {
             PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats

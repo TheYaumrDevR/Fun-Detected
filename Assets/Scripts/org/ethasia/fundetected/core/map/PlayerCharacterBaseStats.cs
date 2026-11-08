@@ -115,6 +115,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
                 return this;
             }
 
+            public PlayerCharacterBaseStatsBuilder SetLevelAndExpPoints(int level, int experiencePoints)
+            {
+                levelingSystem = new PlayerLevelingSystem(level, experiencePoints);
+                return this;
+            }
+
             public PlayerCharacterBaseStatsBuilder SetIntelligence(int value)
             {
                 intelligence = value;
