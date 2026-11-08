@@ -16,5 +16,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Combat
             IGuiWindowsPresenter guiWindowsPresenter = IoAdaptersFactoryForInteractors.GetInstance().GetGuiWindowsPresenterInstance();
             guiWindowsPresenter.ShowDeathOverlay(lostExperiencePoints);
         }
+
+        public bool IsPlayerDead()
+        {
+            PlayerCharacter player = Area.ActiveArea.Player;
+            return player != null && player.IsDead;
+        }
     }
 }

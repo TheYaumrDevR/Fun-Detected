@@ -4,5 +4,6 @@ namespace Org.Ethasia.Fundetected.Core.Combat
     {
         void NotifyPlayerDied();
         void NotifyPlayerTombstoneLanded(int lostExperiencePoints);
+        bool IsPlayerDead();
     }
 }

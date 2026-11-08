@@ -18,5 +18,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
         {
             LastLostExperiencePoints = lostExperiencePoints;
         }
+
+        public bool IsPlayerDead()
+        {
+            return false;
+        }
     }
 }

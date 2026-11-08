@@ -20,6 +20,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
         private EnvironmentInteractionInteractor environmentInteractionInteractor;
         private PlayerMovementInteractor playerMovementInteractor;
         private PlayerRespawnInteractor playerRespawnInteractor;
+        private PlayerDeathInteractor playerDeathInteractor;
 
         private bool leftMoveButtonIsHeld;
         private bool rightMoveButtonIsHeld;
@@ -38,6 +39,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             environmentInteractionInteractor = new EnvironmentInteractionInteractor();
             playerMovementInteractor = new PlayerMovementInteractor();
             playerRespawnInteractor = new PlayerRespawnInteractor();
+            playerDeathInteractor = new PlayerDeathInteractor();
             internalInteractorsFactory = InternalInteractorsFactory.GetInstance();
             isInputEnabled = true;
         }
@@ -82,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 }
             }
 
-            if (PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction() || !isInputEnabled || isPlayerNotControllable)
+            if (ShouldPlayIdleAnimation())
             {
                 IPlayerAnimationPresenter playerAnimationPresenter = internalInteractorsFactory.GetPlayerAnimationPresenterInstance();
                 playerAnimationPresenter.StartIdleAnimation();
@@ -169,6 +171,19 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 IGuiWindowsController guiWindowsController = TechnicalFactory.GetInstance().GetGuiWindowsControllerInstance();
                 guiWindowsController.ToggleInventoryWindow();
             }
+        }
+
+        private bool ShouldPlayIdleAnimation()
+        {
+            if (playerDeathInteractor.IsPlayerDead())
+            {
+                return false;
+            }
+
+            bool isIdleByInactivity = PlayerIsStill() && !playerSkillInteractor.PlayerCharacterIsExecutingAction();
+            bool isIdleByDisabledControl = !isInputEnabled || isPlayerNotControllable;
+
+            return isIdleByInactivity || isIdleByDisabledControl;
         }
 
         private bool PlayerIsStill()
