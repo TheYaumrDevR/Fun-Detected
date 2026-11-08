@@ -29,5 +29,10 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
         {
 
         }
+
+        public void StartDeadAnimation()
+        {
+            
+        }
     }
 }

@@ -32,6 +32,8 @@ namespace Org.Ethasia.Fundetected.Interactors.Map
 
             IPortalTransitionInteractor portalTransitionInteractor = InteractorsFactoryForCore.GetInstance().GetPortalTransitionInteractor();
             portalTransitionInteractor.TransitionToOtherMap(townMapId, townPortalId);
+
+            InternalInteractorsFactory.GetInstance().GetPlayerAnimationPresenterInstance().StartIdleAnimation();
         }
 
         private void UpdateHealthBar(int currentHealth, int maximumHealth)

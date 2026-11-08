@@ -14,7 +14,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
         public void OnEventTriggered()
         {
             IPlayerDeathInteractor playerDeathInteractor = InteractorsFactoryForCore.GetInstance().GetPlayerDeathInteractorInstance();
-            playerDeathInteractor.NotifyPlayerDied(lostExperiencePoints);
+            playerDeathInteractor.NotifyPlayerTombstoneLanded(lostExperiencePoints);
         }
     }
 }

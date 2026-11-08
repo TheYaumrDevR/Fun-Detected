@@ -9,5 +9,6 @@ namespace Org.Ethasia.Fundetected.Interactors.Presentation
         void StartIdleAnimation();      
         void StartRightArmSwingAnimation();
         void StartLeftArmSwingAnimation(); 
+        void StartDeadAnimation();
     }
 }

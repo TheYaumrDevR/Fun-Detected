@@ -10,7 +10,11 @@ namespace Org.Ethasia.Fundetected.Interactors.Mocks
             private set;
         }
 
-        public void NotifyPlayerDied(int lostExperiencePoints)
+        public void NotifyPlayerDied()
+        {
+        }
+
+        public void NotifyPlayerTombstoneLanded(int lostExperiencePoints)
         {
             LastLostExperiencePoints = lostExperiencePoints;
         }

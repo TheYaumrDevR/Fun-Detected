@@ -10,6 +10,7 @@
 			<transition target="walk" />
 			<transition target="rightArmSwing" />
 			<transition target="leftArmSwing" />
+			<transition target="dead" />
 		</transitions>
 	</entryAnimation>
 	<animation id="walk" speedMultiplier="4">
@@ -22,7 +23,8 @@
 		<transitions>
 			<transition target="idle" />
 			<transition target="rightArmSwing" />
-			<transition target="leftArmSwing" />			
+			<transition target="leftArmSwing" />
+			<transition target="dead" />			
 		</transitions>
 	</animation>
 	<animation id="rightArmSwing" speedMultiplier="2" speedMultiplierBinding="ATTACK_SPEED_RIGHT">
@@ -34,7 +36,8 @@
 			<transition target="idle" />
 			<transition target="walk" />
 			<transition target="rightArmSwing" />
-			<transition target="leftArmSwing" />		
+			<transition target="leftArmSwing" />
+			<transition target="dead" />
 		</transitions>
 	</animation>	
 	<animation id="leftArmSwing" speedMultiplier="2" speedMultiplierBinding="ATTACK_SPEED_LEFT">
@@ -47,6 +50,15 @@
 			<transition target="walk" />
 			<transition target="rightArmSwing" />
 			<transition target="leftArmSwing" />
+			<transition target="dead" />
 		</transitions>
 	</animation>	
+	<animation id="dead" speedMultiplier="1">
+		<animationFrames spriteImageName="FemaleCharOneDead" isLooping="true">
+			<animationFrame index="0"/>
+		</animationFrames>
+		<transitions>
+			<transition target="idle" />
+		</transitions>
+	</animation>
 </animations>
