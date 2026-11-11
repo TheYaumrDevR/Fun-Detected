@@ -53,7 +53,7 @@
 			<transition target="dead" />
 		</transitions>
 	</animation>	
-	<animation id="dead" speedMultiplier="1">
+	<animation id="dead" speedMultiplier="1" material="Materials/PlayerGhostGlow">
 		<animationFrames spriteImageName="FemaleCharOneDead" isLooping="true">
 			<animationFrame index="0"/>
 		</animationFrames>

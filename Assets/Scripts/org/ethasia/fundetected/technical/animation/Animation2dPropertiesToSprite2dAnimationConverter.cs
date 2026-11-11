@@ -71,6 +71,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             conversionContext.ToConvert = stateMachineConversionContext.ToConvert;     
             conversionContext.AnimatedObjectId = stateMachineConversionContext.AnimatedObjectId;     
             conversionContext.AnimationSpeedMultiplierFromStatBindingProvider = stateMachineConversionContext.AnimationSpeedMultiplierFromStatBindingProvider; 
+            conversionContext.MaterialApplier = new SpriteMaterialApplier(stateMachineConversionContext.SpriteRenderer);
 
             StateMachineNodeWithTransitions stateMachineNode = CreateStateMachineNode(conversionContext);
 
@@ -124,6 +125,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 .SetAnimator(sprite2dAnimator)
                 .SetAnimation(animation)
                 .SetAnimationSpeedMultiplierProvider(() => baseSpeedMultiplier * ResolveBoundAnimationSpeedStatMultiplier(speedBinding, animationSpeedMultiplierFromStatProvider))
+                .SetMaterialApplier(conversionContext.MaterialApplier)
+                .SetMaterialName(toConvert.MaterialName)
                 .Build();       
 
             StateMachineNodeWithTransitions stateMachineNode = new StateMachineNodeWithTransitions.Builder()
@@ -200,6 +203,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             public Dictionary<string, StateMachineNodeWithTransitions> AlreadyExistingStatesByName { get; set; }
             public string AnimatedObjectId { get; set; }
             public Func<AnimationSpeedStatBindings, float> AnimationSpeedMultiplierFromStatBindingProvider { get; set; }
+            public SpriteMaterialApplier MaterialApplier { get; set; }
         }
 
         private struct Animation2dGraphConnectionMethodContext

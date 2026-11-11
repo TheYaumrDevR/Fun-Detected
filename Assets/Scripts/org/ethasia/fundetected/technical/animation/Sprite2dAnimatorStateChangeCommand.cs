@@ -9,6 +9,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
         private Sprite2dAnimator animator;
         private Sprite2dAnimation animation;
         private Func<float> animationSpeedMultiplierProvider;
+        private SpriteMaterialApplier materialApplier;
+        private string materialName;
 
         public void Execute()
         {
@@ -17,6 +19,11 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             animator.SpeedMultiplier = null != animationSpeedMultiplierProvider
                 ? animationSpeedMultiplierProvider()
                 : 1f;
+
+            if (null != materialApplier)
+            {
+                materialApplier.Apply(materialName);
+            }
         }
 
         public class Builder
@@ -24,6 +31,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             private Sprite2dAnimator animator;
             private Sprite2dAnimation animation;
             private Func<float> animationSpeedMultiplierProvider;        
+            private SpriteMaterialApplier materialApplier;
+            private string materialName;
 
             public Builder SetAnimator(Sprite2dAnimator value)
             {
@@ -49,6 +58,18 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 return this;
             }  
 
+            public Builder SetMaterialApplier(SpriteMaterialApplier value)
+            {
+                materialApplier = value;
+                return this;
+            }
+
+            public Builder SetMaterialName(string value)
+            {
+                materialName = value;
+                return this;
+            }
+
             public Sprite2dAnimatorStateChangeCommand Build()
             {
                 Sprite2dAnimatorStateChangeCommand result = new Sprite2dAnimatorStateChangeCommand();
@@ -56,6 +77,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 result.animator = animator;
                 result.animation = animation;
                 result.animationSpeedMultiplierProvider = animationSpeedMultiplierProvider;
+                result.materialApplier = materialApplier;
+                result.materialName = materialName;
 
                 return result;
             }                  

@@ -101,6 +101,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Animation
 
             Animation2dProperties animation = CreateAnimation2dProperties(animationXml);
             animationNode.Animation = animation;
+            animationNode.MaterialName = animationXml.GetAttribute("material");
 
             if (null != nodeId)
             {
