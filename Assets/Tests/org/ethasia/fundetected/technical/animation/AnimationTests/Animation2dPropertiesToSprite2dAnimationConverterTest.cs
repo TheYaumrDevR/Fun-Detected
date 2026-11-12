@@ -9,6 +9,18 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
 {
     public class Animation2dPropertiesToSprite2dAnimationConverterTest
     {
+        private List<GameObject> createdGameObjects = new List<GameObject>();
+
+        [TearDown]
+        public void TearDown()
+        {
+            foreach (GameObject gameObject in createdGameObjects)
+            {
+                Object.DestroyImmediate(gameObject);
+            }
+
+            createdGameObjects.Clear();
+        }
 
         [Test]
         public void TestConvertAnimation2dGraphToStateMachineNodesCreatesAllNodes()
@@ -25,7 +37,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             jumpNode.Transitions.Add("idle", idleNode);
             jumpNode.Transitions.Add("walk", walkNode);              
 
-            var spriteRenderer = new SpriteRenderer();
+            var spriteRenderer = CreateSpriteRenderer();
 
             Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
             stateMachineConversionContext.ToConvert = idleNode;
@@ -64,7 +76,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             idleNode.Transitions.Add("attack", attackNode);
             attackNode.Transitions.Add("idle", idleNode);
 
-            var spriteRenderer = new SpriteRenderer();
+            var spriteRenderer = CreateSpriteRenderer();
             var animatorContainer = new Sprite2dAnimatorBehavior();
 
             Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
@@ -100,7 +112,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             idleNode.Transitions.Add("attack", attackNode);
             attackNode.Transitions.Add("idle", idleNode);
 
-            var spriteRenderer = new SpriteRenderer();
+            var spriteRenderer = CreateSpriteRenderer();
             var animatorContainer = new Sprite2dAnimatorBehavior();
 
             Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
@@ -119,6 +131,14 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
 
             // Assert
             Assert.That(animatorContainer.AnimatorHasSpeedMultiplier(2.0f), Is.True);
+        }
+
+        private SpriteRenderer CreateSpriteRenderer()
+        {
+            GameObject gameObject = new GameObject();
+            createdGameObjects.Add(gameObject);
+
+            return gameObject.AddComponent<SpriteRenderer>();
         }
 
         private static Animation2dGraphNodeProperties CreateNode(string animationName, bool isDefault, string spriteImageName, bool loops, float animationSpeedMultiplier, int frameCount)
