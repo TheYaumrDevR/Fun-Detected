@@ -226,7 +226,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public Tombstone AddTombstoneAtPlayerPosition()
         {
-            int spawnOffsetY = 15;
+            int spawnOffsetY = 25;
 
             Tombstone tombstone = new Tombstone(playerPosition.X, playerPosition.Y + spawnOffsetY);
             Tombstones.Add(tombstone);

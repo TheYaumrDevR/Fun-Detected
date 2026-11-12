@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerGhostGlow
-  m_Shader: {fileID: 4800000, guid: 5813e4fc49097814da1f17af58752938, type: 3}
+  m_Name: PlayerGhost
+  m_Shader: {fileID: 4800000, guid: 23a14e269ab0437489841961e0fb24b8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -34,6 +34,10 @@ Material:
     - _GlowFalloff: 1.8
     - _GlowIntensity: 1.6
     - _GlowSize: 24
+    - _OrbitRadius: 0.08
+    - _OrbitSpeed: 1.5
+    - _OrbitSqueeze: 0.6
+    - _PhaseOffset: 0
     - _PulseAmount: 0.15
     - _PulseSpeed: 2
     m_Colors:
