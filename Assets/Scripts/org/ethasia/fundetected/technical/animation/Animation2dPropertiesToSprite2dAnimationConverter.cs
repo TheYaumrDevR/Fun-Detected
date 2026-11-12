@@ -73,6 +73,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
             conversionContext.AnimationSpeedMultiplierFromStatBindingProvider = stateMachineConversionContext.AnimationSpeedMultiplierFromStatBindingProvider; 
             conversionContext.MaterialApplier = new SpriteMaterialApplier(stateMachineConversionContext.SpriteRenderer);
 
+            conversionContext.MaterialApplier.Apply(stateMachineConversionContext.ToConvert.MaterialName);
+
             StateMachineNodeWithTransitions stateMachineNode = CreateStateMachineNode(conversionContext);
 
             result.Add(stateMachineConversionContext.ToConvert.Name, stateMachineNode);
