@@ -17,6 +17,7 @@ namespace Org.Ethasia.Fundetected
             InternalInteractorsFactory.SetInstance(new RealInternalInteractorsFactory());
             IoAdaptersFactoryForInteractors.SetInstance(new RealIoAdaptersFactoryForInteractors());
             TechnicalFactory.SetInstance(new RealTechnicalFactory());
+            InternalTechnicalFactory.SetInstance(new RealInternalTechnicalFactory());
         }
     }
 }

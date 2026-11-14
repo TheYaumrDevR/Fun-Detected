@@ -4,12 +4,28 @@ using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Interactors.Presentation;
 using Org.Ethasia.Fundetected.Ioadapters.Animation;
+using Org.Ethasia.Fundetected.Technical.Mocks;
 
 namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
 {
     public class Animation2dPropertiesToSprite2dAnimationConverterTest
     {
         private List<GameObject> createdGameObjects = new List<GameObject>();
+        private InternalTechnicalFactory previousInternalTechnicalFactory;
+        private ResourceLoaderMock resourceLoaderMock;
+        private Material customMaterial;
+
+        [SetUp]
+        public void SetUpMaterialMocks()
+        {
+            previousInternalTechnicalFactory = InternalTechnicalFactory.GetInstance();
+
+            customMaterial = new Material(Shader.Find("Sprites/Default"));
+            resourceLoaderMock = new ResourceLoaderMock();
+            resourceLoaderMock.AddMaterial("Materials/PlayerGhost", customMaterial);
+
+            InternalTechnicalFactory.SetInstance(new InternalTechnicalMockFactory(resourceLoaderMock));
+        }
 
         [TearDown]
         public void TearDown()
@@ -20,6 +36,13 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
             }
 
             createdGameObjects.Clear();
+        }
+
+        [TearDown]
+        public void TearDownMaterialMocks()
+        {
+            InternalTechnicalFactory.SetInstance(previousInternalTechnicalFactory);
+            Object.DestroyImmediate(customMaterial);
         }
 
         [Test]
@@ -39,11 +62,7 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
 
             var spriteRenderer = CreateSpriteRenderer();
 
-            Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext stateMachineConversionContext = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
-            stateMachineConversionContext.ToConvert = idleNode;
-            stateMachineConversionContext.SpriteRenderer = spriteRenderer;
-            stateMachineConversionContext.Sprite2dAnimatorContainer = new Sprite2dAnimatorBehavior();
-            stateMachineConversionContext.AnimatedObjectId = "";            
+            var stateMachineConversionContext = CreateConversionContext(idleNode, spriteRenderer);        
 
             // Act
             var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(stateMachineConversionContext);
@@ -131,6 +150,88 @@ namespace Org.Ethasia.Fundetected.Technical.Animation.Tests
 
             // Assert
             Assert.That(animatorContainer.AnimatorHasSpeedMultiplier(2.0f), Is.True);
+        }
+
+        [Test]
+        public void TestConvertAnimation2dGraphNodePropertiesToStateMachineCreatesMaterialApplierThatAppliesAndRestoresMaterials()
+        {
+            // Arrange
+            var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 1);
+            var deadNode = CreateNode("dead", false, "EnemyIdle", true, 1.0f, 1);
+            deadNode.MaterialName = "Materials/PlayerGhost";
+
+            idleNode.Transitions.Add("dead", deadNode);
+            deadNode.Transitions.Add("idle", idleNode);
+
+            var spriteRenderer = CreateSpriteRenderer();
+            Material defaultMaterial = spriteRenderer.sharedMaterial;
+
+            var context = CreateConversionContext(idleNode, spriteRenderer);
+
+            // Act
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(context);
+
+            // Assert
+            Assert.That(spriteRenderer.sharedMaterial, Is.EqualTo(defaultMaterial));
+
+            result.ExecuteAction("dead");
+            Assert.That(spriteRenderer.sharedMaterial, Is.EqualTo(customMaterial));
+
+            result.ExecuteAction("idle");
+            Assert.That(spriteRenderer.sharedMaterial, Is.EqualTo(defaultMaterial));
+        }
+
+        [Test]
+        public void TestConvertAnimation2dGraphNodePropertiesToStateMachineAppliesMaterialOfInitialNode()
+        {
+            // Arrange
+            var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 1);
+            idleNode.MaterialName = "Materials/PlayerGhost";
+
+            var spriteRenderer = CreateSpriteRenderer();
+
+            var context = CreateConversionContext(idleNode, spriteRenderer);
+
+            // Act
+            Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(context);
+
+            // Assert
+            Assert.That(spriteRenderer.sharedMaterial, Is.EqualTo(customMaterial));
+        }
+
+        [Test]
+        public void TestConvertAnimation2dGraphNodePropertiesToStateMachineFallsBackToDefaultMaterialWhenMaterialPathIsWrong()
+        {
+            // Arrange
+            var idleNode = CreateNode("idle", true, "EnemyIdle", true, 1.0f, 1);
+            var deadNode = CreateNode("dead", false, "EnemyIdle", true, 1.0f, 1);
+            deadNode.MaterialName = "Materials/DoesNotExist";
+
+            idleNode.Transitions.Add("dead", deadNode);
+            deadNode.Transitions.Add("idle", idleNode);
+
+            var spriteRenderer = CreateSpriteRenderer();
+            Material defaultMaterial = spriteRenderer.sharedMaterial;
+
+            var context = CreateConversionContext(idleNode, spriteRenderer);
+
+            // Act
+            var result = Animation2dPropertiesToSprite2dAnimationConverter.ConvertAnimation2dGraphNodePropertiesToStateMachine(context);
+            result.ExecuteAction("dead");
+
+            // Assert
+            Assert.That(spriteRenderer.sharedMaterial, Is.EqualTo(defaultMaterial));
+        }
+
+        private Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext CreateConversionContext(Animation2dGraphNodeProperties initialNode, SpriteRenderer spriteRenderer, Sprite2dAnimatorBehavior animatorContainer = null)
+        {
+            Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext result = new Animation2dPropertiesToSprite2dAnimationConverter.StateMachineConversionContext();
+            result.ToConvert = initialNode;
+            result.SpriteRenderer = spriteRenderer;
+            result.Sprite2dAnimatorContainer = animatorContainer ?? new Sprite2dAnimatorBehavior();
+            result.AnimatedObjectId = "";
+
+            return result;
         }
 
         private SpriteRenderer CreateSpriteRenderer()

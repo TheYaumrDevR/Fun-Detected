@@ -21,7 +21,8 @@ namespace Org.Ethasia.Fundetected.Technical.Animation
                 return;
             }
 
-            Material material = Resources.Load<Material>(materialName);
+            IResourceLoader resourceLoader = InternalTechnicalFactory.GetInstance().GetResourceLoaderInstance();
+            Material material = resourceLoader.LoadMaterial(materialName);
 
             if (null == material)
             {
