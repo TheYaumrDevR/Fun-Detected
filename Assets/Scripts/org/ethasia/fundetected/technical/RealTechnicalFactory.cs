@@ -11,6 +11,8 @@ namespace Org.Ethasia.Fundetected.Technical
         private InteractablesRendererDelayedInitializationProxy interactablesRenderer;
         private UiRenderer uiRenderer;
         private StaticPlaceablesRendererDelayedInitializationProxy staticPlaceablesRenderer;
+        private JsonFileStore fileStore;
+        private UnityJsonSerializer jsonSerializer;
 
         public override XmlFiles CreateXmlFiles()
         {
@@ -132,6 +134,26 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             return staticPlaceablesRenderer;
+        }
+
+        public override IFileStore GetFileStoreInstance()
+        {
+            if (null == fileStore)
+            {
+                fileStore = new JsonFileStore();
+            }
+
+            return fileStore;
+        }
+
+        public override IJsonSerializer GetJsonSerializerInstance()
+        {
+            if (null == jsonSerializer)
+            {
+                jsonSerializer = new UnityJsonSerializer();
+            }
+
+            return jsonSerializer;
         }
     }
 }

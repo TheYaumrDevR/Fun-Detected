@@ -107,5 +107,15 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         {
             return null;
         }
+
+        public override IFileStore GetFileStoreInstance()
+        {
+            return null;
+        }
+
+        public override IJsonSerializer GetJsonSerializerInstance()
+        {
+            return null;
+        }
     }
 }

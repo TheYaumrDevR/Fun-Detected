@@ -36,5 +36,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Technical
         public abstract IIconOnCursorRenderer GetIconOnCursorRendererInstance();
         public abstract IUiRenderer GetUiRendererInstance();
         public abstract IStaticPlaceablesRenderer GetStaticPlaceablesRendererInstance();
+        public abstract IFileStore GetFileStoreInstance();
+        public abstract IJsonSerializer GetJsonSerializerInstance();    
     }
 }
