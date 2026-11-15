@@ -12,6 +12,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private UiRenderer uiRenderer;
         private StaticPlaceablesRendererDelayedInitializationProxy staticPlaceablesRenderer;
         private JsonFileStore fileStore;
+        private UnitySaveLocationProvider saveLocationProvider;
         private UnityJsonSerializer jsonSerializer;
 
         public override XmlFiles CreateXmlFiles()
@@ -144,6 +145,16 @@ namespace Org.Ethasia.Fundetected.Technical
             }
 
             return fileStore;
+        }
+
+        public override ISaveLocationProvider GetSaveLocationProviderInstance()
+        {
+            if (null == saveLocationProvider)
+            {
+                saveLocationProvider = new UnitySaveLocationProvider();
+            }
+
+            return saveLocationProvider;
         }
 
         public override IJsonSerializer GetJsonSerializerInstance()

@@ -1,5 +1,4 @@
 using System.IO;
-using UnityEngine;
 
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
@@ -7,11 +6,8 @@ namespace Org.Ethasia.Fundetected.Technical
 {
     public class JsonFileStore : IFileStore
     {
-        private const string SAVE_DIRECTORY_NAME = "SaveGames";
-
-        public void Save(string fileName, string content)
+        public void Save(string directory, string fileName, string content)
         {
-            string directory = Path.Combine(Application.persistentDataPath, SAVE_DIRECTORY_NAME);
             Directory.CreateDirectory(directory);
 
             string safeFileName = Path.GetFileName(fileName);

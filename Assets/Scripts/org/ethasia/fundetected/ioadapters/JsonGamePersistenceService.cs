@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 using Org.Ethasia.Fundetected.Interactors.Persistence;
 using Org.Ethasia.Fundetected.Ioadapters.Technical;
@@ -8,6 +9,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class JsonGamePersistenceService : IGamePersistenceService
     {
         private const string FILE_EXTENSION = ".json";
+        private const string SAVE_DIRECTORY_NAME = "SaveGames";
 
         public void Save(GamePersistenceContext context)
         {
@@ -21,7 +23,9 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             IJsonSerializer jsonSerializer = technicalFactory.GetJsonSerializerInstance();
             string json = jsonSerializer.Serialize(context.Player, true);
 
-            technicalFactory.GetFileStoreInstance().Save(context.Player.Id + FILE_EXTENSION, json);
+            string directory = Path.Combine(technicalFactory.GetSaveLocationProviderInstance().GetBaseSaveDirectory(), SAVE_DIRECTORY_NAME);
+
+            technicalFactory.GetFileStoreInstance().Save(directory, context.Player.Id + FILE_EXTENSION, json);
         }
     }
 }
