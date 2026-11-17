@@ -4,6 +4,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
 {
     public abstract class Item : PhysicsObject
     {
+        public string MasterDataId
+        {
+            get;
+            private set;
+        }
+
         public string Name
         {
             get;
@@ -77,6 +83,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
         protected void CloneItemFields(Item clone)
         {
+            clone.MasterDataId = MasterDataId;
             clone.Name = Name;
             clone.ItemClass = ItemClass;
             clone.MinimumItemLevel = MinimumItemLevel;
@@ -88,6 +95,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
 
         public class Builder
         {
+            private string masterDataId;
             private string name;
             private ItemClass itemClass;
             private int minimumItemLevel;
@@ -97,6 +105,12 @@ namespace Org.Ethasia.Fundetected.Core.Items
             private int collisionShapeDistanceToRightEdgeFromCenter;
             private int collisionShapeDistanceToTopEdgeFromCenter;
             private int collisionShapeDistanceToBottomEdgeFromCenter;
+
+            public Builder SetMasterDataId(string value)
+            {
+                this.masterDataId = value;
+                return this;
+            }
 
             public Builder SetName(string value)
             {
@@ -162,6 +176,7 @@ namespace Org.Ethasia.Fundetected.Core.Items
                     .SetCollisionShapeDistanceToBottomEdgeFromCenter(collisionShapeDistanceToBottomEdgeFromCenter)
                     .Build();
 
+                statlessItem.MasterDataId = masterDataId;
                 statlessItem.Name = name;
                 statlessItem.ItemClass = itemClass;
                 statlessItem.MinimumItemLevel = minimumItemLevel;

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 using Org.Ethasia.Fundetected.Core.Items;
@@ -8,10 +11,25 @@ namespace Org.Ethasia.Fundetected.Ioadapters
     public class JewelryMasterDataProvider
     {
         private ImplicitsMasterDataProvider implicitsMasterDataProvider;
+        private Dictionary<string, Func<JewelryMasterData>> factoriesByUniqueId;
 
         public JewelryMasterDataProvider()
         {
             implicitsMasterDataProvider = new ImplicitsMasterDataProvider();
+
+            factoriesByUniqueId = new Dictionary<string, Func<JewelryMasterData>>
+            {
+                { "Masterdata/Item/Equipment/Jewelry/Belt/WeaponsBelt", GetWeaponsBeltMasterData },
+                { "Masterdata/Item/Equipment/Jewelry/Belt/WarBelt", GetWarBeltMasterData },
+                { "Masterdata/Item/Equipment/Jewelry/Ring/DiamondBand", GetDiamondBandMasterData },
+                { "Masterdata/Item/Equipment/Jewelry/Amulet/IronAmulet", GetIronAmuletMasterData },
+                { "Masterdata/Item/Equipment/Jewelry/Ring/IronspikeBand", GetIronspikeBandMasterData }
+            };
+        }
+
+        public JewelryMasterData GetMasterDataByUniqueId(string uniqueId)
+        {
+            return factoriesByUniqueId.TryGetValue(uniqueId, out Func<JewelryMasterData> factory) ? factory() : null;
         }
 
         public JewelryMasterData GetWeaponsBeltMasterData()
@@ -23,6 +41,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMaterial(ItemMaterials.LEATHER_ARMOR)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreatePlusStrengthWeaponsBelt());
 
+            builder.SetUniqueId("Masterdata/Item/Equipment/Jewelry/Belt/WeaponsBelt");
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -40,6 +59,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMaterial(ItemMaterials.LEATHER_ARMOR)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamagePercentWarBelt());
 
+            builder.SetUniqueId("Masterdata/Item/Equipment/Jewelry/Belt/WarBelt");
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
@@ -56,6 +76,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinimumItemLevel(5)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreateIncPhysicalDamageWithAttacksPercentDiamondBand());
 
+            builder.SetUniqueId("Masterdata/Item/Equipment/Jewelry/Ring/DiamondBand");
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
@@ -72,6 +93,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinimumItemLevel(10)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreateIncArmorPercentIronAmulet());
 
+            builder.SetUniqueId("Masterdata/Item/Equipment/Jewelry/Amulet/IronAmulet");
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);
@@ -88,6 +110,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetMinimumItemLevel(1)
                 .SetFirstImplicit(implicitsMasterDataProvider.CreatePlusGlobalMinMaxDamageToAttacksIronspikeBand());
 
+            builder.SetUniqueId("Masterdata/Item/Equipment/Jewelry/Ring/IronspikeBand");
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(3);

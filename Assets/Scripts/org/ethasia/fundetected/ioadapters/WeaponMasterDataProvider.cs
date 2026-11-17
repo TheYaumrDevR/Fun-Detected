@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Equipment;
 using Org.Ethasia.Fundetected.Core.Items;
 using Org.Ethasia.Fundetected.Core.Map;
@@ -7,6 +10,218 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class WeaponMasterDataProvider
     {
+        private const string ID_PREFIX = "Masterdata/Item/Equipment/Weapon/";
+
+        // OneHandedSword
+        private const string ID_CORRODED_CUTLASS = ID_PREFIX + "OneHandedSword/CorrodedCutlass";
+        private const string ID_BRONZE_CUTLASS = ID_PREFIX + "OneHandedSword/BronzeCutlass";
+        private const string ID_STEEL_CUTLASS = ID_PREFIX + "OneHandedSword/SteelCutlass";
+        private const string ID_EXCEPTIONAL_STEEL_CUTLASS = ID_PREFIX + "OneHandedSword/ExceptionalSteelCutlass";
+        private const string ID_CORRODED_SWORD = ID_PREFIX + "OneHandedSword/CorrodedSword";
+        private const string ID_BRONZE_SWORD = ID_PREFIX + "OneHandedSword/BronzeSword";
+        private const string ID_STEEL_SWORD = ID_PREFIX + "OneHandedSword/SteelSword";
+        private const string ID_EXCEPTIONAL_STEEL_SWORD = ID_PREFIX + "OneHandedSword/ExceptionalSteelSword";
+
+        // OneHandedStabbingSword
+        private const string ID_CORRODED_RAPIER = ID_PREFIX + "OneHandedStabbingSword/CorrodedRapier";
+        private const string ID_BRONZE_RAPIER = ID_PREFIX + "OneHandedStabbingSword/BronzeRapier";
+        private const string ID_CORRODED_FOIL = ID_PREFIX + "OneHandedStabbingSword/CorrodedFoil";
+        private const string ID_BRONZE_FOIL = ID_PREFIX + "OneHandedStabbingSword/BronzeFoil";
+        private const string ID_EXCEPTIONAL_BRONZE_FOIL = ID_PREFIX + "OneHandedStabbingSword/ExceptionalBronzeFoil";
+        private const string ID_RUSTED_STEEL_FOIL = ID_PREFIX + "OneHandedStabbingSword/RustedSteelFoil";
+        private const string ID_STEEL_FOIL = ID_PREFIX + "OneHandedStabbingSword/SteelFoil";
+        private const string ID_FLEXIBLE_STEEL_FOIL = ID_PREFIX + "OneHandedStabbingSword/FlexibleSteelFoil";
+        private const string ID_EXCEPTIONAL_STEEL_FOIL = ID_PREFIX + "OneHandedStabbingSword/ExceptionalSteelFoil";
+
+        // TwoHandedSword
+        private const string ID_CORRODED_BASTARD_SWORD = ID_PREFIX + "TwoHandedSword/CorrodedBastardSword";
+        private const string ID_BRONZE_BASTARD_SWORD = ID_PREFIX + "TwoHandedSword/BronzeBastardSword";
+        private const string ID_STEEL_BASTARD_SWORD = ID_PREFIX + "TwoHandedSword/SteelBastardSword";
+        private const string ID_EXCEPTIONAL_STEEL_BASTARD_SWORD = ID_PREFIX + "TwoHandedSword/ExceptionalSteelBastardSword";
+
+        // Dagger
+        private const string ID_CORRODED_DAGGER = ID_PREFIX + "Dagger/CorrodedDagger";
+        private const string ID_CORRODED_ARTISANS_KNIFE = ID_PREFIX + "Dagger/CorrodedArtisansKnife";
+        private const string ID_BRONZE_ARTISANS_KNIFE = ID_PREFIX + "Dagger/BronzeArtisansKnife";
+        private const string ID_STEEL_ARTISANS_KNIFE = ID_PREFIX + "Dagger/SteelArtisansKnife";
+
+        // SpellDagger
+        private const string ID_CORRODED_ALCHEMISTS_KNIFE = ID_PREFIX + "SpellDagger/CorrodedAlchemistsKnife";
+        private const string ID_BRONZE_ALCHEMISTS_KNIFE = ID_PREFIX + "SpellDagger/BronzeAlchemistsKnife";
+        private const string ID_STEEL_ALCHEMISTS_KNIFE = ID_PREFIX + "SpellDagger/SteelAlchemistsKnife";
+
+        // OneHandedAxe
+        private const string ID_CORRODED_HATCHET = ID_PREFIX + "OneHandedAxe/CorrodedHatchet";
+        private const string ID_BRONZE_HATCHET = ID_PREFIX + "OneHandedAxe/BronzeHatchet";
+        private const string ID_STEEL_HATCHET = ID_PREFIX + "OneHandedAxe/SteelHatchet";
+        private const string ID_EXCEPTIONAL_STEEL_HATCHET = ID_PREFIX + "OneHandedAxe/ExceptionalSteelHatchet";
+
+        // TwoHandedAxe
+        private const string ID_CORRODED_LUMBERJACK_AXE = ID_PREFIX + "TwoHandedAxe/CorrodedLumberjackAxe";
+        private const string ID_BRONZE_LUMBERJACK_AXE = ID_PREFIX + "TwoHandedAxe/BronzeLumberjackAxe";
+        private const string ID_STEEL_LUMBERJACK_AXE = ID_PREFIX + "TwoHandedAxe/SteelLumberjackAxe";
+        private const string ID_EXCEPTIONAL_STEEL_LUMBERJACK_AXE = ID_PREFIX + "TwoHandedAxe/ExceptionalSteelLumberjackAxe";
+
+        // FistWeapon
+        private const string ID_CORRODED_SLASHING_CLAW = ID_PREFIX + "FistWeapon/CorrodedSlashingClaw";
+        private const string ID_BRONZE_SLASHING_CLAW = ID_PREFIX + "FistWeapon/BronzeSlashingClaw";
+        private const string ID_STEEL_SLASHING_CLAW = ID_PREFIX + "FistWeapon/SteelSlashingClaw";
+        private const string ID_EXCEPTIONAL_STEEL_SLASHING_CLAW = ID_PREFIX + "FistWeapon/ExceptionalSteelSlashingClaw";
+
+        // WizardStaff
+        private const string ID_ROTTEN_QUARTERSTAFF = ID_PREFIX + "WizardStaff/RottenQuarterstaff";
+        private const string ID_CRACKED_QUARTERSTAFF = ID_PREFIX + "WizardStaff/CrackedQuarterstaff";
+        private const string ID_QUARTERSTAFF = ID_PREFIX + "WizardStaff/Quarterstaff";
+        private const string ID_REINFORCED_QUARTERSTAFF = ID_PREFIX + "WizardStaff/ReinforcedQuarterstaff";
+
+        // MartialStaff
+        private const string ID_ERODED_STAFF = ID_PREFIX + "MartialStaff/ErodedStaff";
+        private const string ID_BRONZE_STAFF = ID_PREFIX + "MartialStaff/BronzeStaff";
+        private const string ID_STEEL_STAFF = ID_PREFIX + "MartialStaff/SteelStaff";
+
+        // OneHandedMace
+        private const string ID_ROTTEN_BARBED_CLUB = ID_PREFIX + "OneHandedMace/RottenBarbedClub";
+        private const string ID_BRONZE_BARBED_CLUB = ID_PREFIX + "OneHandedMace/BronzeBarbedClub";
+        private const string ID_STEEL_BARBED_CLUB = ID_PREFIX + "OneHandedMace/SteelBarbedClub";
+        private const string ID_EXCEPTIONAL_STEEL_BARBED_CLUB = ID_PREFIX + "OneHandedMace/ExceptionalSteelBarbedClub";
+        private const string ID_ROTTEN_WOODEN_CLUB = ID_PREFIX + "OneHandedMace/RottenWoodenClub";
+        private const string ID_RAW_WOODEN_CLUB = ID_PREFIX + "OneHandedMace/RawWoodenClub";
+        private const string ID_WOODEN_CLUB = ID_PREFIX + "OneHandedMace/WoodenClub";
+
+        // TwoHandedMace
+        private const string ID_ROTTEN_WOODEN_MAUL = ID_PREFIX + "TwoHandedMace/RottenWoodenMaul";
+        private const string ID_RAW_WOODEN_MAUL = ID_PREFIX + "TwoHandedMace/RawWoodenMaul";
+        private const string ID_WOODEN_MAUL = ID_PREFIX + "TwoHandedMace/WoodenMaul";
+        private const string ID_REINFORCED_WOODEN_MAUL = ID_PREFIX + "TwoHandedMace/ReinforcedWoodenMaul";
+        private const string ID_ROTTEN_CARVED_MAUL = ID_PREFIX + "TwoHandedMace/RottenCarvedMaul";
+        private const string ID_CARVED_MAUL = ID_PREFIX + "TwoHandedMace/CarvedMaul";
+        private const string ID_REINFORCED_CARVED_MAUL = ID_PREFIX + "TwoHandedMace/ReinforcedCarvedMaul";
+
+        // MagicMace
+        private const string ID_CORRODED_ROYAL_SCEPTRE = ID_PREFIX + "MagicMace/CorrodedRoyalSceptre";
+        private const string ID_BRONZE_ROYAL_SCEPTRE = ID_PREFIX + "MagicMace/BronzeRoyalSceptre";
+        private const string ID_SILVER_ROYAL_SCEPTRE = ID_PREFIX + "MagicMace/SilverRoyalSceptre";
+        private const string ID_GOLDEN_ROYAL_SCEPTRE = ID_PREFIX + "MagicMace/GoldenRoyalSceptre";
+        private const string ID_ROTTEN_TRIBAL_SCEPTRE = ID_PREFIX + "MagicMace/RottenTribalSceptre";
+        private const string ID_TRIBAL_SCEPTRE = ID_PREFIX + "MagicMace/TribalSceptre";
+        private const string ID_REINFORCED_TRIBAL_SCEPTRE = ID_PREFIX + "MagicMace/ReinforcedTribalSceptre";
+
+        // Bow
+        private const string ID_PRIMITIVE_BOW = ID_PREFIX + "Bow/PrimitiveBow";
+        private const string ID_SHORT_BOW = ID_PREFIX + "Bow/ShortBow";
+        private const string ID_COMPOSITE_SHORT_BOW = ID_PREFIX + "Bow/CompositeShortBow";
+        private const string ID_EXCEPTIONAL_COMPOSITE_SHORT_BOW = ID_PREFIX + "Bow/ExceptionalCompositeShortBow";
+
+        // Wand
+        private const string ID_ROTTEN_WAND = ID_PREFIX + "Wand/RottenWand";
+        private const string ID_ROTTEN_PYROMANCERS_WAND = ID_PREFIX + "Wand/RottenPyromancersWand";
+        private const string ID_PYROMANCERS_WAND = ID_PREFIX + "Wand/PyromancersWand";
+        private const string ID_EXCEPTIONAL_PYROMANCERS_WAND = ID_PREFIX + "Wand/ExceptionalPyromancersWand";
+
+        private Dictionary<string, Func<WeaponMasterData>> factoriesByUniqueId;
+
+        public WeaponMasterDataProvider()
+        {
+            factoriesByUniqueId = new Dictionary<string, Func<WeaponMasterData>>
+            {
+                { ID_CORRODED_CUTLASS, GetCorrodedCutlassMasterData },
+                { ID_BRONZE_CUTLASS, GetBronzeCutlassMasterData },
+                { ID_STEEL_CUTLASS, GetSteelCutlassMasterData },
+                { ID_EXCEPTIONAL_STEEL_CUTLASS, GetExceptionalSteelCutlassMasterData },
+                { ID_CORRODED_SWORD, GetCorrodedSwordMasterData },
+                { ID_BRONZE_SWORD, GetBronzeSwordMasterData },
+                { ID_STEEL_SWORD, GetSteelSwordMasterData },
+                { ID_EXCEPTIONAL_STEEL_SWORD, GetExceptionalSteelSwordMasterData },
+
+                { ID_CORRODED_RAPIER, GetCorrodedRapierMasterData },
+                { ID_BRONZE_RAPIER, GetBronzeRapierMasterData },
+                { ID_CORRODED_FOIL, GetCorrodedFoilMasterData },
+                { ID_BRONZE_FOIL, GetBronzeFoilMasterData },
+                { ID_EXCEPTIONAL_BRONZE_FOIL, GetExceptionalBronzeFoilMasterData },
+                { ID_RUSTED_STEEL_FOIL, GetRustedSteelFoilMasterData },
+                { ID_STEEL_FOIL, GetSteelFoilMasterData },
+                { ID_FLEXIBLE_STEEL_FOIL, GetFlexibleSteelFoilMasterData },
+                { ID_EXCEPTIONAL_STEEL_FOIL, GetExceptionalSteelFoilMasterData },
+
+                { ID_CORRODED_BASTARD_SWORD, GetCorrodedBastardSwordMasterData },
+                { ID_BRONZE_BASTARD_SWORD, GetBronzeBastardSwordMasterData },
+                { ID_STEEL_BASTARD_SWORD, GetSteelBastardSwordMasterData },
+                { ID_EXCEPTIONAL_STEEL_BASTARD_SWORD, GetExceptionalSteelBastardSwordMasterData },
+
+                { ID_CORRODED_DAGGER, GetCorrodedDaggerMasterData },
+                { ID_CORRODED_ARTISANS_KNIFE, GetCorrodedArtisansKnifeMasterData },
+                { ID_BRONZE_ARTISANS_KNIFE, GetBronzeArtisansKnifeMasterData },
+                { ID_STEEL_ARTISANS_KNIFE, GetSteelArtisansKnifeMasterData },
+
+                { ID_CORRODED_ALCHEMISTS_KNIFE, GetCorrodedAlchemistsKnifeMasterData },
+                { ID_BRONZE_ALCHEMISTS_KNIFE, GetBronzeAlchemistsKnifeMasterData },
+                { ID_STEEL_ALCHEMISTS_KNIFE, GetSteelAlchemistsKnifeMasterData },
+
+                { ID_CORRODED_HATCHET, GetCorrodedHatchetMasterData },
+                { ID_BRONZE_HATCHET, GetBronzeHatchetMasterData },
+                { ID_STEEL_HATCHET, GetSteelHatchetMasterData },
+                { ID_EXCEPTIONAL_STEEL_HATCHET, GetExceptionalSteelHatchetMasterData },
+
+                { ID_CORRODED_LUMBERJACK_AXE, GetCorrodedLumberjackAxeMasterData },
+                { ID_BRONZE_LUMBERJACK_AXE, GetBronzeLumberjackAxeMasterData },
+                { ID_STEEL_LUMBERJACK_AXE, GetSteelLumberjackAxeMasterData },
+                { ID_EXCEPTIONAL_STEEL_LUMBERJACK_AXE, GetExceptionalSteelLumberjackAxeMasterData },
+
+                { ID_CORRODED_SLASHING_CLAW, GetCorrodedSlashingClawMasterData },
+                { ID_BRONZE_SLASHING_CLAW, GetBronzeSlashingClawMasterData },
+                { ID_STEEL_SLASHING_CLAW, GetSteelSlashingClawMasterData },
+                { ID_EXCEPTIONAL_STEEL_SLASHING_CLAW, GetExceptionalSteelSlashingClawMasterData },
+
+                { ID_ROTTEN_QUARTERSTAFF, GetRottenQuarterstaffMasterData },
+                { ID_CRACKED_QUARTERSTAFF, GetCrackedQuarterstaffMasterData },
+                { ID_QUARTERSTAFF, GetQuarterstaffMasterData },
+                { ID_REINFORCED_QUARTERSTAFF, GetReinforcedQuarterstaffMasterData },
+
+                { ID_ERODED_STAFF, GetErodedStaffMasterData },
+                { ID_BRONZE_STAFF, GetBronzeStaffMasterData },
+                { ID_STEEL_STAFF, GetSteelStaffMasterData },
+
+                { ID_ROTTEN_BARBED_CLUB, GetRottenBarbedClubMasterData },
+                { ID_BRONZE_BARBED_CLUB, GetBronzeBarbedClubMasterData },
+                { ID_STEEL_BARBED_CLUB, GetSteelBarbedClubMasterData },
+                { ID_EXCEPTIONAL_STEEL_BARBED_CLUB, GetExceptionalSteelBarbedClubMasterData },
+                { ID_ROTTEN_WOODEN_CLUB, GetRottenWoodenClubMasterData },
+                { ID_RAW_WOODEN_CLUB, GetRawWoodenClubMasterData },
+                { ID_WOODEN_CLUB, GetWoodenClubMasterData },
+
+                { ID_ROTTEN_WOODEN_MAUL, GetRottenWoodenMaulMasterData },
+                { ID_RAW_WOODEN_MAUL, GetRawWoodenMaulMasterData },
+                { ID_WOODEN_MAUL, GetWoodenMaulMasterData },
+                { ID_REINFORCED_WOODEN_MAUL, GetReinforcedWoodenMaulMasterData },
+                { ID_ROTTEN_CARVED_MAUL, GetRottenCarvedMaulMasterData },
+                { ID_CARVED_MAUL, GetCarvedMaulMasterData },
+                { ID_REINFORCED_CARVED_MAUL, GetReinforcedCarvedMaulMasterData },
+
+                { ID_CORRODED_ROYAL_SCEPTRE, GetCorrodedRoyalSceptreMasterData },
+                { ID_BRONZE_ROYAL_SCEPTRE, GetBronzeRoyalSceptreMasterData },
+                { ID_SILVER_ROYAL_SCEPTRE, GetSilverRoyalSceptreMasterData },
+                { ID_GOLDEN_ROYAL_SCEPTRE, GetGoldenRoyalSceptreMasterData },
+                { ID_ROTTEN_TRIBAL_SCEPTRE, GetRottenTribalSceptreMasterData },
+                { ID_TRIBAL_SCEPTRE, GetTribalSceptreMasterData },
+                { ID_REINFORCED_TRIBAL_SCEPTRE, GetReinforcedTribalSceptreMasterData },
+
+                { ID_PRIMITIVE_BOW, GetPrimitiveBowMasterData },
+                { ID_SHORT_BOW, GetShortBowMasterData },
+                { ID_COMPOSITE_SHORT_BOW, GetCompositeShortBowMasterData },
+                { ID_EXCEPTIONAL_COMPOSITE_SHORT_BOW, GetExceptionalCompositeShortBowMasterData },
+
+                { ID_ROTTEN_WAND, GetRottenWandMasterData },
+                { ID_ROTTEN_PYROMANCERS_WAND, GetRottenPyromancersWandMasterData },
+                { ID_PYROMANCERS_WAND, GetPyromancersWandMasterData },
+                { ID_EXCEPTIONAL_PYROMANCERS_WAND, GetExceptionalPyromancersWandMasterData }
+            };
+        }
+
+        public WeaponMasterData GetMasterDataByUniqueId(string uniqueId)
+        {
+            return factoriesByUniqueId.TryGetValue(uniqueId, out Func<WeaponMasterData> factory) ? factory() : null;
+        }
+
         public WeaponMasterData GetCorrodedCutlassMasterData()
         {
             WeaponMasterData.Builder builder = new WeaponMasterData.Builder()
@@ -21,6 +236,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD)
                 .SetMaterial(ItemMaterials.METAL_WEAPON);
 
+            builder.SetUniqueId(ID_CORRODED_CUTLASS);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(2);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(3);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(7);
@@ -43,6 +259,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD)
                 .SetMaterial(ItemMaterials.METAL_WEAPON);
 
+            builder.SetUniqueId(ID_BRONZE_CUTLASS);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -64,6 +281,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(79)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_STEEL_CUTLASS);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -85,6 +303,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(117)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_CUTLASS);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -106,6 +325,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(14)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_CORRODED_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -127,6 +347,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(55)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_BRONZE_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -148,6 +369,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(94)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_STEEL_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -169,6 +391,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(122)
                 .SetItemClass(ItemClass.ONE_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -189,6 +412,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(20)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_CORRODED_RAPIER);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -209,6 +433,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(62)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_BRONZE_RAPIER);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -229,6 +454,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(32)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_CORRODED_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -249,6 +475,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(77)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_BRONZE_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -269,6 +496,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(101)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_BRONZE_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -289,6 +517,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(149)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_RUSTED_STEEL_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -309,6 +538,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(167)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_STEEL_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -329,6 +559,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(212)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_FLEXIBLE_STEEL_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -349,6 +580,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(212)
                 .SetItemClass(ItemClass.ONE_HANDED_STABBING_SWORD);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_FOIL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -370,6 +602,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(11)
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_CORRODED_BASTARD_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -391,6 +624,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(30)
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_BRONZE_BASTARD_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -412,6 +646,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(83)
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_STEEL_BASTARD_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -433,6 +668,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(122)
                 .SetItemClass(ItemClass.TWO_HANDED_SWORD);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_BASTARD_SWORD);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -454,6 +690,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(6)
                 .SetItemClass(ItemClass.DAGGER);
 
+            builder.SetUniqueId(ID_CORRODED_DAGGER);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -475,6 +712,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(11)
                 .SetItemClass(ItemClass.DAGGER);
 
+            builder.SetUniqueId(ID_CORRODED_ARTISANS_KNIFE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -496,6 +734,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(44)
                 .SetItemClass(ItemClass.DAGGER);
 
+            builder.SetUniqueId(ID_BRONZE_ARTISANS_KNIFE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -517,6 +756,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(78)
                 .SetItemClass(ItemClass.DAGGER);
 
+            builder.SetUniqueId(ID_STEEL_ARTISANS_KNIFE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -539,6 +779,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(26)
                 .SetItemClass(ItemClass.SPELL_DAGGER);
 
+            builder.SetUniqueId(ID_CORRODED_ALCHEMISTS_KNIFE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -561,6 +802,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(79)
                 .SetItemClass(ItemClass.SPELL_DAGGER);
 
+            builder.SetUniqueId(ID_BRONZE_ALCHEMISTS_KNIFE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -583,6 +825,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(117)
                 .SetItemClass(ItemClass.SPELL_DAGGER);
 
+            builder.SetUniqueId(ID_STEEL_ALCHEMISTS_KNIFE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -604,6 +847,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(6)
                 .SetItemClass(ItemClass.ONE_HANDED_AXE);
 
+            builder.SetUniqueId(ID_CORRODED_HATCHET);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -625,6 +869,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(19)
                 .SetItemClass(ItemClass.ONE_HANDED_AXE);
 
+            builder.SetUniqueId(ID_BRONZE_HATCHET);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -646,6 +891,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(56)
                 .SetItemClass(ItemClass.ONE_HANDED_AXE);
 
+            builder.SetUniqueId(ID_STEEL_HATCHET);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -667,6 +913,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(82)
                 .SetItemClass(ItemClass.ONE_HANDED_AXE);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_HATCHET);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -688,6 +935,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(8)
                 .SetItemClass(ItemClass.TWO_HANDED_AXE);
 
+            builder.SetUniqueId(ID_CORRODED_LUMBERJACK_AXE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -709,6 +957,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(17)
                 .SetItemClass(ItemClass.TWO_HANDED_AXE);
 
+            builder.SetUniqueId(ID_BRONZE_LUMBERJACK_AXE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -730,6 +979,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(45)
                 .SetItemClass(ItemClass.TWO_HANDED_AXE);
 
+            builder.SetUniqueId(ID_STEEL_LUMBERJACK_AXE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -751,6 +1001,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(76)
                 .SetItemClass(ItemClass.TWO_HANDED_AXE);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_LUMBERJACK_AXE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -772,6 +1023,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(11)
                 .SetItemClass(ItemClass.FIST_WEAPON);
 
+            builder.SetUniqueId(ID_CORRODED_SLASHING_CLAW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -793,6 +1045,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(27)
                 .SetItemClass(ItemClass.FIST_WEAPON);
 
+            builder.SetUniqueId(ID_BRONZE_SLASHING_CLAW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -814,6 +1067,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(61)
                 .SetItemClass(ItemClass.FIST_WEAPON);
 
+            builder.SetUniqueId(ID_STEEL_SLASHING_CLAW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -835,6 +1089,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(95)
                 .SetItemClass(ItemClass.FIST_WEAPON);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_SLASHING_CLAW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -857,6 +1112,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(12)
                 .SetItemClass(ItemClass.WIZARD_STAFF);
 
+            builder.SetUniqueId(ID_ROTTEN_QUARTERSTAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -879,6 +1135,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(35)
                 .SetItemClass(ItemClass.WIZARD_STAFF);
 
+            builder.SetUniqueId(ID_CRACKED_QUARTERSTAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -901,6 +1158,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(78)
                 .SetItemClass(ItemClass.WIZARD_STAFF);
 
+            builder.SetUniqueId(ID_QUARTERSTAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -923,6 +1181,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(113)
                 .SetItemClass(ItemClass.WIZARD_STAFF);
 
+            builder.SetUniqueId(ID_REINFORCED_QUARTERSTAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -944,6 +1203,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(27)
                 .SetItemClass(ItemClass.MARTIAL_STAFF);
 
+            builder.SetUniqueId(ID_ERODED_STAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -965,6 +1225,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(72)
                 .SetItemClass(ItemClass.MARTIAL_STAFF);
 
+            builder.SetUniqueId(ID_BRONZE_STAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -986,6 +1247,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(113)
                 .SetItemClass(ItemClass.MARTIAL_STAFF);
 
+            builder.SetUniqueId(ID_STEEL_STAFF);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1006,6 +1268,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(14)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_ROTTEN_BARBED_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1026,6 +1289,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(41)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_BRONZE_BARBED_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1046,6 +1310,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(125)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_STEEL_BARBED_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1066,6 +1331,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(185)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_STEEL_BARBED_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1086,6 +1352,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(26)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_ROTTEN_WOODEN_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1106,6 +1373,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(116)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_RAW_WOODEN_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1126,6 +1394,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(179)
                 .SetItemClass(ItemClass.ONE_HANDED_MACE);
 
+            builder.SetUniqueId(ID_WOODEN_CLUB);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1146,6 +1415,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(20)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_ROTTEN_WOODEN_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1166,6 +1436,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(47)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_RAW_WOODEN_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1186,6 +1457,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(131)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_WOODEN_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1206,6 +1478,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(188)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_REINFORCED_WOODEN_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1226,6 +1499,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(35)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_ROTTEN_CARVED_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1246,6 +1520,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetStrengthRequirement(119)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_CARVED_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1262,10 +1537,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetCriticalStrikeChance(500)
                 .SetWeaponRange(16)
                 .SetName("Reinforced Carved Maul")
-                .SetMinimumItemLevel(36)
+                .SetMinimumItemLevel(57)
                 .SetStrengthRequirement(182)
                 .SetItemClass(ItemClass.TWO_HANDED_MACE);
 
+            builder.SetUniqueId(ID_REINFORCED_CARVED_MAUL);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1288,6 +1564,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(8)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_CORRODED_ROYAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1310,6 +1587,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(51)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_BRONZE_ROYAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1332,6 +1610,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(86)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_SILVER_ROYAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1354,6 +1633,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(113)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_GOLDEN_ROYAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1376,6 +1656,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(14)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_ROTTEN_TRIBAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1398,6 +1679,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(62)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_TRIBAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1420,6 +1702,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(96)
                 .SetItemClass(ItemClass.MAGIC_MACE);
 
+            builder.SetUniqueId(ID_REINFORCED_TRIBAL_SCEPTRE);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1440,6 +1723,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(14)
                 .SetItemClass(ItemClass.BOW);
 
+            builder.SetUniqueId(ID_PRIMITIVE_BOW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1460,6 +1744,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(26)
                 .SetItemClass(ItemClass.BOW);
 
+            builder.SetUniqueId(ID_SHORT_BOW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1480,6 +1765,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(116)
                 .SetItemClass(ItemClass.BOW);
 
+            builder.SetUniqueId(ID_COMPOSITE_SHORT_BOW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1501,6 +1787,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetAgilityRequirement(179)
                 .SetItemClass(ItemClass.BOW);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_COMPOSITE_SHORT_BOW);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1521,6 +1808,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(14)
                 .SetItemClass(ItemClass.WAND);
 
+            builder.SetUniqueId(ID_ROTTEN_WAND);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1541,6 +1829,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(29)
                 .SetItemClass(ItemClass.WAND);
 
+            builder.SetUniqueId(ID_ROTTEN_PYROMANCERS_WAND);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1561,6 +1850,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(116)
                 .SetItemClass(ItemClass.WAND);
 
+            builder.SetUniqueId(ID_PYROMANCERS_WAND);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);
@@ -1581,6 +1871,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                 .SetIntelligenceRequirement(179)
                 .SetItemClass(ItemClass.WAND);
 
+            builder.SetUniqueId(ID_EXCEPTIONAL_PYROMANCERS_WAND);
             builder.SetCollisionShapeDistanceToLeftEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToRightEdgeFromCenter(0);
             builder.SetCollisionShapeDistanceToTopEdgeFromCenter(0);

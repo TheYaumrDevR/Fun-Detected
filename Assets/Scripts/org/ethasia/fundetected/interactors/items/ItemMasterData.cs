@@ -4,6 +4,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 {
     public abstract class ItemMasterData
     {
+        public string UniqueId { get; protected set; }
         public ItemClass ItemClass { get; protected set; }
         public int MinimumItemLevel { get; protected set; }
         public string Name { get; protected set; }
@@ -21,10 +22,17 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
         public class Builder
         {
+            private string uniqueId;
             private int collisionShapeDistanceToLeftEdgeFromCenter;
             private int collisionShapeDistanceToRightEdgeFromCenter;
             private int collisionShapeDistanceToTopEdgeFromCenter;
             private int collisionShapeDistanceToBottomEdgeFromCenter;
+
+            public Builder SetUniqueId(string value)
+            {
+                uniqueId = value;
+                return this;
+            }
 
             public Builder SetCollisionShapeDistanceToLeftEdgeFromCenter(int value)
             {
@@ -52,6 +60,7 @@ namespace Org.Ethasia.Fundetected.Interactors.Items
 
             protected void FillItemMasterDataFields(ItemMasterData itemMasterData)
             {
+                itemMasterData.UniqueId = uniqueId;
                 itemMasterData.CollisionShapeDistanceToLeftEdgeFromCenter = collisionShapeDistanceToLeftEdgeFromCenter;
                 itemMasterData.CollisionShapeDistanceToRightEdgeFromCenter = collisionShapeDistanceToRightEdgeFromCenter;
                 itemMasterData.CollisionShapeDistanceToTopEdgeFromCenter = collisionShapeDistanceToTopEdgeFromCenter;
