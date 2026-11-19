@@ -20,6 +20,11 @@ namespace Org.Ethasia.Fundetected.Ioadapters
             this.realProvider = realProvider;
         }
 
+        public bool TryGetAffixByUniqueId(string uniqueId, out AffixRollCalculationTableEntryMasterData entry)
+        {
+            return realProvider.TryGetAffixByUniqueId(uniqueId, out entry);
+        }
+
         public AffixRollCalculationTableMasterData CreateRollablePrefixesForOneHandedSwords()
         {
             if (!prefixesForOneHandedSwords.HasValue)

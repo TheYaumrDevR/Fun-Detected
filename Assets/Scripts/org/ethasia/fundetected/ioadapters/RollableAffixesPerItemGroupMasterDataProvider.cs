@@ -1,15 +1,182 @@
+using System.Collections.Generic;
+
 using Org.Ethasia.Fundetected.Core.Equipment.Affixes;
 
 namespace Org.Ethasia.Fundetected.Ioadapters
 {
     public class RollableAffixesPerItemGroupMasterDataProvider : IRollableAffixesPerItemGroupMasterDataProvider
     {
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_9 = "PlusMinMaxPhysicalDamage9";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_8 = "PlusMinMaxPhysicalDamage8";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_7 = "PlusMinMaxPhysicalDamage7";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_6 = "PlusMinMaxPhysicalDamage6";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_5 = "PlusMinMaxPhysicalDamage5";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_4 = "PlusMinMaxPhysicalDamage4";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_3 = "PlusMinMaxPhysicalDamage3";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_2 = "PlusMinMaxPhysicalDamage2";
+        private const string ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_1 = "PlusMinMaxPhysicalDamage1";
+
+        private const string ID_PLUS_STRENGTH_9 = "PlusStrength9";
+        private const string ID_PLUS_STRENGTH_8 = "PlusStrength8";
+        private const string ID_PLUS_STRENGTH_7 = "PlusStrength7";
+        private const string ID_PLUS_STRENGTH_6 = "PlusStrength6";
+        private const string ID_PLUS_STRENGTH_5 = "PlusStrength5";
+        private const string ID_PLUS_STRENGTH_4 = "PlusStrength4";
+        private const string ID_PLUS_STRENGTH_3 = "PlusStrength3";
+        private const string ID_PLUS_STRENGTH_2 = "PlusStrength2";
+        private const string ID_PLUS_STRENGTH_1 = "PlusStrength1";
+
+        private const string ID_PLUS_STRENGTH_10_BELT = "PlusStrength10Belt";
+        private const string ID_PLUS_STRENGTH_9_BELT = "PlusStrength9Belt";
+        private const string ID_PLUS_STRENGTH_8_BELT = "PlusStrength8Belt";
+        private const string ID_PLUS_STRENGTH_7_BELT = "PlusStrength7Belt";
+        private const string ID_PLUS_STRENGTH_6_BELT = "PlusStrength6Belt";
+        private const string ID_PLUS_STRENGTH_5_BELT = "PlusStrength5Belt";
+        private const string ID_PLUS_STRENGTH_4_BELT = "PlusStrength4Belt";
+        private const string ID_PLUS_STRENGTH_3_BELT = "PlusStrength3Belt";
+        private const string ID_PLUS_STRENGTH_2_BELT = "PlusStrength2Belt";
+        private const string ID_PLUS_STRENGTH_1_BELT = "PlusStrength1Belt";
+
+        private const string ID_PLUS_MAXIMUM_LIFE_8 = "PlusMaximumLife8";
+        private const string ID_PLUS_MAXIMUM_LIFE_7 = "PlusMaximumLife7";
+        private const string ID_PLUS_MAXIMUM_LIFE_6 = "PlusMaximumLife6";
+        private const string ID_PLUS_MAXIMUM_LIFE_5 = "PlusMaximumLife5";
+        private const string ID_PLUS_MAXIMUM_LIFE_4 = "PlusMaximumLife4";
+        private const string ID_PLUS_MAXIMUM_LIFE_3 = "PlusMaximumLife3";
+        private const string ID_PLUS_MAXIMUM_LIFE_2 = "PlusMaximumLife2";
+        private const string ID_PLUS_MAXIMUM_LIFE_1 = "PlusMaximumLife1";
+
+        private const string ID_PLUS_MAXIMUM_LIFE_9_AMULET = "PlusMaximumLife9Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_8_AMULET = "PlusMaximumLife8Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_7_AMULET = "PlusMaximumLife7Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_6_AMULET = "PlusMaximumLife6Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_5_AMULET = "PlusMaximumLife5Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_4_AMULET = "PlusMaximumLife4Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_3_AMULET = "PlusMaximumLife3Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_2_AMULET = "PlusMaximumLife2Amulet";
+        private const string ID_PLUS_MAXIMUM_LIFE_1_AMULET = "PlusMaximumLife1Amulet";
+
+        private const string ID_PLUS_MAXIMUM_LIFE_10_BELT = "PlusMaximumLife10Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_9_BELT = "PlusMaximumLife9Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_8_BELT = "PlusMaximumLife8Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_7_BELT = "PlusMaximumLife7Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_6_BELT = "PlusMaximumLife6Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_5_BELT = "PlusMaximumLife5Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_4_BELT = "PlusMaximumLife4Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_3_BELT = "PlusMaximumLife3Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_2_BELT = "PlusMaximumLife2Belt";
+        private const string ID_PLUS_MAXIMUM_LIFE_1_BELT = "PlusMaximumLife1Belt";
+
+        private const string ID_PLUS_AGILITY_9 = "PlusAgility9";
+        private const string ID_PLUS_AGILITY_8 = "PlusAgility8";
+        private const string ID_PLUS_AGILITY_7 = "PlusAgility7";
+        private const string ID_PLUS_AGILITY_6 = "PlusAgility6";
+        private const string ID_PLUS_AGILITY_5 = "PlusAgility5";
+        private const string ID_PLUS_AGILITY_4 = "PlusAgility4";
+        private const string ID_PLUS_AGILITY_3 = "PlusAgility3";
+        private const string ID_PLUS_AGILITY_2 = "PlusAgility2";
+        private const string ID_PLUS_AGILITY_1 = "PlusAgility1";
+
+        private const string ID_PLUS_INTELLIGENCE_9 = "PlusIntelligence9";
+        private const string ID_PLUS_INTELLIGENCE_8 = "PlusIntelligence8";
+        private const string ID_PLUS_INTELLIGENCE_7 = "PlusIntelligence7";
+        private const string ID_PLUS_INTELLIGENCE_6 = "PlusIntelligence6";
+        private const string ID_PLUS_INTELLIGENCE_5 = "PlusIntelligence5";
+        private const string ID_PLUS_INTELLIGENCE_4 = "PlusIntelligence4";
+        private const string ID_PLUS_INTELLIGENCE_3 = "PlusIntelligence3";
+        private const string ID_PLUS_INTELLIGENCE_2 = "PlusIntelligence2";
+        private const string ID_PLUS_INTELLIGENCE_1 = "PlusIntelligence1";
+
+        private const string ID_INCREASED_ATTACK_SPEED_8 = "IncreasedAttackSpeed8";
+        private const string ID_INCREASED_ATTACK_SPEED_7 = "IncreasedAttackSpeed7";
+        private const string ID_INCREASED_ATTACK_SPEED_6 = "IncreasedAttackSpeed6";
+        private const string ID_INCREASED_ATTACK_SPEED_5 = "IncreasedAttackSpeed5";
+        private const string ID_INCREASED_ATTACK_SPEED_4 = "IncreasedAttackSpeed4";
+        private const string ID_INCREASED_ATTACK_SPEED_3 = "IncreasedAttackSpeed3";
+        private const string ID_INCREASED_ATTACK_SPEED_2 = "IncreasedAttackSpeed2";
+        private const string ID_INCREASED_ATTACK_SPEED_1 = "IncreasedAttackSpeed1";
+
+        private const string ID_INCREASED_GLOBAL_ATTACK_SPEED_1 = "IncreasedGlobalAttackSpeed1";
+
+        private const string ID_PLUS_MAXIMUM_MANA_13 = "PlusMaximumMana13";
+        private const string ID_PLUS_MAXIMUM_MANA_12 = "PlusMaximumMana12";
+        private const string ID_PLUS_MAXIMUM_MANA_11 = "PlusMaximumMana11";
+        private const string ID_PLUS_MAXIMUM_MANA_10 = "PlusMaximumMana10";
+        private const string ID_PLUS_MAXIMUM_MANA_9 = "PlusMaximumMana9";
+        private const string ID_PLUS_MAXIMUM_MANA_8 = "PlusMaximumMana8";
+        private const string ID_PLUS_MAXIMUM_MANA_7 = "PlusMaximumMana7";
+        private const string ID_PLUS_MAXIMUM_MANA_6 = "PlusMaximumMana6";
+        private const string ID_PLUS_MAXIMUM_MANA_5 = "PlusMaximumMana5";
+        private const string ID_PLUS_MAXIMUM_MANA_4 = "PlusMaximumMana4";
+        private const string ID_PLUS_MAXIMUM_MANA_3 = "PlusMaximumMana3";
+        private const string ID_PLUS_MAXIMUM_MANA_2 = "PlusMaximumMana2";
+        private const string ID_PLUS_MAXIMUM_MANA_1 = "PlusMaximumMana1";
+
+        private const string ID_PLUS_MAXIMUM_MANA_11_BELT = "PlusMaximumMana11Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_10_BELT = "PlusMaximumMana10Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_9_BELT = "PlusMaximumMana9Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_8_BELT = "PlusMaximumMana8Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_7_BELT = "PlusMaximumMana7Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_6_BELT = "PlusMaximumMana6Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_5_BELT = "PlusMaximumMana5Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_4_BELT = "PlusMaximumMana4Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_3_BELT = "PlusMaximumMana3Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_2_BELT = "PlusMaximumMana2Belt";
+        private const string ID_PLUS_MAXIMUM_MANA_1_BELT = "PlusMaximumMana1Belt";
+
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_6 = "PlusMinMaxGlobalPhysicalDamageWithAttacks6";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_5 = "PlusMinMaxGlobalPhysicalDamageWithAttacks5";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_4 = "PlusMinMaxGlobalPhysicalDamageWithAttacks4";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_3 = "PlusMinMaxGlobalPhysicalDamageWithAttacks3";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_2 = "PlusMinMaxGlobalPhysicalDamageWithAttacks2";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_1 = "PlusMinMaxGlobalPhysicalDamageWithAttacks1";
+
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_9_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks9Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_8_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks8Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_7_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks7Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_6_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks6Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_5_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks5Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_4_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks4Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_3_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks3Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_2_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks2Amulet";
+        private const string ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_1_AMULET = "PlusMinMaxGlobalPhysicalDamageWithAttacks1Amulet";
+
+        private const string ID_PLUS_GLOBAL_ARMOR_8 = "PlusGlobalArmor8";
+        private const string ID_PLUS_GLOBAL_ARMOR_7 = "PlusGlobalArmor7";
+        private const string ID_PLUS_GLOBAL_ARMOR_6 = "PlusGlobalArmor6";
+        private const string ID_PLUS_GLOBAL_ARMOR_5 = "PlusGlobalArmor5";
+        private const string ID_PLUS_GLOBAL_ARMOR_4 = "PlusGlobalArmor4";
+        private const string ID_PLUS_GLOBAL_ARMOR_3 = "PlusGlobalArmor3";
+        private const string ID_PLUS_GLOBAL_ARMOR_2 = "PlusGlobalArmor2";
+        private const string ID_PLUS_GLOBAL_ARMOR_1 = "PlusGlobalArmor1";
+
+        private const string ID_INCREASED_GLOBAL_ARMOUR_7 = "IncreasedGlobalArmour7";
+        private const string ID_INCREASED_GLOBAL_ARMOUR_6 = "IncreasedGlobalArmour6";
+        private const string ID_INCREASED_GLOBAL_ARMOUR_5 = "IncreasedGlobalArmour5";
+        private const string ID_INCREASED_GLOBAL_ARMOUR_4 = "IncreasedGlobalArmour4";
+        private const string ID_INCREASED_GLOBAL_ARMOUR_3 = "IncreasedGlobalArmour3";
+        private const string ID_INCREASED_GLOBAL_ARMOUR_2 = "IncreasedGlobalArmour2";
+        private const string ID_INCREASED_GLOBAL_ARMOUR_1 = "IncreasedGlobalArmour1";
+
+        private Dictionary<string, AffixRollCalculationTableEntryMasterData> affixMasterDataByUniqueId;
+
+        public bool TryGetAffixByUniqueId(string uniqueId, out AffixRollCalculationTableEntryMasterData entry)
+        {
+            if (null == affixMasterDataByUniqueId)
+            {
+                affixMasterDataByUniqueId = BuildAffixMasterDataByUniqueId();
+            }
+
+            return affixMasterDataByUniqueId.TryGetValue(uniqueId, out entry);
+        }
+
         public AffixRollCalculationTableMasterData CreateRollablePrefixesForOneHandedSwords()
         {
             EquipmentAffix physicalDamageBaseAffix = new PlusMinMaxPhysicalDamageAffix(0, 0);
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_9)
                     .SetTier(9)
                     .SetMinItemLevel(2)
                     .SetWeighting(1000)
@@ -24,6 +191,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_8)
                     .SetTier(8)
                     .SetMinItemLevel(13)
                     .SetWeighting(1000)
@@ -38,6 +206,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_7)
                     .SetTier(7)
                     .SetMinItemLevel(21)
                     .SetWeighting(1000)
@@ -52,6 +221,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_6)
                     .SetTier(6)
                     .SetMinItemLevel(29)
                     .SetWeighting(1000)
@@ -66,6 +236,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_5)
                     .SetTier(5)
                     .SetMinItemLevel(36)
                     .SetWeighting(1000)
@@ -80,6 +251,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_4)
                     .SetTier(4)
                     .SetMinItemLevel(46)
                     .SetWeighting(800)
@@ -94,6 +266,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_3)
                     .SetTier(3)
                     .SetMinItemLevel(54)
                     .SetWeighting(600)
@@ -108,6 +281,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_2)
                     .SetTier(2)
                     .SetMinItemLevel(65)
                     .SetWeighting(400)
@@ -122,6 +296,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_PHYSICAL_DAMAGE_1)
                     .SetTier(1)
                     .SetMinItemLevel(77)
                     .SetWeighting(200)
@@ -145,6 +320,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_9)                    
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(500)
@@ -156,6 +332,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(500)
@@ -167,6 +344,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(500)
@@ -178,6 +356,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(500)
@@ -189,6 +368,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(500)
@@ -200,6 +380,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(500)
@@ -211,6 +392,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(500)
@@ -222,6 +404,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(500)
@@ -233,6 +416,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(500)
@@ -248,6 +432,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(500)
@@ -259,6 +444,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(500)
@@ -270,6 +456,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(500)
@@ -281,6 +468,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(500)
@@ -292,6 +480,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(500)
@@ -303,6 +492,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(500)
@@ -314,6 +504,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(500)
@@ -325,6 +516,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(500)
@@ -336,6 +528,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(500)
@@ -351,6 +544,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_8)
                     .SetTier(8)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -362,6 +556,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_7)
                     .SetTier(7)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -373,6 +568,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_6)
                     .SetTier(6)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -384,6 +580,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_5)
                     .SetTier(5)
                     .SetMinItemLevel(30)
                     .SetWeighting(1000)
@@ -395,6 +592,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_4)
                     .SetTier(4)
                     .SetMinItemLevel(37)
                     .SetWeighting(1000)
@@ -406,6 +604,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_3)
                     .SetTier(3)
                     .SetMinItemLevel(45)
                     .SetWeighting(1000)
@@ -417,6 +616,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_2)
                     .SetTier(2)
                     .SetMinItemLevel(60)
                     .SetWeighting(1000)
@@ -428,6 +628,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_ATTACK_SPEED_1)
                     .SetTier(1)
                     .SetMinItemLevel(77)
                     .SetWeighting(1000)
@@ -448,6 +649,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_8)
                     .SetTier(8)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -459,6 +661,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_7)
                     .SetTier(7)
                     .SetMinItemLevel(5)
                     .SetWeighting(1000)
@@ -470,6 +673,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_6)
                     .SetTier(6)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -481,6 +685,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_5)
                     .SetTier(5)
                     .SetMinItemLevel(18)
                     .SetWeighting(1000)
@@ -492,6 +697,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_4)
                     .SetTier(4)
                     .SetMinItemLevel(24)
                     .SetWeighting(1000)
@@ -503,6 +709,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_3)
                     .SetTier(3)
                     .SetMinItemLevel(30)
                     .SetWeighting(1000)
@@ -514,6 +721,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_2)
                     .SetTier(2)
                     .SetMinItemLevel(36)
                     .SetWeighting(1000)
@@ -525,6 +733,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_1)
                     .SetTier(1)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -540,6 +749,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_13)
                     .SetTier(13)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -551,6 +761,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_12)
                     .SetTier(12)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -562,6 +773,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_11)
                     .SetTier(11)
                     .SetMinItemLevel(17)
                     .SetWeighting(1000)
@@ -573,6 +785,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_10)
                     .SetTier(10)
                     .SetMinItemLevel(23)
                     .SetWeighting(1000)
@@ -584,6 +797,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_9)
                     .SetTier(9)
                     .SetMinItemLevel(29)
                     .SetWeighting(1000)
@@ -595,6 +809,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_8)
                     .SetTier(8)
                     .SetMinItemLevel(35)
                     .SetWeighting(1000)
@@ -606,6 +821,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_7)
                     .SetTier(7)
                     .SetMinItemLevel(42)
                     .SetWeighting(1000)
@@ -617,6 +833,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_6)
                     .SetTier(6)
                     .SetMinItemLevel(51)
                     .SetWeighting(1000)
@@ -628,6 +845,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_5)
                     .SetTier(5)
                     .SetMinItemLevel(60)
                     .SetWeighting(1000)
@@ -639,6 +857,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_4)
                     .SetTier(4)
                     .SetMinItemLevel(69)
                     .SetWeighting(1000)
@@ -650,6 +869,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_3)
                     .SetTier(3)
                     .SetMinItemLevel(75)
                     .SetWeighting(1000)
@@ -661,6 +881,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_2)
                     .SetTier(2)
                     .SetMinItemLevel(81)
                     .SetWeighting(1000)
@@ -672,6 +893,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_1)
                     .SetTier(1)
                     .SetMinItemLevel(85)
                     .SetWeighting(1000)
@@ -687,6 +909,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_6) 
                     .SetTier(6)
                     .SetMinItemLevel(5)
                     .SetWeighting(1000)
@@ -701,6 +924,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_5)
                     .SetTier(5)
                     .SetMinItemLevel(13)
                     .SetWeighting(1000)
@@ -715,6 +939,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_4)
                     .SetTier(4)
                     .SetMinItemLevel(19)
                     .SetWeighting(1000)
@@ -729,6 +954,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_3)
                     .SetTier(3)
                     .SetMinItemLevel(28)
                     .SetWeighting(1000)
@@ -743,6 +969,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_2)
                     .SetTier(2)
                     .SetMinItemLevel(35)
                     .SetWeighting(1000)
@@ -757,6 +984,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_1)
                     .SetTier(1)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -780,6 +1008,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -791,6 +1020,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -802,6 +1032,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -813,6 +1044,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -824,6 +1056,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -835,6 +1068,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -846,6 +1080,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -857,6 +1092,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -868,6 +1104,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -883,6 +1120,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -894,6 +1132,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -905,6 +1144,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -916,6 +1156,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -927,6 +1168,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -938,6 +1180,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -949,6 +1192,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -960,6 +1204,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -971,6 +1216,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -986,6 +1232,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -997,6 +1244,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -1008,6 +1256,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -1019,6 +1268,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -1030,6 +1280,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -1041,6 +1292,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -1052,6 +1304,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -1063,6 +1316,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -1074,6 +1328,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -1089,6 +1344,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ATTACK_SPEED_1)
                     .SetTier(1)
                     .SetMinItemLevel(1)
                     .SetWeighting(500)
@@ -1109,6 +1365,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_10_BELT)
                     .SetTier(10)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -1120,6 +1377,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_9_BELT)
                     .SetTier(9)
                     .SetMinItemLevel(5)
                     .SetWeighting(1000)
@@ -1131,6 +1389,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_8_BELT)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -1142,6 +1401,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_7_BELT)
                     .SetTier(7)
                     .SetMinItemLevel(18)
                     .SetWeighting(1000)
@@ -1153,6 +1413,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_6_BELT)
                     .SetTier(6)
                     .SetMinItemLevel(24)
                     .SetWeighting(1000)
@@ -1164,6 +1425,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_5_BELT)
                     .SetTier(5)
                     .SetMinItemLevel(30)
                     .SetWeighting(1000)
@@ -1175,6 +1437,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_4_BELT)
                     .SetTier(4)
                     .SetMinItemLevel(36)
                     .SetWeighting(1000)
@@ -1186,6 +1449,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_3_BELT)
                     .SetTier(3)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -1197,6 +1461,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_2_BELT)
                     .SetTier(2)
                     .SetMinItemLevel(54)
                     .SetWeighting(1000)
@@ -1208,6 +1473,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_1_BELT)
                     .SetTier(1)
                     .SetMinItemLevel(64)
                     .SetWeighting(1000)
@@ -1223,6 +1489,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_11_BELT)
                     .SetTier(11)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -1234,6 +1501,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_10_BELT)
                     .SetTier(10)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -1245,6 +1513,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_9_BELT)
                     .SetTier(9)
                     .SetMinItemLevel(17)
                     .SetWeighting(1000)
@@ -1256,6 +1525,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_8_BELT)
                     .SetTier(8)
                     .SetMinItemLevel(23)
                     .SetWeighting(1000)
@@ -1267,6 +1537,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_7_BELT)
                     .SetTier(7)
                     .SetMinItemLevel(29)
                     .SetWeighting(1000)
@@ -1278,6 +1549,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_6_BELT)
                     .SetTier(6)
                     .SetMinItemLevel(35)
                     .SetWeighting(1000)
@@ -1289,6 +1561,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_5_BELT)
                     .SetTier(5)
                     .SetMinItemLevel(42)
                     .SetWeighting(1000)
@@ -1300,6 +1573,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_4_BELT)
                     .SetTier(4)
                     .SetMinItemLevel(51)
                     .SetWeighting(1000)
@@ -1311,6 +1585,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_3_BELT)
                     .SetTier(3)
                     .SetMinItemLevel(60)
                     .SetWeighting(1000)
@@ -1322,6 +1597,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_2_BELT)
                     .SetTier(2)
                     .SetMinItemLevel(69)
                     .SetWeighting(1000)
@@ -1333,6 +1609,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_1_BELT)
                     .SetTier(1)
                     .SetMinItemLevel(75)
                     .SetWeighting(1000)
@@ -1348,6 +1625,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_8)
                     .SetTier(8)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -1359,6 +1637,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_7)
                     .SetTier(7)
                     .SetMinItemLevel(18)
                     .SetWeighting(1000)
@@ -1370,6 +1649,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_6)
                     .SetTier(6)
                     .SetMinItemLevel(30)
                     .SetWeighting(1000)
@@ -1381,6 +1661,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -1392,6 +1673,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_4)
                     .SetTier(4)
                     .SetMinItemLevel(57)
                     .SetWeighting(1000)
@@ -1403,6 +1685,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_3)
                     .SetTier(3)
                     .SetMinItemLevel(71)
                     .SetWeighting(1000)
@@ -1414,6 +1697,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_2)
                     .SetTier(2)
                     .SetMinItemLevel(83)
                     .SetWeighting(1000)
@@ -1425,6 +1709,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_GLOBAL_ARMOR_1)
                     .SetTier(1)
                     .SetMinItemLevel(86)
                     .SetWeighting(1000)
@@ -1445,6 +1730,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_10_BELT)
                     .SetTier(10)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -1456,6 +1742,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_9_BELT)
                     .SetTier(9)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -1467,6 +1754,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_8_BELT)
                     .SetTier(8)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -1478,6 +1766,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_7_BELT)
                     .SetTier(7)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -1489,6 +1778,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_6_BELT)
                     .SetTier(6)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -1500,6 +1790,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_5_BELT)
                     .SetTier(5)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -1511,6 +1802,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_4_BELT)
                     .SetTier(4)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -1522,6 +1814,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_3_BELT)
                     .SetTier(3)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -1533,6 +1826,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_2_BELT)
                     .SetTier(2)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -1544,6 +1838,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_1_BELT)
                     .SetTier(1)
                     .SetMinItemLevel(85)
                     .SetWeighting(1000)
@@ -1564,6 +1859,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_9_AMULET)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -1575,6 +1871,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_8_AMULET)
                     .SetTier(8)
                     .SetMinItemLevel(5)
                     .SetWeighting(1000)
@@ -1586,6 +1883,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_7_AMULET)
                     .SetTier(7)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -1597,6 +1895,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_6_AMULET)
                     .SetTier(6)
                     .SetMinItemLevel(18)
                     .SetWeighting(1000)
@@ -1608,6 +1907,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_5_AMULET)
                     .SetTier(5)
                     .SetMinItemLevel(24)
                     .SetWeighting(1000)
@@ -1619,6 +1919,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_4_AMULET)
                     .SetTier(4)
                     .SetMinItemLevel(30)
                     .SetWeighting(1000)
@@ -1630,6 +1931,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_3_AMULET)
                     .SetTier(3)
                     .SetMinItemLevel(36)
                     .SetWeighting(1000)
@@ -1641,6 +1943,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_2_AMULET)
                     .SetTier(2)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -1652,6 +1955,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_LIFE_1_AMULET)
                     .SetTier(1)
                     .SetMinItemLevel(54)
                     .SetWeighting(1000)
@@ -1667,6 +1971,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_13)
                     .SetTier(13)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -1678,6 +1983,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_12)
                     .SetTier(12)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -1689,6 +1995,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_11)
                     .SetTier(11)
                     .SetMinItemLevel(17)
                     .SetWeighting(1000)
@@ -1700,6 +2007,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_10)
                     .SetTier(10)
                     .SetMinItemLevel(23)
                     .SetWeighting(1000)
@@ -1711,6 +2019,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_9)
                     .SetTier(9)
                     .SetMinItemLevel(29)
                     .SetWeighting(1000)
@@ -1722,6 +2031,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_8)
                     .SetTier(8)
                     .SetMinItemLevel(35)
                     .SetWeighting(1000)
@@ -1733,6 +2043,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_7)
                     .SetTier(7)
                     .SetMinItemLevel(42)
                     .SetWeighting(1000)
@@ -1744,6 +2055,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_6)
                     .SetTier(6)
                     .SetMinItemLevel(51)
                     .SetWeighting(1000)
@@ -1755,6 +2067,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_5)
                     .SetTier(5)
                     .SetMinItemLevel(60)
                     .SetWeighting(1000)
@@ -1766,6 +2079,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_4)
                     .SetTier(4)
                     .SetMinItemLevel(69)
                     .SetWeighting(1000)
@@ -1777,6 +2091,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_3)
                     .SetTier(3)
                     .SetMinItemLevel(75)
                     .SetWeighting(1000)
@@ -1788,6 +2103,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_2)
                     .SetTier(2)
                     .SetMinItemLevel(81)
                     .SetWeighting(1000)
@@ -1799,6 +2115,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MAXIMUM_MANA_1)
                     .SetTier(1)
                     .SetMinItemLevel(85)
                     .SetWeighting(1000)
@@ -1814,6 +2131,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_9_AMULET)
                     .SetTier(9)
                     .SetMinItemLevel(5)
                     .SetWeighting(1000)
@@ -1828,6 +2146,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_8_AMULET)
                     .SetTier(8)
                     .SetMinItemLevel(13)
                     .SetWeighting(1000)
@@ -1842,6 +2161,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_7_AMULET)
                     .SetTier(7)
                     .SetMinItemLevel(19)
                     .SetWeighting(1000)
@@ -1856,6 +2176,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_6_AMULET)
                     .SetTier(6)
                     .SetMinItemLevel(28)
                     .SetWeighting(1000)
@@ -1870,6 +2191,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_5_AMULET)
                     .SetTier(5)
                     .SetMinItemLevel(35)
                     .SetWeighting(1000)
@@ -1884,6 +2206,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_4_AMULET)
                     .SetTier(4)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -1898,6 +2221,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_3_AMULET)
                     .SetTier(3)
                     .SetMinItemLevel(52)
                     .SetWeighting(1000)
@@ -1912,6 +2236,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_2_AMULET)
                     .SetTier(2)
                     .SetMinItemLevel(64)
                     .SetWeighting(1000)
@@ -1926,6 +2251,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_MIN_MAX_GLOBAL_PHYSICAL_DAMAGE_WITH_ATTACKS_1_AMULET)
                     .SetTier(1)
                     .SetMinItemLevel(76)
                     .SetWeighting(1000)
@@ -1944,6 +2270,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_7)
                     .SetTier(7)
                     .SetMinItemLevel(2)
                     .SetWeighting(1000)
@@ -1955,6 +2282,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_6)
                     .SetTier(6)
                     .SetMinItemLevel(18)
                     .SetWeighting(1000)
@@ -1966,6 +2294,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_5)  
                     .SetTier(5)
                     .SetMinItemLevel(30)
                     .SetWeighting(1000)
@@ -1977,6 +2306,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_4)  
                     .SetTier(4)
                     .SetMinItemLevel(42)
                     .SetWeighting(1000)
@@ -1988,6 +2318,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_3)  
                     .SetTier(3)
                     .SetMinItemLevel(56)
                     .SetWeighting(1000)
@@ -1999,6 +2330,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_2)  
                     .SetTier(2)
                     .SetMinItemLevel(70)
                     .SetWeighting(1000)
@@ -2010,6 +2342,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_INCREASED_GLOBAL_ARMOUR_1)  
                     .SetTier(1)
                     .SetMinItemLevel(77)
                     .SetWeighting(1000)
@@ -2030,6 +2363,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             var affixRollCalculationTableMasterDataBuilder = new AffixRollCalculationTableMasterData.Builder()
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -2041,6 +2375,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -2052,6 +2387,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -2063,6 +2399,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -2074,6 +2411,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -2085,6 +2423,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -2096,6 +2435,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -2107,6 +2447,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -2118,6 +2459,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_STRENGTH_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -2133,6 +2475,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -2144,6 +2487,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -2155,6 +2499,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -2166,6 +2511,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -2177,6 +2523,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -2188,6 +2535,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -2199,6 +2547,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -2210,6 +2559,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -2221,6 +2571,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_AGILITY_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -2236,6 +2587,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             affixRollCalculationTableMasterDataBuilder
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_9)
                     .SetTier(9)
                     .SetMinItemLevel(1)
                     .SetWeighting(1000)
@@ -2247,6 +2599,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_8)
                     .SetTier(8)
                     .SetMinItemLevel(11)
                     .SetWeighting(1000)
@@ -2258,6 +2611,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_7)
                     .SetTier(7)
                     .SetMinItemLevel(22)
                     .SetWeighting(1000)
@@ -2269,6 +2623,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_6)
                     .SetTier(6)
                     .SetMinItemLevel(33)
                     .SetWeighting(1000)
@@ -2280,6 +2635,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_5)
                     .SetTier(5)
                     .SetMinItemLevel(44)
                     .SetWeighting(1000)
@@ -2291,6 +2647,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_4)
                     .SetTier(4)
                     .SetMinItemLevel(55)
                     .SetWeighting(1000)
@@ -2302,6 +2659,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_3)
                     .SetTier(3)
                     .SetMinItemLevel(66)
                     .SetWeighting(1000)
@@ -2313,6 +2671,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_2)
                     .SetTier(2)
                     .SetMinItemLevel(74)
                     .SetWeighting(1000)
@@ -2324,6 +2683,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                         .Build())
                     .Build())
                 .AddRollableAffix(new AffixRollCalculationTableEntryMasterData.Builder()
+                    .SetUniqueId(ID_PLUS_INTELLIGENCE_1)
                     .SetTier(1)
                     .SetMinItemLevel(82)
                     .SetWeighting(1000)
@@ -2337,5 +2697,32 @@ namespace Org.Ethasia.Fundetected.Ioadapters
 
             return affixRollCalculationTableMasterDataBuilder.Build();
         } 
+
+        private Dictionary<string, AffixRollCalculationTableEntryMasterData> BuildAffixMasterDataByUniqueId()
+        {
+            var result = new Dictionary<string, AffixRollCalculationTableEntryMasterData>();
+
+            AffixRollCalculationTableMasterData[] tables =
+            {
+                CreateRollablePrefixesForOneHandedSwords(),
+                CreateRollableSuffixesForOneHandedSwords(),
+                CreateRollablePrefixesForRings(),
+                CreateRollableSuffixesForRings(),
+                CreateRollablePrefixesForBelts(),
+                CreateRollableSuffixesForBelts(),
+                CreateRollablePrefixesForAmulets(),
+                CreateRollableSuffixesForAmulets()
+            };
+
+            foreach (AffixRollCalculationTableMasterData table in tables)
+            {
+                foreach (AffixRollCalculationTableEntryMasterData entry in table.RollableAffixes)
+                {
+                    result[entry.UniqueId] = entry;
+                }
+            }
+
+            return result;
+        }
     }
 }

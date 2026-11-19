@@ -2,6 +2,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
 {
     public interface IRollableAffixesPerItemGroupMasterDataProvider
     {
+        bool TryGetAffixByUniqueId(string uniqueId, out AffixRollCalculationTableEntryMasterData entry);
         AffixRollCalculationTableMasterData CreateRollablePrefixesForOneHandedSwords();
         AffixRollCalculationTableMasterData CreateRollableSuffixesForOneHandedSwords();
         AffixRollCalculationTableMasterData CreateRollablePrefixesForRings();
