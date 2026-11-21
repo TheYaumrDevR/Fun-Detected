@@ -11,7 +11,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private InteractablesRendererDelayedInitializationProxy interactablesRenderer;
         private UiRenderer uiRenderer;
         private StaticPlaceablesRendererDelayedInitializationProxy staticPlaceablesRenderer;
-        private JsonFileStore fileStore;
+        private FileStoreImpl fileStore;
         private UnitySaveLocationProvider saveLocationProvider;
         private UnityJsonSerializer jsonSerializer;
 
@@ -141,7 +141,7 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             if (null == fileStore)
             {
-                fileStore = new JsonFileStore();
+                fileStore = new FileStoreImpl();
             }
 
             return fileStore;

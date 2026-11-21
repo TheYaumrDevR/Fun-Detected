@@ -4,7 +4,7 @@ using Org.Ethasia.Fundetected.Ioadapters.Technical;
 
 namespace Org.Ethasia.Fundetected.Technical
 {
-    public class JsonFileStore : IFileStore
+    public class FileStoreImpl : IFileStore
     {
         public void Save(string directory, string fileName, string content)
         {
