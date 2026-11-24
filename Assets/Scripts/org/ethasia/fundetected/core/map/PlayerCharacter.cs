@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using Org.Ethasia.Fundetected.Core.Combat;
@@ -14,6 +15,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
         private double timeSinceLastMovement;  
         private MeleeAttack meleeAttack;
         private CharacterClasses characterClass;
+
+        public string Id
+        {
+            get;
+            private set;
+        }        
 
         public string Name
         {
@@ -348,6 +355,7 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
         public class PlayerCharacterBuilder
         {
+            private string id;
             private BoundingBox boundingBox;
             private FacingDirection facingDirection;
             private string name;
@@ -355,6 +363,12 @@ namespace Org.Ethasia.Fundetected.Core.Map
 
             private PlayerCharacterBaseStats playerCharacterBaseStats;
             private MeleeHitArcProperties meleeHitArcProperties;
+
+            public PlayerCharacterBuilder SetId(string value)
+            {
+                id = value;
+                return this;
+            }            
 
             public PlayerCharacterBuilder SetBoundingBox(BoundingBox value)
             {
@@ -395,6 +409,8 @@ namespace Org.Ethasia.Fundetected.Core.Map
             public PlayerCharacter Build()
             {
                 PlayerCharacter result = new PlayerCharacter();
+
+                result.Id = string.IsNullOrEmpty(id) ? Guid.NewGuid().ToString() : id;
 
                 result.BoundingBox = boundingBox;
 

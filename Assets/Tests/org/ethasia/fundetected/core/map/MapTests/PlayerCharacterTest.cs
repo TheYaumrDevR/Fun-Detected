@@ -206,6 +206,31 @@ namespace Org.Ethasia.Fundetected.Core.Map.Tests
             Assert.That(testCandidate.BaseStats.LevelingSystem.ExperiencePoints, Is.EqualTo(300));
         }
 
+        [Test]
+        public void TestBuildGeneratesDifferentIdsForDifferentPlayerCharacters()
+        {
+            PlayerCharacter first = CreateStandardTestCandidate();
+            PlayerCharacter second = CreateStandardTestCandidate();
+
+            Assert.That(string.IsNullOrEmpty(first.Id), Is.False);
+            Assert.That(string.IsNullOrEmpty(second.Id), Is.False);
+            Assert.That(first.Id, Is.Not.EqualTo(second.Id));
+        }
+
+        [Test]
+        public void TestBuildUsesIdThatWasSetOnBuilder()
+        {
+            string expectedId = "saved-player-character-id";
+
+            PlayerCharacter result = new PlayerCharacter.PlayerCharacterBuilder()
+                .SetId(expectedId)
+                .SetPlayerCharacterBaseStats(testBaseStats)
+                .SetMeleeHitArcProperties(CreateMeleeHitArcProperties())
+                .Build();
+
+            Assert.That(result.Id, Is.EqualTo(expectedId));
+        }
+
         private PlayerCharacter RunLevelUpScenario(int experiencePointsFromEnemy)
         {
             PlayerCharacterBaseStats playerCharacterBaseStats = new PlayerCharacterBaseStats
