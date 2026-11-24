@@ -64,7 +64,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             return false;
         }
 
-        public override RollableEquipmentAffix Clone()
+        protected override RollableEquipmentAffix CreateCopy()
         {
             IntegerIntervalMinMaxIncrementRollableEquipmentAffix copy = new IntegerIntervalMinMaxIncrementRollableEquipmentAffix(RerolledAffix.Clone());
             copy.lowerBoundMinValue = lowerBoundMinValue;
@@ -77,7 +77,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
             return copy;
         }
 
-        public class Builder
+        public class Builder : BuilderBase<Builder, IntegerIntervalMinMaxIncrementRollableEquipmentAffix>
         {
             private EquipmentAffix rerolledAffix;
             private int lowerBoundMinValue;
@@ -129,7 +129,7 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes
                 return this;
             }
 
-            public IntegerIntervalMinMaxIncrementRollableEquipmentAffix Build()
+            protected override IntegerIntervalMinMaxIncrementRollableEquipmentAffix CreateAffix()
             {
                 IntegerIntervalMinMaxIncrementRollableEquipmentAffix result = new IntegerIntervalMinMaxIncrementRollableEquipmentAffix(rerolledAffix);
                 result.lowerBoundMinValue = lowerBoundMinValue;

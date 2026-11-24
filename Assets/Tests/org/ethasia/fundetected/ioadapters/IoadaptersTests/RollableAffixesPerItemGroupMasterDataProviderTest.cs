@@ -38,7 +38,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             foreach (var pair in BuildAllTables())
             {
                 List<string> duplicates = EntriesOf(pair.Value)
-                    .GroupBy(e => e.UniqueId)
+                    .GroupBy(e => e.RollableAffix.UniqueId)
                     .Where(g => g.Count() > 1)
                     .Select(g => g.Key)
                     .ToList();
@@ -54,10 +54,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             {
                 foreach (AffixRollCalculationTableEntryMasterData entry in EntriesOf(pair.Value))
                 {
-                    Assert.That(string.IsNullOrEmpty(entry.UniqueId), Is.False, pair.Key);
-                    Assert.That(entry.Tier, Is.GreaterThan(0), pair.Key + "/" + entry.UniqueId);
-                    Assert.That(entry.MinItemLevel, Is.GreaterThan(0), pair.Key + "/" + entry.UniqueId);
-                    Assert.That(entry.RollableAffix, Is.Not.Null, pair.Key + "/" + entry.UniqueId);
+                    Assert.That(entry.RollableAffix, Is.Not.Null, pair.Key);
+
+                    string uniqueId = entry.RollableAffix.UniqueId;
+
+                    Assert.That(string.IsNullOrEmpty(uniqueId), Is.False, pair.Key);
+                    Assert.That(entry.Tier, Is.GreaterThan(0), pair.Key + "/" + uniqueId);
+                    Assert.That(entry.MinItemLevel, Is.GreaterThan(0), pair.Key + "/" + uniqueId);
                 }
             }
         }
@@ -70,7 +73,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
             foreach (var pair in BuildAllTables())
             {
                 // Ids are "<Name><Tier>[Suffix]"; group by the name without digits.
-                var groups = EntriesOf(pair.Value).GroupBy(e => new string(e.UniqueId.Where(c => !char.IsDigit(c)).ToArray()));
+                var groups = EntriesOf(pair.Value).GroupBy(e => new string(e.RollableAffix.UniqueId.Where(c => !char.IsDigit(c)).ToArray()));
 
                 foreach (var group in groups)
                 {
@@ -81,7 +84,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
                         if (ordered[i].MinItemLevel < ordered[i - 1].MinItemLevel)
                         {
                             violations.Add(string.Format("{0}/{1}: tier {2} minItemLevel {3} < tier {4} minItemLevel {5}",
-                                pair.Key, ordered[i].UniqueId, ordered[i].Tier, ordered[i].MinItemLevel,
+                                pair.Key, ordered[i].RollableAffix.UniqueId, ordered[i].Tier, ordered[i].MinItemLevel,
                                 ordered[i - 1].Tier, ordered[i - 1].MinItemLevel));
                         }
                     }
@@ -96,7 +99,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             var mismatches = new List<string>();
 
-            foreach (IGrouping<string, AffixRollCalculationTableEntryMasterData> group in BuildAllEntries().GroupBy(e => e.UniqueId))
+            foreach (IGrouping<string, AffixRollCalculationTableEntryMasterData> group in BuildAllEntries().GroupBy(e => e.RollableAffix.UniqueId))
             {
                 AffixRollCalculationTableEntryMasterData reference = group.First();
 
@@ -123,7 +126,7 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         [Test]
         public void CreateTables_WhenBuilt_SomeUniqueIdsAreSharedBetweenTables()
         {
-            int sharedIdCount = BuildAllEntries().GroupBy(e => e.UniqueId).Count(g => g.Count() > 1);
+            int sharedIdCount = BuildAllEntries().GroupBy(e => e.RollableAffix.UniqueId).Count(g => g.Count() > 1);
 
             Assert.That(sharedIdCount, Is.GreaterThan(0));
         }
@@ -133,12 +136,13 @@ namespace Org.Ethasia.Fundetected.Ioadapters.Tests
         {
             foreach (AffixRollCalculationTableEntryMasterData entry in BuildAllEntries())
             {
+                string uniqueId = entry.RollableAffix.UniqueId;
                 AffixRollCalculationTableEntryMasterData found;
 
-                Assert.That(testCandidate.TryGetAffixByUniqueId(entry.UniqueId, out found), Is.True, entry.UniqueId);
-                Assert.That(found, Is.Not.Null, entry.UniqueId);
-                Assert.That(found.UniqueId, Is.EqualTo(entry.UniqueId));
-                Assert.That(found.Tier, Is.EqualTo(entry.Tier), entry.UniqueId);
+                Assert.That(testCandidate.TryGetAffixByUniqueId(uniqueId, out found), Is.True, uniqueId);
+                Assert.That(found.RollableAffix, Is.Not.Null, uniqueId);
+                Assert.That(found.RollableAffix.UniqueId, Is.EqualTo(uniqueId));
+                Assert.That(found.Tier, Is.EqualTo(entry.Tier), uniqueId);
             }
         }
 

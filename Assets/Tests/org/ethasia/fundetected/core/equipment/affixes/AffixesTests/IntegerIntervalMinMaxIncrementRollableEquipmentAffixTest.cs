@@ -199,6 +199,28 @@ namespace Org.Ethasia.Fundetected.Core.Equipment.Affixes.Tests
             Assert.That(rerolledValue.MaxDamage, Is.EqualTo(27));
         }
 
+        [Test]
+        public void TestClone_ClonesUniqueId()
+        {
+            // Arrange
+            var originalAffix = new IntegerIntervalMinMaxIncrementRollableEquipmentAffix.Builder()
+                .SetUniqueId("PlusMinMaxPhysicalDamageWithAttacks2")
+                .SetRerolledAffix(new PlusMinMaxGlobalPhysicalDamageWithAttacksAffix(3, 8))
+                .SetLowerBoundMinValue(5)
+                .SetLowerBoundMaxValue(17)
+                .SetLowerBoundIncrement(1)
+                .SetUpperBoundMinValue(15)
+                .SetUpperBoundMaxValue(40)
+                .SetUpperBoundIncrement(1)
+                .Build();
+
+            // Act
+            var clonedAffix = originalAffix.Clone();
+
+            // Assert
+            Assert.That(clonedAffix.UniqueId, Is.EqualTo(originalAffix.UniqueId));
+        }
+
         private static void CreateMockIoAdaptersFactoryWithRngMock()
         {
             RandomNumberGeneratorMock rngMock = new RandomNumberGeneratorMock(new int[] { 8, 27 }, new float[] { }, new double[] { });
