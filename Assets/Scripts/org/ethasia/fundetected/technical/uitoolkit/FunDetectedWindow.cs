@@ -13,6 +13,7 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
         private const string CONTENT_CONTAINER_NAME = "window-content";
 
         private string titleKey;
+        private bool hideCloseButton;
 
         [UxmlAttribute]
         public string TitleKey
@@ -39,6 +40,27 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
             {
                 var label = this.Q<Label>(TITLE_LABEL_NAME);
                 if (label != null) label.text = value;
+            }
+        }
+
+        [UxmlAttribute]
+        public bool HideCloseButton
+        {
+            get
+            {
+                return hideCloseButton;
+            }
+
+            set
+            {
+                EnableInClassList("fundetected-window-no-close", value);
+                hideCloseButton = value;
+
+                var closeButton = this.Q<Button>(CLOSE_BUTTON_NAME);
+                if (closeButton != null)
+                {
+                    closeButton.style.display = value ? DisplayStyle.None : DisplayStyle.Flex;
+                }
             }
         }
 
