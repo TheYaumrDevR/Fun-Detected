@@ -21,6 +21,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private VisualElement rootElement;
         private VisualElement mapSelectionWindow;     
         private InventoryWindow inventoryWindow;
+        private MainMenuWindow mainMenuWindow;
         private DeathScreenOverlay deathScreenOverlay;
         private NormalItemTooltip itemTooltip;
         private Button mapSelectionWindowCloseButton;
@@ -49,6 +50,7 @@ namespace Org.Ethasia.Fundetected.Technical
 
             mapSelectionWindow.visible = false;
             inventoryWindow.IsOpen = false;
+            mainMenuWindow.IsOpen = false;
 
             SetupMapSelectionList();
             inventoryDisplayInteractor = new InventoryDisplayInteractor();
@@ -69,10 +71,23 @@ namespace Org.Ethasia.Fundetected.Technical
             PopulateMapSelectionList(windowContent);
         }
 
+        public void OpenMainMenuWindow()
+        {
+            mainMenuWindow.IsOpen = true;
+            PlayerInputHandler.GetInstance().DisableInput();
+            SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+        }
+
         public void CloseCurrentlyOpenWindow()
         {
             CloseMapSelectionWindow();
             CloseInventoryWindow();
+            CloseMainMenuWindow();
+        }
+
+        public bool IsAnyWindowOpen()
+        {
+            return mapSelectionWindow.visible || inventoryWindow.IsOpen || mainMenuWindow.IsOpen;
         }
 
         public void ToggleInventoryWindow()
@@ -144,7 +159,7 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             PlayerInputHandler playerInputHandler = PlayerInputHandler.GetInstance();
 
-            if (!mapSelectionWindow.visible && !inventoryWindow.IsOpen)
+            if (!mapSelectionWindow.visible && !inventoryWindow.IsOpen && !mainMenuWindow.IsOpen)
             {
                 playerInputHandler.EnableInput();
             }
@@ -162,6 +177,8 @@ namespace Org.Ethasia.Fundetected.Technical
 
             inventoryWindow = rootElement.Q<InventoryWindow>("InventoryWindow");
             itemTooltip = rootElement.Q<NormalItemTooltip>("item-tooltip");
+
+            mainMenuWindow = rootElement.Q<MainMenuWindow>("MainMenuWindow");
         }        
 
         private void SetupMapSelectionList()
@@ -279,6 +296,16 @@ namespace Org.Ethasia.Fundetected.Technical
             if (inventoryWindow.IsOpen)
             {
                 inventoryWindow.IsOpen = false;
+                EnablePlayerInputIfAllWindowsAreClosed();
+                SoundPlayer.GetInstance().PlayUiWindowOpenSound();
+            }
+        }
+
+        private void CloseMainMenuWindow()
+        {
+            if (mainMenuWindow.IsOpen)
+            {
+                mainMenuWindow.IsOpen = false;
                 EnablePlayerInputIfAllWindowsAreClosed();
                 SoundPlayer.GetInstance().PlayUiWindowOpenSound();
             }

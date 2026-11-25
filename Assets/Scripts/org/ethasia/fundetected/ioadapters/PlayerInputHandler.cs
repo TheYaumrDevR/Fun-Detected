@@ -159,8 +159,15 @@ namespace Org.Ethasia.Fundetected.Ioadapters
                     return;
                 }
                 
-                guiWindowsController.CloseCurrentlyOpenWindow();
-                EnableInput();
+                if (guiWindowsController.IsAnyWindowOpen())
+                {
+                    guiWindowsController.CloseCurrentlyOpenWindow();
+                    EnableInput();
+                }
+                else
+                {
+                    guiWindowsController.OpenMainMenuWindow();
+                }
             }
         }   
 

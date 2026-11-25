@@ -20,6 +20,10 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
             LastOpenedInventoryContext = context;
         }
 
+        public void OpenMainMenuWindow()
+        {
+        }
+
         public void CloseCurrentlyOpenWindow()
         {
         }
@@ -37,6 +41,11 @@ namespace Org.Ethasia.Fundetected.Technical.Mocks
         }
 
         public bool IsDeathOverlayVisible()
+        {
+            return false;
+        }
+
+        public bool IsAnyWindowOpen()
         {
             return false;
         }
