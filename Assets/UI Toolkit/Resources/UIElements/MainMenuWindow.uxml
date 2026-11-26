@@ -1,10 +1,11 @@
 <engine:UXML xmlns:engine="UnityEngine.UIElements" xmlns:fund="Org.Ethasia.Fundetected.Technical.UIToolkit" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Styles/MainMenuWindowStyle.uss?fileID=7433441132597879392&amp;guid=3e90721e7fc375f47809f5ca50f36979&amp;type=3#MainMenuWindowStyle" />
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/FunDetectedButtonStyle.uss?fileID=7433441132597879392&amp;guid=51c292469915fdc43ade8e868921c42d&amp;type=3#FunDetectedButtonStyle" />
     
     <fund:FunDetectedWindow name="base-window" title-key="main-menu-window-title" hide-close-button="true" class="main-menu-window">
         <engine:VisualElement name="main-menu-buttons" class="main-menu-buttons">
-            <fund:FunDetectedButton name="main-menu-save-button" label-key="main-menu-save-button-label" class="WindowsButton main-menu-button" />
-            <fund:FunDetectedButton name="main-menu-quit-button" label-key="main-menu-quit-button-label" class="WindowsButton main-menu-button" />
+            <fund:FunDetectedButton name="main-menu-save-button" label-key="main-menu-save-button-label" class="fundetected-button main-menu-button" />
+            <fund:FunDetectedButton name="main-menu-quit-button" label-key="main-menu-quit-button-label" class="fundetected-button main-menu-button" />
         </engine:VisualElement>
     </fund:FunDetectedWindow>
 </engine:UXML>
