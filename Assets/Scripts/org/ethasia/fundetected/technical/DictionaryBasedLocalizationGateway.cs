@@ -10,6 +10,7 @@ namespace Org.Ethasia.Fundetected.Technical
         private Dictionary<string, string> localizedStrings = new Dictionary<string, string>
         {
             { "inventory-window-title", "Inventory" },
+            { "main-menu-window-title", "Game Menu" },
             { "death-screen-title", "You have died" },
             { "death-screen-continue-hint", "Press Esc to continue" },
             { "death-screen-continue-hint-hc", "Press Esc to return to the main menu" },
