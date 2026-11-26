@@ -1,6 +1,7 @@
 .fundetected-button {
     background-color: #201d18;
     color: #ffffff;
+    font-size: 18px;
     border-width: 4px;
     border-color: #5d5051;
 }
