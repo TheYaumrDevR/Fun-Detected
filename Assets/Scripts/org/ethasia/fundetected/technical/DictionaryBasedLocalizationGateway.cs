@@ -11,6 +11,8 @@ namespace Org.Ethasia.Fundetected.Technical
         {
             { "inventory-window-title", "Inventory" },
             { "main-menu-window-title", "Game Menu" },
+            { "main-menu-save-button-label", "Save" },
+            { "main-menu-quit-button-label", "Quit" },
             { "death-screen-title", "You have died" },
             { "death-screen-continue-hint", "Press Esc to continue" },
             { "death-screen-continue-hint-hc", "Press Esc to return to the main menu" },

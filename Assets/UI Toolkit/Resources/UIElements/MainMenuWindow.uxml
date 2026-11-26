@@ -3,8 +3,8 @@
     
     <fund:FunDetectedWindow name="base-window" title-key="main-menu-window-title" hide-close-button="true" class="main-menu-window">
         <engine:VisualElement name="main-menu-buttons" class="main-menu-buttons">
-            <engine:Button name="main-menu-save-button" text="Save" class="WindowsButton main-menu-button" />
-            <engine:Button name="main-menu-quit-button" text="Quit" class="WindowsButton main-menu-button" />
+            <fund:FunDetectedButton name="main-menu-save-button" label-key="main-menu-save-button-label" class="WindowsButton main-menu-button" />
+            <fund:FunDetectedButton name="main-menu-quit-button" label-key="main-menu-quit-button-label" class="WindowsButton main-menu-button" />
         </engine:VisualElement>
     </fund:FunDetectedWindow>
 </engine:UXML>
