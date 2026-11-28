@@ -10,3 +10,21 @@
     background-color: #5d6c7f;
     border-color: #fcfdfe;
 }
+
+.fundetected-button:active {
+    background-color: #181e1e;
+    border-color: #363a3d;
+}
+
+.fundetected-button-danger {
+    background-color: #510b12;
+}
+
+.fundetected-button-danger:hover {
+    background-color: #a11d2a;
+}
+
+.fundetected-button-danger:active {
+    background-color: #3a0c0c;
+    border-color: #5a3233;
+}
