@@ -26,5 +26,15 @@ namespace Org.Ethasia.Fundetected.Technical.UIToolkit
                 }
             }
         }
+
+        public FunDetectedButton()
+        {
+            RegisterCallback<ClickEvent>(OnClick);
+        }
+
+        private void OnClick(ClickEvent clickEvent)
+        {
+            SoundPlayer.GetInstance().PlayMouseClickSound();
+        }
     }
 }
